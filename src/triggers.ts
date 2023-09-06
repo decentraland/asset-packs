@@ -34,7 +34,9 @@ function initOnClickTrigger(entity: Entity, trigger: Trigger) {
       opts: { button: InputAction.IA_POINTER, hoverText: 'Click' },
     },
     function () {
-      playAction(trigger.entity, trigger.action)
+      for (const action of trigger.actions) {
+        playAction(action.entity, action.name)
+      }
     },
   )
 }

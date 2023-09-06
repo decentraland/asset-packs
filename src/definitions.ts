@@ -34,8 +34,12 @@ export function createComponents(engine: IEngine) {
           TriggerType,
           TriggerType.ON_CLICK,
         ),
-        entity: Schemas.Optional(Schemas.Entity),
-        action: Schemas.Optional(Schemas.String),
+        actions: Schemas.Array(
+          Schemas.Map({
+            entity: Schemas.Optional(Schemas.Entity),
+            name: Schemas.Optional(Schemas.String),
+          }),
+        ),
       }),
     ),
   })
@@ -53,3 +57,4 @@ export type Action = ReturnType<ActionsComponent['get']>['value'][0]
 
 export type TriggersComponent = Components['Triggers']
 export type Trigger = ReturnType<TriggersComponent['get']>['value'][0]
+export type TriggerAction = Trigger['actions'][0]
