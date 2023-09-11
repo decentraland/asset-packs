@@ -21,6 +21,7 @@ services:
       - ./src:/app/src
       - ./server.ts:/app/server.ts
       - ./entrypoint.sh:/app/entrypoint.sh
+      - ./bin:/app/bin
     links:
       - minio
 
