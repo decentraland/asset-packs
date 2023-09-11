@@ -21,6 +21,8 @@ services:
       - ./src:/app/src
       - ./server.ts:/app/server.ts
       - ./entrypoint.sh:/app/entrypoint.sh
+    links:
+      - minio
 
   # Object storage compatible with aws-sdk.
   # Comes with a UI that can be accessed via http://localhost:9001.

@@ -7,6 +7,7 @@ dotenv.config()
 const serverHost = process.env.SERVER_HOST || '0.0.0.0'
 const serverPort = process.env.CATALOG_SERVER_PORT || 8002
 const awsStorageUrl = process.env.AWS_STORAGE_URL || ''
+const s3BucketName = process.env.S3_BUCKET_NAME || 'asset-packs'
 
 const server = http.createServer((request: any, response: any) => {
   response.setHeader('Access-Control-Allow-Origin', '*')
@@ -19,7 +20,7 @@ const server = http.createServer((request: any, response: any) => {
         destination: `${awsStorageUrl.replace(
           /:(?=\d)/,
           '\\:', // Parse the port dots
-        )}/assets-pack/contents/:hash`,
+        )}/${s3BucketName}/contents/:hash`,
       },
     ],
   })
