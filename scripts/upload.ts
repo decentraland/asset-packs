@@ -2,7 +2,12 @@ import { resolve } from 'path'
 import { createReadStream } from 'fs'
 import dotenv from 'dotenv'
 import mimeTypes from 'mime-types'
-import { DeleteObjectCommand, HeadObjectCommand, S3 } from '@aws-sdk/client-s3'
+import {
+  DeleteObjectCommand,
+  HeadObjectCommand,
+  S3,
+  S3ClientConfigType,
+} from '@aws-sdk/client-s3'
 import { Upload } from '@aws-sdk/lib-storage'
 import { LocalFileSystem } from './utils/local'
 import { exists, readBuffer } from './utils/fs'
@@ -13,6 +18,7 @@ const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
 const bucketName = process.env.S3_BUCKET_NAME
 const region = process.env.S3_REGION
 const concurrency = parseInt(process.env.S3_UPLOAD_CONCURRENCY || '')
+const storageUrl = process.env.AWS_STORAGE_URL
 
 async function main() {
   // validate env vars
@@ -32,19 +38,31 @@ async function main() {
     throw new Error(`Missing S3_UPLOAD_CONCURRENCY env var`)
   }
 
-  console.log('Bucket Name:', bucketName)
-  console.log('Region:', region)
-  console.log('Concurrency:', concurrency)
-  console.log('\n')
-
-  // s3 auth client
-  const client = new S3({
+  let config: S3ClientConfigType = {
     region,
     credentials: {
       accessKeyId,
       secretAccessKey,
     },
-  })
+  }
+
+  console.log('Bucket Name:', bucketName)
+  console.log('Region:', region)
+  console.log('Concurrency:', concurrency)
+
+  if (storageUrl) {
+    config = {
+      ...config,
+      endpoint: storageUrl,
+    }
+
+    console.log('Storage URL:', storageUrl)
+  }
+
+  console.log('\n')
+
+  // s3 auth client
+  const client = new S3(config)
 
   // upload queue
   const { default: Queue } = await import('p-queue')
