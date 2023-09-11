@@ -3,7 +3,7 @@
 # you will have a http-server and an s3 compatible local object storage
 # ready to be used.
 
-version: '3.4'
+version: '3.8'
 
 services:
   # HTTP server that serves the SDK7 scene locally via http://localhost:8000.
@@ -21,7 +21,6 @@ services:
       - ./src:/app/src
       - ./server.ts:/app/server.ts
       - ./entrypoint.sh:/app/entrypoint.sh
-      - ./bin:/app/bin
     links:
       - minio
 
