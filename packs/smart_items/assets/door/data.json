@@ -1,0 +1,38 @@
+{
+  "id": "a351d9e4-030d-47bd-abca-16103cd8849d",
+  "name": "A door",
+  "category": "decorations",
+  "tags": [],
+  "components": {
+    "core::GltfContainer": {
+      "src": "{assetPath}/Door.glb"
+    },
+    "inspector::Actions": {
+      "value": [
+        {
+          "name": "Open",
+          "type": "play_animation",
+          "animation": "Open"
+        },
+        {
+          "name": "Close",
+          "type": "play_animation",
+          "animation": "Close"
+        }
+      ]
+    },
+    "inspector::Triggers": {
+      "value": [
+        {
+          "type": "on_click",
+          "actions": [
+            {
+              "entity": "{selfEntity}",
+              "name": "Open"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
