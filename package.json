@@ -12,6 +12,7 @@
     "start": "npm run start:js & npm run start:lib",
     "start:js": "sdk-commands start",
     "start:lib": "npm run build:lib -- --watch",
+    "start:catalog": "npm run catalog && npm run upload && ts-node --project tsconfig.scripts.json server.ts",
     "build:js": "sdk-commands build",
     "build:lib": "tsc --project tsconfig.lib.json",
     "build": "npm run build:js && npm run build:lib"
