@@ -46,6 +46,8 @@ services:
     image: minio/mc
     depends_on:
       - minio
+    env_file:
+      - .env
     volumes:
       - ./minio-mc-entrypoint.sh:/scripts/entrypoint.sh
     entrypoint: /scripts/entrypoint.sh
