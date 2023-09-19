@@ -19,13 +19,13 @@ export function triggersSystem(_dt: number) {
       continue
     }
 
-    for (const trigger of triggers.value) {
-      switch (trigger.type) {
-        case TriggerType.ON_CLICK: {
-          initOnClickTrigger(entity, trigger)
-          break
-        }
-      }
+    // ON_CLICK Triggers
+    const onClickTriggers = triggers.value.filter(
+      (trigger) => trigger.type === TriggerType.ON_CLICK,
+    )
+
+    if (onClickTriggers.length > 0) {
+      initOnClickTriggers(entity, onClickTriggers)
     }
 
     inited.add(entity)
@@ -79,8 +79,7 @@ function checkCondition(condition: TriggerCondition) {
   return false
 }
 
-// ON_CLICK
-function initOnClickTrigger(entity: Entity, trigger: Trigger) {
+function initOnClickTriggers(entity: Entity, triggers: Trigger[]) {
   pointerEventsSystem.onPointerDown(
     {
       entity,
@@ -90,9 +89,13 @@ function initOnClickTrigger(entity: Entity, trigger: Trigger) {
       },
     },
     function () {
-      if (checkConditions(trigger)) {
-        for (const action of trigger.actions) {
-          executeAction(action.entity, action.name)
+      for (const trigger of triggers) {
+        if (checkConditions(trigger)) {
+          for (const action of trigger.actions) {
+            executeAction(action.entity, action.name)
+          }
+
+          return
         }
       }
     },
