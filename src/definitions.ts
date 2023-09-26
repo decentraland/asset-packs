@@ -1,4 +1,5 @@
 import { IEngine, ISchema, Schemas } from '@dcl/sdk/ecs'
+import { InterpolationType } from '@dcl-sdk/utils'
 import { addActionType } from './action-types'
 
 export * from './action-types'
@@ -10,11 +11,13 @@ export enum ComponentName {
   ACTIONS = 'asset-packs::Actions',
   TRIGGERS = 'asset-packs::Triggers',
   STATES = 'asset-packs::States',
+  TWEENS = 'asset-packs::Tweens',
 }
 
 export enum ActionType {
   PLAY_ANIMATION = 'play_animation',
   SET_STATE = 'set_state',
+  SET_TRANSFORM = 'set_transform',
 }
 
 export const ActionSchemas = {
@@ -33,6 +36,7 @@ export enum TriggerType {
   ON_CLICK = 'on_click',
   ON_STATE_CHANGE = 'on_state_change',
   ON_SPAWN = 'on_spawn',
+  ON_TWEEN_END = 'on_tween_end',
 }
 
 export enum TriggerConditionType {
@@ -43,6 +47,12 @@ export enum TriggerConditionType {
 export enum TriggerConditionOperation {
   AND = 'and',
   OR = 'or',
+}
+
+export enum TweensType {
+  MOVE_ITEM = 'move_item',
+  ROTATE_ITEM = 'rotate_item',
+  SCALE_ITEM = 'scale_item',
 }
 
 export function createComponents(engine: IEngine) {
@@ -106,11 +116,44 @@ export function createComponents(engine: IEngine) {
     currentValue: Schemas.Optional(Schemas.String),
   })
 
+  const Vector3TweenSchema = {
+    start: Schemas.Vector3,
+    end: Schemas.Vector3,
+    interpolationType: Schemas.EnumString(
+      InterpolationType,
+      InterpolationType.LINEAR,
+    ),
+    duration: Schemas.Float,
+  }
+
+  const Tweens = engine.defineComponent(ComponentName.TWEENS, {
+    value: Schemas.Array(
+      Schemas.Map({
+        name: Schemas.String,
+        type: Schemas.EnumString<TweensType>(TweensType, TweensType.MOVE_ITEM),
+        payload: Schemas.Map({
+          moveItem: Schemas.Optional(
+            Schemas.Map({ ...Vector3TweenSchema, relative: Schemas.Boolean }),
+          ),
+          scaleItem: Schemas.Optional(Schemas.Map(Vector3TweenSchema)),
+          rotateItem: Schemas.Optional(
+            Schemas.Map({
+              ...Vector3TweenSchema,
+              start: Schemas.Quaternion,
+              end: Schemas.Quaternion,
+            }),
+          ),
+        }),
+      }),
+    ),
+  })
+
   return {
     ActionTypes,
     Actions,
     Triggers,
     States,
+    Tweens,
   }
 }
 
@@ -129,6 +172,10 @@ export type TriggerCondition = Exclude<Trigger['conditions'], undefined>[0]
 
 export type StatesComponent = Components['States']
 export type States = ReturnType<StatesComponent['get']>
+
+export type TweensComponent = Components['Tweens']
+export type Tween = ReturnType<TweensComponent['get']>['value'][0]
+export type TweenPayload = Tween['payload']
 
 export function addActionTypes(engine: IEngine) {
   // Add actions from this package
