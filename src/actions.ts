@@ -1,8 +1,16 @@
-import { engine, Entity, Animator } from '@dcl/sdk/ecs'
-import { Actions, States } from './components'
-import { ActionPayload, ActionType, TriggerType } from './definitions'
+import { engine, Entity, Animator, Transform } from '@dcl/sdk/ecs'
+import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import * as utils from '@dcl-sdk/utils'
+import { Actions, States, Tweens } from './components'
+import {
+  ActionPayload,
+  ActionType,
+  TriggerType,
+  TweenPayload,
+  TweensType,
+} from './definitions'
 import { getDefaultValue, isValidState } from './states'
-import { getActionEvents, getTriggerEvents } from './events'
+import { getActionEvents, getTriggerEvents, getTweenEvents } from './events'
 import { getPayload } from './action-types'
 
 const initedEntities = new Set<Entity>()
@@ -44,6 +52,13 @@ export function actionsSystem(_dt: number) {
           }
           case ActionType.SET_STATE: {
             handleSetState(entity, getPayload<ActionType.SET_STATE>(action))
+            break
+          }
+          case ActionType.SET_TRANSFORM: {
+            handleSetTransform(
+              entity,
+              getPayload<ActionType.SET_TRANSFORM>(action),
+            )
             break
           }
           default:
@@ -104,4 +119,94 @@ function handleSetState(
     const triggerEvents = getTriggerEvents(entity)
     triggerEvents.emit(TriggerType.ON_STATE_CHANGE)
   }
+}
+
+// SET_TRANSFORM
+function handleSetTransform(entity: Entity, action: ActionPayload) {
+  const tweenName = action.setTransform?.tween
+  const tweens = Tweens.getMutable(entity)
+
+  const tween = tweens.value.find(($) => $.name === tweenName)
+
+  if (tween) {
+    switch (tween.type) {
+      case TweensType.MOVE_ITEM: {
+        handleMoveItem(entity, tween.payload.moveItem!)
+        break
+      }
+      case TweensType.ROTATE_ITEM: {
+        handleRotateItem(entity, tween.payload.rotateItem!)
+        break
+      }
+      case TweensType.SCALE_ITEM: {
+        handleScaleItem(entity, tween.payload.scaleItem!)
+        break
+      }
+      default: {
+        throw new Error(`Unknown tween type: ${tween.type}`)
+      }
+    }
+  }
+}
+
+// MOVE_ITEM
+function handleMoveItem(entity: Entity, tween: TweenPayload['moveItem']) {
+  const transform = Transform.get(entity)
+  const triggerEvents = getTriggerEvents(entity)
+  let { start, end } = tween!
+
+  if (tween!.relative) {
+    start = Vector3.add(start, transform.position)
+    end = Vector3.add(end, transform.position)
+  }
+
+  utils.tweens.startTranslation(
+    entity,
+    start,
+    end,
+    tween!.duration,
+    tween!.interpolationType,
+    () => triggerEvents.emit(TriggerType.ON_TWEEN_END),
+  )
+}
+
+// ROTATE_ITEM
+function handleRotateItem(entity: Entity, tween: TweenPayload['rotateItem']) {
+  const transform = Transform.get(entity)
+  const triggerEvents = getTriggerEvents(entity)
+
+  const start = Quaternion.fromEulerDegrees(
+    tween!.start.x,
+    tween!.start.y,
+    tween!.start.z,
+  )
+
+  const end = Quaternion.fromEulerDegrees(
+    tween!.end.x,
+    tween!.end.y,
+    tween!.end.z,
+  )
+
+  utils.tweens.startRotation(
+    entity,
+    start,
+    end,
+    tween!.duration,
+    tween!.interpolationType,
+    () => triggerEvents.emit(TriggerType.ON_TWEEN_END),
+  )
+}
+
+// SCALE_ITEM
+function handleScaleItem(entity: Entity, tween: TweenPayload['scaleItem']) {
+  const triggerEvents = getTriggerEvents(entity)
+  const { start, end } = tween!
+  utils.tweens.startScaling(
+    entity,
+    start,
+    end,
+    tween!.duration,
+    tween!.interpolationType,
+    () => triggerEvents.emit(TriggerType.ON_TWEEN_END),
+  )
 }
