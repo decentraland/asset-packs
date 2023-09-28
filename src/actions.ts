@@ -10,7 +10,7 @@ import {
   TweensType,
 } from './definitions'
 import { getDefaultValue, isValidState } from './states'
-import { getActionEvents, getTriggerEvents, getTweenEvents } from './events'
+import { getActionEvents, getTriggerEvents } from './events'
 import { getPayload } from './action-types'
 
 const initedEntities = new Set<Entity>()
@@ -125,21 +125,23 @@ function handleSetState(
 function handleSetTransform(entity: Entity, action: ActionPayload) {
   const tweenName = action.setTransform?.tween
   const tweens = Tweens.getMutable(entity)
-
   const tween = tweens.value.find(($) => $.name === tweenName)
 
   if (tween) {
+    const triggerEvents = getTriggerEvents(entity)
+    const onTweenEnd = () => triggerEvents.emit(TriggerType.ON_TWEEN_END)
+
     switch (tween.type) {
       case TweensType.MOVE_ITEM: {
-        handleMoveItem(entity, tween.payload.moveItem!)
+        handleMoveItem(entity, tween.payload.moveItem!, onTweenEnd)
         break
       }
       case TweensType.ROTATE_ITEM: {
-        handleRotateItem(entity, tween.payload.rotateItem!)
+        handleRotateItem(entity, tween.payload.rotateItem!, onTweenEnd)
         break
       }
       case TweensType.SCALE_ITEM: {
-        handleScaleItem(entity, tween.payload.scaleItem!)
+        handleScaleItem(entity, tween.payload.scaleItem!, onTweenEnd)
         break
       }
       default: {
@@ -150,9 +152,12 @@ function handleSetTransform(entity: Entity, action: ActionPayload) {
 }
 
 // MOVE_ITEM
-function handleMoveItem(entity: Entity, tween: TweenPayload['moveItem']) {
+function handleMoveItem(
+  entity: Entity,
+  tween: TweenPayload['moveItem'],
+  onTweenEnd: () => void,
+) {
   const transform = Transform.get(entity)
-  const triggerEvents = getTriggerEvents(entity)
   let { start, end } = tween!
 
   if (tween!.relative) {
@@ -166,47 +171,56 @@ function handleMoveItem(entity: Entity, tween: TweenPayload['moveItem']) {
     end,
     tween!.duration,
     tween!.interpolationType,
-    () => triggerEvents.emit(TriggerType.ON_TWEEN_END),
+    onTweenEnd,
   )
 }
 
 // ROTATE_ITEM
-function handleRotateItem(entity: Entity, tween: TweenPayload['rotateItem']) {
+function handleRotateItem(
+  entity: Entity,
+  tween: TweenPayload['rotateItem'],
+  onTweenEnd: () => void,
+) {
   const transform = Transform.get(entity)
-  const triggerEvents = getTriggerEvents(entity)
+  const { start, end } = tween!
+  let startRotation = Quaternion.fromEulerDegrees(start.x, start.y, start.z)
+  let endRotation = Quaternion.fromEulerDegrees(end.x, end.y, end.z)
 
-  const start = Quaternion.fromEulerDegrees(
-    tween!.start.x,
-    tween!.start.y,
-    tween!.start.z,
-  )
-
-  const end = Quaternion.fromEulerDegrees(
-    tween!.end.x,
-    tween!.end.y,
-    tween!.end.z,
-  )
+  if (tween!.relative) {
+    startRotation = Quaternion.add(startRotation, transform.rotation)
+    endRotation = Quaternion.add(endRotation, transform.rotation)
+  }
 
   utils.tweens.startRotation(
     entity,
-    start,
-    end,
+    startRotation,
+    endRotation,
     tween!.duration,
     tween!.interpolationType,
-    () => triggerEvents.emit(TriggerType.ON_TWEEN_END),
+    onTweenEnd,
   )
 }
 
 // SCALE_ITEM
-function handleScaleItem(entity: Entity, tween: TweenPayload['scaleItem']) {
-  const triggerEvents = getTriggerEvents(entity)
-  const { start, end } = tween!
+function handleScaleItem(
+  entity: Entity,
+  tween: TweenPayload['scaleItem'],
+  onTweenEnd: () => void,
+) {
+  const transform = Transform.get(entity)
+  let { start, end } = tween!
+
+  if (tween!.relative) {
+    start = Vector3.add(start, transform.scale)
+    end = Vector3.add(end, transform.scale)
+  }
+
   utils.tweens.startScaling(
     entity,
     start,
     end,
     tween!.duration,
     tween!.interpolationType,
-    () => triggerEvents.emit(TriggerType.ON_TWEEN_END),
+    onTweenEnd,
   )
 }
