@@ -23,6 +23,7 @@ export enum ActionType {
 export const ActionSchemas = {
   [ActionType.PLAY_ANIMATION]: Schemas.Map({ animation: Schemas.String }),
   [ActionType.SET_STATE]: Schemas.Map({ state: Schemas.String }),
+  [ActionType.SET_TRANSFORM]: Schemas.Map({ transform: Schemas.String }),
 }
 
 export type ActionPayload<T extends ActionType = any> =
@@ -124,6 +125,7 @@ export function createComponents(engine: IEngine) {
       InterpolationType.LINEAR,
     ),
     duration: Schemas.Float,
+    relative: Schemas.Boolean,
   }
 
   const Tweens = engine.defineComponent(ComponentName.TWEENS, {
@@ -132,9 +134,7 @@ export function createComponents(engine: IEngine) {
         name: Schemas.String,
         type: Schemas.EnumString<TweensType>(TweensType, TweensType.MOVE_ITEM),
         payload: Schemas.Map({
-          moveItem: Schemas.Optional(
-            Schemas.Map({ ...Vector3TweenSchema, relative: Schemas.Boolean }),
-          ),
+          moveItem: Schemas.Optional(Schemas.Map(Vector3TweenSchema)),
           scaleItem: Schemas.Optional(Schemas.Map(Vector3TweenSchema)),
           rotateItem: Schemas.Optional(
             Schemas.Map({
