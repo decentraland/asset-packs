@@ -13,7 +13,12 @@ export enum ComponentName {
   ACTIONS = 'asset-packs::Actions',
   TRIGGERS = 'asset-packs::Triggers',
   STATES = 'asset-packs::States',
-  TWEENS = 'asset-packs::Tweens',
+}
+
+export enum TweensType {
+  MOVE_ITEM = 'move_item',
+  ROTATE_ITEM = 'rotate_item',
+  SCALE_ITEM = 'scale_item',
 }
 
 export enum ActionType {
@@ -25,7 +30,17 @@ export enum ActionType {
 export const ActionSchemas = {
   [ActionType.PLAY_ANIMATION]: Schemas.Map({ animation: Schemas.String }),
   [ActionType.SET_STATE]: Schemas.Map({ state: Schemas.String }),
-  [ActionType.START_TWEEN]: Schemas.Map({ tween: Schemas.String }),
+  [ActionType.START_TWEEN]: Schemas.Map({
+    type: Schemas.EnumString<TweensType>(TweensType, TweensType.MOVE_ITEM),
+    start: Schemas.Optional(Schemas.Vector3),
+    end: Schemas.Vector3,
+    interpolationType: Schemas.EnumString(
+      InterpolationType,
+      InterpolationType.LINEAR,
+    ),
+    duration: Schemas.Float,
+    relative: Schemas.Boolean,
+  }),
 }
 
 export type ActionPayload<T extends ActionType = any> =
@@ -50,12 +65,6 @@ export enum TriggerConditionType {
 export enum TriggerConditionOperation {
   AND = 'and',
   OR = 'or',
-}
-
-export enum TweensType {
-  MOVE_ITEM = 'move_item',
-  ROTATE_ITEM = 'rotate_item',
-  SCALE_ITEM = 'scale_item',
 }
 
 export function createComponents(engine: IEngine) {
@@ -119,29 +128,11 @@ export function createComponents(engine: IEngine) {
     currentValue: Schemas.Optional(Schemas.String),
   })
 
-  const Tweens = engine.defineComponent(ComponentName.TWEENS, {
-    value: Schemas.Array(
-      Schemas.Map({
-        name: Schemas.String,
-        type: Schemas.EnumString<TweensType>(TweensType, TweensType.MOVE_ITEM),
-        start: Schemas.Optional(Schemas.Vector3),
-        end: Schemas.Vector3,
-        interpolationType: Schemas.EnumString(
-          InterpolationType,
-          InterpolationType.LINEAR,
-        ),
-        duration: Schemas.Float,
-        relative: Schemas.Boolean,
-      }),
-    ),
-  })
-
   return {
     ActionTypes,
     Actions,
     Triggers,
     States,
-    Tweens,
   }
 }
 
@@ -160,9 +151,6 @@ export type TriggerCondition = Exclude<Trigger['conditions'], undefined>[0]
 
 export type StatesComponent = Components['States']
 export type States = ReturnType<StatesComponent['get']>
-
-export type TweensComponent = Components['Tweens']
-export type Tween = ReturnType<TweensComponent['get']>['value'][0]
 
 export function addActionTypes(engine: IEngine) {
   // Add actions from this package
