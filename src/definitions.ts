@@ -6,6 +6,8 @@ export * from './action-types'
 export * from './events'
 export * from './states'
 
+export { InterpolationType }
+
 export enum ComponentName {
   ACTION_TYPES = 'asset-packs::ActionTypes',
   ACTIONS = 'asset-packs::Actions',
@@ -17,13 +19,13 @@ export enum ComponentName {
 export enum ActionType {
   PLAY_ANIMATION = 'play_animation',
   SET_STATE = 'set_state',
-  SET_TRANSFORM = 'set_transform',
+  START_TWEEN = 'start_tween',
 }
 
 export const ActionSchemas = {
   [ActionType.PLAY_ANIMATION]: Schemas.Map({ animation: Schemas.String }),
   [ActionType.SET_STATE]: Schemas.Map({ state: Schemas.String }),
-  [ActionType.SET_TRANSFORM]: Schemas.Map({ transform: Schemas.String }),
+  [ActionType.START_TWEEN]: Schemas.Map({ tween: Schemas.String }),
 }
 
 export type ActionPayload<T extends ActionType = any> =
@@ -117,33 +119,19 @@ export function createComponents(engine: IEngine) {
     currentValue: Schemas.Optional(Schemas.String),
   })
 
-  const Vector3TweenSchema = {
-    start: Schemas.Vector3,
-    end: Schemas.Vector3,
-    interpolationType: Schemas.EnumString(
-      InterpolationType,
-      InterpolationType.LINEAR,
-    ),
-    duration: Schemas.Float,
-    relative: Schemas.Boolean,
-  }
-
   const Tweens = engine.defineComponent(ComponentName.TWEENS, {
     value: Schemas.Array(
       Schemas.Map({
         name: Schemas.String,
         type: Schemas.EnumString<TweensType>(TweensType, TweensType.MOVE_ITEM),
-        payload: Schemas.Map({
-          moveItem: Schemas.Optional(Schemas.Map(Vector3TweenSchema)),
-          scaleItem: Schemas.Optional(Schemas.Map(Vector3TweenSchema)),
-          rotateItem: Schemas.Optional(
-            Schemas.Map({
-              ...Vector3TweenSchema,
-              start: Schemas.Quaternion,
-              end: Schemas.Quaternion,
-            }),
-          ),
-        }),
+        start: Schemas.Optional(Schemas.Vector3),
+        end: Schemas.Vector3,
+        interpolationType: Schemas.EnumString(
+          InterpolationType,
+          InterpolationType.LINEAR,
+        ),
+        duration: Schemas.Float,
+        relative: Schemas.Boolean,
       }),
     ),
   })
@@ -175,7 +163,6 @@ export type States = ReturnType<StatesComponent['get']>
 
 export type TweensComponent = Components['Tweens']
 export type Tween = ReturnType<TweensComponent['get']>['value'][0]
-export type TweenPayload = Tween['payload']
 
 export function addActionTypes(engine: IEngine) {
   // Add actions from this package

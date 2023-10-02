@@ -6,7 +6,7 @@ import {
   ActionPayload,
   ActionType,
   TriggerType,
-  TweenPayload,
+  Tween,
   TweensType,
 } from './definitions'
 import { getDefaultValue, isValidState } from './states'
@@ -54,11 +54,8 @@ export function actionsSystem(_dt: number) {
             handleSetState(entity, getPayload<ActionType.SET_STATE>(action))
             break
           }
-          case ActionType.SET_TRANSFORM: {
-            handleSetTransform(
-              entity,
-              getPayload<ActionType.SET_TRANSFORM>(action),
-            )
+          case ActionType.START_TWEEN: {
+            handleStartTween(entity, getPayload<ActionType.START_TWEEN>(action))
             break
           }
           default:
@@ -121,9 +118,12 @@ function handleSetState(
   }
 }
 
-// SET_TRANSFORM
-function handleSetTransform(entity: Entity, action: ActionPayload) {
-  const tweenName = action.setTransform?.tween
+// START_TWEEN
+function handleStartTween(
+  entity: Entity,
+  payload: ActionPayload<ActionType.START_TWEEN>,
+) {
+  const tweenName = payload.tween
   const tweens = Tweens.getMutable(entity)
   const tween = tweens.value.find(($) => $.name === tweenName)
 
@@ -133,15 +133,15 @@ function handleSetTransform(entity: Entity, action: ActionPayload) {
 
     switch (tween.type) {
       case TweensType.MOVE_ITEM: {
-        handleMoveItem(entity, tween.payload.moveItem!, onTweenEnd)
+        handleMoveItem(entity, tween, onTweenEnd)
         break
       }
       case TweensType.ROTATE_ITEM: {
-        handleRotateItem(entity, tween.payload.rotateItem!, onTweenEnd)
+        handleRotateItem(entity, tween, onTweenEnd)
         break
       }
       case TweensType.SCALE_ITEM: {
-        handleScaleItem(entity, tween.payload.scaleItem!, onTweenEnd)
+        handleScaleItem(entity, tween, onTweenEnd)
         break
       }
       default: {
@@ -152,15 +152,12 @@ function handleSetTransform(entity: Entity, action: ActionPayload) {
 }
 
 // MOVE_ITEM
-function handleMoveItem(
-  entity: Entity,
-  tween: TweenPayload['moveItem'],
-  onTweenEnd: () => void,
-) {
+function handleMoveItem(entity: Entity, tween: Tween, onTweenEnd: () => void) {
   const transform = Transform.get(entity)
-  let { start, end } = tween!
+  const { duration, interpolationType, relative } = tween
+  let { end, start = Vector3.Zero() } = tween
 
-  if (tween!.relative) {
+  if (relative) {
     start = Vector3.add(start, transform.position)
     end = Vector3.add(end, transform.position)
   }
@@ -169,8 +166,8 @@ function handleMoveItem(
     entity,
     start,
     end,
-    tween!.duration,
-    tween!.interpolationType,
+    duration,
+    interpolationType,
     onTweenEnd,
   )
 }
@@ -178,15 +175,21 @@ function handleMoveItem(
 // ROTATE_ITEM
 function handleRotateItem(
   entity: Entity,
-  tween: TweenPayload['rotateItem'],
+  tween: Tween,
   onTweenEnd: () => void,
 ) {
   const transform = Transform.get(entity)
-  const { start, end } = tween!
+  const {
+    duration,
+    interpolationType,
+    relative,
+    end,
+    start = Vector3.Zero(),
+  } = tween
   let startRotation = Quaternion.fromEulerDegrees(start.x, start.y, start.z)
   let endRotation = Quaternion.fromEulerDegrees(end.x, end.y, end.z)
 
-  if (tween!.relative) {
+  if (relative) {
     startRotation = Quaternion.add(startRotation, transform.rotation)
     endRotation = Quaternion.add(endRotation, transform.rotation)
   }
@@ -195,22 +198,19 @@ function handleRotateItem(
     entity,
     startRotation,
     endRotation,
-    tween!.duration,
-    tween!.interpolationType,
+    duration,
+    interpolationType,
     onTweenEnd,
   )
 }
 
 // SCALE_ITEM
-function handleScaleItem(
-  entity: Entity,
-  tween: TweenPayload['scaleItem'],
-  onTweenEnd: () => void,
-) {
+function handleScaleItem(entity: Entity, tween: Tween, onTweenEnd: () => void) {
   const transform = Transform.get(entity)
-  let { start, end } = tween!
+  const { duration, interpolationType, relative } = tween!
+  let { end, start = Vector3.Zero() } = tween
 
-  if (tween!.relative) {
+  if (relative) {
     start = Vector3.add(start, transform.scale)
     end = Vector3.add(end, transform.scale)
   }
@@ -219,8 +219,8 @@ function handleScaleItem(
     entity,
     start,
     end,
-    tween!.duration,
-    tween!.interpolationType,
+    duration,
+    interpolationType,
     onTweenEnd,
   )
 }
