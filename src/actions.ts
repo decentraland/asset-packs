@@ -6,7 +6,7 @@ import {
   ActionPayload,
   ActionType,
   TriggerType,
-  TweensType,
+  TweenType,
 } from './definitions'
 import { getDefaultValue, isValidState } from './states'
 import { getActionEvents, getTriggerEvents } from './events'
@@ -127,15 +127,15 @@ function handleStartTween(
     const onTweenEnd = () => triggerEvents.emit(TriggerType.ON_TWEEN_END)
 
     switch (payload.type) {
-      case TweensType.MOVE_ITEM: {
+      case TweenType.MOVE_ITEM: {
         handleMoveItem(entity, payload, onTweenEnd)
         break
       }
-      case TweensType.ROTATE_ITEM: {
+      case TweenType.ROTATE_ITEM: {
         handleRotateItem(entity, payload, onTweenEnd)
         break
       }
-      case TweensType.SCALE_ITEM: {
+      case TweenType.SCALE_ITEM: {
         handleScaleItem(entity, payload, onTweenEnd)
         break
       }

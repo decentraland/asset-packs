@@ -15,7 +15,7 @@ export enum ComponentName {
   STATES = 'asset-packs::States',
 }
 
-export enum TweensType {
+export enum TweenType {
   MOVE_ITEM = 'move_item',
   ROTATE_ITEM = 'rotate_item',
   SCALE_ITEM = 'scale_item',
@@ -31,7 +31,7 @@ export const ActionSchemas = {
   [ActionType.PLAY_ANIMATION]: Schemas.Map({ animation: Schemas.String }),
   [ActionType.SET_STATE]: Schemas.Map({ state: Schemas.String }),
   [ActionType.START_TWEEN]: Schemas.Map({
-    type: Schemas.EnumString<TweensType>(TweensType, TweensType.MOVE_ITEM),
+    type: Schemas.EnumString<TweenType>(TweenType, TweenType.MOVE_ITEM),
     start: Schemas.Optional(Schemas.Vector3),
     end: Schemas.Vector3,
     interpolationType: Schemas.EnumString(
