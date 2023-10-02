@@ -32,7 +32,6 @@ export const ActionSchemas = {
   [ActionType.SET_STATE]: Schemas.Map({ state: Schemas.String }),
   [ActionType.START_TWEEN]: Schemas.Map({
     type: Schemas.EnumString<TweenType>(TweenType, TweenType.MOVE_ITEM),
-    start: Schemas.Optional(Schemas.Vector3),
     end: Schemas.Vector3,
     interpolationType: Schemas.EnumString(
       InterpolationType,
