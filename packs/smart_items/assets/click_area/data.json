@@ -1,0 +1,45 @@
+{
+  "id": "846479b0-75d3-450d-bbd6-7e6b3355a7a2",
+  "name": "Click Area",
+  "category": "decorations",
+  "tags": ["click", "area"],
+  "components": {
+    "core::GltfContainer": {
+      "src": "{assetPath}/click_area_dummy.glb",
+      "visibleMeshesCollisionMask": 1,
+      "invisibleMeshesCollisionMask": 0
+    },
+    "asset-packs::Actions": {
+      "id": "{self}",
+      "value": [
+        {
+          "name": "Invisible",
+          "type": "set_visibility",
+          "jsonPayload": "{\"visible\": false}"
+        }
+      ]
+    },
+    "asset-packs::Triggers": {
+      "value": [
+        {
+          "type": "on_spawn",
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Invisible"
+            }
+          ]
+        },
+        {
+          "type": "on_click",
+          "actions": [
+            {
+              "id": "",
+              "name": ""
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
