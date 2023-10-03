@@ -52,6 +52,7 @@ export enum ActionType {
   INCREMENT_COUNTER = 'increment_counter',
   DECREASE_COUNTER = 'decrease_counter',
   PLAY_SOUND = 'play_sound',
+  SET_VISIBILITY = 'set_visibility',
 }
 
 export const ActionSchemas = {
@@ -74,6 +75,7 @@ export const ActionSchemas = {
     src: Schemas.String,
     loop: Schemas.Optional(Schemas.Boolean),
   }),
+  [ActionType.SET_VISIBILITY]: Schemas.Map({ visible: Schemas.Boolean }),
 }
 
 export type ActionPayload<T extends ActionType = any> =

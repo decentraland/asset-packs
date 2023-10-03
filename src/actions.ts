@@ -4,6 +4,7 @@ import {
   Animator,
   Transform,
   AudioSource
+  VisibilityComponent,
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
@@ -83,6 +84,13 @@ export function actionsSystem(_dt: number) {
           }
           case ActionType.PLAY_SOUND: {
             handlePlaySound(entity, getPayload<ActionType.PLAY_SOUND>(action))
+            break
+          }
+          case ActionType.SET_VISIBILITY: {
+            handleSetVisibility(
+              entity,
+              getPayload<ActionType.SET_VISIBILITY>(action),
+            )
             break
           }
           default:
@@ -295,4 +303,15 @@ function handlePlaySound(
     loop,
     playing: true,
   })
+}
+
+// SET_VISIBILITY
+function handleSetVisibility(
+  entity: Entity,
+  payload: ActionPayload<ActionType.SET_VISIBILITY>,
+) {
+  const component = VisibilityComponent.createOrReplace(entity)
+  if (component) {
+    component.visible = payload.visible
+  }
 }
