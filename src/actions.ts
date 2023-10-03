@@ -1,4 +1,10 @@
-import { engine, Entity, Animator, Transform } from '@dcl/sdk/ecs'
+import {
+  engine,
+  Entity,
+  Animator,
+  Transform,
+  TransformType,
+} from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import * as utils from '@dcl-sdk/utils'
 import { Actions, States } from './components'
@@ -13,6 +19,7 @@ import { getActionEvents, getTriggerEvents } from './events'
 import { getPayload } from './action-types'
 
 const initedEntities = new Set<Entity>()
+const initialTransform = new Map<Entity, TransformType>()
 
 export function actionsSystem(_dt: number) {
   const entitiesWithActions = engine.getEntitiesWith(Actions)
@@ -30,6 +37,10 @@ export function actionsSystem(_dt: number) {
       switch (type) {
         case ActionType.PLAY_ANIMATION: {
           initPlayAnimation(entity)
+          break
+        }
+        case ActionType.START_TWEEN: {
+          initTween(entity)
           break
         }
         default:
@@ -117,6 +128,11 @@ function handleSetState(
   }
 }
 
+// INIT_TWEEN
+function initTween(entity: Entity) {
+  initialTransform.set(entity, Transform.get(entity))
+}
+
 // START_TWEEN
 function handleStartTween(
   entity: Entity,
@@ -154,12 +170,13 @@ function handleMoveItem(
 ) {
   const transform = Transform.get(entity)
   const { duration, interpolationType, relative } = tween
-  let { end, start = Vector3.Zero() } = tween
-
-  if (relative) {
-    start = Vector3.add(start, transform.position)
-    end = Vector3.add(end, transform.position)
-  }
+  const start = relative
+    ? transform.position
+    : (initialTransform.get(entity)?.position as Vector3)
+  const end = Vector3.add(
+    start,
+    Vector3.create(tween.end.x, tween.end.y, tween.end.z),
+  )
 
   utils.tweens.startTranslation(
     entity,
@@ -178,25 +195,19 @@ function handleRotateItem(
   onTweenEnd: () => void,
 ) {
   const transform = Transform.get(entity)
-  const {
-    duration,
-    interpolationType,
-    relative,
-    end,
-    start = Vector3.Zero(),
-  } = tween
-  let startRotation = Quaternion.fromEulerDegrees(start.x, start.y, start.z)
-  let endRotation = Quaternion.fromEulerDegrees(end.x, end.y, end.z)
-
-  if (relative) {
-    startRotation = Quaternion.add(startRotation, transform.rotation)
-    endRotation = Quaternion.add(endRotation, transform.rotation)
-  }
+  const { duration, interpolationType, relative } = tween
+  const start = relative
+    ? transform.rotation
+    : (initialTransform.get(entity)?.rotation as Quaternion)
+  const end = Quaternion.multiply(
+    start,
+    Quaternion.fromEulerDegrees(tween.end.x, tween.end.y, tween.end.z),
+  )
 
   utils.tweens.startRotation(
     entity,
-    startRotation,
-    endRotation,
+    start,
+    end,
     duration,
     interpolationType,
     onTweenEnd,
@@ -210,13 +221,13 @@ function handleScaleItem(
   onTweenEnd: () => void,
 ) {
   const transform = Transform.get(entity)
-  const { duration, interpolationType, relative } = tween!
-  let { end, start = Vector3.Zero() } = tween
-
-  if (relative) {
-    start = Vector3.add(start, transform.scale)
-    end = Vector3.add(end, transform.scale)
-  }
+  const { duration, interpolationType, relative } = tween
+  const start = relative
+    ? transform.scale
+    : (initialTransform.get(entity)?.scale as Vector3)
+  const end = relative
+    ? Vector3.add(start, Vector3.create(tween.end.x, tween.end.y, tween.end.z))
+    : Vector3.create(tween.end.x, tween.end.y, tween.end.z)
 
   utils.tweens.startScaling(
     entity,
