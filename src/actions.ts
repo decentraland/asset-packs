@@ -3,7 +3,7 @@ import {
   Entity,
   Animator,
   Transform,
-  AudioSource
+  AudioSource,
   VisibilityComponent,
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
