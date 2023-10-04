@@ -7,7 +7,7 @@ import {
   VisibilityComponent,
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
-import * as utils from '@dcl-sdk/utils'
+import { tweens } from '@dcl-sdk/utils/dist/tween'
 import { Actions, States, Counter } from './components'
 import {
   ActionPayload,
@@ -193,7 +193,7 @@ function handleMoveItem(
   const end = Vector3.create(tween.end.x, tween.end.y, tween.end.z)
   const endPosition = relative ? Vector3.add(transform.position, end) : end
 
-  utils.tweens.startTranslation(
+  tweens.startTranslation(
     entity,
     transform.position,
     endPosition,
@@ -216,7 +216,7 @@ function handleRotateItem(
     ? Quaternion.multiply(transform.rotation, end)
     : end
 
-  utils.tweens.startRotation(
+  tweens.startRotation(
     entity,
     transform.rotation,
     endRotation,
@@ -237,7 +237,7 @@ function handleScaleItem(
   const end = Vector3.create(tween.end.x, tween.end.y, tween.end.z)
   const endScale = relative ? Vector3.add(transform.scale, end) : end
 
-  utils.tweens.startScaling(
+  tweens.startScaling(
     entity,
     transform.scale,
     endScale,
