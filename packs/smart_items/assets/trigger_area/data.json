@@ -1,0 +1,41 @@
+{
+  "id": "1ab2733f-1782-4521-9eda-6aa8ad684277",
+  "name": "Trigger Area",
+  "category": "decorations",
+  "tags": [
+    "area",
+    "trigger"
+  ],
+  "components": {
+    "core::GltfContainer": {
+      "src": "{assetPath}/trigger_area.glb",
+      "visibleMeshesCollisionMask": 0,
+      "invisibleMeshesCollisionMask": 0
+    },
+    "core::VisibilityComponent": {
+      "visible": false
+    },
+    "asset-packs::Triggers": {
+      "value": [
+        {
+          "type": "on_player_enters_area",
+          "actions": [
+            {
+              "id": "",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "type": "on_player_leaves_area",
+          "actions": [
+            {
+              "id": "",
+              "name": ""
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
