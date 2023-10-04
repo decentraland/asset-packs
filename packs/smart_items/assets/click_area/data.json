@@ -5,7 +5,7 @@
   "tags": ["click", "area"],
   "components": {
     "core::GltfContainer": {
-      "src": "{assetPath}/click_area_dummy.glb",
+      "src": "{assetPath}/click_area.glb",
       "visibleMeshesCollisionMask": 1,
       "invisibleMeshesCollisionMask": 0
     },
