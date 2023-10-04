@@ -10,16 +10,6 @@
       "invisibleMeshesCollisionMask": 0
     },
     "core::VisibilityComponent": { "visible": false },
-    "asset-packs::Actions": {
-      "id": "{self}",
-      "value": [
-        {
-          "name": "Invisible",
-          "type": "set_visibility",
-          "jsonPayload": "{\"visible\": false}"
-        }
-      ]
-    },
     "asset-packs::Triggers": {
       "value": [
         {
