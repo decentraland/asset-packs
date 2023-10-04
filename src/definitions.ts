@@ -91,6 +91,8 @@ export enum TriggerType {
   ON_SPAWN = 'on_spawn',
   ON_TWEEN_END = 'on_tween_end',
   ON_COUNTER_CHANGE = 'on_counter_change',
+  ON_PLAYER_ENTERS_AREA = 'on_player_enters_area',
+  ON_PLAYER_LEAVES_AREA = 'on_player_leaves_area',
 }
 
 export enum TriggerConditionType {

@@ -6,6 +6,7 @@ import {
   LastWriteWinElementSetComponentDefinition,
   DeepReadonlyObject,
 } from '@dcl/sdk/ecs'
+import { triggers, LAYER_1, NO_LAYERS } from '@dcl-sdk/utils'
 import { Actions, Counter, States, Triggers } from './components'
 import {
   Action,
@@ -48,6 +49,11 @@ export function triggersSystem(_dt: number) {
       switch (type) {
         case TriggerType.ON_CLICK: {
           initOnClickTrigger(entity)
+          break
+        }
+        case TriggerType.ON_PLAYER_ENTERS_AREA: 
+        case TriggerType.ON_PLAYER_LEAVES_AREA: {
+          initOnPlayerTriggerArea(entity)
           break
         }
       }
@@ -224,4 +230,20 @@ function initOnClickTrigger(entity: Entity) {
       triggerEvents.emit(TriggerType.ON_CLICK)
     },
   )
+}
+
+function initOnPlayerTriggerArea(entity: Entity) {
+  triggers.addTrigger(
+    entity, 
+    NO_LAYERS, 
+    LAYER_1, 
+    [{ type: 'box' }], 
+    () => {
+      const triggerEvents = getTriggerEvents(entity)
+      triggerEvents.emit(TriggerType.ON_PLAYER_ENTERS_AREA)
+    }, 
+    () => {
+      const triggerEvents = getTriggerEvents(entity)
+      triggerEvents.emit(TriggerType.ON_PLAYER_LEAVES_AREA)
+    })
 }
