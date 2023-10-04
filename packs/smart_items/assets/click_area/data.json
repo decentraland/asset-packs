@@ -9,6 +9,7 @@
       "visibleMeshesCollisionMask": 1,
       "invisibleMeshesCollisionMask": 0
     },
+    "core::VisibilityComponent": { "visible": false },
     "asset-packs::Actions": {
       "id": "{self}",
       "value": [
@@ -21,15 +22,6 @@
     },
     "asset-packs::Triggers": {
       "value": [
-        {
-          "type": "on_spawn",
-          "actions": [
-            {
-              "id": "{self:asset-packs::Actions}",
-              "name": "Invisible"
-            }
-          ]
-        },
         {
           "type": "on_click",
           "actions": [
