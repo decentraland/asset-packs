@@ -1,0 +1,45 @@
+{
+  "id": "6f380825-70bb-42f9-8dce-57563c7ac582",
+  "name": "Red Light Button",
+  "category": "decorations",
+  "tags": [
+    "button"
+  ],
+  "components": {
+    "core::GltfContainer": {
+      "src": "{assetPath}/red_scifi_button.glb"
+    },
+    "asset-packs::Actions": {
+      "id": "{self}",
+      "value": [
+        {
+          "name": "Play Activate Animation",
+          "type": "play_animation",
+          "jsonPayload": "{ \"animation\": \"trigger\" }"
+        },
+        {
+          "name": "Play Sound",
+          "type": "play_sound",
+          "jsonPayload": "{ \"src\": \"{assetPath}/sound.mp3\" }"
+        }
+      ]
+    },
+    "asset-packs::Triggers": {
+      "value": [
+        {
+          "type": "on_click",
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Play Activate Animation"
+            },
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Play Sound"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

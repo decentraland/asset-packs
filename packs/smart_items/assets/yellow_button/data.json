@@ -1,0 +1,45 @@
+{
+  "id": "1889bcdc-5608-48fa-9158-b0a56f0afa8b",
+  "name": "Yellow Button",
+  "category": "decorations",
+  "tags": [
+    "button"
+  ],
+  "components": {
+    "core::GltfContainer": {
+      "src": "{assetPath}/yellow_fantasy_button.glb"
+    },
+    "asset-packs::Actions": {
+      "id": "{self}",
+      "value": [
+        {
+          "name": "Play Activate Animation",
+          "type": "play_animation",
+          "jsonPayload": "{ \"animation\": \"trigger\" }"
+        },
+        {
+          "name": "Play Sound",
+          "type": "play_sound",
+          "jsonPayload": "{ \"src\": \"{assetPath}/sound.mp3\" }"
+        }
+      ]
+    },
+    "asset-packs::Triggers": {
+      "value": [
+        {
+          "type": "on_click",
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Play Activate Animation"
+            },
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Play Sound"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

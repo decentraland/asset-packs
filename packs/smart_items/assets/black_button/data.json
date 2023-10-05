@@ -1,0 +1,45 @@
+{
+  "id": "2e1c4446-c99a-4698-9e13-819d232ca849",
+  "name": "Black Button",
+  "category": "decorations",
+  "tags": [
+    "button"
+  ],
+  "components": {
+    "core::GltfContainer": {
+      "src": "{assetPath}/black_fantasy_button.glb"
+    },
+    "asset-packs::Actions": {
+      "id": "{self}",
+      "value": [
+        {
+          "name": "Play Activate Animation",
+          "type": "play_animation",
+          "jsonPayload": "{ \"animation\": \"trigger\" }"
+        },
+        {
+          "name": "Play Sound",
+          "type": "play_sound",
+          "jsonPayload": "{ \"src\": \"{assetPath}/sound.mp3\" }"
+        }
+      ]
+    },
+    "asset-packs::Triggers": {
+      "value": [
+        {
+          "type": "on_click",
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Play Activate Animation"
+            },
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Play Sound"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
