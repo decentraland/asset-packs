@@ -221,7 +221,7 @@ function handleStartTween(
 // MOVE_ITEM
 function handleMoveItem(
   entity: Entity,
-  tween: ActionPayload['start_tween'],
+  tween: ActionPayload<ActionType.START_TWEEN>,
   onTweenEnd: () => void,
 ) {
   const transform = Transform.get(entity)
@@ -242,7 +242,7 @@ function handleMoveItem(
 // ROTATE_ITEM
 function handleRotateItem(
   entity: Entity,
-  tween: ActionPayload['start_tween'],
+  tween: ActionPayload<ActionType.START_TWEEN>,
   onTweenEnd: () => void,
 ) {
   const transform = Transform.get(entity)
@@ -265,7 +265,7 @@ function handleRotateItem(
 // SCALE_ITEM
 function handleScaleItem(
   entity: Entity,
-  tween: ActionPayload['start_tween'],
+  tween: ActionPayload<ActionType.START_TWEEN>,
   onTweenEnd: () => void,
 ) {
   const transform = Transform.get(entity)
