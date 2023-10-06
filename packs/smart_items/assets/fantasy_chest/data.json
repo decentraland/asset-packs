@@ -1,0 +1,141 @@
+{
+  "id": "ff9257ec-9d62-404f-97c7-cf19c4035761",
+  "name": "Fantasy Chest",
+  "category": "structures",
+  "tags": [
+    "door"
+  ],
+  "components": {
+    "core::GltfContainer": {
+      "src": "{assetPath}/chest_fantasy.glb"
+    },
+    "asset-packs::Actions": {
+      "id": "{self}",
+      "value": [
+        {
+          "name": "Open",
+          "type": "set_state",
+          "jsonPayload": "{ \"state\": \"Opened\" }"
+        },
+        {
+          "name": "Close",
+          "type": "set_state",
+          "jsonPayload": "{ \"state\": \"Closed\" }"
+        },
+        {
+          "name": "Play Open Sound",
+          "type": "play_sound",
+          "jsonPayload": "{ \"src\": \"{assetPath}/open.mp3\" }"
+        },
+        {
+          "name": "Play Close Sound",
+          "type": "play_sound",
+          "jsonPayload": "{ \"src\": \"{assetPath}/close.mp3\" }"
+        },
+        {
+          "name": "Play Open Animation",
+          "type": "play_animation",
+          "jsonPayload": "{ \"animation\": \"open\" }"
+        },
+        {
+          "name": "Play Close Animation",
+          "type": "play_animation",
+          "jsonPayload": "{ \"animation\": \"close\" }"
+        }
+      ]
+    },
+    "asset-packs::Triggers": {
+      "value": [
+        {
+          "type": "on_click",
+          "conditions": [
+            {
+              "id": "{self:asset-packs::States}",
+              "type": "when_state_is",
+              "value": "Closed"
+            }
+          ],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Open"
+            }
+          ]
+        },
+        {
+          "type": "on_click",
+          "conditions": [
+            {
+              "id": "{self:asset-packs::States}",
+              "type": "when_state_is",
+              "value": "Opened"
+            }
+          ],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Close"
+            }
+          ]
+        },
+        {
+          "type": "on_state_change",
+          "conditions": [
+            {
+              "id": "{self:asset-packs::States}",
+              "type": "when_state_is",
+              "value": "Opened"
+            }
+          ],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Play Open Animation"
+            },
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Play Open Sound"
+            }
+          ]
+        },
+        {
+          "type": "on_state_change",
+          "conditions": [
+            {
+              "id": "{self:asset-packs::States}",
+              "type": "when_state_is",
+              "value": "Closed"
+            }
+          ],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Play Close Animation"
+            },
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Play Close Sound"
+            }
+          ]
+        },
+        {
+          "type": "on_spawn",
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Close"
+            }
+          ]
+        }
+      ]
+    },
+    "asset-packs::States": {
+      "id": "{self}",
+      "value": [
+        "Opened",
+        "Closed"
+      ],
+      "defaultValue": "Closed"
+    }
+  }
+}
