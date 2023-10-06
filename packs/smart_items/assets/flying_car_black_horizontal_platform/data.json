@@ -1,0 +1,130 @@
+{
+  "id": "b2d25644-2f43-48c0-a845-6b2220593411",
+  "name": "Flying Car Black Horizontal Platform",
+  "category": "vehicles",
+  "tags": [
+    "platform",
+    "horizontal",
+    "interactive",
+    "car",
+    "flying",
+    "vehicle"
+  ],
+  "components": {
+    "core::GltfContainer": {
+      "src": "{assetPath}/horizontal_flying_car_black.glb",
+      "visibleMeshesCollisionMask": 2,
+      "invisibleMeshesCollisionMask": 0
+    },
+    "asset-packs::Actions": {
+      "id": "{self}",
+      "value": [
+        {
+          "name": "Going to Start",
+          "type": "set_state",
+          "jsonPayload": "{ \"state\": \"GoingToStart\" }"
+        },
+        {
+          "name": "Going to End",
+          "type": "set_state",
+          "jsonPayload": "{ \"state\": \"GoingToEnd\" }"
+        },
+        {
+          "name": "Go to End",
+          "type": "start_tween",
+          "jsonPayload": "{ \"type\": \"move_item\", \"end\": { \"x\": 10, \"y\": 0, \"z\": 0 }, \"relative\": true, \"interpolationType\": \"linear\", \"duration\": 5 }"
+        },
+        {
+          "name": "Go to Start",
+          "type": "start_tween",
+          "jsonPayload": "{ \"type\": \"move_item\", \"end\": { \"x\": -10, \"y\": 0, \"z\": 0 }, \"relative\": true, \"interpolationType\": \"linear\", \"duration\": 5 }"
+        }
+      ]
+    },
+    "asset-packs::Triggers": {
+      "value": [
+        {
+          "type": "on_state_change",
+          "conditions": [
+            {
+              "id": "{self:asset-packs::States}",
+              "type": "when_state_is",
+              "value": "GoingToStart"
+            }
+          ],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Go to Start"
+            }
+          ]
+        },
+        {
+          "type": "on_state_change",
+          "conditions": [
+            {
+              "id": "{self:asset-packs::States}",
+              "type": "when_state_is",
+              "value": "GoingToEnd"
+            }
+          ],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Go to End"
+            }
+          ]
+        },
+        {
+          "type": "on_tween_end",
+          "conditions": [
+            {
+              "id": "{self:asset-packs::States}",
+              "type": "when_state_is",
+              "value": "GoingToEnd"
+            }
+          ],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Going to Start"
+            }
+          ]
+        },
+        {
+          "type": "on_tween_end",
+          "conditions": [
+            {
+              "id": "{self:asset-packs::States}",
+              "type": "when_state_is",
+              "value": "GoingToStart"
+            }
+          ],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Going to End"
+            }
+          ]
+        },
+        {
+          "type": "on_spawn",
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Go to End"
+            }
+          ]
+        }
+      ]
+    },
+    "asset-packs::States": {
+      "id": "{self}",
+      "value": [
+        "GoingToEnd",
+        "GoingToStart"
+      ],
+      "defaultValue": "GoingToEnd"
+    }
+  }
+}
