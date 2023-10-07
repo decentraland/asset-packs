@@ -2,16 +2,12 @@
   "id": "534ba1b7-7e5b-4aeb-905a-f155de4b7c6a",
   "name": "Vertical Red Pad",
   "category": "structures",
-  "tags": [
-    "platform",
-    "vertical",
-    "interactive"
-  ],
+  "tags": ["platform", "vertical", "interactive"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/vertical_red_pad.glb",
       "visibleMeshesCollisionMask": 2,
-      "invisibleMeshesCollisionMask": 0
+      "invisibleMeshesCollisionMask": 2
     },
     "asset-packs::Actions": {
       "id": "{self}",
@@ -117,10 +113,7 @@
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "GoingToEnd",
-        "GoingToStart"
-      ],
+      "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     }
   }

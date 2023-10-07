@@ -2,17 +2,12 @@
   "id": "8ccb20e8-8c7c-4aee-9e21-a154bd1b1475",
   "name": "Vertical Platform Pirates Alt",
   "category": "structures",
-  "tags": [
-    "platform",
-    "vertical",
-    "interactive",
-    "smart"
-  ],
+  "tags": ["platform", "vertical", "interactive", "smart"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/vertical_platform_pirates_alt.glb",
       "visibleMeshesCollisionMask": 2,
-      "invisibleMeshesCollisionMask": 0
+      "invisibleMeshesCollisionMask": 2
     },
     "asset-packs::Actions": {
       "id": "{self}",
@@ -118,10 +113,7 @@
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "GoingToEnd",
-        "GoingToStart"
-      ],
+      "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     }
   }

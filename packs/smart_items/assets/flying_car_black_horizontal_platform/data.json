@@ -2,19 +2,12 @@
   "id": "b2d25644-2f43-48c0-a845-6b2220593411",
   "name": "Flying Car Black Horizontal Platform",
   "category": "vehicles",
-  "tags": [
-    "platform",
-    "horizontal",
-    "interactive",
-    "car",
-    "flying",
-    "vehicle"
-  ],
+  "tags": ["platform", "horizontal", "interactive", "car", "flying", "vehicle"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/horizontal_flying_car_black.glb",
       "visibleMeshesCollisionMask": 2,
-      "invisibleMeshesCollisionMask": 0
+      "invisibleMeshesCollisionMask": 2
     },
     "asset-packs::Actions": {
       "id": "{self}",
@@ -120,10 +113,7 @@
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "GoingToEnd",
-        "GoingToStart"
-      ],
+      "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     }
   }

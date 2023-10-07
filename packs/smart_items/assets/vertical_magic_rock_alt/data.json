@@ -2,17 +2,12 @@
   "id": "132c8f9d-5faa-4e14-b985-44562ccacc24",
   "name": "Vertical Magic Rock Alt",
   "category": "structures",
-  "tags": [
-    "platform",
-    "vertical",
-    "interactive",
-    "smart"
-  ],
+  "tags": ["platform", "vertical", "interactive", "smart"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/vertical_platform_fantasy_alt.glb",
       "visibleMeshesCollisionMask": 2,
-      "invisibleMeshesCollisionMask": 0
+      "invisibleMeshesCollisionMask": 2
     },
     "asset-packs::Actions": {
       "id": "{self}",
@@ -118,10 +113,7 @@
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "GoingToEnd",
-        "GoingToStart"
-      ],
+      "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     }
   }

@@ -2,16 +2,12 @@
   "id": "f5c1fc52-2cd3-40b2-862a-c6ceaf66aa1e",
   "name": "Raft",
   "category": "structures",
-  "tags": [
-    "platform",
-    "horizontal",
-    "interactive"
-  ],
+  "tags": ["platform", "horizontal", "interactive"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/raft.glb",
       "visibleMeshesCollisionMask": 2,
-      "invisibleMeshesCollisionMask": 0
+      "invisibleMeshesCollisionMask": 2
     },
     "asset-packs::Actions": {
       "id": "{self}",
@@ -117,10 +113,7 @@
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "GoingToEnd",
-        "GoingToStart"
-      ],
+      "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     }
   }

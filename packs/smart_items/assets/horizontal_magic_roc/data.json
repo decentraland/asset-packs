@@ -2,16 +2,12 @@
   "id": "57df1075-b4c7-4cbd-8bf0-6c3c1ab1823b",
   "name": "Horizontal Magic Roc",
   "category": "structures",
-  "tags": [
-    "platform",
-    "horizontal",
-    "interactive"
-  ],
+  "tags": ["platform", "horizontal", "interactive"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/horizontal_platform_fantasy.glb",
       "visibleMeshesCollisionMask": 2,
-      "invisibleMeshesCollisionMask": 0
+      "invisibleMeshesCollisionMask": 2
     },
     "asset-packs::Actions": {
       "id": "{self}",
@@ -117,10 +113,7 @@
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "GoingToEnd",
-        "GoingToStart"
-      ],
+      "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     }
   }

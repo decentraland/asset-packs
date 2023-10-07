@@ -2,16 +2,12 @@
   "id": "c72c3d45-0309-4834-84df-7b5f517694fa",
   "name": "Vertical Blue Pad",
   "category": "structures",
-  "tags": [
-    "platform",
-    "vertical",
-    "interactive"
-  ],
+  "tags": ["platform", "vertical", "interactive"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/vertical_blue_pad.glb",
       "visibleMeshesCollisionMask": 2,
-      "invisibleMeshesCollisionMask": 0
+      "invisibleMeshesCollisionMask": 2
     },
     "asset-packs::Actions": {
       "id": "{self}",
@@ -117,10 +113,7 @@
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "GoingToEnd",
-        "GoingToStart"
-      ],
+      "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     }
   }

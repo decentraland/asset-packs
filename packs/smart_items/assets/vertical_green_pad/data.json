@@ -2,16 +2,12 @@
   "id": "6678fa53-038e-4722-b10a-b50cb175436b",
   "name": "Vertical Green Pad",
   "category": "structures",
-  "tags": [
-    "platform",
-    "vertical",
-    "interactive"
-  ],
+  "tags": ["platform", "vertical", "interactive"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/vertical_green_pad.glb",
       "visibleMeshesCollisionMask": 2,
-      "invisibleMeshesCollisionMask": 0
+      "invisibleMeshesCollisionMask": 2
     },
     "asset-packs::Actions": {
       "id": "{self}",
@@ -117,10 +113,7 @@
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "GoingToEnd",
-        "GoingToStart"
-      ],
+      "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     }
   }

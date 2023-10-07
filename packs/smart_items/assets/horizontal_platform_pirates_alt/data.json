@@ -2,16 +2,12 @@
   "id": "d45c2c0e-56b0-433f-8a0b-e80184f25dbd",
   "name": "Horizontal Platform Pirates Alt",
   "category": "structures",
-  "tags": [
-    "platform",
-    "horizontal",
-    "interactive"
-  ],
+  "tags": ["platform", "horizontal", "interactive"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/horizontal_platform_pirates_alt.glb",
       "visibleMeshesCollisionMask": 2,
-      "invisibleMeshesCollisionMask": 0
+      "invisibleMeshesCollisionMask": 2
     },
     "asset-packs::Actions": {
       "id": "{self}",
@@ -117,10 +113,7 @@
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "GoingToEnd",
-        "GoingToStart"
-      ],
+      "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     }
   }

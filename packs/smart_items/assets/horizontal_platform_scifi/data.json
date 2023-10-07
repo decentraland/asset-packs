@@ -2,16 +2,12 @@
   "id": "c5bcfd25-77a5-4186-a1fc-3525a7130daa",
   "name": "Horizontal Platform SciFi",
   "category": "structures",
-  "tags": [
-    "platform",
-    "horizontal",
-    "interactive"
-  ],
+  "tags": ["platform", "horizontal", "interactive"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/horizontal_platform_scifi.glb",
       "visibleMeshesCollisionMask": 2,
-      "invisibleMeshesCollisionMask": 0
+      "invisibleMeshesCollisionMask": 2
     },
     "asset-packs::Actions": {
       "id": "{self}",
@@ -117,10 +113,7 @@
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "GoingToEnd",
-        "GoingToStart"
-      ],
+      "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     }
   }

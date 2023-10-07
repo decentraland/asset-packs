@@ -2,17 +2,12 @@
   "id": "03099c99-49ff-4880-9e80-095273bb08f6",
   "name": "Horizontal Circular SciFi",
   "category": "structures",
-  "tags": [
-    "platform",
-    "horizontal",
-    "interactive",
-    "smart"
-  ],
+  "tags": ["platform", "horizontal", "interactive", "smart"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/horizontal_platform_scifi_alt.glb",
       "visibleMeshesCollisionMask": 2,
-      "invisibleMeshesCollisionMask": 0
+      "invisibleMeshesCollisionMask": 2
     },
     "asset-packs::Actions": {
       "id": "{self}",
@@ -118,10 +113,7 @@
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "GoingToEnd",
-        "GoingToStart"
-      ],
+      "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     }
   }

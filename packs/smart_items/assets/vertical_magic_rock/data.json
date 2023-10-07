@@ -2,17 +2,12 @@
   "id": "4c3b4f56-9329-4230-9d43-4f94fbf6771d",
   "name": "Vertical Magic Rock",
   "category": "structures",
-  "tags": [
-    "platform",
-    "vertical",
-    "interactive",
-    "smart"
-  ],
+  "tags": ["platform", "vertical", "interactive", "smart"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/vertical_platform_fantasy.glb",
       "visibleMeshesCollisionMask": 2,
-      "invisibleMeshesCollisionMask": 0
+      "invisibleMeshesCollisionMask": 2
     },
     "asset-packs::Actions": {
       "id": "{self}",
@@ -118,10 +113,7 @@
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "GoingToEnd",
-        "GoingToStart"
-      ],
+      "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     }
   }

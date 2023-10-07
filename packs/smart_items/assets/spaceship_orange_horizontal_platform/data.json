@@ -2,18 +2,12 @@
   "id": "d64291e9-d4a0-4375-9fc3-7f220734b8f1",
   "name": "Spaceship Orange Horizontal Platform",
   "category": "vehicles",
-  "tags": [
-    "platform",
-    "horizontal",
-    "interactive",
-    "spaceship",
-    "vehicle"
-  ],
+  "tags": ["platform", "horizontal", "interactive", "spaceship", "vehicle"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/horizontal_spaceship_orange.glb",
       "visibleMeshesCollisionMask": 2,
-      "invisibleMeshesCollisionMask": 0
+      "invisibleMeshesCollisionMask": 2
     },
     "asset-packs::Actions": {
       "id": "{self}",
@@ -119,10 +113,7 @@
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "GoingToEnd",
-        "GoingToStart"
-      ],
+      "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     }
   }

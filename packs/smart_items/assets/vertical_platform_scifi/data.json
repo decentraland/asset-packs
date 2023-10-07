@@ -2,17 +2,12 @@
   "id": "58dc566a-2add-4326-b61c-0fdf46903195",
   "name": "Vertical Platform SciFi",
   "category": "structures",
-  "tags": [
-    "platform",
-    "vertical",
-    "interactive",
-    "smart"
-  ],
+  "tags": ["platform", "vertical", "interactive", "smart"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/vertical_platform_scifi.glb",
       "visibleMeshesCollisionMask": 2,
-      "invisibleMeshesCollisionMask": 0
+      "invisibleMeshesCollisionMask": 2
     },
     "asset-packs::Actions": {
       "id": "{self}",
@@ -118,10 +113,7 @@
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "GoingToEnd",
-        "GoingToStart"
-      ],
+      "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     }
   }

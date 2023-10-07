@@ -2,17 +2,12 @@
   "id": "6ab20acc-eff6-4272-8243-c183e70a9fa1",
   "name": "Vertical Platform Genesis",
   "category": "structures",
-  "tags": [
-    "platform",
-    "vertical",
-    "interactive",
-    "smart"
-  ],
+  "tags": ["platform", "vertical", "interactive", "smart"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/vertical_platform_genesis.glb",
       "visibleMeshesCollisionMask": 2,
-      "invisibleMeshesCollisionMask": 0
+      "invisibleMeshesCollisionMask": 2
     },
     "asset-packs::Actions": {
       "id": "{self}",
@@ -118,10 +113,7 @@
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "GoingToEnd",
-        "GoingToStart"
-      ],
+      "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     }
   }

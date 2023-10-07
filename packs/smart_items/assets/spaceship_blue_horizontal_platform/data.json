@@ -2,18 +2,12 @@
   "id": "cca81b2b-24d6-4ef3-aa46-dad27a03d55b",
   "name": "Spaceship Blue Horizontal Platform",
   "category": "vehicles",
-  "tags": [
-    "platform",
-    "horizontal",
-    "interactive",
-    "spaceship",
-    "vehicle"
-  ],
+  "tags": ["platform", "horizontal", "interactive", "spaceship", "vehicle"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/horizontal_spaceship_blue.glb",
       "visibleMeshesCollisionMask": 2,
-      "invisibleMeshesCollisionMask": 0
+      "invisibleMeshesCollisionMask": 2
     },
     "asset-packs::Actions": {
       "id": "{self}",
@@ -119,10 +113,7 @@
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "GoingToEnd",
-        "GoingToStart"
-      ],
+      "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     }
   }
