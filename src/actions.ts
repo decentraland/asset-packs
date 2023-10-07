@@ -6,6 +6,7 @@ import {
   AudioSource,
   VisibilityComponent,
   AvatarAttach,
+  GltfContainer,
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { tweens } from '@dcl-sdk/utils/dist/tween'
@@ -332,11 +333,12 @@ function handlePlaySound(
   entity: Entity,
   payload: ActionPayload<ActionType.PLAY_SOUND>,
 ) {
-  const { src, loop } = payload
+  const { src, loop, volume } = payload
   AudioSource.createOrReplace(entity, {
     audioClipUrl: src,
     loop,
     playing: true,
+    volume: volume ?? 1,
   })
 }
 
@@ -356,8 +358,13 @@ function handleSetVisibility(
   entity: Entity,
   payload: ActionPayload<ActionType.SET_VISIBILITY>,
 ) {
-  const { visible } = payload
+  const { visible, physicsCollider } = payload
   VisibilityComponent.createOrReplace(entity, { visible })
+  const gltf = GltfContainer.getMutableOrNull(entity)
+
+  if (gltf && physicsCollider !== undefined) {
+    gltf.invisibleMeshesCollisionMask = physicsCollider ? 2 : 0
+  }
 }
 
 // ATTACH_TO_PLAYER

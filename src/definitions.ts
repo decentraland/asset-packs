@@ -82,9 +82,13 @@ export const ActionSchemas = {
   [ActionType.PLAY_SOUND]: Schemas.Map({
     src: Schemas.String,
     loop: Schemas.Optional(Schemas.Boolean),
+    volume: Schemas.Optional(Schemas.Float),
   }),
   [ActionType.STOP_SOUND]: Schemas.Map({}),
-  [ActionType.SET_VISIBILITY]: Schemas.Map({ visible: Schemas.Boolean }),
+  [ActionType.SET_VISIBILITY]: Schemas.Map({
+    visible: Schemas.Boolean,
+    physicsCollider: Schemas.Optional(Schemas.Boolean),
+  }),
   [ActionType.ATTACH_TO_PLAYER]: Schemas.Map({
     anchorPointId: Schemas.Int,
   }),
