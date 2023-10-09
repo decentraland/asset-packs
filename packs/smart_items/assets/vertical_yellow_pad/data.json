@@ -13,22 +13,22 @@
       "id": "{self}",
       "value": [
         {
-          "name": "Going to Start",
+          "name": "Go to Start",
           "type": "set_state",
           "jsonPayload": "{ \"state\": \"GoingToStart\" }"
         },
         {
-          "name": "Going to End",
+          "name": "Go to End",
           "type": "set_state",
           "jsonPayload": "{ \"state\": \"GoingToEnd\" }"
         },
         {
-          "name": "Go to End",
+          "name": "Tween to End",
           "type": "start_tween",
           "jsonPayload": "{ \"type\": \"move_item\", \"end\": { \"x\": 0, \"y\": 10, \"z\": 0 }, \"relative\": true, \"interpolationType\": \"linear\", \"duration\": 5 }"
         },
         {
-          "name": "Go to Start",
+          "name": "Tween to Start",
           "type": "start_tween",
           "jsonPayload": "{ \"type\": \"move_item\", \"end\": { \"x\": 0, \"y\": -10, \"z\": 0 }, \"relative\": true, \"interpolationType\": \"linear\", \"duration\": 5 }"
         }
@@ -48,7 +48,7 @@
           "actions": [
             {
               "id": "{self:asset-packs::Actions}",
-              "name": "Go to Start"
+              "name": "Tween to Start"
             }
           ]
         },
@@ -64,7 +64,7 @@
           "actions": [
             {
               "id": "{self:asset-packs::Actions}",
-              "name": "Go to End"
+              "name": "Tween to End"
             }
           ]
         },
@@ -80,7 +80,7 @@
           "actions": [
             {
               "id": "{self:asset-packs::Actions}",
-              "name": "Going to Start"
+              "name": "Go to Start"
             }
           ]
         },
@@ -96,7 +96,7 @@
           "actions": [
             {
               "id": "{self:asset-packs::Actions}",
-              "name": "Going to End"
+              "name": "Go to End"
             }
           ]
         },
@@ -105,7 +105,7 @@
           "actions": [
             {
               "id": "{self:asset-packs::Actions}",
-              "name": "Go to End"
+              "name": "Tween to End"
             }
           ]
         }
