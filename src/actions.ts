@@ -9,8 +9,6 @@ import {
   PBVisibilityComponent,
   PBGltfContainer,
   VideoPlayer,
-  Material,
-  MeshRenderer,
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { tweens } from '@dcl-sdk/utils/dist/tween'
@@ -66,18 +64,6 @@ export function createActionsSystem(
         switch (type) {
           case ActionType.PLAY_ANIMATION: {
             initPlayAnimation(entity)
-            break
-          }
-          case ActionType.PLAY_VIDEO_STREAM: {
-            initPlayVideoStream(
-              engine,
-              entity,
-              getPayload<ActionType.PLAY_VIDEO_STREAM>(
-                actions.value.find(
-                  (action) => action.type === ActionType.PLAY_VIDEO_STREAM,
-                )!,
-              ),
-            )
             break
           }
           default:
@@ -195,44 +181,6 @@ export function createActionsSystem(
       states: [],
     })
     Animator.stopAllAnimations(entity)
-  }
-
-  function initPlayVideoStream(
-    engine: IEngine,
-    entity: Entity,
-    payload: ActionPayload<ActionType.PLAY_VIDEO_STREAM>,
-  ) {
-    VideoPlayer.create(entity, {
-      src: payload.src,
-      playing: payload.autoPlay ?? true,
-      volume: payload.volume ?? 1,
-      loop: payload.loop ?? false,
-    })
-    const transform = Transform.getMutableOrNull(entity)
-    if (transform) {
-      const screen = engine.addEntity()
-      const scaleMult = 1.55
-      MeshRenderer.setPlane(screen)
-      // Scale the plane to match the video gltf aspect ratio
-      Transform.create(screen, {
-        position: Vector3.create(0, 0.54 * scaleMult, 0.008),
-        scale: Vector3.create(
-          1.92 * scaleMult,
-          1.08 * scaleMult,
-          1 * scaleMult,
-        ),
-        parent: entity,
-      })
-      const videoTexture = Material.Texture.Video({
-        videoPlayerEntity: entity,
-      })
-      Material.setPbrMaterial(screen, {
-        texture: videoTexture,
-        roughness: 1.0,
-        specularIntensity: 0,
-        metallic: 0,
-      })
-    }
   }
 
   function handlePlayAnimation(
@@ -491,11 +439,21 @@ export function createActionsSystem(
 // PLAY_VIDEO_STREAM
 function handlePlayVideoStream(
   entity: Entity,
-  _payload: ActionPayload<ActionType.PLAY_VIDEO_STREAM>,
+  payload: ActionPayload<ActionType.PLAY_VIDEO_STREAM>,
 ) {
   const videoSource = VideoPlayer.getMutableOrNull(entity)
   if (videoSource) {
-    videoSource.playing = true
+    videoSource.src ??= payload.src
+    videoSource.volume ??= payload.volume ?? 1
+    videoSource.loop ??= payload.loop ?? false
+    videoSource.playing ??= true
+  } else {
+    VideoPlayer.create(entity, {
+      src: payload.src,
+      playing: payload.autoPlay ?? false,
+      volume: payload.volume ?? 1,
+      loop: payload.loop ?? false,
+    })
   }
 }
 
