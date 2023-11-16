@@ -1,0 +1,118 @@
+{
+  "id": "a747f104-5434-42a8-a543-8739c24cf253",
+  "name": "Video stream",
+  "category": "streaming",
+  "tags": ["sound", "video", "movie", "music", "streaming", "ambient"],
+  "components": {
+    "core::GltfContainer": {
+      "src": "{assetPath}/stream_preview.glb"
+    },
+    "asset-packs::Actions": {
+      "id": "{self}",
+      "value": [
+        {
+          "name": "Play",
+          "type": "set_state",
+          "jsonPayload": "{ \"state\": \"Playing\" }"
+        },
+        {
+          "name": "Stop",
+          "type": "set_state",
+          "jsonPayload": "{ \"state\": \"Stopped\" }"
+        },
+        {
+          "name": "Play Video Stream",
+          "type": "play_video_stream",
+          "jsonPayload": "{ \"src\": \"\", \"loop\": \"false\", \"volume\": \"1.0\", \"autoPlay\": \"false\" }"
+        },
+        {
+          "name": "Stop Video Stream",
+          "type": "stop_video_stream",
+          "jsonPayload": "{}"
+        }
+      ]
+    },
+    "asset-packs::Triggers": {
+      "value": [
+        {
+          "type": "on_click",
+          "conditions": [
+            {
+              "id": "{self:asset-packs::States}",
+              "type": "when_state_is",
+              "value": "Playing"
+            }
+          ],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Stop"
+            }
+          ]
+        },
+        {
+          "type": "on_click",
+          "conditions": [
+            {
+              "id": "{self:asset-packs::States}",
+              "type": "when_state_is",
+              "value": "Stopped"
+            }
+          ],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Play"
+            }
+          ]
+        },
+        {
+          "type": "on_state_change",
+          "conditions": [
+            {
+              "id": "{self:asset-packs::States}",
+              "type": "when_state_is",
+              "value": "Playing"
+            }
+          ],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Play Video Stream"
+            }
+          ]
+        },
+        {
+          "type": "on_state_change",
+          "conditions": [
+            {
+              "id": "{self:asset-packs::States}",
+              "type": "when_state_is",
+              "value": "Stopped"
+            }
+          ],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Stop Video Stream"
+            }
+          ]
+        },
+        {
+          "type": "on_spawn",
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Spawn Video Stream"
+            }
+          ]
+        }
+      ]
+    },
+    "asset-packs::States": {
+      "id": "{self}",
+      "value": ["Playing", "Stopped"],
+      "defaultValue": "Stopped"
+    }
+  }
+}
