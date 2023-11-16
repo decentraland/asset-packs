@@ -55,6 +55,13 @@ export const ActionSchemas = {
     anchorPointId: Schemas.Int,
   }),
   [ActionType.DETACH_FROM_PLAYER]: Schemas.Map({}),
+  [ActionType.PLAY_VIDEO_STREAM]: Schemas.Map({
+    src: Schemas.String,
+    loop: Schemas.Optional(Schemas.Boolean),
+    volume: Schemas.Optional(Schemas.Float),
+    autoPlay: Schemas.Optional(Schemas.Boolean),
+  }),
+  [ActionType.STOP_VIDEO_STREAM]: Schemas.Map({}),
 }
 
 export type ActionPayload<T extends ActionType = any> =

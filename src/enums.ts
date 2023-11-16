@@ -44,6 +44,8 @@ export enum ActionType {
   SET_VISIBILITY = 'set_visibility',
   ATTACH_TO_PLAYER = 'attach_to_player',
   DETACH_FROM_PLAYER = 'detach_from_player',
+  PLAY_VIDEO_STREAM = 'play_video_stream',
+  STOP_VIDEO_STREAM = 'stop_video_stream',
 }
 
 export enum TriggerType {
