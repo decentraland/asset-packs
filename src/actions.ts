@@ -10,6 +10,7 @@ import {
   PBGltfContainer,
   VideoPlayer,
   Material,
+  AudioStream,
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { tweens } from '@dcl-sdk/utils/dist/tween'
@@ -165,6 +166,20 @@ export function createActionsSystem(
               handleStopVideo(
                 entity,
                 getPayload<ActionType.STOP_VIDEO_STREAM>(action),
+              )
+              break
+            }
+            case ActionType.PLAY_AUDIO_STREAM: {
+              handlePlayAudioStream(
+                entity,
+                getPayload<ActionType.PLAY_AUDIO_STREAM>(action),
+              )
+              break
+            }
+            case ActionType.STOP_AUDIO_STREAM: {
+              handleStopAudioStream(
+                entity,
+                getPayload<ActionType.STOP_AUDIO_STREAM>(action),
               )
               break
             }
@@ -488,5 +503,29 @@ function handleStopVideo(
   const videoSource = VideoPlayer.getMutableOrNull(entity)
   if (videoSource) {
     videoSource.playing = false
+  }
+}
+
+// PLAY_AUDIO_STREAM
+function handlePlayAudioStream(
+  entity: Entity,
+  payload: ActionPayload<ActionType.PLAY_AUDIO_STREAM>,
+) {
+  const { url, volume } = payload
+  AudioStream.createOrReplace(entity, {
+    url,
+    playing: true,
+    volume: volume ?? 1,
+  })
+}
+
+// STOP_AUDIO_STREAM
+function handleStopAudioStream(
+  entity: Entity,
+  _payload: ActionPayload<ActionType.STOP_AUDIO_STREAM>,
+) {
+  const audioSource = AudioStream.getMutableOrNull(entity)
+  if (audioSource) {
+    audioSource.playing = false
   }
 }

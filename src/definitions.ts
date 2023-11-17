@@ -67,6 +67,11 @@ export const ActionSchemas = {
     dclCast: Schemas.Optional(Schemas.Boolean),
   }),
   [ActionType.STOP_VIDEO_STREAM]: Schemas.Map({}),
+  [ActionType.PLAY_AUDIO_STREAM]: Schemas.Map({
+    url: Schemas.String,
+    volume: Schemas.Optional(Schemas.Float),
+  }),
+  [ActionType.STOP_AUDIO_STREAM]: Schemas.Map({}),
 }
 
 export type ActionPayload<T extends ActionType = any> =
