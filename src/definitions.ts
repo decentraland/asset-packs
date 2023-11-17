@@ -1,4 +1,5 @@
 import {
+  Entity,
   IEngine,
   ISchema,
   LastWriteWinElementSetComponentDefinition,
@@ -60,10 +61,10 @@ export const ActionSchemas = {
   }),
   [ActionType.DETACH_FROM_PLAYER]: Schemas.Map({}),
   [ActionType.PLAY_VIDEO_STREAM]: Schemas.Map({
-    src: Schemas.String,
+    src: Schemas.Optional(Schemas.String),
     loop: Schemas.Optional(Schemas.Boolean),
     volume: Schemas.Optional(Schemas.Float),
-    autoPlay: Schemas.Optional(Schemas.Boolean),
+    dclCast: Schemas.Optional(Schemas.Boolean),
   }),
   [ActionType.STOP_VIDEO_STREAM]: Schemas.Map({}),
 }
@@ -193,23 +194,42 @@ export function initComponents(engine: IEngine) {
 }
 
 function getVideoTexture({ material }: PBMaterial): VideoTexture | undefined {
-  if (material?.$case === 'pbr' && material.pbr.texture?.tex?.$case === 'videoTexture') {
+  if (
+    material?.$case === 'pbr' &&
+    material.pbr.texture?.tex?.$case === 'videoTexture'
+  ) {
     return material.pbr.texture.tex.videoTexture
   }
 
   return undefined
 }
 
+export function initVideoPlayerComponentMaterial(
+  entity: Entity,
+  material?: PBMaterial | null,
+) {
+  if (!material || !material.material || material.material.$case !== 'pbr') {
+    return null
+  }
+
+  Material.setPbrMaterial(entity, {
+    ...material.material.pbr,
+    texture: Material.Texture.Video({
+      videoPlayerEntity: entity,
+    }),
+  })
+}
+
 function initVideoPlayerComponents(engine: IEngine) {
   function replaceVideoTexture() {
     engine.removeSystem(replaceVideoTexture)
-    for (const [entity, material] of engine.getEntitiesWith(Material, VideoPlayer)) {
+    for (const [entity, material] of engine.getEntitiesWith(
+      Material,
+      VideoPlayer,
+    )) {
       const videoTexture = getVideoTexture(material)
       if (videoTexture?.videoPlayerEntity === engine.RootEntity) {
-        Material.setPbrMaterial(entity, {
-          ...material.material,
-          texture: Material.Texture.Video({ videoPlayerEntity: entity })
-        })
+        initVideoPlayerComponentMaterial(entity, material)
       }
     }
   }

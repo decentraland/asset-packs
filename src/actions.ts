@@ -9,15 +9,18 @@ import {
   PBVisibilityComponent,
   PBGltfContainer,
   VideoPlayer,
+  Material,
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { tweens } from '@dcl-sdk/utils/dist/tween'
+import { getActiveVideoStreams } from '~system/CommsApi'
 import {
   ActionPayload,
   ActionType,
   TriggerType,
   TweenType,
   getComponents,
+  initVideoPlayerComponentMaterial,
 } from './definitions'
 import { getDefaultValue, isValidState } from './states'
 import { getActionEvents, getTriggerEvents } from './events'
@@ -152,14 +155,14 @@ export function createActionsSystem(
               break
             }
             case ActionType.PLAY_VIDEO_STREAM: {
-              handlePlayVideoStream(
+              handlePlayVideo(
                 entity,
                 getPayload<ActionType.PLAY_VIDEO_STREAM>(action),
               )
               break
             }
             case ActionType.STOP_VIDEO_STREAM: {
-              handleStopVideoStream(
+              handleStopVideo(
                 entity,
                 getPayload<ActionType.STOP_VIDEO_STREAM>(action),
               )
@@ -436,29 +439,49 @@ export function createActionsSystem(
   }
 }
 
-// PLAY_VIDEO_STREAM
-function handlePlayVideoStream(
+async function getVideoSrc({
+  src,
+  dclCast,
+}: ActionPayload<ActionType.PLAY_VIDEO_STREAM>) {
+  if (dclCast) {
+    const { streams } = await getActiveVideoStreams({})
+    return streams.length > 0 ? streams[0].trackSid : ''
+  }
+  return src ?? ''
+}
+
+// PLAY_VIDEO
+function handlePlayVideo(
   entity: Entity,
   payload: ActionPayload<ActionType.PLAY_VIDEO_STREAM>,
 ) {
-  const videoSource = VideoPlayer.getMutableOrNull(entity)
-  if (videoSource) {
-    videoSource.src ??= payload.src
-    videoSource.volume ??= payload.volume ?? 1
-    videoSource.loop ??= payload.loop ?? false
-    videoSource.playing ??= true
-  } else {
-    VideoPlayer.create(entity, {
-      src: payload.src,
-      playing: payload.autoPlay ?? false,
-      volume: payload.volume ?? 1,
-      loop: payload.loop ?? false,
-    })
-  }
+  // Get the video src from a promise (Video File/Video Stream/DCL Cast)
+  getVideoSrc(payload).then((src) => {
+    if (!src) return
+
+    const videoSource = VideoPlayer.getMutableOrNull(entity)
+
+    if (videoSource) {
+      videoSource.src = src
+      videoSource.volume = payload.volume ?? 1
+      videoSource.loop = payload.loop ?? false
+      videoSource.playing = true
+    } else {
+      VideoPlayer.createOrReplace(entity, {
+        src,
+        volume: payload.volume ?? 1,
+        loop: payload.loop ?? false,
+        playing: true,
+      })
+
+      // Init video player material when the entity doesn't have a VideoPlayer component defined
+      initVideoPlayerComponentMaterial(entity, Material.getOrNull(entity))
+    }
+  })
 }
 
-// STOP_VIDEO_STREAM
-function handleStopVideoStream(
+// STOP_VIDEO
+function handleStopVideo(
   entity: Entity,
   _payload: ActionPayload<ActionType.STOP_VIDEO_STREAM>,
 ) {
