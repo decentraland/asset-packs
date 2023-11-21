@@ -5,16 +5,11 @@
   "tags": ["audio", "stream"],
   "components": {
     "core::GltfContainer": {
-      "src": "{assetPath}/radio.glb"
+      "src": "{assetPath}/radio.glb",
+      "invisibleMeshesCollisionMask": 0
     },
     "core::VisibilityComponent": {
       "visible": false
-    },
-    "core::MeshRenderer": {
-      "mesh": {
-        "$case": "plane",
-        "plane": { "uvs": [] }
-      }
     },
     "core::MeshCollider": {
       "collisionMask": 1,
