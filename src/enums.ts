@@ -53,6 +53,12 @@ export enum ActionType {
   PLAY_DEFAULT_EMOTE = 'play_default_emote',
   PLAY_CUSTOM_EMOTE = 'play_custom_emote',
   OPEN_LINK = 'open_link',
+  SHOW_TEXT = 'show_text',
+  HIDE_TEXT = 'hide_text',
+  START_DELAY = 'start_delay',
+  STOP_DELAY = 'stop_delay',
+  START_LOOP = 'start_loop',
+  STOP_LOOP = 'stop_loop',
 }
 
 export enum TriggerType {
@@ -63,6 +69,8 @@ export enum TriggerType {
   ON_COUNTER_CHANGE = 'on_counter_change',
   ON_PLAYER_ENTERS_AREA = 'on_player_enters_area',
   ON_PLAYER_LEAVES_AREA = 'on_player_leaves_area',
+  ON_DELAY = 'on_delay',
+  ON_LOOP = 'on_loop',
 }
 
 export enum TriggerConditionType {
@@ -76,4 +84,24 @@ export enum TriggerConditionType {
 export enum TriggerConditionOperation {
   AND = 'and',
   OR = 'or',
+}
+
+// Defined values instead of using from @dcl/ecs because Schemas doesn't support const enums
+export enum TextAlignMode {
+  TAM_TOP_LEFT = 0,
+  TAM_TOP_CENTER = 1,
+  TAM_TOP_RIGHT = 2,
+  TAM_MIDDLE_LEFT = 3,
+  TAM_MIDDLE_CENTER = 4,
+  TAM_MIDDLE_RIGHT = 5,
+  TAM_BOTTOM_LEFT = 6,
+  TAM_BOTTOM_CENTER = 7,
+  TAM_BOTTOM_RIGHT = 8,
+}
+
+// Defined values instead of using from @dcl/ecs because Schemas doesn't support const enums
+export enum Font {
+  F_SANS_SERIF = 0,
+  F_SERIF = 1,
+  F_MONOSPACE = 2,
 }

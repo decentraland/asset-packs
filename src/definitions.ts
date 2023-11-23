@@ -18,6 +18,8 @@ import {
   TriggerType,
   TriggerConditionType,
   TriggerConditionOperation,
+  TextAlignMode,
+  Font,
 } from './enums'
 
 export * from './enums'
@@ -89,6 +91,31 @@ export const ActionSchemas = {
   }),
   [ActionType.OPEN_LINK]: Schemas.Map({
     url: Schemas.String,
+  }),
+  [ActionType.SHOW_TEXT]: Schemas.Map({
+    text: Schemas.String,
+    hideAfterSeconds: Schemas.Float,
+    font: Schemas.EnumNumber(Font, Font.F_SANS_SERIF),
+    fontSize: Schemas.Optional(Schemas.Float),
+    textAlign: Schemas.EnumNumber(
+      TextAlignMode,
+      TextAlignMode.TAM_MIDDLE_CENTER,
+    ),
+  }),
+  [ActionType.HIDE_TEXT]: Schemas.Map({}),
+  [ActionType.START_DELAY]: Schemas.Map({
+    actions: Schemas.Array(Schemas.String),
+    timeout: Schemas.Float,
+  }),
+  [ActionType.STOP_DELAY]: Schemas.Map({
+    action: Schemas.String,
+  }),
+  [ActionType.START_LOOP]: Schemas.Map({
+    actions: Schemas.Array(Schemas.String),
+    interval: Schemas.Float,
+  }),
+  [ActionType.STOP_LOOP]: Schemas.Map({
+    action: Schemas.String,
   }),
 }
 
