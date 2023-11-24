@@ -69,7 +69,7 @@ export function createTimerSystem() {
   }
 }
 
-export function setTimeout(
+export function startTimeout(
   entity: Entity,
   action: string,
   timeout: number,
@@ -88,7 +88,7 @@ export function stopTimeout(entity: Entity, action: string) {
   )
 }
 
-export function setInterval(
+export function startInterval(
   entity: Entity,
   action: string,
   interval: number,

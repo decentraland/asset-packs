@@ -30,7 +30,7 @@ import {
 } from './definitions'
 import { getDefaultValue, isValidState } from './states'
 import { getActionEvents, getTriggerEvents } from './events'
-import { setInterval, setTimeout, stopInterval, stopTimeout } from './timer'
+import { startInterval, startTimeout, stopInterval, stopTimeout } from './timer'
 import { getPayload } from './action-types'
 import { requestTeleport } from '~system/UserActionModule'
 import {
@@ -679,7 +679,7 @@ export function createActionsSystem(
         fontSize,
         textAlign: textAlign as unknown as TextAlignMode,
       })
-      setTimeout(entity, ActionType.SHOW_TEXT, hideAfterSeconds, () =>
+      startTimeout(entity, ActionType.SHOW_TEXT, hideAfterSeconds, () =>
         handleHideText(entity, {}),
       )
     }
@@ -710,7 +710,7 @@ export function createActionsSystem(
     for (const actionName of actions) {
       const action = findActionByName(entity, actionName)
       if (action) {
-        setTimeout(entity, actionName, timeout, () => {
+        startTimeout(entity, actionName, timeout, () => {
           const actionEvents = getActionEvents(entity)
           actionEvents.emit(action.name, getPayload(action))
         })
@@ -736,7 +736,7 @@ export function createActionsSystem(
     for (const actionName of actions) {
       const action = findActionByName(entity, actionName)
       if (action) {
-        setInterval(entity, actionName, interval, () => {
+        startInterval(entity, actionName, interval, () => {
           const actionEvents = getActionEvents(entity)
           actionEvents.emit(action.name, getPayload(action))
         })
