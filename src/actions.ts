@@ -11,6 +11,11 @@ import {
   VideoPlayer,
   Material,
   AudioStream,
+  UiText,
+  UiTransform,
+  YGUnit,
+  TextAlignMode,
+  Font,
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { tweens } from '@dcl-sdk/utils/dist/tween'
@@ -25,6 +30,7 @@ import {
 } from './definitions'
 import { getDefaultValue, isValidState } from './states'
 import { getActionEvents, getTriggerEvents } from './events'
+import { setInterval, setTimeout, stopInterval, stopTimeout } from './timer'
 import { getPayload } from './action-types'
 import { requestTeleport } from '~system/UserActionModule'
 import {
@@ -220,6 +226,33 @@ export function createActionsSystem(
             }
             case ActionType.OPEN_LINK: {
               handleOpenLink(entity, getPayload<ActionType.OPEN_LINK>(action))
+              break
+            }
+            case ActionType.SHOW_TEXT: {
+              handleShowText(entity, getPayload<ActionType.SHOW_TEXT>(action))
+              break
+            }
+            case ActionType.HIDE_TEXT: {
+              handleHideText(entity, getPayload<ActionType.HIDE_TEXT>(action))
+              break
+            }
+            case ActionType.START_DELAY: {
+              handleStartDelay(
+                entity,
+                getPayload<ActionType.START_DELAY>(action),
+              )
+              break
+            }
+            case ActionType.STOP_DELAY: {
+              handleStopDelay(entity, getPayload<ActionType.STOP_DELAY>(action))
+              break
+            }
+            case ActionType.START_LOOP: {
+              handleStartLoop(entity, getPayload<ActionType.START_LOOP>(action))
+              break
+            }
+            case ActionType.STOP_LOOP: {
+              handleStopLoop(entity, getPayload<ActionType.STOP_LOOP>(action))
               break
             }
             default:
@@ -542,80 +575,181 @@ export function createActionsSystem(
     const { url } = payload
     void openExternalUrl({ url })
   }
-}
 
-async function getVideoSrc({
-  src,
-  dclCast,
-}: ActionPayload<ActionType.PLAY_VIDEO_STREAM>) {
-  if (dclCast) {
-    const { streams } = await getActiveVideoStreams({})
-    return streams.length > 0 ? streams[0].trackSid : ''
-  }
-  return src ?? ''
-}
-
-// PLAY_VIDEO
-function handlePlayVideo(
-  entity: Entity,
-  payload: ActionPayload<ActionType.PLAY_VIDEO_STREAM>,
-) {
-  // Get the video src from a promise (Video File/Video Stream/DCL Cast)
-  getVideoSrc(payload).then((src) => {
-    if (!src) return
-
-    const videoSource = VideoPlayer.getMutableOrNull(entity)
-
-    if (videoSource) {
-      videoSource.src = src
-      videoSource.volume = payload.volume ?? 1
-      videoSource.loop = payload.loop ?? false
-      videoSource.playing = true
-    } else {
-      VideoPlayer.createOrReplace(entity, {
-        src,
-        volume: payload.volume ?? 1,
-        loop: payload.loop ?? false,
-        playing: true,
-      })
-
-      // Init video player material when the entity doesn't have a VideoPlayer component defined
-      initVideoPlayerComponentMaterial(entity, Material.getOrNull(entity))
+  async function getVideoSrc({
+    src,
+    dclCast,
+  }: ActionPayload<ActionType.PLAY_VIDEO_STREAM>) {
+    if (dclCast) {
+      const { streams } = await getActiveVideoStreams({})
+      return streams.length > 0 ? streams[0].trackSid : ''
     }
-  })
-}
-
-// STOP_VIDEO
-function handleStopVideo(
-  entity: Entity,
-  _payload: ActionPayload<ActionType.STOP_VIDEO_STREAM>,
-) {
-  const videoSource = VideoPlayer.getMutableOrNull(entity)
-  if (videoSource) {
-    videoSource.playing = false
+    return src ?? ''
   }
-}
 
-// PLAY_AUDIO_STREAM
-function handlePlayAudioStream(
-  entity: Entity,
-  payload: ActionPayload<ActionType.PLAY_AUDIO_STREAM>,
-) {
-  const { url, volume } = payload
-  AudioStream.createOrReplace(entity, {
-    url,
-    playing: true,
-    volume: volume ?? 1,
-  })
-}
+  // PLAY_VIDEO
+  function handlePlayVideo(
+    entity: Entity,
+    payload: ActionPayload<ActionType.PLAY_VIDEO_STREAM>,
+  ) {
+    // Get the video src from a promise (Video File/Video Stream/DCL Cast)
+    getVideoSrc(payload).then((src) => {
+      if (!src) return
 
-// STOP_AUDIO_STREAM
-function handleStopAudioStream(
-  entity: Entity,
-  _payload: ActionPayload<ActionType.STOP_AUDIO_STREAM>,
-) {
-  const audioSource = AudioStream.getMutableOrNull(entity)
-  if (audioSource) {
-    audioSource.playing = false
+      const videoSource = VideoPlayer.getMutableOrNull(entity)
+
+      if (videoSource) {
+        videoSource.src = src
+        videoSource.volume = payload.volume ?? 1
+        videoSource.loop = payload.loop ?? false
+        videoSource.playing = true
+      } else {
+        VideoPlayer.createOrReplace(entity, {
+          src,
+          volume: payload.volume ?? 1,
+          loop: payload.loop ?? false,
+          playing: true,
+        })
+
+        // Init video player material when the entity doesn't have a VideoPlayer component defined
+        initVideoPlayerComponentMaterial(entity, Material.getOrNull(entity))
+      }
+    })
+  }
+
+  // STOP_VIDEO
+  function handleStopVideo(
+    entity: Entity,
+    _payload: ActionPayload<ActionType.STOP_VIDEO_STREAM>,
+  ) {
+    const videoSource = VideoPlayer.getMutableOrNull(entity)
+    if (videoSource) {
+      videoSource.playing = false
+    }
+  }
+
+  // PLAY_AUDIO_STREAM
+  function handlePlayAudioStream(
+    entity: Entity,
+    payload: ActionPayload<ActionType.PLAY_AUDIO_STREAM>,
+  ) {
+    const { url, volume } = payload
+    AudioStream.createOrReplace(entity, {
+      url,
+      playing: true,
+      volume: volume ?? 1,
+    })
+  }
+
+  // STOP_AUDIO_STREAM
+  function handleStopAudioStream(
+    entity: Entity,
+    _payload: ActionPayload<ActionType.STOP_AUDIO_STREAM>,
+  ) {
+    const audioSource = AudioStream.getMutableOrNull(entity)
+    if (audioSource) {
+      audioSource.playing = false
+    }
+  }
+
+  function getUITransform(entiy: Entity) {
+    let uiTransformComponent = UiTransform.getMutableOrNull(entiy)
+    if (!uiTransformComponent) {
+      uiTransformComponent = UiTransform.create(entiy)
+      uiTransformComponent.heightUnit = YGUnit.YGU_PERCENT
+      uiTransformComponent.widthUnit = YGUnit.YGU_PERCENT
+      uiTransformComponent.height = 100
+      uiTransformComponent.width = 100
+    }
+
+    return uiTransformComponent
+  }
+
+  // SHOW_TEXT
+  function handleShowText(
+    entity: Entity,
+    payload: ActionPayload<ActionType.SHOW_TEXT>,
+  ) {
+    const { text, hideAfterSeconds, font, fontSize, textAlign } = payload
+    const uiTransformComponent = getUITransform(entity)
+    if (uiTransformComponent) {
+      UiText.createOrReplace(entity, {
+        value: text,
+        font: font as unknown as Font,
+        fontSize,
+        textAlign: textAlign as unknown as TextAlignMode,
+      })
+      setTimeout(entity, ActionType.SHOW_TEXT, hideAfterSeconds, () =>
+        handleHideText(entity, {}),
+      )
+    }
+  }
+
+  // HIDE_TEXT
+  function handleHideText(
+    entity: Entity,
+    _payload: ActionPayload<ActionType.HIDE_TEXT>,
+  ) {
+    const uiTextComponent = UiText.getOrNull(entity)
+    if (uiTextComponent) {
+      UiText.deleteFrom(entity)
+    }
+  }
+
+  function findActionByName(entity: Entity, name: string) {
+    const actions = Actions.getOrNull(entity)
+    return actions?.value.find(($) => $.name === name)
+  }
+
+  // START_DELAY
+  function handleStartDelay(
+    entity: Entity,
+    payload: ActionPayload<ActionType.START_DELAY>,
+  ) {
+    const { actions, timeout } = payload
+    for (const actionName of actions) {
+      const action = findActionByName(entity, actionName)
+      if (action) {
+        setTimeout(entity, actionName, timeout, () => {
+          const actionEvents = getActionEvents(entity)
+          actionEvents.emit(action.name, getPayload(action))
+        })
+      }
+    }
+  }
+
+  // STOP_DELAY
+  function handleStopDelay(
+    entity: Entity,
+    payload: ActionPayload<ActionType.STOP_DELAY>,
+  ) {
+    const { action } = payload
+    stopTimeout(entity, action)
+  }
+
+  // START_LOOP
+  function handleStartLoop(
+    entity: Entity,
+    payload: ActionPayload<ActionType.START_LOOP>,
+  ) {
+    const { actions, interval } = payload
+    for (const actionName of actions) {
+      const action = findActionByName(entity, actionName)
+      if (action) {
+        setInterval(entity, actionName, interval, () => {
+          const actionEvents = getActionEvents(entity)
+          actionEvents.emit(action.name, getPayload(action))
+        })
+      }
+    }
+  }
+
+  // STOP_LOOP
+  function handleStopLoop(
+    entity: Entity,
+    payload: ActionPayload<ActionType.STOP_LOOP>,
+  ) {
+    const { action } = payload
+    stopInterval(entity, action)
   }
 }
