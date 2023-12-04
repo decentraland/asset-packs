@@ -5,6 +5,7 @@ import {
   InputAction,
   LastWriteWinElementSetComponentDefinition,
   DeepReadonlyObject,
+  Transform,
 } from '@dcl/sdk/ecs'
 import { triggers, LAYER_1, NO_LAYERS } from '@dcl-sdk/utils'
 import {
@@ -238,11 +239,17 @@ export function createTriggersSystem(
   }
 
   function initOnPlayerTriggerArea(entity: Entity) {
+    const { scale } = Transform.get(entity)
     triggers.addTrigger(
       entity,
       NO_LAYERS,
       LAYER_1,
-      [{ type: 'box' }],
+      [
+        {
+          type: 'box',
+          scale,
+        },
+      ],
       () => {
         const triggerEvents = getTriggerEvents(entity)
         triggerEvents.emit(TriggerType.ON_PLAYER_ENTERS_AREA)
