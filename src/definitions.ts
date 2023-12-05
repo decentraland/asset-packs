@@ -24,7 +24,7 @@ import {
   TriggerType,
   TriggerConditionType,
   TriggerConditionOperation,
-  TextAlignMode,
+  AlignMode,
   Font,
 } from './enums'
 
@@ -103,10 +103,7 @@ export const ActionSchemas = {
     hideAfterSeconds: Schemas.Float,
     font: Schemas.EnumNumber(Font, Font.F_SANS_SERIF),
     fontSize: Schemas.Optional(Schemas.Float),
-    textAlign: Schemas.EnumNumber(
-      TextAlignMode,
-      TextAlignMode.TAM_MIDDLE_CENTER,
-    ),
+    textAlign: Schemas.EnumNumber(AlignMode, AlignMode.TAM_MIDDLE_CENTER),
   }),
   [ActionType.HIDE_TEXT]: Schemas.Map({}),
   [ActionType.START_DELAY]: Schemas.Map({
@@ -127,6 +124,18 @@ export const ActionSchemas = {
     position: Schemas.Vector3,
   }),
   [ActionType.REMOVE_ENTITY]: Schemas.Map({}),
+  [ActionType.SHOW_IMAGE]: Schemas.Map({
+    src: Schemas.String,
+    align: Schemas.EnumNumber(AlignMode, AlignMode.TAM_MIDDLE_CENTER),
+    height: Schemas.Float,
+    width: Schemas.Float,
+    hideAfterSeconds: Schemas.Optional(Schemas.Float),
+    text: Schemas.Optional(Schemas.String),
+    fontSize: Schemas.Optional(Schemas.Float),
+  }),
+  [ActionType.HIDE_IMAGE]: Schemas.Map({
+    imageEntity: Schemas.Optional(Schemas.Int),
+  }),
 }
 
 export type ActionPayload<T extends ActionType = any> =
@@ -246,10 +255,7 @@ export type EngineComponents = {
   VideoPlayer: LastWriteWinElementSetComponentDefinition<PBVideoPlayer>
 }
 
-export function initComponents(
-  engine: IEngine,
-  components: EngineComponents
-) {
+export function initComponents(engine: IEngine, components: EngineComponents) {
   // Add actions from this package
   const actionTypes = Object.values(ActionType)
   for (const type of actionTypes) {
@@ -295,7 +301,10 @@ export function initVideoPlayerComponentMaterial(
   })
 }
 
-function initVideoPlayerComponents(engine: IEngine, components: EngineComponents) {
+function initVideoPlayerComponents(
+  engine: IEngine,
+  components: EngineComponents,
+) {
   function replaceVideoTexture() {
     const { Material, VideoPlayer } = components
     engine.removeSystem(replaceVideoTexture)
