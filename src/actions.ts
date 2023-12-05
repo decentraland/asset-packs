@@ -5,10 +5,13 @@ import {
   Material,
   AudioStream,
   UiText,
-  UiTransform,
   YGUnit,
   TextAlignMode,
   Font,
+  YGPositionType,
+  PointerFilterMode,
+  pointerEventsSystem,
+  InputAction,
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { tweens } from '@dcl-sdk/utils/dist/tween'
@@ -17,6 +20,7 @@ import {
   ActionPayload,
   ActionType,
   EngineComponents,
+  ScreenAlignMode,
   TriggerType,
   TweenType,
   getComponents,
@@ -24,7 +28,14 @@ import {
 } from './definitions'
 import { getDefaultValue, isValidState } from './states'
 import { getActionEvents, getTriggerEvents } from './events'
-import { startInterval, startTimeout, stopInterval, stopTimeout } from './timer'
+import {
+  startInterval,
+  startTimeout,
+  stopAllIntervalls,
+  stopAllTimeouts,
+  stopInterval,
+  stopTimeout,
+} from './timer'
 import { getPayload } from './action-types'
 import { requestTeleport } from '~system/UserActionModule'
 import {
@@ -34,8 +45,16 @@ import {
   openExternalUrl,
 } from '~system/RestrictedActions'
 import { isLastWriteWinComponent } from './lww'
+import {
+  getUIBackground,
+  getUIText,
+  getUITransform,
+  mapAlignToScreenAlign,
+} from './ui'
 
 const initedEntities = new Set<Entity>()
+const uiStacks = new Map<string, Entity>()
+const lastUiEntityClicked = new Map<Entity, Entity>()
 
 export function createActionsSystem(
   engine: IEngine,
@@ -255,6 +274,14 @@ export function createActionsSystem(
                 entity,
                 getPayload<ActionType.REMOVE_ENTITY>(action),
               )
+              break
+            }
+            case ActionType.SHOW_IMAGE: {
+              handleShowImage(entity, getPayload<ActionType.SHOW_IMAGE>(action))
+              break
+            }
+            case ActionType.HIDE_IMAGE: {
+              handleHideImage(entity, getPayload<ActionType.HIDE_IMAGE>(action))
               break
             }
             default:
@@ -616,7 +643,11 @@ export function createActionsSystem(
         })
 
         // Init video player material when the entity doesn't have a VideoPlayer component defined
-        initVideoPlayerComponentMaterial(entity, components, Material.getOrNull(entity))
+        initVideoPlayerComponentMaterial(
+          entity,
+          components,
+          Material.getOrNull(entity),
+        )
       }
     })
   }
@@ -656,19 +687,6 @@ export function createActionsSystem(
     }
   }
 
-  function getUITransform(entiy: Entity) {
-    let uiTransformComponent = UiTransform.getMutableOrNull(entiy)
-    if (!uiTransformComponent) {
-      uiTransformComponent = UiTransform.create(entiy)
-      uiTransformComponent.heightUnit = YGUnit.YGU_PERCENT
-      uiTransformComponent.widthUnit = YGUnit.YGU_PERCENT
-      uiTransformComponent.height = 100
-      uiTransformComponent.width = 100
-    }
-
-    return uiTransformComponent
-  }
-
   // SHOW_TEXT
   function handleShowText(
     entity: Entity,
@@ -683,7 +701,7 @@ export function createActionsSystem(
         fontSize,
         textAlign: textAlign as unknown as TextAlignMode,
       })
-      startTimeout(entity, ActionType.SHOW_TEXT, hideAfterSeconds, () =>
+      startTimeout(entity, ActionType.HIDE_TEXT, hideAfterSeconds, () =>
         handleHideText(entity, {}),
       )
     }
@@ -787,6 +805,101 @@ export function createActionsSystem(
     entity: Entity,
     _payload: ActionPayload<ActionType.REMOVE_ENTITY>,
   ) {
+    // Remove all timers before remove the entity
+    stopAllTimeouts(entity)
+    stopAllIntervalls(entity)
     engine.removeEntity(entity)
+  }
+
+  function getUiStack(align: ScreenAlignMode) {
+    const key = `${align.alignItems},${align.justifyContent}`
+
+    if (!uiStacks.has(key)) {
+      uiStacks.set(key, engine.addEntity())
+    }
+
+    return uiStacks.get(key)!
+  }
+
+  // SHOW_IMAGE
+  function handleShowImage(
+    entity: Entity,
+    payload: ActionPayload<ActionType.SHOW_IMAGE>,
+  ) {
+    const { src, text, hideAfterSeconds, fontSize, align, height, width } =
+      payload
+
+    // Get/Create a UI transform for the root entity
+    getUITransform(engine.RootEntity)
+
+    // Get a UI Stack entity
+    const screenAlign = mapAlignToScreenAlign(align)
+    const uiStack = getUiStack(screenAlign)
+
+    // TODO: Fix items wrapping
+    // Get/Create a UI Transform for the UI stack
+    const uiStackTransformComponent = getUITransform(uiStack)
+    uiStackTransformComponent.alignItems = screenAlign.alignItems
+    uiStackTransformComponent.justifyContent = screenAlign.justifyContent
+    uiStackTransformComponent.positionType = YGPositionType.YGPT_ABSOLUTE
+
+    // Create a UI entity and a Transform component for the image
+    const imageEntity = engine.addEntity()
+    const imageTransformComponent = getUITransform(
+      imageEntity,
+      width,
+      height,
+      YGUnit.YGU_POINT,
+    )
+    imageTransformComponent.parent = uiStack
+    imageTransformComponent.pointerFilter = PointerFilterMode.PFM_BLOCK
+
+    // Create Background Component
+    getUIBackground(imageEntity, src)
+
+    if (text) {
+      // Create Text Component
+      // TODO: Fix text wrapping and scrolling
+      getUIText(imageEntity, text, fontSize, width)
+    }
+
+    pointerEventsSystem.onPointerDown(
+      {
+        entity: imageEntity,
+        opts: {
+          button: InputAction.IA_POINTER,
+          hoverText: 'Click',
+        },
+      },
+      () => {
+        lastUiEntityClicked.set(entity, imageEntity)
+        const triggerEvents = getTriggerEvents(entity)
+        triggerEvents.emit(TriggerType.ON_CLICK_IMAGE)
+      },
+    )
+
+    if (hideAfterSeconds) {
+      startTimeout(entity, ActionType.HIDE_IMAGE, hideAfterSeconds, () =>
+        handleHideImage(entity, { imageEntity: imageEntity }),
+      )
+    }
+  }
+
+  // HIDE_IMAGE
+  function handleHideImage(
+    entity: Entity,
+    payload: ActionPayload<ActionType.HIDE_IMAGE>,
+  ) {
+    const { imageEntity } = payload
+
+    if (imageEntity) {
+      engine.removeEntity(imageEntity as Entity)
+    } else {
+      const clickedImage = lastUiEntityClicked.get(entity)
+      if (clickedImage) {
+        engine.removeEntity(clickedImage)
+        lastUiEntityClicked.delete(entity)
+      }
+    }
   }
 }
