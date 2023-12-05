@@ -1,3 +1,5 @@
+import { YGAlign, YGJustify } from '@dcl/sdk/ecs'
+
 export enum ComponentName {
   ACTION_TYPES = 'asset-packs::ActionTypes',
   ACTIONS = 'asset-packs::Actions',
@@ -61,6 +63,8 @@ export enum ActionType {
   STOP_LOOP = 'stop_loop',
   CLONE_ENTITY = 'clone_entity',
   REMOVE_ENTITY = 'remove_entity',
+  SHOW_IMAGE = 'show_image',
+  HIDE_IMAGE = 'hide_image',
 }
 
 export enum TriggerType {
@@ -74,6 +78,7 @@ export enum TriggerType {
   ON_DELAY = 'on_delay',
   ON_LOOP = 'on_loop',
   ON_CLONE = 'on_clone',
+  ON_CLICK_IMAGE = 'on_click_image',
 }
 
 export enum TriggerConditionType {
@@ -90,7 +95,7 @@ export enum TriggerConditionOperation {
 }
 
 // Defined values instead of using from @dcl/ecs because Schemas doesn't support const enums
-export enum TextAlignMode {
+export enum AlignMode {
   TAM_TOP_LEFT = 0,
   TAM_TOP_CENTER = 1,
   TAM_TOP_RIGHT = 2,
@@ -107,4 +112,9 @@ export enum Font {
   F_SANS_SERIF = 0,
   F_SERIF = 1,
   F_MONOSPACE = 2,
+}
+
+export type ScreenAlignMode = {
+  alignItems: YGAlign
+  justifyContent: YGJustify
 }
