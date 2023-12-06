@@ -89,7 +89,7 @@ export function stopTimeout(entity: Entity, action: string) {
 }
 
 export function stopAllTimeouts(entity: Entity) {
-  queueDelay.set(entity, [])
+  queueDelay.delete(entity)
 }
 
 export function startInterval(
@@ -112,5 +112,5 @@ export function stopInterval(entity: Entity, action: string) {
 }
 
 export function stopAllIntervalls(entity: Entity) {
-  queueInterval.set(entity, [])
+  queueInterval.delete(entity)
 }
