@@ -185,10 +185,10 @@ export function getUIBackground(
 
 function breakLines(text: string, linelength: number) {
   const lineBreak = '\n'
-  var counter = 0
-  var line = ''
-  var returnText = ''
-  var bMatchFound = false
+  let counter = 0
+  let line = ''
+  let returnText = ''
+  let bMatchFound = false
   const lineLen = linelength ? linelength : 50
 
   if (!text) return ''
@@ -200,7 +200,7 @@ function breakLines(text: string, linelength: number) {
     line = text.substring(counter, counter + lineLen)
     bMatchFound = false
     if (line.length == lineLen) {
-      for (var i = line.length; i > -1; i--) {
+      for (let i = line.length; i > -1; i--) {
         if (line.substring(i, i + 1) == ' ') {
           counter += line.substring(0, i).length
           line = line.substring(0, i) + lineBreak
