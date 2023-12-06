@@ -111,6 +111,6 @@ export function stopInterval(entity: Entity, action: string) {
   )
 }
 
-export function stopAllIntervalls(entity: Entity) {
+export function stopAllIntervals(entity: Entity) {
   queueInterval.delete(entity)
 }

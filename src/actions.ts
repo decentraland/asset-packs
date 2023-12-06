@@ -31,7 +31,7 @@ import { getActionEvents, getTriggerEvents } from './events'
 import {
   startInterval,
   startTimeout,
-  stopAllIntervalls,
+  stopAllIntervals,
   stopAllTimeouts,
   stopInterval,
   stopTimeout,
@@ -807,7 +807,7 @@ export function createActionsSystem(
   ) {
     // Remove all timers before remove the entity
     stopAllTimeouts(entity)
-    stopAllIntervalls(entity)
+    stopAllIntervals(entity)
     engine.removeEntity(entity)
   }
 
