@@ -26,6 +26,7 @@ import {
   TriggerConditionOperation,
   AlignMode,
   Font,
+  Colliders,
 } from './enums'
 
 export * from './enums'
@@ -64,7 +65,9 @@ export const ActionSchemas = {
   [ActionType.STOP_SOUND]: Schemas.Map({}),
   [ActionType.SET_VISIBILITY]: Schemas.Map({
     visible: Schemas.Boolean,
-    physicsCollider: Schemas.Optional(Schemas.Boolean),
+    collider: Schemas.Optional(
+      Schemas.EnumNumber(Colliders, Colliders.CL_POINTER),
+    ),
   }),
   [ActionType.ATTACH_TO_PLAYER]: Schemas.Map({
     anchorPointId: Schemas.Int,
