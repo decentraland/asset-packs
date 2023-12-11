@@ -1,4 +1,4 @@
-import { YGAlign, YGJustify } from '@dcl/sdk/ecs'
+import { ColliderLayer, YGAlign, YGJustify } from '@dcl/sdk/ecs'
 
 export enum ComponentName {
   ACTION_TYPES = 'asset-packs::ActionTypes',
@@ -117,4 +117,28 @@ export enum Font {
 export type ScreenAlignMode = {
   alignItems: YGAlign
   justifyContent: YGJustify
+}
+
+// Defined values instead of using from @dcl/ecs because Schemas doesn't support const enums
+export enum Colliders {
+  /** CL_NONE - no collisions */
+  CL_NONE = 0,
+  /** CL_POINTER - collisions with the player's pointer ray (e.g. mouse cursor hovering) */
+  CL_POINTER = 1,
+  /** CL_PHYSICS - collision affecting your player's physics i.e. walls, floor, moving platfroms */
+  CL_PHYSICS = 2,
+  CL_RESERVED1 = 4,
+  CL_RESERVED2 = 8,
+  CL_RESERVED3 = 16,
+  CL_RESERVED4 = 32,
+  CL_RESERVED5 = 64,
+  CL_RESERVED6 = 128,
+  CL_CUSTOM1 = 256,
+  CL_CUSTOM2 = 512,
+  CL_CUSTOM3 = 1024,
+  CL_CUSTOM4 = 2048,
+  CL_CUSTOM5 = 4096,
+  CL_CUSTOM6 = 8192,
+  CL_CUSTOM7 = 16384,
+  CL_CUSTOM8 = 32768,
 }
