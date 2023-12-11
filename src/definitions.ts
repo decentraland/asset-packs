@@ -65,6 +65,8 @@ export const ActionSchemas = {
   [ActionType.STOP_SOUND]: Schemas.Map({}),
   [ActionType.SET_VISIBILITY]: Schemas.Map({
     visible: Schemas.Boolean,
+    /** @deprecated use collider instead */
+    physicsCollider: Schemas.Optional(Schemas.Boolean),
     collider: Schemas.Optional(
       Schemas.EnumNumber(Colliders, Colliders.CL_POINTER),
     ),
