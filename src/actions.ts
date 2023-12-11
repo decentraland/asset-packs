@@ -12,6 +12,7 @@ import {
   PointerFilterMode,
   pointerEventsSystem,
   InputAction,
+  MeshCollider,
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { tweens } from '@dcl-sdk/utils/dist/tween'
@@ -538,12 +539,17 @@ export function createActionsSystem(
     entity: Entity,
     payload: ActionPayload<ActionType.SET_VISIBILITY>,
   ) {
-    const { visible, physicsCollider } = payload
+    const { visible, collider } = payload
     VisibilityComponent.createOrReplace(entity, { visible })
     const gltf = GltfContainer.getMutableOrNull(entity)
+    const meshCollider = MeshCollider.getMutableOrNull(entity)
 
-    if (gltf && physicsCollider !== undefined) {
-      gltf.invisibleMeshesCollisionMask = physicsCollider ? 2 : 0
+    if (collider !== undefined) {
+      if (gltf) {
+        gltf.invisibleMeshesCollisionMask = collider
+      } else if (meshCollider) {
+        meshCollider.collisionMask = collider
+      }
     }
   }
 
