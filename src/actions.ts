@@ -640,14 +640,15 @@ export function createActionsSystem(
     payload: ActionPayload<ActionType.PLAY_VIDEO_STREAM>,
   ) {
     const videoSource = VideoPlayer.getMutableOrNull(entity)
-    if (videoSource) {
+
+    if (videoSource && videoSource.src) {
       videoSource.playing = true
     } else {
       // Get the video src from a promise (Video File/Video Stream/DCL Cast)
       getVideoSrc(payload).then((src) => {
         if (!src) return
 
-        VideoPlayer.create(entity, {
+        VideoPlayer.createOrReplace(entity, {
           src,
           volume: payload.volume ?? 1,
           loop: payload.loop ?? false,
