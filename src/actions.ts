@@ -639,19 +639,15 @@ export function createActionsSystem(
     entity: Entity,
     payload: ActionPayload<ActionType.PLAY_VIDEO_STREAM>,
   ) {
-    // Get the video src from a promise (Video File/Video Stream/DCL Cast)
-    getVideoSrc(payload).then((src) => {
-      if (!src) return
+    const videoSource = VideoPlayer.getMutableOrNull(entity)
+    if (videoSource) {
+      videoSource.playing = true
+    } else {
+      // Get the video src from a promise (Video File/Video Stream/DCL Cast)
+      getVideoSrc(payload).then((src) => {
+        if (!src) return
 
-      const videoSource = VideoPlayer.getMutableOrNull(entity)
-
-      if (videoSource) {
-        videoSource.src = src
-        videoSource.volume = payload.volume ?? 1
-        videoSource.loop = payload.loop ?? false
-        videoSource.playing = true
-      } else {
-        VideoPlayer.createOrReplace(entity, {
+        VideoPlayer.create(entity, {
           src,
           volume: payload.volume ?? 1,
           loop: payload.loop ?? false,
@@ -664,8 +660,8 @@ export function createActionsSystem(
           components,
           Material.getOrNull(entity),
         )
-      }
-    })
+      })
+    }
   }
 
   // STOP_VIDEO
