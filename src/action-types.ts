@@ -54,7 +54,7 @@ export function getActionTypes(engine: IEngine) {
     ComponentName.ACTION_TYPES,
     engine,
   )
-  const actionTypes = ActionTypes.getOrCreateMutable(engine.RootEntity)
+  const actionTypes = ActionTypes.get(engine.RootEntity)
   return actionTypes.value.map(($) => $.type)
 }
 
