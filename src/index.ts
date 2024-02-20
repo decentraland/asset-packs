@@ -9,6 +9,9 @@ import {
   GltfContainer,
   Material,
   VideoPlayer,
+  UiTransform,
+  UiText,
+  UiBackground
 } from '@dcl/sdk/ecs'
 import { initAssetPacks } from './scene-entrypoint'
 
@@ -21,6 +24,9 @@ initAssetPacks(engine, pointerEventsSystem, {
   GltfContainer,
   Material,
   VideoPlayer,
+  UiTransform,
+  UiText,
+  UiBackground
 })
 
 export function main() {
