@@ -14,6 +14,9 @@ import {
   PBAvatarAttach,
   PBVisibilityComponent,
   PBGltfContainer,
+  PBUiTransform,
+  PBUiText,
+  PBUiBackground
 } from '@dcl/sdk/ecs'
 import { addActionType } from './action-types'
 import {
@@ -260,6 +263,9 @@ export type EngineComponents = {
   GltfContainer: LastWriteWinElementSetComponentDefinition<PBGltfContainer>
   Material: MaterialComponentDefinitionExtended
   VideoPlayer: LastWriteWinElementSetComponentDefinition<PBVideoPlayer>
+  UiTransform: LastWriteWinElementSetComponentDefinition<PBUiTransform>
+  UiText: LastWriteWinElementSetComponentDefinition<PBUiText>
+  UiBackground: LastWriteWinElementSetComponentDefinition<PBUiBackground>
 }
 
 export type AssetPackComponents = ReturnType<typeof getComponents>
