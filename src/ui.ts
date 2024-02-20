@@ -3,9 +3,6 @@ import {
   Entity,
   TextAlignMode,
   TextureWrapMode,
-  UiBackground,
-  UiText,
-  UiTransform,
   YGAlign,
   YGFlexDirection,
   YGJustify,
@@ -13,6 +10,7 @@ import {
   YGUnit,
 } from '@dcl/sdk/ecs'
 import { Color4 } from '@dcl/sdk/math'
+import { EngineComponents } from './definitions'
 import { AlignMode, Font, ScreenAlignMode } from './enums'
 
 function getAlignMode(align: AlignMode, isColumn: boolean) {
@@ -136,15 +134,16 @@ export function mapAlignToScreenAlign(
 }
 
 export function getUITransform(
+  component: EngineComponents["UiTransform"],
   entiy: Entity,
   height = 100,
   width = 100,
   unit: YGUnit = YGUnit.YGU_PERCENT,
 ) {
-  let uiTransformComponent = UiTransform.getMutableOrNull(entiy)
+  let uiTransformComponent = component.getMutableOrNull(entiy)
 
   if (!uiTransformComponent) {
-    uiTransformComponent = UiTransform.create(entiy)
+    uiTransformComponent = component.create(entiy)
     uiTransformComponent.heightUnit = unit
     uiTransformComponent.widthUnit = unit
     uiTransformComponent.height = height
@@ -163,12 +162,13 @@ export function getUITransform(
 }
 
 export function getUIBackground(
+  component: EngineComponents["UiBackground"],
   entity: Entity,
   src: string,
   textureMode = BackgroundTextureMode.NINE_SLICES,
   wrapMode = TextureWrapMode.TWM_CLAMP,
 ) {
-  return UiBackground.createOrReplace(entity, {
+  return component.createOrReplace(entity, {
     textureMode,
     texture: {
       tex: {
@@ -225,6 +225,7 @@ function breakLines(text: string, linelength: number) {
 }
 
 export function getUIText(
+  component: EngineComponents["UiText"],
   entity: Entity,
   text: string,
   fontSize = 10,
@@ -234,7 +235,7 @@ export function getUIText(
 ) {
   const lineLength = Math.floor(containerWidth / (fontSize / 1.7))
 
-  return UiText.createOrReplace(entity, {
+  return component.createOrReplace(entity, {
     value: breakLines(text, lineLength),
     fontSize,
     font: Font.F_MONOSPACE as any,

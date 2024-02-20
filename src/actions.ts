@@ -4,7 +4,6 @@ import {
   VideoPlayer,
   Material,
   AudioStream,
-  UiText,
   YGUnit,
   TextAlignMode,
   Font,
@@ -80,6 +79,9 @@ export function createActionsSystem(
     AvatarAttach,
     VisibilityComponent,
     GltfContainer,
+    UiTransform,
+    UiText,
+    UiBackground
   } = components
   const { Actions, States, Counter, Triggers } = getComponents(engine)
 
@@ -706,7 +708,7 @@ export function createActionsSystem(
     payload: ActionPayload<ActionType.SHOW_TEXT>,
   ) {
     const { text, hideAfterSeconds, font, fontSize, textAlign } = payload
-    const uiTransformComponent = getUITransform(entity)
+    const uiTransformComponent = getUITransform(UiTransform, entity)
     if (uiTransformComponent) {
       UiText.createOrReplace(entity, {
         value: text,
@@ -839,7 +841,7 @@ export function createActionsSystem(
       payload
 
     // Get/Create a UI transform for the root entity
-    getUITransform(engine.RootEntity)
+    getUITransform(UiTransform, engine.RootEntity)
 
     // Get a UI Stack entity
     const screenAlign = mapAlignToScreenAlign(align)
@@ -847,7 +849,7 @@ export function createActionsSystem(
 
     // TODO: Fix items wrapping
     // Get/Create a UI Transform for the UI stack
-    const uiStackTransformComponent = getUITransform(uiStack)
+    const uiStackTransformComponent = getUITransform(UiTransform, uiStack)
     uiStackTransformComponent.alignItems = screenAlign.alignItems
     uiStackTransformComponent.justifyContent = screenAlign.justifyContent
     uiStackTransformComponent.positionType = YGPositionType.YGPT_ABSOLUTE
@@ -855,6 +857,7 @@ export function createActionsSystem(
     // Create a UI entity and a Transform component for the image
     const imageEntity = engine.addEntity()
     const imageTransformComponent = getUITransform(
+      UiTransform,
       imageEntity,
       width,
       height,
@@ -864,12 +867,12 @@ export function createActionsSystem(
     imageTransformComponent.pointerFilter = PointerFilterMode.PFM_BLOCK
 
     // Create Background Component
-    getUIBackground(imageEntity, src)
+    getUIBackground(UiBackground, imageEntity, src)
 
     if (text) {
       // Create Text Component
       // TODO: Fix text wrapping and scrolling
-      getUIText(imageEntity, text, fontSize, width)
+      getUIText(UiText, imageEntity, text, fontSize, width)
     }
 
     pointerEventsSystem.onPointerDown(
