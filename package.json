@@ -50,7 +50,6 @@
   },
   "dependencies": {
     "@dcl-sdk/utils": "^1.2.6",
-    "@dcl/js-runtime": "7.4.6-8098223163.commit-b72969e",
     "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/remove/pure-explorer-components/dcl-sdk-7.4.6-8098223163.commit-b72969e.tgz",
     "mitt": "^3.0.1"
   },
