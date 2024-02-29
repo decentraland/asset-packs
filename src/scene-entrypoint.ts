@@ -8,7 +8,11 @@ import { createTriggersSystem } from './triggers'
 import { createTimerSystem } from './timer'
 import { getExplorerComponents } from './components'
 
-export function initAssetPacks(engine: IEngine) {
+/**
+ * the _args param is there to mantain backwards compatibility with all versions.
+ * Before it was initAssetPacks(engine, components, pointerEventsSystem).
+ */
+export function initAssetPacks(engine: IEngine, ..._args: any[]) {
   try {
     const components = getExplorerComponents(engine)
     // create editor components
