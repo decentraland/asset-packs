@@ -1,4 +1,4 @@
-import { IEngine, PointerEventsSystem } from '@dcl/sdk/ecs'
+import { IEngine } from '@dcl/sdk/ecs'
 import {
   createComponents,
   initComponents,
@@ -12,7 +12,8 @@ import { getExplorerComponents } from './components'
  * the _args param is there to mantain backwards compatibility with all versions.
  * Before it was initAssetPacks(engine, components, pointerEventsSystem).
  */
-export function initAssetPacks(engine: IEngine, ..._args: any[]) {
+export function initAssetPacks(_engine: unknown, ..._args: any[]) {
+  const engine = _engine as IEngine
   try {
     const components = getExplorerComponents(engine)
     // create editor components
