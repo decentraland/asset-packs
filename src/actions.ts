@@ -50,8 +50,10 @@ import {
   getUIText,
   getUITransform,
   mapAlignToScreenAlign,
+
 } from './ui'
 import { initTriggers } from './triggers'
+import { getExplorerComponents } from './components'
 
 const initedEntities = new Set<Entity>()
 const uiStacks = new Map<string, Entity>()
@@ -70,7 +72,6 @@ export function initActions(entity: Entity) {
 
 export function createActionsSystem(
   engine: IEngine,
-  components: EngineComponents,
 ) {
   const {
     Animator,
@@ -81,8 +82,8 @@ export function createActionsSystem(
     GltfContainer,
     UiTransform,
     UiText,
-    UiBackground
-  } = components
+    UiBackground,
+  } = getExplorerComponents(engine)
   const { Actions, States, Counter, Triggers } = getComponents(engine)
 
   // save internal reference to init funcion
@@ -660,7 +661,7 @@ export function createActionsSystem(
         // Init video player material when the entity doesn't have a VideoPlayer component defined
         initVideoPlayerComponentMaterial(
           entity,
-          components,
+          { Material },
           Material.getOrNull(entity),
         )
       })

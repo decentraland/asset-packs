@@ -31,6 +31,7 @@ import {
   Font,
   Colliders,
 } from './enums'
+import { getExplorerComponents } from './components'
 
 export * from './enums'
 export * from './action-types'
@@ -270,10 +271,7 @@ export type EngineComponents = {
 
 export type AssetPackComponents = ReturnType<typeof getComponents>
 
-export function initComponents(
-  engine: IEngine,
-  components?: Partial<Record<keyof EngineComponents, any>>,
-) {
+export function initComponents(engine: IEngine) {
   // Add actions from this package
   const actionTypes = Object.values(ActionType)
   for (const type of actionTypes) {
@@ -288,12 +286,8 @@ export function initComponents(
   const counter = Counter.getOrCreateMutable(engine.RootEntity)
   counter.value = counter.value || 0
 
-  if (components && components.VideoPlayer && components.Material) {
-    initVideoPlayerComponents(engine, {
-      VideoPlayer: components.VideoPlayer,
-      Material: components.Material,
-    })
-  }
+  const { VideoPlayer, Material } = getExplorerComponents(engine)
+  initVideoPlayerComponents(engine, { VideoPlayer, Material })
 }
 
 function getVideoTexture({ material }: PBMaterial): VideoTexture | undefined {

@@ -6,6 +6,8 @@ import {
   LastWriteWinElementSetComponentDefinition,
   DeepReadonlyObject,
 } from '@dcl/sdk/ecs'
+import { createPointerEventsSystem } from '@dcl/ecs/dist/systems/events'
+import { createInputSystem } from '@dcl/ecs/dist/engine/input'
 import { triggers, LAYER_1, NO_LAYERS } from '@dcl-sdk/utils'
 import {
   Action,
@@ -38,11 +40,9 @@ export function initTriggers(entity: Entity) {
   )
 }
 
-export function createTriggersSystem(
-  engine: IEngine,
-  components: EngineComponents,
-  pointerEventsSystem: PointerEventsSystem,
-) {
+export function createTriggersSystem(engine: IEngine, components: EngineComponents) {
+  const inputSystem = createInputSystem(engine)
+  const pointerEventsSystem = createPointerEventsSystem(engine, inputSystem)
   const { Transform } = components
   const { Actions, States, Counter, Triggers } = getComponents(engine)
 
