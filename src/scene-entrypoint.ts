@@ -10,7 +10,7 @@ import { getExplorerComponents } from './components'
 
 /**
  * the _args param is there to mantain backwards compatibility with all versions.
- * Before it was initAssetPacks(engine, components, pointerEventsSystem).
+ * Before it was initAssetPacks(engine, pointerEventsSystem, components)
  */
 export function initAssetPacks(_engine: unknown, ..._args: any[]) {
   const engine = _engine as IEngine
