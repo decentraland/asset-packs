@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "@dcl-sdk/utils": "^1.2.6",
-    "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/remove/pure-explorer-components/dcl-sdk-7.4.7-8100219328.commit-d581368.tgz",
+    "@dcl/sdk": "7.4.7",
     "mitt": "^3.0.1"
   },
   "prettier": {
