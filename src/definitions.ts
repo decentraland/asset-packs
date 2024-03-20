@@ -20,6 +20,8 @@ import {
   MeshRendererComponentDefinitionExtended,
   PBBillboard,
   NameType,
+  PBTween,
+  PBTweenSequence,
 } from '@dcl/sdk/ecs'
 import { addActionType } from './action-types'
 import {
@@ -338,6 +340,8 @@ export type EngineComponents = {
   UiBackground: LastWriteWinElementSetComponentDefinition<PBUiBackground>
   Billboard: LastWriteWinElementSetComponentDefinition<PBBillboard>
   Name: LastWriteWinElementSetComponentDefinition<NameType>
+  Tween: LastWriteWinElementSetComponentDefinition<PBTween>
+  TweenSequence: LastWriteWinElementSetComponentDefinition<PBTweenSequence>
 }
 
 export function initComponents(engine: IEngine) {
