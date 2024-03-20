@@ -19,3 +19,10 @@ export function getDefaultValue(states: States) {
     return states.value[0]
   }
 }
+
+export function getPreviousValue(states: States) {
+  if (isValidState(states, states.previousValue)) {
+    return states.previousValue!
+  }
+  return null
+}

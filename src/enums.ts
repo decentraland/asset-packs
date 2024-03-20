@@ -1,4 +1,4 @@
-import { ColliderLayer, YGAlign, YGJustify } from '@dcl/sdk/ecs'
+import { YGAlign, YGJustify } from '@dcl/sdk/ecs'
 
 export enum ComponentName {
   ACTION_TYPES = 'asset-packs::ActionTypes',
@@ -110,6 +110,8 @@ export enum TriggerConditionType {
   WHEN_COUNTER_IS_LESS_THAN = 'when_counter_is_less_than',
   WHEN_DISTANCE_TO_PLAYER_LESS_THAN = 'when_distance_to_player_less_than',
   WHEN_DISTANCE_TO_PLAYER_GREATER_THAN = 'when_distance_to_player_greater_than',
+  WHEN_PREVIOUS_STATE_IS = 'when_previous_state_is',
+  WHEN_PREVIOUS_STATE_IS_NOT = 'when_previous_state_is_not',
 }
 
 export enum TriggerConditionOperation {
