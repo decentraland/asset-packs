@@ -6,7 +6,9 @@ import {
   DeepReadonlyObject,
   tweenSystem,
   Tween,
+  PointerEventsSystem,
 } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 import {
   triggers,
   LAYER_1,
@@ -14,7 +16,6 @@ import {
   getPlayerPosition,
   getWorldPosition,
 } from '@dcl-sdk/utils'
-
 import {
   Action,
   ComponentName,
@@ -33,7 +34,6 @@ import { getActionEvents, getTriggerEvents } from './events'
 import { getPayload } from './action-types'
 import { globalInputActions } from './input-actions'
 import { tickSet } from './timer'
-import { Vector3 } from '@dcl/sdk/math'
 
 const initedEntities = new Set<Entity>()
 const actionQueue: { entity: Entity; action: Action }[] = []
