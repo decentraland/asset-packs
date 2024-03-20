@@ -12,6 +12,7 @@
     "start:js": "sdk-commands start --no-browser",
     "start:lib": "npm run build:lib -- --watch",
     "start:catalog": "nodemon --watch packs -x \"npm run build:catalog\"",
+    "start:dev": "concurrently \"npm run start:js -- --data-layer\" \"npm run start:lib\" \"npm run start:catalog\"",
     "build:js": "sdk-commands build",
     "build:lib": "tsc --project tsconfig.lib.json",
     "build:catalog": "ts-node --project tsconfig.scripts.json ./scripts/catalog.ts",
