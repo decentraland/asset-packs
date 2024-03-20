@@ -13,9 +13,9 @@ import {
   InputAction,
   MeshCollider,
   getComponentEntityTree,
+  Tween
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
-import { tweens } from '@dcl-sdk/utils/dist/tween'
 import { requestTeleport } from '~system/UserActionModule'
 import {
   movePlayerTo,
@@ -60,6 +60,7 @@ import {
   getWorldPosition,
 } from '@dcl-sdk/utils'
 import { followMap } from './transform'
+import { getEasingFunctionFromInterpolation } from './tweens'
 
 const initedEntities = new Set<Entity>()
 const uiStacks = new Map<string, Entity>()
@@ -446,10 +447,13 @@ export function createActionsSystem(engine: IEngine) {
     const states = States.getMutableOrNull(entity)
 
     if (states) {
+      const defaultValue = getDefaultValue(states)
       let nextState: string | undefined = payload.state
       nextState = isValidState(states, nextState)
         ? nextState
-        : getDefaultValue(states)
+        : defaultValue
+      const previousValue = states.currentValue ?? defaultValue ?? undefined
+      states.previousValue = previousValue
       states.currentValue = nextState
 
       const triggerEvents = getTriggerEvents(entity)
@@ -463,22 +467,17 @@ export function createActionsSystem(engine: IEngine) {
     payload: ActionPayload<ActionType.START_TWEEN>,
   ) {
     if (payload) {
-      const triggerEvents = getTriggerEvents(entity)
-      const onTweenEnd = () => {
-        triggerEvents.emit(TriggerType.ON_TWEEN_END)
-      }
-
       switch (payload.type) {
         case TweenType.MOVE_ITEM: {
-          handleMoveItem(entity, payload, onTweenEnd)
+          handleMoveItem(entity, payload)
           break
         }
         case TweenType.ROTATE_ITEM: {
-          handleRotateItem(entity, payload, onTweenEnd)
+          handleRotateItem(entity, payload)
           break
         }
         case TweenType.SCALE_ITEM: {
-          handleScaleItem(entity, payload, onTweenEnd)
+          handleScaleItem(entity, payload)
           break
         }
         default: {
@@ -491,29 +490,27 @@ export function createActionsSystem(engine: IEngine) {
   // MOVE_ITEM
   function handleMoveItem(
     entity: Entity,
-    tween: ActionPayload<ActionType.START_TWEEN>,
-    onTweenEnd: () => void,
+    tween: ActionPayload<ActionType.START_TWEEN>
   ) {
     const transform = Transform.get(entity)
     const { duration, interpolationType, relative } = tween
     const end = Vector3.create(tween.end.x, tween.end.y, tween.end.z)
     const endPosition = relative ? Vector3.add(transform.position, end) : end
 
-    tweens.startTranslation(
-      entity,
-      transform.position,
-      endPosition,
-      duration,
-      interpolationType,
-      () => onTweenEnd(),
-    )
+    Tween.createOrReplace(entity, {
+      mode: Tween.Mode.Move({
+        start: transform.position,
+        end: endPosition,
+      }),
+      duration: duration * 1000, // from secs to ms
+      easingFunction: getEasingFunctionFromInterpolation(interpolationType),
+    })
   }
 
   // ROTATE_ITEM
   function handleRotateItem(
     entity: Entity,
-    tween: ActionPayload<ActionType.START_TWEEN>,
-    onTweenEnd: () => void,
+    tween: ActionPayload<ActionType.START_TWEEN>
   ) {
     const transform = Transform.get(entity)
     const { duration, interpolationType, relative } = tween
@@ -526,35 +523,34 @@ export function createActionsSystem(engine: IEngine) {
       ? Quaternion.multiply(transform.rotation, end)
       : end
 
-    tweens.startRotation(
-      entity,
-      transform.rotation,
-      endRotation,
-      duration,
-      interpolationType,
-      onTweenEnd,
-    )
+      Tween.createOrReplace(entity, {
+        mode: Tween.Mode.Rotate({
+          start: transform.rotation,
+          end: endRotation,
+        }),
+        duration: duration * 1000, // from secs to ms
+        easingFunction: getEasingFunctionFromInterpolation(interpolationType),
+      })  
   }
 
   // SCALE_ITEM
   function handleScaleItem(
     entity: Entity,
-    tween: ActionPayload<ActionType.START_TWEEN>,
-    onTweenEnd: () => void,
+    tween: ActionPayload<ActionType.START_TWEEN>
   ) {
     const transform = Transform.get(entity)
     const { duration, interpolationType, relative } = tween
     const end = Vector3.create(tween.end.x, tween.end.y, tween.end.z)
     const endScale = relative ? Vector3.add(transform.scale, end) : end
 
-    tweens.startScaling(
-      entity,
-      transform.scale,
-      endScale,
-      duration,
-      interpolationType,
-      onTweenEnd,
-    )
+    Tween.createOrReplace(entity, {
+      mode: Tween.Mode.Scale({
+        start: transform.scale,
+        end: endScale,
+      }),
+      duration: duration * 1000, // from secs to ms
+      easingFunction: getEasingFunctionFromInterpolation(interpolationType),
+    })
   }
 
   // SET_COUNTER
