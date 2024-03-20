@@ -523,14 +523,14 @@ export function createActionsSystem(engine: IEngine) {
       ? Quaternion.multiply(transform.rotation, end)
       : end
 
-      Tween.createOrReplace(entity, {
-        mode: Tween.Mode.Rotate({
-          start: transform.rotation,
-          end: endRotation,
-        }),
-        duration: duration * 1000, // from secs to ms
-        easingFunction: getEasingFunctionFromInterpolation(interpolationType),
-      })  
+    Tween.createOrReplace(entity, {
+      mode: Tween.Mode.Rotate({
+        start: transform.rotation,
+        end: endRotation,
+      }),
+      duration: duration * 1000, // from secs to ms
+      easingFunction: getEasingFunctionFromInterpolation(interpolationType),
+    })  
   }
 
   // SCALE_ITEM
