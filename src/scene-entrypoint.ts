@@ -2,8 +2,9 @@ import {
   IEngine,
   createInputSystem,
   createPointerEventsSystem,
+  createTweenSystem,
 } from '@dcl/sdk/ecs'
-import { Components, createComponents, initComponents } from './definitions'
+import { createComponents, initComponents } from './definitions'
 import { createActionsSystem } from './actions'
 import { createTriggersSystem } from './triggers'
 import { createTimerSystem } from './timer'
@@ -34,12 +35,18 @@ export function initAssetPacks(_engine: unknown, ..._args: any[]) {
     // create core systems
     const inputSystem = createInputSystem(engine)
     const pointerEventsSystem = createPointerEventsSystem(engine, inputSystem)
+    const tweenSystem = createTweenSystem(engine)
 
     // create systems that some components needs (VideoPlayer, etc)
     initComponents(engine)
     engine.addSystem(createActionsSystem(engine))
     engine.addSystem(
-      createTriggersSystem(engine, components, pointerEventsSystem),
+      createTriggersSystem(
+        engine,
+        components,
+        pointerEventsSystem,
+        tweenSystem,
+      ),
     )
     engine.addSystem(createTimerSystem())
     engine.addSystem(createInputActionSystem(inputSystem))

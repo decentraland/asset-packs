@@ -4,9 +4,9 @@ import {
   InputAction,
   LastWriteWinElementSetComponentDefinition,
   DeepReadonlyObject,
-  tweenSystem,
   Tween,
   PointerEventsSystem,
+  TweenSystem,
 } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import {
@@ -56,6 +56,7 @@ export function createTriggersSystem(
   engine: IEngine,
   components: EngineComponents,
   pointerEventsSystem: PointerEventsSystem,
+  tweenSystem: TweenSystem,
 ) {
   const { Transform } = components
   const { Actions, States, Counter, Triggers } = getComponents(engine)
