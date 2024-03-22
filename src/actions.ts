@@ -13,7 +13,7 @@ import {
   InputAction,
   MeshCollider,
   getComponentEntityTree,
-  Tween
+  Tween,
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { requestTeleport } from '~system/UserActionModule'
@@ -449,9 +449,7 @@ export function createActionsSystem(engine: IEngine) {
     if (states) {
       const defaultValue = getDefaultValue(states)
       let nextState: string | undefined = payload.state
-      nextState = isValidState(states, nextState)
-        ? nextState
-        : defaultValue
+      nextState = isValidState(states, nextState) ? nextState : defaultValue
       const previousValue = states.currentValue ?? defaultValue ?? undefined
       states.previousValue = previousValue
       states.currentValue = nextState
@@ -490,7 +488,7 @@ export function createActionsSystem(engine: IEngine) {
   // MOVE_ITEM
   function handleMoveItem(
     entity: Entity,
-    tween: ActionPayload<ActionType.START_TWEEN>
+    tween: ActionPayload<ActionType.START_TWEEN>,
   ) {
     const transform = Transform.get(entity)
     const { duration, interpolationType, relative } = tween
@@ -510,7 +508,7 @@ export function createActionsSystem(engine: IEngine) {
   // ROTATE_ITEM
   function handleRotateItem(
     entity: Entity,
-    tween: ActionPayload<ActionType.START_TWEEN>
+    tween: ActionPayload<ActionType.START_TWEEN>,
   ) {
     const transform = Transform.get(entity)
     const { duration, interpolationType, relative } = tween
@@ -530,13 +528,13 @@ export function createActionsSystem(engine: IEngine) {
       }),
       duration: duration * 1000, // from secs to ms
       easingFunction: getEasingFunctionFromInterpolation(interpolationType),
-    })  
+    })
   }
 
   // SCALE_ITEM
   function handleScaleItem(
     entity: Entity,
-    tween: ActionPayload<ActionType.START_TWEEN>
+    tween: ActionPayload<ActionType.START_TWEEN>,
   ) {
     const transform = Transform.get(entity)
     const { duration, interpolationType, relative } = tween
