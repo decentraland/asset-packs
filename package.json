@@ -52,7 +52,7 @@
   "dependencies": {
     "@dcl-sdk/utils": "^1.2.7",
     "@dcl/js-runtime": "7.4.7",
-    "@dcl/sdk": "^7.4.7",
+    "@dcl/sdk": "^7.4.10-8392909116.commit-6487246",
     "mitt": "^3.0.1"
   },
   "prettier": {
