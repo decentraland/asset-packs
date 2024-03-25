@@ -14,7 +14,7 @@ import {
   Billboard as defineBillboard,
   Name as defineName,
   Tween as defineTween,
-  TweenSequence as defineTweenSequence
+  TweenSequence as defineTweenSequence,
 } from '@dcl/ecs/dist/components'
 import { IEngine } from '@dcl/sdk/ecs'
 import { EngineComponents } from './definitions'

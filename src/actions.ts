@@ -89,6 +89,7 @@ export function createActionsSystem(engine: IEngine) {
     UiText,
     UiBackground,
     Name,
+    Tween: TweenComponent,
   } = getExplorerComponents(engine)
   const { Actions, States, Counter, Triggers } = getComponents(engine)
 
@@ -495,7 +496,7 @@ export function createActionsSystem(engine: IEngine) {
     const end = Vector3.create(tween.end.x, tween.end.y, tween.end.z)
     const endPosition = relative ? Vector3.add(transform.position, end) : end
 
-    Tween.createOrReplace(entity, {
+    TweenComponent.createOrReplace(entity, {
       mode: Tween.Mode.Move({
         start: transform.position,
         end: endPosition,
@@ -521,7 +522,7 @@ export function createActionsSystem(engine: IEngine) {
       ? Quaternion.multiply(transform.rotation, end)
       : end
 
-    Tween.createOrReplace(entity, {
+    TweenComponent.createOrReplace(entity, {
       mode: Tween.Mode.Rotate({
         start: transform.rotation,
         end: endRotation,
@@ -541,7 +542,7 @@ export function createActionsSystem(engine: IEngine) {
     const end = Vector3.create(tween.end.x, tween.end.y, tween.end.z)
     const endScale = relative ? Vector3.add(transform.scale, end) : end
 
-    Tween.createOrReplace(entity, {
+    TweenComponent.createOrReplace(entity, {
       mode: Tween.Mode.Scale({
         start: transform.scale,
         end: endScale,
