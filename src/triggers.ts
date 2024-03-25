@@ -4,7 +4,6 @@ import {
   InputAction,
   LastWriteWinElementSetComponentDefinition,
   DeepReadonlyObject,
-  Tween,
   PointerEventsSystem,
   TweenSystem,
 } from '@dcl/sdk/ecs'
@@ -58,7 +57,7 @@ export function createTriggersSystem(
   pointerEventsSystem: PointerEventsSystem,
   tweenSystem: TweenSystem,
 ) {
-  const { Transform } = components
+  const { Transform, Tween: TweenComponent } = components
   const { Actions, States, Counter, Triggers } = getComponents(engine)
 
   // save reference to the init function
@@ -394,7 +393,10 @@ export function createTriggersSystem(
 
   // ON_TWEEN_END
   function handleOnTweenEnd(entity: Entity) {
-    if (Tween.getOrNull(entity) && tweenSystem.tweenCompleted(entity)) {
+    if (
+      TweenComponent.getOrNull(entity) &&
+      tweenSystem.tweenCompleted(entity)
+    ) {
       const triggerEvents = getTriggerEvents(entity)
       triggerEvents.emit(TriggerType.ON_TWEEN_END)
     }
