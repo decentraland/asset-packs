@@ -2,13 +2,23 @@
   "id": "dbffd66a-8c1f-4b34-bed4-c71ab5cb4024",
   "name": "NFT",
   "category": "utils",
-  "tags": [
-    "nft"
-  ],
+  "tags": ["nft"],
   "components": {
     "core::NftShape": {
       "urn": ""
+    },
+    "core-schema::Sync-Components": {
+      "value": ["core::NftShape", "core::VisibilityComponent"]
+    },
+    "inspector::Config": {
+      "isBasicViewEnabled": true,
+      "componentName": "NFT Portrait",
+      "fields": [
+        {
+          "name": "NFT Portrait",
+          "type": "core::NftShape"
+        }
+      ]
     }
-  },
-  "core-schema::Sync-Components": { "value": ["core::NftShape", "core::VisibilityComponent"] }
+  }
 }

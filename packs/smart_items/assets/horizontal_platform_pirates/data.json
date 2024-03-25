@@ -21,53 +21,11 @@
           "name": "Go to End",
           "type": "set_state",
           "jsonPayload": "{ \"state\": \"GoingToEnd\" }"
-        },
-        {
-          "name": "Tween to End",
-          "type": "start_tween",
-          "jsonPayload": "{ \"type\": \"move_item\", \"end\": { \"x\": 10, \"y\": 0, \"z\": 0 }, \"relative\": true, \"interpolationType\": \"linear\", \"duration\": 5 }"
-        },
-        {
-          "name": "Tween to Start",
-          "type": "start_tween",
-          "jsonPayload": "{ \"type\": \"move_item\", \"end\": { \"x\": -10, \"y\": 0, \"z\": 0 }, \"relative\": true, \"interpolationType\": \"linear\", \"duration\": 5 }"
         }
       ]
     },
     "asset-packs::Triggers": {
       "value": [
-        {
-          "type": "on_state_change",
-          "conditions": [
-            {
-              "id": "{self:asset-packs::States}",
-              "type": "when_state_is",
-              "value": "GoingToStart"
-            }
-          ],
-          "actions": [
-            {
-              "id": "{self:asset-packs::Actions}",
-              "name": "Tween to Start"
-            }
-          ]
-        },
-        {
-          "type": "on_state_change",
-          "conditions": [
-            {
-              "id": "{self:asset-packs::States}",
-              "type": "when_state_is",
-              "value": "GoingToEnd"
-            }
-          ],
-          "actions": [
-            {
-              "id": "{self:asset-packs::Actions}",
-              "name": "Tween to End"
-            }
-          ]
-        },
         {
           "type": "on_tween_end",
           "conditions": [
@@ -82,7 +40,8 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Go to Start"
             }
-          ]
+          ],
+          "basicViewId": "trigger-when-end-reached"
         },
         {
           "type": "on_tween_end",
@@ -98,16 +57,8 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Go to End"
             }
-          ]
-        },
-        {
-          "type": "on_spawn",
-          "actions": [
-            {
-              "id": "{self:asset-packs::Actions}",
-              "name": "Tween to End"
-            }
-          ]
+          ],
+          "basicViewId": "trigger-when-start-reached"
         }
       ]
     },
@@ -116,6 +67,41 @@
       "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     },
-    "core-schema::Sync-Components": { "value": ["core::Tween"] }
+    "core::Tween": {
+      "duration": 5000,
+      "easingFunction": 0,
+      "mode": {
+        "$case": "move",
+        "move": {}
+      },
+      "playing": true
+    },
+    "core::TweenSequence": {
+      "sequence": [],
+      "loop": 1
+    },
+    "core-schema::Sync-Components": {
+      "value": ["core::Tween", "asset-packs::States"]
+    },
+    "inspector::Config": {
+      "isBasicViewEnabled": true,
+      "componentName": "Horizontal Platform",
+      "fields": [
+        {
+          "name": "Tween",
+          "type": "core::Tween"
+        },
+        {
+          "name": "When End Reached",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-end-reached"
+        },
+        {
+          "name": "When Start Reached",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-start-reached"
+        }
+      ]
+    }
   }
 }

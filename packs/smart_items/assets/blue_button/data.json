@@ -2,9 +2,7 @@
   "id": "504cd7ac-2873-40d8-9172-13c9c24304b0",
   "name": "Blue Button",
   "category": "buttons",
-  "tags": [
-    "button"
-  ],
+  "tags": ["button"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/blue_button.glb"
@@ -37,10 +35,24 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Play Sound"
             }
-          ]
+          ],
+          "basicViewId": "trigger-when-clicked"
         }
       ]
     },
-    "core-schema::Sync-Components": { "value": ["core::Animator", "core::AudioSource"] }
+    "core-schema::Sync-Components": {
+      "value": ["core::Animator", "core::AudioSource"]
+    },
+    "inspector::Config": {
+      "isBasicViewEnabled": true,
+      "componentName": "Button",
+      "fields": [
+        {
+          "name": "When Clicked",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-clicked"
+        }
+      ]
+    }
   }
 }

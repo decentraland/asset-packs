@@ -2,9 +2,7 @@
   "id": "649d5d96-18be-4f89-b592-f2dfce64b7fe",
   "name": "Fantasy Lever",
   "category": "levers",
-  "tags": [
-    "lever"
-  ],
+  "tags": ["lever"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/lever_fantasy.glb"
@@ -15,12 +13,14 @@
         {
           "name": "Activate",
           "type": "set_state",
-          "jsonPayload": "{ \"state\": \"Activated\" }"
+          "jsonPayload": "{ \"state\": \"Activated\" }",
+          "allowedInBasicView": true
         },
         {
           "name": "Deactivate",
           "type": "set_state",
-          "jsonPayload": "{ \"state\": \"Deactivated\" }"
+          "jsonPayload": "{ \"state\": \"Deactivated\" }",
+          "allowedInBasicView": true
         },
         {
           "name": "Play Sound",
@@ -91,7 +91,8 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Play Sound"
             }
-          ]
+          ],
+          "basicViewId": "trigger-when-activated"
         },
         {
           "type": "on_state_change",
@@ -111,18 +112,34 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Play Sound"
             }
-          ]
+          ],
+          "basicViewId": "trigger-when-deactivated"
         }
       ]
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "Activated",
-        "Deactivated"
-      ],
+      "value": ["Activated", "Deactivated"],
       "defaultValue": "Deactivated"
     },
-    "core-schema::Sync-Components": { "value": ["core::Animator", "core::AudioSource", "asset-packs::States"] }
+    "core-schema::Sync-Components": {
+      "value": ["core::Animator", "core::AudioSource", "asset-packs::States"]
+    },
+    "inspector::Config": {
+      "isBasicViewEnabled": true,
+      "componentName": "Lever",
+      "fields": [
+        {
+          "name": "When Activated",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-activated"
+        },
+        {
+          "name": "When Deactivated",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-deactivated"
+        }
+      ]
+    }
   }
 }
