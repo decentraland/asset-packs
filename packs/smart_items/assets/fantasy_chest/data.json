@@ -121,7 +121,7 @@
             {
               "id": "{self:asset-packs::States}",
               "type": "when_previous_state_is",
-              "value": "Open"
+              "value": "Opened"
             }
           ],
           "actions": [
