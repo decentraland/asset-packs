@@ -269,7 +269,7 @@ export function createComponents(engine: IEngine) {
       Schemas.Map({
         type: Schemas.EnumString<TriggerType>(
           TriggerType,
-          TriggerType.ON_CLICK,
+          TriggerType.ON_INPUT_ACTION,
         ),
         conditions: Schemas.Optional(
           Schemas.Array(

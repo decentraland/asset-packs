@@ -93,6 +93,7 @@ export function createTriggersSystem(
     )
     for (const type of types) {
       switch (type) {
+        /** @deprecated use ON_INPUT_ACTION instead */
         case TriggerType.ON_CLICK: {
           initOnClickTrigger(entity)
           break
@@ -321,6 +322,7 @@ export function createTriggersSystem(
     return null
   }
 
+  /** @deprecated use ON_INPUT_ACTION instead */
   // ON_CLICK
   function initOnClickTrigger(entity: Entity) {
     pointerEventsSystem.onPointerDown(
