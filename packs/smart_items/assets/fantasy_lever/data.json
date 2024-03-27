@@ -125,10 +125,27 @@
     "core-schema::Sync-Components": {
       "value": ["core::Animator", "core::AudioSource", "asset-packs::States"]
     },
+    "core::PointerEvents": {
+      "pointerEvents": [
+        {
+          "eventType": 1,
+          "eventInfo": {
+            "button": 1,
+            "hoverText": "Activate / Deactivate",
+            "maxDistance": 10,
+            "showFeedback": true
+          }
+        }
+      ]
+    },
     "inspector::Config": {
       "isBasicViewEnabled": true,
       "componentName": "Lever",
       "fields": [
+        {
+          "name": "Hover Text",
+          "type": "core::PointerEvents"
+        },
         {
           "name": "When Activated",
           "type": "asset-packs::Triggers",

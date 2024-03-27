@@ -53,9 +53,14 @@
     "asset-packs::Triggers": {
       "value": [
         {
-          "type": "on_click",
+          "type": "on_input_action",
           "conditions": [],
-          "actions": [],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Open or Close"
+            }
+          ],
           "basicViewId": "trigger-when-clicked"
         },
         {
@@ -166,9 +171,9 @@
     "core::PointerEvents": {
       "pointerEvents": [
         {
-          "eventType": 2,
+          "eventType": 1,
           "eventInfo": {
-            "button": 0,
+            "button": 1,
             "hoverText": "Open / Close",
             "maxDistance": 10,
             "showFeedback": true

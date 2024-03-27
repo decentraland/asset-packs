@@ -79,10 +79,14 @@
     "asset-packs::Triggers": {
       "value": [
         {
-          "type": "on_click",
+          "type": "on_input_action",
           "conditions": [],
-          "operation": "and",
-          "actions": [],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Plays or Stop"
+            }
+          ],
           "basicViewId": "trigger-when-clicked"
         },
         {
@@ -174,9 +178,9 @@
     "core::PointerEvents": {
       "pointerEvents": [
         {
-          "eventType": 2,
+          "eventType": 1,
           "eventInfo": {
-            "button": 0,
+            "button": 1,
             "hoverText": "Play Video",
             "maxDistance": 10,
             "showFeedback": true
