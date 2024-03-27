@@ -42,7 +42,7 @@
     "asset-packs::Triggers": {
       "value": [
         {
-          "type": "on_click",
+          "type": "on_input_action",
           "conditions": [
             {
               "id": "{self:asset-packs::States}",
@@ -58,7 +58,7 @@
           ]
         },
         {
-          "type": "on_click",
+          "type": "on_input_action",
           "conditions": [
             {
               "id": "{self:asset-packs::States}",
