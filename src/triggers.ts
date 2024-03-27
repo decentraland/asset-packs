@@ -343,12 +343,12 @@ export function createTriggersSystem(
   // ON_INPUT_ACTION
   function initOnInputActionTrigger(entity: Entity) {
     const pointerEvent = PointerEvents.getOrNull(entity)
-    if (!pointerEvent || pointerEvent.pointerEvents.length === 0) return
 
     const opts = {
       button:
-        pointerEvent.pointerEvents[0].eventInfo?.button ||
+        pointerEvent?.pointerEvents[0].eventInfo?.button ||
         InputAction.IA_POINTER,
+      ...(pointerEvent === null ? { hoverText: 'Click' } : {}),
     }
 
     pointerEventsSystem.onPointerDown(
