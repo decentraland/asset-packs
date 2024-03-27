@@ -22,6 +22,7 @@ import {
   NameType,
   PBTween,
   PBTweenSequence,
+  PBPointerEvents,
 } from '@dcl/sdk/ecs'
 import { addActionType } from './action-types'
 import {
@@ -292,11 +293,11 @@ export function createComponents(engine: IEngine) {
           Schemas.Map({
             id: Schemas.Optional(Schemas.Int),
             name: Schemas.Optional(Schemas.String),
-            allowedInBasicView: Schemas.Optional(Schemas.Boolean)
+            allowedInBasicView: Schemas.Optional(Schemas.Boolean),
           }),
         ),
         basicViewId: Schemas.Optional(Schemas.String),
-        allowedInBasicView: Schemas.Optional(Schemas.Boolean)
+        allowedInBasicView: Schemas.Optional(Schemas.Boolean),
       }),
     ),
   })
@@ -342,6 +343,7 @@ export type EngineComponents = {
   Name: LastWriteWinElementSetComponentDefinition<NameType>
   Tween: LastWriteWinElementSetComponentDefinition<PBTween>
   TweenSequence: LastWriteWinElementSetComponentDefinition<PBTweenSequence>
+  PointerEvents: LastWriteWinElementSetComponentDefinition<PBPointerEvents>
 }
 
 export function initComponents(engine: IEngine) {
@@ -418,7 +420,7 @@ export function getConditionTypesByComponentName(componentName: ComponentName) {
         TriggerConditionType.WHEN_STATE_IS,
         TriggerConditionType.WHEN_STATE_IS_NOT,
         TriggerConditionType.WHEN_PREVIOUS_STATE_IS,
-        TriggerConditionType.WHEN_PREVIOUS_STATE_IS_NOT
+        TriggerConditionType.WHEN_PREVIOUS_STATE_IS_NOT,
       ]
     }
     case ComponentName.COUNTER: {

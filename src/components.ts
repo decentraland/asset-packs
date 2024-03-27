@@ -15,6 +15,7 @@ import {
   Name as defineName,
   Tween as defineTween,
   TweenSequence as defineTweenSequence,
+  PointerEvents as definePointerEvents,
 } from '@dcl/ecs/dist/components'
 import { IEngine } from '@dcl/sdk/ecs'
 import { EngineComponents } from './definitions'
@@ -37,5 +38,6 @@ export function getExplorerComponents(engine: IEngine): EngineComponents {
     Name: defineName(engine),
     Tween: defineTween(engine),
     TweenSequence: defineTweenSequence(engine),
+    PointerEvents: definePointerEvents(engine),
   }
 }
