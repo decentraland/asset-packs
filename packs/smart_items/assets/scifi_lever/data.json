@@ -2,9 +2,7 @@
   "id": "0764e129-9fff-4158-98f0-6db8665dcf7b",
   "name": "SciFi Lever",
   "category": "levers",
-  "tags": [
-    "lever"
-  ],
+  "tags": ["lever"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/lever_scifi.glb"
@@ -15,12 +13,14 @@
         {
           "name": "Activate",
           "type": "set_state",
-          "jsonPayload": "{ \"state\": \"Activated\" }"
+          "jsonPayload": "{ \"state\": \"Activated\" }",
+          "allowedInBasicView": true
         },
         {
           "name": "Deactivate",
           "type": "set_state",
-          "jsonPayload": "{ \"state\": \"Deactivated\" }"
+          "jsonPayload": "{ \"state\": \"Deactivated\" }",
+          "allowedInBasicView": true
         },
         {
           "name": "Play Sound",
@@ -42,7 +42,7 @@
     "asset-packs::Triggers": {
       "value": [
         {
-          "type": "on_click",
+          "type": "on_input_action",
           "conditions": [
             {
               "id": "{self:asset-packs::States}",
@@ -58,7 +58,7 @@
           ]
         },
         {
-          "type": "on_click",
+          "type": "on_input_action",
           "conditions": [
             {
               "id": "{self:asset-packs::States}",
@@ -91,7 +91,8 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Play Sound"
             }
-          ]
+          ],
+          "basicViewId": "trigger-when-activated"
         },
         {
           "type": "on_state_change",
@@ -111,18 +112,51 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Play Sound"
             }
-          ]
+          ],
+          "basicViewId": "trigger-when-deactivated"
         }
       ]
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "Activated",
-        "Deactivated"
-      ],
+      "value": ["Activated", "Deactivated"],
       "defaultValue": "Deactivated"
     },
-    "core-schema::Sync-Components": { "value": ["core::Animator", "core::AudioSource", "asset-packs::States"] }
+    "core-schema::Sync-Components": {
+      "value": ["core::Animator", "core::AudioSource", "asset-packs::States"]
+    },
+    "core::PointerEvents": {
+      "pointerEvents": [
+        {
+          "eventType": 1,
+          "eventInfo": {
+            "button": 1,
+            "hoverText": "Activate / Deactivate",
+            "maxDistance": 10,
+            "showFeedback": true
+          }
+        }
+      ]
+    },
+    "inspector::Config": {
+      "isBasicViewEnabled": true,
+      "componentName": "Lever",
+      "fields": [
+        {
+          "name": "Hover Text",
+          "type": "core::PointerEvents"
+        },
+        {
+          "name": "When Activated",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-activated"
+        },
+        {
+          "name": "When Deactivated",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-deactivated"
+        }
+      ]
+    }
   }
 }

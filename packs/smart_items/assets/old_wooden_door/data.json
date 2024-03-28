@@ -2,9 +2,7 @@
   "id": "ce058a68-1635-472c-b4b5-4bc9f4b4277f",
   "name": "Old Wooden Door",
   "category": "doors",
-  "tags": [
-    "door"
-  ],
+  "tags": ["door"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/door_pirates.glb"
@@ -15,12 +13,20 @@
         {
           "name": "Open",
           "type": "set_state",
-          "jsonPayload": "{ \"state\": \"Open\" }"
+          "jsonPayload": "{ \"state\": \"Open\" }",
+          "allowedInBasicView": true
         },
         {
           "name": "Close",
           "type": "set_state",
-          "jsonPayload": "{ \"state\": \"Closed\" }"
+          "jsonPayload": "{ \"state\": \"Closed\" }",
+          "allowedInBasicView": true
+        },
+        {
+          "name": "Open or Close",
+          "type": "set_state",
+          "jsonPayload": "{ \"state\": \"Toggle\" }",
+          "allowedInBasicView": true
         },
         {
           "name": "Play Sound",
@@ -42,36 +48,15 @@
     "asset-packs::Triggers": {
       "value": [
         {
-          "type": "on_click",
-          "conditions": [
-            {
-              "id": "{self:asset-packs::States}",
-              "type": "when_state_is",
-              "value": "Closed"
-            }
-          ],
+          "type": "on_input_action",
+          "conditions": [],
           "actions": [
             {
               "id": "{self:asset-packs::Actions}",
-              "name": "Open"
-            }
-          ]
-        },
-        {
-          "type": "on_click",
-          "conditions": [
-            {
-              "id": "{self:asset-packs::States}",
-              "type": "when_state_is",
-              "value": "Open"
+              "name": "Open or Close"
             }
           ],
-          "actions": [
-            {
-              "id": "{self:asset-packs::Actions}",
-              "name": "Close"
-            }
-          ]
+          "basicViewId": "trigger-when-clicked"
         },
         {
           "type": "on_state_change",
@@ -91,7 +76,8 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Play Sound"
             }
-          ]
+          ],
+          "basicViewId": "trigger-when-opened"
         },
         {
           "type": "on_state_change",
@@ -111,18 +97,100 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Play Sound"
             }
+          ],
+          "basicViewId": "trigger-when-closed"
+        },
+        {
+          "type": "on_state_change",
+          "operation": "and",
+          "conditions": [
+            {
+              "id": "{self:asset-packs::States}",
+              "type": "when_state_is",
+              "value": "Toggle"
+            },
+            {
+              "id": "{self:asset-packs::States}",
+              "type": "when_previous_state_is",
+              "value": "Open"
+            }
+          ],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Close"
+            }
+          ]
+        },
+        {
+          "type": "on_state_change",
+          "operation": "and",
+          "conditions": [
+            {
+              "id": "{self:asset-packs::States}",
+              "type": "when_state_is",
+              "value": "Toggle"
+            },
+            {
+              "id": "{self:asset-packs::States}",
+              "type": "when_previous_state_is",
+              "value": "Closed"
+            }
+          ],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Open"
+            }
           ]
         }
       ]
     },
     "asset-packs::States": {
       "id": "{self}",
-      "value": [
-        "Open",
-        "Closed"
-      ],
+      "value": ["Open", "Closed", "Toggle"],
       "defaultValue": "Closed"
     },
-    "core-schema::Sync-Components": { "value": ["core::Animator", "core::AudioSource", "asset-packs::States"] }
+    "core-schema::Sync-Components": {
+      "value": ["core::Animator", "core::AudioSource", "asset-packs::States"]
+    },
+    "core::PointerEvents": {
+      "pointerEvents": [
+        {
+          "eventType": 1,
+          "eventInfo": {
+            "button": 1,
+            "hoverText": "Open / Close",
+            "maxDistance": 10,
+            "showFeedback": true
+          }
+        }
+      ]
+    },
+    "inspector::Config": {
+      "isBasicViewEnabled": true,
+      "componentName": "Door",
+      "fields": [
+        {
+          "name": "Hover Text",
+          "type": "core::PointerEvents"
+        },
+        {
+          "name": "When Clicked",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-clicked"
+        },
+        {
+          "name": "When Opened",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-opened"
+        },
+        {
+          "name": "When Closed",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-closed"
+        }
+      ]
+    }
   }
 }

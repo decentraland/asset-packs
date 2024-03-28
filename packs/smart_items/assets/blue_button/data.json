@@ -25,7 +25,7 @@
     "asset-packs::Triggers": {
       "value": [
         {
-          "type": "on_click",
+          "type": "on_input_action",
           "actions": [
             {
               "id": "{self:asset-packs::Actions}",

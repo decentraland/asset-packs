@@ -2,9 +2,7 @@
   "id": "1889bcdc-5608-48fa-9158-b0a56f0afa8b",
   "name": "Yellow Button",
   "category": "buttons",
-  "tags": [
-    "button"
-  ],
+  "tags": ["button"],
   "components": {
     "core::GltfContainer": {
       "src": "{assetPath}/yellow_fantasy_button.glb"
@@ -27,7 +25,7 @@
     "asset-packs::Triggers": {
       "value": [
         {
-          "type": "on_click",
+          "type": "on_input_action",
           "actions": [
             {
               "id": "{self:asset-packs::Actions}",
@@ -37,10 +35,24 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Play Sound"
             }
-          ]
+          ],
+          "basicViewId": "trigger-when-clicked"
         }
       ]
     },
-    "core-schema::Sync-Components": { "value": ["core::Animator", "core::AudioSource"] }
+    "core-schema::Sync-Components": {
+      "value": ["core::Animator", "core::AudioSource"]
+    },
+    "inspector::Config": {
+      "isBasicViewEnabled": true,
+      "componentName": "Button",
+      "fields": [
+        {
+          "name": "When Clicked",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-clicked"
+        }
+      ]
+    }
   }
 }
