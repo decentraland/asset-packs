@@ -67,6 +67,9 @@
       "value": ["GoingToEnd", "GoingToStart"],
       "defaultValue": "GoingToEnd"
     },
+    "core-schema::Sync-Components": {
+      "value": ["core::Tween", "asset-packs::States"]
+    },
     "core::Tween": {
       "duration": 5000,
       "easingFunction": 0,
@@ -79,9 +82,6 @@
     "core::TweenSequence": {
       "sequence": [],
       "loop": 1
-    },
-    "core-schema::Sync-Components": {
-      "value": ["core::Tween", "asset-packs::States"]
     },
     "inspector::Config": {
       "isBasicViewEnabled": true,
