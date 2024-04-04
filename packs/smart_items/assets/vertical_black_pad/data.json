@@ -14,13 +14,35 @@
       "value": [
         {
           "name": "Go to Start",
+          "type": "batch",
+          "jsonPayload": "{ \"actions\": [\"Going to Start\", \"Tween to Start\"] }",
+          "allowedInBasicView": true
+        },
+        {
+          "name": "Go to End",
+          "type": "batch",
+          "jsonPayload": "{ \"actions\": [\"Going to End\", \"Tween to End\"] }",
+          "allowedInBasicView": true
+        },
+        {
+          "name": "Going to Start",
           "type": "set_state",
           "jsonPayload": "{ \"state\": \"GoingToStart\" }"
         },
         {
-          "name": "Go to End",
+          "name": "Going to End",
           "type": "set_state",
           "jsonPayload": "{ \"state\": \"GoingToEnd\" }"
+        },
+        {
+          "name": "Tween to Start",
+          "type": "start_tween",
+          "jsonPayload": "{ \"type\": \"move_item\", \"end\": { \"x\": 0, \"y\": 0, \"z\": 0 }, \"relative\": true, \"interpolationType\": \"linear\", \"duration\": 5 }"
+        },
+        {
+          "name": "Tween to End",
+          "type": "start_tween",
+          "jsonPayload": "{ \"type\": \"move_item\", \"end\": { \"x\": 0, \"y\": 0, \"z\": 0 }, \"relative\": true, \"interpolationType\": \"linear\", \"duration\": 5 }"
         }
       ]
     },
@@ -38,7 +60,7 @@
           "actions": [
             {
               "id": "{self:asset-packs::Actions}",
-              "name": "Go to Start"
+              "name": "Going to Start"
             }
           ],
           "basicViewId": "trigger-when-end-reached"
@@ -55,7 +77,7 @@
           "actions": [
             {
               "id": "{self:asset-packs::Actions}",
-              "name": "Go to End"
+              "name": "Going to End"
             }
           ],
           "basicViewId": "trigger-when-start-reached"
