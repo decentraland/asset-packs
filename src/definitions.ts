@@ -293,11 +293,9 @@ export function createComponents(engine: IEngine) {
           Schemas.Map({
             id: Schemas.Optional(Schemas.Int),
             name: Schemas.Optional(Schemas.String),
-            allowedInBasicView: Schemas.Optional(Schemas.Boolean),
           }),
         ),
         basicViewId: Schemas.Optional(Schemas.String),
-        allowedInBasicView: Schemas.Optional(Schemas.Boolean),
       }),
     ),
   })

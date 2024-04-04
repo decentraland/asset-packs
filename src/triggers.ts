@@ -6,6 +6,8 @@ import {
   DeepReadonlyObject,
   PointerEventsSystem,
   TweenSystem,
+  TweenState,
+  TweenStateStatus,
 } from '@dcl/sdk/ecs'
 import { Vector3 } from '@dcl/sdk/math'
 import {
@@ -424,6 +426,7 @@ export function createTriggersSystem(
   function handleOnTweenEnd(entity: Entity) {
     if (
       TweenComponent.getOrNull(entity) &&
+      TweenState.getOrNull(entity)?.state === TweenStateStatus.TS_COMPLETED &&
       tweenSystem.tweenCompleted(entity)
     ) {
       const triggerEvents = getTriggerEvents(entity)

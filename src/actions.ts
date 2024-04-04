@@ -14,6 +14,7 @@ import {
   MeshCollider,
   getComponentEntityTree,
   Tween,
+  TweenSequence,
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { requestTeleport } from '~system/UserActionModule'
@@ -504,6 +505,7 @@ export function createActionsSystem(engine: IEngine) {
       duration: duration * 1000, // from secs to ms
       easingFunction: getEasingFunctionFromInterpolation(interpolationType),
     })
+    TweenSequence.deleteFrom(entity)
   }
 
   // ROTATE_ITEM
@@ -530,6 +532,7 @@ export function createActionsSystem(engine: IEngine) {
       duration: duration * 1000, // from secs to ms
       easingFunction: getEasingFunctionFromInterpolation(interpolationType),
     })
+    TweenSequence.deleteFrom(entity)
   }
 
   // SCALE_ITEM
@@ -550,6 +553,7 @@ export function createActionsSystem(engine: IEngine) {
       duration: duration * 1000, // from secs to ms
       easingFunction: getEasingFunctionFromInterpolation(interpolationType),
     })
+    TweenSequence.deleteFrom(entity)
   }
 
   // SET_COUNTER
