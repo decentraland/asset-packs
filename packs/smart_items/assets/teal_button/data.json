@@ -35,10 +35,10 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Play Sound"
             }
-          ]
+          ],
+          "basicViewId": "trigger-when-clicked"
         }
-      ],
-      "basicViewId": "trigger-when-clicked"
+      ]
     },
     "core-schema::Sync-Components": {
       "value": ["core::Animator", "core::AudioSource"]
