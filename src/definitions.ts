@@ -209,10 +209,10 @@ export const ActionSchemas = {
 
 export type ActionPayload<T extends ActionType = any> =
   T extends keyof typeof ActionSchemas
-    ? (typeof ActionSchemas)[T] extends ISchema
-      ? ReturnType<(typeof ActionSchemas)[T]['deserialize']>
-      : {}
-    : {}
+  ? (typeof ActionSchemas)[T] extends ISchema
+  ? ReturnType<(typeof ActionSchemas)[T]['deserialize']>
+  : {}
+  : {}
 
 export function getComponent<T>(componentName: string, engine: IEngine) {
   try {
@@ -255,6 +255,7 @@ export function createComponents(engine: IEngine) {
         type: Schemas.String,
         jsonPayload: Schemas.String,
         allowedInBasicView: Schemas.Optional(Schemas.Boolean),
+        basicViewId: Schemas.Optional(Schemas.String),
       }),
     ),
   })
