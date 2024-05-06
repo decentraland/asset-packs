@@ -19,17 +19,20 @@
         {
           "name": "Heal",
           "type": "increment_counter",
-          "jsonPayload": "{ \"amount\": 1 }"
+          "jsonPayload": "{ \"amount\": 1 }",
+          "allowedInBasicView": true
         },
         {
           "name": "Damage",
           "type": "decrease_counter",
-          "jsonPayload": "{ \"amount\": 1 }"
+          "jsonPayload": "{ \"amount\": 1 }",
+          "allowedInBasicView": true
         },
         {
           "name": "Reset",
           "type": "set_counter",
-          "jsonPayload": "{ \"counter\": 100 }"
+          "jsonPayload": "{ \"counter\": 100 }",
+          "allowedInBasicView": true
         },
         {
           "name": "Remove",
@@ -47,7 +50,8 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Damage"
             }
-          ]
+          ],
+          "basicViewId": "trigger-when-damaged"
         },
         {
           "type": "on_heal_player",
@@ -56,7 +60,8 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Heal"
             }
-          ]
+          ],
+          "basicViewId": "trigger-when-healed"
         },
         {
           "type": "on_counter_change",
@@ -72,7 +77,8 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Remove"
             }
-          ]
+          ],
+          "basicViewId": "trigger-when-health-reached-zero"
         }
       ]
     },
@@ -84,6 +90,31 @@
       "maxValue": 100,
       "primaryColor": "#00FF00",
       "secondaryColor:": "#FF0000"
+    },
+    "inspector::Config": {
+      "isBasicViewEnabled": true,
+      "componentName": "Health Bar",
+      "fields": [
+        {
+          "name": "Health Points",
+          "type": "asset-packs::CounterBar"
+        },
+        {
+          "name": "When Healed",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-healed"
+        },
+        {
+          "name": "When Damaged",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-damaged"
+        },
+        {
+          "name": "When Health Reached Zero",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-health-reached-zero"
+        }
+      ]
     }
   }
 }

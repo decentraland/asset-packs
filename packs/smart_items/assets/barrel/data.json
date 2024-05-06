@@ -18,7 +18,8 @@
         {
           "name": "Explode",
           "type": "batch",
-          "jsonPayload": "{ \"actions\": [\"Play Explosion Animation\", \"Damage\", \"Delay Remove\"] }"
+          "jsonPayload": "{ \"actions\": [\"Play Explosion Animation\", \"Damage\", \"Delay Remove\"] }",
+          "allowedInBasicView": true
         },
         {
           "name": "Play Explosion Animation",
@@ -28,7 +29,8 @@
         {
           "name": "Damage",
           "type": "damage",
-          "jsonPayload": "{ \"radius\": 10, \"hits\": 30, \"layer\": \"all\" }"
+          "jsonPayload": "{ \"radius\": 10, \"hits\": 30, \"layer\": \"all\" }",
+          "basicViewId": "action-damage"
         },
         {
           "name": "Remove",
@@ -39,6 +41,18 @@
           "name": "Delay Remove",
           "type": "start_delay",
           "jsonPayload": "{ \"actions\": [\"Remove\"], \"timeout\": 1 }"
+        }
+      ]
+    },
+    "inspector::Config": {
+      "isBasicViewEnabled": true,
+      "componentName": "Barrel",
+      "fields": [
+        {
+          "name": "Damage ",
+          "type": "asset-packs::Actions",
+          "basicViewId": "action-damage",
+          "layout": "{\"radius\": { \"field\": \"TextField\", \"type\": \"number\" }, \"hits\": { \"field\": \"TextField\", \"type\": \"number\", \"label\": \"Damage Points\" }, \"layer\": { \"field\": \"Dropdown\", \"label\": \"Damage Target\" }}"
         }
       ]
     }

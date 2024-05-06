@@ -17,29 +17,49 @@
         {
           "name": "Heal Player",
           "type": "heal_player",
-          "jsonPayload": "{ \"multiplier\": 100 }"
+          "jsonPayload": "{ \"multiplier\": 100 }",
+          "basicViewId": "action-heal-player"
         },
         {
           "name": "Remove",
           "type": "remove_entity",
           "jsonPayload": "{ }"
+        },
+        {
+          "name": "Heal",
+          "type": "batch",
+          "jsonPayload": "{ \"actions\": [\"Heal Player\", \"Remove\"] }",
+          "allowedInBasicView": true
         }
       ]
     },
     "asset-packs::Triggers": {
       "value": [
         {
-          "type": "on_click",
+          "type": "on_input_action",
           "actions": [
             {
               "id": "{self:asset-packs::Actions}",
-              "name": "Heal Player"
-            },
-            {
-              "id": "{self:asset-packs::Actions}",
-              "name": "Remove"
+              "name": "Heal"
             }
-          ]
+          ],
+          "basicViewId": "trigger-when-clicked"
+        }
+      ]
+    },
+    "inspector::Config": {
+      "isBasicViewEnabled": true,
+      "componentName": "First Aid",
+      "fields": [
+        {
+          "name": "Healing Points",
+          "type": "asset-packs::Actions",
+          "basicViewId": "action-heal-player"
+        },
+        {
+          "name": "When Clicked",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-clicked"
         }
       ]
     }

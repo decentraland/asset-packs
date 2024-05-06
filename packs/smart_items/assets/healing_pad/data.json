@@ -22,17 +22,21 @@
         {
           "name": "Heal Player",
           "type": "heal_player",
-          "jsonPayload": "{ \"multiplier\": 5 }"
+          "jsonPayload": "{ \"multiplier\": 5 }",
+          "basicViewId": "action-heal-player"
         },
         {
           "name": "Start Healing",
           "type": "start_loop",
-          "jsonPayload": "{ \"actions\": [\"Heal Player\"], \"interval\": 0.5 }"
+          "jsonPayload": "{ \"actions\": [\"Heal Player\"], \"interval\": 0.5 }",
+          "basicViewId": "action-healing-interval",
+          "allowedInBasicView": true
         },
         {
           "name": "Stop Healing",
           "type": "stop_loop",
-          "jsonPayload": "{ \"action\": \"Heal Player\" }"
+          "jsonPayload": "{ \"action\": \"Heal Player\" }",
+          "allowedInBasicView": true
         }
       ]
     },
@@ -49,7 +53,8 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Play Heal Sound"
             }
-          ]
+          ],
+          "basicViewId": "trigger-when-start-healing"
         },
         {
           "type": "on_player_leaves_area",
@@ -58,7 +63,36 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Stop Healing"
             }
-          ]
+          ],
+          "basicViewId": "trigger-when-stop-healing"
+        }
+      ]
+    },
+    "inspector::Config": {
+      "isBasicViewEnabled": true,
+      "componentName": "Healing Pad",
+      "fields": [
+        {
+          "name": "Healing Points",
+          "type": "asset-packs::Actions",
+          "basicViewId": "action-heal-player",
+          "layout": "{\"multiplier\": { \"field\": \"TextField\", \"type\": \"number\", \"label\": \"Healing Points\" } }"
+        },
+        {
+          "name": "Interval Healing",
+          "type": "asset-packs::Actions",
+          "basicViewId": "action-healing-interval",
+          "layout": "{\"interval\": { \"field\": \"RangeField\", \"label\": \"Healing Interval\", \"step\": \"0.1\" } }"
+        },
+        {
+          "name": "When Start Healing",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-start-healing"
+        },
+        {
+          "name": "When Stop Healing",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-stop-healing"
         }
       ]
     }

@@ -52,7 +52,8 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Decrease Counter"
             }
-          ]
+          ],
+          "basicViewId": "trigger-when-damaged"
         },
         {
           "type": "on_counter_change",
@@ -88,13 +89,34 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Play Fall Sound"
             }
-          ]
+          ],
+          "basicViewId": "trigger-when-destroyed"
         }
       ]
     },
     "asset-packs::Counter": {
       "id": "{self}",
       "value": 30
+    },
+    "inspector::Config": {
+      "isBasicViewEnabled": true,
+      "componentName": "Wooden Wall",
+      "fields": [
+        {
+          "name": "Health Points",
+          "type": "asset-packs::Counter"
+        },
+        {
+          "name": "When Damaged",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-damaged"
+        },
+        {
+          "name": "When Destroyed",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-destroyed"
+        }
+      ]
     }
   }
 }
