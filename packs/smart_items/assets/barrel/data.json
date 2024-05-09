@@ -50,10 +50,10 @@
       "componentName": "Barrel",
       "fields": [
         {
-          "name": "Damage ",
+          "name": "Damage",
           "type": "asset-packs::Actions",
           "basicViewId": "action-damage",
-          "layout": "{\"radius\": { \"field\": \"TextField\", \"type\": \"number\" }, \"hits\": { \"field\": \"TextField\", \"type\": \"number\", \"label\": \"Damage Points\" }, \"layer\": { \"field\": \"Dropdown\", \"label\": \"Damage Target\" }}"
+          "layout": "{\"radius\": { \"field\": \"TextField\", \"type\": \"number\", \"label\": \"Explosion Radius\" }, \"hits\": { \"field\": \"TextField\", \"type\": \"number\", \"label\": \"Explosion Damage\" }, \"layer\": { \"field\": \"Dropdown\", \"label\": \"Damage Target\" }}"
         }
       ]
     }
