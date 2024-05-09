@@ -102,6 +102,7 @@ export enum TriggerType {
   ON_GLOBAL_SECONDARY = 'on_global_secondary',
   ON_TICK = 'on_tick',
   ON_HEAL_PLAYER = 'on_heal_player',
+  ON_PLAYER_SPAWN = 'on_player_spawn',
 }
 
 export enum TriggerConditionType {

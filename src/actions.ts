@@ -1076,6 +1076,8 @@ export function createActionsSystem(engine: IEngine) {
   ) {
     const here = getWorldPosition(entity)
     void movePlayerTo({ newRelativePosition: here })
+    const triggerEvents = getTriggerEvents(entity)
+    triggerEvents.emit(TriggerType.ON_PLAYER_SPAWN)
   }
 
   // PLACE_ON_PLAYER
