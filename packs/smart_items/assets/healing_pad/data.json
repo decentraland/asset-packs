@@ -76,7 +76,7 @@
           "name": "Healing Points",
           "type": "asset-packs::Actions",
           "basicViewId": "action-heal-player",
-          "layout": "{\"multiplier\": { \"field\": \"TextField\", \"type\": \"number\", \"label\": \"Healing Points\" } }"
+          "layout": "{\"multiplier\": { \"field\": \"TextField\", \"type\": \"number\", \"label\": \"Healing Points Amount\" } }"
         },
         {
           "name": "Interval Healing",

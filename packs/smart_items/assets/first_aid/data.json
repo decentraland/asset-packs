@@ -55,12 +55,8 @@
         {
           "name": "Healing Points",
           "type": "asset-packs::Actions",
-          "basicViewId": "action-heal-player"
-        },
-        {
-          "name": "When Clicked",
-          "type": "asset-packs::Triggers",
-          "basicViewId": "trigger-when-clicked"
+          "basicViewId": "action-heal-player",
+          "layout": "{\"multiplier\": { \"field\": \"TextField\", \"type\": \"number\", \"label\": \"Healing Points Amount\" } }"
         }
       ]
     }
