@@ -23,7 +23,8 @@
         {
           "name": "Remove",
           "type": "remove_entity",
-          "jsonPayload": "{ }"
+          "jsonPayload": "{ }",
+          "allowedInBasicView": true
         },
         {
           "name": "Heal",
