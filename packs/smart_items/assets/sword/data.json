@@ -17,7 +17,8 @@
         {
           "name": "Pick Up",
           "type": "batch",
-          "jsonPayload": "{ \"actions\": [\"Set Ready\"] }"
+          "jsonPayload": "{ \"actions\": [\"Set Ready\"] }",
+          "allowedInBasicView": true
         },
         {
           "name": "Set Ready",
@@ -49,7 +50,8 @@
           "name": "Start Cool Down Delay",
           "type": "start_delay",
           "jsonPayload": "{ \"actions\": [\"Set Ready\"], \"timeout\": 0.5 }",
-          "basicViewId": "action-cool-down-delay"
+          "basicViewId": "action-cool-down-delay",
+          "allowedInBasicView": true
         },
         {
           "name": "Cool Down",
