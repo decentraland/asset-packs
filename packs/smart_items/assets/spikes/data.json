@@ -54,8 +54,7 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Start Damage"
             }
-          ],
-          "basicViewId": "trigger-when-start-damaing"
+          ]
         },
         {
           "type": "on_player_leaves_area",
@@ -64,8 +63,7 @@
               "id": "{self:asset-packs::Actions}",
               "name": "Stop Damage"
             }
-          ],
-          "basicViewId": "trigger-when-stop-damaing"
+          ]
         }
       ]
     },
@@ -77,23 +75,13 @@
           "name": "Damage",
           "type": "asset-packs::Actions",
           "basicViewId": "action-damage",
-          "layout":"{\"radius\": { \"field\": \"TextField\", \"type\": \"number\" }, \"hits\": { \"field\": \"TextField\", \"type\": \"number\", \"label\": \"Damage Points\" }, \"layer\": { \"field\": \"Dropdown\", \"label\": \"Damage Target\" }}"
+          "layout":"{\"hits\": { \"field\": \"TextField\", \"type\": \"number\", \"label\": \"Damage Points\" }, \"layer\": { \"field\": \"Dropdown\", \"label\": \"Damage Target\" }}"
         },
         {
           "name": "Interval Damage",
           "type": "asset-packs::Actions",
           "basicViewId": "action-damage-interval",
           "layout": "{\"interval\": { \"field\": \"RangeField\", \"label\": \"Damage Interval\", \"step\": \"0.1\" } }"
-        },
-        {
-          "name": "When Start Damaing",
-          "type": "asset-packs::Triggers",
-          "basicViewId": "trigger-when-start-damaing"
-        },
-        {
-          "name": "When Stop Damaing",
-          "type": "asset-packs::Triggers",
-          "basicViewId": "trigger-when-stop-damaing"
         }
       ]
     }
