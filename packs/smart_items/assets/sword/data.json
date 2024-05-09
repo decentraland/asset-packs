@@ -128,7 +128,7 @@
           "layout":"{\"radius\": { \"field\": \"TextField\", \"type\": \"number\" }, \"hits\": { \"field\": \"TextField\", \"type\": \"number\", \"label\": \"Damage Points\" }, \"layer\": { \"field\": \"Dropdown\", \"label\": \"Damage Target\" }}"
         },
         {
-          "name": "Cooldown",
+          "name": "Attack Cooldown",
           "type": "asset-packs::Actions",
           "basicViewId": "action-cool-down-delay",
           "layout": "{\"timeout\": { \"field\": \"RangeField\", \"label\": \"Cooldown\", \"step\": \"0.1\" } }"
