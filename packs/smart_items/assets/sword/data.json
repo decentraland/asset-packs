@@ -133,7 +133,7 @@
           "name": "Attack Cooldown",
           "type": "asset-packs::Actions",
           "basicViewId": "action-cool-down-delay",
-          "layout": "{\"timeout\": { \"field\": \"RangeField\", \"label\": \"Cooldown\", \"step\": \"0.1\" } }"
+          "layout": "{\"timeout\": { \"field\": \"RangeField\", \"label\": \"Attack Cooldown\", \"step\": \"0.1\" } }"
         }
       ]
     }
