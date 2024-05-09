@@ -32,6 +32,26 @@
           "jsonPayload": "{ \"src\": \"{assetPath}/spawn.mp3\" }"
         }
       ]
+    },
+    "asset-packs::Triggers": {
+      "value": [
+        {
+          "type": "on_player_spawn",
+          "actions": [],
+          "basicViewId": "trigger-when-player-spawn"
+        }
+      ]
+    },
+    "inspector::Config": {
+      "isBasicViewEnabled": true,
+      "componentName": "Respawn Pad",
+      "fields": [
+        {
+          "name": "When Player Spawns Here",
+          "type": "asset-packs::Triggers",
+          "basicViewId": "trigger-when-player-spawn"
+        }
+      ]
     }
   }
 }
