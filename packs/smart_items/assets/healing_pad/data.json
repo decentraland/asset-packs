@@ -83,16 +83,6 @@
           "type": "asset-packs::Actions",
           "basicViewId": "action-healing-interval",
           "layout": "{\"interval\": { \"field\": \"RangeField\", \"label\": \"Healing Interval\", \"step\": \"0.1\" } }"
-        },
-        {
-          "name": "When Start Healing",
-          "type": "asset-packs::Triggers",
-          "basicViewId": "trigger-when-start-healing"
-        },
-        {
-          "name": "When Stop Healing",
-          "type": "asset-packs::Triggers",
-          "basicViewId": "trigger-when-stop-healing"
         }
       ]
     }
