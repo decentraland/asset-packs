@@ -62,6 +62,8 @@ jobs:
             # Test this pull request
             - The package can be tested by running
                ```bash
-               npm upgrade "${{ steps.url-generator.outputs.body }}"
+               npm i "${{ steps.url-generator.outputs.body }}"
                ```
+            Remember, if new assets are added in the PR, they won't be avaliable on the CDN until it gets merged.
+            So this can be used to test changes on the `package's` JS or the `catalog.json`, but won't work to test newly added items.
           edit-mode: replace
