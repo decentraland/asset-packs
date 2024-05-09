@@ -78,7 +78,7 @@
               "name": "Remove"
             }
           ],
-          "basicViewId": "trigger-when-health-reached-zero"
+          "basicViewId": "trigger-when-health-reaches-zero"
         }
       ]
     },
@@ -97,22 +97,12 @@
       "fields": [
         {
           "name": "Health Points",
-          "type": "asset-packs::CounterBar"
+          "type": "asset-packs::Counter"
         },
         {
-          "name": "When Healed",
+          "name": "When Health Reaches Zero",
           "type": "asset-packs::Triggers",
-          "basicViewId": "trigger-when-healed"
-        },
-        {
-          "name": "When Damaged",
-          "type": "asset-packs::Triggers",
-          "basicViewId": "trigger-when-damaged"
-        },
-        {
-          "name": "When Health Reached Zero",
-          "type": "asset-packs::Triggers",
-          "basicViewId": "trigger-when-health-reached-zero"
+          "basicViewId": "trigger-when-health-reaches-zero"
         }
       ]
     }
