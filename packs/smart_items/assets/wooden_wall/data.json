@@ -30,9 +30,21 @@
           "jsonPayload": "{ \"src\": \"{assetPath}/fall.mp3\" }"
         },
         {
-          "name": "Decrease Counter",
+          "name": "Damage",
           "type": "decrease_counter",
-          "jsonPayload": "{ \"amount\": 1 }"
+          "jsonPayload": "{ \"amount\": 1 }",
+          "allowedInBasicView": true
+        },
+        {
+          "name": "Destroy",
+          "type": "set_counter",
+          "jsonPayload": "{ \"counter\": 0 }",
+          "allowedInBasicView": true
+        },
+        {
+          "name": "Destroy Batch",
+          "type": "batch",
+          "jsonPayload": "{ \"actions\": [\"Play Fall Animation\", \"Play Fall Sound\"] }"
         }
       ]
     },
@@ -50,7 +62,7 @@
           "actions": [
             {
               "id": "{self:asset-packs::Actions}",
-              "name": "Decrease Counter"
+              "name": "Damage"
             }
           ],
           "basicViewId": "trigger-when-damaged"
@@ -83,14 +95,9 @@
           "actions": [
             {
               "id": "{self:asset-packs::Actions}",
-              "name": "Play Fall Animation"
-            },
-            {
-              "id": "{self:asset-packs::Actions}",
-              "name": "Play Fall Sound"
+              "name": "Destroy Batch"
             }
-          ],
-          "basicViewId": "trigger-when-destroyed"
+          ]
         }
       ]
     },
@@ -103,18 +110,8 @@
       "componentName": "Wooden Wall",
       "fields": [
         {
-          "name": "Health Points",
+          "name": "Item Health Points",
           "type": "asset-packs::Counter"
-        },
-        {
-          "name": "When Damaged",
-          "type": "asset-packs::Triggers",
-          "basicViewId": "trigger-when-damaged"
-        },
-        {
-          "name": "When Destroyed",
-          "type": "asset-packs::Triggers",
-          "basicViewId": "trigger-when-destroyed"
         }
       ]
     }
