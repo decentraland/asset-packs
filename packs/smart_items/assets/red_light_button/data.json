@@ -43,10 +43,27 @@
     "core-schema::Sync-Components": {
       "value": ["core::Animator", "core::AudioSource"]
     },
+    "core::PointerEvents": {
+      "pointerEvents": [
+        {
+          "eventType": 1,
+          "eventInfo": {
+            "button": 1,
+            "hoverText": "Press",
+            "maxDistance": 10,
+            "showFeedback": true
+          }
+        }
+      ]
+    },
     "inspector::Config": {
       "isBasicViewEnabled": true,
       "componentName": "Button",
       "fields": [
+        {
+          "name": "Hover Text",
+          "type": "core::PointerEvents"
+        },
         {
           "name": "When Clicked",
           "type": "asset-packs::Triggers",
