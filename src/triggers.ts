@@ -349,8 +349,8 @@ export function createTriggersSystem(
     const opts = {
       button:
         pointerEvent?.pointerEvents[0].eventInfo?.button ||
-        InputAction.IA_POINTER,
-      ...(pointerEvent === null ? { hoverText: 'Click' } : {}),
+        InputAction.IA_PRIMARY,
+      ...(pointerEvent === null ? { hoverText: 'Press' } : {}),
     }
 
     pointerEventsSystem.onPointerDown(
