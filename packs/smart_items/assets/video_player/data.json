@@ -5,7 +5,7 @@
   "tags": ["video"],
   "components": {
     "core::VideoPlayer": {
-      "src": "",
+      "src": "https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875",
       "playing": true
     },
     "core::MeshRenderer": {
@@ -61,7 +61,7 @@
         {
           "name": "Play Video Stream",
           "type": "play_video_stream",
-          "jsonPayload": "{ \"src\": \"\", \"loop\": \"false\", \"volume\": 1, \"dclCast\": false }"
+          "jsonPayload": "{ \"src\": \"https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875\", \"loop\": \"false\", \"volume\": 1, \"dclCast\": false }"
         },
         {
           "name": "Stop Video Stream",
