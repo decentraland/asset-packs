@@ -119,6 +119,19 @@
       ],
       "defaultValue": "Idle"
     },
+    "core::PointerEvents": {
+      "pointerEvents": [
+        {
+          "eventType": 1,
+          "eventInfo": {
+            "button": 1,
+            "hoverText": "Pick Up",
+            "maxDistance": 10,
+            "showFeedback": true
+          }
+        }
+      ]
+    },
     "inspector::Config": {
       "isBasicViewEnabled": true,
       "componentName": "Sword",
