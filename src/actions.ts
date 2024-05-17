@@ -14,6 +14,10 @@ import {
   MeshCollider,
   getComponentEntityTree,
   Tween,
+  Move,
+  PBTween,
+  Rotate,
+  Scale,
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { requestTeleport } from '~system/UserActionModule'
@@ -90,6 +94,7 @@ export function createActionsSystem(engine: IEngine) {
     UiBackground,
     Name,
     Tween: TweenComponent,
+    TweenSequence,
   } = getExplorerComponents(engine)
   const { Actions, States, Counter, Triggers } = getComponents(engine)
 
@@ -466,24 +471,85 @@ export function createActionsSystem(engine: IEngine) {
     payload: ActionPayload<ActionType.START_TWEEN>,
   ) {
     if (payload) {
+      // Get the initial tween if exists to revert the object movement to that sequence when executing a tween from actions
+      const initialTween = TweenComponent.getMutableOrNull(entity)
+      let tween
+
       switch (payload.type) {
         case TweenType.MOVE_ITEM: {
-          handleMoveItem(entity, payload)
+          tween = handleMoveItem(entity, payload)
           break
         }
         case TweenType.ROTATE_ITEM: {
-          handleRotateItem(entity, payload)
+          tween = handleRotateItem(entity, payload)
           break
         }
         case TweenType.SCALE_ITEM: {
-          handleScaleItem(entity, payload)
+          tween = handleScaleItem(entity, payload)
           break
         }
         default: {
           throw new Error(`Unknown tween type: ${payload.type}`)
         }
       }
+
+      revertTween(entity, initialTween, tween)
     }
+  }
+
+  // Restart to the initial movement sequence when executing an aditional tween
+  function revertTween(
+    entity: Entity,
+    initialTween: PBTween | null,
+    tween: PBTween,
+  ) {
+    const tweenSequence = TweenSequence.getMutableOrNull(entity)
+    let _revertTween = {
+      ...tween,
+    }
+
+    if (!initialTween || !tweenSequence || !tweenSequence.loop) return
+
+    switch (initialTween.mode?.$case) {
+      case 'move': {
+        _revertTween = {
+          ..._revertTween,
+          mode: Tween.Mode.Move({
+            start: (tween.mode as { $case: 'move'; move: Move }).move.end,
+            end: initialTween.mode.move.start,
+          }),
+        }
+        break
+      }
+      case 'rotate': {
+        _revertTween = {
+          ..._revertTween,
+          mode: Tween.Mode.Rotate({
+            start: (tween.mode as { $case: 'rotate'; rotate: Rotate }).rotate
+              .end,
+            end: initialTween.mode.rotate.start,
+          }),
+        }
+        break
+      }
+      case 'scale': {
+        _revertTween = {
+          ..._revertTween,
+          mode: Tween.Mode.Scale({
+            start: (tween.mode as { $case: 'scale'; scale: Scale }).scale.end,
+            end: initialTween.mode.scale.start,
+          }),
+        }
+        break
+      }
+      default: {
+        throw new Error(`Unknown tween mode: ${initialTween.mode}`)
+      }
+    }
+
+    // If the initial tween is not playing but the loop property is active, start it
+    initialTween.playing = true
+    tweenSequence.sequence = [_revertTween, initialTween]
   }
 
   // MOVE_ITEM
@@ -496,7 +562,7 @@ export function createActionsSystem(engine: IEngine) {
     const end = Vector3.create(tween.end.x, tween.end.y, tween.end.z)
     const endPosition = relative ? Vector3.add(transform.position, end) : end
 
-    TweenComponent.createOrReplace(entity, {
+    return TweenComponent.createOrReplace(entity, {
       mode: Tween.Mode.Move({
         start: transform.position,
         end: endPosition,
@@ -522,7 +588,7 @@ export function createActionsSystem(engine: IEngine) {
       ? Quaternion.multiply(transform.rotation, end)
       : end
 
-    TweenComponent.createOrReplace(entity, {
+    return TweenComponent.createOrReplace(entity, {
       mode: Tween.Mode.Rotate({
         start: transform.rotation,
         end: endRotation,
@@ -542,7 +608,7 @@ export function createActionsSystem(engine: IEngine) {
     const end = Vector3.create(tween.end.x, tween.end.y, tween.end.z)
     const endScale = relative ? Vector3.add(transform.scale, end) : end
 
-    TweenComponent.createOrReplace(entity, {
+    return TweenComponent.createOrReplace(entity, {
       mode: Tween.Mode.Scale({
         start: transform.scale,
         end: endScale,
