@@ -75,7 +75,7 @@
           "name": "Damage",
           "type": "asset-packs::Actions",
           "basicViewId": "action-damage",
-          "layout":"{\"hits\": { \"field\": \"TextField\", \"type\": \"number\", \"label\": \"Damage Points\" }, \"layer\": { \"field\": \"Dropdown\", \"label\": \"Damage Target\" }}"
+          "layout":"{ \"layer\": { \"field\": \"Dropdown\", \"label\": \"Damage Target\" }, \"hits\": { \"field\": \"TextField\", \"type\": \"number\", \"label\": \"Damage Points\" } }"
         },
         {
           "name": "Interval Damage",
