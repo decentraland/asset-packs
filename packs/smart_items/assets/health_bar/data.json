@@ -37,7 +37,8 @@
         {
           "name": "Remove",
           "type": "remove_entity",
-          "jsonPayload": "{}"
+          "jsonPayload": "{}",
+          "allowedInBasicView": true
         }
       ]
     },
@@ -72,12 +73,7 @@
               "value": "1"
             }
           ],
-          "actions": [
-            {
-              "id": "{self:asset-packs::Actions}",
-              "name": "Remove"
-            }
-          ],
+          "actions": [],
           "basicViewId": "trigger-when-health-reaches-zero"
         }
       ]
