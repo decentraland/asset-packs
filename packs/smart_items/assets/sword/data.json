@@ -16,8 +16,8 @@
       "value": [
         {
           "name": "Pick Up",
-          "type": "batch",
-          "jsonPayload": "{ \"actions\": [\"Set Ready\"] }",
+          "type": "start_delay",
+          "jsonPayload": "{ \"actions\": [\"Set Ready\"], \"timeout\": 0.1 }",
           "allowedInBasicView": true
         },
         {
@@ -68,7 +68,7 @@
     "asset-packs::Triggers": {
       "value": [
         {
-          "type": "on_click",
+          "type": "on_input_action",
           "actions": [
             {
               "id": "{self:asset-packs::Actions}",
