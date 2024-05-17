@@ -18,7 +18,7 @@
         {
           "name": "Explode",
           "type": "batch",
-          "jsonPayload": "{ \"actions\": [\"Play Explosion Animation\", \"Damage\", \"Delay Remove\"] }",
+          "jsonPayload": "{ \"actions\": [\"Play Explosion Animation\", \"Explosion Damage\", \"Delay Remove\"] }",
           "allowedInBasicView": true
         },
         {
@@ -27,10 +27,16 @@
           "jsonPayload": "{ \"animation\": \"Animation\" }"
         },
         {
-          "name": "Damage",
+          "name": "Explosion Damage",
           "type": "damage",
           "jsonPayload": "{ \"radius\": 10, \"hits\": 30, \"layer\": \"all\" }",
-          "basicViewId": "action-damage"
+          "basicViewId": "action-explosion-damage"
+        },
+        {
+          "name": "Damage",
+          "type": "decrease_counter",
+          "jsonPayload": "{ \"amount\": 1 }",
+          "allowedInBasicView": true
         },
         {
           "name": "Remove",
@@ -45,14 +51,58 @@
         }
       ]
     },
+    "asset-packs::Triggers": {
+      "value": [
+        {
+          "type": "on_damage",
+          "conditions": [
+            {
+              "id": "{self:asset-packs::Counter}",
+              "type": "when_counter_is_greater_than",
+              "value": "0"
+            }
+          ],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Damage"
+            }
+          ]
+        },
+        {
+          "type": "on_counter_change",
+          "conditions": [
+            {
+              "id": "{self:asset-packs::Counter}",
+              "type": "when_counter_is_less_than",
+              "value": "1"
+            }
+          ],
+          "actions": [
+            {
+              "id": "{self:asset-packs::Actions}",
+              "name": "Explode"
+            }
+          ]
+        }
+      ]
+    },
+    "asset-packs::Counter": {
+      "id": "{self}",
+      "value": 30
+    },
     "inspector::Config": {
       "isBasicViewEnabled": true,
       "componentName": "Barrel",
       "fields": [
         {
-          "name": "Damage",
+          "name": "Item Health Points",
+          "type": "asset-packs::Counter"
+        },
+        {
+          "name": "Explosion Damage",
           "type": "asset-packs::Actions",
-          "basicViewId": "action-damage",
+          "basicViewId": "action-explosion-damage",
           "layout": "{\"radius\": { \"field\": \"TextField\", \"type\": \"number\", \"label\": \"Explosion Radius\" }, \"hits\": { \"field\": \"TextField\", \"type\": \"number\", \"label\": \"Explosion Damage\" }, \"layer\": { \"field\": \"Dropdown\", \"label\": \"Damage Target\" }}"
         }
       ]
