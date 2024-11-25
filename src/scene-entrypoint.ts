@@ -1,4 +1,5 @@
 import {
+  Entity,
   IEngine,
   createInputSystem,
   createPointerEventsSystem,
@@ -13,18 +14,30 @@ import { createTransformSystem } from './transform'
 import { createInputActionSystem } from './input-actions'
 import { createCounterBarSystem } from './counter-bar'
 
+export type ISdkCache = {
+  engine?: IEngine
+  syncEntity?: SyncEntitySDK
+}
+export type SyncEntitySDK =  (entityId: Entity, componentIds: number[], entityEnumId?: number | undefined) => void
+
+export let SdkCache: ISdkCache = {}
+
 let initialized: boolean = false
 /**
  * the _args param is there to mantain backwards compatibility with all versions.
  * Before it was initAssetPacks(engine, pointerEventsSystem, components)
  */
-export function initAssetPacks(_engine: unknown, ..._args: any[]) {
+export function initAssetPacks(_engine: unknown, sdkHelpers: ISdkCache) {
   // Avoid creating the same systems if asset-pack is called more than once
   if (initialized) return
   initialized = true
   // .
 
   const engine = _engine as IEngine
+
+  SdkCache = sdkHelpers
+  SdkCache.engine = engine
+
   try {
     // get engine components
     const components = getEngineComponents(engine)

@@ -2,22 +2,24 @@ import {
   Entity,
   IEngine,
   TransformComponentExtended,
-  getComponentEntityTree,
+  getComponentEntityTree
 } from '@dcl/ecs'
 import { getNextId, requiresId } from './id'
 import { isLastWriteWinComponent } from './lww'
 import { TriggersComponent } from './definitions'
+import { SdkCache } from './scene-entrypoint'
+import { getExplorerComponents } from './components'
 
 export function clone(
   entity: Entity,
   engine: IEngine,
   Transform: TransformComponentExtended,
-  Triggers: TriggersComponent,
+  Triggers: TriggersComponent
 ) {
   const ids = new Map<number, number>()
   const entities = new Map<Entity, Entity>()
   const tree = getComponentEntityTree(engine, entity, Transform)
-
+  const { NetworkEntity, SyncComponents } = getExplorerComponents(engine)
   for (const original of tree) {
     const cloned = engine.addEntity()
 
@@ -33,6 +35,7 @@ export function clone(
             id: newId,
           }
         }
+
         if (isLastWriteWinComponent(component)) {
           component.createOrReplace(cloned, newValue)
         }
@@ -70,6 +73,16 @@ export function clone(
       }
     }
 
+    // Fix the NetworkEntity component for the new entity.
+    if (NetworkEntity.has(cloned)) {
+      const syncComponent = SyncComponents.getOrNull(cloned)
+
+      if (syncComponent && SdkCache.syncEntity) {
+        SdkCache.syncEntity(cloned, syncComponent.componentIds)
+      }
+    }
+
+    // TODO: should we fix the parent network entity also ?
     const transform = Transform.getMutableOrNull(cloned)
     if (transform && transform.parent) {
       const newParent = entities.get(transform.parent)
