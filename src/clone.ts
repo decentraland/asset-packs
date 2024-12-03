@@ -7,6 +7,7 @@ import {
 import { getNextId, requiresId } from './id'
 import { isLastWriteWinComponent } from './lww'
 import { ISDKHelpers, TriggersComponent } from './definitions'
+import { getExplorerComponents } from './components'
 
 export function clone(
   entity: Entity,
@@ -18,7 +19,7 @@ export function clone(
   const ids = new Map<number, number>()
   const entities = new Map<Entity, Entity>()
   const tree = getComponentEntityTree(engine, entity, Transform)
-  const { NetworkEntity, SyncComponents } = {} as any
+  const { NetworkEntity, SyncComponents } = getExplorerComponents(engine)
   for (const original of tree) {
     const cloned = engine.addEntity()
 
