@@ -16,8 +16,6 @@ import {
   Tween as defineTween,
   TweenSequence as defineTweenSequence,
   PointerEvents as definePointerEvents,
-  NetworkEntity as defineNetworkEntity,
-  SyncComponents as defineSyncComponents
 } from '@dcl/ecs/dist/components'
 import { IEngine } from '@dcl/ecs'
 import { EngineComponents } from './definitions'
@@ -41,7 +39,5 @@ export function getExplorerComponents(engine: IEngine): EngineComponents {
     Tween: defineTween(engine),
     TweenSequence: defineTweenSequence(engine),
     PointerEvents: definePointerEvents(engine),
-    NetworkEntity: defineNetworkEntity(engine),
-    SyncComponents: defineSyncComponents(engine)
   }
 }

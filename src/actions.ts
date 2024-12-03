@@ -65,7 +65,6 @@ import {
 } from '@dcl-sdk/utils'
 import { followMap } from './transform'
 import { getEasingFunctionFromInterpolation } from './tweens'
-import { SyncEntitySDK } from './scene-entrypoint'
 
 const initedEntities = new Set<Entity>()
 const uiStacks = new Map<string, Entity>()

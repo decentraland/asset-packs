@@ -22,8 +22,6 @@ import {
   PBTween,
   PBTweenSequence,
   PBPointerEvents,
-  NetworkEntity,
-  SyncComponents,
   AudioSourceComponentDefinitionExtended,
 } from '@dcl/ecs'
 import { addActionType } from './action-types'
@@ -346,8 +344,6 @@ export type EngineComponents = {
   Tween: LastWriteWinElementSetComponentDefinition<PBTween>
   TweenSequence: LastWriteWinElementSetComponentDefinition<PBTweenSequence>
   PointerEvents: LastWriteWinElementSetComponentDefinition<PBPointerEvents>
-  NetworkEntity: typeof NetworkEntity
-  SyncComponents: typeof SyncComponents
 }
 
 export function initComponents(engine: IEngine) {
