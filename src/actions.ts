@@ -65,7 +65,6 @@ import {
 } from '@dcl-sdk/utils'
 import { followMap } from './transform'
 import { getEasingFunctionFromInterpolation } from './tweens'
-import { ISDKHelpers, SyncEntitySDK } from './scene-entrypoint'
 
 const initedEntities = new Set<Entity>()
 const uiStacks = new Map<string, Entity>()
@@ -82,7 +81,7 @@ export function initActions(entity: Entity) {
   )
 }
 
-export function createActionsSystem(engine: IEngine, sdkHelpers: ISDKHelpers) {
+export function createActionsSystem(engine: IEngine, sdkHelpers: any) {
   const {
     Animator,
     Transform,

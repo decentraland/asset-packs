@@ -7,20 +7,18 @@ import {
 import { getNextId, requiresId } from './id'
 import { isLastWriteWinComponent } from './lww'
 import { TriggersComponent } from './definitions'
-import { getExplorerComponents } from './components'
-import { ISDKHelpers, SyncEntitySDK } from './scene-entrypoint'
 
 export function clone(
   entity: Entity,
   engine: IEngine,
   Transform: TransformComponentExtended,
   Triggers: TriggersComponent,
-  sdkHelpers?: ISDKHelpers
+  sdkHelpers?: any
 ) {
   const ids = new Map<number, number>()
   const entities = new Map<Entity, Entity>()
   const tree = getComponentEntityTree(engine, entity, Transform)
-  const { NetworkEntity, SyncComponents } = getExplorerComponents(engine)
+  const { NetworkEntity, SyncComponents } = {} as any
   for (const original of tree) {
     const cloned = engine.addEntity()
 
