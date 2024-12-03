@@ -1,4 +1,6 @@
+import { Entity, IEngine } from '@dcl/ecs'
 import { ComponentName } from './enums'
+import { SyncEntitySDK } from './scene-entrypoint'
 
 export type AssetPackData = {
   id: string
@@ -106,4 +108,12 @@ export type Component = {
       json: any
     }
   }
+}
+
+export type SyncEntitySDK =  (entityId: Entity, componentIds: number[], entityEnumId?: number | undefined) => void
+export type ISdkCache = {
+  // Store the engine to avoid passing the engine to nested functions.
+  engine: IEngine
+  // SyncEntity helper to create network entities at runtime.
+  syncEntity?: SyncEntitySDK
 }
