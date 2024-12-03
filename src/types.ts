@@ -1,3 +1,4 @@
+import { Entity } from '@dcl/ecs'
 import { ComponentName } from './enums'
 
 export type AssetPackData = {
@@ -107,3 +108,10 @@ export type Component = {
     }
   }
 }
+
+
+export type ISDKHelpers = {
+  // SyncEntity helper to create network entities at runtime.
+  syncEntity?: SyncEntitySDK
+}
+export type SyncEntitySDK =  (entityId: Entity, componentIds: number[], entityEnumId?: number | undefined) => void

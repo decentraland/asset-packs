@@ -31,6 +31,7 @@ import { getActiveVideoStreams } from '~system/CommsApi'
 import {
   ActionPayload,
   ActionType,
+  ISDKHelpers,
   ProximityLayer,
   ScreenAlignMode,
   TriggerType,
@@ -81,7 +82,7 @@ export function initActions(entity: Entity) {
   )
 }
 
-export function createActionsSystem(engine: IEngine, sdkHelpers: any) {
+export function createActionsSystem(engine: IEngine, sdkHelpers?: ISDKHelpers) {
   const {
     Animator,
     Transform,

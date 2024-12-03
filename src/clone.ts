@@ -6,14 +6,14 @@ import {
 } from '@dcl/ecs'
 import { getNextId, requiresId } from './id'
 import { isLastWriteWinComponent } from './lww'
-import { TriggersComponent } from './definitions'
+import { ISDKHelpers, TriggersComponent } from './definitions'
 
 export function clone(
   entity: Entity,
   engine: IEngine,
   Transform: TransformComponentExtended,
   Triggers: TriggersComponent,
-  sdkHelpers?: any
+  sdkHelpers?: ISDKHelpers
 ) {
   const ids = new Map<number, number>()
   const entities = new Map<Entity, Entity>()
