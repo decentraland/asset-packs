@@ -7,14 +7,15 @@ import {
 import { getNextId, requiresId } from './id'
 import { isLastWriteWinComponent } from './lww'
 import { TriggersComponent } from './definitions'
-import { SdkCache } from './scene-entrypoint'
 import { getExplorerComponents } from './components'
+import { ISDKHelpers, SyncEntitySDK } from './scene-entrypoint'
 
 export function clone(
   entity: Entity,
   engine: IEngine,
   Transform: TransformComponentExtended,
-  Triggers: TriggersComponent
+  Triggers: TriggersComponent,
+  sdkHelpers?: ISDKHelpers
 ) {
   const ids = new Map<number, number>()
   const entities = new Map<Entity, Entity>()
@@ -77,8 +78,8 @@ export function clone(
     if (NetworkEntity.has(cloned)) {
       const syncComponent = SyncComponents.getOrNull(cloned)
 
-      if (syncComponent && SdkCache.syncEntity) {
-        SdkCache.syncEntity(cloned, syncComponent.componentIds)
+      if (syncComponent && sdkHelpers?.syncEntity) {
+        sdkHelpers?.syncEntity(cloned, syncComponent.componentIds)
       }
     }
 

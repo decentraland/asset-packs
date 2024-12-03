@@ -14,7 +14,7 @@ import { createTransformSystem } from './transform'
 import { createInputActionSystem } from './input-actions'
 import { createCounterBarSystem } from './counter-bar'
 
-export type ISdkCache = {
+export type ISDKHelpers = {
   // Store the engine to avoid passing the engine to nested functions.
   engine: IEngine
   // SyncEntity helper to create network entities at runtime.
@@ -22,14 +22,14 @@ export type ISdkCache = {
 }
 export type SyncEntitySDK =  (entityId: Entity, componentIds: number[], entityEnumId?: number | undefined) => void
 
-export let SdkCache: ISdkCache
+export let SdkCache: ISDKHelpers
 
 let initialized: boolean = false
 /**
  * the _args param is there to mantain backwards compatibility with all versions.
  * Before it was initAssetPacks(engine, pointerEventsSystem, components)
  */
-export function initAssetPacks(_engine: unknown, sdkHelpers: Omit<ISdkCache, 'engine'>) {
+export function initAssetPacks(_engine: unknown, sdkHelpers: Omit<ISDKHelpers, 'engine'>) {
   // Avoid creating the same systems if asset-pack is called more than once
   if (initialized) return
   initialized = true
@@ -56,7 +56,7 @@ export function initAssetPacks(_engine: unknown, sdkHelpers: Omit<ISdkCache, 'en
 
     // create systems that some components needs (VideoPlayer, etc)
     initComponents(engine)
-    engine.addSystem(createActionsSystem(engine))
+    engine.addSystem(createActionsSystem(engine, SdkCache))
     engine.addSystem(
       createTriggersSystem(
         engine,
