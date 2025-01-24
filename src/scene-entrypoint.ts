@@ -5,6 +5,7 @@ import {
   createPointerEventsSystem,
   createTweenSystem,
 } from '@dcl/ecs'
+import { createReactBasedUiSystem } from '@dcl/react-ecs'
 import { createComponents, initComponents, ISDKHelpers } from './definitions'
 import { createActionsSystem } from './actions'
 import { createTriggersSystem } from './triggers'
@@ -13,6 +14,7 @@ import { getExplorerComponents as getEngineComponents } from './components'
 import { createTransformSystem } from './transform'
 import { createInputActionSystem } from './input-actions'
 import { createCounterBarSystem } from './counter-bar'
+import { createAdminToolkitSystem } from './admin-toolkit'
 
 let initialized: boolean = false
 /**
@@ -37,6 +39,10 @@ export function initAssetPacks(_engine: unknown, sdkHelpers?: ISDKHelpers) {
     const inputSystem = createInputSystem(engine)
     const pointerEventsSystem = createPointerEventsSystem(engine, inputSystem)
     const tweenSystem = createTweenSystem(engine)
+    const reactBasedUiSystem = createReactBasedUiSystem(
+      engine,
+      pointerEventsSystem,
+    )
 
     // create systems that some components needs (VideoPlayer, etc)
     initComponents(engine)
@@ -53,6 +59,7 @@ export function initAssetPacks(_engine: unknown, sdkHelpers?: ISDKHelpers) {
     engine.addSystem(createInputActionSystem(inputSystem))
     engine.addSystem(createCounterBarSystem(engine, components))
     engine.addSystem(createTransformSystem(components))
+    engine.addSystem(createAdminToolkitSystem(engine, reactBasedUiSystem))
   } catch (error) {
     console.error(`Error initializing Asset Packs: ${(error as Error).message}`)
   }

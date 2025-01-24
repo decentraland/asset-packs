@@ -237,6 +237,7 @@ export function getComponents(engine: IEngine) {
     Counter: getComponent<Counter>(ComponentName.COUNTER, engine),
     Triggers: getComponent<Triggers>(ComponentName.TRIGGERS, engine),
     CounterBar: getComponent<CounterBar>(ComponentName.COUNTER_BAR, engine),
+    AdminTools: getComponent<AdminTools>(ComponentName.ADMIN_TOOLS, engine),
   }
 }
 
@@ -318,6 +319,57 @@ export function createComponents(engine: IEngine) {
     maxValue: Schemas.Optional(Schemas.Float),
   })
 
+  const AdminTools = engine.defineComponent(ComponentName.ADMIN_TOOLS, {
+    adminPermissions: Schemas.String,
+    authorizedAdminUsers: Schemas.Map({
+      me: Schemas.Boolean,
+      sceneOwners: Schemas.Boolean,
+      allowList: Schemas.Boolean,
+      adminAllowList: Schemas.Array(Schemas.String),
+    }),
+    moderation: Schemas.Map({
+      isEnabled: Schemas.Boolean,
+      kickCoordinates: Schemas.Map({
+        x: Schemas.Number,
+        y: Schemas.Number,
+        z: Schemas.Number,
+      }),
+      allowNonOwnersManageAdminAllowList: Schemas.Boolean,
+    }),
+    textAnnouncement: Schemas.Map({
+      isEnabled: Schemas.Boolean,
+      playSoundOnEachAnnouncement: Schemas.Boolean,
+      showAuthorOnEachAnnouncement: Schemas.Boolean,
+    }),
+    videoControl: Schemas.Map({
+      isEnabled: Schemas.Boolean,
+      disableVideoPlayersSound: Schemas.Boolean,
+      showAuthorOnVideoPlayers: Schemas.Boolean,
+      linkAllVideoPlayers: Schemas.Boolean,
+      videoPlayers: Schemas.Optional(
+        Schemas.Array(
+          Schemas.Map({
+            entity: Schemas.Int,
+            name: Schemas.String,
+          }),
+        ),
+      ),
+    }),
+    smartItemActions: Schemas.Map({
+      isEnabled: Schemas.Boolean,
+      linkAllSmartItems: Schemas.Boolean,
+      smartItems: Schemas.Optional(
+        Schemas.Array(
+          Schemas.Map({
+            entity: Schemas.Int,
+            customName: Schemas.String,
+            defaultAction: Schemas.String,
+          }),
+        ),
+      ),
+    }),
+  })
+
   return {
     ActionTypes,
     Actions,
@@ -325,6 +377,7 @@ export function createComponents(engine: IEngine) {
     Triggers,
     States,
     CounterBar,
+    AdminTools,
   }
 }
 
@@ -473,3 +526,8 @@ export type TriggerCondition = Exclude<Trigger['conditions'], undefined>[0]
 
 export type StatesComponent = Components['States']
 export type States = ReturnType<StatesComponent['schema']['deserialize']>
+
+export type AdminToolsComponent = Components['AdminTools']
+export type AdminTools = ReturnType<
+  AdminToolsComponent['schema']['deserialize']
+>
