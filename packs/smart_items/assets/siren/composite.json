@@ -38,11 +38,7 @@
       "data": {
         "0": {
           "json": {
-            "componentIds": [
-              1042,
-              1020,
-              2709697014
-            ]
+            "componentIds": [1042, 1020, 2709697014]
           }
         }
       }
@@ -147,6 +143,21 @@
                     "name": "Idle"
                   }
                 ]
+              },
+
+              {
+                "type": "on_input_action",
+                "actions": [
+                  {
+                    "id": "{self:asset-packs::Actions}",
+                    "name": "Loop Animation"
+                  },
+                  {
+                    "id": "{self:asset-packs::Actions}",
+                    "name": "Loop Sound"
+                  }
+                ],
+                "basicViewId": "trigger-when-clicked"
               }
             ]
           }
@@ -159,10 +170,7 @@
         "0": {
           "json": {
             "id": "{self}",
-            "value": [
-              "Silent",
-              "Triggered"
-            ],
+            "value": ["Silent", "Triggered"],
             "defaultValue": "Silent"
           }
         }
@@ -173,8 +181,8 @@
       "data": {
         "0": {
           "json": {
-            "isBasicViewEnabled": false,
-            "componentName": "Button",
+            "isBasicViewEnabled": true,
+            "componentName": "Siren",
             "fields": [
               {
                 "name": "Hover Text",

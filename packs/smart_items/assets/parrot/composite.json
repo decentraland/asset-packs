@@ -58,11 +58,7 @@
       "data": {
         "0": {
           "json": {
-            "componentIds": [
-              1042,
-              1020,
-              2709697014
-            ]
+            "componentIds": [1042, 1020, 2709697014]
           }
         }
       }
@@ -193,10 +189,7 @@
         "0": {
           "json": {
             "id": "{self}",
-            "value": [
-              "Silent",
-              "Triggered"
-            ],
+            "value": ["Silent", "Triggered"],
             "defaultValue": "Silent"
           }
         }
@@ -207,7 +200,7 @@
       "data": {
         "0": {
           "json": {
-            "isBasicViewEnabled": false,
+            "isBasicViewEnabled": true,
             "componentName": "Button",
             "fields": [
               {

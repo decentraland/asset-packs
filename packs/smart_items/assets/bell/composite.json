@@ -58,10 +58,7 @@
       "data": {
         "0": {
           "json": {
-            "componentIds": [
-              1042,
-              1020
-            ]
+            "componentIds": [1042, 1020]
           }
         }
       }
@@ -130,8 +127,8 @@
       "data": {
         "0": {
           "json": {
-            "isBasicViewEnabled": false,
-            "componentName": "Button",
+            "isBasicViewEnabled": true,
+            "componentName": "Bell",
             "fields": [
               {
                 "name": "Hover Text",
