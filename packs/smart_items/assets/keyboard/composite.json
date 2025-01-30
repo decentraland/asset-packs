@@ -71,9 +71,7 @@
           "json": {
             "value": [
               {
-                "type": "on_click",
-                "conditions": [],
-                "operation": "and",
+                "type": "on_input_action",
                 "actions": [
                   {
                     "id": "{self:asset-packs::Actions}",
@@ -83,7 +81,30 @@
                     "id": "{self:asset-packs::Actions}",
                     "name": "Play animation"
                   }
-                ]
+                ],
+                "basicViewId": "trigger-when-clicked"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "componentName": "Button",
+            "fields": [
+              {
+                "name": "Hover Text",
+                "type": "core::PointerEvents"
+              },
+              {
+                "name": "When Clicked",
+                "type": "asset-packs::Triggers",
+                "basicViewId": "trigger-when-clicked"
               }
             ]
           }

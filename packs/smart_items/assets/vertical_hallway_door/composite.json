@@ -170,11 +170,7 @@
       "data": {
         "0": {
           "json": {
-            "componentIds": [
-              1042,
-              1020,
-              2709697014
-            ]
+            "componentIds": [1042, 1020, 2709697014]
           }
         }
       }
@@ -311,11 +307,7 @@
         "0": {
           "json": {
             "id": "{self}",
-            "value": [
-              "Open",
-              "Closed",
-              "Toggle"
-            ],
+            "value": ["Open", "Closed", "Toggle"],
             "defaultValue": "Closed"
           }
         }
@@ -326,7 +318,7 @@
       "data": {
         "0": {
           "json": {
-            "isBasicViewEnabled": false,
+            "isBasicViewEnabled": true,
             "componentName": "Door",
             "fields": [
               {

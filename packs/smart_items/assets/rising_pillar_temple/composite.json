@@ -28,11 +28,7 @@
       "data": {
         "0": {
           "json": {
-            "componentIds": [
-              1102,
-              2709697014,
-              1020
-            ]
+            "componentIds": [1102, 2709697014, 1020]
           }
         }
       }
@@ -186,10 +182,7 @@
         "0": {
           "json": {
             "id": "{self}",
-            "value": [
-              "GoingToEnd",
-              "GoingToStart"
-            ],
+            "value": ["GoingToEnd", "GoingToStart"],
             "defaultValue": "GoingToEnd"
           }
         }
@@ -200,7 +193,7 @@
       "data": {
         "0": {
           "json": {
-            "isBasicViewEnabled": false,
+            "isBasicViewEnabled": true,
             "componentName": "Vertical Platform",
             "fields": [
               {
