@@ -1,7 +1,6 @@
 import {
   IEngine,
   Entity,
-  VideoPlayer,
   Material,
   AudioStream,
   YGUnit,
@@ -96,6 +95,7 @@ export function createActionsSystem(engine: IEngine, sdkHelpers?: ISDKHelpers) {
     Name,
     Tween: TweenComponent,
     TweenSequence,
+    VideoPlayer,
   } = getExplorerComponents(engine)
   const { Actions, States, Counter, Triggers } = getComponents(engine)
 
