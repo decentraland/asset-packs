@@ -7,6 +7,7 @@ export enum ComponentName {
   TRIGGERS = 'asset-packs::Triggers',
   STATES = 'asset-packs::States',
   COUNTER_BAR = 'asset-packs::CounterBar',
+  ADMIN_TOOLS = 'asset-packs::AdminTools',
 }
 
 export enum TweenType {
