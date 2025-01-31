@@ -5,6 +5,7 @@ import {
   createPointerEventsSystem,
   createTweenSystem,
 } from '@dcl/ecs'
+import { definePlayerHelper } from '@dcl/sdk/src/players'
 import { createReactBasedUiSystem } from '@dcl/react-ecs'
 import { createComponents, initComponents, ISDKHelpers } from './definitions'
 import { createActionsSystem } from './actions'
@@ -43,6 +44,7 @@ export function initAssetPacks(_engine: unknown, sdkHelpers?: ISDKHelpers) {
       engine,
       pointerEventsSystem,
     )
+    const players = definePlayerHelper(engine)
 
     // create systems that some components needs (VideoPlayer, etc)
     initComponents(engine)
@@ -59,7 +61,14 @@ export function initAssetPacks(_engine: unknown, sdkHelpers?: ISDKHelpers) {
     engine.addSystem(createInputActionSystem(inputSystem))
     engine.addSystem(createCounterBarSystem(engine, components))
     engine.addSystem(createTransformSystem(components))
-    engine.addSystem(createAdminToolkitSystem(engine, reactBasedUiSystem))
+    engine.addSystem(
+      createAdminToolkitSystem(
+        engine,
+        pointerEventsSystem,
+        reactBasedUiSystem,
+        players,
+      ),
+    )
   } catch (error) {
     console.error(`Error initializing Asset Packs: ${(error as Error).message}`)
   }
