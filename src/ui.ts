@@ -230,7 +230,7 @@ export function getUIText(
   text: string,
   fontSize = 10,
   containerWidth: number,
-  align: AlignMode = AlignMode.TAM_MIDDLE_CENTER,
+  align: TextAlignMode = TextAlignMode.TAM_MIDDLE_CENTER,
   color: Color4 = { r: 0, g: 0, b: 0, a: 1 },
 ) {
   const lineLength = Math.floor(containerWidth / (fontSize / 1.7))
