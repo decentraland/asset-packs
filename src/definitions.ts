@@ -208,6 +208,11 @@ export const ActionSchemas = {
   [ActionType.HEAL_PLAYER]: Schemas.Map({
     multiplier: Schemas.Int,
   }),
+  [ActionType.CLAIM_AIRDROP]: Schemas.Map({
+    testMode: Schemas.Boolean,
+    campaignId: Schemas.String,
+    dispenserKey: Schemas.String,
+  }),
 }
 
 export type ActionPayload<T extends ActionType = any> =
@@ -238,6 +243,7 @@ export function getComponents(engine: IEngine) {
     Triggers: getComponent<Triggers>(ComponentName.TRIGGERS, engine),
     CounterBar: getComponent<CounterBar>(ComponentName.COUNTER_BAR, engine),
     AdminTools: getComponent<AdminTools>(ComponentName.ADMIN_TOOLS, engine),
+    Rewards: getComponent<Rewards>(ComponentName.REWARDS, engine),
   }
 }
 
@@ -370,6 +376,12 @@ export function createComponents(engine: IEngine) {
     }),
   })
 
+  const Rewards = engine.defineComponent(ComponentName.REWARDS, {
+    testMode: Schemas.Boolean,
+    campaignId: Schemas.String,
+    dispenserKey: Schemas.String,
+  })
+
   return {
     ActionTypes,
     Actions,
@@ -378,6 +390,7 @@ export function createComponents(engine: IEngine) {
     States,
     CounterBar,
     AdminTools,
+    Rewards,
   }
 }
 
@@ -531,3 +544,6 @@ export type AdminToolsComponent = Components['AdminTools']
 export type AdminTools = ReturnType<
   AdminToolsComponent['schema']['deserialize']
 >
+
+export type RewardsComponent = Components['Rewards']
+export type Rewards = ReturnType<RewardsComponent['schema']['deserialize']>
