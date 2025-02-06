@@ -27,10 +27,13 @@ import {
   openExternalUrl,
 } from '~system/RestrictedActions'
 import { getActiveVideoStreams } from '~system/CommsApi'
+import { FlatFetchInit, signedFetch } from '~system/SignedFetch'
+import { getRealm } from '~system/Runtime'
 import {
   ActionPayload,
   ActionType,
   ISDKHelpers,
+  IPlayersHelper,
   ProximityLayer,
   ScreenAlignMode,
   TriggerType,
@@ -55,6 +58,7 @@ import {
   getUIText,
   getUITransform,
   mapAlignToScreenAlign,
+  showCaptchaPrompt as showCaptchaPromptUI,
 } from './ui'
 import { getExplorerComponents } from './components'
 import { initTriggers, damageTargets, healTargets } from './triggers'
@@ -81,7 +85,11 @@ export function initActions(entity: Entity) {
   )
 }
 
-export function createActionsSystem(engine: IEngine, sdkHelpers?: ISDKHelpers) {
+export function createActionsSystem(
+  engine: IEngine,
+  sdkHelpers?: ISDKHelpers,
+  playersHelper?: IPlayersHelper,
+) {
   const {
     Animator,
     Transform,
@@ -393,6 +401,13 @@ export function createActionsSystem(engine: IEngine, sdkHelpers?: ISDKHelpers) {
           }
           case ActionType.HEAL_PLAYER: {
             handleHealPlayer(entity, getPayload<ActionType.HEAL_PLAYER>(action))
+            break
+          }
+          case ActionType.CLAIM_AIRDROP: {
+            handleClaimAirdrop(
+              entity,
+              getPayload<ActionType.CLAIM_AIRDROP>(action),
+            )
             break
           }
           default:
@@ -1330,5 +1345,153 @@ export function createActionsSystem(engine: IEngine, sdkHelpers?: ISDKHelpers) {
         }
       }
     }
+  }
+
+  async function request(url: string, init?: FlatFetchInit) {
+    try {
+      const response = await signedFetch({
+        url: url,
+        ...(init ? { init } : {}),
+      })
+      if (!response || !response.body) {
+        console.log('Error fetching campaign data')
+        return null
+      }
+
+      const json = await JSON.parse(response.body)
+
+      if (!json.ok) {
+        console.log('Error fetching campaign data')
+        return null
+      }
+
+      return json.data
+    } catch (error) {
+      console.log('Error fetching campaign data')
+      return null
+    }
+  }
+
+  async function fetchCampaign(campaignId: string) {
+    const url = `https://rewards.decentraland.zone/api/campaigns/${campaignId}`
+    return request(url)
+  }
+
+  async function fetchCampaignDispensers(campaignId: string) {
+    const url = `https://rewards.decentraland.zone/api/campaigns/${campaignId}/keys`
+    return request(url)
+  }
+
+  async function fetchCaptcha() {
+    return request('https://rewards.decentraland.zone/api/captcha', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  }
+
+  async function requestToken(
+    campaignId: string,
+    dispenserKey: string,
+    captcha?: {
+      id: string
+      value: string
+    },
+  ) {
+    const url = `https://rewards.decentraland.zone/api/rewards`
+    const realm = await getRealm({})
+    const player = playersHelper?.getPlayer()
+
+    return request(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        campaign_id: campaignId,
+        campaign_key: dispenserKey,
+        catalyst: realm.realmInfo ? realm.realmInfo.baseUrl : '',
+        beneficiary: !player?.isGuest ? player?.userId : '',
+        ...(captcha
+          ? { captcha_id: captcha.id, captcha_value: captcha.value }
+          : {}),
+      }),
+    })
+  }
+
+  function handleClaimAirdrop(
+    entity: Entity,
+    payload: ActionPayload<ActionType.CLAIM_AIRDROP>,
+  ) {
+    const { testMode, campaignId, dispenserKey } = payload
+    console.log('claim airdrop', dispenserKey)
+    if (testMode) {
+      console.log('Handle Claim Airdrop in Test Mode :)')
+      return
+    }
+
+    fetchCampaign(campaignId).then((campaign) => {
+      if (campaign) {
+        console.log('campaign', campaign)
+
+        if (campaign.enabled) {
+          fetchCampaignDispensers(campaignId).then((dispensers) => {
+            console.log('dispensers', dispensers)
+            if (dispensers) {
+              const dispenser = dispensers.find(
+                (dispenser: any) => dispenser.campaign_key === dispenserKey,
+              )
+              if (dispenser) {
+                console.log('dispenser', dispenser)
+
+                if (dispenser.requires_captcha) {
+                  console.log('Captcha required')
+
+                  fetchCaptcha().then((captcha) => {
+                    console.log('captcha', captcha)
+                    if (captcha) {
+                      showCaptchaPrompt(entity, {
+                        campaignId,
+                        dispenserKey,
+                        captcha,
+                      })
+                    }
+                  })
+                } else {
+                  requestToken(campaignId, dispenserKey)
+                }
+              }
+            }
+          })
+        }
+      }
+    })
+  }
+
+  function showCaptchaPrompt(
+    entity: Entity,
+    data: { campaignId: string; dispenserKey: string; captcha: any },
+  ) {
+    showCaptchaPromptUI(
+      engine,
+      UiTransform,
+      UiBackground,
+      UiText,
+      pointerEventsSystem,
+      data,
+      (inputText) => {
+        // Request token with captcha validation
+        requestToken(data.campaignId, data.dispenserKey, {
+          id: data.captcha.id,
+          value: inputText,
+        }).then((token: any) => {
+          console.log('Token response', token)
+          if (token) {
+            console.log('Token requested successfully', { token })
+          }
+        })
+      },
+    )
   }
 }

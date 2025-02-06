@@ -1,18 +1,14 @@
-import { Entity, IEngine } from '@dcl/sdk/ecs'
-import { definePlayerHelper } from '@dcl/sdk/src/players'
-import { getComponents } from './definitions'
-import { createAdminToolkitUI } from './admin-ui'
+import { Entity, IEngine, PointerEventsSystem } from '@dcl/ecs'
 import { ReactBasedUiSystem } from '@dcl/react-ecs'
-import { PointerEventsSystem } from '@dcl/ecs'
-
-export type PlayerHelper = ReturnType<typeof definePlayerHelper>
+import { getComponents, IPlayersHelper } from './definitions'
+import { createAdminToolkitUI } from './admin-ui'
 
 // Create a system to manage the AdminToolkit
 export function createAdminToolkitSystem(
   engine: IEngine,
   pointerEventsSystem: PointerEventsSystem,
   reactBasedUiSystem: ReactBasedUiSystem,
-  players: PlayerHelper,
+  playersHelper?: IPlayersHelper,
 ) {
   let adminToolkitEntity: Entity | null = null
   const { AdminTools } = getComponents(engine)
@@ -28,7 +24,7 @@ export function createAdminToolkitSystem(
         engine,
         pointerEventsSystem,
         reactBasedUiSystem,
-        players,
+        playersHelper,
       )
       console.log('Admin toolkit created with ui')
     }

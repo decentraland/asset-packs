@@ -1,6 +1,9 @@
 import {
+  IEngine,
   BackgroundTextureMode,
   Entity,
+  InputAction,
+  PointerEventsSystem,
   TextAlignMode,
   TextureWrapMode,
   YGAlign,
@@ -9,9 +12,9 @@ import {
   YGPositionType,
   YGUnit,
 } from '@dcl/ecs'
+import { Color4 } from '@dcl/sdk/math'
 import { EngineComponents } from './definitions'
 import { AlignMode, Font, ScreenAlignMode } from './enums'
-import { Color4 } from '@dcl/ecs/dist/components/generated/pb/decentraland/common/colors.gen'
 
 function getAlignMode(align: AlignMode, isColumn: boolean) {
   switch (align) {
@@ -231,7 +234,7 @@ export function getUIText(
   fontSize = 10,
   containerWidth: number,
   align: TextAlignMode = TextAlignMode.TAM_MIDDLE_CENTER,
-  color: Color4 = { r: 0, g: 0, b: 0, a: 1 },
+  color: Color4 = Color4.White(),
 ) {
   const lineLength = Math.floor(containerWidth / (fontSize / 1.7))
 
@@ -242,4 +245,134 @@ export function getUIText(
     textAlign: align as unknown as TextAlignMode,
     color,
   })
+}
+
+export function showCaptchaPrompt(
+  engine: IEngine,
+  UiTransform: EngineComponents['UiTransform'],
+  UiBackground: EngineComponents['UiBackground'],
+  UiText: EngineComponents['UiText'],
+  pointerEventsSystem: PointerEventsSystem,
+  data: { campaignId: string; dispenserKey: string; captcha: any },
+  onSubmit: (inputText: string) => void,
+) {
+  // Create UI stack for centering
+  const uiStack = engine.addEntity()
+  const uiStackTransform = getUITransform(UiTransform, uiStack)
+  uiStackTransform.positionType = YGPositionType.YGPT_ABSOLUTE
+  uiStackTransform.alignItems = YGAlign.YGA_CENTER
+  uiStackTransform.alignContent = YGAlign.YGA_CENTER
+  uiStackTransform.width = 400
+  uiStackTransform.height = 300
+
+  // Create container
+  const containerEntity = engine.addEntity()
+  const containerTransform = getUITransform(UiTransform, containerEntity)
+  containerTransform.parent = uiStack
+  containerTransform.flexDirection = YGFlexDirection.YGFD_COLUMN
+  containerTransform.alignItems = YGAlign.YGA_CENTER
+  containerTransform.width = 400
+  containerTransform.height = 300
+  containerTransform.paddingTop = 20
+  containerTransform.paddingTopUnit = YGUnit.YGU_POINT
+  containerTransform.paddingBottom = 20
+  containerTransform.paddingBottomUnit = YGUnit.YGU_POINT
+  containerTransform.paddingLeft = 20
+  containerTransform.paddingLeftUnit = YGUnit.YGU_POINT
+  containerTransform.paddingRight = 20
+  containerTransform.paddingRightUnit = YGUnit.YGU_POINT
+
+  // Add dark background
+  UiBackground.createOrReplace(containerEntity, {
+    color: Color4.create(0.15, 0.15, 0.15, 0.95),
+    textureMode: BackgroundTextureMode.NINE_SLICES,
+    uvs: [0, 0, 1, 0, 1, 1, 0, 1],
+  })
+
+  // Add title text
+  const titleEntity = engine.addEntity()
+  const titleTransform = getUITransform(UiTransform, titleEntity)
+  titleTransform.parent = containerEntity
+  titleTransform.marginBottom = 20
+  titleTransform.marginBottomUnit = YGUnit.YGU_POINT
+
+  getUIText(
+    UiText,
+    titleEntity,
+    'Enter the captcha',
+    20,
+    200,
+    TextAlignMode.TAM_MIDDLE_CENTER,
+    Color4.White(),
+  )
+
+  // Add captcha image
+  const imageEntity = engine.addEntity()
+  const imageTransform = getUITransform(UiTransform, imageEntity)
+  imageTransform.parent = containerEntity
+  imageTransform.width = 200
+  imageTransform.height = 80
+  imageTransform.marginBottom = 20
+  imageTransform.marginBottomUnit = YGUnit.YGU_POINT
+
+  getUIBackground(
+    UiBackground,
+    imageEntity,
+    data.captcha.image,
+    BackgroundTextureMode.STRETCH,
+  )
+
+  // Add input field
+  const inputEntity = engine.addEntity()
+  const inputTransform = getUITransform(UiTransform, inputEntity)
+  inputTransform.parent = containerEntity
+  inputTransform.width = 200
+  inputTransform.height = 30
+  inputTransform.marginBottom = 20
+  inputTransform.marginBottomUnit = YGUnit.YGU_POINT
+
+  // Add submit button
+  const buttonEntity = engine.addEntity()
+  const buttonTransform = getUITransform(UiTransform, buttonEntity)
+  buttonTransform.parent = containerEntity
+  buttonTransform.width = 100
+  buttonTransform.height = 30
+  buttonTransform.alignItems = YGAlign.YGA_CENTER
+  buttonTransform.alignContent = YGAlign.YGA_CENTER
+
+  UiBackground.createOrReplace(buttonEntity, {
+    color: { r: 0.3, g: 0.3, b: 0.3, a: 1 },
+    textureMode: BackgroundTextureMode.NINE_SLICES,
+    uvs: [0, 0, 1, 0, 1, 1, 0, 1],
+  })
+
+  getUIText(
+    UiText,
+    buttonEntity,
+    'Submit',
+    16,
+    100,
+    TextAlignMode.TAM_MIDDLE_CENTER,
+    Color4.White(),
+  )
+
+  // Add click handler for submit button
+  pointerEventsSystem.onPointerDown(
+    {
+      entity: buttonEntity,
+      opts: {
+        button: InputAction.IA_POINTER,
+      },
+    },
+    () => {
+      // Get input text value and call onSubmit callback
+      const inputText = UiText.get(inputEntity)?.value || ''
+      onSubmit(inputText)
+
+      // Remove UI
+      engine.removeEntity(uiStack)
+    },
+  )
+
+  return uiStack
 }
