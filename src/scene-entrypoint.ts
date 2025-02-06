@@ -1,13 +1,16 @@
 import {
-  Entity,
   IEngine,
   createInputSystem,
   createPointerEventsSystem,
   createTweenSystem,
 } from '@dcl/ecs'
-import { definePlayerHelper } from '@dcl/sdk/src/players'
 import { createReactBasedUiSystem } from '@dcl/react-ecs'
-import { createComponents, initComponents, ISDKHelpers } from './definitions'
+import {
+  createComponents,
+  initComponents,
+  IPlayersHelper,
+  ISDKHelpers,
+} from './definitions'
 import { createActionsSystem } from './actions'
 import { createTriggersSystem } from './triggers'
 import { createTimerSystem } from './timer'
@@ -22,7 +25,11 @@ let initialized: boolean = false
  * the _args param is there to mantain backwards compatibility with all versions.
  * Before it was initAssetPacks(engine, pointerEventsSystem, components)
  */
-export function initAssetPacks(_engine: unknown, sdkHelpers?: ISDKHelpers) {
+export function initAssetPacks(
+  _engine: unknown,
+  sdkHelpers?: ISDKHelpers,
+  playersHelper?: IPlayersHelper,
+) {
   // Avoid creating the same systems if asset-pack is called more than once
   if (initialized) return
   initialized = true
@@ -44,11 +51,10 @@ export function initAssetPacks(_engine: unknown, sdkHelpers?: ISDKHelpers) {
       engine,
       pointerEventsSystem,
     )
-    const players = definePlayerHelper(engine)
 
     // create systems that some components needs (VideoPlayer, etc)
     initComponents(engine)
-    engine.addSystem(createActionsSystem(engine, players, sdkHelpers))
+    engine.addSystem(createActionsSystem(engine, sdkHelpers, playersHelper))
     engine.addSystem(
       createTriggersSystem(
         engine,
@@ -66,7 +72,7 @@ export function initAssetPacks(_engine: unknown, sdkHelpers?: ISDKHelpers) {
         engine,
         pointerEventsSystem,
         reactBasedUiSystem,
-        players,
+        playersHelper,
       ),
     )
   } catch (error) {
