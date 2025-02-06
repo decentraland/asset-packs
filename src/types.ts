@@ -142,3 +142,14 @@ export type SyncEntitySDK = (
   componentIds: number[],
   entityEnumId?: number | undefined,
 ) => void
+
+export type CaptchaData = {
+  campaignId: string
+  dispenserKey: string
+  captcha: {
+    id: string
+    image: string
+    height: number
+    width: number
+  }
+}
