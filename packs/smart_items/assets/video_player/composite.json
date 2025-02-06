@@ -2,12 +2,47 @@
   "version": 1,
   "components": [
     {
-      "name": "core::VideoPlayer",
+      "name": "core::Material",
       "data": {
         "0": {
           "json": {
-            "src": "https://player.vimeo.com/external/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875",
-            "playing": true
+            "material": {
+              "$case": "unlit",
+              "unlit": {
+                "alphaTest": 0.5,
+                "castShadows": false,
+                "diffuseColor": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 1
+                },
+                "texture": {
+                  "tex": {
+                    "$case": "videoTexture",
+                    "videoTexture": {
+                      "videoPlayerEntity": 0,
+                      "wrapMode": 1,
+                      "filterMode": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "core::MeshCollider",
+      "data": {
+        "0": {
+          "json": {
+            "collisionMask": 1,
+            "mesh": {
+              "$case": "plane",
+              "plane": {}
+            }
           }
         }
       }
@@ -28,42 +63,53 @@
       }
     },
     {
-      "name": "core::MeshCollider",
+      "name": "core-schema::Name",
       "data": {
         "0": {
           "json": {
-            "collisionMask": 1,
-            "mesh": {
-              "$case": "plane",
-              "plane": {
-                "uvs": []
-              }
-            }
+            "value": "Video Player"
           }
         }
       }
     },
     {
-      "name": "core::Material",
+      "name": "core::PointerEvents",
       "data": {
         "0": {
           "json": {
-            "material": {
-              "$case": "pbr",
-              "pbr": {
-                "texture": {
-                  "tex": {
-                    "$case": "videoTexture",
-                    "videoTexture": {
-                      "videoPlayerEntity": 0
-                    }
-                  }
-                },
-                "roughness": 1,
-                "specularIntensity": 0,
-                "metallic": 0
+            "pointerEvents": [
+              {
+                "eventType": 1,
+                "eventInfo": {
+                  "button": 1,
+                  "hoverText": "Play Video",
+                  "maxDistance": 10,
+                  "showFeedback": true
+                }
               }
-            }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "core-schema::Sync-Components",
+      "data": {
+        "0": {
+          "json": {
+            "componentIds": [1043]
+          }
+        }
+      }
+    },
+    {
+      "name": "core::VideoPlayer",
+      "data": {
+        "0": {
+          "json": {
+            "src": "{assetPath}/552481870.m3u8?s=c312c8533f97e808fccc92b0510b085c8122a875",
+            "playing": true,
+            "volume": 1
           }
         }
       }
@@ -214,44 +260,8 @@
         "0": {
           "json": {
             "id": "{self}",
-            "value": [
-              "Playing",
-              "Stopped",
-              "Toggle"
-            ],
+            "value": ["Playing", "Stopped", "Toggle"],
             "defaultValue": "Stopped"
-          }
-        }
-      }
-    },
-    {
-      "name": "core-schema::Sync-Components",
-      "data": {
-        "0": {
-          "json": {
-            "value": [
-              "core::VideoPlayer"
-            ]
-          }
-        }
-      }
-    },
-    {
-      "name": "core::PointerEvents",
-      "data": {
-        "0": {
-          "json": {
-            "pointerEvents": [
-              {
-                "eventType": 1,
-                "eventInfo": {
-                  "button": 1,
-                  "hoverText": "Play Video",
-                  "maxDistance": 10,
-                  "showFeedback": true
-                }
-              }
-            ]
           }
         }
       }
@@ -287,7 +297,8 @@
                 "type": "asset-packs::Triggers",
                 "basicViewId": "trigger-when-turned-off"
               }
-            ]
+            ],
+            "assetId": "dc5ec17b-aa1a-4bd0-bace-7d615d9bdc70"
           }
         }
       }
