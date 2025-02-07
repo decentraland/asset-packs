@@ -51,12 +51,12 @@ Go the `js-sdk-toolchain` repo in your machine and do this:
 2. Run `npm link @dcl/asset-packs` to symlink to your local repository
 3. Run `npm start` to start a local dev server. It should start by default on port `8000` but since we are already using it for the SDK7 dev server, it will start on port `8001`.
 
-Go to the `builder` repo in your machine and do this:
+Go to the `creator-hub` repo in your machine and do this:
 
-1. Set the `REACT_APP_INSPECTOR_PORT` env var in `.env` to be `8001` (this is the `@dcl/inspector` dev server we started in the previous section).
-2. Set the `REACT_APP_BIN_INDEX_JS_DEV_PORT` to the port where the SDK7 started running in the first section (by defualt `8000`).
-3. Set the `REACT_APP_BIN_INDEX_JS_DEV_PATH` env var in `.env` to the path to the `bin/index.js` that you copied in the first section.
-4. Set the `INSPECTOR_CONTENT_URL` variable in `src/config/env/[dev|stg|prod].json` to be `http://localhost:9000/asset-packs` (this is the content server we started in the first section).
+1. Set the `VITE_INSPECTOR_PORT` env var in `.env` to be `8001` (this is the `@dcl/inspector` dev server we started in the previous section).
+2. Set the `VITE_ASSET_PACKS_JS_PORT` to the port where the SDK7 started running in the first section (by defualt `8000`).
+3. Set the `VITE_ASSET_PACKS_JS_PATH` env var in `.env` to the path to the `bin/index.js` that you copied in the first section.
+4. Set the `VITE_ASSET_PACKS_CONTENT_URL` variable in `src/config/env/[dev|stg|prod].json` to be `http://localhost:9000/asset-packs` (this is the content server we started in the first section).
 5. Run `npm start` to start the builder local server which should start on port `3000`
 
 Now you are all set, you can start developing the SDK7 scene in this repo, use it from the local Builder and test it by previewing the scene, which should use your local Builder Server serving the development javascript files.
