@@ -93,7 +93,8 @@
               {
                 "type": "batch",
                 "name": "Ring",
-                "jsonPayload": "{\"actions\":[\"Play Sound\",\"Play Animation\"]}"
+                "jsonPayload": "{\"actions\":[\"Play Sound\",\"Play Animation\"]}",
+                "allowedInBasicView": true
               }
             ]
           }

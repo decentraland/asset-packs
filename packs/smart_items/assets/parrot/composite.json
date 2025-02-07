@@ -103,12 +103,14 @@
               {
                 "type": "set_state",
                 "name": "Trigger",
-                "jsonPayload": "{\"state\":\"Triggered\"}"
+                "jsonPayload": "{\"state\":\"Triggered\"}",
+                "allowedInBasicView": true
               },
               {
                 "type": "set_state",
                 "name": "Disarm",
-                "jsonPayload": "{\"state\":\"Silent\"}"
+                "jsonPayload": "{\"state\":\"Silent\"}",
+                "allowedInBasicView": true
               }
             ]
           }
