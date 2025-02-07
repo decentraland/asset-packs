@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v1
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20
       - name: Install
         run: npm ci
       - name: Build
@@ -24,4 +24,3 @@ jobs:
           S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME_DEV }}
           S3_REGION: us-east-1
           S3_UPLOAD_CONCURRENCY: 20
-          
