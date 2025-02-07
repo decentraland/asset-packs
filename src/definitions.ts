@@ -57,6 +57,10 @@ export const ActionSchemas = {
     loop: Schemas.Optional(Schemas.Boolean),
   }),
   [ActionType.STOP_ANIMATION]: Schemas.Map({}),
+  [ActionType.BATCH_ANIMATION]: Schemas.Map({
+    animations: Schemas.Array(Schemas.String),
+    loop: Schemas.Optional(Schemas.Boolean),
+  }),
   [ActionType.SET_STATE]: Schemas.Map({ state: Schemas.String }),
   [ActionType.START_TWEEN]: Schemas.Map({
     type: Schemas.EnumString<TweenType>(TweenType, TweenType.MOVE_ITEM),
