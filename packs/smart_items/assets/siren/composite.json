@@ -68,12 +68,14 @@
               {
                 "name": "Trigger",
                 "type": "set_state",
-                "jsonPayload": "{\"state\":\"Triggered\"}"
+                "jsonPayload": "{\"state\":\"Triggered\"}",
+                "allowedInBasicView": true
               },
               {
                 "name": "Disarm",
                 "type": "set_state",
-                "jsonPayload": "{\"state\":\"Silent\"}"
+                "jsonPayload": "{\"state\":\"Silent\"}",
+                "allowedInBasicView": true
               },
               {
                 "type": "play_animation",
