@@ -39,6 +39,7 @@ export enum InterpolationType {
 export enum ActionType {
   PLAY_ANIMATION = 'play_animation',
   STOP_ANIMATION = 'stop_animation',
+  BATCH_ANIMATION = 'batch_animation',
   SET_STATE = 'set_state',
   START_TWEEN = 'start_tween',
   SET_COUNTER = 'set_counter',
