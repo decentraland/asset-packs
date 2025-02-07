@@ -77,7 +77,7 @@
               {
                 "name": "Airdrop",
                 "type": "batch",
-                "jsonPayload": "{\"actions\":[\"self::StartPosition\",\"self::Visible\",\"self::Drop\",\"self::DropAnimation\"]}",
+                "jsonPayload": "{\"actions\":[\"self::Visible\",\"self::AirdropAnimation\"]}",
                 "allowedInBasicView": true
               },
               {
