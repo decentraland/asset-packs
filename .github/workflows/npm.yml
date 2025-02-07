@@ -11,6 +11,8 @@ name: npm
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js 20.x
@@ -25,5 +27,6 @@ jobs:
         uses: decentraland/oddish-action@master
         with:
           access: public
+          provenance: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
