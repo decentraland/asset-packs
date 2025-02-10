@@ -100,12 +100,14 @@ export function createActionsSystem(
     UiTransform,
     UiText,
     UiBackground,
+    UiInput,
+    UiInputResult,
     Name,
     Tween: TweenComponent,
     TweenSequence,
     VideoPlayer,
   } = getExplorerComponents(engine)
-  const { Actions, States, Counter, Triggers } = getComponents(engine)
+  const { Actions, States, Counter, Triggers, Rewards } = getComponents(engine)
 
   // save internal reference to init funcion
   internalInitActions = initActions
@@ -1450,13 +1452,8 @@ export function createActionsSystem(
     }
   }
 
-  async function fetchCampaign(campaignId: string) {
-    const url = `https://rewards.decentraland.zone/api/campaigns/${campaignId}`
-    return request(url)
-  }
-
-  async function fetchCampaignDispensers(campaignId: string) {
-    const url = `https://rewards.decentraland.zone/api/campaigns/${campaignId}/keys`
+  async function fetchCampaignsByDispenserKey(dispenserKey: string) {
+    const url = `https://rewards.decentraland.zone/api/campaigns/keys?campaign_key=${encodeURIComponent(dispenserKey)}`
     return request(url)
   }
 
@@ -1470,7 +1467,6 @@ export function createActionsSystem(
   }
 
   async function requestToken(
-    campaignId: string,
     dispenserKey: string,
     captcha?: {
       id: string
@@ -1487,10 +1483,9 @@ export function createActionsSystem(
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        campaign_id: campaignId,
         campaign_key: dispenserKey,
-        catalyst: realm.realmInfo ? realm.realmInfo.baseUrl : '',
         beneficiary: !player?.isGuest ? player?.userId : '',
+        catalyst: realm.realmInfo ? realm.realmInfo.baseUrl : '',
         ...(captcha
           ? { captcha_id: captcha.id, captcha_value: captcha.value }
           : {}),
@@ -1500,55 +1495,47 @@ export function createActionsSystem(
 
   function handleClaimAirdrop(
     entity: Entity,
-    payload: ActionPayload<ActionType.CLAIM_AIRDROP>,
+    _payload: ActionPayload<ActionType.CLAIM_AIRDROP>,
   ) {
-    const { testMode, campaignId, dispenserKey } = payload
-    console.log('claim airdrop', dispenserKey)
+    const rewards = Rewards.getOrNull(entity)
+
+    if (!rewards) {
+      return
+    }
+
+    const { testMode, campaignId, dispenserKey } = rewards
+
     if (testMode) {
       console.log('Handle Claim Airdrop in Test Mode :)')
       return
     }
 
-    fetchCampaign(campaignId).then((campaign) => {
-      if (campaign) {
-        console.log('campaign', campaign)
+    fetchCampaignsByDispenserKey(dispenserKey).then((campaigns) => {
+      const campaign = campaigns.find((c: any) => c.campaign_id === campaignId)
+      if (campaign && campaign.enabled) {
+        console.log('campaign', { campaign })
+        if (campaign.requires_captcha) {
+          console.log('Captcha required')
 
-        if (campaign.enabled) {
-          fetchCampaignDispensers(campaignId).then((dispensers) => {
-            console.log('dispensers', dispensers)
-            if (dispensers) {
-              const dispenser = dispensers.find(
-                (dispenser: any) => dispenser.campaign_key === dispenserKey,
-              )
-              if (dispenser) {
-                console.log('dispenser', dispenser)
-
-                if (dispenser.requires_captcha) {
-                  console.log('Captcha required')
-
-                  fetchCaptcha().then((captcha) => {
-                    console.log('captcha', captcha)
-                    if (captcha) {
-                      showCaptchaPrompt(entity, {
-                        campaignId,
-                        dispenserKey,
-                        captcha,
-                      })
-                    }
-                  })
-                } else {
-                  requestToken(campaignId, dispenserKey)
-                }
-              }
+          fetchCaptcha().then((captcha) => {
+            console.log('captcha', captcha)
+            if (captcha) {
+              showCaptchaPrompt(entity, {
+                campaignId,
+                dispenserKey,
+                captcha,
+              })
             }
           })
+        } else {
+          requestToken(dispenserKey)
         }
       }
     })
   }
 
   function showCaptchaPrompt(
-    entity: Entity,
+    _entity: Entity,
     data: { campaignId: string; dispenserKey: string; captcha: any },
   ) {
     showCaptchaPromptUI(
@@ -1556,11 +1543,13 @@ export function createActionsSystem(
       UiTransform,
       UiBackground,
       UiText,
+      UiInput,
+      UiInputResult,
       pointerEventsSystem,
       data,
       (inputText) => {
         // Request token with captcha validation
-        requestToken(data.campaignId, data.dispenserKey, {
+        requestToken(data.dispenserKey, {
           id: data.captcha.id,
           value: inputText,
         }).then((token: any) => {
