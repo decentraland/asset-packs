@@ -25,6 +25,8 @@ import {
   NetworkEntity,
   SyncComponents,
   AudioSourceComponentDefinitionExtended,
+  PBUiInput,
+  PBUiInputResult,
 } from '@dcl/ecs'
 import { addActionType } from './action-types'
 import {
@@ -212,11 +214,7 @@ export const ActionSchemas = {
   [ActionType.HEAL_PLAYER]: Schemas.Map({
     multiplier: Schemas.Int,
   }),
-  [ActionType.CLAIM_AIRDROP]: Schemas.Map({
-    testMode: Schemas.Boolean,
-    campaignId: Schemas.String,
-    dispenserKey: Schemas.String,
-  }),
+  [ActionType.CLAIM_AIRDROP]: Schemas.Map({}),
 }
 
 export type ActionPayload<T extends ActionType = any> =
@@ -381,9 +379,9 @@ export function createComponents(engine: IEngine) {
   })
 
   const Rewards = engine.defineComponent(ComponentName.REWARDS, {
-    testMode: Schemas.Boolean,
     campaignId: Schemas.String,
     dispenserKey: Schemas.String,
+    testMode: Schemas.Boolean,
   })
 
   return {
@@ -411,6 +409,8 @@ export type EngineComponents = {
   UiTransform: LastWriteWinElementSetComponentDefinition<PBUiTransform>
   UiText: LastWriteWinElementSetComponentDefinition<PBUiText>
   UiBackground: LastWriteWinElementSetComponentDefinition<PBUiBackground>
+  UiInput: LastWriteWinElementSetComponentDefinition<PBUiInput>
+  UiInputResult: LastWriteWinElementSetComponentDefinition<PBUiInputResult>
   Billboard: LastWriteWinElementSetComponentDefinition<PBBillboard>
   Name: LastWriteWinElementSetComponentDefinition<NameType>
   Tween: LastWriteWinElementSetComponentDefinition<PBTween>
