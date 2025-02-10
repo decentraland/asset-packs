@@ -247,11 +247,16 @@ export function getUIText(
   })
 }
 
+const BTN_CLOSE_TEXT_ANNOUNCEMENT =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAxCAYAAABznEEcAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAQRSURBVHgB7VlPU9NAFH+bpgye7DcwfgKYccDqKH/GD4Dc9GS5OYWZpuhJKwSpXnTaoJUr+AmEm56sXOzIpUdvlm9Qbw60Wd+mhZZmk91NUnrpb0YHkrfJ/ni77/fLW4AxxhijHwRihGlaqeTpqdEGmAZNM4CQ6+BACgg96b6srjlO493u2zrEiMgk2MS1s3aGAl3Cx00D0JR4FGngi6saoZ/fV4pViIjQJNzJn7ZylBBTbuK+U2gQClul3e19CIlQJPLZjRwuESva5D1TadBkYtG2rQYoQomE+dQySKK1hz8uwJCAWbFKu8UtlTEJ2cAOgfZ3YJt2mCCwcHdmDn4eH/2QHSJFokeAGnAVYERm5w0kcigTLiRx5QR6mJbNiCYKGBEBF5SAlV/deCKKCyRhZguboyLQg2NjOTeCInxJuMsI/xIgBGngf6EUmBByIBHG9KgcFOBLQku0N0E8Dbe206S+CIpEKCUrpcr2Mi4ZYTnFmIfP1woLfve5JFgW0EZkIBA9ccJ/TRUijIDdVWi7UrRkiDgO5Pzu8TOhtzIgAKrkQb+6yhLpJ3CBlo6/k2bgOCy7zOrw7mk+E1wCATBT5rq78XsQEeER6CvhIguDRvMsw7vhIcEeijOUUmVWAmWJCAgYIAVtint18EJCbynZChki8RBg2ed7No0TqOyNgojgveU4CHTfZPD2hZcEBQNCwI8IVp9LWhDZxuCX4+Al3sa+ASHBI9KPOHyYrmniTEQFI2JmX3CXpKa3y8OwMR4SaAWaEAGdTcxvBDh6YgVCWpQgcPYE/QshwRWyPqgqOw8tx/H8kTmZgAaEgF8ZfZYtXLILkYlMTDQGL3lJhHh4kA44BGxVZQ9AnY0dvOgh0db1KihARshUlD0IBAg31kOiy7QKElBR4jiIOIRyv7m5JZYCEX6gE6JtqSpxMBFhVfQI5zn4OpFM7AutMXVy/XogK2Q8IuhOyyIXi0vJ9yuQ2+2o1ar/0rfnrpHgJtkkasqj9My9b+lbDyaVlLivt7S++nIPM58RDcFsLeO8mvzH+YAZLXLW/iPh85udrIVSYrYXxIaTwE65UjT9bvvaDnetgvizEZGKYCUkHDN+Buu6FRQR2DyrHR/V7szev9lp2Y8GlOqL9sfgJrPQANJkkqUxdr8jA3QPWAEt4buluuKjaGUyAiXshEjFgiS6bf0vMOyuOLhNiLz96Y0tG698yJJfK9j4lhwMBbiJCV2xFY/ApM8nzlH7dfQ1PTN/ghrBMiIqv/LAMopa8Nj+8Po3KCLSwaOZfZXBtRup6YzjDxyAHTvCAWQsR8Am9knxmCqDT5sS96xQGAmto3k8ZPaGZ61VEes5NoPbUmm5vasUnllfLDdH05qg6/UwB4tjjDGGGv4DI3MOHJgAfIoAAAAASUVORK5CYII='
+
 export function showCaptchaPrompt(
   engine: IEngine,
   UiTransform: EngineComponents['UiTransform'],
   UiBackground: EngineComponents['UiBackground'],
   UiText: EngineComponents['UiText'],
+  UiInput: EngineComponents['UiInput'],
+  UiInputResult: EngineComponents['UiInputResult'],
   pointerEventsSystem: PointerEventsSystem,
   data: { campaignId: string; dispenserKey: string; captcha: any },
   onSubmit: (inputText: string) => void,
@@ -259,11 +264,8 @@ export function showCaptchaPrompt(
   // Create UI stack for centering
   const uiStack = engine.addEntity()
   const uiStackTransform = getUITransform(UiTransform, uiStack)
-  uiStackTransform.positionType = YGPositionType.YGPT_ABSOLUTE
   uiStackTransform.alignItems = YGAlign.YGA_CENTER
   uiStackTransform.alignContent = YGAlign.YGA_CENTER
-  uiStackTransform.width = 400
-  uiStackTransform.height = 300
 
   // Create container
   const containerEntity = engine.addEntity()
@@ -288,6 +290,60 @@ export function showCaptchaPrompt(
     textureMode: BackgroundTextureMode.NINE_SLICES,
     uvs: [0, 0, 1, 0, 1, 1, 0, 1],
   })
+
+  // Create close button entity
+  const closeButtonEntity = engine.addEntity()
+  const closeButtonTransform = getUITransform(
+    UiTransform,
+    closeButtonEntity,
+    24,
+    24,
+    YGUnit.YGU_POINT,
+  )
+  closeButtonTransform.parent = containerEntity
+  closeButtonTransform.positionType = YGPositionType.YGPT_ABSOLUTE
+  closeButtonTransform.positionRight = 5
+  closeButtonTransform.positionRightUnit = YGUnit.YGU_POINT
+  closeButtonTransform.positionTop = 5
+  closeButtonTransform.positionTopUnit = YGUnit.YGU_POINT
+
+  // Add circular background for close button
+  UiBackground.createOrReplace(closeButtonEntity, {
+    textureMode: BackgroundTextureMode.NINE_SLICES,
+    texture: {
+      tex: {
+        $case: 'texture',
+        texture: {
+          src: BTN_CLOSE_TEXT_ANNOUNCEMENT,
+        },
+      },
+    },
+    uvs: [1, 0, 1, 0, 1, 0, 0, 1],
+  })
+
+  // Add X text to close button
+  getUIText(
+    UiText,
+    closeButtonEntity,
+    'X',
+    16,
+    24,
+    TextAlignMode.TAM_MIDDLE_CENTER,
+    Color4.White(),
+  )
+
+  // Close button click handler
+  pointerEventsSystem.onPointerDown(
+    {
+      entity: closeButtonEntity,
+      opts: {
+        button: InputAction.IA_POINTER,
+      },
+    },
+    () => {
+      engine.removeEntity(uiStack)
+    },
+  )
 
   // Add title text
   const titleEntity = engine.addEntity()
@@ -331,6 +387,20 @@ export function showCaptchaPrompt(
   inputTransform.marginBottom = 20
   inputTransform.marginBottomUnit = YGUnit.YGU_POINT
 
+  UiInput.createOrReplace(inputEntity, {
+    placeholder: 'Enter the captcha',
+    color: Color4.White(),
+    placeholderColor: Color4.create(0.3, 0.3, 0.3, 1),
+    disabled: false,
+    textAlign: TextAlignMode.TAM_MIDDLE_CENTER,
+    font: Font.F_MONOSPACE as any,
+    fontSize: 10,
+  })
+  UiInputResult.createOrReplace(inputEntity, {
+    value: '',
+    isSubmit: false,
+  })
+
   // Add submit button
   const buttonEntity = engine.addEntity()
   const buttonTransform = getUITransform(UiTransform, buttonEntity)
@@ -366,7 +436,7 @@ export function showCaptchaPrompt(
     },
     () => {
       // Get input text value and call onSubmit callback
-      const inputText = UiText.get(inputEntity)?.value || ''
+      const inputText = UiInputResult.get(inputEntity)?.value || ''
       onSubmit(inputText)
 
       // Remove UI

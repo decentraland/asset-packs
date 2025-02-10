@@ -138,38 +138,6 @@
       }
     },
     {
-      "name": "inspector::Config",
-      "data": {
-        "0": {
-          "json": {
-            "isBasicViewEnabled": true,
-            "componentName": "NFT Dispenser",
-            "fields": [
-              {
-                "name": "Campaign ID",
-                "type": "asset-packs::Rewards",
-                "property": "campaignId"
-              },
-              {
-                "name": "Dispenser Key",
-                "type": "asset-packs::Rewards",
-                "property": "dispenserKey"
-              },
-              {
-                "name": "Test Mode",
-                "type": "asset-packs::Rewards",
-                "property": "testMode"
-              },
-              {
-                "name": "Hover Text",
-                "type": "core::PointerEvents"
-              }
-            ]
-          }
-        }
-      }
-    },
-    {
       "name": "core-schema::Sync-Components",
       "data": {
         "0": {

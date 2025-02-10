@@ -18,6 +18,7 @@ import {
   InputAction,
   PointerEventsSystem,
   YGAlign,
+  UiText,
 } from '@dcl/ecs'
 import {
   Action,
@@ -1220,8 +1221,15 @@ function handleSendTextAnnouncement(
 
   // Add circular background for close button
   UiBackground.createOrReplace(closeButtonEntity, {
-    color: { r: 0.3, g: 0.3, b: 0.3, a: 0.8 },
     textureMode: BackgroundTextureMode.NINE_SLICES,
+    texture: {
+      tex: {
+        $case: 'texture',
+        texture: {
+          src: BTN_CLOSE_TEXT_ANNOUNCEMENT,
+        },
+      },
+    },
     uvs: [1, 0, 1, 0, 1, 0, 0, 1],
   })
 
