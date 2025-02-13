@@ -10,12 +10,12 @@ import {
 } from '../definitions'
 import { getExplorerComponents } from '../components'
 import { Button } from './Button'
+import { CONTENT_SERVER } from './constants'
 import { State } from './types'
 
 // Constants
 const ICONS = {
-  SMART_ITEM_CONTROL:
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGFSURBVHgB7ZnhTcMwEEa/IAaADTpCGYENugHZJB6hG9ANKiZghI6QbBA2OM6KpZoSO4ewkzupT4r6o/nh1zxFn1Tgzp1fEFGLf/KIjWGJjj+eYRmWeKOJPazChz8EiR5W8U+ArzGIHGERPvgukrCZVZDoIwl7Wc1I2MsqIWErKz7sU0KiaFYPqIiX4I9PvnYzX3/ACixypjQ2suKDvmckbLyt+KAd5dH/thJI6M9KKKE7K6GE7qzoOscl6MyKrnN8TRxKQj/nuFmJ2zm+BieUhNIjsCZnlGQjiQtNuy1Jgz/gJZAegbUY+HppmuYrd5NYJPwiF6wv8coSw9KNohlP+TleiwFCCTGUn+M16EPG5aD8HK/BWEOio3XxEmUnzAYSngM0QtOEkdJCK3y4o1DCQTMkWwAOmhFm5aAdQVYOFljI6gQLLGRVdo7XJJPV4hxXRSKr3prEPiGxgyVmsrIn4aGbv9asSsRZjSYlPFFW5ef4mkRZ6ZzjEqKsWlgmZOVgna2fxDfmgas+OhgWLAAAAABJRU5ErkJggg==',
+  SMART_ITEM_CONTROL: `${CONTENT_SERVER}/admin_toolkit/assets/icons/smart-item-control.png`,
 } as const
 
 const UI_STYLES = {

@@ -4,22 +4,17 @@ import { Color4 } from '@dcl/sdk/math'
 import { getComponents } from '../definitions'
 import { getExplorerComponents } from '../components'
 import { Button } from './Button'
+import { CONTENT_SERVER } from './constants'
 import { State } from './types'
 
 // Constants
 const ICONS = {
-  VIDEO_CONTROL:
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAIYSURBVHgB7ZrtcYJAEIYXRH9bAh1EOyAlpAM7SFJBkgqcVBBTQexAS7CD2EHIX7/IuzM4AwwYDvY+Eu+ZcQ5OEV92b/duTyKPx6NCQALsdrtJGIYT0k96Op22o9FoU/dmLzFZlsXH4/ENhwkZJAiCLR7eLbelfuoIC8FTWnFLFsgFTdGm576QOgKLJLaEMHzv/X4/K/Z1FgOrJGQZWOamdE7/CC/GVUyK2WLQvpBGGsUgUiSHw+ELUesTSfGBBBgOh88IHNNqfpCiUQwiBSfDMYdAHM/RjkkAzt6c8HC4JGEaxdTkEBExDFsmiqI7abezGgCk3c56NJN0OydCs5TbOZVn+rqdc0nz7HYQtFG91skZAFsG+e2dFInIQThhQ9ATKeKcZWCROYSsqENec8Yy5yU42oQ64oQYdisI+aCeswzrbtbHrapYs4yEW1WxIkbKraoYdzNJt6pi0jJjLPZWkm5VxaRl2BIJacQXNFzlT4vB+PsunncWg4i0IMvgN6yL553FYCG1xkJKeZouBazyitVpaandy82wkJrxUldXHawOvhffEw+zfS0POSErvmxuX7TlOqMZrBOT47QWA1+9lyrR6qJxT5PHSU13WtxD1EiaR6uFykWXxPDMNiGLcA2taZu8jkuFc617KW1A/SxW+nzTG3lSfDSZQ4rkJVul+vOv/wPgQQ+Xm+DLYzLIYDBYGhqfHs/V8gMFOf2fQ9gfZwAAAABJRU5ErkJggg==',
-  PREVIOUS_BUTTON:
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFESURBVHgB7djBTUMxEATQAVEAHWA6gA4+HUAHUAHQQVIBUAGhAugAOoASXAIlsKslUnJIFPt71z7Mk0biao138Q9ARERERDSQW8nnRhZoK0muUegYdZJk2sgZ2tFDfEsuUKj2MB5OJU+S9/+/i51gDJPkFdZ4tRGa0TZ07hJm6tlMgl2p4tnYpVcz96gc8n2im9HB1tkoXruHiGxmgrXhchAVcZj1ym0y5Pt4XzOdCR3yhACezayHPCGIRzN6rbSNCcE8mvmVLCUZwbyu2ZfkSvKGQJ4zk2GfCnewttxFrOaV5FLyA2dR/zQz7EBLOIp+my0k53BaDj0emhnW0gsa6/Vq1oXwAFsOGY30/jhbwVb4BxoY4UszS24kj5hppB80njFzOYx0GJVhB6pa4Ueok7D9Gs5ov271wRryciAiIiKi9v4AivcsSBHk+/wAAAAASUVORK5CYII=',
-  FORWARD_BUTTON:
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAE/SURBVHgB7dbRUcNADATQhaEASrgSQgfQQejAdBAqIFTAUAElkA5wB9ABLoESkEa5mfAD2JZ097FvZn/jWcu6HEBERERE1JGtpMDXTvJ2kgEznWOZzdIH/vGb1ycpmGlpGRwf9nLMJTqwpkw1SN5hb7YpjzKqwAo9oCGvMtVe8gn/w+FfvMuoApvSDskiyig9EJ5gh0NBkqgy1QA7wrdIEF1GFckrbFKhMspUukOhh0NmGVVghUKO8Owy1R62S643h1ZlJsmj5AuOWpQ5SK4kI5xlltEp3Etu4TyR6gI5Rskd7PMKkzEZncYNgouoyMlMsE/qA0miJvMMW/K0Isp7MrrYuhsHNOA5mRE2jSZFlEeZeuSmLPlv1n5muhO65BM6sGYydckndOIMy+gF0ftffIOfF88JHb0oIiIiIprnGyrkMBevIFSEAAAAAElFTkSuQmCC',
-  PLAY_BUTTON:
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEnSURBVHgB7djhScRAEMXxP2IBlhA70A5SytiBHYgViBXYgh2YEuzAdKAd6CwhGE7wdpLdvckxP3gf82F4uccRCCGEEEIIqtcIZ0I035oXTcfOCdMxKR/svCXh95g5bzRu6YJ6eqaWHtgZ4W8zy6SjOiqr2cxSx3TQk+YK54T/mzlsSXBMyD9mjtsZF+zHuG1JWHdM0RlvNQDH9DiacWFbM0Vm3EszSx0nnnGhXDOHLd2QyWMzsy/Ns+Y994FLfBo0d5rR8Iy7Y1Ib6YhXVvD0mqVX6pqVhyQemhmZ2hjY6NTNPGpuKXBISYL970v25LYm5B3xqbmnkpa/mYEVc2vR4phNc2tRewA2z61FrWZGCs2tRY1mXM6theB8bi3cfz4KIYQQwrn6AeTDp/o9pKijAAAAAElFTkSuQmCC',
-  VOLUME_MINUS_BUTTON:
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABRSURBVHgB7dJRCYBAAETBVQxiFJtqFKMYQRPogQUU9D6OGXgBFjYBAAAAgE90eWcqjalrK635wVI6KzfnoT4NaWrMkHf23B+u6QgAAAAA1HUBn3Qh7hutr4QAAAAASUVORK5CYII=',
-  VOLUME_PLUS_BUTTON:
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACgSURBVHgB7dfBDcJADETRAVEAJWwpUAE1UBl0AqVsCVABmGvIIZZwNCT/SXNY3+ZgySsBAAD8tY1qtchtMDtGugrsVK9pJlstCGVcUcYVZVxRxtWiymTPmYNy58l+ZHaKPDVdj9xV4Bp5zZyLJmJnXGV35qH8X6QN3l05mf0q1fS9A01F2BlXlHFFGVeUcUUZV6s+NLM+h+l5ZAYAAPAjb8RpLRFkEsQIAAAAAElFTkSuQmCC',
+  VIDEO_CONTROL: `${CONTENT_SERVER}/admin_toolkit/assets/icons/video-control.png`,
+  PREVIOUS_BUTTON: `${CONTENT_SERVER}/admin_toolkit/assets/icons/video-control-previous-button.png`,
+  FORWARD_BUTTON: `${CONTENT_SERVER}/admin_toolkit/assets/icons/video-control-forward-button.png`,
+  PLAY_BUTTON: `${CONTENT_SERVER}/admin_toolkit/assets/icons/video-control-play-button.png`,
+  VOLUME_MINUS_BUTTON: `${CONTENT_SERVER}/admin_toolkit/assets/icons/video-control-volume-minus-button.png`,
+  VOLUME_PLUS_BUTTON: `${CONTENT_SERVER}/admin_toolkit/assets/icons/video-control-volume-plus-button.png`,
 } as const
 
 const UI_STYLES = {
@@ -35,8 +30,7 @@ const UI_STYLES = {
   } as const,
 } as const
 
-const DROPDOWN_BACKGROUND =
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1wAAABUCAYAAACWXjY0AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAASNSURBVHgB7d3vURtHGMDhvRN8Jx3IFYArCO6AVOCkAuwKDB2ECkIqwB0EV2BcAbiC6LvupOyr6BhFgP6g25kYnmdGc9JpPebrb969VZV6MJ1OD9q2Pamq6jC/H+brUdzLXx0kAACA/7ncMHe5Ye7y9SZfvw0Gg+u4l3ZUpWeKoJpMJqf5epw/HicAAIAXZB5fF7vE19bBtRBaH5IJFgAA8Dpc5vA63za8tgqutm0/CS0AAOC1ysF1FuG18fpNFsVzWXmqdZWvRwkAAOAViylXXdfvNpl21esW5Mh6nydbX8UWAADAvwOpaKSmaU7WrV0ZXLGFML8uky2EAAAAi6KRrqKZVi16ckvh/HmtswQAAMCTVj3X9WhwzUdjVwkAAIC1cnD9msPrz+X7D4Kr24+YbCMEAADY1ChH19vlgzQeBFeOrduIrgQAAMDG4oeSI7oW7/3n0Iz5c1vDBAAAwFbiZPfxeHy2eK9a+DK2Et4mAAAAniu2Fr7J065RfLifcK07zhAAAIC1Dpqm+dB9mE24TLcAAAB6cz/lmk24cmwdJwAAAPpwP+WaBVcur9MEAABAL3Jj/Ty72k4IAADQv8Fg8FNtOyEAAED/cmud1HFWfAIAAKBX0Vp1VVWHCQAAgL4NI7iGCQAAgF7FcKtqmmaaAAAA6NtIcAEAABRSJwAAAIoQXAAAAIUILgAAgEIEFwAAQCGCCwAAoBDBBQAAUIjgAgAAKERwAQAAFCK4AAAAChFcAAAAhQguAACAQgQXAABAIYILAACgEMEFAABQiOACAAAoRHABAAAUIrgAAAAKEVwAAACFCC4AAIBCBBcAAEAhggsAAKAQwQUAAFCI4AIAAChEcAEAABQiuAAAAAoRXAAAAIUILgAAgEIEFwAAQCGCCwAAoBDBBQAAUIjgAgAAKERwAQAAFCK4AAAAChFcAAAAhQguAACAQgQXAABAIYILAACgkAiuUQIAAKB3dVVVggsAAKB/d/V0Or1JAAAA9G0WXN8TAAAAvcqt9S22FJpwAQAA9Cxaq8rVddC27d8JAACA3gwGgzfdoRnXCQAAgF7MpltVdTf7Ha485fqSAAAA6EVurIu4VvMPsa3wNr89SAAAAOwkthPeT7hiW2FXYAAAAOzkMmIr3lTdHVMuAACA3XXTrXhfdzdNuQAAAHaTm+q8i61QLS/IU66vedFRAgAAYGMRWjHdWrxXLy+q6/qXfBklAAAANjXKLfVu+eaD4JqPvz4mAAAANvXb4lbCTv3Yyr29vcvYe5gAAABYKdopN9Tnx76rVv3D8Xh8livtUwIAAOCBiK39/f2zp75fGVyhaZqTfPkjOS4eAACgE+defIzdgasWrQ2ukKttOJlM/oprAgAAeMWqqrqJwwYfe2ZrWZ020B1v6LkuAADgFYvfLj7PbfR2k9gKG024FsWUK57tykX3PgEAALx8EVoXe3t7v+fQ2uontLYOrk6EV9u2x/k/PPVDyQAAwAt0nVvny3NCq/Ps4FrUxVeEV/5DDvNr6HkvAADgBzGKoMoNc5Nf3+MZrcFg8Pm5kbXoH25Pgk5xFc/5AAAAAElFTkSuQmCC'
+const DROPDOWN_BACKGROUND = `${CONTENT_SERVER}/admin_toolkit/backgrounds/dropdown-background.png`
 
 const VOLUME_STEP = 0.1
 const MAX_VOLUME = 1
@@ -96,6 +90,8 @@ function createVideoPlayerControls(
   engine: IEngine,
   state: State,
 ): VideoPlayerControls {
+  const videoControl = getAdminToolkitVideoControl(engine)
+
   return {
     play: () => updateVideoPlayerProps(engine, state, 'playing', true),
     pause: () => updateVideoPlayerProps(engine, state, 'playing', false),
@@ -110,8 +106,13 @@ function createVideoPlayerControls(
     next: () => {
       console.log('TODO: Next Track clicked')
     },
-    setVolume: (volume) =>
-      updateVideoPlayerProps(engine, state, 'volume', volume),
+    setVolume: (volume) => {
+      // Don't allow volume changes if sound is disabled
+      if (videoControl?.disableVideoPlayersSound) {
+        return
+      }
+      updateVideoPlayerProps(engine, state, 'volume', volume)
+    },
     setSource: (url) => updateVideoPlayerProps(engine, state, 'src', url),
   }
 }
@@ -127,6 +128,21 @@ function updateVideoPlayerProps<K extends keyof PBVideoPlayer>(
   const linkAllVideoPlayers =
     state.videoControl.linkAllVideoPlayers ?? videoControl?.linkAllVideoPlayers
   const players = getVideoPlayers(engine)
+
+  // If sound is disabled and we're updating the 'playing' property to true,
+  // we need to ensure volume is 0
+  if (
+    property === 'playing' &&
+    value === true &&
+    videoControl?.disableVideoPlayersSound
+  ) {
+    players.forEach((player) => {
+      const videoSource = VideoPlayer.getMutableOrNull(player.entity as Entity)
+      if (videoSource) {
+        videoSource.volume = 0
+      }
+    })
+  }
 
   if (linkAllVideoPlayers) {
     // Apply to all players
@@ -274,15 +290,19 @@ function VideoControlVolume({
 }) {
   const controls = createVideoPlayerControls(engine, state)
   const selectedVideoPlayer = useSelectedVideoPlayer(engine, state)
+  const videoControl = getAdminToolkitVideoControl(engine)
+  const isSoundDisabled = videoControl?.disableVideoPlayersSound
 
-  const volumePercentage = `${Math.round((selectedVideoPlayer?.volume ?? DEFAULT_VOLUME) * 100)}%`
+  const volumePercentage = isSoundDisabled
+    ? '0%'
+    : `${Math.round((selectedVideoPlayer?.volume ?? DEFAULT_VOLUME) * 100)}%`
 
   return (
     <UiEntity uiTransform={VOLUME_STYLES.CONTAINER}>
       <Label
-        value="Video Volume"
+        value={isSoundDisabled ? 'Sound Disabled' : 'Video Volume'}
         fontSize={16}
-        color={COLORS.WHITE}
+        color={isSoundDisabled ? COLORS.GRAY : COLORS.WHITE}
         uiTransform={VOLUME_STYLES.HEADER}
       />
 
@@ -295,7 +315,7 @@ function VideoControlVolume({
           onlyIcon={true}
           iconTransform={UI_STYLES.ICON_TRANSFORM}
           onMouseDown={() => controls.setVolume(-VOLUME_STEP)}
-          disabled={!selectedVideoPlayer}
+          disabled={!selectedVideoPlayer || isSoundDisabled}
         />
         <Label
           value={volumePercentage}
@@ -311,7 +331,7 @@ function VideoControlVolume({
           iconTransform={UI_STYLES.ICON_TRANSFORM}
           uiTransform={UI_STYLES.BUTTON_TRANSFORM}
           onMouseDown={() => controls.setVolume(VOLUME_STEP)}
-          disabled={!selectedVideoPlayer}
+          disabled={!selectedVideoPlayer || isSoundDisabled}
         />
         <Button
           id="video_control_volume_mute"
@@ -319,7 +339,7 @@ function VideoControlVolume({
           fontSize={18}
           uiTransform={UI_STYLES.BUTTON_TRANSFORM}
           onMouseDown={() => controls.setVolume(0)}
-          disabled={!selectedVideoPlayer}
+          disabled={!selectedVideoPlayer || isSoundDisabled}
         />
       </UiEntity>
     </UiEntity>
@@ -336,7 +356,6 @@ export function VideoControl({
 }) {
   const controls = createVideoPlayerControls(engine, state)
   const selectedVideoPlayer = useSelectedVideoPlayer(engine, state)
-
   return (
     <UiEntity
       uiTransform={{
@@ -356,9 +375,10 @@ export function VideoControl({
         <UiEntity
           uiTransform={{ width: 30, height: 30 }}
           uiBackground={{
-            color: Color4.White(),
             textureMode: 'stretch',
-            texture: { src: ICONS.VIDEO_CONTROL },
+            texture: {
+              src: ICONS.VIDEO_CONTROL,
+            },
           }}
         />
         <Label

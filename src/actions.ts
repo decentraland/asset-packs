@@ -59,7 +59,6 @@ import {
   getUITransform,
   mapAlignToScreenAlign,
   showCaptchaPrompt,
-  showCaptchaPrompt as showCaptchaPromptUI,
 } from './ui'
 import { getExplorerComponents } from './components'
 import { initTriggers, damageTargets, healTargets } from './triggers'

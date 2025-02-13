@@ -1,19 +1,19 @@
 import { Entity, IEngine } from '@dcl/ecs'
 import ReactEcs, { UiEntity, Label, Dropdown } from '@dcl/react-ecs'
 import { Color4 } from '@dcl/sdk/math'
-import { State } from './types'
-import { Button } from './Button'
 import {
   AdminTools,
   getActionEvents,
   getComponents,
   getPayload,
 } from '../definitions'
+import { Button } from './Button'
+import { CONTENT_SERVER } from './constants'
+import { State } from './types'
 
 const ICONS = {
-  REWARDS_CONTROL:
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAKmSURBVHgB7VrbddswDIVs2d8awdnAnaDaoCPUI7QT1Jmg6QRJJ3A2iDaIM0HSCaJvP3vhA+YwNB9SHgyT8J6jI5sEKFwCBElRRBkZGZ8WBT0D+/2+Wq/Xs6IoKlx3w+Gw4XtXfejWuNUHQ4piWZblJb0Fttvt781mszcvlP8K6aITJpC9sujech3FBBusGXGOHp7jvlBlq9Xqh0uXvclGi+w9dM9YXy+LRkh6VRk91euE1KFOQugIyiPihcqoW4juGcUAHjaTB1rjWyN01MMqNF3hxJ0jurcUA8pYX+/BqAvTaC00702P6lCepRhQnuFwccnIuLgWQteaDl8zlx6HptKhGGBDuXdDmYs9og1qNY7mXeR9CcSHJ80z0rvnhwYwr8CQO2vjRTHRxkaLa+mQqyA3ld9LzFdf6AnoRIbdPxgMvunZBw+tXymFcmJpbRW73e5mNBpduiZmLxmJ/QXJLJ0KQGYO750elfuUZJDXlCDgpZ/j8fhRRnWS0cdFomjhnRN46SEkS4/wV1dFn8XkS0DGamUUc1blpNGoAh+Zia3Q5t4Y4LlHZTwFzpb6/wH1BKdOegOASBuS6U0mZXwoMmVPecLkySvfoMtfAdOQQG8y5iBMCb3JcDbzJQH2HBN2yYXqQ+36ZHqTYQOwPmpc9SoEXXKh+lC7PjgTAHrhhhKHuVp3ksFrnzlC4S8lChA5NT3rJMNrHsz0M9KWC4mhMQvypJkqMplUkcmkikwmVWQyqSKTSRWZTKoI7jSxp/mHLevDfz4NwPlJi72EdeeHl3WHu3Gc0bneBuwyJyLvlQseafDBD++/KSHINwcnZnkwzOCBi9jvlkNw7YA7HTZxOKCBq+gfHNht+YMOth4Tdj4GlDPHGj+/my+sYwDPXwqRhjLeGf4Do8hiXTHNwhkAAAAASUVORK5CYII=',
-  SEND: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAzCAYAAADVY1sUAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGJSURBVHgB7ZnBTcMwFIb/qgzQDfAGMAKjMApsABMAE8AG6RjcmiM9wZEb+KmOklqO4yT2s1/lT3pKa1WVP/tP4jhApVKpSGLraLszxx8Ip9H1retFl4JgDrr+BvWOfpZEYYt0Re33unYQwpjIUEhE7KZExMRujkjRsVsiUmTs1ogUFbtYItljF1skW+xSibDHjkOEJXacIkljl0Nkdew2jjaa5lvreDP4zkWr61HXBwIeKTaYj08yRdZbXXucpNqxHy0R8ZF6Nml2nnESOyO2yBSxZrOFFbstePkynfg0dTRFbb8Iv2rtTB3N/ySdEYV+tOnzNfqRV1iOM15rRLpRGXZUoe9szBOf4kOdf8LIFWxKRCHNqIay1/WGwEuwDd1h6aZIOymiboo2ByBL52ngHhAxktwiDRItHLlEki/lU4pEjw+3SIMMj7sxRbJuQKwVYY2Pj6UiDQrbpJsrUuy2aYhIMfHx4RMpLj4+XCIiX/Z0IiLi03HlaKNlMy2ZX3EBL0QrlUqlkpR/O2Agp3mek0UAAAAASUVORK5CYII=',
+  REWARDS_CONTROL: `${CONTENT_SERVER}/admin_toolkit/assets/icons/rewards-control.png`,
+  SEND: `${CONTENT_SERVER}/admin_toolkit/assets/icons/rewards-send.png`,
 } as const
 
 // Helper Functions
