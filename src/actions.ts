@@ -8,7 +8,6 @@ import {
   Font,
   YGPositionType,
   PointerFilterMode,
-  pointerEventsSystem,
   InputAction,
   MeshCollider,
   getComponentEntityTree,
@@ -17,6 +16,7 @@ import {
   PBTween,
   Rotate,
   Scale,
+  PointerEventsSystem,
 } from '@dcl/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { requestTeleport } from '~system/UserActionModule'
@@ -58,6 +58,7 @@ import {
   getUIText,
   getUITransform,
   mapAlignToScreenAlign,
+  showCaptchaPrompt,
   showCaptchaPrompt as showCaptchaPromptUI,
 } from './ui'
 import { getExplorerComponents } from './components'
@@ -87,6 +88,7 @@ export function initActions(entity: Entity) {
 
 export function createActionsSystem(
   engine: IEngine,
+  pointerEventsSystem: PointerEventsSystem,
   sdkHelpers?: ISDKHelpers,
   playersHelper?: IPlayersHelper,
 ) {
@@ -136,8 +138,7 @@ export function createActionsSystem(
 
     for (const type of types) {
       switch (type) {
-        case ActionType.PLAY_ANIMATION:
-        case ActionType.BATCH_ANIMATION: {
+        case ActionType.PLAY_ANIMATION: {
           initPlayAnimation(entity)
           break
         }
@@ -162,13 +163,6 @@ export function createActionsSystem(
             handleStopAnimation(
               entity,
               getPayload<ActionType.STOP_ANIMATION>(action),
-            )
-            break
-          }
-          case ActionType.BATCH_ANIMATION: {
-            handleBatchAnimation(
-              entity,
-              getPayload<ActionType.BATCH_ANIMATION>(action),
             )
             break
           }
@@ -474,76 +468,6 @@ export function createActionsSystem(
     if (Animator.has(entity)) {
       Animator.stopAllAnimations(entity)
     }
-  }
-
-  function handleBatchAnimation(
-    entity: Entity,
-    payload: ActionPayload<ActionType.BATCH_ANIMATION>,
-  ) {
-    const { animations } = payload
-    let currentIndex = 0
-
-    // Stop any currently playing animations
-    Animator.stopAllAnimations(entity)
-
-    // Initialize all animations in the Animator component
-    const animator = Animator.getMutable(entity)
-    const states = [...animator.states]
-    for (const animation of animations) {
-      if (!animator.states.some(($) => $.clip === animation)) {
-        states.push({
-          clip: animation,
-          loop: false,
-          playing: false,
-          shouldReset: true,
-        })
-      }
-    }
-
-    animator.states = states
-
-    // // Play first animation
-    // const firstClip = Animator.getClipOrNull(entity, animations[currentIndex])
-    // if (firstClip) {
-    //   firstClip.loop = false
-    //   firstClip.playing = true
-    //   firstClip.shouldReset = true // Ensure animation starts from beginning
-    // }
-
-    // // Set up interval to check and play next animation
-    // startInterval(entity, 'batch_animation', 0.1, () => {
-    //   const currentClip = Animator.getClipOrNull(
-    //     entity,
-    //     animations[currentIndex],
-    //   )
-
-    //   // Check if current animation has finished
-    //   if (currentClip && !currentClip.playing) {
-    //     currentIndex++
-
-    //     if (currentIndex >= animations.length) {
-    //       // All animations complete
-    //       stopInterval(entity, 'batch_animation')
-    //       return
-    //     }
-
-    //     // Play next animation
-    //     const nextClip = Animator.getClipOrNull(
-    //       entity,
-    //       animations[currentIndex],
-    //     )
-    //     if (nextClip) {
-    //       nextClip.loop = false
-    //       nextClip.playing = true
-    //       nextClip.shouldReset = true // Ensure each animation starts from beginning
-    //     }
-    //   }
-    // })
-
-    // // Safety cleanup after 30 seconds
-    // startTimeout(entity, 'batch_animation_safety', 30, () => {
-    //   stopInterval(entity, 'batch_animation')
-    // })
   }
 
   // SET_STATE
@@ -1520,7 +1444,7 @@ export function createActionsSystem(
           fetchCaptcha().then((captcha) => {
             console.log('captcha', captcha)
             if (captcha) {
-              showCaptchaPrompt(entity, {
+              _showCaptchaPrompt(entity, {
                 campaignId,
                 dispenserKey,
                 captcha,
@@ -1534,18 +1458,20 @@ export function createActionsSystem(
     })
   }
 
-  function showCaptchaPrompt(
+  function _showCaptchaPrompt(
     _entity: Entity,
     data: { campaignId: string; dispenserKey: string; captcha: any },
   ) {
-    showCaptchaPromptUI(
+    showCaptchaPrompt(
       engine,
-      UiTransform,
-      UiBackground,
-      UiText,
-      UiInput,
-      UiInputResult,
-      pointerEventsSystem,
+      {
+        UiTransform,
+        UiBackground,
+        UiText,
+        UiInput,
+        UiInputResult,
+        pointerEventsSystem,
+      },
       data,
       (inputText) => {
         // Request token with captcha validation
