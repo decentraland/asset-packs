@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "components": [
+    {
+      "name": "core::GltfContainer",
+      "data": {
+        "0": {
+          "json": {
+            "src": "{assetPath}/collectible_dispenser.glb",
+            "visibleMeshesCollisionMask": 0,
+            "invisibleMeshesCollisionMask": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "core::VisibilityComponent",
+      "data": {
+        "0": {
+          "json": {
+            "visible": false
+          }
+        }
+      }
+    },
+    {
+      "name": "asset-packs::Rewards",
+      "data": {
+        "0": {
+          "json": {
+            "campaignId": "",
+            "dispenserKey": "",
+            "testMode": false
+          }
+        }
+      }
+    },
+    {
+      "name": "asset-packs::Actions",
+      "data": {
+        "0": {
+          "json": {
+            "id": "{self}",
+            "value": [
+              {
+                "name": "Visible",
+                "type": "set_visibility",
+                "jsonPayload": "{\"visible\":true,\"collider\":2}",
+                "allowedInBasicView": true
+              },
+              {
+                "name": "Invisible",
+                "type": "set_visibility",
+                "jsonPayload": "{\"visible\":false,\"collider\":0}",
+                "allowedInBasicView": true
+              },
+              {
+                "name": "StopAnimation",
+                "type": "stop_animation",
+                "jsonPayload": "{}"
+              },
+              {
+                "name": "Airdrop",
+                "type": "batch",
+                "jsonPayload": "{\"actions\":[\"Visible\",\"LandingAnimation\"]}",
+                "allowedInBasicView": true
+              },
+              {
+                "name": "LandingAnimation",
+                "type": "play_animation",
+                "jsonPayload": "{\"animation\":[\"Landing\"],\"loop\":false}",
+                "allowedInBasicView": true
+              },
+              {
+                "name": "Claim",
+                "type": "claim_airdrop",
+                "jsonPayload": "{}",
+                "allowedInBasicView": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "asset-packs::Triggers",
+      "data": {
+        "0": {
+          "json": {
+            "value": [
+              {
+                "type": "on_tween_end",
+                "actions": [
+                  {
+                    "id": "{self:asset-packs::Actions}",
+                    "name": "StopAnimation"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "core::PointerEvents",
+      "data": {
+        "0": {
+          "json": {
+            "pointerEvents": [
+              {
+                "eventType": 1,
+                "eventInfo": {
+                  "button": 1,
+                  "hoverText": "Claim NFT",
+                  "maxDistance": 10,
+                  "showFeedback": true
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "core-schema::Sync-Components",
+      "data": {
+        "0": {
+          "json": {
+            "value": ["core::Animator", "asset-packs::Rewards"]
+          }
+        }
+      }
+    }
+  ]
+}
