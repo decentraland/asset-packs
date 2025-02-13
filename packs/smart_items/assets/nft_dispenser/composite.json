@@ -55,21 +55,6 @@
                 "allowedInBasicView": true
               },
               {
-                "name": "StartPosition",
-                "type": "set_position",
-                "jsonPayload": "{\"relative\":true,\"x\":0,\"y\":11,\"z\":0}"
-              },
-              {
-                "name": "Drop",
-                "type": "start_tween",
-                "jsonPayload": "{\"type\":\"move_item\",\"duration\":5,\"interpolationType\":\"linear\",\"relative\":true,\"end\":{\"x\":0,\"y\":-11,\"z\":0}}"
-              },
-              {
-                "name": "DropAnimation",
-                "type": "play_animation",
-                "jsonPayload": "{\"animation\":\"falling\",\"loop\":false}"
-              },
-              {
                 "name": "StopAnimation",
                 "type": "stop_animation",
                 "jsonPayload": "{}"
@@ -77,13 +62,13 @@
               {
                 "name": "Airdrop",
                 "type": "batch",
-                "jsonPayload": "{\"actions\":[\"self::Visible\",\"self::AirdropAnimation\"]}",
+                "jsonPayload": "{\"actions\":[\"Visible\",\"LandingAnimation\"]}",
                 "allowedInBasicView": true
               },
               {
-                "name": "AirdropAnimation",
-                "type": "batch_animation",
-                "jsonPayload": "{\"animations\":[\"Landing\",\"Idle_Ground\"],\"loop\":false}",
+                "name": "LandingAnimation",
+                "type": "play_animation",
+                "jsonPayload": "{\"animation\":[\"Landing\"],\"loop\":false}",
                 "allowedInBasicView": true
               },
               {
