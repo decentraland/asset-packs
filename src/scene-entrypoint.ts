@@ -54,7 +54,14 @@ export function initAssetPacks(
 
     // create systems that some components needs (VideoPlayer, etc)
     initComponents(engine)
-    engine.addSystem(createActionsSystem(engine, sdkHelpers, playersHelper))
+    engine.addSystem(
+      createActionsSystem(
+        engine,
+        pointerEventsSystem,
+        sdkHelpers,
+        playersHelper,
+      ),
+    )
     engine.addSystem(
       createTriggersSystem(
         engine,
