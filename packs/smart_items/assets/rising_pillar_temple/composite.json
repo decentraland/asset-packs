@@ -79,13 +79,13 @@
             "id": "{self}",
             "value": [
               {
-                "name": "Go to Start",
+               "name": "Sink",
                 "type": "batch",
                 "jsonPayload": "{ \"actions\": [\"Going to Start\", \"Tween to Start\"] }",
                 "allowedInBasicView": true
               },
               {
-                "name": "Go to End",
+                "name": "Rise",
                 "type": "batch",
                 "jsonPayload": "{ \"actions\": [\"Going to End\", \"Tween to End\"] }",
                 "allowedInBasicView": true
@@ -194,7 +194,7 @@
         "0": {
           "json": {
             "isBasicViewEnabled": true,
-            "componentName": "Vertical Platform",
+            "componentName": "Rising Pillar",
             "fields": [
               {
                 "name": "Tween",

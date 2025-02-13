@@ -192,7 +192,7 @@
                     "id": "{513:asset-packs::Actions}",
                     "name": "Hide"
                   }
-                ]
+                ], "basicViewId": "trigger-when-activated"
               },
               {
                 "type": "on_state_change",
@@ -217,7 +217,8 @@
                     "id": "{self:asset-packs::Actions}",
                     "name": "Play sound"
                   }
-                ]
+                ],
+                "basicViewId": "trigger-when-deactivated"
               }
             ]
           }
@@ -235,6 +236,29 @@
               "Closed"
             ],
             "defaultValue": "Open"
+          }
+        }
+      }
+    }, 
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "componentName": "Open Close Sign",
+            "fields": [
+              {
+                "name": "When Open",
+                "type": "asset-packs::Triggers",
+                "basicViewId": "trigger-when-activated"
+              },
+              {
+                "name": "When Closed",
+                "type": "asset-packs::Triggers",
+                "basicViewId": "trigger-when-deactivated"
+              }
+            ]
           }
         }
       }
