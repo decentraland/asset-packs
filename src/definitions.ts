@@ -59,10 +59,6 @@ export const ActionSchemas = {
     loop: Schemas.Optional(Schemas.Boolean),
   }),
   [ActionType.STOP_ANIMATION]: Schemas.Map({}),
-  [ActionType.BATCH_ANIMATION]: Schemas.Map({
-    animations: Schemas.Array(Schemas.String),
-    loop: Schemas.Optional(Schemas.Boolean),
-  }),
   [ActionType.SET_STATE]: Schemas.Map({ state: Schemas.String }),
   [ActionType.START_TWEEN]: Schemas.Map({
     type: Schemas.EnumString<TweenType>(TweenType, TweenType.MOVE_ITEM),
@@ -335,7 +331,7 @@ export function createComponents(engine: IEngine) {
       allowList: Schemas.Boolean,
       adminAllowList: Schemas.Array(Schemas.String),
     }),
-    moderation: Schemas.Map({
+    moderationControl: Schemas.Map({
       isEnabled: Schemas.Boolean,
       kickCoordinates: Schemas.Map({
         x: Schemas.Number,
@@ -344,7 +340,7 @@ export function createComponents(engine: IEngine) {
       }),
       allowNonOwnersManageAdminAllowList: Schemas.Boolean,
     }),
-    textAnnouncement: Schemas.Map({
+    textAnnouncementControl: Schemas.Map({
       isEnabled: Schemas.Boolean,
       playSoundOnEachAnnouncement: Schemas.Boolean,
       showAuthorOnEachAnnouncement: Schemas.Boolean,
@@ -358,12 +354,12 @@ export function createComponents(engine: IEngine) {
         Schemas.Array(
           Schemas.Map({
             entity: Schemas.Int,
-            name: Schemas.String,
+            customName: Schemas.String,
           }),
         ),
       ),
     }),
-    smartItemActions: Schemas.Map({
+    smartItemsControl: Schemas.Map({
       isEnabled: Schemas.Boolean,
       linkAllSmartItems: Schemas.Boolean,
       smartItems: Schemas.Optional(
@@ -372,6 +368,17 @@ export function createComponents(engine: IEngine) {
             entity: Schemas.Int,
             customName: Schemas.String,
             defaultAction: Schemas.String,
+          }),
+        ),
+      ),
+    }),
+    rewardsControl: Schemas.Map({
+      isEnabled: Schemas.Boolean,
+      rewardItems: Schemas.Optional(
+        Schemas.Array(
+          Schemas.Map({
+            entity: Schemas.Int,
+            customName: Schemas.String,
           }),
         ),
       ),
