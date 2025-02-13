@@ -11,6 +11,8 @@ import {
   YGJustify,
   YGPositionType,
   YGUnit,
+  YGDisplay,
+  PointerFilterMode,
 } from '@dcl/ecs'
 import { Color4 } from '@dcl/sdk/math'
 import { EngineComponents } from './definitions'
@@ -247,34 +249,72 @@ export function getUIText(
   })
 }
 
+export function removeUiTransformEntities(
+  engine: IEngine,
+  UiTransform: EngineComponents['UiTransform'],
+  parentEntity: Entity,
+) {
+  const entitiesWithUiTransform = engine.getEntitiesWith(UiTransform)
+
+  for (const [uiEntity, uiTransform] of entitiesWithUiTransform) {
+    if (uiTransform.parent === parentEntity) {
+      // Recursively remove children
+      removeUiTransformEntities(engine, UiTransform, uiEntity)
+      engine.removeEntity(uiEntity)
+    }
+  }
+}
+
 const BTN_CLOSE_TEXT_ANNOUNCEMENT =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAxCAYAAABznEEcAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAQRSURBVHgB7VlPU9NAFH+bpgye7DcwfgKYccDqKH/GD4Dc9GS5OYWZpuhJKwSpXnTaoJUr+AmEm56sXOzIpUdvlm9Qbw60Wd+mhZZmk91NUnrpb0YHkrfJ/ni77/fLW4AxxhijHwRihGlaqeTpqdEGmAZNM4CQ6+BACgg96b6srjlO493u2zrEiMgk2MS1s3aGAl3Cx00D0JR4FGngi6saoZ/fV4pViIjQJNzJn7ZylBBTbuK+U2gQClul3e19CIlQJPLZjRwuESva5D1TadBkYtG2rQYoQomE+dQySKK1hz8uwJCAWbFKu8UtlTEJ2cAOgfZ3YJt2mCCwcHdmDn4eH/2QHSJFokeAGnAVYERm5w0kcigTLiRx5QR6mJbNiCYKGBEBF5SAlV/deCKKCyRhZguboyLQg2NjOTeCInxJuMsI/xIgBGngf6EUmBByIBHG9KgcFOBLQku0N0E8Dbe206S+CIpEKCUrpcr2Mi4ZYTnFmIfP1woLfve5JFgW0EZkIBA9ccJ/TRUijIDdVWi7UrRkiDgO5Pzu8TOhtzIgAKrkQb+6yhLpJ3CBlo6/k2bgOCy7zOrw7mk+E1wCATBT5rq78XsQEeER6CvhIguDRvMsw7vhIcEeijOUUmVWAmWJCAgYIAVtint18EJCbynZChki8RBg2ed7No0TqOyNgojgveU4CHTfZPD2hZcEBQNCwI8IVp9LWhDZxuCX4+Al3sa+ASHBI9KPOHyYrmniTEQFI2JmX3CXpKa3y8OwMR4SaAWaEAGdTcxvBDh6YgVCWpQgcPYE/QshwRWyPqgqOw8tx/H8kTmZgAaEgF8ZfZYtXLILkYlMTDQGL3lJhHh4kA44BGxVZQ9AnY0dvOgh0db1KihARshUlD0IBAg31kOiy7QKElBR4jiIOIRyv7m5JZYCEX6gE6JtqSpxMBFhVfQI5zn4OpFM7AutMXVy/XogK2Q8IuhOyyIXi0vJ9yuQ2+2o1ar/0rfnrpHgJtkkasqj9My9b+lbDyaVlLivt7S++nIPM58RDcFsLeO8mvzH+YAZLXLW/iPh85udrIVSYrYXxIaTwE65UjT9bvvaDnetgvizEZGKYCUkHDN+Buu6FRQR2DyrHR/V7szev9lp2Y8GlOqL9sfgJrPQANJkkqUxdr8jA3QPWAEt4buluuKjaGUyAiXshEjFgiS6bf0vMOyuOLhNiLz96Y0tG698yJJfK9j4lhwMBbiJCV2xFY/ApM8nzlH7dfQ1PTN/ghrBMiIqv/LAMopa8Nj+8Po3KCLSwaOZfZXBtRup6YzjDxyAHTvCAWQsR8Am9knxmCqDT5sS96xQGAmto3k8ZPaGZ61VEes5NoPbUmm5vasUnllfLDdH05qg6/UwB4tjjDGGGv4DI3MOHJgAfIoAAAAASUVORK5CYII='
 
-export function showCaptchaPrompt(
+interface PromptAction {
+  label: string
+  onClick: () => void
+}
+
+interface PromptOptions {
+  title: string
+  width?: number
+  height?: number
+  onClose?: () => void
+}
+
+export function showPrompt(
   engine: IEngine,
-  UiTransform: EngineComponents['UiTransform'],
-  UiBackground: EngineComponents['UiBackground'],
-  UiText: EngineComponents['UiText'],
-  UiInput: EngineComponents['UiInput'],
-  UiInputResult: EngineComponents['UiInputResult'],
-  pointerEventsSystem: PointerEventsSystem,
-  data: { campaignId: string; dispenserKey: string; captcha: any },
-  onSubmit: (inputText: string) => void,
+  components: {
+    UiTransform: EngineComponents['UiTransform']
+    UiBackground: EngineComponents['UiBackground']
+    UiText: EngineComponents['UiText']
+    pointerEventsSystem: PointerEventsSystem
+  },
+  options: PromptOptions,
+  renderBody: (containerEntity: Entity) => void,
+  actions: PromptAction[],
 ) {
+  const { UiTransform, UiBackground, UiText, pointerEventsSystem } = components
+  const { title, width = 250, height = 250, onClose } = options
+
   // Create UI stack for centering
   const uiStack = engine.addEntity()
   const uiStackTransform = getUITransform(UiTransform, uiStack)
+  uiStackTransform.display = YGDisplay.YGD_FLEX
   uiStackTransform.alignItems = YGAlign.YGA_CENTER
-  uiStackTransform.alignContent = YGAlign.YGA_CENTER
+  uiStackTransform.justifyContent = YGJustify.YGJ_CENTER
 
   // Create container
   const containerEntity = engine.addEntity()
-  const containerTransform = getUITransform(UiTransform, containerEntity)
+  const containerTransform = getUITransform(
+    UiTransform,
+    containerEntity,
+    height,
+    width,
+    YGUnit.YGU_POINT,
+  )
   containerTransform.parent = uiStack
+  uiStackTransform.display = YGDisplay.YGD_FLEX
   containerTransform.flexDirection = YGFlexDirection.YGFD_COLUMN
   containerTransform.alignItems = YGAlign.YGA_CENTER
-  containerTransform.width = 400
-  containerTransform.height = 300
   containerTransform.paddingTop = 20
   containerTransform.paddingTopUnit = YGUnit.YGU_POINT
   containerTransform.paddingBottom = 20
@@ -283,15 +323,16 @@ export function showCaptchaPrompt(
   containerTransform.paddingLeftUnit = YGUnit.YGU_POINT
   containerTransform.paddingRight = 20
   containerTransform.paddingRightUnit = YGUnit.YGU_POINT
+  containerTransform.pointerFilter = PointerFilterMode.PFM_BLOCK
 
   // Add dark background
   UiBackground.createOrReplace(containerEntity, {
     color: Color4.create(0.15, 0.15, 0.15, 0.95),
     textureMode: BackgroundTextureMode.NINE_SLICES,
-    uvs: [0, 0, 1, 0, 1, 1, 0, 1],
+    uvs: [],
   })
 
-  // Create close button entity
+  // Create close button
   const closeButtonEntity = engine.addEntity()
   const closeButtonTransform = getUITransform(
     UiTransform,
@@ -306,143 +347,407 @@ export function showCaptchaPrompt(
   closeButtonTransform.positionRightUnit = YGUnit.YGU_POINT
   closeButtonTransform.positionTop = 5
   closeButtonTransform.positionTopUnit = YGUnit.YGU_POINT
+  closeButtonTransform.pointerFilter = PointerFilterMode.PFM_BLOCK
 
-  // Add circular background for close button
-  UiBackground.createOrReplace(closeButtonEntity, {
-    textureMode: BackgroundTextureMode.NINE_SLICES,
-    texture: {
-      tex: {
-        $case: 'texture',
-        texture: {
-          src: BTN_CLOSE_TEXT_ANNOUNCEMENT,
-        },
-      },
-    },
-    uvs: [1, 0, 1, 0, 1, 0, 0, 1],
-  })
-
-  // Add X text to close button
-  getUIText(
-    UiText,
+  getUIBackground(
+    UiBackground,
     closeButtonEntity,
-    'X',
-    16,
-    24,
-    TextAlignMode.TAM_MIDDLE_CENTER,
-    Color4.White(),
+    BTN_CLOSE_TEXT_ANNOUNCEMENT,
+    BackgroundTextureMode.STRETCH,
   )
 
-  // Close button click handler
+  const handleClose = () => {
+    removeUiTransformEntities(engine, UiTransform, uiStack)
+    engine.removeEntity(uiStack)
+    onClose?.()
+  }
+
   pointerEventsSystem.onPointerDown(
     {
       entity: closeButtonEntity,
-      opts: {
-        button: InputAction.IA_POINTER,
-      },
+      opts: { button: InputAction.IA_POINTER },
     },
-    () => {
-      engine.removeEntity(uiStack)
-    },
+    handleClose,
   )
 
-  // Add title text
+  // Add title
   const titleEntity = engine.addEntity()
-  const titleTransform = getUITransform(UiTransform, titleEntity)
+  const titleTransform = getUITransform(
+    UiTransform,
+    titleEntity,
+    20,
+    200,
+    YGUnit.YGU_POINT,
+  )
   titleTransform.parent = containerEntity
-  titleTransform.marginBottom = 20
+  titleTransform.marginBottom = 10
   titleTransform.marginBottomUnit = YGUnit.YGU_POINT
 
   getUIText(
     UiText,
     titleEntity,
-    'Enter the captcha',
+    title,
     20,
     200,
     TextAlignMode.TAM_MIDDLE_CENTER,
     Color4.White(),
   )
 
-  // Add captcha image
-  const imageEntity = engine.addEntity()
-  const imageTransform = getUITransform(UiTransform, imageEntity)
-  imageTransform.parent = containerEntity
-  imageTransform.width = 200
-  imageTransform.height = 80
-  imageTransform.marginBottom = 20
-  imageTransform.marginBottomUnit = YGUnit.YGU_POINT
+  // Render custom body content
+  renderBody(containerEntity)
 
-  getUIBackground(
-    UiBackground,
-    imageEntity,
-    data.captcha.image,
-    BackgroundTextureMode.STRETCH,
+  // Add action buttons
+  const actionsContainer = engine.addEntity()
+  const actionsTransform = getUITransform(
+    UiTransform,
+    actionsContainer,
+    30,
+    width - 40,
+    YGUnit.YGU_POINT,
   )
+  actionsTransform.parent = containerEntity
+  actionsTransform.display = YGDisplay.YGD_FLEX
+  actionsTransform.flexDirection = YGFlexDirection.YGFD_ROW
+  actionsTransform.justifyContent = YGJustify.YGJ_SPACE_AROUND
+  actionsTransform.marginTop = 10
+  actionsTransform.marginTopUnit = YGUnit.YGU_POINT
 
-  // Add input field
-  const inputEntity = engine.addEntity()
-  const inputTransform = getUITransform(UiTransform, inputEntity)
-  inputTransform.parent = containerEntity
-  inputTransform.width = 200
-  inputTransform.height = 30
-  inputTransform.marginBottom = 20
-  inputTransform.marginBottomUnit = YGUnit.YGU_POINT
+  actions.forEach((action) => {
+    const buttonEntity = engine.addEntity()
+    const buttonTransform = getUITransform(
+      UiTransform,
+      buttonEntity,
+      30,
+      100,
+      YGUnit.YGU_POINT,
+    )
+    buttonTransform.parent = actionsContainer
+    buttonTransform.pointerFilter = PointerFilterMode.PFM_BLOCK
 
-  UiInput.createOrReplace(inputEntity, {
-    placeholder: 'Enter the captcha',
-    color: Color4.White(),
-    placeholderColor: Color4.create(0.3, 0.3, 0.3, 1),
-    disabled: false,
-    textAlign: TextAlignMode.TAM_MIDDLE_CENTER,
-    font: Font.F_MONOSPACE as any,
-    fontSize: 10,
-  })
-  UiInputResult.createOrReplace(inputEntity, {
-    value: '',
-    isSubmit: false,
-  })
+    UiBackground.createOrReplace(buttonEntity, {
+      color: Color4.create(0.3, 0.3, 0.3, 1),
+      textureMode: BackgroundTextureMode.NINE_SLICES,
+      uvs: [],
+    })
 
-  // Add submit button
-  const buttonEntity = engine.addEntity()
-  const buttonTransform = getUITransform(UiTransform, buttonEntity)
-  buttonTransform.parent = containerEntity
-  buttonTransform.width = 100
-  buttonTransform.height = 30
-  buttonTransform.alignItems = YGAlign.YGA_CENTER
-  buttonTransform.alignContent = YGAlign.YGA_CENTER
+    getUIText(
+      UiText,
+      buttonEntity,
+      action.label,
+      16,
+      100,
+      TextAlignMode.TAM_MIDDLE_CENTER,
+      Color4.White(),
+    )
 
-  UiBackground.createOrReplace(buttonEntity, {
-    color: { r: 0.3, g: 0.3, b: 0.3, a: 1 },
-    textureMode: BackgroundTextureMode.NINE_SLICES,
-    uvs: [0, 0, 1, 0, 1, 1, 0, 1],
-  })
-
-  getUIText(
-    UiText,
-    buttonEntity,
-    'Submit',
-    16,
-    100,
-    TextAlignMode.TAM_MIDDLE_CENTER,
-    Color4.White(),
-  )
-
-  // Add click handler for submit button
-  pointerEventsSystem.onPointerDown(
-    {
-      entity: buttonEntity,
-      opts: {
-        button: InputAction.IA_POINTER,
+    pointerEventsSystem.onPointerDown(
+      {
+        entity: buttonEntity,
+        opts: { button: InputAction.IA_POINTER },
       },
-    },
-    () => {
-      // Get input text value and call onSubmit callback
-      const inputText = UiInputResult.get(inputEntity)?.value || ''
-      onSubmit(inputText)
-
-      // Remove UI
-      engine.removeEntity(uiStack)
-    },
-  )
+      () => {
+        action.onClick()
+        handleClose()
+      },
+    )
+  })
 
   return uiStack
 }
+
+export function showCaptchaPrompt(
+  engine: IEngine,
+  components: {
+    UiTransform: EngineComponents['UiTransform']
+    UiBackground: EngineComponents['UiBackground']
+    UiText: EngineComponents['UiText']
+    UiInput: EngineComponents['UiInput']
+    UiInputResult: EngineComponents['UiInputResult']
+    pointerEventsSystem: PointerEventsSystem
+  },
+  data: { campaignId: string; dispenserKey: string; captcha: any },
+  onSubmit: (inputText: string) => void,
+) {
+  let inputEntity: Entity
+
+  return showPrompt(
+    engine,
+    components,
+    {
+      title: 'Enter the captcha',
+      width: 250,
+      height: 250,
+    },
+    (containerEntity) => {
+      // Add captcha image
+      const imageEntity = engine.addEntity()
+      const imageTransform = getUITransform(
+        components.UiTransform,
+        imageEntity,
+        80,
+        200,
+        YGUnit.YGU_POINT,
+      )
+      imageTransform.parent = containerEntity
+      imageTransform.marginBottom = 10
+      imageTransform.marginBottomUnit = YGUnit.YGU_POINT
+
+      getUIBackground(
+        components.UiBackground,
+        imageEntity,
+        data.captcha.image,
+        BackgroundTextureMode.STRETCH,
+      )
+
+      // Add input field
+      inputEntity = engine.addEntity()
+      const inputTransform = getUITransform(
+        components.UiTransform,
+        inputEntity,
+        50,
+        200,
+        YGUnit.YGU_POINT,
+      )
+      inputTransform.parent = containerEntity
+      inputTransform.marginBottom = 10
+      inputTransform.marginBottomUnit = YGUnit.YGU_POINT
+
+      components.UiInput.createOrReplace(inputEntity, {
+        placeholder: 'Enter the captcha',
+        color: Color4.White(),
+        placeholderColor: Color4.create(0.3, 0.3, 0.3, 1),
+        disabled: false,
+        textAlign: TextAlignMode.TAM_MIDDLE_CENTER,
+        font: Font.F_MONOSPACE as any,
+        fontSize: 10,
+      })
+
+      components.UiInputResult.createOrReplace(inputEntity, {
+        value: '',
+        isSubmit: false,
+      })
+
+      // Store reference to input value
+      components.UiInputResult.get(inputEntity)
+    },
+    [
+      {
+        label: 'Submit',
+        onClick: () => {
+          const inputValue = inputEntity
+            ? components.UiInputResult.getOrNull(inputEntity)?.value ?? ''
+            : ''
+          return onSubmit(inputValue)
+        },
+      },
+    ],
+  )
+}
+
+// export function showCaptchaPrompt(
+//   engine: IEngine,
+//   UiTransform: EngineComponents['UiTransform'],
+//   UiBackground: EngineComponents['UiBackground'],
+//   UiText: EngineComponents['UiText'],
+//   UiInput: EngineComponents['UiInput'],
+//   UiInputResult: EngineComponents['UiInputResult'],
+//   pointerEventsSystem: PointerEventsSystem,
+//   data: { campaignId: string; dispenserKey: string; captcha: any },
+//   onSubmit: (inputText: string) => void,
+// ) {
+//   // Create UI stack for centering
+//   const uiStack = engine.addEntity()
+//   const uiStackTransform = getUITransform(UiTransform, uiStack)
+//   uiStackTransform.display = YGDisplay.YGD_FLEX
+//   uiStackTransform.alignItems = YGAlign.YGA_CENTER
+//   uiStackTransform.justifyContent = YGJustify.YGJ_CENTER
+
+//   // Create container
+//   const containerEntity = engine.addEntity()
+//   const containerTransform = getUITransform(
+//     UiTransform,
+//     containerEntity,
+//     250,
+//     250,
+//     YGUnit.YGU_POINT,
+//   )
+//   containerTransform.parent = uiStack
+//   uiStackTransform.display = YGDisplay.YGD_FLEX
+//   containerTransform.flexDirection = YGFlexDirection.YGFD_COLUMN
+//   containerTransform.alignItems = YGAlign.YGA_CENTER
+//   containerTransform.paddingTop = 20
+//   containerTransform.paddingTopUnit = YGUnit.YGU_POINT
+//   containerTransform.paddingBottom = 20
+//   containerTransform.paddingBottomUnit = YGUnit.YGU_POINT
+//   containerTransform.paddingLeft = 20
+//   containerTransform.paddingLeftUnit = YGUnit.YGU_POINT
+//   containerTransform.paddingRight = 20
+//   containerTransform.paddingRightUnit = YGUnit.YGU_POINT
+//   containerTransform.pointerFilter = PointerFilterMode.PFM_BLOCK
+
+//   // Add dark background
+//   UiBackground.createOrReplace(containerEntity, {
+//     color: Color4.create(0.15, 0.15, 0.15, 0.95),
+//     textureMode: BackgroundTextureMode.NINE_SLICES,
+//     uvs: [],
+//   })
+
+//   // Create close button entity
+//   const closeButtonEntity = engine.addEntity()
+//   const closeButtonTransform = getUITransform(
+//     UiTransform,
+//     closeButtonEntity,
+//     24,
+//     24,
+//     YGUnit.YGU_POINT,
+//   )
+//   closeButtonTransform.parent = containerEntity
+//   closeButtonTransform.positionType = YGPositionType.YGPT_ABSOLUTE
+//   closeButtonTransform.positionRight = 5
+//   closeButtonTransform.positionRightUnit = YGUnit.YGU_POINT
+//   closeButtonTransform.positionTop = 5
+//   closeButtonTransform.positionTopUnit = YGUnit.YGU_POINT
+//   closeButtonTransform.pointerFilter = PointerFilterMode.PFM_BLOCK
+
+//   getUIBackground(
+//     UiBackground,
+//     closeButtonEntity,
+//     BTN_CLOSE_TEXT_ANNOUNCEMENT,
+//     BackgroundTextureMode.STRETCH,
+//   )
+
+//   // Close button click handler
+//   pointerEventsSystem.onPointerDown(
+//     {
+//       entity: closeButtonEntity,
+//       opts: {
+//         button: InputAction.IA_POINTER,
+//       },
+//     },
+//     () => {
+//       console.log('close button clicked')
+//       removeUiTransformEntities(engine, UiTransform, uiStack)
+//       engine.removeEntity(uiStack)
+//     },
+//   )
+
+//   // Add title text
+//   const titleEntity = engine.addEntity()
+//   const titleTransform = getUITransform(
+//     UiTransform,
+//     titleEntity,
+//     20,
+//     200,
+//     YGUnit.YGU_POINT,
+//   )
+//   titleTransform.parent = containerEntity
+//   titleTransform.marginBottom = 10
+//   titleTransform.marginBottomUnit = YGUnit.YGU_POINT
+
+//   getUIText(
+//     UiText,
+//     titleEntity,
+//     'Enter the captcha',
+//     20,
+//     200,
+//     TextAlignMode.TAM_MIDDLE_CENTER,
+//     Color4.White(),
+//   )
+
+//   // Add captcha image
+//   const imageEntity = engine.addEntity()
+//   const imageTransform = getUITransform(
+//     UiTransform,
+//     imageEntity,
+//     80,
+//     200,
+//     YGUnit.YGU_POINT,
+//   )
+//   imageTransform.parent = containerEntity
+//   imageTransform.marginBottom = 10
+//   imageTransform.marginBottomUnit = YGUnit.YGU_POINT
+
+//   getUIBackground(
+//     UiBackground,
+//     imageEntity,
+//     data.captcha.image,
+//     BackgroundTextureMode.STRETCH,
+//   )
+
+//   // Add input field
+//   const inputEntity = engine.addEntity()
+//   const inputTransform = getUITransform(
+//     UiTransform,
+//     inputEntity,
+//     50,
+//     200,
+//     YGUnit.YGU_POINT,
+//   )
+//   inputTransform.parent = containerEntity
+//   inputTransform.marginBottom = 10
+//   inputTransform.marginBottomUnit = YGUnit.YGU_POINT
+
+//   UiInput.createOrReplace(inputEntity, {
+//     placeholder: 'Enter the captcha',
+//     color: Color4.White(),
+//     placeholderColor: Color4.create(0.3, 0.3, 0.3, 1),
+//     disabled: false,
+//     textAlign: TextAlignMode.TAM_MIDDLE_CENTER,
+//     font: Font.F_MONOSPACE as any,
+//     fontSize: 10,
+//   })
+
+//   UiInputResult.createOrReplace(inputEntity, {
+//     value: '',
+//     isSubmit: false,
+//   })
+
+//   // Add submit button
+//   const buttonEntity = engine.addEntity()
+//   const buttonTransform = getUITransform(
+//     UiTransform,
+//     buttonEntity,
+//     30,
+//     100,
+//     YGUnit.YGU_POINT,
+//   )
+//   buttonTransform.parent = containerEntity
+//   buttonTransform.pointerFilter = PointerFilterMode.PFM_BLOCK
+
+//   UiBackground.createOrReplace(buttonEntity, {
+//     color: { r: 0.3, g: 0.3, b: 0.3, a: 1 },
+//     textureMode: BackgroundTextureMode.NINE_SLICES,
+//     uvs: [],
+//   })
+
+//   getUIText(
+//     UiText,
+//     buttonEntity,
+//     'Submit',
+//     16,
+//     100,
+//     TextAlignMode.TAM_MIDDLE_CENTER,
+//     Color4.White(),
+//   )
+
+//   // Add click handler for submit button
+//   pointerEventsSystem.onPointerDown(
+//     {
+//       entity: buttonEntity,
+//       opts: {
+//         button: InputAction.IA_POINTER,
+//       },
+//     },
+//     () => {
+//       // Get input text value and call onSubmit callback
+//       const inputText = UiInputResult.get(inputEntity)?.value || ''
+//       onSubmit(inputText)
+
+//       // Remove UI
+//       removeUiTransformEntities(engine, UiTransform, uiStack)
+//       engine.removeEntity(uiStack)
+//     },
+//   )
+
+//   return uiStack
+// }
