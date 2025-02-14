@@ -112,7 +112,7 @@ const uiComponent = (
       uiTransform={{
         positionType: 'absolute',
         flexDirection: 'row',
-        position: { top: 45, right: 10 },
+        position: { top: 80, right: 10 },
       }}
     >
       <UiEntity
