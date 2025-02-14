@@ -89,7 +89,9 @@ function isAllowedAdmin(
   if (
     player &&
     authorizedAdminUsers.allowList &&
-    authorizedAdminUsers.adminAllowList.includes(player?.userId)
+    authorizedAdminUsers.adminAllowList.some(
+      (wallet) => wallet.toLowerCase() === player?.userId.toLowerCase(),
+    )
   ) {
     return true
   }
