@@ -1,10 +1,10 @@
 import ReactEcs, { Label, UiEntity, UiTransformProps } from '@dcl/react-ecs'
 import { Color4 } from '@dcl/sdk/math'
-import { CONTENT_SERVER } from './constants'
+import { CONTENT_URL } from './constants'
 
 // Constants
-export const DROPDOWN_BACKGROUND = `${CONTENT_SERVER}/admin_toolkit/assets/backgrounds/dropdown-background.png`
-export const DROPDOWN_ARROW = `${CONTENT_SERVER}/admin_toolkit/assets/icons/dropdown-arrow.png`
+export const DROPDOWN_BACKGROUND = `${CONTENT_URL}/admin_toolkit/assets/backgrounds/dropdown-background.png`
+export const DROPDOWN_ARROW = `${CONTENT_URL}/admin_toolkit/assets/icons/dropdown-arrow.png`
 
 const COLORS = {
   PRIMARY: Color4.White(),

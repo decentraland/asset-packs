@@ -22,14 +22,14 @@ import {
 } from '../ui'
 import { IPlayersHelper } from '../types'
 import { Button } from './Button'
-import { CONTENT_SERVER } from './constants'
+import { CONTENT_URL } from './constants'
 import { State } from './types'
 
 const ICONS = {
-  TEXT_ANNOUNCEMENT_CONTROL: `${CONTENT_SERVER}/admin_toolkit/assets/icons/text-announcement-control.png`,
-  CHECK: `${CONTENT_SERVER}/admin_toolkit/assets/icons/text-announcement-check.png`,
-  BTN_CLOSE_TEXT_ANNOUNCEMENT: `${CONTENT_SERVER}/admin_toolkit/assets/icons/text-announcement-close-button.png`,
-  CHAT_MESSAGE_ICON: `${CONTENT_SERVER}/admin_toolkit/assets/icons/text-announcement-chat-message.png`,
+  TEXT_ANNOUNCEMENT_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/text-announcement-control.png`,
+  CHECK: `${CONTENT_URL}/admin_toolkit/assets/icons/text-announcement-check.png`,
+  BTN_CLOSE_TEXT_ANNOUNCEMENT: `${CONTENT_URL}/admin_toolkit/assets/icons/text-announcement-close-button.png`,
+  CHAT_MESSAGE_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/text-announcement-chat-message.png`,
 } as const
 
 let ANNOUNCEMENT_STATE: 'sent' | 'cleared'
