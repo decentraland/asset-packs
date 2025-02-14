@@ -86,11 +86,14 @@ function isAllowedAdmin(
   }
 
   const player = playersHelper?.getPlayer()
-  if (player) {
-    if (authorizedAdminUsers.adminAllowList.includes(player?.userId)) {
-      return true
-    }
+  if (
+    player &&
+    authorizedAdminUsers.allowList &&
+    authorizedAdminUsers.adminAllowList.includes(player?.userId)
+  ) {
+    return true
   }
+
   return false
 }
 
