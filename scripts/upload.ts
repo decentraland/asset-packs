@@ -83,7 +83,7 @@ async function main() {
       const uploadKey = local.isAdminToolkitAsset(pathToFile)
         ? pathToFile.replace(
             /^.*\/admin_toolkit\/assets\//,
-            '/admin_toolkit/assets/',
+            'admin_toolkit/assets/',
           )
         : key
       const upload = new Upload({
