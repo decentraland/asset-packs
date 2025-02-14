@@ -1,7 +1,8 @@
 import { Color4 } from '@dcl/sdk/math'
 import ReactEcs, { Label, UiEntity, ReactBasedUiSystem } from '@dcl/react-ecs'
 import { Entity, IEngine, PointerEventsSystem } from '@dcl/ecs'
-import { getComponents, IPlayersHelper } from '../definitions'
+import { getSceneInfo } from '~system/Scene'
+import { AdminPermissions, getComponents, IPlayersHelper } from '../definitions'
 import { VideoControl } from './VideoControl'
 import { renderTextAnnouncementControl } from './TextAnnouncementControl'
 // import { renderModerationControl } from './ModerationControl'
@@ -9,7 +10,7 @@ import { RewardsControl } from './RewardsControl'
 import { SmartItemsControl } from './SmartItemsControl'
 import { State, TabType, SelectedSmartItem } from './types'
 import { Button } from './Button'
-import { CONTENT_SERVER } from './constants'
+import { CONTENT_URL } from './constants'
 
 let state: State = {
   panelOpen: false,
@@ -35,22 +36,22 @@ let state: State = {
   },
 }
 
-const BTN_MODERATION_CONTROL = `${CONTENT_SERVER}/admin_toolkit/assets/icons/admin-panel-moderation-control-button.png`
-const BTN_MODERATION_CONTROL_ACTIVE = `${CONTENT_SERVER}/admin_toolkit/assets/icons/admin-panel-moderation-control-active-button.png`
+const BTN_MODERATION_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-moderation-control-button.png`
+const BTN_MODERATION_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-moderation-control-active-button.png`
 
-const BTN_REWARDS_CONTROL = `${CONTENT_SERVER}/admin_toolkit/assets/icons/admin-panel-rewards-control-button.png`
-const BTN_REWARDS_CONTROL_ACTIVE = `${CONTENT_SERVER}/admin_toolkit/assets/icons/admin-panel-rewards-control-active-button.png`
+const BTN_REWARDS_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-button.png`
+const BTN_REWARDS_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-active-button.png`
 
-const BTN_VIDEO_CONTROL = `${CONTENT_SERVER}/admin_toolkit/assets/icons/admin-panel-video-control-button.png`
-const BTN_VIDEO_CONTROL_ACTIVE = `${CONTENT_SERVER}/admin_toolkit/assets/icons/admin-panel-video-control-active-button.png`
+const BTN_VIDEO_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-video-control-button.png`
+const BTN_VIDEO_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-video-control-active-button.png`
 
-const BTN_SMART_ITEM_CONTROL = `${CONTENT_SERVER}/admin_toolkit/assets/icons/admin-panel-smart-item-control-button.png`
-const BTN_SMART_ITEM_CONTROL_ACTIVE = `${CONTENT_SERVER}/admin_toolkit/assets/icons/admin-panel-smart-item-control-active-button.png`
+const BTN_SMART_ITEM_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-smart-item-control-button.png`
+const BTN_SMART_ITEM_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-smart-item-control-active-button.png`
 
-const BTN_TEXT_ANNOUNCEMENT_CONTROL = `${CONTENT_SERVER}/admin_toolkit/assets/icons/admin-panel-text-announcement-control-button.png`
-const BTN_TEXT_ANNOUNCEMENT_CONTROL_ACTIVE = `${CONTENT_SERVER}/admin_toolkit/assets/icons/admin-panel-text-announcement-control-active-button.png`
+const BTN_TEXT_ANNOUNCEMENT_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-text-announcement-control-button.png`
+const BTN_TEXT_ANNOUNCEMENT_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-text-announcement-control-active-button.png`
 
-const BTN_ADMIN_TOOLKIT_CONTROL = `${CONTENT_SERVER}/admin_toolkit/assets/icons/admin-panel-control-button.png`
+const BTN_ADMIN_TOOLKIT_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-control-button.png`
 
 const containerBackgroundColor = Color4.create(0, 0, 0, 0.75)
 
@@ -61,9 +62,36 @@ export function createAdminToolkitUI(
   playersHelper?: IPlayersHelper,
 ) {
   console.log('createAdminToolkitUI')
+  console.log('scene info', getSceneInfo({}))
+  console.log('CONTENT URL', CONTENT_URL)
   reactBasedUiSystem.setUiRenderer(() =>
     uiComponent(engine, pointerEventsSystem, playersHelper),
   )
+}
+
+function getAdminToolkitComponent(engine: IEngine) {
+  const { AdminTools } = getComponents(engine)
+  return Array.from(engine.getEntitiesWith(AdminTools))[0][1]
+}
+
+function isAllowedAdmin(
+  _engine: IEngine,
+  adminToolkitEntitie: ReturnType<typeof getAdminToolkitComponent>,
+  playersHelper?: IPlayersHelper,
+) {
+  const { adminPermissions, authorizedAdminUsers } = adminToolkitEntitie
+
+  if (adminPermissions === AdminPermissions.PUBLIC) {
+    return true
+  }
+
+  const player = playersHelper?.getPlayer()
+  if (player) {
+    if (authorizedAdminUsers.adminAllowList.includes(player?.userId)) {
+      return true
+    }
+  }
+  return false
 }
 
 const uiComponent = (
@@ -71,10 +99,10 @@ const uiComponent = (
   pointerEventsSystem: PointerEventsSystem,
   playersHelper?: IPlayersHelper,
 ) => {
-  const { AdminTools } = getComponents(engine)
-  const adminToolkitEntitie = Array.from(
-    engine.getEntitiesWith(AdminTools),
-  )[0][1]
+  const adminToolkitEntitie = getAdminToolkitComponent(engine)
+  if (!isAllowedAdmin(engine, adminToolkitEntitie, playersHelper)) {
+    return null
+  }
 
   return (
     <UiEntity

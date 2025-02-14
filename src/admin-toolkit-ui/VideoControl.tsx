@@ -4,17 +4,17 @@ import { Color4 } from '@dcl/sdk/math'
 import { getComponents } from '../definitions'
 import { getExplorerComponents } from '../components'
 import { Button } from './Button'
-import { CONTENT_SERVER } from './constants'
+import { CONTENT_URL } from './constants'
 import { State } from './types'
 
 // Constants
 const ICONS = {
-  VIDEO_CONTROL: `${CONTENT_SERVER}/admin_toolkit/assets/icons/video-control.png`,
-  PREVIOUS_BUTTON: `${CONTENT_SERVER}/admin_toolkit/assets/icons/video-control-previous-button.png`,
-  FORWARD_BUTTON: `${CONTENT_SERVER}/admin_toolkit/assets/icons/video-control-forward-button.png`,
-  PLAY_BUTTON: `${CONTENT_SERVER}/admin_toolkit/assets/icons/video-control-play-button.png`,
-  VOLUME_MINUS_BUTTON: `${CONTENT_SERVER}/admin_toolkit/assets/icons/video-control-volume-minus-button.png`,
-  VOLUME_PLUS_BUTTON: `${CONTENT_SERVER}/admin_toolkit/assets/icons/video-control-volume-plus-button.png`,
+  VIDEO_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control.png`,
+  PREVIOUS_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-previous-button.png`,
+  FORWARD_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-forward-button.png`,
+  PLAY_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-play-button.png`,
+  VOLUME_MINUS_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-volume-minus-button.png`,
+  VOLUME_PLUS_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-volume-plus-button.png`,
 } as const
 
 const UI_STYLES = {
@@ -30,7 +30,7 @@ const UI_STYLES = {
   } as const,
 } as const
 
-const DROPDOWN_BACKGROUND = `${CONTENT_SERVER}/admin_toolkit/backgrounds/dropdown-background.png`
+const DROPDOWN_BACKGROUND = `${CONTENT_URL}/admin_toolkit/backgrounds/dropdown-background.png`
 
 const VOLUME_STEP = 0.1
 const MAX_VOLUME = 1

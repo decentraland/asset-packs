@@ -41,6 +41,7 @@ import {
   Font,
   Colliders,
   ProximityLayer,
+  AdminPermissions,
 } from './enums'
 import { getExplorerComponents } from './components'
 
@@ -324,7 +325,10 @@ export function createComponents(engine: IEngine) {
   })
 
   const AdminTools = engine.defineComponent(ComponentName.ADMIN_TOOLS, {
-    adminPermissions: Schemas.String,
+    adminPermissions: Schemas.EnumString<AdminPermissions>(
+      AdminPermissions,
+      AdminPermissions.PUBLIC,
+    ),
     authorizedAdminUsers: Schemas.Map({
       me: Schemas.Boolean,
       sceneOwners: Schemas.Boolean,

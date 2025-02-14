@@ -17,7 +17,7 @@ import {
 import { Color4 } from '@dcl/sdk/math'
 import { EngineComponents } from './definitions'
 import { AlignMode, Font, ScreenAlignMode } from './enums'
-import { CONTENT_SERVER } from './admin-toolkit-ui/constants'
+import { CONTENT_URL } from './admin-toolkit-ui/constants'
 
 function getAlignMode(align: AlignMode, isColumn: boolean) {
   switch (align) {
@@ -266,7 +266,7 @@ export function removeUiTransformEntities(
   }
 }
 
-const BTN_CLOSE_TEXT_ANNOUNCEMENT = `${CONTENT_SERVER}/admin_toolkit/assets/icons/text-announcement-close-button.png`
+const BTN_CLOSE_TEXT_ANNOUNCEMENT = `${CONTENT_URL}/admin_toolkit/assets/icons/text-announcement-close-button.png`
 
 interface PromptAction {
   label: string

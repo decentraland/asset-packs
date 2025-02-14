@@ -8,12 +8,12 @@ import {
   getPayload,
 } from '../definitions'
 import { Button } from './Button'
-import { CONTENT_SERVER } from './constants'
+import { CONTENT_URL } from './constants'
 import { State } from './types'
 
 const ICONS = {
-  REWARDS_CONTROL: `${CONTENT_SERVER}/admin_toolkit/assets/icons/rewards-control.png`,
-  SEND: `${CONTENT_SERVER}/admin_toolkit/assets/icons/rewards-send.png`,
+  REWARDS_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/rewards-control.png`,
+  SEND: `${CONTENT_URL}/admin_toolkit/assets/icons/rewards-send.png`,
 } as const
 
 // Helper Functions

@@ -10,12 +10,12 @@ import {
 } from '../definitions'
 import { getExplorerComponents } from '../components'
 import { Button } from './Button'
-import { CONTENT_SERVER } from './constants'
+import { CONTENT_URL } from './constants'
 import { State } from './types'
 
 // Constants
 const ICONS = {
-  SMART_ITEM_CONTROL: `${CONTENT_SERVER}/admin_toolkit/assets/icons/smart-item-control.png`,
+  SMART_ITEM_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/smart-item-control.png`,
 } as const
 
 const UI_STYLES = {

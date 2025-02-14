@@ -179,3 +179,8 @@ export enum ProximityLayer {
   PLAYER = 'player',
   NON_PLAYER = 'non_player',
 }
+
+export enum AdminPermissions {
+  PUBLIC = 'PUBLIC',
+  PRIVATE = 'PRIVATE',
+}
