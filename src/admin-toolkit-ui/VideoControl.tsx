@@ -20,9 +20,10 @@ const ICONS = {
 const UI_STYLES = {
   BUTTON_TRANSFORM: {
     margin: '0 16px 0 0',
-    minWidth: 49,
+    minWidth: 69,
     alignItems: 'center',
     justifyContent: 'center',
+    padding: '0px 0px 0px 0px',
   } as const,
   ICON_TRANSFORM: {
     width: 35,
@@ -227,7 +228,7 @@ function VideoPlayerSelector({
         <Button
           id={`video_control_player_${idx}`}
           key={player.entity}
-          value={`<b>#${idx + 1}</b>`}
+          value={`<b>${player.customName}</b>`}
           variant={
             (state.videoControl.selectedVideoPlayer ?? 0) === idx
               ? 'primary'
@@ -292,17 +293,14 @@ function VideoControlVolume({
   const selectedVideoPlayer = useSelectedVideoPlayer(engine, state)
   const videoControl = getAdminToolkitVideoControl(engine)
   const isSoundDisabled = videoControl?.disableVideoPlayersSound
+  const volumePercentage = `${Math.round((selectedVideoPlayer?.volume ?? DEFAULT_VOLUME) * 100)}%`
 
-  const volumePercentage = isSoundDisabled
-    ? '0%'
-    : `${Math.round((selectedVideoPlayer?.volume ?? DEFAULT_VOLUME) * 100)}%`
-
-  return (
+  return !isSoundDisabled ? (
     <UiEntity uiTransform={VOLUME_STYLES.CONTAINER}>
       <Label
-        value={isSoundDisabled ? 'Sound Disabled' : 'Video Volume'}
+        value={'Video Volume'}
         fontSize={16}
-        color={isSoundDisabled ? COLORS.GRAY : COLORS.WHITE}
+        color={COLORS.WHITE}
         uiTransform={VOLUME_STYLES.HEADER}
       />
 
@@ -315,7 +313,7 @@ function VideoControlVolume({
           onlyIcon={true}
           iconTransform={UI_STYLES.ICON_TRANSFORM}
           onMouseDown={() => controls.setVolume(-VOLUME_STEP)}
-          disabled={!selectedVideoPlayer || isSoundDisabled}
+          disabled={!selectedVideoPlayer}
         />
         <Label
           value={volumePercentage}
@@ -331,7 +329,7 @@ function VideoControlVolume({
           iconTransform={UI_STYLES.ICON_TRANSFORM}
           uiTransform={UI_STYLES.BUTTON_TRANSFORM}
           onMouseDown={() => controls.setVolume(VOLUME_STEP)}
-          disabled={!selectedVideoPlayer || isSoundDisabled}
+          disabled={!selectedVideoPlayer}
         />
         <Button
           id="video_control_volume_mute"
@@ -339,11 +337,11 @@ function VideoControlVolume({
           fontSize={18}
           uiTransform={UI_STYLES.BUTTON_TRANSFORM}
           onMouseDown={() => controls.setVolume(0)}
-          disabled={!selectedVideoPlayer || isSoundDisabled}
+          disabled={!selectedVideoPlayer}
         />
       </UiEntity>
     </UiEntity>
-  )
+  ) : null
 }
 
 // Main component
