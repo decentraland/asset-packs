@@ -89,13 +89,15 @@
           "json": {
             "value": [
               {
-                "type": "on_tween_end",
+                "type": "on_input_action",
+                "conditions": [],
                 "actions": [
                   {
                     "id": "{self:asset-packs::Actions}",
-                    "name": "StopAnimation"
+                    "name": "Claim"
                   }
-                ]
+                ],
+                "basicViewId": "trigger-when-clicked"
               }
             ]
           }
@@ -116,6 +118,28 @@
                   "maxDistance": 10,
                   "showFeedback": true
                 }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "componentName": "Collectible Dispenser",
+            "fields": [
+              {
+                "name": "Campaign",
+                "type": "asset-packs::Rewards"
+              },
+              {
+                "name": "When Clicked",
+                "type": "asset-packs::Triggers",
+                "basicViewId": "trigger-when-clicked"
               }
             ]
           }
