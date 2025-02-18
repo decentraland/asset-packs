@@ -70,6 +70,23 @@
       }
     },
     {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "componentName": "Admin Tools",
+            "fields": [
+              {
+                "name": "Controls",
+                "type": "asset-packs::AdminTools"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
       "name": "core-schema::Sync-Components",
       "data": {
         "0": {
