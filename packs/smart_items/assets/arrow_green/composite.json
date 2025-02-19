@@ -73,6 +73,19 @@
           }
         }
       }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "componentName": "Arrow",
+            "fields": [
+            ]
+          }
+        }
+      }
     }
   ]
 }

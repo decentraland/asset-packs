@@ -43,7 +43,7 @@
                 "eventType": 1,
                 "eventInfo": {
                   "button": 1,
-                  "hoverText": "Press",
+                  "hoverText": "Poke",
                   "maxDistance": 10,
                   "showFeedback": true
                 }
@@ -201,7 +201,7 @@
         "0": {
           "json": {
             "isBasicViewEnabled": true,
-            "componentName": "Button",
+            "componentName": "Parrot",
             "fields": [
               {
                 "name": "Hover Text",

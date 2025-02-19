@@ -43,7 +43,7 @@
                 "eventType": 1,
                 "eventInfo": {
                   "button": 1,
-                  "hoverText": "Press",
+                  "hoverText": "Ring",
                   "maxDistance": 10,
                   "showFeedback": true
                 }
