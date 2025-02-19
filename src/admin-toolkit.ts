@@ -26,7 +26,6 @@ export function createAdminToolkitSystem(
         reactBasedUiSystem,
         playersHelper,
       )
-      console.log('Admin toolkit created with ui')
     }
     // Remove admin toolkit UI if the smart item is removed
     else if (!hasAdminToolkit && adminToolkitEntity) {

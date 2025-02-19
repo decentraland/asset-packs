@@ -1,16 +1,17 @@
 import { Color4 } from '@dcl/sdk/math'
 import ReactEcs, { Label, UiEntity, ReactBasedUiSystem } from '@dcl/react-ecs'
 import { Entity, IEngine, PointerEventsSystem } from '@dcl/ecs'
-import { getSceneInfo } from '~system/Scene'
+
 import { AdminPermissions, getComponents, IPlayersHelper } from '../definitions'
 import { VideoControl } from './VideoControl'
 import { renderTextAnnouncementControl } from './TextAnnouncementControl'
 // import { renderModerationControl } from './ModerationControl'
 import { RewardsControl } from './RewardsControl'
 import { SmartItemsControl } from './SmartItemsControl'
-import { State, TabType, SelectedSmartItem } from './types'
 import { Button } from './Button'
 import { CONTENT_URL } from './constants'
+import { State, TabType, SelectedSmartItem } from './types'
+import { getSceneDeployment, getSceneOwners } from './utils'
 
 let state: State = {
   panelOpen: false,
@@ -36,6 +37,15 @@ let state: State = {
   },
 }
 
+// Add cache objects at the top level
+let deploymentCache: {
+  data: any
+  deployedBy?: string
+  sceneBasePosition?: string[]
+} | null = null
+
+let sceneOwnersCache: string[] | null = null
+
 const BTN_MODERATION_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-moderation-control-button.png`
 const BTN_MODERATION_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-moderation-control-active-button.png`
 
@@ -55,23 +65,59 @@ const BTN_ADMIN_TOOLKIT_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/adm
 
 const containerBackgroundColor = Color4.create(0, 0, 0, 0.75)
 
+async function initSceneDeployment() {
+  if (deploymentCache !== null) return
+
+  const deployment = await getSceneDeployment()
+
+  if (deployment) {
+    deploymentCache = {
+      data: deployment,
+      deployedBy: deployment.deployedBy.toLowerCase(),
+      sceneBasePosition: deployment.metadata.scene.base.split(','),
+    }
+  }
+}
+
+async function initSceneOwners() {
+  if (sceneOwnersCache !== null) return
+
+  const owners = await getSceneOwners()
+
+  if (owners.length > 0) {
+    sceneOwnersCache = owners
+  }
+}
+
+// Initialize admin data before UI rendering
+let adminDataInitialized = false
+export async function initializeAdminData() {
+  if (!adminDataInitialized) {
+    await Promise.all([initSceneDeployment(), initSceneOwners()])
+    adminDataInitialized = true
+  }
+}
+
 export function createAdminToolkitUI(
   engine: IEngine,
   pointerEventsSystem: PointerEventsSystem,
   reactBasedUiSystem: ReactBasedUiSystem,
   playersHelper?: IPlayersHelper,
 ) {
-  console.log('createAdminToolkitUI')
-  console.log('scene info', getSceneInfo({}))
-  console.log('CONTENT URL', CONTENT_URL)
-  reactBasedUiSystem.setUiRenderer(() =>
-    uiComponent(engine, pointerEventsSystem, playersHelper),
-  )
+  // Initialize admin data before setting up the UI
+  initializeAdminData().then(() => {
+    reactBasedUiSystem.setUiRenderer(() =>
+      uiComponent(engine, pointerEventsSystem, playersHelper),
+    )
+  })
 }
 
-function getAdminToolkitComponent(engine: IEngine) {
-  const { AdminTools } = getComponents(engine)
-  return Array.from(engine.getEntitiesWith(AdminTools))[0][1]
+function isSceneDeployer(playerAddress: string) {
+  return deploymentCache?.deployedBy === playerAddress.toLowerCase()
+}
+
+function isSceneOwner(playerAddress: string) {
+  return (sceneOwnersCache || []).includes(playerAddress.toLowerCase())
 }
 
 function isAllowedAdmin(
@@ -86,17 +132,36 @@ function isAllowedAdmin(
   }
 
   const player = playersHelper?.getPlayer()
+  if (!player) return false
+
+  const playerAddress = player.userId.toLowerCase()
+
+  // Check if player is the deployer
+  if (authorizedAdminUsers.me && isSceneDeployer(playerAddress)) {
+    return true
+  }
+
+  // Check if player is a scene owner
+  if (authorizedAdminUsers.sceneOwners && isSceneOwner(playerAddress)) {
+    return true
+  }
+
+  // Check if player is in the allow list
   if (
-    player &&
     authorizedAdminUsers.allowList &&
     authorizedAdminUsers.adminAllowList.some(
-      (wallet) => wallet.toLowerCase() === player?.userId.toLowerCase(),
+      (wallet) => wallet.toLowerCase() === playerAddress,
     )
   ) {
     return true
   }
 
   return false
+}
+
+function getAdminToolkitComponent(engine: IEngine) {
+  const { AdminTools } = getComponents(engine)
+  return Array.from(engine.getEntitiesWith(AdminTools))[0][1]
 }
 
 const uiComponent = (
