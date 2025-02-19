@@ -69,7 +69,7 @@ export function renderTextAnnouncementControl(
           }}
         />
         <Label
-          value="<b>Text Announcement</b>"
+          value="<b>Text Announcements</b>"
           fontSize={24}
           color={Color4.White()}
         />
