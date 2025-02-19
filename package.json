@@ -33,10 +33,10 @@
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.405.0",
     "@aws-sdk/lib-storage": "^3.405.0",
-    "@dcl/ecs": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/update-react-ecs/@dcl/ecs/dcl-ecs-7.7.5-13188056500.commit-f5d9b1c.tgz",
+    "@dcl/ecs": "^7.7.6-13418365922.commit-c459a2f",
     "@dcl/hashing": "^3.0.4",
-    "@dcl/react-ecs": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/update-react-ecs/@dcl/react-ecs/dcl-react-ecs-7.7.5-13188056500.commit-f5d9b1c.tgz",
-    "@dcl/sdk-commands": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/update-react-ecs/dcl-sdk-commands-7.7.5-13188056500.commit-f5d9b1c.tgz",
+    "@dcl/react-ecs": "^7.7.6-13418365922.commit-c459a2f",
+    "@dcl/sdk-commands": "^7.7.6-13418365922.commit-c459a2f",
     "@types/mime-types": "^2.1.1",
     "@types/node-fetch": "^2.6.4",
     "concurrently": "^8.2.1",
