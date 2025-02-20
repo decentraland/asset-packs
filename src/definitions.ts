@@ -27,6 +27,7 @@ import {
   AudioSourceComponentDefinitionExtended,
   PBUiInput,
   PBUiInputResult,
+  PBUiCanvasInformation,
 } from '@dcl/ecs'
 import { addActionType } from './action-types'
 import {
@@ -422,6 +423,7 @@ export type EngineComponents = {
   UiBackground: LastWriteWinElementSetComponentDefinition<PBUiBackground>
   UiInput: LastWriteWinElementSetComponentDefinition<PBUiInput>
   UiInputResult: LastWriteWinElementSetComponentDefinition<PBUiInputResult>
+  UiCanvasInformation: LastWriteWinElementSetComponentDefinition<PBUiCanvasInformation>
   Billboard: LastWriteWinElementSetComponentDefinition<PBBillboard>
   Name: LastWriteWinElementSetComponentDefinition<NameType>
   Tween: LastWriteWinElementSetComponentDefinition<PBTween>

@@ -16,6 +16,7 @@ import {
 } from '@dcl/ecs'
 import { Color4 } from '@dcl/sdk/math'
 import { EngineComponents } from './definitions'
+import { getExplorerComponents } from './components'
 import { AlignMode, Font, ScreenAlignMode } from './enums'
 import { CONTENT_URL } from './admin-toolkit-ui/constants'
 
@@ -264,6 +265,20 @@ export function removeUiTransformEntities(
       engine.removeEntity(uiEntity)
     }
   }
+}
+
+export function getScaleUIFactor(engine: IEngine) {
+  const { UiCanvasInformation } = getExplorerComponents(engine)
+  const uiCanvasInfo = UiCanvasInformation.getOrNull(engine.RootEntity)
+
+  if (!uiCanvasInfo) return 1
+
+  const scaleFactor = Math.min(
+    uiCanvasInfo.width / 1920,
+    uiCanvasInfo.height / 1080,
+  )
+
+  return scaleFactor
 }
 
 const BTN_CLOSE_TEXT_ANNOUNCEMENT = `${CONTENT_URL}/admin_toolkit/assets/icons/text-announcement-close-button.png`
