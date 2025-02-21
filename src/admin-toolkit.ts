@@ -1,6 +1,6 @@
 import { Entity, IEngine, PointerEventsSystem } from '@dcl/ecs'
 import { ReactBasedUiSystem } from '@dcl/react-ecs'
-import { getComponents, IPlayersHelper } from './definitions'
+import { getComponents, IPlayersHelper, ISDKHelpers } from './definitions'
 import { createAdminToolkitUI } from './admin-toolkit-ui'
 
 // Create a system to manage the AdminToolkit
@@ -8,6 +8,7 @@ export function createAdminToolkitSystem(
   engine: IEngine,
   pointerEventsSystem: PointerEventsSystem,
   reactBasedUiSystem: ReactBasedUiSystem,
+  sdkHelpers?: ISDKHelpers,
   playersHelper?: IPlayersHelper,
 ) {
   let adminToolkitEntity: Entity | null = null
@@ -24,6 +25,7 @@ export function createAdminToolkitSystem(
         engine,
         pointerEventsSystem,
         reactBasedUiSystem,
+        sdkHelpers,
         playersHelper,
       )
     }

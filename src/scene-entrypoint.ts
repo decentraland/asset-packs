@@ -79,6 +79,7 @@ export function initAssetPacks(
         engine,
         pointerEventsSystem,
         reactBasedUiSystem,
+        sdkHelpers,
         playersHelper,
       ),
     )
