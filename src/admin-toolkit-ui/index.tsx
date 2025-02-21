@@ -2,18 +2,27 @@ import { Color4 } from '@dcl/sdk/math'
 import ReactEcs, { Label, UiEntity, ReactBasedUiSystem } from '@dcl/react-ecs'
 import { Entity, IEngine, PointerEventsSystem } from '@dcl/ecs'
 
-import { AdminPermissions, getComponents, IPlayersHelper } from '../definitions'
+import {
+  AdminPermissions,
+  getComponents,
+  GetPlayerDataRes,
+  IPlayersHelper,
+  ISDKHelpers,
+} from '../definitions'
+import { getScaleUIFactor } from '../ui'
 import { VideoControl } from './VideoControl'
-import { renderTextAnnouncementControl } from './TextAnnouncementControl'
+import { TextAnnouncementsControl } from './TextAnnouncementsControl'
 // import { renderModerationControl } from './ModerationControl'
 import { RewardsControl } from './RewardsControl'
 import { SmartItemsControl } from './SmartItemsControl'
 import { Button } from './Button'
+import { TextAnnouncements } from './TextAnnouncements'
 import { CONTENT_URL } from './constants'
-import { State, TabType, SelectedSmartItem } from './types'
 import { getSceneDeployment, getSceneOwners } from './utils'
+import { State, TabType, SelectedSmartItem } from './types'
 
 let state: State = {
+  adminToolkitUiEntity: 0 as Entity,
   panelOpen: false,
   activeTab: TabType.NONE,
   videoControl: {
@@ -89,11 +98,55 @@ async function initSceneOwners() {
   }
 }
 
+function initVideoControlSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
+  const { VideoControlState } = getComponents(engine)
+  const adminToolkitEntity = getAdminToolkitEntity(engine)
+
+  VideoControlState.createOrReplace(state.adminToolkitUiEntity, {
+    videoPlayers: [],
+  })
+
+  sdkHelpers?.syncEntity?.(
+    state.adminToolkitUiEntity,
+    [VideoControlState.componentId],
+    adminToolkitEntity,
+  )
+}
+
+function initTextAnnouncementSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
+  const { TextAnnouncements } = getComponents(engine)
+  const adminToolkitEntity = getAdminToolkitEntity(engine)
+
+  TextAnnouncements.createOrReplace(state.adminToolkitUiEntity, {
+    announcements: [],
+  })
+
+  sdkHelpers?.syncEntity?.(
+    state.adminToolkitUiEntity,
+    [TextAnnouncements.componentId],
+    adminToolkitEntity,
+  )
+}
+
 // Initialize admin data before UI rendering
 let adminDataInitialized = false
-export async function initializeAdminData() {
+export async function initializeAdminData(
+  engine: IEngine,
+  sdkHelpers?: ISDKHelpers,
+) {
   if (!adminDataInitialized) {
+    // Initialize scene data
     await Promise.all([initSceneDeployment(), initSceneOwners()])
+
+    // Initialize AdminToolkitUiEntity
+    state.adminToolkitUiEntity = engine.addEntity()
+
+    // Initialize VideoControl sync component
+    initVideoControlSync(engine, sdkHelpers)
+
+    // Initialize TextAnnouncements sync component
+    initTextAnnouncementSync(engine, sdkHelpers)
+
     adminDataInitialized = true
   }
 }
@@ -102,12 +155,13 @@ export function createAdminToolkitUI(
   engine: IEngine,
   pointerEventsSystem: PointerEventsSystem,
   reactBasedUiSystem: ReactBasedUiSystem,
+  sdkHelpers?: ISDKHelpers,
   playersHelper?: IPlayersHelper,
 ) {
   // Initialize admin data before setting up the UI
-  initializeAdminData().then(() => {
+  initializeAdminData(engine, sdkHelpers).then(() => {
     reactBasedUiSystem.setUiRenderer(() =>
-      uiComponent(engine, pointerEventsSystem, playersHelper),
+      uiComponent(engine, pointerEventsSystem, sdkHelpers, playersHelper),
     )
   })
 }
@@ -123,7 +177,7 @@ function isSceneOwner(playerAddress: string) {
 function isAllowedAdmin(
   _engine: IEngine,
   adminToolkitEntitie: ReturnType<typeof getAdminToolkitComponent>,
-  playersHelper?: IPlayersHelper,
+  player?: GetPlayerDataRes | null,
 ) {
   const { adminPermissions, authorizedAdminUsers } = adminToolkitEntitie
 
@@ -131,7 +185,6 @@ function isAllowedAdmin(
     return true
   }
 
-  const player = playersHelper?.getPlayer()
   if (!player) return false
 
   const playerAddress = player.userId.toLowerCase()
@@ -159,6 +212,11 @@ function isAllowedAdmin(
   return false
 }
 
+function getAdminToolkitEntity(engine: IEngine) {
+  const { AdminTools } = getComponents(engine)
+  return Array.from(engine.getEntitiesWith(AdminTools))[0][0]
+}
+
 function getAdminToolkitComponent(engine: IEngine) {
   const { AdminTools } = getComponents(engine)
   return Array.from(engine.getEntitiesWith(AdminTools))[0][1]
@@ -167,255 +225,286 @@ function getAdminToolkitComponent(engine: IEngine) {
 const uiComponent = (
   engine: IEngine,
   pointerEventsSystem: PointerEventsSystem,
+  sdkHelpers?: ISDKHelpers,
   playersHelper?: IPlayersHelper,
 ) => {
+  // const { TextAnnouncements } = getComponents(engine)
   const adminToolkitEntitie = getAdminToolkitComponent(engine)
-  if (!isAllowedAdmin(engine, adminToolkitEntitie, playersHelper)) {
-    return null
-  }
+  const player = playersHelper?.getPlayer()
+  const isPlayerAdmin = isAllowedAdmin(engine, adminToolkitEntitie, player)
+  // const textAnnouncements = TextAnnouncements.getOrNull(
+  //   state.adminToolkitUiEntity,
+  // )
+  const scaleFactor = getScaleUIFactor(engine)
 
   return (
     <UiEntity
       uiTransform={{
         positionType: 'absolute',
-        flexDirection: 'row',
-        position: { top: 80, right: 10 },
+        height: '100%',
+        width: '100%',
       }}
     >
-      <UiEntity
-        uiTransform={{
-          display: state.panelOpen ? 'flex' : 'none',
-          width: 500,
-          pointerFilter: 'block',
-          flexDirection: 'column',
-          margin: { right: 8 },
-        }}
-      >
+      {isPlayerAdmin ? (
         <UiEntity
           uiTransform={{
-            width: '100%',
-            height: 50,
+            positionType: 'absolute',
             flexDirection: 'row',
-            alignItems: 'center',
-            padding: {
-              left: 12,
-              right: 12,
-            },
+            position: { top: 80 * scaleFactor, right: 10 * scaleFactor },
           }}
-          uiBackground={{ color: containerBackgroundColor }}
         >
-          <Label
-            value="Admin Tools"
-            fontSize={20}
-            color={Color4.create(160, 155, 168, 1)}
-            uiTransform={{ flexGrow: 1 }}
-          />
-          {/* <Button
-          value=""
-          fontSize={25}
-          uiTransform={{
-            width: 49,
-            height: 42,
-            margin: '0 8px 0 0',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-          uiBackground={{
-            color: Color4.White(),
-            textureMode: 'stretch',
-            texture: {
-              src:
-                state.activeTab === TabType.MODERATION_CONTROL
-                  ? BTN_MODERATION_CONTROL_ACTIVE
-                  : BTN_MODERATION_CONTROL,
-            },
-          }}
-          onMouseDown={() => {
-            state.activeTab = TabType.MODERATION_CONTROL
-          }}
-        /> */}
-          <Button
-            id="admin_toolkit_panel_video_control"
-            variant="text"
-            icon={
-              state.activeTab === TabType.VIDEO_CONTROL
-                ? BTN_VIDEO_CONTROL_ACTIVE
-                : BTN_VIDEO_CONTROL
-            }
-            onlyIcon
-            uiTransform={{
-              display: adminToolkitEntitie.videoControl.isEnabled
-                ? 'flex'
-                : 'none',
-              width: 49,
-              height: 42,
-              margin: { right: 8 },
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            iconTransform={{
-              height: '100%',
-              width: '100%',
-            }}
-            onMouseDown={() => {
-              if (state.activeTab !== TabType.VIDEO_CONTROL) {
-                state.activeTab = TabType.VIDEO_CONTROL
-              } else {
-                state.activeTab = TabType.NONE
-              }
-            }}
-          />
-          <Button
-            id="admin_toolkit_panel_smart_items_control"
-            variant="text"
-            icon={
-              state.activeTab === TabType.SMART_ITEMS_CONTROL
-                ? BTN_SMART_ITEM_CONTROL_ACTIVE
-                : BTN_SMART_ITEM_CONTROL
-            }
-            onlyIcon
-            uiTransform={{
-              display: adminToolkitEntitie.smartItemsControl.isEnabled
-                ? 'flex'
-                : 'none',
-              width: 49,
-              height: 42,
-              margin: { right: 8 },
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            iconTransform={{
-              height: '100%',
-              width: '100%',
-            }}
-            onMouseDown={() => {
-              if (state.activeTab !== TabType.SMART_ITEMS_CONTROL) {
-                state.activeTab = TabType.SMART_ITEMS_CONTROL
-              } else {
-                state.activeTab = TabType.NONE
-              }
-            }}
-          />
-          <Button
-            id="admin_toolkit_panel_text_announcement_control"
-            variant="text"
-            icon={
-              state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL
-                ? BTN_TEXT_ANNOUNCEMENT_CONTROL_ACTIVE
-                : BTN_TEXT_ANNOUNCEMENT_CONTROL
-            }
-            onlyIcon
-            uiTransform={{
-              display: adminToolkitEntitie.textAnnouncementControl.isEnabled
-                ? 'flex'
-                : 'none',
-              width: 49,
-              height: 42,
-              margin: { right: 8 },
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            iconTransform={{
-              height: '100%',
-              width: '100%',
-            }}
-            onMouseDown={() => {
-              if (state.activeTab !== TabType.TEXT_ANNOUNCEMENT_CONTROL) {
-                state.activeTab = TabType.TEXT_ANNOUNCEMENT_CONTROL
-              } else {
-                state.activeTab = TabType.NONE
-              }
-            }}
-          />
-          <Button
-            id="admin_toolkit_panel_rewards_control"
-            variant="text"
-            icon={
-              state.activeTab === TabType.REWARDS_CONTROL
-                ? BTN_REWARDS_CONTROL_ACTIVE
-                : BTN_REWARDS_CONTROL
-            }
-            onlyIcon
-            uiTransform={{
-              display: adminToolkitEntitie.rewardsControl.isEnabled
-                ? 'flex'
-                : 'none',
-              width: 49,
-              height: 42,
-              margin: '0',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            iconTransform={{
-              height: '100%',
-              width: '100%',
-            }}
-            onMouseDown={() => {
-              if (state.activeTab !== TabType.REWARDS_CONTROL) {
-                state.activeTab = TabType.REWARDS_CONTROL
-              } else {
-                state.activeTab = TabType.NONE
-              }
-            }}
-          />
-        </UiEntity>
-        {state.activeTab !== TabType.NONE ? (
           <UiEntity
             uiTransform={{
-              width: '100%',
-              margin: '10px 0 0 0',
-              padding: '32px',
+              display: state.panelOpen ? 'flex' : 'none',
+              width: 500 * scaleFactor,
+              pointerFilter: 'block',
+              flexDirection: 'column',
+              margin: { right: 8 * scaleFactor },
+            }}
+          >
+            <UiEntity
+              uiTransform={{
+                width: '100%',
+                height: 50 * scaleFactor,
+                flexDirection: 'row',
+                alignItems: 'center',
+                padding: {
+                  left: 12 * scaleFactor,
+                  right: 12 * scaleFactor,
+                },
+              }}
+              uiBackground={{ color: containerBackgroundColor }}
+            >
+              <Label
+                value="Admin Tools"
+                fontSize={20 * scaleFactor}
+                color={Color4.create(160, 155, 168, 1)}
+                uiTransform={{ flexGrow: 1 }}
+              />
+              {/* <Button
+            value=""
+            fontSize={25}
+            uiTransform={{
+              width: 49,
+              height: 42,
+              margin: '0 8px 0 0',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            uiBackground={{
+              color: Color4.White(),
+              textureMode: 'stretch',
+              texture: {
+                src:
+                  state.activeTab === TabType.MODERATION_CONTROL
+                    ? BTN_MODERATION_CONTROL_ACTIVE
+                    : BTN_MODERATION_CONTROL,
+              },
+            }}
+            onMouseDown={() => {
+              state.activeTab = TabType.MODERATION_CONTROL
+            }}
+          /> */}
+              <Button
+                id="admin_toolkit_panel_video_control"
+                variant="text"
+                icon={
+                  state.activeTab === TabType.VIDEO_CONTROL
+                    ? BTN_VIDEO_CONTROL_ACTIVE
+                    : BTN_VIDEO_CONTROL
+                }
+                onlyIcon
+                uiTransform={{
+                  display: adminToolkitEntitie.videoControl.isEnabled
+                    ? 'flex'
+                    : 'none',
+                  width: 49 * scaleFactor,
+                  height: 42 * scaleFactor,
+                  margin: { right: 8 * scaleFactor },
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                iconTransform={{
+                  height: '100%',
+                  width: '100%',
+                }}
+                onMouseDown={() => {
+                  if (state.activeTab !== TabType.VIDEO_CONTROL) {
+                    state.activeTab = TabType.VIDEO_CONTROL
+                  } else {
+                    state.activeTab = TabType.NONE
+                  }
+                }}
+              />
+              <Button
+                id="admin_toolkit_panel_smart_items_control"
+                variant="text"
+                icon={
+                  state.activeTab === TabType.SMART_ITEMS_CONTROL
+                    ? BTN_SMART_ITEM_CONTROL_ACTIVE
+                    : BTN_SMART_ITEM_CONTROL
+                }
+                onlyIcon
+                uiTransform={{
+                  display: adminToolkitEntitie.smartItemsControl.isEnabled
+                    ? 'flex'
+                    : 'none',
+                  width: 49 * scaleFactor,
+                  height: 42 * scaleFactor,
+                  margin: { right: 8 * scaleFactor },
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                iconTransform={{
+                  height: '100%',
+                  width: '100%',
+                }}
+                onMouseDown={() => {
+                  if (state.activeTab !== TabType.SMART_ITEMS_CONTROL) {
+                    state.activeTab = TabType.SMART_ITEMS_CONTROL
+                  } else {
+                    state.activeTab = TabType.NONE
+                  }
+                }}
+              />
+              <Button
+                id="admin_toolkit_panel_text_announcement_control"
+                variant="text"
+                icon={
+                  state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL
+                    ? BTN_TEXT_ANNOUNCEMENT_CONTROL_ACTIVE
+                    : BTN_TEXT_ANNOUNCEMENT_CONTROL
+                }
+                onlyIcon
+                uiTransform={{
+                  display: adminToolkitEntitie.textAnnouncementControl.isEnabled
+                    ? 'flex'
+                    : 'none',
+                  width: 49 * scaleFactor,
+                  height: 42 * scaleFactor,
+                  margin: { right: 8 * scaleFactor },
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                iconTransform={{
+                  height: '100%',
+                  width: '100%',
+                }}
+                onMouseDown={() => {
+                  if (state.activeTab !== TabType.TEXT_ANNOUNCEMENT_CONTROL) {
+                    state.activeTab = TabType.TEXT_ANNOUNCEMENT_CONTROL
+                  } else {
+                    state.activeTab = TabType.NONE
+                  }
+                }}
+              />
+              <Button
+                id="admin_toolkit_panel_rewards_control"
+                variant="text"
+                icon={
+                  state.activeTab === TabType.REWARDS_CONTROL
+                    ? BTN_REWARDS_CONTROL_ACTIVE
+                    : BTN_REWARDS_CONTROL
+                }
+                onlyIcon
+                uiTransform={{
+                  display: adminToolkitEntitie.rewardsControl.isEnabled
+                    ? 'flex'
+                    : 'none',
+                  width: 49 * scaleFactor,
+                  height: 42 * scaleFactor,
+                  margin: '0',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                iconTransform={{
+                  height: '100%',
+                  width: '100%',
+                }}
+                onMouseDown={() => {
+                  if (state.activeTab !== TabType.REWARDS_CONTROL) {
+                    state.activeTab = TabType.REWARDS_CONTROL
+                  } else {
+                    state.activeTab = TabType.NONE
+                  }
+                }}
+              />
+            </UiEntity>
+            {state.activeTab !== TabType.NONE ? (
+              <UiEntity
+                uiTransform={{
+                  width: '100%',
+                  margin: {
+                    top: 10 * scaleFactor,
+                    right: 0,
+                    bottom: 0,
+                    left: 0,
+                  },
+                  padding: {
+                    top: 32 * scaleFactor,
+                    right: 32 * scaleFactor,
+                    bottom: 32 * scaleFactor,
+                    left: 32 * scaleFactor,
+                  },
+                }}
+                uiBackground={{ color: containerBackgroundColor }}
+              >
+                {/* {state.activeTab === TabType.MODERATION &&
+              renderModerationControl(engine)} */}
+                {state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL && (
+                  <TextAnnouncementsControl
+                    engine={engine}
+                    state={state}
+                    player={player}
+                  />
+                )}
+                {state.activeTab === TabType.VIDEO_CONTROL && (
+                  <VideoControl engine={engine} state={state} />
+                )}
+                {state.activeTab === TabType.SMART_ITEMS_CONTROL && (
+                  <SmartItemsControl engine={engine} state={state} />
+                )}
+                {state.activeTab === TabType.REWARDS_CONTROL && (
+                  <RewardsControl engine={engine} state={state} />
+                )}
+              </UiEntity>
+            ) : null}
+          </UiEntity>
+          <UiEntity
+            uiTransform={{
+              height: 38 * scaleFactor,
+              width: 38 * scaleFactor,
+              pointerFilter: 'block',
             }}
             uiBackground={{ color: containerBackgroundColor }}
           >
-            {/* {state.activeTab === TabType.MODERATION &&
-            renderModerationControl(engine)} */}
-            {state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL &&
-              renderTextAnnouncementControl(
-                engine,
-                state,
-                pointerEventsSystem,
-                playersHelper,
-              )}
-            {state.activeTab === TabType.VIDEO_CONTROL && (
-              <VideoControl engine={engine} state={state} />
-            )}
-            {state.activeTab === TabType.SMART_ITEMS_CONTROL && (
-              <SmartItemsControl engine={engine} state={state} />
-            )}
-            {state.activeTab === TabType.REWARDS_CONTROL && (
-              <RewardsControl engine={engine} state={state} />
-            )}
+            <Button
+              id="admin_toolkit_panel"
+              variant="text"
+              icon={BTN_ADMIN_TOOLKIT_CONTROL}
+              onlyIcon
+              uiTransform={{
+                height: 'auto',
+                width: 'auto',
+                margin: {
+                  top: 4 * scaleFactor,
+                  right: 4 * scaleFactor,
+                  bottom: 4 * scaleFactor,
+                  left: 4 * scaleFactor,
+                },
+              }}
+              iconTransform={{
+                height: 30 * scaleFactor,
+                width: 30 * scaleFactor,
+              }}
+              onMouseDown={() => {
+                state.panelOpen = !state.panelOpen
+              }}
+            />
           </UiEntity>
-        ) : null}
-      </UiEntity>
-      <UiEntity
-        uiTransform={{
-          height: 38,
-          width: 38,
-          pointerFilter: 'block',
-        }}
-        uiBackground={{ color: containerBackgroundColor }}
-      >
-        <Button
-          id="admin_toolkit_panel"
-          variant="text"
-          icon={BTN_ADMIN_TOOLKIT_CONTROL}
-          onlyIcon
-          uiTransform={{
-            height: 'auto',
-            width: 'auto',
-            margin: 4,
-          }}
-          iconTransform={{
-            height: 30,
-            width: 30,
-          }}
-          onMouseDown={() => {
-            state.panelOpen = !state.panelOpen
-          }}
-        />
-      </UiEntity>
+        </UiEntity>
+      ) : null}
+      <TextAnnouncements engine={engine} state={state} />
     </UiEntity>
   )
 }
