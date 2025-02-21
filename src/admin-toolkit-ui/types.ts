@@ -13,6 +13,7 @@ export enum TabType {
 export type SelectedSmartItem = { visible: boolean; selectedAction: string }
 
 export type State = {
+  adminToolkitUiEntity: Entity
   panelOpen: boolean
   activeTab: TabType
   videoControl: {

@@ -244,6 +244,14 @@ export function getComponents(engine: IEngine) {
     CounterBar: getComponent<CounterBar>(ComponentName.COUNTER_BAR, engine),
     AdminTools: getComponent<AdminTools>(ComponentName.ADMIN_TOOLS, engine),
     Rewards: getComponent<Rewards>(ComponentName.REWARDS, engine),
+    TextAnnouncements: getComponent<TextAnnouncements>(
+      ComponentName.TEXT_ANNOUNCEMENTS,
+      engine,
+    ),
+    VideoControlState: getComponent<VideoControlState>(
+      ComponentName.VIDEO_CONTROL_STATE,
+      engine,
+    ),
   }
 }
 
@@ -396,6 +404,39 @@ export function createComponents(engine: IEngine) {
     testMode: Schemas.Boolean,
   })
 
+  const TextAnnouncements = engine.defineComponent(
+    ComponentName.TEXT_ANNOUNCEMENTS,
+    {
+      announcements: Schemas.Optional(
+        Schemas.Array(
+          Schemas.Map({
+            id: Schemas.String,
+            text: Schemas.String,
+            author: Schemas.Optional(Schemas.String),
+          }),
+        ),
+      ),
+    },
+  )
+
+  const VideoControlState = engine.defineComponent(
+    ComponentName.VIDEO_CONTROL_STATE,
+    {
+      videoPlayers: Schemas.Optional(
+        Schemas.Array(
+          Schemas.Map({
+            entity: Schemas.Int,
+            src: Schemas.Optional(Schemas.String),
+            playing: Schemas.Optional(Schemas.Boolean),
+            volume: Schemas.Optional(Schemas.Float),
+            position: Schemas.Optional(Schemas.Float),
+            loop: Schemas.Optional(Schemas.Boolean),
+          }),
+        ),
+      ),
+    },
+  )
+
   return {
     ActionTypes,
     Actions,
@@ -405,6 +446,8 @@ export function createComponents(engine: IEngine) {
     CounterBar,
     AdminTools,
     Rewards,
+    TextAnnouncements,
+    VideoControlState,
   }
 }
 
@@ -564,3 +607,13 @@ export type AdminTools = ReturnType<
 
 export type RewardsComponent = Components['Rewards']
 export type Rewards = ReturnType<RewardsComponent['schema']['deserialize']>
+
+export type TextAnnouncementsComponent = Components['TextAnnouncements']
+export type TextAnnouncements = ReturnType<
+  TextAnnouncementsComponent['schema']['deserialize']
+>
+
+export type VideoControlStateComponent = Components['VideoControlState']
+export type VideoControlState = ReturnType<
+  VideoControlStateComponent['schema']['deserialize']
+>

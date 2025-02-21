@@ -9,6 +9,8 @@ export enum ComponentName {
   COUNTER_BAR = 'asset-packs::CounterBar',
   ADMIN_TOOLS = 'asset-packs::AdminTools',
   REWARDS = 'asset-packs::Rewards',
+  TEXT_ANNOUNCEMENTS = 'asset-packs::TextAnnouncements',
+  VIDEO_CONTROL_STATE = 'asset-packs::VideoControlState',
 }
 
 export enum TweenType {
