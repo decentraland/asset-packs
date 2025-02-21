@@ -6,6 +6,7 @@ import { getExplorerComponents } from '../components'
 import { Button } from './Button'
 import { CONTENT_URL } from './constants'
 import { State } from './types'
+import { getScaleUIFactor } from '../ui'
 
 // Constants
 const ICONS = {
@@ -15,20 +16,6 @@ const ICONS = {
   PLAY_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-play-button.png`,
   VOLUME_MINUS_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-volume-minus-button.png`,
   VOLUME_PLUS_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-volume-plus-button.png`,
-} as const
-
-const UI_STYLES = {
-  BUTTON_TRANSFORM: {
-    margin: '0 16px 0 0',
-    minWidth: 69,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '0px 0px 0px 0px',
-  } as const,
-  ICON_TRANSFORM: {
-    width: 35,
-    height: 35,
-  } as const,
 } as const
 
 const DROPDOWN_BACKGROUND = `${CONTENT_URL}/admin_toolkit/backgrounds/dropdown-background.png`
@@ -42,17 +29,7 @@ const COLORS = {
   GRAY: Color4.create(160 / 255, 155 / 255, 168 / 255, 1),
 } as const
 
-const VOLUME_STYLES = {
-  CONTAINER: {
-    flexDirection: 'column',
-  } as const,
-  HEADER: {
-    margin: '0 0 10px 0',
-  } as const,
-  CONTROLS: {
-    flexDirection: 'row',
-  } as const,
-} as const
+let videoPlayersInitialized = false
 
 // Types
 interface VideoPlayerControls {
@@ -124,6 +101,10 @@ function updateVideoPlayerProps<K extends keyof PBVideoPlayer>(
   property: K,
   value: NonNullable<PBVideoPlayer[K]>,
 ) {
+  const { VideoControlState } = getComponents(engine)
+  const videoControlState = VideoControlState.getMutable(
+    state.adminToolkitUiEntity,
+  )
   const { VideoPlayer } = getExplorerComponents(engine)
   const videoControl = getAdminToolkitVideoControl(engine)
   const linkAllVideoPlayers =
@@ -183,6 +164,20 @@ function updateVideoSourceProperty<K extends keyof PBVideoPlayer>(
   }
 }
 
+function initVideoPlayers(engine: IEngine) {
+  const { NetworkEntity } = getExplorerComponents(engine)
+  const videoPlayers = getVideoPlayers(engine)
+
+  for (const player of videoPlayers) {
+    const networkEntity = NetworkEntity.getOrNull(player.entity as Entity)
+    if (!networkEntity) {
+      NetworkEntity.create(player.entity as Entity)
+    }
+  }
+
+  videoPlayersInitialized = true
+}
+
 // Components
 function VideoPlayerSelector({
   engine,
@@ -192,18 +187,27 @@ function VideoPlayerSelector({
   state: State
 }) {
   const videoPlayers = getVideoPlayers(engine)
+  const scaleFactor = getScaleUIFactor(engine)
 
   if (videoPlayers.length <= 1) return null
 
   if (videoPlayers.length > 4) {
     return (
-      <UiEntity uiTransform={{ flexDirection: 'row', margin: { bottom: 16 } }}>
+      <UiEntity
+        uiTransform={{
+          flexDirection: 'row',
+          margin: { bottom: 16 * scaleFactor },
+        }}
+      >
         <Dropdown
           options={videoPlayers.map((player) => player.customName)}
           selectedIndex={state.videoControl.selectedVideoPlayer ?? 0}
           onChange={(idx) => (state.videoControl.selectedVideoPlayer = idx)}
           textAlign="middle-left"
-          uiTransform={{ margin: { right: 8 }, minWidth: 150 }}
+          uiTransform={{
+            margin: { right: 8 * scaleFactor },
+            minWidth: 150 * scaleFactor,
+          }}
           uiBackground={{ color: Color4.White() }}
         />
         <Button
@@ -215,7 +219,13 @@ function VideoPlayerSelector({
             state.videoControl.linkAllVideoPlayers = true
             state.videoControl.selectedVideoPlayer = undefined
           }}
-          uiTransform={UI_STYLES.BUTTON_TRANSFORM}
+          uiTransform={{
+            margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
+            minWidth: 69 * scaleFactor,
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 0,
+          }}
         />
       </UiEntity>
     )
@@ -223,32 +233,37 @@ function VideoPlayerSelector({
 
   // For 4 or fewer players, show numbered buttons
   return (
-    <UiEntity uiTransform={{ flexDirection: 'row', margin: { bottom: 16 } }}>
-      {videoPlayers.map((player, idx) => (
-        <Button
-          id={`video_control_player_${idx}`}
-          key={player.entity}
-          value={`<b>${player.customName}</b>`}
-          variant={
-            (state.videoControl.selectedVideoPlayer ?? 0) === idx
-              ? 'primary'
-              : 'secondary'
-          }
-          color={
-            (state.videoControl.selectedVideoPlayer ?? 0) === idx
-              ? Color4.Black()
-              : Color4.White()
-          }
-          onMouseDown={() => {
-            state.videoControl.selectedVideoPlayer = idx
-            state.videoControl.linkAllVideoPlayers = false
-          }}
-          uiTransform={{
-            ...UI_STYLES.BUTTON_TRANSFORM,
-            margin: { right: 8 },
-          }}
-        />
-      ))}
+    <UiEntity
+      uiTransform={{
+        flexDirection: 'row',
+        margin: { bottom: 16 * scaleFactor },
+      }}
+    >
+      {videoPlayers.map((player, idx) => {
+        const isPlayerSelected =
+          !state.videoControl.linkAllVideoPlayers &&
+          (state.videoControl.selectedVideoPlayer ?? 0) === idx
+        return (
+          <Button
+            id={`video_control_player_${idx}`}
+            key={player.entity}
+            value={`<b>${player.customName}</b>`}
+            variant={isPlayerSelected ? 'primary' : 'secondary'}
+            color={isPlayerSelected ? Color4.Black() : Color4.White()}
+            onMouseDown={() => {
+              state.videoControl.selectedVideoPlayer = idx
+              state.videoControl.linkAllVideoPlayers = false
+            }}
+            uiTransform={{
+              minWidth: 69 * scaleFactor,
+              alignItems: 'center',
+              justifyContent: 'center',
+              margin: { right: 8 * scaleFactor },
+              padding: 0,
+            }}
+          />
+        )
+      })}
       <Button
         id="video_control_link_all"
         value="<b>Link All</b>"
@@ -258,7 +273,13 @@ function VideoPlayerSelector({
           state.videoControl.linkAllVideoPlayers = true
           state.videoControl.selectedVideoPlayer = undefined
         }}
-        uiTransform={UI_STYLES.BUTTON_TRANSFORM}
+        uiTransform={{
+          margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
+          minWidth: 69 * scaleFactor,
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 0,
+        }}
       />
     </UiEntity>
   )
@@ -289,6 +310,7 @@ function VideoControlVolume({
   engine: IEngine
   state: State
 }) {
+  const scaleFactor = getScaleUIFactor(engine)
   const controls = createVideoPlayerControls(engine, state)
   const selectedVideoPlayer = useSelectedVideoPlayer(engine, state)
   const videoControl = getAdminToolkitVideoControl(engine)
@@ -296,46 +318,86 @@ function VideoControlVolume({
   const volumePercentage = `${Math.round((selectedVideoPlayer?.volume ?? DEFAULT_VOLUME) * 100)}%`
 
   return !isSoundDisabled ? (
-    <UiEntity uiTransform={VOLUME_STYLES.CONTAINER}>
+    <UiEntity
+      uiTransform={{
+        flexDirection: 'column',
+      }}
+    >
       <Label
         value={'Video Volume'}
-        fontSize={16}
+        fontSize={16 * scaleFactor}
         color={COLORS.WHITE}
-        uiTransform={VOLUME_STYLES.HEADER}
+        uiTransform={{
+          margin: { top: 0, right: 0, bottom: 10 * scaleFactor, left: 0 },
+        }}
       />
 
-      <UiEntity uiTransform={VOLUME_STYLES.CONTROLS}>
+      <UiEntity
+        uiTransform={{
+          flexDirection: 'row',
+        }}
+      >
         <Button
           id="video_control_volume_minus"
           value="Minus"
-          uiTransform={UI_STYLES.BUTTON_TRANSFORM}
+          uiTransform={{
+            margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
+            minWidth: 69 * scaleFactor,
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 0,
+          }}
           icon={ICONS.VOLUME_MINUS_BUTTON}
           onlyIcon={true}
-          iconTransform={UI_STYLES.ICON_TRANSFORM}
+          iconTransform={{
+            width: 35 * scaleFactor,
+            height: 35 * scaleFactor,
+          }}
           onMouseDown={() => controls.setVolume(-VOLUME_STEP)}
           disabled={!selectedVideoPlayer}
         />
         <Label
           value={volumePercentage}
-          fontSize={18}
+          fontSize={18 * scaleFactor}
           color={COLORS.GRAY}
-          uiTransform={UI_STYLES.BUTTON_TRANSFORM}
+          uiTransform={{
+            margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
+            minWidth: 69 * scaleFactor,
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 0,
+          }}
         />
         <Button
           id="video_control_volume_plus"
           value="Plus"
           icon={ICONS.VOLUME_PLUS_BUTTON}
           onlyIcon={true}
-          iconTransform={UI_STYLES.ICON_TRANSFORM}
-          uiTransform={UI_STYLES.BUTTON_TRANSFORM}
+          iconTransform={{
+            width: 35 * scaleFactor,
+            height: 35 * scaleFactor,
+          }}
+          uiTransform={{
+            margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
+            minWidth: 69 * scaleFactor,
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 0,
+          }}
           onMouseDown={() => controls.setVolume(VOLUME_STEP)}
           disabled={!selectedVideoPlayer}
         />
         <Button
           id="video_control_volume_mute"
           value="<b>Mute</b>"
-          fontSize={18}
-          uiTransform={UI_STYLES.BUTTON_TRANSFORM}
+          fontSize={18 * scaleFactor}
+          uiTransform={{
+            margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
+            minWidth: 69 * scaleFactor,
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 0,
+          }}
           onMouseDown={() => controls.setVolume(0)}
           disabled={!selectedVideoPlayer}
         />
@@ -354,6 +416,12 @@ export function VideoControl({
 }) {
   const controls = createVideoPlayerControls(engine, state)
   const selectedVideoPlayer = useSelectedVideoPlayer(engine, state)
+  const scaleFactor = getScaleUIFactor(engine)
+
+  if (!videoPlayersInitialized) {
+    initVideoPlayers(engine)
+  }
+
   return (
     <UiEntity
       uiTransform={{
@@ -366,12 +434,12 @@ export function VideoControl({
       <UiEntity
         uiTransform={{
           flexDirection: 'row',
-          margin: { bottom: 10 },
-          height: 30,
+          margin: { bottom: 10 * scaleFactor },
+          height: 30 * scaleFactor,
         }}
       >
         <UiEntity
-          uiTransform={{ width: 30, height: 30 }}
+          uiTransform={{ width: 30 * scaleFactor, height: 30 * scaleFactor }}
           uiBackground={{
             textureMode: 'stretch',
             texture: {
@@ -381,16 +449,16 @@ export function VideoControl({
         />
         <Label
           value="<b>Video Control</b>"
-          fontSize={24}
+          fontSize={24 * scaleFactor}
           color={Color4.White()}
         />
       </UiEntity>
 
       <Label
         value="<b>Current Screen</b>"
-        fontSize={16}
+        fontSize={16 * scaleFactor}
         color={Color4.White()}
-        uiTransform={{ margin: { bottom: 16 } }}
+        uiTransform={{ margin: { bottom: 16 * scaleFactor } }}
       />
 
       <VideoPlayerSelector engine={engine} state={state} />
@@ -398,36 +466,36 @@ export function VideoControl({
       <Input
         onSubmit={(value) => {
           state.videoControl.shareScreenUrl = value
+          controls.setSource(state.videoControl.shareScreenUrl ?? '')
         }}
-        value={state.videoControl.shareScreenUrl}
         onChange={($) => (state.videoControl.shareScreenUrl = $)}
-        fontSize={16}
+        fontSize={16 * scaleFactor}
         placeholder={'Paster your video or Playlist URL'}
         placeholderColor={Color4.create(160 / 255, 155 / 255, 168 / 255, 1)}
         color={Color4.Black()}
         uiBackground={{ color: Color4.White() }}
         uiTransform={{
           width: '100%',
-          height: '80px',
+          height: 80 * scaleFactor,
         }}
       />
 
       <UiEntity
         uiTransform={{
           width: '100%',
-          height: 40,
+          height: 40 * scaleFactor,
           flexDirection: 'row',
           justifyContent: 'flex-end',
-          margin: '10px 0 0 0',
+          margin: { top: 10 * scaleFactor },
         }}
       >
         <Button
           id="video_control_share_screen_clear"
           value="<b>Clear</b>"
           variant="text"
-          fontSize={16}
+          fontSize={16 * scaleFactor}
           color={Color4.White()}
-          uiTransform={{ margin: { right: 8 } }}
+          uiTransform={{ margin: { right: 8 * scaleFactor } }}
           onMouseDown={() => {
             state.videoControl.shareScreenUrl = undefined
           }}
@@ -435,7 +503,7 @@ export function VideoControl({
         <Button
           id="video_control_share_screen_share"
           value="<b>Share</b>"
-          fontSize={16}
+          fontSize={16 * scaleFactor}
           onMouseDown={() => {
             controls.setSource(state.videoControl.shareScreenUrl ?? '')
           }}
@@ -445,24 +513,33 @@ export function VideoControl({
 
       <Label
         value="Video Playback"
-        fontSize={16}
+        fontSize={16 * scaleFactor}
         color={Color4.White()}
-        uiTransform={{ margin: '0 0 10px 0' }}
+        uiTransform={{ margin: { bottom: 10 * scaleFactor } }}
       />
 
       <UiEntity
         uiTransform={{
           flexDirection: 'row',
-          margin: '0 0 10px 0',
+          margin: { bottom: 10 * scaleFactor },
         }}
       >
         <Button
           id="video_control_previous"
           value="Previous"
-          uiTransform={UI_STYLES.BUTTON_TRANSFORM}
+          uiTransform={{
+            margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
+            minWidth: 69 * scaleFactor,
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 0,
+          }}
           icon={ICONS.PREVIOUS_BUTTON}
           onlyIcon={true}
-          iconTransform={UI_STYLES.ICON_TRANSFORM}
+          iconTransform={{
+            width: 35 * scaleFactor,
+            height: 35 * scaleFactor,
+          }}
           onMouseDown={() => {
             controls.previous()
           }}
@@ -471,10 +548,19 @@ export function VideoControl({
         <Button
           id="video_control_play"
           value="<b>Play</b>"
-          fontSize={18}
-          uiTransform={UI_STYLES.BUTTON_TRANSFORM}
+          fontSize={18 * scaleFactor}
+          uiTransform={{
+            margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
+            minWidth: 69 * scaleFactor,
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 0,
+          }}
           icon={ICONS.PLAY_BUTTON}
-          iconTransform={UI_STYLES.ICON_TRANSFORM}
+          iconTransform={{
+            width: 35 * scaleFactor,
+            height: 35 * scaleFactor,
+          }}
           onMouseDown={() => {
             controls.play()
           }}
@@ -483,8 +569,14 @@ export function VideoControl({
         <Button
           id="video_control_pause"
           value="<b>Pause</b>"
-          fontSize={18}
-          uiTransform={UI_STYLES.BUTTON_TRANSFORM}
+          fontSize={18 * scaleFactor}
+          uiTransform={{
+            margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
+            minWidth: 69 * scaleFactor,
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 0,
+          }}
           onMouseDown={() => {
             controls.pause()
           }}
@@ -493,8 +585,14 @@ export function VideoControl({
         <Button
           id="video_control_restart"
           value="<b>Restart</b>"
-          fontSize={18}
-          uiTransform={UI_STYLES.BUTTON_TRANSFORM}
+          fontSize={18 * scaleFactor}
+          uiTransform={{
+            margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
+            minWidth: 69 * scaleFactor,
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 0,
+          }}
           onMouseDown={() => {
             controls.restart()
           }}
@@ -503,10 +601,20 @@ export function VideoControl({
         <Button
           id="video_control_next"
           value="Next"
-          uiTransform={UI_STYLES.BUTTON_TRANSFORM}
+          fontSize={18 * scaleFactor}
+          uiTransform={{
+            margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
+            minWidth: 69 * scaleFactor,
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 0,
+          }}
           icon={ICONS.FORWARD_BUTTON}
           onlyIcon={true}
-          iconTransform={UI_STYLES.ICON_TRANSFORM}
+          iconTransform={{
+            width: 35 * scaleFactor,
+            height: 35 * scaleFactor,
+          }}
           onMouseDown={() => {
             controls.next()
           }}
