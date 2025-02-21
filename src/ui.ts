@@ -109,35 +109,30 @@ function getAlignMode(align: AlignMode, isColumn: boolean) {
   }
 }
 
+const validAlignModes = new Set([
+  AlignMode.TAM_TOP_LEFT,
+  AlignMode.TAM_TOP_CENTER,
+  AlignMode.TAM_TOP_RIGHT,
+  AlignMode.TAM_MIDDLE_LEFT,
+  AlignMode.TAM_MIDDLE_CENTER,
+  AlignMode.TAM_MIDDLE_RIGHT,
+  AlignMode.TAM_BOTTOM_LEFT,
+  AlignMode.TAM_BOTTOM_CENTER,
+  AlignMode.TAM_BOTTOM_RIGHT,
+])
+
 export function mapAlignToScreenAlign(
   align: AlignMode,
   flexDirection = YGFlexDirection.YGFD_ROW,
 ): ScreenAlignMode {
   const isColumn = flexDirection === YGFlexDirection.YGFD_COLUMN
 
-  switch (align) {
-    case AlignMode.TAM_TOP_LEFT:
-      return getAlignMode(align, isColumn) as any
-    case AlignMode.TAM_TOP_CENTER:
-      return getAlignMode(align, isColumn) as any
-    case AlignMode.TAM_TOP_RIGHT:
-      return getAlignMode(align, isColumn) as any
-    case AlignMode.TAM_MIDDLE_LEFT:
-      return getAlignMode(align, isColumn) as any
-    case AlignMode.TAM_MIDDLE_CENTER:
-      return getAlignMode(align, isColumn) as any
-    case AlignMode.TAM_MIDDLE_RIGHT:
-      return getAlignMode(align, isColumn) as any
-    case AlignMode.TAM_BOTTOM_LEFT:
-      return getAlignMode(align, isColumn) as any
-    case AlignMode.TAM_BOTTOM_CENTER:
-      return getAlignMode(align, isColumn) as any
-    case AlignMode.TAM_BOTTOM_RIGHT:
-      return getAlignMode(align, isColumn) as any
-    default:
-      // Handle default case or throw an error if needed
-      throw new Error(`Unsupported AlignMode: ${align}`)
+  // Check if align is valid and map using getAlignMode
+  if (validAlignModes.has(align)) {
+    return getAlignMode(align, isColumn) as ScreenAlignMode
   }
+
+  throw new Error(`Unsupported AlignMode: ${align}`)
 }
 
 export function getUITransform(
