@@ -75,6 +75,8 @@ const BTN_ADMIN_TOOLKIT_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/adm
 
 const containerBackgroundColor = Color4.create(0, 0, 0, 0.75)
 
+const ADMIN_TOOLS_ENTITY = 7777
+
 async function initSceneDeployment() {
   if (deploymentCache !== null) return
 
@@ -142,21 +144,22 @@ function syncVideoPlayersState(engine: IEngine) {
     if (videoPlayer.volume !== controlPlayer.volume) {
       videoPlayer.volume = controlPlayer.volume ?? 0
     }
-    // if (controlPlayer.position === -1) {
-    //   videoPlayer.position = controlPlayer.position
-    //   controlPlayer.position = undefined
-    // }
+    if (controlPlayer.position === -1 && videoPlayer.position === undefined) {
+      videoPlayer.position = -1
+    }
+    if (videoPlayer.position === -1 && controlPlayer.position === undefined) {
+      videoPlayer.position = undefined
+    }
     if (videoPlayer.loop !== controlPlayer.loop) {
       videoPlayer.loop = !!controlPlayer.loop
     }
   })
 }
 
-function initVideoControlSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
+function initVideoControlSync(engine: IEngine) {
   const { VideoControlState } = getComponents(engine)
   const { VideoPlayer } = getExplorerComponents(engine)
 
-  const adminToolkitEntity = getAdminToolkitEntity(engine)
   const videoPlayers = getVideoPlayers(engine)
 
   let syncVideoPlayers: any = []
@@ -183,27 +186,14 @@ function initVideoControlSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
   engine.addSystem(() => {
     syncVideoPlayersState(engine)
   })
-
-  sdkHelpers?.syncEntity?.(
-    state.adminToolkitUiEntity,
-    [VideoControlState.componentId],
-    adminToolkitEntity,
-  )
 }
 
-function initTextAnnouncementSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
+function initTextAnnouncementSync(engine: IEngine) {
   const { TextAnnouncements } = getComponents(engine)
-  const adminToolkitEntity = getAdminToolkitEntity(engine)
 
   TextAnnouncements.createOrReplace(state.adminToolkitUiEntity, {
     announcements: [],
   })
-
-  // sdkHelpers?.syncEntity?.(
-  //   state.adminToolkitUiEntity,
-  //   [TextAnnouncements.componentId],
-  //   adminToolkitEntity,
-  // )
 }
 
 // Initialize admin data before UI rendering
@@ -213,6 +203,8 @@ export async function initializeAdminData(
   sdkHelpers?: ISDKHelpers,
 ) {
   if (!adminDataInitialized) {
+    const { VideoControlState, TextAnnouncements } = getComponents(engine)
+
     // Initialize scene data
     await Promise.all([initSceneDeployment(), initSceneOwners()])
 
@@ -220,10 +212,16 @@ export async function initializeAdminData(
     state.adminToolkitUiEntity = engine.addEntity()
 
     // Initialize VideoControl sync component
-    initVideoControlSync(engine, sdkHelpers)
+    initVideoControlSync(engine)
 
     // Initialize TextAnnouncements sync component
-    initTextAnnouncementSync(engine, sdkHelpers)
+    initTextAnnouncementSync(engine)
+
+    sdkHelpers?.syncEntity?.(
+      state.adminToolkitUiEntity,
+      [VideoControlState.componentId, TextAnnouncements.componentId],
+      ADMIN_TOOLS_ENTITY,
+    )
 
     adminDataInitialized = true
   }
@@ -306,13 +304,9 @@ const uiComponent = (
   sdkHelpers?: ISDKHelpers,
   playersHelper?: IPlayersHelper,
 ) => {
-  // const { TextAnnouncements } = getComponents(engine)
   const adminToolkitEntitie = getAdminToolkitComponent(engine)
   const player = playersHelper?.getPlayer()
   const isPlayerAdmin = isAllowedAdmin(engine, adminToolkitEntitie, player)
-  // const textAnnouncements = TextAnnouncements.getOrNull(
-  //   state.adminToolkitUiEntity,
-  // )
   const scaleFactor = getScaleUIFactor(engine)
 
   return (
