@@ -29,6 +29,8 @@ const COLORS = {
   GRAY: Color4.create(160 / 255, 155 / 255, 168 / 255, 1),
 } as const
 
+const nextTickFunctions: (() => void)[] = []
+
 let videoPlayersInitialized = false
 
 // Types
@@ -75,8 +77,15 @@ function createVideoPlayerControls(
     pause: () => updateVideoPlayerProps(engine, state, 'playing', false),
     restart: () => {
       updateVideoPlayerProps(engine, state, 'playing', false)
-      updateVideoPlayerProps(engine, state, 'position', -1)
-      updateVideoPlayerProps(engine, state, 'playing', true)
+      nextTickFunctions.push(() => {
+        updateVideoPlayerProps(engine, state, 'position', -1)
+      })
+      nextTickFunctions.push(() => {
+        updateVideoPlayerProps(engine, state, 'playing', true)
+      })
+      nextTickFunctions.push(() => {
+        updateVideoPlayerProps(engine, state, 'position', undefined)
+      })
     },
     previous: () => {
       console.log('TODO: Previous Track clicked')
@@ -99,7 +108,7 @@ function updateVideoPlayerProps<K extends keyof PBVideoPlayer>(
   engine: IEngine,
   state: State,
   property: K,
-  value: NonNullable<PBVideoPlayer[K]>,
+  value: PBVideoPlayer[K],
 ) {
   const { VideoControlState } = getComponents(engine)
   const videoControlState = VideoControlState.getMutable(
@@ -120,9 +129,8 @@ function updateVideoPlayerProps<K extends keyof PBVideoPlayer>(
   ) {
     players.forEach((player) => {
       const videoSource = VideoPlayer.getMutableOrNull(player.entity as Entity)
-      if (videoSource) {
-        videoSource.volume = 0
-      }
+      if (!videoSource) return
+      updateVideoSourceProperty(videoSource, 'volume', 0)
     })
   }
 
@@ -158,10 +166,10 @@ function updateVideoPlayerProps<K extends keyof PBVideoPlayer>(
 function updateVideoSourceProperty<K extends keyof PBVideoPlayer>(
   videoSource: PBVideoPlayer,
   property: K,
-  value: NonNullable<PBVideoPlayer[K]>,
+  value: PBVideoPlayer[K],
 ) {
   if (property === 'volume') {
-    if (value === 0) {
+    if (!value) {
       videoSource.volume = 0
       return
     }
@@ -175,15 +183,14 @@ function updateVideoSourceProperty<K extends keyof PBVideoPlayer>(
 }
 
 function initVideoPlayers(engine: IEngine) {
-  const { NetworkEntity } = getExplorerComponents(engine)
-  const videoPlayers = getVideoPlayers(engine)
-
-  for (const player of videoPlayers) {
-    const networkEntity = NetworkEntity.getOrNull(player.entity as Entity)
-    if (!networkEntity) {
-      NetworkEntity.create(player.entity as Entity)
+  engine.addSystem(() => {
+    if (nextTickFunctions.length > 0) {
+      const nextTick = nextTickFunctions.shift()
+      if (nextTick) {
+        nextTick()
+      }
     }
-  }
+  }, Number.POSITIVE_INFINITY)
 
   videoPlayersInitialized = true
 }
@@ -214,6 +221,7 @@ function VideoPlayerSelector({
           selectedIndex={state.videoControl.selectedVideoPlayer ?? 0}
           onChange={(idx) => (state.videoControl.selectedVideoPlayer = idx)}
           textAlign="middle-left"
+          fontSize={14 * scaleFactor}
           uiTransform={{
             margin: { right: 8 * scaleFactor },
             minWidth: 150 * scaleFactor,
@@ -224,6 +232,7 @@ function VideoPlayerSelector({
           id="video_control_link_all"
           value="<b>Link All</b>"
           variant="text"
+          fontSize={14 * scaleFactor}
           color={Color4.White()}
           onMouseDown={() => {
             state.videoControl.linkAllVideoPlayers = true
@@ -253,11 +262,13 @@ function VideoPlayerSelector({
         const isPlayerSelected =
           !state.videoControl.linkAllVideoPlayers &&
           (state.videoControl.selectedVideoPlayer ?? 0) === idx
+        const playerName = player.customName ?? `#${idx + 1}`
         return (
           <Button
             id={`video_control_player_${idx}`}
             key={player.entity}
-            value={`<b>${player.customName}</b>`}
+            value={`<b>${playerName}</b>`}
+            fontSize={14 * scaleFactor}
             variant={isPlayerSelected ? 'primary' : 'secondary'}
             color={isPlayerSelected ? Color4.Black() : Color4.White()}
             onMouseDown={() => {
@@ -277,7 +288,10 @@ function VideoPlayerSelector({
       <Button
         id="video_control_link_all"
         value="<b>Link All</b>"
-        variant="text"
+        fontSize={14 * scaleFactor}
+        variant={
+          state.videoControl.linkAllVideoPlayers ? 'primary' : 'secondary'
+        }
         color={Color4.White()}
         onMouseDown={() => {
           state.videoControl.linkAllVideoPlayers = true
@@ -350,6 +364,7 @@ function VideoControlVolume({
         <Button
           id="video_control_volume_minus"
           value="Minus"
+          fontSize={14 * scaleFactor}
           uiTransform={{
             margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
             minWidth: 69 * scaleFactor,
@@ -381,6 +396,7 @@ function VideoControlVolume({
         <Button
           id="video_control_volume_plus"
           value="Plus"
+          fontSize={14 * scaleFactor}
           icon={ICONS.VOLUME_PLUS_BUTTON}
           onlyIcon={true}
           iconTransform={{
@@ -531,6 +547,7 @@ export function VideoControl({
       <UiEntity
         uiTransform={{
           flexDirection: 'row',
+          width: '100%',
           margin: { bottom: 10 * scaleFactor },
         }}
       >
@@ -613,7 +630,7 @@ export function VideoControl({
           value="Next"
           fontSize={18 * scaleFactor}
           uiTransform={{
-            margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
+            margin: { top: 0, right: 0, bottom: 0, left: 0 },
             minWidth: 69 * scaleFactor,
             alignItems: 'center',
             justifyContent: 'center',
