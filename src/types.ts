@@ -141,10 +141,6 @@ export type Component = {
 export type ISDKHelpers = {
   // SyncEntity helper to create network entities at runtime.
   syncEntity?: SyncEntitySDK
-  parentEntity?: ParentEntitySDK
-  removeParent?: RemoveParentSDK
-  getParent?: GetParentSDK
-  getChildren?: GetChildrenSDK
 }
 
 export type SyncEntitySDK = (
@@ -152,10 +148,6 @@ export type SyncEntitySDK = (
   componentIds: number[],
   entityEnumId?: number | undefined,
 ) => void
-export type ParentEntitySDK = (entity: Entity, parent: Entity) => void
-export type RemoveParentSDK = (entity: Entity) => void
-export type GetParentSDK = (children: Entity) => Entity
-export type GetChildrenSDK = (parent: Entity) => Iterable<Entity>
 
 export type IPlayersHelper = {
   onEnterScene(cb: (player: GetPlayerDataRes) => void): void
