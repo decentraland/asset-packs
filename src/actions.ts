@@ -1464,14 +1464,12 @@ export function createActionsSystem(
   ) {
     showCaptchaPrompt(
       engine,
-      {
-        UiTransform,
-        UiBackground,
-        UiText,
-        UiInput,
-        UiInputResult,
-        pointerEventsSystem,
-      },
+      UiTransform,
+      UiBackground,
+      UiText,
+      UiInput,
+      UiInputResult,
+      pointerEventsSystem,
       data,
       (inputText) => {
         // Request token with captcha validation
