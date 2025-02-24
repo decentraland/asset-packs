@@ -292,7 +292,11 @@ function VideoPlayerSelector({
         variant={
           state.videoControl.linkAllVideoPlayers ? 'primary' : 'secondary'
         }
-        color={Color4.White()}
+        color={
+          state.videoControl.linkAllVideoPlayers
+            ? Color4.Black()
+            : Color4.White()
+        }
         onMouseDown={() => {
           state.videoControl.linkAllVideoPlayers = true
           state.videoControl.selectedVideoPlayer = undefined
