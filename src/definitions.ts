@@ -426,7 +426,7 @@ export function createComponents(engine: IEngine) {
         Schemas.Array(
           Schemas.Map({
             entity: Schemas.Int,
-            src: Schemas.Optional(Schemas.String),
+            src: Schemas.String,
             playing: Schemas.Optional(Schemas.Boolean),
             volume: Schemas.Optional(Schemas.Float),
             position: Schemas.Optional(Schemas.Float),

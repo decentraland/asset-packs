@@ -135,12 +135,22 @@ function updateVideoPlayerProps<K extends keyof PBVideoPlayer>(
     })
   } else {
     // Apply to selected player only
-    const selectedPlayer = VideoPlayer.getMutableOrNull(
-      players[state.videoControl.selectedVideoPlayer ?? 0].entity as Entity,
-    )
+    const selectedPlayerEntity = players[
+      state.videoControl.selectedVideoPlayer ?? 0
+    ].entity as Entity
+    const selectedPlayer = VideoPlayer.getMutableOrNull(selectedPlayerEntity)
     if (!selectedPlayer) return
 
     updateVideoSourceProperty(selectedPlayer, property, value)
+
+    if (!!videoControlState) {
+      const videoPlayerControlState = videoControlState.videoPlayers?.find(
+        (vcs) => (vcs.entity as Entity) === selectedPlayerEntity,
+      )
+      if (!!videoPlayerControlState) {
+        updateVideoSourceProperty(videoPlayerControlState, property, value)
+      }
+    }
   }
 }
 

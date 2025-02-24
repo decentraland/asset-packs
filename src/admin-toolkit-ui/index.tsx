@@ -20,6 +20,7 @@ import { TextAnnouncements } from './TextAnnouncements'
 import { CONTENT_URL } from './constants'
 import { getSceneDeployment, getSceneOwners } from './utils'
 import { State, TabType, SelectedSmartItem } from './types'
+import { getExplorerComponents } from '../components'
 
 let state: State = {
   adminToolkitUiEntity: 0 as Entity,
@@ -98,12 +99,89 @@ async function initSceneOwners() {
   }
 }
 
+function getVideoPlayers(engine: IEngine) {
+  const adminToolkitComponent = getAdminToolkitComponent(engine)
+
+  if (
+    !adminToolkitComponent ||
+    !adminToolkitComponent.videoControl ||
+    !adminToolkitComponent.videoControl.videoPlayers ||
+    adminToolkitComponent.videoControl.videoPlayers.length === 0
+  )
+    return []
+
+  return Array.from(adminToolkitComponent.videoControl.videoPlayers)
+}
+
+function syncVideoPlayersState(engine: IEngine) {
+  const { VideoControlState } = getComponents(engine)
+  const { VideoPlayer } = getExplorerComponents(engine)
+
+  const videoControlState = VideoControlState.getOrNull(
+    state.adminToolkitUiEntity,
+  )
+  if (!videoControlState?.videoPlayers) return
+
+  // Iterate through each player in the control state
+  videoControlState.videoPlayers.forEach((controlPlayer) => {
+    const videoPlayer = VideoPlayer.getMutableOrNull(
+      controlPlayer.entity as Entity,
+    )
+    if (!videoPlayer) return
+
+    // Check and sync each property
+    if (
+      controlPlayer.src !== undefined &&
+      videoPlayer.src !== controlPlayer.src
+    ) {
+      videoPlayer.src = controlPlayer.src
+    }
+    if (videoPlayer.playing !== controlPlayer.playing) {
+      videoPlayer.playing = !!controlPlayer.playing
+    }
+    if (videoPlayer.volume !== controlPlayer.volume) {
+      videoPlayer.volume = controlPlayer.volume ?? 0
+    }
+    // if (controlPlayer.position === -1) {
+    //   videoPlayer.position = controlPlayer.position
+    //   controlPlayer.position = undefined
+    // }
+    if (videoPlayer.loop !== controlPlayer.loop) {
+      videoPlayer.loop = !!controlPlayer.loop
+    }
+  })
+}
+
 function initVideoControlSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
   const { VideoControlState } = getComponents(engine)
+  const { VideoPlayer } = getExplorerComponents(engine)
+
   const adminToolkitEntity = getAdminToolkitEntity(engine)
+  const videoPlayers = getVideoPlayers(engine)
+
+  let syncVideoPlayers: any = []
+
+  videoPlayers.forEach((player) => {
+    const vp = VideoPlayer.getOrNull(player.entity as Entity)
+    if (vp) {
+      syncVideoPlayers.push({
+        entity: player.entity as Entity,
+        src: vp.src,
+        playing: vp.playing,
+        volume: vp.volume,
+        position: vp.position,
+        loop: vp.loop,
+      })
+    }
+  })
 
   VideoControlState.createOrReplace(state.adminToolkitUiEntity, {
-    videoPlayers: [],
+    videoPlayers: syncVideoPlayers,
+  })
+
+  // Set up the sync system
+  engine.addSystem(() => {
+    syncVideoPlayersState(engine)
   })
 
   sdkHelpers?.syncEntity?.(
@@ -121,11 +199,11 @@ function initTextAnnouncementSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
     announcements: [],
   })
 
-  sdkHelpers?.syncEntity?.(
-    state.adminToolkitUiEntity,
-    [TextAnnouncements.componentId],
-    adminToolkitEntity,
-  )
+  // sdkHelpers?.syncEntity?.(
+  //   state.adminToolkitUiEntity,
+  //   [TextAnnouncements.componentId],
+  //   adminToolkitEntity,
+  // )
 }
 
 // Initialize admin data before UI rendering
