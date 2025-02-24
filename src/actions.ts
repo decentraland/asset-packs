@@ -19,6 +19,11 @@ import {
   PointerEventsSystem,
 } from '@dcl/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import {
+  getEntityParent,
+  getPlayerPosition,
+  getWorldPosition,
+} from '@dcl-sdk/utils'
 import { requestTeleport } from '~system/UserActionModule'
 import {
   movePlayerTo,
@@ -62,13 +67,9 @@ import {
 } from './ui'
 import { getExplorerComponents } from './components'
 import { initTriggers, damageTargets, healTargets } from './triggers'
-import {
-  getEntityParent,
-  getPlayerPosition,
-  getWorldPosition,
-} from '@dcl-sdk/utils'
 import { followMap } from './transform'
 import { getEasingFunctionFromInterpolation } from './tweens'
+import { REWARDS_SERVER_URL } from './admin-toolkit-ui/constants'
 
 const initedEntities = new Set<Entity>()
 const uiStacks = new Map<string, Entity>()
@@ -1376,12 +1377,12 @@ export function createActionsSystem(
   }
 
   async function fetchCampaignsByDispenserKey(dispenserKey: string) {
-    const url = `https://rewards.decentraland.zone/api/campaigns/keys?campaign_key=${encodeURIComponent(dispenserKey)}`
+    const url = `${REWARDS_SERVER_URL}/api/campaigns/keys?campaign_key=${encodeURIComponent(dispenserKey)}`
     return request(url)
   }
 
   async function fetchCaptcha() {
-    return request('https://rewards.decentraland.zone/api/captcha', {
+    return request(`${REWARDS_SERVER_URL}/api/captcha`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -1396,7 +1397,7 @@ export function createActionsSystem(
       value: string
     },
   ) {
-    const url = `https://rewards.decentraland.zone/api/rewards`
+    const url = `${REWARDS_SERVER_URL}/api/rewards`
     const realm = await getRealm({})
     const player = playersHelper?.getPlayer()
 
