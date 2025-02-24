@@ -9,6 +9,7 @@ import {
   getPayload,
 } from '../definitions'
 import { getExplorerComponents } from '../components'
+import { getScaleUIFactor } from '../ui'
 import { Button } from './Button'
 import { CONTENT_URL } from './constants'
 import { State } from './types'
@@ -16,40 +17,6 @@ import { State } from './types'
 // Constants
 const ICONS = {
   SMART_ITEM_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/smart-item-control.png`,
-} as const
-
-const UI_STYLES = {
-  CONTAINER: {
-    width: '100%',
-    height: '100%',
-    flexDirection: 'column',
-  },
-  HEADER: {
-    flexDirection: 'row',
-    margin: { bottom: 10 },
-    height: 30,
-  },
-  ICON: {
-    width: 30,
-    height: 30,
-  },
-  SECTION: {
-    flexDirection: 'column',
-    margin: { bottom: 32 },
-  },
-  SECTION_LABEL: {
-    margin: { bottom: 16 },
-  },
-  DROPDOWN: {
-    width: '100%',
-    height: '40px',
-  },
-  BUTTON_ROW: {
-    flexDirection: 'row',
-  },
-  BUTTON: {
-    margin: { right: 8 },
-  },
 } as const
 
 // Helper Functions
@@ -183,11 +150,21 @@ function handleResetToDefaultAction(
 }
 
 // Components
-function Header() {
+function Header({ engine }: { engine: IEngine }) {
+  const scaleFactor = getScaleUIFactor(engine)
   return (
-    <UiEntity uiTransform={UI_STYLES.HEADER}>
+    <UiEntity
+      uiTransform={{
+        flexDirection: 'row',
+        margin: { bottom: 10 * scaleFactor },
+        height: 30 * scaleFactor,
+      }}
+    >
       <UiEntity
-        uiTransform={UI_STYLES.ICON}
+        uiTransform={{
+          height: 30 * scaleFactor,
+          width: 30 * scaleFactor,
+        }}
         uiBackground={{
           color: Color4.White(),
           textureMode: 'stretch',
@@ -196,7 +173,7 @@ function Header() {
       />
       <Label
         value="<b>Smart Item Actions</b>"
-        fontSize={24}
+        fontSize={24 * scaleFactor}
         color={Color4.White()}
       />
     </UiEntity>
@@ -204,21 +181,32 @@ function Header() {
 }
 
 function SmartItemSelector({
+  engine,
   smartItems,
   selectedIndex,
   onSelect,
 }: {
+  engine: IEngine
   smartItems: NonNullable<AdminTools['smartItemsControl']['smartItems']>
   selectedIndex: number | undefined
   onSelect: (idx: number) => void
 }) {
+  const scaleFactor = getScaleUIFactor(engine)
+
   return (
-    <UiEntity uiTransform={UI_STYLES.SECTION}>
+    <UiEntity
+      uiTransform={{
+        flexDirection: 'column',
+        margin: { bottom: 32 * scaleFactor },
+      }}
+    >
       <Label
         value="<b>Selected Smart Item</b>"
-        fontSize={16}
+        fontSize={16 * scaleFactor}
         color={Color4.White()}
-        uiTransform={UI_STYLES.SECTION_LABEL}
+        uiTransform={{
+          margin: { bottom: 16 * scaleFactor },
+        }}
       />
       <Dropdown
         acceptEmpty
@@ -227,7 +215,11 @@ function SmartItemSelector({
         selectedIndex={selectedIndex ?? -1}
         onChange={onSelect}
         textAlign="middle-left"
-        uiTransform={UI_STYLES.DROPDOWN}
+        fontSize={14 * scaleFactor}
+        uiTransform={{
+          height: 40 * scaleFactor,
+          width: '100%',
+        }}
         uiBackground={{ color: Color4.White() }}
         color={Color4.Black()}
       />
@@ -236,23 +228,34 @@ function SmartItemSelector({
 }
 
 function ActionSelector({
+  engine,
   actions,
   selectedIndex,
   disabled,
   onChange,
 }: {
+  engine: IEngine
   actions: Action[]
   selectedIndex: number
   disabled: boolean
   onChange: (idx: number) => void
 }) {
+  const scaleFactor = getScaleUIFactor(engine)
+
   return (
-    <UiEntity uiTransform={UI_STYLES.SECTION}>
+    <UiEntity
+      uiTransform={{
+        flexDirection: 'column',
+        margin: { bottom: 32 * scaleFactor },
+      }}
+    >
       <Label
         value="<b>Actions</b>"
-        fontSize={16}
+        fontSize={16 * scaleFactor}
         color={Color4.White()}
-        uiTransform={UI_STYLES.SECTION_LABEL}
+        uiTransform={{
+          margin: { bottom: 16 * scaleFactor },
+        }}
       />
       <Dropdown
         acceptEmpty
@@ -262,7 +265,11 @@ function ActionSelector({
         onChange={onChange}
         disabled={disabled}
         textAlign="middle-left"
-        uiTransform={UI_STYLES.DROPDOWN}
+        fontSize={14 * scaleFactor}
+        uiTransform={{
+          height: 40 * scaleFactor,
+          width: '100%',
+        }}
         uiBackground={{
           color: disabled ? Color4.Gray() : Color4.White(),
         }}
@@ -285,6 +292,8 @@ function ActionButtons({
   actions: Action[]
   selectedAction: Action | undefined
 }) {
+  const scaleFactor = getScaleUIFactor(engine)
+
   const selectedSmartItem =
     state.smartItemsControl.selectedSmartItem !== undefined
       ? smartItems[state.smartItemsControl.selectedSmartItem]
@@ -296,23 +305,30 @@ function ActionButtons({
       ?.visible
 
   return (
-    <UiEntity uiTransform={UI_STYLES.BUTTON_ROW}>
+    <UiEntity
+      uiTransform={{
+        flexDirection: 'row',
+      }}
+    >
       <Button
         id="smart_items_control_hide_show"
         value={`<b>${isVisible ? 'Hide' : 'Show'} Entity</b>`}
         variant="text"
+        fontSize={16 * scaleFactor}
         color={Color4.White()}
         onMouseDown={() => handleHideShowEntity(engine, state, smartItems)}
         disabled={!selectedSmartItem}
-        uiTransform={UI_STYLES.BUTTON}
+        uiTransform={{
+          margin: { right: 8 * scaleFactor },
+        }}
       />
       <Button
         id="smart_items_control_restart"
         value="<b>Restart Action</b>"
         variant="text"
-        fontSize={16}
+        fontSize={16 * scaleFactor}
         color={Color4.White()}
-        uiTransform={UI_STYLES.BUTTON}
+        uiTransform={{ margin: { right: 8 * scaleFactor } }}
         disabled={!selectedSmartItem || !selectedAction}
         onMouseDown={() =>
           selectedSmartItem &&
@@ -324,6 +340,7 @@ function ActionButtons({
         id="smart_items_control_default"
         value="<b>Default</b>"
         variant="text"
+        fontSize={16 * scaleFactor}
         color={Color4.White()}
         onMouseDown={() => {
           if (!selectedSmartItem) return
@@ -370,16 +387,24 @@ export function SmartItemsControl({
   )
 
   return (
-    <UiEntity uiTransform={UI_STYLES.CONTAINER}>
-      <Header />
+    <UiEntity
+      uiTransform={{
+        height: '100%',
+        width: '100%',
+        flexDirection: 'column',
+      }}
+    >
+      <Header engine={engine} />
 
       <SmartItemSelector
+        engine={engine}
         smartItems={smartItems}
         selectedIndex={state.smartItemsControl.selectedSmartItem}
         onSelect={(idx) => handleSelectSmartItem(state, smartItems, idx)}
       />
 
       <ActionSelector
+        engine={engine}
         actions={actions}
         selectedIndex={selectedActionIndex}
         disabled={state.smartItemsControl.selectedSmartItem === undefined}
