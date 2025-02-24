@@ -7,6 +7,7 @@ import {
   getComponents,
   getPayload,
 } from '../definitions'
+import { getScaleUIFactor } from '../ui'
 import { Button } from './Button'
 import { CONTENT_URL } from './constants'
 import { State } from './types'
@@ -47,6 +48,7 @@ export function RewardsControl({
   engine: IEngine
   state: State
 }) {
+  const scaleFactor = getScaleUIFactor(engine)
   const rewardItems = getRewardItems(engine)
 
   return (
@@ -61,29 +63,36 @@ export function RewardsControl({
       <UiEntity
         uiTransform={{
           flexDirection: 'row',
-          margin: { bottom: 32 },
-          height: 30,
+          margin: { bottom: 32 * scaleFactor },
+          height: 30 * scaleFactor,
         }}
       >
         <UiEntity
-          uiTransform={{ width: 30, height: 30 }}
+          uiTransform={{ width: 30 * scaleFactor, height: 30 * scaleFactor }}
           uiBackground={{
             color: Color4.White(),
             textureMode: 'stretch',
             texture: { src: ICONS.REWARDS_CONTROL },
           }}
         />
-        <Label value="<b>AIRDROPS</b>" fontSize={24} color={Color4.White()} />
+        <Label
+          value="<b>AIRDROPS</b>"
+          fontSize={24 * scaleFactor}
+          color={Color4.White()}
+        />
       </UiEntity>
 
       <UiEntity
-        uiTransform={{ flexDirection: 'column', margin: { bottom: 32 } }}
+        uiTransform={{
+          flexDirection: 'column',
+          margin: { bottom: 32 * scaleFactor },
+        }}
       >
         <Label
           value="<b>Selected Airdrop</b>"
-          fontSize={16}
+          fontSize={16 * scaleFactor}
           color={Color4.White()}
-          uiTransform={{ margin: { bottom: 16 } }}
+          uiTransform={{ margin: { bottom: 16 * scaleFactor } }}
         />
 
         <Dropdown
@@ -93,9 +102,10 @@ export function RewardsControl({
           selectedIndex={state.rewardsControl.selectedRewardItem ?? -1}
           onChange={(idx) => (state.rewardsControl.selectedRewardItem = idx)}
           textAlign="middle-left"
+          fontSize={14 * scaleFactor}
           uiTransform={{
             width: '100%',
-            height: '40px',
+            height: 40 * scaleFactor,
           }}
           uiBackground={{ color: Color4.White() }}
           color={Color4.Black()}
@@ -105,30 +115,33 @@ export function RewardsControl({
       <UiEntity uiTransform={{ flexDirection: 'column' }}>
         <Label
           value="<b>Actions</b>"
-          fontSize={16}
+          fontSize={16 * scaleFactor}
           color={Color4.White()}
-          uiTransform={{ margin: { bottom: 16 } }}
+          uiTransform={{ margin: { bottom: 16 * scaleFactor } }}
         />
 
         <UiEntity uiTransform={{ flexDirection: 'row' }}>
           <Button
             id="rewards_control_release"
             value="<b>Release</b>"
-            fontSize={16}
+            fontSize={16 * scaleFactor}
             uiTransform={{
-              margin: { right: 16 },
+              margin: { right: 16 * scaleFactor },
               alignItems: 'center',
               justifyContent: 'center',
             }}
             icon={ICONS.SEND}
-            iconTransform={{ height: 25, width: 25 }}
+            iconTransform={{
+              height: 25 * scaleFactor,
+              width: 25 * scaleFactor,
+            }}
             onMouseDown={() => handleRelease(engine, state)}
             disabled={state.rewardsControl.selectedRewardItem === undefined}
           />
           <Button
             id="rewards_control_clear"
             value="<b>Clear</b>"
-            fontSize={16}
+            fontSize={16 * scaleFactor}
             onMouseDown={() => handleClear(engine, state)}
             disabled={state.rewardsControl.selectedRewardItem === undefined}
           />
