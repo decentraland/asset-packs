@@ -131,6 +131,13 @@ function updateVideoPlayerProps<K extends keyof PBVideoPlayer>(
       const videoSource = VideoPlayer.getMutableOrNull(player.entity as Entity)
       if (!videoSource) return
       updateVideoSourceProperty(videoSource, 'volume', 0)
+      updateVideoPlayerControlState(
+        engine,
+        state,
+        player.entity as Entity,
+        'volume',
+        0,
+      )
     })
   }
 
@@ -140,6 +147,14 @@ function updateVideoPlayerProps<K extends keyof PBVideoPlayer>(
       const videoSource = VideoPlayer.getMutableOrNull(player.entity as Entity)
       if (!videoSource) return
       updateVideoSourceProperty(videoSource, property, value)
+
+      updateVideoPlayerControlState(
+        engine,
+        state,
+        player.entity as Entity,
+        property,
+        value,
+      )
     })
   } else {
     // Apply to selected player only
@@ -151,14 +166,22 @@ function updateVideoPlayerProps<K extends keyof PBVideoPlayer>(
 
     updateVideoSourceProperty(selectedPlayer, property, value)
 
-    if (!!videoControlState) {
-      const videoPlayerControlState = videoControlState.videoPlayers?.find(
-        (vcs) => (vcs.entity as Entity) === selectedPlayerEntity,
-      )
-      if (!!videoPlayerControlState) {
-        updateVideoSourceProperty(videoPlayerControlState, property, value)
-      }
-    }
+    updateVideoPlayerControlState(
+      engine,
+      state,
+      selectedPlayerEntity,
+      property,
+      value,
+    )
+
+    // if (!!videoControlState) {
+    //   const videoPlayerControlState = videoControlState.videoPlayers?.find(
+    //     (vcs) => (vcs.entity as Entity) === selectedPlayerEntity,
+    //   )
+    //   if (!!videoPlayerControlState) {
+    //     updateVideoSourceProperty(videoPlayerControlState, property, value)
+    //   }
+    // }
   }
 }
 
@@ -179,6 +202,25 @@ function updateVideoSourceProperty<K extends keyof PBVideoPlayer>(
     videoSource.volume = newSteps / 10
   } else {
     videoSource[property] = value
+  }
+}
+
+function updateVideoPlayerControlState<K extends keyof PBVideoPlayer>(
+  engine: IEngine,
+  state: State,
+  selectedPlayerEntity: Entity,
+  property: K,
+  value: PBVideoPlayer[K],
+) {
+  const { VideoControlState } = getComponents(engine)
+  const videoControlState = VideoControlState.getMutable(
+    state.adminToolkitUiEntity,
+  )
+  const videoPlayerControlState = videoControlState.videoPlayers?.find(
+    (player) => (player.entity as Entity) === selectedPlayerEntity,
+  )
+  if (!!videoPlayerControlState) {
+    updateVideoSourceProperty(videoPlayerControlState, property, value)
   }
 }
 
