@@ -8,7 +8,7 @@
           "json": {
             "src": "{assetPath}/collectible_dispenser.glb",
             "visibleMeshesCollisionMask": 0,
-            "invisibleMeshesCollisionMask": 0
+            "invisibleMeshesCollisionMask": 2
           }
         }
       }
@@ -68,7 +68,7 @@
               {
                 "name": "LandingAnimation",
                 "type": "play_animation",
-                "jsonPayload": "{\"animation\":[\"Landing\"],\"loop\":false}",
+                "jsonPayload": "{\"animation\":\"Landing\",\"loop\":false}",
                 "allowedInBasicView": true
               },
               {
