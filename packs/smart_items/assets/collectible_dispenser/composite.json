@@ -7,8 +7,8 @@
         "0": {
           "json": {
             "src": "{assetPath}/collectible_dispenser.glb",
-            "visibleMeshesCollisionMask": 0,
-            "invisibleMeshesCollisionMask": 2
+            "visibleMeshesCollisionMask": 3,
+            "invisibleMeshesCollisionMask": 0
           }
         }
       }
@@ -45,7 +45,7 @@
               {
                 "name": "Visible",
                 "type": "set_visibility",
-                "jsonPayload": "{\"visible\":true,\"collider\":2}",
+                "jsonPayload": "{\"visible\":true,\"collider\":3}",
                 "allowedInBasicView": true
               },
               {
