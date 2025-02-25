@@ -204,11 +204,13 @@ function handleSendTextAnnouncement(
       timestamp++
     }
 
-    textAnnouncement.announcements!.push({
-      id: `${timestamp}-${author}`,
-      text,
-      author,
-    })
+    textAnnouncement.announcements = [
+      {
+        id: `${timestamp}-${author}`,
+        text,
+        author,
+      },
+    ]
   }
 
   ANNOUNCEMENT_STATE = 'sent'
