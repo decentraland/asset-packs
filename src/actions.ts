@@ -431,9 +431,14 @@ export function createActionsSystem(engine: IEngine, sdkHelpers?: ISDKHelpers) {
     }
 
     Animator.stopAllAnimations(entity)
-    const clip = Animator.getClip(entity, animation)
-    clip.playing = true
-    clip.loop = loop ?? false
+
+    try {
+      const clip = Animator.getClip(entity, animation)
+      clip.playing = true
+      clip.loop = loop ?? false
+    } catch (e) {
+      console.error('Error playing animation', e)
+    }
   }
 
   // STOP_ANIMATION
@@ -959,7 +964,13 @@ export function createActionsSystem(engine: IEngine, sdkHelpers?: ISDKHelpers) {
     const { position } = payload
 
     // clone entity
-    const { cloned, entities } = clone(entity, engine, Transform, Triggers, sdkHelpers)
+    const { cloned, entities } = clone(
+      entity,
+      engine,
+      Transform,
+      Triggers,
+      sdkHelpers,
+    )
     for (const cloned of entities.values()) {
       // initialize
       initActions(cloned)
