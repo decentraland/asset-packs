@@ -568,7 +568,7 @@ export function VideoControl({
           margin: { bottom: 10 * scaleFactor },
         }}
       >
-        <Button
+        {/* <Button
           id="video_control_previous"
           value="Previous"
           uiTransform={{
@@ -588,7 +588,7 @@ export function VideoControl({
             controls.previous()
           }}
           disabled={true}
-        />
+        /> */}
         <Button
           id="video_control_play"
           value="<b>Play</b>"
@@ -642,7 +642,7 @@ export function VideoControl({
           }}
           disabled={!selectedVideoPlayer}
         />
-        <Button
+        {/* <Button
           id="video_control_next"
           value="Next"
           fontSize={18 * scaleFactor}
@@ -663,7 +663,7 @@ export function VideoControl({
             controls.next()
           }}
           disabled={true}
-        />
+        /> */}
       </UiEntity>
 
       <VideoControlVolume engine={engine} state={state} />
