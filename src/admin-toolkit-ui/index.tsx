@@ -1,5 +1,10 @@
 import { Color4 } from '@dcl/sdk/math'
-import ReactEcs, { Label, UiEntity, ReactBasedUiSystem } from '@dcl/react-ecs'
+import ReactEcs, {
+  Label,
+  Button as DCLButton,
+  UiEntity,
+  ReactBasedUiSystem,
+} from '@dcl/react-ecs'
 import { Entity, IEngine, PointerEventsSystem } from '@dcl/ecs'
 
 import {
@@ -74,6 +79,8 @@ const BTN_TEXT_ANNOUNCEMENT_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons
 const BTN_TEXT_ANNOUNCEMENT_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-text-announcement-control-active-button.png`
 
 const BTN_ADMIN_TOOLKIT_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-control-button.png`
+const BTN_ADMIN_TOOLKIT_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-control-active-button.png`
+const BTN_ADMIN_TOOLKIT_BACKGROUND = `${CONTENT_URL}/admin_toolkit/assets/backgrounds/admin-tool-background.png`
 
 const containerBackgroundColor = Color4.create(0, 0, 0, 0.75)
 
@@ -204,7 +211,9 @@ export async function initializeAdminData(
   engine: IEngine,
   sdkHelpers?: ISDKHelpers,
 ) {
+  console.log('initializeAdminData')
   if (!adminDataInitialized) {
+    console.log('initializeAdminData - not initialized')
     const { VideoControlState, TextAnnouncements } = getComponents(engine)
 
     // Initialize scene data
@@ -235,6 +244,8 @@ export async function initializeAdminData(
     }, Number.POSITIVE_INFINITY)
 
     adminDataInitialized = true
+
+    console.log('initializeAdminData - initialized')
   }
 }
 
@@ -247,6 +258,7 @@ export function createAdminToolkitUI(
 ) {
   // Initialize admin data before setting up the UI
   initializeAdminData(engine, sdkHelpers).then(() => {
+    console.log('createAdminToolkitUI - initialized')
     reactBasedUiSystem.setUiRenderer(() =>
       uiComponent(engine, pointerEventsSystem, sdkHelpers, playersHelper),
     )
@@ -567,30 +579,37 @@ const uiComponent = (
           </UiEntity>
           <UiEntity
             uiTransform={{
-              height: 38 * scaleFactor,
-              width: 38 * scaleFactor,
+              display: 'flex',
+              height: 42 * scaleFactor,
+              width: 42 * scaleFactor,
+              alignItems: 'center',
+              alignContent: 'center',
+              justifyContent: 'center',
               pointerFilter: 'block',
             }}
-            uiBackground={{ color: containerBackgroundColor }}
+            uiBackground={{
+              texture: {
+                src: BTN_ADMIN_TOOLKIT_BACKGROUND,
+              },
+              textureMode: 'stretch',
+              color: Color4.create(1, 1, 1, 1),
+            }}
           >
-            <Button
-              id="admin_toolkit_panel"
-              variant="text"
-              icon={BTN_ADMIN_TOOLKIT_CONTROL}
-              onlyIcon
+            <DCLButton
+              value=""
               uiTransform={{
-                height: 'auto',
-                width: 'auto',
-                margin: {
-                  top: 4 * scaleFactor,
-                  right: 4 * scaleFactor,
-                  bottom: 4 * scaleFactor,
-                  left: 4 * scaleFactor,
-                },
+                height: 22 * scaleFactor,
+                width: 22 * scaleFactor,
+                alignItems: 'center',
+                alignContent: 'center',
+                justifyContent: 'center',
               }}
-              iconTransform={{
-                height: 30 * scaleFactor,
-                width: 30 * scaleFactor,
+              uiBackground={{
+                texture: {
+                  src: BTN_ADMIN_TOOLKIT_CONTROL,
+                },
+                textureMode: 'stretch',
+                color: Color4.create(1, 1, 1, 1),
               }}
               onMouseDown={() => {
                 state.panelOpen = !state.panelOpen
