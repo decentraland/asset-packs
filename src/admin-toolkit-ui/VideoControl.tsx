@@ -107,10 +107,6 @@ function updateVideoPlayerProps<K extends keyof PBVideoPlayer>(
   property: K,
   value: PBVideoPlayer[K],
 ) {
-  const { VideoControlState } = getComponents(engine)
-  const videoControlState = VideoControlState.getMutable(
-    state.adminToolkitUiEntity,
-  )
   const { VideoPlayer } = getExplorerComponents(engine)
   const videoControl = getAdminToolkitVideoControl(engine)
   const linkAllVideoPlayers =
@@ -170,15 +166,6 @@ function updateVideoPlayerProps<K extends keyof PBVideoPlayer>(
       property,
       value,
     )
-
-    // if (!!videoControlState) {
-    //   const videoPlayerControlState = videoControlState.videoPlayers?.find(
-    //     (vcs) => (vcs.entity as Entity) === selectedPlayerEntity,
-    //   )
-    //   if (!!videoPlayerControlState) {
-    //     updateVideoSourceProperty(videoPlayerControlState, property, value)
-    //   }
-    // }
   }
 }
 
@@ -518,7 +505,7 @@ export function VideoControl({
       <Input
         onSubmit={(value) => {
           state.videoControl.shareScreenUrl = value
-          controls.setSource(state.videoControl.shareScreenUrl ?? '')
+          handleShareScreenUrl(engine, state, value)
         }}
         onChange={($) => (state.videoControl.shareScreenUrl = $)}
         fontSize={16 * scaleFactor}
@@ -557,7 +544,11 @@ export function VideoControl({
           value="<b>Share</b>"
           fontSize={16 * scaleFactor}
           onMouseDown={() => {
-            controls.setSource(state.videoControl.shareScreenUrl ?? '')
+            handleShareScreenUrl(
+              engine,
+              state,
+              state.videoControl.shareScreenUrl,
+            )
           }}
           disabled={!selectedVideoPlayer}
         />
@@ -678,4 +669,14 @@ export function VideoControl({
       <VideoControlVolume engine={engine} state={state} />
     </UiEntity>
   )
+}
+
+function handleShareScreenUrl(engine: IEngine, state: State, url?: string) {
+  if (!url) return
+
+  const controls = createVideoPlayerControls(engine, state)
+  controls.setSource(url)
+  nextTickFunctions.push(() => {
+    controls.play()
+  })
 }
