@@ -22,6 +22,8 @@ import { getSceneDeployment, getSceneOwners } from './utils'
 import { State, TabType, SelectedSmartItem } from './types'
 import { getExplorerComponents } from '../components'
 
+export const nextTickFunctions: (() => void)[] = []
+
 let state: State = {
   adminToolkitUiEntity: 0 as Entity,
   panelOpen: false,
@@ -223,6 +225,15 @@ export async function initializeAdminData(
       ADMIN_TOOLS_ENTITY,
     )
 
+    engine.addSystem(() => {
+      if (nextTickFunctions.length > 0) {
+        const nextTick = nextTickFunctions.shift()
+        if (nextTick) {
+          nextTick()
+        }
+      }
+    }, Number.POSITIVE_INFINITY)
+
     adminDataInitialized = true
   }
 }
@@ -402,7 +413,10 @@ const uiComponent = (
                 }}
                 onMouseDown={() => {
                   if (state.activeTab !== TabType.VIDEO_CONTROL) {
-                    state.activeTab = TabType.VIDEO_CONTROL
+                    state.activeTab = TabType.NONE
+                    nextTickFunctions.push(() => {
+                      state.activeTab = TabType.VIDEO_CONTROL
+                    })
                   } else {
                     state.activeTab = TabType.NONE
                   }
@@ -433,7 +447,10 @@ const uiComponent = (
                 }}
                 onMouseDown={() => {
                   if (state.activeTab !== TabType.SMART_ITEMS_CONTROL) {
-                    state.activeTab = TabType.SMART_ITEMS_CONTROL
+                    state.activeTab = TabType.NONE
+                    nextTickFunctions.push(() => {
+                      state.activeTab = TabType.SMART_ITEMS_CONTROL
+                    })
                   } else {
                     state.activeTab = TabType.NONE
                   }
@@ -464,7 +481,10 @@ const uiComponent = (
                 }}
                 onMouseDown={() => {
                   if (state.activeTab !== TabType.TEXT_ANNOUNCEMENT_CONTROL) {
-                    state.activeTab = TabType.TEXT_ANNOUNCEMENT_CONTROL
+                    state.activeTab = TabType.NONE
+                    nextTickFunctions.push(() => {
+                      state.activeTab = TabType.TEXT_ANNOUNCEMENT_CONTROL
+                    })
                   } else {
                     state.activeTab = TabType.NONE
                   }
@@ -495,7 +515,10 @@ const uiComponent = (
                 }}
                 onMouseDown={() => {
                   if (state.activeTab !== TabType.REWARDS_CONTROL) {
-                    state.activeTab = TabType.REWARDS_CONTROL
+                    state.activeTab = TabType.NONE
+                    nextTickFunctions.push(() => {
+                      state.activeTab = TabType.REWARDS_CONTROL
+                    })
                   } else {
                     state.activeTab = TabType.NONE
                   }
@@ -523,22 +546,22 @@ const uiComponent = (
               >
                 {/* {state.activeTab === TabType.MODERATION &&
               renderModerationControl(engine)} */}
-                {state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL && (
+                {state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL ? (
                   <TextAnnouncementsControl
                     engine={engine}
                     state={state}
                     player={player}
                   />
-                )}
-                {state.activeTab === TabType.VIDEO_CONTROL && (
+                ) : null}
+                {state.activeTab === TabType.VIDEO_CONTROL ? (
                   <VideoControl engine={engine} state={state} />
-                )}
-                {state.activeTab === TabType.SMART_ITEMS_CONTROL && (
+                ) : null}
+                {state.activeTab === TabType.SMART_ITEMS_CONTROL ? (
                   <SmartItemsControl engine={engine} state={state} />
-                )}
-                {state.activeTab === TabType.REWARDS_CONTROL && (
+                ) : null}
+                {state.activeTab === TabType.REWARDS_CONTROL ? (
                   <RewardsControl engine={engine} state={state} />
-                )}
+                ) : null}
               </UiEntity>
             ) : null}
           </UiEntity>

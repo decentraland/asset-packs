@@ -3,10 +3,11 @@ import ReactEcs, { Label, UiEntity, Input, Dropdown } from '@dcl/react-ecs'
 import { Color4 } from '@dcl/sdk/math'
 import { getComponents } from '../definitions'
 import { getExplorerComponents } from '../components'
+import { getScaleUIFactor } from '../ui'
+import { nextTickFunctions } from './index'
 import { Button } from './Button'
 import { CONTENT_URL } from './constants'
 import { State } from './types'
-import { getScaleUIFactor } from '../ui'
 
 // Constants
 const ICONS = {
@@ -28,10 +29,6 @@ const COLORS = {
   WHITE: Color4.White(),
   GRAY: Color4.create(160 / 255, 155 / 255, 168 / 255, 1),
 } as const
-
-const nextTickFunctions: (() => void)[] = []
-
-let videoPlayersInitialized = false
 
 // Types
 interface VideoPlayerControls {
@@ -222,19 +219,6 @@ function updateVideoPlayerControlState<K extends keyof PBVideoPlayer>(
   if (!!videoPlayerControlState) {
     updateVideoSourceProperty(videoPlayerControlState, property, value)
   }
-}
-
-function initVideoPlayers(engine: IEngine) {
-  engine.addSystem(() => {
-    if (nextTickFunctions.length > 0) {
-      const nextTick = nextTickFunctions.shift()
-      if (nextTick) {
-        nextTick()
-      }
-    }
-  }, Number.POSITIVE_INFINITY)
-
-  videoPlayersInitialized = true
 }
 
 // Components
@@ -490,10 +474,6 @@ export function VideoControl({
   const selectedVideoPlayer = useSelectedVideoPlayer(engine, state)
   const scaleFactor = getScaleUIFactor(engine)
 
-  if (!videoPlayersInitialized) {
-    initVideoPlayers(engine)
-  }
-
   return (
     <UiEntity
       uiTransform={{
@@ -542,7 +522,7 @@ export function VideoControl({
         }}
         onChange={($) => (state.videoControl.shareScreenUrl = $)}
         fontSize={16 * scaleFactor}
-        placeholder={'Paster your video or Playlist URL'}
+        placeholder="Paste your video or Playlist URL"
         placeholderColor={Color4.create(160 / 255, 155 / 255, 168 / 255, 1)}
         color={Color4.Black()}
         uiBackground={{ color: Color4.White() }}
