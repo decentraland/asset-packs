@@ -278,282 +278,6 @@ export function getScaleUIFactor(engine: IEngine) {
 
 const BTN_CLOSE_TEXT_ANNOUNCEMENT = `${CONTENT_URL}/admin_toolkit/assets/icons/text-announcement-close-button.png`
 
-interface PromptAction {
-  label: string
-  onClick: () => void
-}
-
-interface PromptOptions {
-  title: string
-  width?: number
-  height?: number
-  onClose?: () => void
-}
-
-export function showPrompt(
-  engine: IEngine,
-  components: {
-    UiTransform: EngineComponents['UiTransform']
-    UiBackground: EngineComponents['UiBackground']
-    UiText: EngineComponents['UiText']
-    pointerEventsSystem: PointerEventsSystem
-  },
-  options: PromptOptions,
-  renderBody: (containerEntity: Entity) => void,
-  actions: PromptAction[],
-) {
-  const { UiTransform, UiBackground, UiText, pointerEventsSystem } = components
-  const { title, width = 250, height = 250, onClose } = options
-
-  // Create UI stack for centering
-  const uiStack = engine.addEntity()
-  const uiStackTransform = getUITransform(UiTransform, uiStack)
-  uiStackTransform.display = YGDisplay.YGD_FLEX
-  uiStackTransform.alignItems = YGAlign.YGA_CENTER
-  uiStackTransform.justifyContent = YGJustify.YGJ_CENTER
-
-  // Create container
-  const containerEntity = engine.addEntity()
-  const containerTransform = getUITransform(
-    UiTransform,
-    containerEntity,
-    height,
-    width,
-    YGUnit.YGU_POINT,
-  )
-  containerTransform.parent = uiStack
-  uiStackTransform.display = YGDisplay.YGD_FLEX
-  containerTransform.flexDirection = YGFlexDirection.YGFD_COLUMN
-  containerTransform.alignItems = YGAlign.YGA_CENTER
-  containerTransform.paddingTop = 20
-  containerTransform.paddingTopUnit = YGUnit.YGU_POINT
-  containerTransform.paddingBottom = 20
-  containerTransform.paddingBottomUnit = YGUnit.YGU_POINT
-  containerTransform.paddingLeft = 20
-  containerTransform.paddingLeftUnit = YGUnit.YGU_POINT
-  containerTransform.paddingRight = 20
-  containerTransform.paddingRightUnit = YGUnit.YGU_POINT
-  containerTransform.pointerFilter = PointerFilterMode.PFM_BLOCK
-
-  // Add dark background
-  UiBackground.createOrReplace(containerEntity, {
-    color: Color4.create(0.15, 0.15, 0.15, 0.95),
-    textureMode: BackgroundTextureMode.NINE_SLICES,
-    uvs: [],
-  })
-
-  // Create close button
-  const closeButtonEntity = engine.addEntity()
-  const closeButtonTransform = getUITransform(
-    UiTransform,
-    closeButtonEntity,
-    24,
-    24,
-    YGUnit.YGU_POINT,
-  )
-  closeButtonTransform.parent = containerEntity
-  closeButtonTransform.positionType = YGPositionType.YGPT_ABSOLUTE
-  closeButtonTransform.positionRight = 5
-  closeButtonTransform.positionRightUnit = YGUnit.YGU_POINT
-  closeButtonTransform.positionTop = 5
-  closeButtonTransform.positionTopUnit = YGUnit.YGU_POINT
-  closeButtonTransform.pointerFilter = PointerFilterMode.PFM_BLOCK
-
-  getUIBackground(
-    UiBackground,
-    closeButtonEntity,
-    BTN_CLOSE_TEXT_ANNOUNCEMENT,
-    BackgroundTextureMode.STRETCH,
-  )
-
-  const handleClose = () => {
-    removeUiTransformEntities(engine, UiTransform, uiStack)
-    engine.removeEntity(uiStack)
-    onClose?.()
-  }
-
-  pointerEventsSystem.onPointerDown(
-    {
-      entity: closeButtonEntity,
-      opts: { button: InputAction.IA_POINTER },
-    },
-    handleClose,
-  )
-
-  // Add title
-  const titleEntity = engine.addEntity()
-  const titleTransform = getUITransform(
-    UiTransform,
-    titleEntity,
-    20,
-    200,
-    YGUnit.YGU_POINT,
-  )
-  titleTransform.parent = containerEntity
-  titleTransform.marginBottom = 10
-  titleTransform.marginBottomUnit = YGUnit.YGU_POINT
-
-  getUIText(
-    UiText,
-    titleEntity,
-    title,
-    20,
-    200,
-    TextAlignMode.TAM_MIDDLE_CENTER,
-    Color4.White(),
-  )
-
-  // Render custom body content
-  renderBody(containerEntity)
-
-  // Add action buttons
-  const actionsContainer = engine.addEntity()
-  const actionsTransform = getUITransform(
-    UiTransform,
-    actionsContainer,
-    30,
-    width - 40,
-    YGUnit.YGU_POINT,
-  )
-  actionsTransform.parent = containerEntity
-  actionsTransform.display = YGDisplay.YGD_FLEX
-  actionsTransform.flexDirection = YGFlexDirection.YGFD_ROW
-  actionsTransform.justifyContent = YGJustify.YGJ_SPACE_AROUND
-  actionsTransform.marginTop = 10
-  actionsTransform.marginTopUnit = YGUnit.YGU_POINT
-
-  actions.forEach((action) => {
-    const buttonEntity = engine.addEntity()
-    const buttonTransform = getUITransform(
-      UiTransform,
-      buttonEntity,
-      30,
-      100,
-      YGUnit.YGU_POINT,
-    )
-    buttonTransform.parent = actionsContainer
-    buttonTransform.pointerFilter = PointerFilterMode.PFM_BLOCK
-
-    UiBackground.createOrReplace(buttonEntity, {
-      color: Color4.create(0.3, 0.3, 0.3, 1),
-      textureMode: BackgroundTextureMode.NINE_SLICES,
-      uvs: [],
-    })
-
-    getUIText(
-      UiText,
-      buttonEntity,
-      action.label,
-      16,
-      100,
-      TextAlignMode.TAM_MIDDLE_CENTER,
-      Color4.White(),
-    )
-
-    pointerEventsSystem.onPointerDown(
-      {
-        entity: buttonEntity,
-        opts: { button: InputAction.IA_POINTER },
-      },
-      () => {
-        action.onClick()
-        handleClose()
-      },
-    )
-  })
-
-  return uiStack
-}
-
-// export function showCaptchaPrompt(
-//   engine: IEngine,
-//   components: {
-//     UiTransform: EngineComponents['UiTransform']
-//     UiBackground: EngineComponents['UiBackground']
-//     UiText: EngineComponents['UiText']
-//     UiInput: EngineComponents['UiInput']
-//     UiInputResult: EngineComponents['UiInputResult']
-//     pointerEventsSystem: PointerEventsSystem
-//   },
-//   data: { campaignId: string; dispenserKey: string; captcha: any },
-//   onSubmit: (inputText: string) => void,
-// ) {
-//   let inputEntity: Entity
-
-//   return showPrompt(
-//     engine,
-//     components,
-//     {
-//       title: 'Enter the captcha',
-//       width: 250,
-//       height: 250,
-//     },
-//     (containerEntity) => {
-//       // Add captcha image
-//       const imageEntity = engine.addEntity()
-//       const imageTransform = getUITransform(
-//         components.UiTransform,
-//         imageEntity,
-//         80,
-//         200,
-//         YGUnit.YGU_POINT,
-//       )
-//       imageTransform.parent = containerEntity
-//       imageTransform.marginBottom = 10
-//       imageTransform.marginBottomUnit = YGUnit.YGU_POINT
-
-//       getUIBackground(
-//         components.UiBackground,
-//         imageEntity,
-//         data.captcha.image,
-//         BackgroundTextureMode.STRETCH,
-//       )
-
-//       // Add input field
-//       inputEntity = engine.addEntity()
-//       const inputTransform = getUITransform(
-//         components.UiTransform,
-//         inputEntity,
-//         50,
-//         200,
-//         YGUnit.YGU_POINT,
-//       )
-//       inputTransform.parent = containerEntity
-//       inputTransform.marginBottom = 10
-//       inputTransform.marginBottomUnit = YGUnit.YGU_POINT
-
-//       components.UiInput.createOrReplace(inputEntity, {
-//         placeholder: 'Enter the captcha',
-//         color: Color4.White(),
-//         placeholderColor: Color4.create(0.3, 0.3, 0.3, 1),
-//         disabled: false,
-//         textAlign: TextAlignMode.TAM_MIDDLE_CENTER,
-//         font: Font.F_MONOSPACE as any,
-//         fontSize: 10,
-//       })
-
-//       components.UiInputResult.createOrReplace(inputEntity, {
-//         value: '',
-//         isSubmit: false,
-//       })
-
-//       // Store reference to input value
-//       components.UiInputResult.get(inputEntity)
-//     },
-//     [
-//       {
-//         label: 'Submit',
-//         onClick: () => {
-//           const inputValue = inputEntity
-//             ? components.UiInputResult.getOrNull(inputEntity)?.value ?? ''
-//             : ''
-//           return onSubmit(inputValue)
-//         },
-//       },
-//     ],
-//   )
-// }
-
 export function showCaptchaPrompt(
   engine: IEngine,
   UiTransform: EngineComponents['UiTransform'],
@@ -565,6 +289,7 @@ export function showCaptchaPrompt(
   data: { campaignId: string; dispenserKey: string; captcha: any },
   onSubmit: (inputText: string) => void,
 ) {
+  console.log('showCaptchaPrompt')
   const scaleFactor = getScaleUIFactor(engine)
   // Create UI stack for centering
   const uiStack = engine.addEntity()
@@ -578,12 +303,12 @@ export function showCaptchaPrompt(
   const containerTransform = getUITransform(
     UiTransform,
     containerEntity,
-    250 * scaleFactor,
+    260 * scaleFactor,
     250 * scaleFactor,
     YGUnit.YGU_POINT,
   )
   containerTransform.parent = uiStack
-  uiStackTransform.display = YGDisplay.YGD_FLEX
+  containerTransform.display = YGDisplay.YGD_FLEX
   containerTransform.flexDirection = YGFlexDirection.YGFD_COLUMN
   containerTransform.alignItems = YGAlign.YGA_CENTER
   containerTransform.paddingTop = 20 * scaleFactor
@@ -596,6 +321,7 @@ export function showCaptchaPrompt(
   containerTransform.paddingRightUnit = YGUnit.YGU_POINT
   containerTransform.pointerFilter = PointerFilterMode.PFM_BLOCK
 
+  // DISCLAIMER: When using UiBackground, ecs gives them priority over the UiTransforms, leading to an unexpected behavior when working with flex positioning.
   // Add dark background
   UiBackground.createOrReplace(containerEntity, {
     color: Color4.create(0.15, 0.15, 0.15, 0.95),
@@ -653,6 +379,9 @@ export function showCaptchaPrompt(
   titleTransform.parent = containerEntity
   titleTransform.marginBottom = 10 * scaleFactor
   titleTransform.marginBottomUnit = YGUnit.YGU_POINT
+  titleTransform.positionType = YGPositionType.YGPT_ABSOLUTE
+  titleTransform.positionTop = 30 * scaleFactor
+  titleTransform.positionTopUnit = YGUnit.YGU_POINT
 
   getUIText(
     UiText,
@@ -676,6 +405,9 @@ export function showCaptchaPrompt(
   imageTransform.parent = containerEntity
   imageTransform.marginBottom = 10 * scaleFactor
   imageTransform.marginBottomUnit = YGUnit.YGU_POINT
+  imageTransform.positionType = YGPositionType.YGPT_ABSOLUTE
+  imageTransform.positionTop = 60 * scaleFactor
+  imageTransform.positionTopUnit = YGUnit.YGU_POINT
 
   getUIBackground(
     UiBackground,
@@ -696,6 +428,9 @@ export function showCaptchaPrompt(
   inputTransform.parent = containerEntity
   inputTransform.marginBottom = 10 * scaleFactor
   inputTransform.marginBottomUnit = YGUnit.YGU_POINT
+  inputTransform.positionType = YGPositionType.YGPT_ABSOLUTE
+  inputTransform.positionTop = 150 * scaleFactor
+  inputTransform.positionTopUnit = YGUnit.YGU_POINT
 
   UiInput.createOrReplace(inputEntity, {
     placeholder: 'Enter the captcha',
@@ -722,13 +457,12 @@ export function showCaptchaPrompt(
     YGUnit.YGU_POINT,
   )
   buttonTransform.parent = containerEntity
+  buttonTransform.marginBottom = 10 * scaleFactor
+  buttonTransform.marginBottomUnit = YGUnit.YGU_POINT
+  buttonTransform.positionType = YGPositionType.YGPT_ABSOLUTE
+  buttonTransform.positionTop = 210 * scaleFactor
+  buttonTransform.positionTopUnit = YGUnit.YGU_POINT
   buttonTransform.pointerFilter = PointerFilterMode.PFM_BLOCK
-
-  UiBackground.createOrReplace(buttonEntity, {
-    color: { r: 0.3, g: 0.3, b: 0.3, a: 1 },
-    textureMode: BackgroundTextureMode.NINE_SLICES,
-    uvs: [],
-  })
 
   getUIText(
     UiText,
@@ -739,6 +473,12 @@ export function showCaptchaPrompt(
     TextAlignMode.TAM_MIDDLE_CENTER,
     Color4.White(),
   )
+
+  UiBackground.createOrReplace(buttonEntity, {
+    color: { r: 0.3, g: 0.3, b: 0.3, a: 1 },
+    textureMode: BackgroundTextureMode.NINE_SLICES,
+    uvs: [],
+  })
 
   // Add click handler for submit button
   pointerEventsSystem.onPointerDown(
