@@ -99,14 +99,13 @@ export function TextAnnouncementsControl({
             },
           }}
         >
-          {/* TODO: Add back the character count, we couldn't limit the text to 150 characters */}
-          {/* <Label
-            value={`${state.textAnnouncementControl.text?.length ?? 0}/150`}
+          <Label
+            value={`${state.textAnnouncementControl.text?.length ?? 0} / 90`}
             fontSize={14 * scaleFactor}
             color={Color4.create(187 / 255, 187 / 255, 187 / 255, 1)}
             uiTransform={{ flexGrow: 1 }}
             textAlign="top-left"
-          /> */}
+          />
           <Button
             id="text_announcement_control_clear"
             value="<b>Clear</b>"
@@ -207,7 +206,7 @@ function handleSendTextAnnouncement(
     textAnnouncement.announcements = [
       {
         id: `${timestamp}-${author}`,
-        text,
+        text: text.slice(0, 90),
         author,
       },
     ]
