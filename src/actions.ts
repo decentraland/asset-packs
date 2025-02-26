@@ -1378,16 +1378,18 @@ export function createActionsSystem(
 
   async function fetchCampaignsByDispenserKey(dispenserKey: string) {
     const url = `${REWARDS_SERVER_URL}/api/campaigns/keys?campaign_key=${encodeURIComponent(dispenserKey)}`
-    return request(url)
+    const response = await request(url)
+    return response
   }
 
   async function fetchCaptcha() {
-    return request(`${REWARDS_SERVER_URL}/api/captcha`, {
+    const response = await request(`${REWARDS_SERVER_URL}/api/captcha`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
     })
+    return response
   }
 
   async function requestToken(
@@ -1401,7 +1403,7 @@ export function createActionsSystem(
     const realm = await getRealm({})
     const player = playersHelper?.getPlayer()
 
-    return request(url, {
+    const response = await request(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -1415,6 +1417,7 @@ export function createActionsSystem(
           : {}),
       }),
     })
+    return response
   }
 
   function handleClaimAirdrop(
@@ -1422,7 +1425,7 @@ export function createActionsSystem(
     _payload: ActionPayload<ActionType.CLAIM_AIRDROP>,
   ) {
     const rewards = Rewards.getOrNull(entity)
-
+    console.log('handleClaimAirdrop', { rewards })
     if (!rewards) {
       return
     }
@@ -1434,28 +1437,34 @@ export function createActionsSystem(
       return
     }
 
-    fetchCampaignsByDispenserKey(dispenserKey).then((campaigns) => {
-      const campaign = campaigns.find((c: any) => c.campaign_id === campaignId)
-      if (campaign && campaign.enabled) {
-        console.log('campaign', { campaign })
-        if (campaign.requires_captcha) {
-          console.log('Captcha required')
-
-          fetchCaptcha().then((captcha) => {
-            console.log('captcha', captcha)
-            if (captcha) {
-              _showCaptchaPrompt(entity, {
-                campaignId,
-                dispenserKey,
-                captcha,
+    fetchCampaignsByDispenserKey(dispenserKey)
+      .then((campaigns) => {
+        const campaign = campaigns.find(
+          (c: any) => c.campaign_id === campaignId,
+        )
+        if (campaign && campaign.enabled) {
+          if (campaign.requires_captcha) {
+            fetchCaptcha()
+              .then((captcha) => {
+                if (captcha) {
+                  _showCaptchaPrompt(entity, {
+                    campaignId,
+                    dispenserKey,
+                    captcha,
+                  })
+                }
               })
-            }
-          })
-        } else {
-          requestToken(dispenserKey)
+              .catch((error) => {
+                console.log('Error fetching captcha', error)
+              })
+          } else {
+            requestToken(dispenserKey)
+          }
         }
-      }
-    })
+      })
+      .catch((error) => {
+        console.log('Error fetching campaign data', error)
+      })
   }
 
   function _showCaptchaPrompt(
