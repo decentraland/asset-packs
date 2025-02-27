@@ -99,8 +99,6 @@ function handleSelectAction(
     ...state.smartItemsControl,
     smartItems: new Map(stateSmartItems),
   }
-
-  handleExecuteAction(smartItem, action)
 }
 
 function handleHideShowEntity(
@@ -120,33 +118,6 @@ function handleHideShowEntity(
 
   const visibility = VisibilityComponent.getOrCreateMutable(smartItemEntity)
   visibility.visible = toggleVisibility
-}
-
-function handleRestartAction(
-  _state: State,
-  smartItem: NonNullable<AdminTools['smartItemsControl']['smartItems']>[0],
-  action: Action,
-) {
-  handleExecuteAction(smartItem, action)
-}
-
-function handleResetToDefaultAction(
-  state: State,
-  smartItem: NonNullable<AdminTools['smartItemsControl']['smartItems']>[0],
-  action: Action,
-) {
-  const stateSmartItems = new Map(state.smartItemsControl.smartItems)
-  stateSmartItems.set(smartItem.entity as Entity, {
-    ...stateSmartItems.get(smartItem.entity as Entity)!,
-    selectedAction: action.name,
-  })
-
-  state.smartItemsControl = {
-    ...state.smartItemsControl,
-    smartItems: new Map(stateSmartItems),
-  }
-
-  handleExecuteAction(smartItem, action)
 }
 
 // Components
@@ -195,6 +166,7 @@ function SmartItemSelector({
 
   return (
     <UiEntity
+      key="SmartItemsControlDropdownWrapper"
       uiTransform={{
         flexDirection: 'column',
         margin: { bottom: 32 * scaleFactor },
@@ -209,9 +181,10 @@ function SmartItemSelector({
         }}
       />
       <Dropdown
+        key="SmartItemsControlDropdownSelector"
         acceptEmpty
         emptyLabel="Select Smart Item"
-        options={[...smartItems.map((item) => item.customName)]}
+        options={smartItems.map((item) => item.customName)}
         selectedIndex={selectedIndex ?? -1}
         onChange={onSelect}
         textAlign="middle-left"
@@ -236,7 +209,7 @@ function ActionSelector({
 }: {
   engine: IEngine
   actions: Action[]
-  selectedIndex: number
+  selectedIndex: number | undefined
   disabled: boolean
   onChange: (idx: number) => void
 }) {
@@ -244,6 +217,7 @@ function ActionSelector({
 
   return (
     <UiEntity
+      key="SmartItemActionsControlDropdownWrapper"
       uiTransform={{
         flexDirection: 'column',
         margin: { bottom: 32 * scaleFactor },
@@ -258,6 +232,7 @@ function ActionSelector({
         }}
       />
       <Dropdown
+        key="SmartItemActionsControlDropdownSelector"
         acceptEmpty
         emptyLabel="Select Action"
         options={actions.map((action) => action.name)}
@@ -311,6 +286,20 @@ function ActionButtons({
       }}
     >
       <Button
+        id="smart_items_control_restart"
+        value="<b>Play Action</b>"
+        variant="text"
+        fontSize={16 * scaleFactor}
+        color={Color4.White()}
+        uiTransform={{ margin: { right: 8 * scaleFactor } }}
+        disabled={!selectedSmartItem || !selectedAction}
+        onMouseDown={() => {
+          if (selectedSmartItem && selectedAction) {
+            handleExecuteAction(selectedSmartItem, selectedAction)
+          }
+        }}
+      />
+      <Button
         id="smart_items_control_hide_show"
         value={`<b>${isVisible ? 'Hide' : 'Show'} Entity</b>`}
         variant="text"
@@ -321,37 +310,6 @@ function ActionButtons({
         uiTransform={{
           margin: { right: 8 * scaleFactor },
         }}
-      />
-      <Button
-        id="smart_items_control_restart"
-        value="<b>Restart Action</b>"
-        variant="text"
-        fontSize={16 * scaleFactor}
-        color={Color4.White()}
-        uiTransform={{ margin: { right: 8 * scaleFactor } }}
-        disabled={!selectedSmartItem || !selectedAction}
-        onMouseDown={() =>
-          selectedSmartItem &&
-          selectedAction &&
-          handleRestartAction(state, selectedSmartItem, selectedAction)
-        }
-      />
-      <Button
-        id="smart_items_control_default"
-        value="<b>Default</b>"
-        variant="text"
-        fontSize={16 * scaleFactor}
-        color={Color4.White()}
-        onMouseDown={() => {
-          if (!selectedSmartItem) return
-          const defaultAction = actions.find(
-            (action) => action.name === selectedSmartItem.defaultAction,
-          )
-          if (defaultAction) {
-            handleResetToDefaultAction(state, selectedSmartItem, defaultAction)
-          }
-        }}
-        disabled={!selectedSmartItem}
       />
     </UiEntity>
   )
@@ -374,20 +332,24 @@ export function SmartItemsControl({
         )
       : []
 
-  const selectedActionIndex = actions.findIndex(
-    (action) =>
-      state.smartItemsControl.selectedSmartItem !== undefined &&
-      (action.name ===
-        state.smartItemsControl.smartItems.get(
-          smartItems[state.smartItemsControl.selectedSmartItem]
-            .entity as Entity,
-        )?.selectedAction ||
-        action.name ===
-          smartItems[state.smartItemsControl.selectedSmartItem].defaultAction),
-  )
+  const selectedActionIndex =
+    state.smartItemsControl.selectedSmartItem !== undefined
+      ? actions.findIndex(
+          (action) =>
+            action.name ===
+              state.smartItemsControl.smartItems.get(
+                smartItems[state.smartItemsControl.selectedSmartItem!]
+                  .entity as Entity,
+              )?.selectedAction ||
+            action.name ===
+              smartItems[state.smartItemsControl.selectedSmartItem!]
+                .defaultAction,
+        )
+      : undefined
 
   return (
     <UiEntity
+      key="SmartItemsControl"
       uiTransform={{
         height: '100%',
         width: '100%',
@@ -423,7 +385,11 @@ export function SmartItemsControl({
         state={state}
         smartItems={smartItems}
         actions={actions}
-        selectedAction={actions[selectedActionIndex]}
+        selectedAction={
+          selectedActionIndex !== undefined
+            ? actions[selectedActionIndex]
+            : undefined
+        }
       />
     </UiEntity>
   )
