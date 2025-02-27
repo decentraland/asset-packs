@@ -334,17 +334,18 @@ export function SmartItemsControl({
 
   const selectedActionIndex =
     state.smartItemsControl.selectedSmartItem !== undefined
-      ? actions.findIndex(
-          (action) =>
+      ? actions.findIndex((action) => {
+          const selectedSmartItem =
+            smartItems[state.smartItemsControl.selectedSmartItem!]
+          const stateSelectedAction = state.smartItemsControl.smartItems.get(
+            selectedSmartItem.entity as Entity,
+          )?.selectedAction
+
+          return (
             action.name ===
-              state.smartItemsControl.smartItems.get(
-                smartItems[state.smartItemsControl.selectedSmartItem!]
-                  .entity as Entity,
-              )?.selectedAction ||
-            action.name ===
-              smartItems[state.smartItemsControl.selectedSmartItem!]
-                .defaultAction,
-        )
+            (stateSelectedAction ?? selectedSmartItem.defaultAction)
+          )
+        })
       : undefined
 
   return (
@@ -362,7 +363,9 @@ export function SmartItemsControl({
         engine={engine}
         smartItems={smartItems}
         selectedIndex={state.smartItemsControl.selectedSmartItem}
-        onSelect={(idx) => handleSelectSmartItem(state, smartItems, idx)}
+        onSelect={(idx) => {
+          handleSelectSmartItem(state, smartItems, idx)
+        }}
       />
 
       <ActionSelector
@@ -371,12 +374,13 @@ export function SmartItemsControl({
         selectedIndex={selectedActionIndex}
         disabled={state.smartItemsControl.selectedSmartItem === undefined}
         onChange={(idx) => {
-          if (state.smartItemsControl.selectedSmartItem === undefined) return
-          handleSelectAction(
-            state,
-            smartItems[state.smartItemsControl.selectedSmartItem],
-            actions[idx],
-          )
+          if (state.smartItemsControl.selectedSmartItem !== undefined) {
+            handleSelectAction(
+              state,
+              smartItems[state.smartItemsControl.selectedSmartItem],
+              actions[idx],
+            )
+          }
         }}
       />
 
