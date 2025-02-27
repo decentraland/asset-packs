@@ -41,25 +41,7 @@
       "data": {
         "0": {
           "json": {
-            "value": "Plane"
-          }
-        }
-      }
-    },
-    {
-      "name": "inspector::Config",
-      "data": {
-        "0": {
-          "json": {
-            "isBasicViewEnabled": false,
-            "componentName": "NFT Portrait",
-            "fields": [
-              {
-                "name": "NFT Portrait",
-                "type": "core::NftShape"
-              }
-            ],
-            "assetId": "37460a1e-affc-4f87-b725-118cc11d86fc"
+            "value": "Sphere"
           }
         }
       }
