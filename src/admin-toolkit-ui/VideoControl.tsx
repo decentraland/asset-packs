@@ -290,11 +290,13 @@ function VideoPlayerSelector({
               state.videoControl.selectedVideoPlayer = idx
             }}
             uiTransform={{
-              minWidth: 69 * scaleFactor,
               alignItems: 'center',
               justifyContent: 'center',
+              alignSelf: 'center',
               margin: { right: 8 * scaleFactor },
-              padding: 0,
+            }}
+            labelTransform={{
+              padding: 4 * scaleFactor,
             }}
           />
         )

@@ -69,6 +69,7 @@ interface CompositeButtonProps
   onlyIcon?: boolean
   iconTransform?: UiTransformProps
   variant?: ButtonVariant
+  labelTransform?: UiTransformProps
 }
 
 export const Button = (props: CompositeButtonProps) => {
@@ -84,6 +85,7 @@ export const Button = (props: CompositeButtonProps) => {
     disabled,
     uiBackground,
     uiTransform,
+    labelTransform,
     variant = 'primary',
   } = props
 
@@ -128,9 +130,7 @@ export const Button = (props: CompositeButtonProps) => {
     >
       {icon && (
         <UiEntity
-          uiTransform={{
-            ...iconTransform,
-          }}
+          uiTransform={iconTransform}
           uiBackground={{
             texture: {
               src: icon,
@@ -140,7 +140,12 @@ export const Button = (props: CompositeButtonProps) => {
         />
       )}
       {!onlyIcon && !!value ? (
-        <Label value={value} color={color} fontSize={fontSize} />
+        <Label
+          value={value}
+          color={color}
+          fontSize={fontSize}
+          uiTransform={labelTransform}
+        />
       ) : null}
     </UiEntity>
   )
