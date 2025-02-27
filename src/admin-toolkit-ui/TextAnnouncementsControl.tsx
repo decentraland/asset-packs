@@ -108,7 +108,7 @@ export function TextAnnouncementsControl({
           />
           <Button
             id="text_announcement_control_clear"
-            value="<b>Clear</b>"
+            value="<b>Clear Announcements</b>"
             variant="text"
             fontSize={16 * scaleFactor}
             color={Color4.White()}

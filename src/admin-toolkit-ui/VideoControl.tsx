@@ -530,7 +530,7 @@ export function VideoControl({
       >
         <Button
           id="video_control_share_screen_clear"
-          value="<b>Clear</b>"
+          value="<b>Clear Screen</b>"
           variant="text"
           fontSize={16 * scaleFactor}
           color={Color4.White()}
