@@ -84,7 +84,17 @@ const BTN_ADMIN_TOOLKIT_BACKGROUND = `${CONTENT_URL}/admin_toolkit/assets/backgr
 
 const containerBackgroundColor = Color4.create(0, 0, 0, 0.75)
 
-const ADMIN_TOOLS_ENTITY = 7777
+const ADMIN_TOOLS_ENTITY = 7777 as Entity
+
+function getAdminToolkitEntity(engine: IEngine) {
+  const { AdminTools } = getComponents(engine)
+  return Array.from(engine.getEntitiesWith(AdminTools))[0][0]
+}
+
+function getAdminToolkitComponent(engine: IEngine) {
+  const { AdminTools } = getComponents(engine)
+  return Array.from(engine.getEntitiesWith(AdminTools))[0][1]
+}
 
 async function initSceneDeployment() {
   if (deploymentCache !== null) return
@@ -136,6 +146,20 @@ function getSmartItems(engine: IEngine) {
     return []
 
   return Array.from(adminToolkitComponent.smartItemsControl.smartItems)
+}
+
+function getRewards(engine: IEngine) {
+  const adminToolkitComponent = getAdminToolkitComponent(engine)
+
+  if (
+    !adminToolkitComponent ||
+    !adminToolkitComponent.rewardsControl ||
+    !adminToolkitComponent.rewardsControl.rewardItems ||
+    adminToolkitComponent.rewardsControl.rewardItems.length === 0
+  )
+    return []
+
+  return Array.from(adminToolkitComponent.rewardsControl.rewardItems)
 }
 
 function syncVideoPlayersState(engine: IEngine) {
@@ -219,22 +243,19 @@ function initTextAnnouncementSync(engine: IEngine) {
   })
 }
 
-function initSmartItemsSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
-  const { Animator, Transform, Tween, VisibilityComponent, SyncComponents } =
-    getExplorerComponents(engine)
-
-  const requiredComponentIds = [
-    Animator.componentId,
-    Transform.componentId,
-    Tween.componentId,
-    VisibilityComponent.componentId,
-  ]
-
-  const smartItems = getSmartItems(engine)
+// Helper function to sync entities components
+function syncEntitiesComponents(
+  engine: IEngine,
+  entities: { entity: number | Entity }[],
+  requiredComponentIds: number[],
+  sdkHelpers?: ISDKHelpers,
+  parentEntity: Entity = ADMIN_TOOLS_ENTITY,
+) {
+  const { SyncComponents } = getExplorerComponents(engine)
   const entitiesToSync: Entity[] = []
 
-  smartItems.forEach((smartItem) => {
-    const entity = smartItem.entity as Entity
+  entities.forEach((item) => {
+    const entity = item.entity as Entity
     const syncComponents = SyncComponents.getMutableOrNull(entity)
 
     if (syncComponents) {
@@ -248,9 +269,39 @@ function initSmartItemsSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
 
   if (entitiesToSync.length > 0 && sdkHelpers?.syncEntity) {
     entitiesToSync.forEach((entity) => {
-      sdkHelpers.syncEntity!(entity, requiredComponentIds, ADMIN_TOOLS_ENTITY)
+      sdkHelpers.syncEntity!(entity, requiredComponentIds, parentEntity)
     })
   }
+}
+
+function initSmartItemsSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
+  const { Animator, Transform, Tween, VisibilityComponent } =
+    getExplorerComponents(engine)
+
+  const requiredComponentIds = [
+    Animator.componentId,
+    Transform.componentId,
+    Tween.componentId,
+    VisibilityComponent.componentId,
+  ]
+
+  const smartItems = getSmartItems(engine)
+  syncEntitiesComponents(engine, smartItems, requiredComponentIds, sdkHelpers)
+}
+
+function initRewardsSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
+  const { Animator, Transform, Tween, VisibilityComponent } =
+    getExplorerComponents(engine)
+
+  const requiredComponentIds = [
+    Animator.componentId,
+    Transform.componentId,
+    Tween.componentId,
+    VisibilityComponent.componentId,
+  ]
+
+  const rewards = getRewards(engine)
+  syncEntitiesComponents(engine, rewards, requiredComponentIds, sdkHelpers)
 }
 
 // Initialize admin data before UI rendering
@@ -278,6 +329,9 @@ export async function initializeAdminData(
 
     // Initialize Smart Items sync
     initSmartItemsSync(engine, sdkHelpers)
+
+    // Initialize Rewards sync
+    initRewardsSync(engine, sdkHelpers)
 
     sdkHelpers?.syncEntity?.(
       state.adminToolkitUiEntity,
@@ -360,16 +414,6 @@ function isAllowedAdmin(
   }
 
   return false
-}
-
-function getAdminToolkitEntity(engine: IEngine) {
-  const { AdminTools } = getComponents(engine)
-  return Array.from(engine.getEntitiesWith(AdminTools))[0][0]
-}
-
-function getAdminToolkitComponent(engine: IEngine) {
-  const { AdminTools } = getComponents(engine)
-  return Array.from(engine.getEntitiesWith(AdminTools))[0][1]
 }
 
 const uiComponent = (
