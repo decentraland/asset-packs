@@ -109,8 +109,6 @@ function updateVideoPlayerProps<K extends keyof PBVideoPlayer>(
 ) {
   const { VideoPlayer } = getExplorerComponents(engine)
   const videoControl = getAdminToolkitVideoControl(engine)
-  const linkAllVideoPlayers =
-    state.videoControl.linkAllVideoPlayers ?? videoControl?.linkAllVideoPlayers
   const players = getVideoPlayers(engine)
 
   // If sound is disabled and we're updating the 'playing' property to true,
@@ -134,39 +132,43 @@ function updateVideoPlayerProps<K extends keyof PBVideoPlayer>(
     })
   }
 
-  if (linkAllVideoPlayers) {
-    // Apply to all players
-    players.forEach((player) => {
-      const videoSource = VideoPlayer.getMutableOrNull(player.entity as Entity)
-      if (!videoSource) return
-      updateVideoSourceProperty(videoSource, property, value)
+  // TODO: Needs to be redefined the link all feature
+  // const linkAllVideoPlayers =
+  //   state.videoControl.linkAllVideoPlayers ?? videoControl?.linkAllVideoPlayers
+  // if (linkAllVideoPlayers) {
+  //   // Apply to all players
+  //   players.forEach((player) => {
+  //     const videoSource = VideoPlayer.getMutableOrNull(player.entity as Entity)
+  //     if (!videoSource) return
+  //     updateVideoSourceProperty(videoSource, property, value)
 
-      updateVideoPlayerControlState(
-        engine,
-        state,
-        player.entity as Entity,
-        property,
-        value,
-      )
-    })
-  } else {
-    // Apply to selected player only
-    const selectedPlayerEntity = players[
-      state.videoControl.selectedVideoPlayer ?? 0
-    ].entity as Entity
-    const selectedPlayer = VideoPlayer.getMutableOrNull(selectedPlayerEntity)
-    if (!selectedPlayer) return
+  //     updateVideoPlayerControlState(
+  //       engine,
+  //       state,
+  //       player.entity as Entity,
+  //       property,
+  //       value,
+  //     )
+  //   })
+  //   return
+  // }
 
-    updateVideoSourceProperty(selectedPlayer, property, value)
+  // Apply to selected player only
+  const selectedPlayerEntity = players[
+    state.videoControl.selectedVideoPlayer ?? 0
+  ].entity as Entity
+  const selectedPlayer = VideoPlayer.getMutableOrNull(selectedPlayerEntity)
+  if (!selectedPlayer) return
 
-    updateVideoPlayerControlState(
-      engine,
-      state,
-      selectedPlayerEntity,
-      property,
-      value,
-    )
-  }
+  updateVideoSourceProperty(selectedPlayer, property, value)
+
+  updateVideoPlayerControlState(
+    engine,
+    state,
+    selectedPlayerEntity,
+    property,
+    value,
+  )
 }
 
 // Helper function to update a video source property
@@ -241,7 +243,8 @@ function VideoPlayerSelector({
           }}
           uiBackground={{ color: Color4.White() }}
         />
-        <Button
+        {/* TODO: Needs to be redefined the link all feature. */}
+        {/* <Button
           id="video_control_link_all"
           value="<b>Link All</b>"
           variant="text"
@@ -258,7 +261,7 @@ function VideoPlayerSelector({
             justifyContent: 'center',
             padding: 0,
           }}
-        />
+        /> */}
       </UiEntity>
     )
   }
@@ -273,7 +276,6 @@ function VideoPlayerSelector({
     >
       {videoPlayers.map((player, idx) => {
         const isPlayerSelected =
-          !state.videoControl.linkAllVideoPlayers &&
           (state.videoControl.selectedVideoPlayer ?? 0) === idx
         const playerName = player.customName ?? `#${idx + 1}`
         return (
@@ -286,7 +288,6 @@ function VideoPlayerSelector({
             color={isPlayerSelected ? Color4.Black() : Color4.White()}
             onMouseDown={() => {
               state.videoControl.selectedVideoPlayer = idx
-              state.videoControl.linkAllVideoPlayers = false
             }}
             uiTransform={{
               minWidth: 69 * scaleFactor,
@@ -298,7 +299,8 @@ function VideoPlayerSelector({
           />
         )
       })}
-      <Button
+      {/* TODO: Needs to be redefined the link all feature. */}
+      {/* <Button
         id="video_control_link_all"
         value="<b>Link All</b>"
         fontSize={14 * scaleFactor}
@@ -321,23 +323,25 @@ function VideoPlayerSelector({
           justifyContent: 'center',
           padding: 0,
         }}
-      />
+      /> */}
     </UiEntity>
   )
 }
 
 function useSelectedVideoPlayer(engine: IEngine, state: State) {
-  const videoControl = getAdminToolkitVideoControl(engine)
   const { VideoPlayer } = getExplorerComponents(engine)
   const videoPlayers = getVideoPlayers(engine)
-  const linkAllVideoPlayers =
-    state.videoControl.linkAllVideoPlayers ?? videoControl?.linkAllVideoPlayers
 
   if (videoPlayers.length === 0) return null
 
-  if (linkAllVideoPlayers) {
-    return VideoPlayer.getOrNull(videoPlayers[0].entity as Entity)
-  }
+  // TODO: Needs to be redefined the link all feature
+  // const videoControl = getAdminToolkitVideoControl(engine)
+  // const linkAllVideoPlayers =
+  //   state.videoControl.linkAllVideoPlayers ?? videoControl?.linkAllVideoPlayers
+
+  // if (linkAllVideoPlayers) {
+  //   return VideoPlayer.getOrNull(videoPlayers[0].entity as Entity)
+  // }
 
   return VideoPlayer.getOrNull(
     videoPlayers[state.videoControl.selectedVideoPlayer ?? 0].entity as Entity,
