@@ -96,6 +96,7 @@ export function RewardsControl({
         />
 
         <Dropdown
+          key="RewardsItemSelector"
           acceptEmpty
           emptyLabel="Select your airdrop"
           options={[...rewardItems.map((item) => item.customName)]}

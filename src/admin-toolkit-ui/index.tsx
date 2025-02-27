@@ -17,8 +17,7 @@ import {
 import { getScaleUIFactor } from '../ui'
 import { VideoControl } from './VideoControl'
 import { TextAnnouncementsControl } from './TextAnnouncementsControl'
-// import { renderModerationControl } from './ModerationControl'
-import { RewardsControl } from './RewardsControl'
+// import { RewardsControl } from './RewardsControl'
 import { SmartItemsControl } from './SmartItemsControl'
 import { Button } from './Button'
 import { TextAnnouncements } from './TextAnnouncements'
@@ -63,11 +62,8 @@ let deploymentCache: {
 
 let sceneOwnersCache: string[] | null = null
 
-const BTN_MODERATION_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-moderation-control-button.png`
-const BTN_MODERATION_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-moderation-control-active-button.png`
-
-const BTN_REWARDS_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-button.png`
-const BTN_REWARDS_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-active-button.png`
+// const BTN_REWARDS_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-button.png`
+// const BTN_REWARDS_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-active-button.png`
 
 const BTN_VIDEO_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-video-control-button.png`
 const BTN_VIDEO_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-video-control-active-button.png`
@@ -79,7 +75,6 @@ const BTN_TEXT_ANNOUNCEMENT_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons
 const BTN_TEXT_ANNOUNCEMENT_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-text-announcement-control-active-button.png`
 
 const BTN_ADMIN_TOOLKIT_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-control-button.png`
-const BTN_ADMIN_TOOLKIT_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-control-active-button.png`
 const BTN_ADMIN_TOOLKIT_BACKGROUND = `${CONTENT_URL}/admin_toolkit/assets/backgrounds/admin-tool-background.png`
 
 const containerBackgroundColor = Color4.create(0, 0, 0, 0.75)
@@ -471,30 +466,6 @@ const uiComponent = (
                 color={Color4.create(160, 155, 168, 1)}
                 uiTransform={{ flexGrow: 1 }}
               />
-              {/* <Button
-            value=""
-            fontSize={25}
-            uiTransform={{
-              width: 49,
-              height: 42,
-              margin: '0 8px 0 0',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            uiBackground={{
-              color: Color4.White(),
-              textureMode: 'stretch',
-              texture: {
-                src:
-                  state.activeTab === TabType.MODERATION_CONTROL
-                    ? BTN_MODERATION_CONTROL_ACTIVE
-                    : BTN_MODERATION_CONTROL,
-              },
-            }}
-            onMouseDown={() => {
-              state.activeTab = TabType.MODERATION_CONTROL
-            }}
-          /> */}
               <Button
                 id="admin_toolkit_panel_video_control"
                 variant="text"
@@ -597,7 +568,7 @@ const uiComponent = (
                   }
                 }}
               />
-              <Button
+              {/* <Button
                 id="admin_toolkit_panel_rewards_control"
                 variant="text"
                 icon={
@@ -630,7 +601,7 @@ const uiComponent = (
                     state.activeTab = TabType.NONE
                   }
                 }}
-              />
+              /> */}
             </UiEntity>
             {state.activeTab !== TabType.NONE ? (
               <UiEntity
@@ -651,8 +622,6 @@ const uiComponent = (
                 }}
                 uiBackground={{ color: containerBackgroundColor }}
               >
-                {/* {state.activeTab === TabType.MODERATION &&
-              renderModerationControl(engine)} */}
                 {state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL ? (
                   <TextAnnouncementsControl
                     engine={engine}
@@ -666,9 +635,9 @@ const uiComponent = (
                 {state.activeTab === TabType.SMART_ITEMS_CONTROL ? (
                   <SmartItemsControl engine={engine} state={state} />
                 ) : null}
-                {state.activeTab === TabType.REWARDS_CONTROL ? (
+                {/* {state.activeTab === TabType.REWARDS_CONTROL ? (
                   <RewardsControl engine={engine} state={state} />
-                ) : null}
+                ) : null} */}
               </UiEntity>
             ) : null}
           </UiEntity>
