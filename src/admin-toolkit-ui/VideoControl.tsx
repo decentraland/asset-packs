@@ -515,7 +515,7 @@ export function VideoControl({
         }}
         onChange={($) => (state.videoControl.shareScreenUrl = $)}
         fontSize={16 * scaleFactor}
-        placeholder="Paste your video or Playlist URL"
+        placeholder="Paste your video URL"
         placeholderColor={Color4.create(160 / 255, 155 / 255, 168 / 255, 1)}
         color={Color4.Black()}
         uiBackground={{ color: Color4.White() }}
