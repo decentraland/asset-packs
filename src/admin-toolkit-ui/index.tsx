@@ -124,6 +124,20 @@ function getVideoPlayers(engine: IEngine) {
   return Array.from(adminToolkitComponent.videoControl.videoPlayers)
 }
 
+function getSmartItems(engine: IEngine) {
+  const adminToolkitComponent = getAdminToolkitComponent(engine)
+
+  if (
+    !adminToolkitComponent ||
+    !adminToolkitComponent.smartItemsControl ||
+    !adminToolkitComponent.smartItemsControl.smartItems ||
+    adminToolkitComponent.smartItemsControl.smartItems.length === 0
+  )
+    return []
+
+  return Array.from(adminToolkitComponent.smartItemsControl.smartItems)
+}
+
 function syncVideoPlayersState(engine: IEngine) {
   const { VideoControlState } = getComponents(engine)
   const { VideoPlayer } = getExplorerComponents(engine)
@@ -205,6 +219,40 @@ function initTextAnnouncementSync(engine: IEngine) {
   })
 }
 
+function initSmartItemsSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
+  const { Animator, Transform, Tween, VisibilityComponent, SyncComponents } =
+    getExplorerComponents(engine)
+
+  const requiredComponentIds = [
+    Animator.componentId,
+    Transform.componentId,
+    Tween.componentId,
+    VisibilityComponent.componentId,
+  ]
+
+  const smartItems = getSmartItems(engine)
+  const entitiesToSync: Entity[] = []
+
+  smartItems.forEach((smartItem) => {
+    const entity = smartItem.entity as Entity
+    const syncComponents = SyncComponents.getMutableOrNull(entity)
+
+    if (syncComponents) {
+      const componentIds = new Set(syncComponents.componentIds)
+      requiredComponentIds.forEach((id) => componentIds.add(id))
+      syncComponents.componentIds = Array.from(componentIds)
+    } else {
+      entitiesToSync.push(entity)
+    }
+  })
+
+  if (entitiesToSync.length > 0 && sdkHelpers?.syncEntity) {
+    entitiesToSync.forEach((entity) => {
+      sdkHelpers.syncEntity!(entity, requiredComponentIds, ADMIN_TOOLS_ENTITY)
+    })
+  }
+}
+
 // Initialize admin data before UI rendering
 let adminDataInitialized = false
 export async function initializeAdminData(
@@ -227,6 +275,9 @@ export async function initializeAdminData(
 
     // Initialize TextAnnouncements sync component
     initTextAnnouncementSync(engine)
+
+    // Initialize Smart Items sync
+    initSmartItemsSync(engine, sdkHelpers)
 
     sdkHelpers?.syncEntity?.(
       state.adminToolkitUiEntity,
