@@ -1,7 +1,6 @@
 import {
   IEngine,
   Entity,
-  VideoPlayer,
   Material,
   AudioStream,
   YGUnit,
@@ -9,7 +8,6 @@ import {
   Font,
   YGPositionType,
   PointerFilterMode,
-  pointerEventsSystem,
   InputAction,
   MeshCollider,
   getComponentEntityTree,
@@ -18,8 +16,14 @@ import {
   PBTween,
   Rotate,
   Scale,
+  PointerEventsSystem,
 } from '@dcl/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import {
+  getEntityParent,
+  getPlayerPosition,
+  getWorldPosition,
+} from '@dcl-sdk/utils'
 import { requestTeleport } from '~system/UserActionModule'
 import {
   movePlayerTo,
@@ -28,10 +32,13 @@ import {
   openExternalUrl,
 } from '~system/RestrictedActions'
 import { getActiveVideoStreams } from '~system/CommsApi'
+import { FlatFetchInit, signedFetch } from '~system/SignedFetch'
+import { getRealm } from '~system/Runtime'
 import {
   ActionPayload,
   ActionType,
   ISDKHelpers,
+  IPlayersHelper,
   ProximityLayer,
   ScreenAlignMode,
   TriggerType,
@@ -56,16 +63,13 @@ import {
   getUIText,
   getUITransform,
   mapAlignToScreenAlign,
+  showCaptchaPrompt,
 } from './ui'
 import { getExplorerComponents } from './components'
 import { initTriggers, damageTargets, healTargets } from './triggers'
-import {
-  getEntityParent,
-  getPlayerPosition,
-  getWorldPosition,
-} from '@dcl-sdk/utils'
 import { followMap } from './transform'
 import { getEasingFunctionFromInterpolation } from './tweens'
+import { REWARDS_SERVER_URL } from './admin-toolkit-ui/constants'
 
 const initedEntities = new Set<Entity>()
 const uiStacks = new Map<string, Entity>()
@@ -82,7 +86,12 @@ export function initActions(entity: Entity) {
   )
 }
 
-export function createActionsSystem(engine: IEngine, sdkHelpers?: ISDKHelpers) {
+export function createActionsSystem(
+  engine: IEngine,
+  pointerEventsSystem: PointerEventsSystem,
+  sdkHelpers?: ISDKHelpers,
+  playersHelper?: IPlayersHelper,
+) {
   const {
     Animator,
     Transform,
@@ -93,11 +102,14 @@ export function createActionsSystem(engine: IEngine, sdkHelpers?: ISDKHelpers) {
     UiTransform,
     UiText,
     UiBackground,
+    UiInput,
+    UiInputResult,
     Name,
     Tween: TweenComponent,
     TweenSequence,
+    VideoPlayer,
   } = getExplorerComponents(engine)
-  const { Actions, States, Counter, Triggers } = getComponents(engine)
+  const { Actions, States, Counter, Triggers, Rewards } = getComponents(engine)
 
   // save internal reference to init funcion
   internalInitActions = initActions
@@ -393,6 +405,13 @@ export function createActionsSystem(engine: IEngine, sdkHelpers?: ISDKHelpers) {
           }
           case ActionType.HEAL_PLAYER: {
             handleHealPlayer(entity, getPayload<ActionType.HEAL_PLAYER>(action))
+            break
+          }
+          case ActionType.CLAIM_AIRDROP: {
+            handleClaimAirdrop(
+              entity,
+              getPayload<ActionType.CLAIM_AIRDROP>(action),
+            )
             break
           }
           default:
@@ -1330,5 +1349,153 @@ export function createActionsSystem(engine: IEngine, sdkHelpers?: ISDKHelpers) {
         }
       }
     }
+  }
+
+  async function request(url: string, init?: FlatFetchInit) {
+    try {
+      const response = await signedFetch({
+        url: url,
+        ...(init ? { init } : {}),
+      })
+      if (!response || !response.body) {
+        // TODO: Show an error Prompt
+        // 'Error fetching campaign data'
+        return null
+      }
+
+      const json = await JSON.parse(response.body)
+
+      if (!json.ok) {
+        // TODO: Show an error Prompt
+        // 'Error fetching campaign data'
+        return null
+      }
+
+      return json.data
+    } catch (error) {
+      // TODO: Show an error Prompt
+      // 'Error fetching campaign data'
+      return null
+    }
+  }
+
+  async function fetchCampaignsByDispenserKey(dispenserKey: string) {
+    const url = `${REWARDS_SERVER_URL}/api/campaigns/keys?campaign_key=${encodeURIComponent(dispenserKey)}`
+    const response = await request(url)
+    return response
+  }
+
+  async function fetchCaptcha() {
+    const response = await request(`${REWARDS_SERVER_URL}/api/captcha`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    return response
+  }
+
+  async function requestToken(
+    dispenserKey: string,
+    captcha?: {
+      id: string
+      value: string
+    },
+  ) {
+    const url = `${REWARDS_SERVER_URL}/api/rewards`
+    const realm = await getRealm({})
+    const player = playersHelper?.getPlayer()
+
+    const response = await request(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        campaign_key: dispenserKey,
+        beneficiary: !player?.isGuest ? player?.userId : '',
+        catalyst: realm.realmInfo ? realm.realmInfo.baseUrl : '',
+        ...(captcha
+          ? { captcha_id: captcha.id, captcha_value: captcha.value }
+          : {}),
+      }),
+    })
+    return response
+  }
+
+  function handleClaimAirdrop(
+    entity: Entity,
+    _payload: ActionPayload<ActionType.CLAIM_AIRDROP>,
+  ) {
+    const rewards = Rewards.getOrNull(entity)
+    if (!rewards) {
+      return
+    }
+
+    const { testMode, campaignId, dispenserKey } = rewards
+
+    if (testMode) {
+      // TODO: Show an UI indicating testing mode
+      // 'Handle Claim Airdrop in Test Mode :)'
+      return
+    }
+
+    fetchCampaignsByDispenserKey(dispenserKey)
+      .then((campaigns) => {
+        const campaign = campaigns.find(
+          (c: any) => c.campaign_id === campaignId,
+        )
+        if (campaign && campaign.enabled) {
+          if (campaign.requires_captcha) {
+            fetchCaptcha()
+              .then((captcha) => {
+                if (captcha) {
+                  _showCaptchaPrompt(entity, {
+                    campaignId,
+                    dispenserKey,
+                    captcha,
+                  })
+                }
+              })
+              .catch((error) => {
+                // TODO: Show an error Prompt
+                // 'Error fetching captcha'
+              })
+          } else {
+            requestToken(dispenserKey)
+          }
+        }
+      })
+      .catch((error) => {
+        // TODO: Show an error Prompt
+        // 'Error fetching campaign data', error
+      })
+  }
+
+  function _showCaptchaPrompt(
+    _entity: Entity,
+    data: { campaignId: string; dispenserKey: string; captcha: any },
+  ) {
+    showCaptchaPrompt(
+      engine,
+      UiTransform,
+      UiBackground,
+      UiText,
+      UiInput,
+      UiInputResult,
+      pointerEventsSystem,
+      data,
+      (inputText) => {
+        // Request token with captcha validation
+        requestToken(data.dispenserKey, {
+          id: data.captcha.id,
+          value: inputText,
+        }).then((token: any) => {
+          if (token) {
+            // 'Token requested successfully', { token }
+          }
+        })
+      },
+    )
   }
 }
