@@ -3,6 +3,8 @@ import { ReactBasedUiSystem } from '@dcl/react-ecs'
 import { getComponents, IPlayersHelper, ISDKHelpers } from './definitions'
 import { createAdminToolkitUI } from './admin-toolkit-ui'
 
+let adminToolkitEntity: Entity | null = null
+
 // Create a system to manage the AdminToolkit
 export function createAdminToolkitSystem(
   engine: IEngine,
@@ -11,7 +13,6 @@ export function createAdminToolkitSystem(
   sdkHelpers?: ISDKHelpers,
   playersHelper?: IPlayersHelper,
 ) {
-  let adminToolkitEntity: Entity | null = null
   const { AdminTools } = getComponents(engine)
 
   return function adminToolkitSystem(_dt: number) {
