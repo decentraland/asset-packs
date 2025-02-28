@@ -32,8 +32,22 @@ export async function getSceneOwners() {
       const sceneOwnersResponse = await fetch(LAND_MANAGER_URL, {
         method: 'POST',
         body: JSON.stringify({
-          query: `query getLands\n{\n  parcels(where: {x: ${deployment.sceneBasePosition[0]}, y: ${deployment.sceneBasePosition[1]}}) {\n    id\n    x\n    y\n    owners {\n      id\n      address\n    }\n  }\n}`,
-          operationName: 'getLands',
+          query: `{
+            parcels(
+              where: {
+                x: ${deployment.sceneBasePosition[0]},
+                y: ${deployment.sceneBasePosition[1]}
+              }
+            ) {
+              id
+              x
+              y
+              owners {
+                id
+                address
+              }
+            }
+          }`,
         }),
       })
 
