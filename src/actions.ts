@@ -1358,20 +1358,23 @@ export function createActionsSystem(
         ...(init ? { init } : {}),
       })
       if (!response || !response.body) {
-        console.log('Error fetching campaign data')
+        // TODO: Show an error Prompt
+        // 'Error fetching campaign data'
         return null
       }
 
       const json = await JSON.parse(response.body)
 
       if (!json.ok) {
-        console.log('Error fetching campaign data')
+        // TODO: Show an error Prompt
+        // 'Error fetching campaign data'
         return null
       }
 
       return json.data
     } catch (error) {
-      console.log('Error fetching campaign data')
+      // TODO: Show an error Prompt
+      // 'Error fetching campaign data'
       return null
     }
   }
@@ -1425,7 +1428,6 @@ export function createActionsSystem(
     _payload: ActionPayload<ActionType.CLAIM_AIRDROP>,
   ) {
     const rewards = Rewards.getOrNull(entity)
-    console.log('handleClaimAirdrop', { rewards })
     if (!rewards) {
       return
     }
@@ -1433,7 +1435,8 @@ export function createActionsSystem(
     const { testMode, campaignId, dispenserKey } = rewards
 
     if (testMode) {
-      console.log('Handle Claim Airdrop in Test Mode :)')
+      // TODO: Show an UI indicating testing mode
+      // 'Handle Claim Airdrop in Test Mode :)'
       return
     }
 
@@ -1455,7 +1458,8 @@ export function createActionsSystem(
                 }
               })
               .catch((error) => {
-                console.log('Error fetching captcha', error)
+                // TODO: Show an error Prompt
+                // 'Error fetching captcha'
               })
           } else {
             requestToken(dispenserKey)
@@ -1463,7 +1467,8 @@ export function createActionsSystem(
         }
       })
       .catch((error) => {
-        console.log('Error fetching campaign data', error)
+        // TODO: Show an error Prompt
+        // 'Error fetching campaign data', error
       })
   }
 
@@ -1486,9 +1491,8 @@ export function createActionsSystem(
           id: data.captcha.id,
           value: inputText,
         }).then((token: any) => {
-          console.log('Token response', token)
           if (token) {
-            console.log('Token requested successfully', { token })
+            // 'Token requested successfully', { token }
           }
         })
       },
