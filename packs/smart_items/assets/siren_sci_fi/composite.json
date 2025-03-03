@@ -107,12 +107,14 @@
               {
                 "name": "Trigger",
                 "type": "set_state",
-                "jsonPayload": "{\"state\":\"Triggered\"}"
+                "jsonPayload": "{\"state\":\"Triggered\"}",
+                "allowedInBasicView": true
               },
               {
                 "name": "Disarm",
                 "type": "set_state",
-                "jsonPayload": "{\"state\":\"Silent\"}"
+                "jsonPayload": "{\"state\":\"Silent\"}",
+                "allowedInBasicView": true
               }
             ]
           }
@@ -193,10 +195,7 @@
         "0": {
           "json": {
             "id": "{self}",
-            "value": [
-              "Silent",
-              "Triggered"
-            ],
+            "value": ["Silent", "Triggered"],
             "defaultValue": "Silent"
           }
         }
