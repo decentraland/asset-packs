@@ -170,7 +170,11 @@
       "data": {
         "0": {
           "json": {
-            "componentIds": [1042, 1020, 2709697014]
+            "componentIds": [
+              "core::Animator",
+              "core::AudioSource",
+              "asset-packs::States"
+            ]
           }
         }
       }

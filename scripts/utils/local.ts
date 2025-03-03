@@ -60,7 +60,11 @@ export class LocalFileSystem {
     return `${this.getAssetsPath(assetPackName)}/${slug(assetName)}`
   }
 
-  async getAsset(path: string) {
+  isAdminToolkitAsset(filePath: string): boolean {
+    return filePath.includes('/admin_toolkit/assets/')
+  }
+
+  async getAsset(path: string, catalog: boolean = false) {
     const dataPath = `${path}/data.json`
     const dataWithoutComposite = await readJson(dataPath)
     if (isLegacyAssetData(dataWithoutComposite)) {
@@ -85,6 +89,9 @@ export class LocalFileSystem {
     for (const filePath of paths) {
       const file = filePath.slice(path.length + 1)
       if (file === `data.json`) {
+        continue
+      }
+      if (catalog && this.isAdminToolkitAsset(filePath)) {
         continue
       }
       const buffer = await readBuffer(filePath)
@@ -156,11 +163,11 @@ export class LocalFileSystem {
     return Promise.all(folders.map(this.getAssetPack))
   }
 
-  async getAssets(path: string) {
+  async getAssets(path: string, catalog: boolean = false) {
     const folders = await getSubfolders(path)
     return Promise.all(
       folders.map((folder) =>
-        this.getAsset(folder).catch((error) => {
+        this.getAsset(folder, catalog).catch((error) => {
           throw new Error(`Invalid asset at ${folder}: ${error.message}`)
         }),
       ),
@@ -174,7 +181,7 @@ export class LocalFileSystem {
     const assetPacks = await this.getAssetPacks()
     for (const assetPack of assetPacks) {
       const assetsPath = this.getAssetsPath(assetPack.name)
-      const assets = await this.getAssets(assetsPath)
+      const assets = await this.getAssets(assetsPath, true)
       catalog.assetPacks.push({
         ...assetPack,
         assets: assets.map(({ path, ...asset }) => asset),

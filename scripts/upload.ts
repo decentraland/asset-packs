@@ -66,6 +66,8 @@ async function main() {
     throw error
   })
 
+  const local = new LocalFileSystem('./packs')
+
   async function upload(key: string, pathToFile: string) {
     try {
       // if head object returns successfully, this file has already been uploaded, it can be skipped
@@ -78,22 +80,26 @@ async function main() {
       // if head object does not exist, this file needs to be uploaded
       const mimeType =
         mimeTypes.lookup(pathToFile) || 'application/octet-stream'
+      const uploadKey = local.isAdminToolkitAsset(pathToFile)
+        ? pathToFile.replace(
+            /^.*\/admin_toolkit\/assets\//,
+            'admin_toolkit/assets/',
+          )
+        : key
       const upload = new Upload({
         client,
         params: {
           Bucket: bucketName,
-          Key: key,
+          Key: uploadKey,
           Body: createReadStream(pathToFile),
           ContentType: mimeType,
           CacheControl: 'max-age=31536000, immutable',
         },
       })
       await upload.done()
-      console.log(`Uploaded "${pathToFile}" to "${key}"`)
+      console.log(`Uploaded "${pathToFile}" to "${uploadKey}"`)
     }
   }
-
-  const local = new LocalFileSystem('./packs')
 
   const catalog = await local.getCatalog()
 
