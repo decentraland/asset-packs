@@ -440,6 +440,7 @@ function VideoControlVolume({
           id="video_control_volume_mute"
           value="<b>Mute</b>"
           fontSize={18 * scaleFactor}
+          labelTransform={{ margin: '0 20' }}
           uiTransform={{
             margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
             minWidth: 69 * scaleFactor,
@@ -494,6 +495,7 @@ export function VideoControl({
         />
         <Label
           value="<b>Video Control</b>"
+          uiTransform={{ margin: { bottom: 8, left: 20 } }}
           fontSize={24 * scaleFactor}
           color={Color4.White()}
         />
@@ -548,6 +550,7 @@ export function VideoControl({
         <Button
           id="video_control_share_screen_share"
           value="<b>Share</b>"
+          labelTransform={{ margin: '0 20' }}
           fontSize={16 * scaleFactor}
           onMouseDown={() => {
             handleShareScreenUrl(
@@ -599,6 +602,7 @@ export function VideoControl({
           id="video_control_play"
           value="<b>Play</b>"
           fontSize={18 * scaleFactor}
+          labelTransform={{ margin: { right: 20 } }}
           uiTransform={{
             margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
             minWidth: 69 * scaleFactor,
@@ -620,6 +624,7 @@ export function VideoControl({
           id="video_control_pause"
           value="<b>Pause</b>"
           fontSize={18 * scaleFactor}
+          labelTransform={{ margin: '0 20' }}
           uiTransform={{
             margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
             minWidth: 69 * scaleFactor,
@@ -635,6 +640,7 @@ export function VideoControl({
         <Button
           id="video_control_restart"
           value="<b>Restart</b>"
+          labelTransform={{ margin: '0 20' }}
           fontSize={18 * scaleFactor}
           uiTransform={{
             margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },

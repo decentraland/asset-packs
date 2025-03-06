@@ -10,7 +10,7 @@ const ICONS = {
   CHAT_MESSAGE_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/text-announcement-chat-message.png`,
 } as const
 
-let textAnnouncementsHidden: { id: string }[] = []
+let textAnnouncementsHidden: Set<string> = new Set()
 
 export function TextAnnouncements({
   engine,
@@ -26,10 +26,11 @@ export function TextAnnouncements({
   const scaleFactor = getScaleUIFactor(engine)
 
   if (
-    !textAnnouncements?.announcements ||
-    textAnnouncements.announcements.length === 0
-  )
+    !textAnnouncements?.text ||
+    textAnnouncementsHidden.has(textAnnouncements.id)
+  ) {
     return null
+  }
 
   return (
     <UiEntity
@@ -42,94 +43,80 @@ export function TextAnnouncements({
         width: '100%',
       }}
     >
-      {textAnnouncements.announcements.map((announcement) => {
-        // Check if this announcement is hidden in local state
-        const isHiddenLocally = textAnnouncementsHidden.some(
-          (_announcement) => _announcement.id === announcement.id,
-        )
-
-        if (isHiddenLocally) return null
-
-        return (
-          <UiEntity
-            key={announcement.id}
+      <UiEntity
+        key={textAnnouncements.id}
+        uiTransform={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: 150 * scaleFactor,
+          width: 400 * scaleFactor,
+          margin: {
+            bottom: 10 * scaleFactor,
+          },
+          padding: {
+            top: 10 * scaleFactor,
+            bottom: 10 * scaleFactor,
+            left: 10 * scaleFactor,
+            right: 10 * scaleFactor,
+          },
+        }}
+        uiBackground={{ color: { r: 0.15, g: 0.15, b: 0.15, a: 0.95 } }}
+      >
+        <UiEntity
+          uiTransform={{
+            alignSelf: 'center',
+            justifyContent: 'center',
+            height: 50 * scaleFactor,
+            width: 50 * scaleFactor,
+          }}
+          uiBackground={{
+            texture: {
+              src: ICONS.CHAT_MESSAGE_ICON,
+            },
+            textureMode: 'stretch',
+            color: { r: 1, g: 1, b: 1, a: 1 },
+          }}
+        />
+        <Label
+          uiTransform={{
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          fontSize={18 * scaleFactor}
+          value={textAnnouncements.text}
+        />
+        {textAnnouncements.author ? (
+          <Label
             uiTransform={{
-              display: 'flex',
-              flexDirection: 'column',
-              height: 150 * scaleFactor,
-              width: 400 * scaleFactor,
-              margin: {
-                bottom: 10 * scaleFactor,
-              },
-              padding: {
-                top: 10 * scaleFactor,
-                bottom: 10 * scaleFactor,
-                left: 10 * scaleFactor,
-                right: 10 * scaleFactor,
-              },
+              alignItems: 'flex-end',
+              justifyContent: 'flex-end',
             }}
-            uiBackground={{ color: { r: 0.15, g: 0.15, b: 0.15, a: 0.95 } }}
-          >
-            <UiEntity
-              uiTransform={{
-                alignSelf: 'center',
-                justifyContent: 'center',
-                height: 50 * scaleFactor,
-                width: 50 * scaleFactor,
-              }}
-              uiBackground={{
-                texture: {
-                  src: ICONS.CHAT_MESSAGE_ICON,
-                },
-                textureMode: 'stretch',
-                color: { r: 1, g: 1, b: 1, a: 1 },
-              }}
-            />
-            <Label
-              uiTransform={{
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-              fontSize={18 * scaleFactor}
-              value={announcement.text}
-            />
-            {announcement.author ? (
-              <Label
-                uiTransform={{
-                  alignItems: 'flex-end',
-                  justifyContent: 'flex-end',
-                }}
-                fontSize={14 * scaleFactor}
-                color={{ r: 0.7, g: 0.7, b: 0.7, a: 1 }}
-                value={`- ${announcement.author}`}
-              />
-            ) : null}
-            <UiEntity
-              uiTransform={{
-                height: 24 * scaleFactor,
-                width: 24 * scaleFactor,
-                positionType: 'absolute',
-                position: {
-                  top: 5 * scaleFactor,
-                  right: 5 * scaleFactor,
-                },
-              }}
-              uiBackground={{
-                texture: {
-                  src: ICONS.BTN_CLOSE_TEXT_ANNOUNCEMENT,
-                },
-                textureMode: 'stretch',
-              }}
-              onMouseDown={() => {
-                // Add to local hidden announcements
-                textAnnouncementsHidden.push({
-                  id: announcement.id,
-                })
-              }}
-            />
-          </UiEntity>
-        )
-      })}
+            fontSize={14 * scaleFactor}
+            color={{ r: 0.7, g: 0.7, b: 0.7, a: 1 }}
+            value={`- ${textAnnouncements.author}`}
+          />
+        ) : null}
+        <UiEntity
+          uiTransform={{
+            height: 24 * scaleFactor,
+            width: 24 * scaleFactor,
+            positionType: 'absolute',
+            position: {
+              top: 5 * scaleFactor,
+              right: 5 * scaleFactor,
+            },
+          }}
+          uiBackground={{
+            texture: {
+              src: ICONS.BTN_CLOSE_TEXT_ANNOUNCEMENT,
+            },
+            textureMode: 'stretch',
+          }}
+          onMouseDown={() => {
+            textAnnouncementsHidden.add(textAnnouncements.id)
+          }}
+        />
+      </UiEntity>
     </UiEntity>
   )
 }

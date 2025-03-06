@@ -144,6 +144,7 @@ function Header({ engine }: { engine: IEngine }) {
       />
       <Label
         value="<b>Smart Item Actions</b>"
+        uiTransform={{ margin: { bottom: 8, left: 20 } }}
         fontSize={24 * scaleFactor}
         color={Color4.White()}
       />

@@ -40,6 +40,8 @@ export function TextAnnouncementsControl({
       <UiEntity
         uiTransform={{
           flexDirection: 'row',
+          display: 'flex',
+          alignItems: 'center',
           margin: { bottom: 10 * scaleFactor },
           height: 30 * scaleFactor,
         }}
@@ -54,6 +56,7 @@ export function TextAnnouncementsControl({
         />
         <Label
           value="<b>Text Announcements</b>"
+          uiTransform={{ margin: { bottom: 8, left: 20 } }}
           fontSize={24 * scaleFactor}
           color={Color4.White()}
         />
@@ -68,7 +71,6 @@ export function TextAnnouncementsControl({
 
         <Input
           onSubmit={(value) => {
-            state.textAnnouncementControl.text = value
             handleSendTextAnnouncement(engine, state, value, player)
           }}
           onChange={(value) => {
@@ -125,6 +127,7 @@ export function TextAnnouncementsControl({
             value="<b>Share</b>"
             variant="primary"
             fontSize={16 * scaleFactor}
+            labelTransform={{ margin: '0 20' }}
             uiTransform={{ height: 40 * scaleFactor }}
             onMouseDown={() => {
               handleSendTextAnnouncement(
@@ -169,7 +172,9 @@ function handleClearTextAnnouncement(engine: IEngine, state: State) {
     state.adminToolkitUiEntity,
   )
   if (textAnnouncement) {
-    textAnnouncement.announcements = []
+    textAnnouncement.text = ''
+    textAnnouncement.id = ''
+    textAnnouncement.author = ''
   }
   state.textAnnouncementControl.announcements = []
   ANNOUNCEMENT_STATE = 'cleared'
@@ -186,31 +191,19 @@ function handleSendTextAnnouncement(
   }
 
   const { TextAnnouncements } = getComponents(engine)
+  const textAnnouncement = TextAnnouncements.getMutableOrNull(state.adminToolkitUiEntity)
 
-  const textAnnouncement = TextAnnouncements.getMutableOrNull(
-    state.adminToolkitUiEntity,
-  )
   if (textAnnouncement) {
     const author = player?.name
     // Get current timestamp and ensure uniqueness
     let timestamp = Date.now()
-    const existingAnnouncements = [...(textAnnouncement.announcements ?? [])]
 
-    // If timestamp already exists, increment until we find a unique one
-    while (
-      existingAnnouncements.some((a) => a.id === `${timestamp}-${author}`)
-    ) {
-      timestamp++
-    }
-
-    textAnnouncement.announcements = [
-      {
-        id: `${timestamp}-${author}`,
-        text: text.slice(0, 90),
-        author,
-      },
-    ]
+    textAnnouncement.author = author
+    textAnnouncement.id = `${timestamp}-${author}`
+    textAnnouncement.text = text.slice(0, 90)
   }
+
+  state.textAnnouncementControl.text = ''
 
   ANNOUNCEMENT_STATE = 'sent'
 

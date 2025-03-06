@@ -407,15 +407,9 @@ export function createComponents(engine: IEngine) {
   const TextAnnouncements = engine.defineComponent(
     ComponentName.TEXT_ANNOUNCEMENTS,
     {
-      announcements: Schemas.Optional(
-        Schemas.Array(
-          Schemas.Map({
-            id: Schemas.String,
-            text: Schemas.String,
-            author: Schemas.Optional(Schemas.String),
-          }),
-        ),
-      ),
+      text: Schemas.String,
+      author: Schemas.Optional(Schemas.String),
+      id: Schemas.String
     },
   )
 

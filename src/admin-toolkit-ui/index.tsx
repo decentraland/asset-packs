@@ -79,7 +79,8 @@ const BTN_ADMIN_TOOLKIT_BACKGROUND = `${CONTENT_URL}/admin_toolkit/assets/backgr
 
 const containerBackgroundColor = Color4.create(0, 0, 0, 0.75)
 
-const ADMIN_TOOLS_ENTITY = 7777 as Entity
+// The editor starts using entities from [8001].
+const ADMIN_TOOLS_ENTITY = 8000 as Entity
 
 function getAdminToolkitEntity(engine: IEngine) {
   const { AdminTools } = getComponents(engine)
@@ -234,7 +235,9 @@ function initTextAnnouncementSync(engine: IEngine) {
   const { TextAnnouncements } = getComponents(engine)
 
   TextAnnouncements.createOrReplace(state.adminToolkitUiEntity, {
-    announcements: [],
+    text: '',
+    author: '',
+    id: ''
   })
 }
 
@@ -662,8 +665,8 @@ const uiComponent = (
             <DCLButton
               value=""
               uiTransform={{
-                height: 22 * scaleFactor,
-                width: 22 * scaleFactor,
+                height: 40 * scaleFactor,
+                width: 40 * scaleFactor,
                 alignItems: 'center',
                 alignContent: 'center',
                 justifyContent: 'center',
