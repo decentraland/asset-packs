@@ -66,6 +66,8 @@ interface CompositeButtonProps
   id: string
   value?: string
   icon?: string
+  iconRight?: string
+  iconRightTransform?: UiTransformProps
   onlyIcon?: boolean
   iconTransform?: UiTransformProps
   variant?: ButtonVariant
@@ -80,6 +82,8 @@ export const Button = (props: CompositeButtonProps) => {
     icon,
     onlyIcon,
     iconTransform,
+    iconRight,
+    iconRightTransform,
     fontSize = 14,
     color = Color4.Black(),
     disabled,
@@ -147,6 +151,17 @@ export const Button = (props: CompositeButtonProps) => {
           uiTransform={labelTransform}
         />
       ) : null}
+      {iconRight && (
+        <UiEntity
+          uiTransform={iconRightTransform}
+          uiBackground={{
+            texture: {
+              src: iconRight,
+            },
+            textureMode: 'stretch',
+          }}
+        />
+      )}
     </UiEntity>
   )
 }

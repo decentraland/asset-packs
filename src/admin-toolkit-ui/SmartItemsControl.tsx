@@ -13,6 +13,7 @@ import { getScaleUIFactor } from '../ui'
 import { Button } from './Button'
 import { CONTENT_URL } from './constants'
 import { State } from './types'
+import { Header } from './Header'
 
 // Constants
 const ICONS = {
@@ -120,37 +121,6 @@ function handleHideShowEntity(
   visibility.visible = toggleVisibility
 }
 
-// Components
-function Header({ engine }: { engine: IEngine }) {
-  const scaleFactor = getScaleUIFactor(engine)
-  return (
-    <UiEntity
-      uiTransform={{
-        flexDirection: 'row',
-        margin: { bottom: 10 * scaleFactor },
-        height: 30 * scaleFactor,
-      }}
-    >
-      <UiEntity
-        uiTransform={{
-          height: 30 * scaleFactor,
-          width: 30 * scaleFactor,
-        }}
-        uiBackground={{
-          color: Color4.White(),
-          textureMode: 'stretch',
-          texture: { src: ICONS.SMART_ITEM_CONTROL },
-        }}
-      />
-      <Label
-        value="<b>Smart Item Actions</b>"
-        uiTransform={{ margin: { bottom: 8, left: 20 } }}
-        fontSize={24 * scaleFactor}
-        color={Color4.White()}
-      />
-    </UiEntity>
-  )
-}
 
 function SmartItemSelector({
   engine,
@@ -348,6 +318,7 @@ export function SmartItemsControl({
           )
         })
       : undefined
+  const scaleFactor = getScaleUIFactor(engine)
 
   return (
     <UiEntity
@@ -358,7 +329,11 @@ export function SmartItemsControl({
         flexDirection: 'column',
       }}
     >
-      <Header engine={engine} />
+      <Header
+        iconSrc={ICONS.SMART_ITEM_CONTROL}
+        title="Smart Item Actions"
+        scaleFactor={scaleFactor}
+      />
 
       <SmartItemSelector
         engine={engine}

@@ -8,6 +8,7 @@ import { nextTickFunctions } from './index'
 import { Button } from './Button'
 import { CONTENT_URL } from './constants'
 import { State } from './types'
+import { Header } from './Header'
 
 // Constants
 const ICONS = {
@@ -477,30 +478,11 @@ export function VideoControl({
       }}
     >
       {/* Header */}
-      <UiEntity
-        uiTransform={{
-          flexDirection: 'row',
-          margin: { bottom: 10 * scaleFactor },
-          height: 30 * scaleFactor,
-        }}
-      >
-        <UiEntity
-          uiTransform={{ width: 30 * scaleFactor, height: 30 * scaleFactor }}
-          uiBackground={{
-            textureMode: 'stretch',
-            texture: {
-              src: ICONS.VIDEO_CONTROL,
-            },
-          }}
-        />
-        <Label
-          value="<b>Video Control</b>"
-          uiTransform={{ margin: { bottom: 8, left: 20 } }}
-          fontSize={24 * scaleFactor}
-          color={Color4.White()}
-        />
-      </UiEntity>
-
+      <Header
+        iconSrc={ICONS.VIDEO_CONTROL}
+        title="Video Control"
+        scaleFactor={scaleFactor}
+      />
       <Label
         value="<b>Current Screen</b>"
         fontSize={16 * scaleFactor}

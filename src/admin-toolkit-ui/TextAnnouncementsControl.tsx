@@ -7,6 +7,7 @@ import { GetPlayerDataRes } from '../types'
 import { Button } from './Button'
 import { CONTENT_URL } from './constants'
 import { State } from './types'
+import { Header } from './Header'
 
 const ICONS = {
   TEXT_ANNOUNCEMENT_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/text-announcement-control.png`,
@@ -37,30 +38,11 @@ export function TextAnnouncementsControl({
       }}
     >
       {/* Header */}
-      <UiEntity
-        uiTransform={{
-          flexDirection: 'row',
-          display: 'flex',
-          alignItems: 'center',
-          margin: { bottom: 10 * scaleFactor },
-          height: 30 * scaleFactor,
-        }}
-      >
-        <UiEntity
-          uiTransform={{ width: 30 * scaleFactor, height: 30 * scaleFactor }}
-          uiBackground={{
-            color: Color4.White(),
-            textureMode: 'stretch',
-            texture: { src: ICONS.TEXT_ANNOUNCEMENT_CONTROL },
-          }}
-        />
-        <Label
-          value="<b>Text Announcements</b>"
-          uiTransform={{ margin: { bottom: 8, left: 20 } }}
-          fontSize={24 * scaleFactor}
-          color={Color4.White()}
-        />
-      </UiEntity>
+      <Header
+        iconSrc={ICONS.TEXT_ANNOUNCEMENT_CONTROL}
+        scaleFactor={scaleFactor}
+        title="Text Announcements"
+      />
       <UiEntity uiTransform={{ flexDirection: 'column' }}>
         <Label
           value="<b>Message window</b>"

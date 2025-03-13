@@ -25,13 +25,14 @@ import { CONTENT_URL } from './constants'
 import { getSceneDeployment, getSceneOwners } from './utils'
 import { State, TabType, SelectedSmartItem } from './types'
 import { getExplorerComponents } from '../components'
+import { BTN_MODERATION_CONTROL, BTN_MODERATION_CONTROL_ACTIVE, ModerationControl } from './moderation-control'
 
 export const nextTickFunctions: (() => void)[] = []
 
 let state: State = {
   adminToolkitUiEntity: 0 as Entity,
-  panelOpen: false,
-  activeTab: TabType.NONE,
+  panelOpen: true,
+  activeTab: TabType.MODERATION_CONTROL,
   videoControl: {
     shareScreenUrl: undefined,
     selectedVideoPlayer: undefined,
@@ -420,9 +421,9 @@ const uiComponent = (
   sdkHelpers?: ISDKHelpers,
   playersHelper?: IPlayersHelper,
 ) => {
-  const adminToolkitEntitie = getAdminToolkitComponent(engine)
+  const adminToolkitEntity = getAdminToolkitComponent(engine)
   const player = playersHelper?.getPlayer()
-  const isPlayerAdmin = isAllowedAdmin(engine, adminToolkitEntitie, player)
+  const isPlayerAdmin = isAllowedAdmin(engine, adminToolkitEntity, player)
   const scaleFactor = getScaleUIFactor(engine)
 
   return (
@@ -470,6 +471,40 @@ const uiComponent = (
                 uiTransform={{ flexGrow: 1 }}
               />
               <Button
+                id="admin_toolkit_moderation_control"
+                variant="text"
+                icon={
+                  state.activeTab === TabType.MODERATION_CONTROL
+                    ? BTN_MODERATION_CONTROL_ACTIVE
+                    : BTN_MODERATION_CONTROL
+                }
+                onlyIcon
+                uiTransform={{
+                  display: adminToolkitEntity.moderationControl.isEnabled
+                    ? 'flex'
+                    : 'none',
+                  width: 49 * scaleFactor,
+                  height: 42 * scaleFactor,
+                  margin: { right: 8 * scaleFactor },
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                iconTransform={{
+                  height: '100%',
+                  width: '100%',
+                }}
+                onMouseDown={() => {
+                  if (state.activeTab !== TabType.MODERATION_CONTROL) {
+                    state.activeTab = TabType.NONE
+                    nextTickFunctions.push(() => {
+                      state.activeTab = TabType.MODERATION_CONTROL
+                    })
+                  } else {
+                    state.activeTab = TabType.NONE
+                  }
+                }}
+              />
+              <Button
                 id="admin_toolkit_panel_video_control"
                 variant="text"
                 icon={
@@ -479,7 +514,7 @@ const uiComponent = (
                 }
                 onlyIcon
                 uiTransform={{
-                  display: adminToolkitEntitie.videoControl.isEnabled
+                  display: adminToolkitEntity.videoControl.isEnabled
                     ? 'flex'
                     : 'none',
                   width: 49 * scaleFactor,
@@ -513,7 +548,7 @@ const uiComponent = (
                 }
                 onlyIcon
                 uiTransform={{
-                  display: adminToolkitEntitie.smartItemsControl.isEnabled
+                  display: adminToolkitEntity.smartItemsControl.isEnabled
                     ? 'flex'
                     : 'none',
                   width: 49 * scaleFactor,
@@ -547,7 +582,7 @@ const uiComponent = (
                 }
                 onlyIcon
                 uiTransform={{
-                  display: adminToolkitEntitie.textAnnouncementControl.isEnabled
+                  display: adminToolkitEntity.textAnnouncementControl.isEnabled
                     ? 'flex'
                     : 'none',
                   width: 49 * scaleFactor,
@@ -638,6 +673,9 @@ const uiComponent = (
                 {state.activeTab === TabType.SMART_ITEMS_CONTROL ? (
                   <SmartItemsControl engine={engine} state={state} />
                 ) : null}
+                {state.activeTab === TabType.MODERATION_CONTROL && (
+                  <ModerationControl engine={engine} />
+                )}
                 {/* {state.activeTab === TabType.REWARDS_CONTROL ? (
                   <RewardsControl engine={engine} state={state} />
                 ) : null} */}
