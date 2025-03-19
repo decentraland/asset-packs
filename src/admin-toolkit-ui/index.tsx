@@ -25,7 +25,7 @@ import { CONTENT_URL } from './constants'
 import { getSceneDeployment, getSceneOwners } from './utils'
 import { State, TabType, SelectedSmartItem } from './types'
 import { getExplorerComponents } from '../components'
-import { BTN_MODERATION_CONTROL, BTN_MODERATION_CONTROL_ACTIVE, ModerationControl } from './moderation-control'
+import { BTN_MODERATION_CONTROL, BTN_MODERATION_CONTROL_ACTIVE, ModalAdminList, ModerationControl } from './moderation-control'
 
 export const nextTickFunctions: (() => void)[] = []
 
@@ -426,7 +426,7 @@ const uiComponent = (
   const isPlayerAdmin = isAllowedAdmin(engine, adminToolkitEntity, player)
   const scaleFactor = getScaleUIFactor(engine)
 
-  return (
+  return [
     <UiEntity
       uiTransform={{
         positionType: 'absolute',
@@ -724,6 +724,7 @@ const uiComponent = (
         </UiEntity>
       ) : null}
       <TextAnnouncements engine={engine} state={state} />
-    </UiEntity>
-  )
+    </UiEntity>,
+    <ModalAdminList scaleFactor={scaleFactor} />,
+  ]
 }
