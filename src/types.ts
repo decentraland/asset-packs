@@ -1,4 +1,9 @@
-import { Entity } from '@dcl/ecs'
+import {
+  Entity,
+  PBAvatarBase,
+  PBAvatarEquippedData,
+  TransformType,
+} from '@dcl/ecs'
 import { ComponentName } from './enums'
 
 export type AssetPackData = {
@@ -137,8 +142,44 @@ export type ISDKHelpers = {
   // SyncEntity helper to create network entities at runtime.
   syncEntity?: SyncEntitySDK
 }
+
 export type SyncEntitySDK = (
   entityId: Entity,
   componentIds: number[],
   entityEnumId?: number | undefined,
 ) => void
+
+export type IPlayersHelper = {
+  onEnterScene(cb: (player: GetPlayerDataRes) => void): void
+  onLeaveScene(cb: (userId: string) => void): void
+  /**
+   * Returns the info of the player if it's in the scene.
+   */
+  getPlayer(user?: GetPlayerDataReq): GetPlayerDataRes | null
+}
+
+type GetPlayerDataReq = {
+  userId: string
+}
+
+export type GetPlayerDataRes = {
+  entity: Entity
+  name: string
+  isGuest: boolean
+  userId: string
+  avatar?: PBAvatarBase
+  wearables: PBAvatarEquippedData['wearableUrns']
+  emotes: PBAvatarEquippedData['emoteUrns']
+  position: TransformType['position'] | undefined
+}
+
+export type CaptchaData = {
+  campaignId: string
+  dispenserKey: string
+  captcha: {
+    id: string
+    image: string
+    height: number
+    width: number
+  }
+}

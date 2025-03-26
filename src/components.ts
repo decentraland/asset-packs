@@ -8,6 +8,9 @@ import {
   UiTransform as defineUiTransform,
   UiText as defineUiText,
   UiBackground as defineUiBackground,
+  UiInput as defineUiInput,
+  UiInputResult as defineUiInputResult,
+  UiCanvasInformation as defineUiCanvasInformation,
   VideoPlayer as defineVideoPlayer,
   Material as defineMaterial,
   MeshRenderer as defineMeshRenderer,
@@ -17,7 +20,7 @@ import {
   TweenSequence as defineTweenSequence,
   PointerEvents as definePointerEvents,
   NetworkEntity as defineNetworkEntity,
-  SyncComponents as defineSyncComponents
+  SyncComponents as defineSyncComponents,
 } from '@dcl/ecs/dist/components'
 import { IEngine } from '@dcl/ecs'
 import { EngineComponents } from './definitions'
@@ -33,6 +36,9 @@ export function getExplorerComponents(engine: IEngine): EngineComponents {
     UiTransform: defineUiTransform(engine),
     UiText: defineUiText(engine),
     UiBackground: defineUiBackground(engine),
+    UiInput: defineUiInput(engine),
+    UiInputResult: defineUiInputResult(engine),
+    UiCanvasInformation: defineUiCanvasInformation(engine),
     VideoPlayer: defineVideoPlayer(engine),
     Material: defineMaterial(engine),
     MeshRenderer: defineMeshRenderer(engine),
@@ -42,6 +48,6 @@ export function getExplorerComponents(engine: IEngine): EngineComponents {
     TweenSequence: defineTweenSequence(engine),
     PointerEvents: definePointerEvents(engine),
     NetworkEntity: defineNetworkEntity(engine),
-    SyncComponents: defineSyncComponents(engine)
+    SyncComponents: defineSyncComponents(engine),
   }
 }

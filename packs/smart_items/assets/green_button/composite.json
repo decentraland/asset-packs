@@ -63,10 +63,7 @@
       "data": {
         "0": {
           "json": {
-            "value": [
-              "core::Animator",
-              "core::AudioSource"
-            ]
+            "value": ["core::Animator", "core::AudioSource"]
           }
         }
       }

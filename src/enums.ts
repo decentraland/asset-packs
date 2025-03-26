@@ -7,6 +7,10 @@ export enum ComponentName {
   TRIGGERS = 'asset-packs::Triggers',
   STATES = 'asset-packs::States',
   COUNTER_BAR = 'asset-packs::CounterBar',
+  ADMIN_TOOLS = 'asset-packs::AdminTools',
+  REWARDS = 'asset-packs::Rewards',
+  TEXT_ANNOUNCEMENTS = 'asset-packs::TextAnnouncements',
+  VIDEO_CONTROL_STATE = 'asset-packs::VideoControlState',
 }
 
 export enum TweenType {
@@ -80,6 +84,7 @@ export enum ActionType {
   RANDOM = 'random',
   BATCH = 'batch',
   HEAL_PLAYER = 'heal_player',
+  CLAIM_AIRDROP = 'claim_airdrop',
 }
 
 export enum TriggerType {
@@ -175,4 +180,9 @@ export enum ProximityLayer {
   ALL = 'all',
   PLAYER = 'player',
   NON_PLAYER = 'non_player',
+}
+
+export enum AdminPermissions {
+  PUBLIC = 'PUBLIC',
+  PRIVATE = 'PRIVATE',
 }

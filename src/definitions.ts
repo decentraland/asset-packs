@@ -25,6 +25,9 @@ import {
   NetworkEntity,
   SyncComponents,
   AudioSourceComponentDefinitionExtended,
+  PBUiInput,
+  PBUiInputResult,
+  PBUiCanvasInformation,
 } from '@dcl/ecs'
 import { addActionType } from './action-types'
 import {
@@ -39,6 +42,7 @@ import {
   Font,
   Colliders,
   ProximityLayer,
+  AdminPermissions,
 } from './enums'
 import { getExplorerComponents } from './components'
 
@@ -208,6 +212,7 @@ export const ActionSchemas = {
   [ActionType.HEAL_PLAYER]: Schemas.Map({
     multiplier: Schemas.Int,
   }),
+  [ActionType.CLAIM_AIRDROP]: Schemas.Map({}),
 }
 
 export type ActionPayload<T extends ActionType = any> =
@@ -237,6 +242,16 @@ export function getComponents(engine: IEngine) {
     Counter: getComponent<Counter>(ComponentName.COUNTER, engine),
     Triggers: getComponent<Triggers>(ComponentName.TRIGGERS, engine),
     CounterBar: getComponent<CounterBar>(ComponentName.COUNTER_BAR, engine),
+    AdminTools: getComponent<AdminTools>(ComponentName.ADMIN_TOOLS, engine),
+    Rewards: getComponent<Rewards>(ComponentName.REWARDS, engine),
+    TextAnnouncements: getComponent<TextAnnouncements>(
+      ComponentName.TEXT_ANNOUNCEMENTS,
+      engine,
+    ),
+    VideoControlState: getComponent<VideoControlState>(
+      ComponentName.VIDEO_CONTROL_STATE,
+      engine,
+    ),
   }
 }
 
@@ -318,6 +333,104 @@ export function createComponents(engine: IEngine) {
     maxValue: Schemas.Optional(Schemas.Float),
   })
 
+  const AdminTools = engine.defineComponent(ComponentName.ADMIN_TOOLS, {
+    adminPermissions: Schemas.EnumString<AdminPermissions>(
+      AdminPermissions,
+      AdminPermissions.PUBLIC,
+    ),
+    authorizedAdminUsers: Schemas.Map({
+      me: Schemas.Boolean,
+      sceneOwners: Schemas.Boolean,
+      allowList: Schemas.Boolean,
+      adminAllowList: Schemas.Array(Schemas.String),
+    }),
+    moderationControl: Schemas.Map({
+      isEnabled: Schemas.Boolean,
+      kickCoordinates: Schemas.Map({
+        x: Schemas.Number,
+        y: Schemas.Number,
+        z: Schemas.Number,
+      }),
+      allowNonOwnersManageAdminAllowList: Schemas.Boolean,
+    }),
+    textAnnouncementControl: Schemas.Map({
+      isEnabled: Schemas.Boolean,
+      playSoundOnEachAnnouncement: Schemas.Boolean,
+      showAuthorOnEachAnnouncement: Schemas.Boolean,
+    }),
+    videoControl: Schemas.Map({
+      isEnabled: Schemas.Boolean,
+      disableVideoPlayersSound: Schemas.Boolean,
+      showAuthorOnVideoPlayers: Schemas.Boolean,
+      linkAllVideoPlayers: Schemas.Boolean,
+      videoPlayers: Schemas.Optional(
+        Schemas.Array(
+          Schemas.Map({
+            entity: Schemas.Int,
+            customName: Schemas.String,
+          }),
+        ),
+      ),
+    }),
+    smartItemsControl: Schemas.Map({
+      isEnabled: Schemas.Boolean,
+      linkAllSmartItems: Schemas.Boolean,
+      smartItems: Schemas.Optional(
+        Schemas.Array(
+          Schemas.Map({
+            entity: Schemas.Int,
+            customName: Schemas.String,
+            defaultAction: Schemas.String,
+          }),
+        ),
+      ),
+    }),
+    rewardsControl: Schemas.Map({
+      isEnabled: Schemas.Boolean,
+      rewardItems: Schemas.Optional(
+        Schemas.Array(
+          Schemas.Map({
+            entity: Schemas.Int,
+            customName: Schemas.String,
+          }),
+        ),
+      ),
+    }),
+  })
+
+  const Rewards = engine.defineComponent(ComponentName.REWARDS, {
+    campaignId: Schemas.String,
+    dispenserKey: Schemas.String,
+    testMode: Schemas.Boolean,
+  })
+
+  const TextAnnouncements = engine.defineComponent(
+    ComponentName.TEXT_ANNOUNCEMENTS,
+    {
+      text: Schemas.String,
+      author: Schemas.Optional(Schemas.String),
+      id: Schemas.String
+    },
+  )
+
+  const VideoControlState = engine.defineComponent(
+    ComponentName.VIDEO_CONTROL_STATE,
+    {
+      videoPlayers: Schemas.Optional(
+        Schemas.Array(
+          Schemas.Map({
+            entity: Schemas.Int,
+            src: Schemas.String,
+            playing: Schemas.Optional(Schemas.Boolean),
+            volume: Schemas.Optional(Schemas.Float),
+            position: Schemas.Optional(Schemas.Float),
+            loop: Schemas.Optional(Schemas.Boolean),
+          }),
+        ),
+      ),
+    },
+  )
+
   return {
     ActionTypes,
     Actions,
@@ -325,6 +438,10 @@ export function createComponents(engine: IEngine) {
     Triggers,
     States,
     CounterBar,
+    AdminTools,
+    Rewards,
+    TextAnnouncements,
+    VideoControlState,
   }
 }
 
@@ -341,6 +458,9 @@ export type EngineComponents = {
   UiTransform: LastWriteWinElementSetComponentDefinition<PBUiTransform>
   UiText: LastWriteWinElementSetComponentDefinition<PBUiText>
   UiBackground: LastWriteWinElementSetComponentDefinition<PBUiBackground>
+  UiInput: LastWriteWinElementSetComponentDefinition<PBUiInput>
+  UiInputResult: LastWriteWinElementSetComponentDefinition<PBUiInputResult>
+  UiCanvasInformation: LastWriteWinElementSetComponentDefinition<PBUiCanvasInformation>
   Billboard: LastWriteWinElementSetComponentDefinition<PBBillboard>
   Name: LastWriteWinElementSetComponentDefinition<NameType>
   Tween: LastWriteWinElementSetComponentDefinition<PBTween>
@@ -473,3 +593,21 @@ export type TriggerCondition = Exclude<Trigger['conditions'], undefined>[0]
 
 export type StatesComponent = Components['States']
 export type States = ReturnType<StatesComponent['schema']['deserialize']>
+
+export type AdminToolsComponent = Components['AdminTools']
+export type AdminTools = ReturnType<
+  AdminToolsComponent['schema']['deserialize']
+>
+
+export type RewardsComponent = Components['Rewards']
+export type Rewards = ReturnType<RewardsComponent['schema']['deserialize']>
+
+export type TextAnnouncementsComponent = Components['TextAnnouncements']
+export type TextAnnouncements = ReturnType<
+  TextAnnouncementsComponent['schema']['deserialize']
+>
+
+export type VideoControlStateComponent = Components['VideoControlState']
+export type VideoControlState = ReturnType<
+  VideoControlStateComponent['schema']['deserialize']
+>
