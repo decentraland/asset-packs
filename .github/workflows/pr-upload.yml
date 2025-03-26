@@ -19,24 +19,11 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Build
-        run: npm run build:js
-
-      - name: Get changed files
-        id: changed-files
-        run: |
-          git fetch origin main
-          git diff --name-only origin/main..HEAD > changed_files.txt
-          echo "Changed files in PR:"
-          cat changed_files.txt
+      - name: Build Catalog
+        run: npm run build:catalog
 
       - name: Upload changed files
-        run: |
-          while IFS= read -r file; do
-            if [ -f "$file" ]; then
-              npm run upload -- --files "$file"
-            fi
-          done < changed_files.txt
+        run: npm run upload
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
