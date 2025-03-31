@@ -10,6 +10,7 @@ import { Header } from '../Header'
 import { createVideoPlayerControls, getVideoPlayers, useSelectedVideoPlayer } from './utils'
 import { Card } from '../Card'
 import { VideoControlURL } from './VideoUrl'
+import { LiveStream } from './LiveStream'
 
 // Constants
 export const ICONS = {
@@ -37,7 +38,7 @@ type VideoState = {
   selected?: 'video-url' | 'live'
 }
 
-const videoState: VideoState = { selected: 'video-url' }
+const videoState: VideoState = { selected: 'live' }
 // Main component
 export function VideoControl({
   engine,
@@ -135,6 +136,7 @@ export function VideoControl({
       </Card>
       {videoState.selected && <Card scaleFactor={scaleFactor}>
         {videoState.selected === 'video-url' && <VideoControlURL engine={engine} scaleFactor={scaleFactor} />}
+        {videoState.selected === 'live' && <LiveStream engine={engine} scaleFactor={scaleFactor} />}
       </Card>}
     </UiEntity>
   )

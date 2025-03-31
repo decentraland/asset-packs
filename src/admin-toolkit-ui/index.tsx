@@ -477,7 +477,7 @@ const uiComponent = (
                 height: 50 * scaleFactor,
                 flexDirection: 'row',
                 alignItems: 'center',
-                borderRadius: 24,
+                borderRadius: 12 * scaleFactor,
                 padding: {
                   left: 12 * scaleFactor,
                   right: 12 * scaleFactor,

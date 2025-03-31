@@ -6,7 +6,7 @@ export function Card({ scaleFactor, children }: { scaleFactor: number; children?
     <UiEntity
       uiTransform={{
         width: '100%',
-        borderRadius: 24,
+        borderRadius: 12 * scaleFactor,
         margin: {
           top: 10 * scaleFactor,
           right: 0,
