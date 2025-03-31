@@ -1,5 +1,6 @@
 import { getRealm, getSceneInformation } from '~system/Runtime'
 import { LAND_MANAGER_URL } from './constants'
+import { IEngine } from '@dcl/ecs'
 
 export async function getSceneDeployment() {
   try {
@@ -65,3 +66,21 @@ export async function getSceneOwners() {
 
   return []
 }
+
+export function setInterval(engine: IEngine, fn: () => void, ms: number) {
+  let timer = 0
+  function intervalSystem(dt: number) {
+    timer += dt
+    if (timer * 1000 >= ms) {
+      timer = 0
+      fn()
+    }
+  }
+  engine.addSystem(intervalSystem)
+  return intervalSystem
+}
+
+export function clearInterval(engine: IEngine, fn: (t: number) => void) {
+  engine.removeSystem(fn)
+}
+

@@ -262,7 +262,13 @@ function ActionButtons({
         variant="text"
         fontSize={16 * scaleFactor}
         color={Color4.White()}
-        uiTransform={{ margin: { right: 8 * scaleFactor } }}
+        uiTransform={{
+          margin: { right: 8 * scaleFactor },
+          height: 40 * scaleFactor,
+        }}
+        labelTransform={{
+          margin: { left: 10 * scaleFactor, right: 10 * scaleFactor },
+        }}
         disabled={!selectedSmartItem || !selectedAction}
         onMouseDown={() => {
           if (selectedSmartItem && selectedAction) {
@@ -278,8 +284,9 @@ function ActionButtons({
         color={Color4.White()}
         onMouseDown={() => handleHideShowEntity(engine, state, smartItems)}
         disabled={!selectedSmartItem}
-        uiTransform={{
-          margin: { right: 8 * scaleFactor },
+        uiTransform={{ margin: { right: 8 * scaleFactor } }}
+        labelTransform={{
+          margin: { left: 10 * scaleFactor, right: 10 * scaleFactor },
         }}
       />
     </UiEntity>

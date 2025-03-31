@@ -25,14 +25,16 @@ import { CONTENT_URL } from './constants'
 import { getSceneDeployment, getSceneOwners } from './utils'
 import { State, TabType, SelectedSmartItem } from './types'
 import { getExplorerComponents } from '../components'
-import { BTN_MODERATION_CONTROL, BTN_MODERATION_CONTROL_ACTIVE, ModalAdminList, ModerationControl } from './moderation-control'
+import { BTN_MODERATION_CONTROL, BTN_MODERATION_CONTROL_ACTIVE, ModerationControl, moderationControlState, SceneAdmin } from './moderation-control'
+import { getSceneAdmins } from './moderation-control/utils'
+import { ModalAdminList } from './moderation-control/AdminList'
 
 export const nextTickFunctions: (() => void)[] = []
 
-let state: State = {
+export let state: State = {
   adminToolkitUiEntity: 0 as Entity,
   panelOpen: true,
-  activeTab: TabType.MODERATION_CONTROL,
+  activeTab: TabType.VIDEO_CONTROL,
   videoControl: {
     shareScreenUrl: undefined,
     selectedVideoPlayer: undefined,
@@ -62,6 +64,8 @@ let deploymentCache: {
 } | null = null
 
 let sceneOwnersCache: string[] | null = null
+
+let sceneAdminsCache: SceneAdmin[]
 
 // const BTN_REWARDS_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-button.png`
 // const BTN_REWARDS_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-active-button.png`
@@ -115,6 +119,22 @@ async function initSceneOwners() {
   if (owners.length > 0) {
     sceneOwnersCache = owners
   }
+}
+
+export async function fetchSceneAdmins() {
+  const [error, response] = await getSceneAdmins()
+  if (error) {
+    // TODO show error;
+    console.log(error)
+    return
+  }
+
+  sceneAdminsCache = response?.map($ => ({
+    name: $.admin,
+    address: $.admin,
+    role: 'admin',
+    verified: false
+  })) ?? []
 }
 
 function getVideoPlayers(engine: IEngine) {
@@ -315,7 +335,7 @@ export async function initializeAdminData(
     const { VideoControlState, TextAnnouncements } = getComponents(engine)
 
     // Initialize scene data
-    await Promise.all([initSceneDeployment(), initSceneOwners()])
+    await Promise.all([initSceneDeployment(), initSceneOwners(), fetchSceneAdmins()])
 
     // Initialize AdminToolkitUiEntity
     state.adminToolkitUiEntity = engine.addEntity()
@@ -369,11 +389,11 @@ export function createAdminToolkitUI(
   })
 }
 
-function isSceneDeployer(playerAddress: string) {
+export function isSceneDeployer(playerAddress: string) {
   return deploymentCache?.deployedBy === playerAddress.toLowerCase()
 }
 
-function isSceneOwner(playerAddress: string) {
+export function isSceneOwner(playerAddress: string) {
   return (sceneOwnersCache || []).includes(playerAddress.toLowerCase())
 }
 
@@ -674,7 +694,7 @@ const uiComponent = (
                   <SmartItemsControl engine={engine} state={state} />
                 ) : null}
                 {state.activeTab === TabType.MODERATION_CONTROL && (
-                  <ModerationControl engine={engine} />
+                  <ModerationControl engine={engine} player={player} />
                 )}
                 {/* {state.activeTab === TabType.REWARDS_CONTROL ? (
                   <RewardsControl engine={engine} state={state} />
@@ -725,6 +745,12 @@ const uiComponent = (
       ) : null}
       <TextAnnouncements engine={engine} state={state} />
     </UiEntity>,
-    <ModalAdminList scaleFactor={scaleFactor} />,
+    moderationControlState.showModalAdminList && (
+      <ModalAdminList
+        scaleFactor={scaleFactor}
+        sceneAdmins={sceneAdminsCache ?? []}
+        engine={engine}
+      />
+    ),
   ]
 }
