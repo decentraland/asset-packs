@@ -14,6 +14,7 @@ import { Button } from './Button'
 import { CONTENT_URL } from './constants'
 import { State } from './types'
 import { Header } from './Header'
+import { Card } from './Card'
 
 // Constants
 const ICONS = {
@@ -328,56 +329,58 @@ export function SmartItemsControl({
   const scaleFactor = getScaleUIFactor(engine)
 
   return (
-    <UiEntity
-      key="SmartItemsControl"
-      uiTransform={{
-        height: '100%',
-        width: '100%',
-        flexDirection: 'column',
-      }}
-    >
-      <Header
-        iconSrc={ICONS.SMART_ITEM_CONTROL}
-        title="Smart Item Actions"
-        scaleFactor={scaleFactor}
-      />
-
-      <SmartItemSelector
-        engine={engine}
-        smartItems={smartItems}
-        selectedIndex={state.smartItemsControl.selectedSmartItem}
-        onSelect={(idx) => {
-          handleSelectSmartItem(state, smartItems, idx)
+    <Card scaleFactor={scaleFactor}>
+      <UiEntity
+        key="SmartItemsControl"
+        uiTransform={{
+          height: '100%',
+          width: '100%',
+          flexDirection: 'column',
         }}
-      />
+      >
+        <Header
+          iconSrc={ICONS.SMART_ITEM_CONTROL}
+          title="Smart Item Actions"
+          scaleFactor={scaleFactor}
+        />
 
-      <ActionSelector
-        engine={engine}
-        actions={actions}
-        selectedIndex={selectedActionIndex}
-        disabled={state.smartItemsControl.selectedSmartItem === undefined}
-        onChange={(idx) => {
-          if (state.smartItemsControl.selectedSmartItem !== undefined) {
-            handleSelectAction(
-              state,
-              smartItems[state.smartItemsControl.selectedSmartItem],
-              actions[idx],
-            )
+        <SmartItemSelector
+          engine={engine}
+          smartItems={smartItems}
+          selectedIndex={state.smartItemsControl.selectedSmartItem}
+          onSelect={(idx) => {
+            handleSelectSmartItem(state, smartItems, idx)
+          }}
+        />
+
+        <ActionSelector
+          engine={engine}
+          actions={actions}
+          selectedIndex={selectedActionIndex}
+          disabled={state.smartItemsControl.selectedSmartItem === undefined}
+          onChange={(idx) => {
+            if (state.smartItemsControl.selectedSmartItem !== undefined) {
+              handleSelectAction(
+                state,
+                smartItems[state.smartItemsControl.selectedSmartItem],
+                actions[idx],
+              )
+            }
+          }}
+        />
+
+        <ActionButtons
+          engine={engine}
+          state={state}
+          smartItems={smartItems}
+          actions={actions}
+          selectedAction={
+            selectedActionIndex !== undefined
+              ? actions[selectedActionIndex]
+              : undefined
           }
-        }}
-      />
-
-      <ActionButtons
-        engine={engine}
-        state={state}
-        smartItems={smartItems}
-        actions={actions}
-        selectedAction={
-          selectedActionIndex !== undefined
-            ? actions[selectedActionIndex]
-            : undefined
-        }
-      />
-    </UiEntity>
+        />
+      </UiEntity>
+    </Card>
   )
 }

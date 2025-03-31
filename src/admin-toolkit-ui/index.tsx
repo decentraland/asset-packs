@@ -25,9 +25,9 @@ import { CONTENT_URL } from './constants'
 import { getSceneDeployment, getSceneOwners } from './utils'
 import { State, TabType, SelectedSmartItem } from './types'
 import { getExplorerComponents } from '../components'
-import { BTN_MODERATION_CONTROL, BTN_MODERATION_CONTROL_ACTIVE, ModerationControl, moderationControlState, SceneAdmin } from './moderation-control'
-import { getSceneAdmins } from './moderation-control/utils'
-import { ModalAdminList } from './moderation-control/AdminList'
+import { BTN_MODERATION_CONTROL, BTN_MODERATION_CONTROL_ACTIVE, ModerationControl, moderationControlState, SceneAdmin } from './ModerationControl'
+import { getSceneAdmins } from './ModerationControl/utils'
+import { ModalAdminList } from './ModerationControl/AdminList'
 
 export const nextTickFunctions: (() => void)[] = []
 
@@ -82,7 +82,7 @@ const BTN_TEXT_ANNOUNCEMENT_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/asset
 const BTN_ADMIN_TOOLKIT_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-control-button.png`
 const BTN_ADMIN_TOOLKIT_BACKGROUND = `${CONTENT_URL}/admin_toolkit/assets/backgrounds/admin-tool-background.png`
 
-const containerBackgroundColor = Color4.create(0, 0, 0, 0.75)
+export const containerBackgroundColor = Color4.create(0, 0, 0, 0.75)
 
 // The editor starts using entities from [8001].
 const ADMIN_TOOLS_ENTITY = 8000 as Entity
@@ -477,6 +477,7 @@ const uiComponent = (
                 height: 50 * scaleFactor,
                 flexDirection: 'row',
                 alignItems: 'center',
+                borderRadius: 24,
                 padding: {
                   left: 12 * scaleFactor,
                   right: 12 * scaleFactor,
@@ -626,81 +627,23 @@ const uiComponent = (
                   }
                 }}
               />
-              {/* <Button
-                id="admin_toolkit_panel_rewards_control"
-                variant="text"
-                icon={
-                  state.activeTab === TabType.REWARDS_CONTROL
-                    ? BTN_REWARDS_CONTROL_ACTIVE
-                    : BTN_REWARDS_CONTROL
-                }
-                onlyIcon
-                uiTransform={{
-                  display: adminToolkitEntitie.rewardsControl.isEnabled
-                    ? 'flex'
-                    : 'none',
-                  width: 49 * scaleFactor,
-                  height: 42 * scaleFactor,
-                  margin: '0',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-                iconTransform={{
-                  height: '100%',
-                  width: '100%',
-                }}
-                onMouseDown={() => {
-                  if (state.activeTab !== TabType.REWARDS_CONTROL) {
-                    state.activeTab = TabType.NONE
-                    nextTickFunctions.push(() => {
-                      state.activeTab = TabType.REWARDS_CONTROL
-                    })
-                  } else {
-                    state.activeTab = TabType.NONE
-                  }
-                }}
-              /> */}
             </UiEntity>
-            {state.activeTab !== TabType.NONE ? (
-              <UiEntity
-                uiTransform={{
-                  width: '100%',
-                  margin: {
-                    top: 10 * scaleFactor,
-                    right: 0,
-                    bottom: 0,
-                    left: 0,
-                  },
-                  padding: {
-                    top: 32 * scaleFactor,
-                    right: 32 * scaleFactor,
-                    bottom: 32 * scaleFactor,
-                    left: 32 * scaleFactor,
-                  },
-                }}
-                uiBackground={{ color: containerBackgroundColor }}
-              >
-                {state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL ? (
-                  <TextAnnouncementsControl
-                    engine={engine}
-                    state={state}
-                    player={player}
-                  />
-                ) : null}
-                {state.activeTab === TabType.VIDEO_CONTROL ? (
-                  <VideoControl engine={engine} state={state} />
-                ) : null}
-                {state.activeTab === TabType.SMART_ITEMS_CONTROL ? (
-                  <SmartItemsControl engine={engine} state={state} />
-                ) : null}
-                {state.activeTab === TabType.MODERATION_CONTROL && (
-                  <ModerationControl engine={engine} player={player} />
-                )}
-                {/* {state.activeTab === TabType.REWARDS_CONTROL ? (
-                  <RewardsControl engine={engine} state={state} />
-                ) : null} */}
-              </UiEntity>
+            {state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL ? (
+              <TextAnnouncementsControl
+                engine={engine}
+                state={state}
+                player={player}
+              />
             ) : null}
+            {state.activeTab === TabType.VIDEO_CONTROL ? (
+              <VideoControl engine={engine} state={state} />
+            ) : null}
+            {state.activeTab === TabType.SMART_ITEMS_CONTROL ? (
+              <SmartItemsControl engine={engine} state={state} />
+            ) : null}
+            {state.activeTab === TabType.MODERATION_CONTROL && (
+              <ModerationControl engine={engine} player={player} />
+            )}
           </UiEntity>
           <UiEntity
             uiTransform={{

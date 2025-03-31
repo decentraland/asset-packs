@@ -7,6 +7,7 @@ import { getScaleUIFactor } from '../../ui'
 import { AddUserInput } from './AddUserInput'
 import { Button } from '../Button'
 import { GetPlayerDataRes } from '../../types'
+import { Card } from '../Card'
 
 
 type Props = {
@@ -39,40 +40,42 @@ export function ModerationControl({ engine, player }: Props) {
   const scaleFactor = getScaleUIFactor(engine)
 
   return (
-    <UiEntity
-      uiTransform={{
-        width: '100%',
-        height: '100%',
-        flexDirection: 'column',
-      }}
-    >
-      <Header
-        iconSrc={MODERATION_CONTROL_ICON}
-        title={`MODERATION TOOLS -  ${player?.name || 'asd'}`}
-        scaleFactor={scaleFactor}
-      />
-      <AddUserInput scaleFactor={scaleFactor} onSubmit={console.log} />
-      <Button
-        variant="secondary"
-        id="moderation_control_admin_list"
-        value="<b>Admin List</b>"
-        fontSize={18 * scaleFactor}
-        color={Color4.White()}
+    <Card scaleFactor={scaleFactor}>
+      <UiEntity
         uiTransform={{
-          width: 165 * scaleFactor,
-          height: 42 * scaleFactor,
-          alignItems: 'center',
-          justifyContent: 'center',
+          width: '100%',
+          height: '100%',
+          flexDirection: 'column',
         }}
-        icon="assets/verified_user.png"
-        iconTransform={{
-          width: 25 * scaleFactor,
-          height: 25 * scaleFactor,
-          margin: { right: 10 * scaleFactor },
-        }}
-        onMouseDown={() => moderationControlState.showModalAdminList = true}
-      />
-    </UiEntity>
+      >
+        <Header
+          iconSrc={MODERATION_CONTROL_ICON}
+          title={`MODERATION TOOLS -  ${player?.name || 'asd'}`}
+          scaleFactor={scaleFactor}
+        />
+        <AddUserInput scaleFactor={scaleFactor} onSubmit={console.log} />
+        <Button
+          variant="secondary"
+          id="moderation_control_admin_list"
+          value="<b>Admin List</b>"
+          fontSize={18 * scaleFactor}
+          color={Color4.White()}
+          uiTransform={{
+            width: 165 * scaleFactor,
+            height: 42 * scaleFactor,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          icon="assets/verified_user.png"
+          iconTransform={{
+            width: 25 * scaleFactor,
+            height: 25 * scaleFactor,
+            margin: { right: 10 * scaleFactor },
+          }}
+          onMouseDown={() => (moderationControlState.showModalAdminList = true)}
+        />
+      </UiEntity>
+    </Card>
   )
 }
 
