@@ -433,6 +433,11 @@ export function createActionsSystem(
     }
   }
 
+  function normalizeAnimationWeight(rawWeight: number): number {
+    if (rawWeight < 0 || rawWeight > 1) return 1
+    return rawWeight
+  }
+
   function handlePlayAnimation(
     entity: Entity,
     payload: ActionPayload<ActionType.PLAY_ANIMATION>,
@@ -455,6 +460,7 @@ export function createActionsSystem(
       const clip = Animator.getClip(entity, animation)
       clip.playing = true
       clip.loop = loop ?? false
+      clip.weight = normalizeAnimationWeight(clip.weight ?? 1)
     } catch (e) {
       console.error('Error playing animation', e)
     }
