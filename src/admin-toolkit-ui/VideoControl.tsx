@@ -264,7 +264,7 @@ function VideoPlayerSelector({
             }}
             iconBackground={{ color: Color4.Black() }}
             uiTransform={{
-              margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
+              margin: { top: 0, right: 16 * scaleFactor, bottom: 10 * scaleFactor, left: 10 * scaleFactor },
               minWidth: 69 * scaleFactor,
               alignItems: 'center',
               justifyContent: 'center',
