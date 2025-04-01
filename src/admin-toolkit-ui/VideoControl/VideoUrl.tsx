@@ -1,24 +1,30 @@
 import { Color4 } from '@dcl/sdk/math'
-import { IEngine } from '@dcl/ecs'
+import { DeepReadonlyObject, IEngine, PBVideoPlayer, Entity } from '@dcl/ecs'
 import ReactEcs, { UiEntity, Input, Label } from '@dcl/react-ecs'
 import { COLORS, ICONS } from '.'
-import { state } from '..'
 import { createVideoPlayerControls } from './utils'
 import { VideoControlVolume } from './VolumeControl'
 import { Button } from '../Button'
 import { Header } from '../Header'
+import { LIVEKIT_STREAM_SRC } from './LiveStream'
 
-function handleShareScreenUrl(...args: any[]) {
-
-}
 export function VideoControlURL({
   engine,
   scaleFactor,
+  video,
+  entity,
 }: {
   engine: IEngine
   scaleFactor: number
+  entity: Entity
+  video: DeepReadonlyObject<PBVideoPlayer> | undefined
 }) {
-  const controls = createVideoPlayerControls(engine, state)
+  const [videoURL, setVideoURL] = ReactEcs.useState("")
+  ReactEcs.useEffect(() => {
+    const url = video?.src === LIVEKIT_STREAM_SRC ? '' : video?.src
+    setVideoURL(url ?? "")
+  }, [entity])
+  const controls = createVideoPlayerControls(entity, engine)
 
   return (
     <UiEntity uiTransform={{ flexDirection: 'column', width: '100%' }}>
@@ -32,13 +38,18 @@ export function VideoControlURL({
         color={Color4.fromHexString('#A09BA8')}
         fontSize={16 * scaleFactor}
       />
-      <Label value='<b>Video URL<b>' color={Color4.White()} fontSize={16 * scaleFactor} uiTransform={{ margin: { top: 16 * scaleFactor, bottom: 8 * scaleFactor }}} />
+      <Label
+        value="<b>Video URL<b>"
+        color={Color4.White()}
+        fontSize={16 * scaleFactor}
+        uiTransform={{
+          margin: { top: 16 * scaleFactor, bottom: 8 * scaleFactor },
+        }}
+      />
 
       <Input
-        onSubmit={(value) => {
-          state.videoControl.shareScreenUrl = value
-          handleShareScreenUrl(engine, state, value)
-        }}
+        onChange={setVideoURL}
+        value={videoURL}
         fontSize={16 * scaleFactor}
         placeholder="Paste your video URL"
         placeholderColor={Color4.create(160 / 255, 155 / 255, 168 / 255, 1)}
@@ -61,34 +72,35 @@ export function VideoControlURL({
           margin: { top: 10 * scaleFactor },
         }}
       >
-        <Button
+        {video?.src.startsWith('https://') && <Button
           id="video_control_share_screen_clear"
           value="<b>Deactivate</b>"
           variant="text"
           fontSize={16 * scaleFactor}
           color={Color4.White()}
-          uiTransform={{ margin: { right: 8 * scaleFactor }, padding: { left: 8 * scaleFactor, right: 8 * scaleFactor } }}
-          onMouseDown={() => {
-            // TODO: handle this. change src
-            // state.videoControl.shareScreenUrl = undefined
+          uiTransform={{
+            margin: { right: 8 * scaleFactor },
+            padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
           }}
-        />
-        <Button
+          onMouseDown={() => {
+            controls.setSource('')
+          }}
+        />}
+        {videoURL !== video?.src && videoURL && <Button
           id="video_control_share_screen_share"
-          value={state.videoControl.shareScreenUrl ? "<b>Update</b>" : "<b>Activate</b>"}
-          labelTransform={{ margin: '0 20' }}
+          value={
+            video?.src && videoURL !== video.src && video.src !== LIVEKIT_STREAM_SRC
+              ? '<b>Update</b>'
+              : '<b>Activate</b>'
+          }
+          labelTransform={{ margin: { left: 20 * scaleFactor, right: 20 * scaleFactor } }}
           fontSize={16 * scaleFactor}
           uiBackground={{ color: COLORS.SUCCESS }}
           color={Color4.Black()}
           onMouseDown={() => {
-            handleShareScreenUrl(
-              engine,
-              state,
-              state.videoControl.shareScreenUrl,
-            )
+            controls.setSource(videoURL)
           }}
-          // disabled={!selectedVideoPlayer}
-        />
+        />}
       </UiEntity>
 
       <Label
@@ -125,13 +137,12 @@ export function VideoControlURL({
           onMouseDown={() => {
             controls.play()
           }}
-          // disabled={!selectedVideoPlayer}
         />
         <Button
           id="video_control_pause"
           value="<b>Pause</b>"
           fontSize={18 * scaleFactor}
-          labelTransform={{ margin: '0 20' }}
+          labelTransform={{ margin: { left: 20 * scaleFactor, right: 20 * scaleFactor } }}
           uiTransform={{
             margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
             minWidth: 69 * scaleFactor,
@@ -142,12 +153,11 @@ export function VideoControlURL({
           onMouseDown={() => {
             controls.pause()
           }}
-          // disabled={!selectedVideoPlayer}
         />
         <Button
           id="video_control_restart"
           value="<b>Restart</b>"
-          labelTransform={{ margin: '0 20' }}
+          labelTransform={{ margin: { left: 20 * scaleFactor, right: 20 * scaleFactor } }}
           fontSize={18 * scaleFactor}
           uiTransform={{
             margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
@@ -159,11 +169,15 @@ export function VideoControlURL({
           onMouseDown={() => {
             controls.restart()
           }}
-          // disabled={!selectedVideoPlayer}
         />
       </UiEntity>
 
-      <VideoControlVolume engine={engine} state={state} />
+      <VideoControlVolume
+        engine={engine}
+        entity={entity}
+        video={video}
+        label="<b>Video Volume</b>"
+      />
     </UiEntity>
   )
 }

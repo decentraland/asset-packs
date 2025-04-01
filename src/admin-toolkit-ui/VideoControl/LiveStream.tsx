@@ -1,24 +1,26 @@
 import { Color4 } from '@dcl/sdk/math'
-import { IEngine } from '@dcl/ecs'
+import { DeepReadonlyObject, Entity, IEngine, PBVideoPlayer } from '@dcl/ecs'
 import ReactEcs, { UiEntity, Input, Label } from '@dcl/react-ecs'
 import { COLORS, ICONS } from '.'
-import { state } from '..'
 import { createVideoPlayerControls } from './utils'
 import { VideoControlVolume } from './VolumeControl'
 import { Button } from '../Button'
 import { Header } from '../Header'
 
-function handleShareScreenUrl(...args: any[]) {
+export const LIVEKIT_STREAM_SRC = 'livekit-video://current-stream'
 
-}
 export function LiveStream({
   engine,
   scaleFactor,
+  entity,
+  video
 }: {
   engine: IEngine
   scaleFactor: number
+  entity: Entity
+  video: DeepReadonlyObject<PBVideoPlayer> | undefined
 }) {
-  const controls = createVideoPlayerControls(engine, state)
+  const controls = createVideoPlayerControls(entity, engine)
 
   return (
     <UiEntity uiTransform={{ flexDirection: 'column', width: '100%' }}>
@@ -90,39 +92,41 @@ export function LiveStream({
           margin: { top: 10 * scaleFactor },
         }}
       >
-        {false ? <Button
-          id="video_control_share_screen_clear"
-          value="<b>Deactivate</b>"
-          variant="text"
-          fontSize={16 * scaleFactor}
-          color={Color4.White()}
-          uiTransform={{
-            margin: { right: 8 * scaleFactor },
-            padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
-          }}
-          onMouseDown={() => {
-            // TODO: handle this. change src
-            // state.videoControl.shareScreenUrl = undefined
-          }}
-        />:
-        <Button
-          id="video_control_share_screen_share"
-          value="<b>Activate</b>"
-          labelTransform={{ margin: '0 20' }}
-          fontSize={16 * scaleFactor}
-          uiBackground={{ color: COLORS.SUCCESS }}
-          color={Color4.Black()}
-          onMouseDown={() => {
-            handleShareScreenUrl(
-              engine,
-              state,
-              state.videoControl.shareScreenUrl,
-            )
-          }}
-          // disabled={!selectedVideoPlayer}
-        />}
+        {video?.src === LIVEKIT_STREAM_SRC ? (
+          <Button
+            id="video_control_share_screen_clear"
+            value="<b>Deactivate</b>"
+            variant="text"
+            fontSize={16 * scaleFactor}
+            color={Color4.White()}
+            uiTransform={{
+              margin: { right: 8 * scaleFactor },
+              padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
+            }}
+            onMouseDown={() => {
+              controls.setSource('')
+            }}
+          />
+        ) : (
+          <Button
+            id="video_control_share_screen_share"
+            value="<b>Activate</b>"
+            labelTransform={{ margin: { left: 20 * scaleFactor, right: 20 * scaleFactor } }}
+            fontSize={16 * scaleFactor}
+            uiBackground={{ color: COLORS.SUCCESS }}
+            color={Color4.Black()}
+            onMouseDown={() => {
+              controls.setSource(LIVEKIT_STREAM_SRC)
+            }}
+          />
+        )}
       </UiEntity>
-      <VideoControlVolume engine={engine} state={state} />
+      <VideoControlVolume
+        engine={engine}
+        label="<b>Stream Volume</b>"
+        entity={entity}
+        video={video}
+      />
     </UiEntity>
   )
 }

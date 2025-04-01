@@ -341,7 +341,7 @@ export async function initializeAdminData(
     state.adminToolkitUiEntity = engine.addEntity()
 
     // Initialize VideoControl sync component
-    initVideoControlSync(engine)
+    // initVideoControlSync(engine)
 
     // Initialize TextAnnouncements sync component
     initTextAnnouncementSync(engine)

@@ -1,40 +1,36 @@
-import { IEngine } from '@dcl/ecs'
+import { DeepReadonlyObject, Entity, IEngine, PBVideoPlayer } from '@dcl/ecs'
 import ReactEcs, { Label, UiEntity } from '@dcl/react-ecs'
 import { Color4 } from '@dcl/ecs-math'
 import { getScaleUIFactor } from '../../ui'
 import { Button } from '../Button'
-import { State } from '../types'
-import {
-  createVideoPlayerControls,
-  getAdminToolkitVideoControl,
-  useSelectedVideoPlayer,
-} from './utils'
+import { createVideoPlayerControls, getAdminToolkitVideoControl } from './utils'
 import { COLORS, DEFAULT_VOLUME, ICONS, VOLUME_STEP } from '.'
 
 export function VideoControlVolume({
   engine,
-  state,
+  label,
+  entity, video
 }: {
   engine: IEngine
-  state: State
+  label: string
+  entity: Entity
+  video: DeepReadonlyObject<PBVideoPlayer> | undefined
 }) {
   const scaleFactor = getScaleUIFactor(engine)
-  const controls = createVideoPlayerControls(engine, state)
-  const selectedVideoPlayer = useSelectedVideoPlayer(engine, state)
+  const controls = createVideoPlayerControls(entity, engine)
   const videoControl = getAdminToolkitVideoControl(engine)
   const isSoundDisabled = videoControl?.disableVideoPlayersSound
-  const volumePercentage = `${Math.round((selectedVideoPlayer?.volume ?? DEFAULT_VOLUME) * 100)}%`
+  const volumePercentage = `${Math.round((video?.volume ?? DEFAULT_VOLUME) * 100)}%`
 
-  // TODO gon
-  return !isSoundDisabled || true ? (
+  return (
     <UiEntity
       uiTransform={{
         flexDirection: 'column',
-        margin: { top: 16 * scaleFactor}
+        margin: { top: 16 * scaleFactor },
       }}
     >
       <Label
-        value="<b>Video Volume</b>"
+        value={label}
         fontSize={16 * scaleFactor}
         color={COLORS.WHITE}
         uiTransform={{
@@ -65,7 +61,7 @@ export function VideoControlVolume({
             height: 25 * scaleFactor,
           }}
           onMouseDown={() => controls.setVolume(-VOLUME_STEP)}
-          disabled={!selectedVideoPlayer}
+          disabled={isSoundDisabled}
         />
         <Label
           value={volumePercentage}
@@ -96,7 +92,7 @@ export function VideoControlVolume({
             padding: 0,
           }}
           onMouseDown={() => controls.setVolume(VOLUME_STEP)}
-          disabled={!selectedVideoPlayer}
+          disabled={isSoundDisabled}
         />
         <Button
           id="video_control_volume_mute"
@@ -116,9 +112,9 @@ export function VideoControlVolume({
             padding: 0,
           }}
           onMouseDown={() => controls.setVolume(0)}
-          disabled={!selectedVideoPlayer}
+          disabled={isSoundDisabled}
         />
       </UiEntity>
     </UiEntity>
-  ) : null
+  )
 }

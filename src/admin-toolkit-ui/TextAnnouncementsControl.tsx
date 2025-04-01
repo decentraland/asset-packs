@@ -111,7 +111,7 @@ export function TextAnnouncementsControl({
               value="<b>Share</b>"
               variant="primary"
               fontSize={16 * scaleFactor}
-              labelTransform={{ margin: '0 20' }}
+              labelTransform={{ margin: { left: 20 * scaleFactor, right: 20 * scaleFactor } }}
               uiTransform={{ height: 40 * scaleFactor }}
               onMouseDown={() => {
                 handleSendTextAnnouncement(
