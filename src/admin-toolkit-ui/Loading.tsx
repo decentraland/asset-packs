@@ -13,18 +13,18 @@ interface LoadingProps {
 export function LoadingDots({
   scaleFactor,
   engine,
-  width = 20,
-  height = 20,
+  width = 10,
+  height = 10,
 }: LoadingProps) {
-  let frame = 0
-  const [_frame, setFrame] = ReactEcs.useState(0)
+  let __frame = 0
+  const [frame, setFrame] = ReactEcs.useState(0)
 
   ReactEcs.useEffect(() => {
     const interval = setInterval(
       engine,
       () => {
-        frame = (frame + 1) % 3
-        setFrame(frame)
+        __frame = (__frame + 1) % 4
+        setFrame(__frame)
       },
       340,
     )
@@ -40,7 +40,7 @@ export function LoadingDots({
         alignItems: 'center',
       }}
     >
-      {[0, 1, 2].map((i) => (
+      {[1, 2, 3].map((i) => (
         <UiEntity
           key={`dot-${i}`}
           uiTransform={{
@@ -50,7 +50,10 @@ export function LoadingDots({
             margin: { right: 8 * scaleFactor },
           }}
           uiBackground={{
-            color: _frame === i ? Color4.White() : Color4.create(1, 1, 1, 0.3),
+            color:
+              frame >= i
+                ? Color4.fromHexString('#FF2D55')
+                : Color4.fromHexString('#43404A'),
           }}
         />
       ))}

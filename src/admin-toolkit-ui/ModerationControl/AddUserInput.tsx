@@ -1,7 +1,7 @@
 import { Color4 } from '@dcl/ecs-math'
 import ReactEcs, { UiEntity, Label, Input } from "@dcl/react-ecs"
 import { Button } from '../Button'
-import { postSceneAdmin } from './utils'
+import { postSceneAdmin } from './api'
 import { Error } from '../Error'
 import { fetchSceneAdmins } from '..'
 

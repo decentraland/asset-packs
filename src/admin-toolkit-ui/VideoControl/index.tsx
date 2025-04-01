@@ -46,8 +46,8 @@ export function VideoControl({
   const [selectedEntity, selectedVideo] = useSelectedVideoPlayer(engine) ?? []
   const scaleFactor = getScaleUIFactor(engine)
   const videoPlayers = getVideoPlayers(engine)
-  const [selected, setSelected] = ReactEcs.useState<'video-url' | 'live' | undefined>(undefined)
-  console.log(selectedEntity, selectedVideo?.src)
+  const [selected, setSelected] = ReactEcs.useState<'video-url' | 'live' | undefined>('live') // TODO: change to undefined
+
   return (
     <UiEntity
       uiTransform={{ flexDirection: 'column', width: '100%', height: '100%' }}

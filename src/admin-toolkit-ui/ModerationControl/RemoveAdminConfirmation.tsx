@@ -3,7 +3,7 @@ import { Color4 } from '@dcl/ecs-math'
 import ReactEcs, { UiEntity, Label } from '@dcl/react-ecs'
 
 import { Button } from '../Button'
-import { deleteSceneAdmin } from './utils'
+import { deleteSceneAdmin } from './api'
 import { moderationControlState, SceneAdmin } from '.'
 import { LoadingDots } from '../Loading'
 import { Error } from '../Error'

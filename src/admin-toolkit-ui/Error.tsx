@@ -20,14 +20,16 @@ export function Error({
         justifyContent: 'center',
         alignItems: 'center',
         margin: { top: 10 * scaleFactor },
+        width: '100%',
         ...uiTransform,
       }}
     >
       <UiEntity
         uiTransform={{
-          width: 15 * scaleFactor,
-          height: 15 * scaleFactor,
+          width: 25 * scaleFactor,
+          height: 25 * scaleFactor,
           margin: { right: 10 * scaleFactor },
+          flexShrink: 0,
         }}
         uiBackground={{
           textureMode: 'stretch',
@@ -37,6 +39,10 @@ export function Error({
         }}
       />
       <Label
+        uiTransform={{
+          width: 'auto',
+          maxWidth: '90%'
+        }}
         value={`<b>${text}</b>`}
         color={Color4.Red()}
         fontSize={14 * scaleFactor}
