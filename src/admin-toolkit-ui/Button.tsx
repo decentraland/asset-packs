@@ -7,10 +7,7 @@ import ReactEcs, {
 } from '@dcl/react-ecs'
 import { Color4 } from '@dcl/sdk/math'
 import { CONTENT_URL } from './constants'
-
-export const BTN_PRIMARY_BACKGROUND = `${CONTENT_URL}/admin_toolkit/assets/backgrounds/button-primary.png`
-export const BTN_SECONDARY_BACKGROUND = `${CONTENT_URL}/admin_toolkit/assets/backgrounds/button-secondary.png`
-export const BTN_TEXT_BACKGROUND = `${CONTENT_URL}/admin_toolkit/assets/backgrounds/button-text.png`
+import { scaleFactor } from '.'
 
 export const BTN_BACKGROUND_COLOR = {
   primary: {
@@ -121,8 +118,8 @@ export const Button = (props: CompositeButtonProps) => {
     <UiEntity
       uiTransform={{
         borderColor: buttonState.borderColor(variant),
-        borderWidth: 2,
-        borderRadius: 24,
+        borderWidth: 2 * scaleFactor,
+        borderRadius: 12 * scaleFactor,
         ...uiTransform,
       }}
       uiBackground={{

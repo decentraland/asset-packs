@@ -30,6 +30,7 @@ import { getSceneAdmins } from './ModerationControl/api'
 import { ModalAdminList } from './ModerationControl/AdminList'
 
 export const nextTickFunctions: (() => void)[] = []
+export let scaleFactor: number
 
 export let state: State = {
   adminToolkitUiEntity: 0 as Entity,
@@ -82,7 +83,7 @@ const BTN_TEXT_ANNOUNCEMENT_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/asset
 const BTN_ADMIN_TOOLKIT_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-control-button.png`
 const BTN_ADMIN_TOOLKIT_BACKGROUND = `${CONTENT_URL}/admin_toolkit/assets/backgrounds/admin-tool-background.png`
 
-export const containerBackgroundColor = Color4.create(0, 0, 0, 0.75)
+export const containerBackgroundColor = Color4.fromHexString('#000000BF')
 
 // The editor starts using entities from [8001].
 const ADMIN_TOOLS_ENTITY = 8000 as Entity
@@ -179,79 +180,6 @@ function getRewards(engine: IEngine) {
   return Array.from(adminToolkitComponent.rewardsControl.rewardItems)
 }
 
-function syncVideoPlayersState(engine: IEngine) {
-  const { VideoControlState } = getComponents(engine)
-  const { VideoPlayer } = getExplorerComponents(engine)
-
-  const videoControlState = VideoControlState.getOrNull(
-    state.adminToolkitUiEntity,
-  )
-  if (!videoControlState?.videoPlayers) return
-
-  // Iterate through each player in the control state
-  videoControlState.videoPlayers.forEach((controlPlayer) => {
-    const videoPlayer = VideoPlayer.getMutableOrNull(
-      controlPlayer.entity as Entity,
-    )
-    if (!videoPlayer) return
-
-    // Check and sync each property
-    if (
-      controlPlayer.src !== undefined &&
-      videoPlayer.src !== controlPlayer.src
-    ) {
-      videoPlayer.src = controlPlayer.src
-    }
-    if (videoPlayer.playing !== controlPlayer.playing) {
-      videoPlayer.playing = !!controlPlayer.playing
-    }
-    if (videoPlayer.volume !== controlPlayer.volume) {
-      videoPlayer.volume = controlPlayer.volume ?? 0
-    }
-    if (controlPlayer.position === -1 && videoPlayer.position === undefined) {
-      videoPlayer.position = -1
-    }
-    if (videoPlayer.position === -1 && controlPlayer.position === undefined) {
-      videoPlayer.position = undefined
-    }
-    if (videoPlayer.loop !== controlPlayer.loop) {
-      videoPlayer.loop = !!controlPlayer.loop
-    }
-  })
-}
-
-function initVideoControlSync(engine: IEngine) {
-  const { VideoControlState } = getComponents(engine)
-  const { VideoPlayer } = getExplorerComponents(engine)
-
-  const videoPlayers = getVideoPlayers(engine)
-
-  let syncVideoPlayers: any = []
-
-  videoPlayers.forEach((player) => {
-    const vp = VideoPlayer.getOrNull(player.entity as Entity)
-    if (vp) {
-      syncVideoPlayers.push({
-        entity: player.entity as Entity,
-        src: vp.src,
-        playing: vp.playing,
-        volume: vp.volume,
-        position: vp.position,
-        loop: vp.loop,
-      })
-    }
-  })
-
-  VideoControlState.createOrReplace(state.adminToolkitUiEntity, {
-    videoPlayers: syncVideoPlayers,
-  })
-
-  // Set up the sync system
-  engine.addSystem(() => {
-    syncVideoPlayersState(engine)
-  })
-}
-
 function initTextAnnouncementSync(engine: IEngine) {
   const { TextAnnouncements } = getComponents(engine)
 
@@ -332,7 +260,7 @@ export async function initializeAdminData(
   console.log('initializeAdminData')
   if (!adminDataInitialized) {
     console.log('initializeAdminData - not initialized')
-    const { VideoControlState, TextAnnouncements } = getComponents(engine)
+    const { TextAnnouncements, VideoControlState } = getComponents(engine)
 
     // Initialize scene data
     await Promise.all([initSceneDeployment(), initSceneOwners(), fetchSceneAdmins()])
@@ -444,7 +372,7 @@ const uiComponent = (
   const adminToolkitEntity = getAdminToolkitComponent(engine)
   const player = playersHelper?.getPlayer()
   const isPlayerAdmin = isAllowedAdmin(engine, adminToolkitEntity, player)
-  const scaleFactor = getScaleUIFactor(engine)
+  scaleFactor = getScaleUIFactor(engine)
 
   return [
     <UiEntity
