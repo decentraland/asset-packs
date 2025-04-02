@@ -904,9 +904,9 @@ export function createActionsSystem(
     const textEntity = engine.addEntity()
     // Set the text entity as a child of the entity that called the action
     textEntities.set(entity, textEntity)
-
     const uiTransformComponent = getUITransform(UiTransform, textEntity)
     if (uiTransformComponent) {
+      uiTransformComponent.parent = entity
       // Set the pointer filter to none, allowing players to continue interacting with the scene
       uiTransformComponent.pointerFilter = PointerFilterMode.PFM_NONE
       UiText.createOrReplace(textEntity, {
