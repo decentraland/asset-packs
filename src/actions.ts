@@ -74,6 +74,7 @@ import { REWARDS_SERVER_URL } from './admin-toolkit-ui/constants'
 const initedEntities = new Set<Entity>()
 const uiStacks = new Map<string, Entity>()
 const lastUiEntityClicked = new Map<Entity, Entity>()
+const textEntities = new Map<Entity, Entity>() // Model Entity, Text Entity
 
 let internalInitActions: ((entity: Entity) => void) | null = null
 
@@ -899,9 +900,16 @@ export function createActionsSystem(
     payload: ActionPayload<ActionType.SHOW_TEXT>,
   ) {
     const { text, hideAfterSeconds, font, fontSize, textAlign } = payload
-    const uiTransformComponent = getUITransform(UiTransform, entity)
+    // Create a new entity for the text
+    const textEntity = engine.addEntity()
+    // Set the text entity as a child of the entity that called the action
+    textEntities.set(entity, textEntity)
+    const uiTransformComponent = getUITransform(UiTransform, textEntity)
     if (uiTransformComponent) {
-      UiText.createOrReplace(entity, {
+      uiTransformComponent.parent = entity
+      // Set the pointer filter to none, allowing players to continue interacting with the scene
+      uiTransformComponent.pointerFilter = PointerFilterMode.PFM_NONE
+      UiText.createOrReplace(textEntity, {
         value: text,
         font: font as unknown as Font,
         fontSize,
@@ -918,9 +926,16 @@ export function createActionsSystem(
     entity: Entity,
     _payload: ActionPayload<ActionType.HIDE_TEXT>,
   ) {
-    const uiTextComponent = UiText.getOrNull(entity)
-    if (uiTextComponent) {
-      UiText.deleteFrom(entity)
+    const textEntity = textEntities.get(entity)
+    if (textEntity) {
+      // Delete text component
+      UiText.deleteFrom(textEntity)
+      // Delete transform component
+      UiTransform.deleteFrom(textEntity)
+      // Clear timeout if it exists
+      stopTimeout(entity, ActionType.HIDE_TEXT)
+      // Delete text entity from the map
+      textEntities.delete(entity)
     }
   }
 
