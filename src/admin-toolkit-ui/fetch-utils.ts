@@ -1,6 +1,6 @@
 import { SignedFetchRequest, signedFetch } from "~system/SignedFetch"
 import { __DEV__ } from '@dcl/ecs/dist/runtime/invariant'
-import { toCamelCase, CamelCase } from "./utils"
+import { toCamelCase } from "./utils"
 
 type Opts = {
   toCamelCase?: boolean
@@ -10,15 +10,13 @@ export async function wrapSignedFetch<T extends any = unknown>(signedFetchBody: 
   if (__DEV__ && false) {
     return ["Cant do request on Local Preview", null]
   }
-
   const [error, value] = await tryCatch(signedFetch(signedFetchBody))
 
   if (!value?.ok || error) {
     console.log(`Error in ${signedFetchBody.url} endpoint`, JSON.stringify({ error, value }))
     return [error?.message ?? value?.body ?? 'There was an error', null]
   }
-
-  const [_, body] = await tryCatch<T>(JSON.parse(value.body))
+  const [_, body] = await tryCatch<T>(JSON.parse(value.body || '{}'))
 
   return [null, opts.toCamelCase ? toCamelCase(body ?? {}) : body ?? {}] as [null, T]
 }

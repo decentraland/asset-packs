@@ -138,20 +138,6 @@ export async function fetchSceneAdmins() {
   })) ?? []
 }
 
-function getVideoPlayers(engine: IEngine) {
-  const adminToolkitComponent = getAdminToolkitComponent(engine)
-
-  if (
-    !adminToolkitComponent ||
-    !adminToolkitComponent.videoControl ||
-    !adminToolkitComponent.videoControl.videoPlayers ||
-    adminToolkitComponent.videoControl.videoPlayers.length === 0
-  )
-    return []
-
-  return Array.from(adminToolkitComponent.videoControl.videoPlayers)
-}
-
 function getSmartItems(engine: IEngine) {
   const adminToolkitComponent = getAdminToolkitComponent(engine)
 
@@ -262,7 +248,7 @@ export async function initializeAdminData(
     console.log('initializeAdminData - not initialized')
     const { TextAnnouncements, VideoControlState } = getComponents(engine)
     // Initialize AdminToolkitUiEntity
-    state.adminToolkitUiEntity = engine.addEntity()
+    state.adminToolkitUiEntity = getAdminToolkitEntity(engine) ?? engine.addEntity()
 
 
 
@@ -275,7 +261,9 @@ export async function initializeAdminData(
     // Initialize Rewards sync
     initRewardsSync(engine, sdkHelpers)
 
-    VideoControlState.create(state.adminToolkitUiEntity)
+    if (!VideoControlState.getOrNull(state.adminToolkitUiEntity)) {
+      VideoControlState.create(state.adminToolkitUiEntity)
+    }
 
     sdkHelpers?.syncEntity?.(
       state.adminToolkitUiEntity,

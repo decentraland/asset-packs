@@ -9,7 +9,6 @@ import { DeleteStreamKeyConfirmation } from './DeleteStreamKey'
 import { state } from '../..'
 import { getComponents } from '../../../definitions'
 import { getStreamKey } from '../api'
-import { setInterval } from '../../utils'
 
 export const LIVEKIT_STREAM_SRC = 'livekit-video://current-stream'
 
@@ -29,17 +28,18 @@ export function LiveStream({
   const videoControlState = VideoControlState.getOrNull(state.adminToolkitUiEntity)
   const streamKey = videoControlState?.streamKey
   const streamKeyEndsAt = videoControlState?.endsAt
-  // console.log(videoControlState, videoControlState?.streamKey)
+
   ReactEcs.useEffect(() => {
     async function streamKeyFn() {
-      if (streamKey) return
       const [error, data] = await getStreamKey()
+      const videoControlState = VideoControlState.getMutable(
+        state.adminToolkitUiEntity,
+      )
       if (error) {
+        videoControlState.endsAt = undefined
+        videoControlState.streamKey = undefined
         console.log(error)
       } else {
-        const videoControlState = VideoControlState.getMutable(
-          state.adminToolkitUiEntity,
-        )
         videoControlState.endsAt = data?.endsAt
         videoControlState.streamKey = data?.streamingKey ?? 'boedo-carnaval`'
       }
