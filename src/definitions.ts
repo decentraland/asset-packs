@@ -417,6 +417,7 @@ export function createComponents(engine: IEngine) {
   const VideoControlState = engine.defineComponent(
     ComponentName.VIDEO_CONTROL_STATE,
     {
+      endsAt: Schemas.Optional(Schemas.Int64),
       streamKey: Schemas.Optional(Schemas.String)
     },
   )

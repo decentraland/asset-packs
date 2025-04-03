@@ -1,7 +1,11 @@
 import { SignedFetchRequest, signedFetch } from "~system/SignedFetch"
 import { __DEV__ } from '@dcl/ecs/dist/runtime/invariant'
+import { toCamelCase, CamelCase } from "./utils"
 
-export async function wrapSignedFetch<T = unknown>(signedFetchBody: SignedFetchRequest): Promise<Result<T, string>> {
+type Opts = {
+  toCamelCase?: boolean
+}
+export async function wrapSignedFetch<T extends any = unknown>(signedFetchBody: SignedFetchRequest, opts: Opts = {}): Promise<Result<T, string>> {
   // TODO: uncomment this
   if (__DEV__ && false) {
     return ["Cant do request on Local Preview", null]
@@ -16,7 +20,7 @@ export async function wrapSignedFetch<T = unknown>(signedFetchBody: SignedFetchR
 
   const [_, body] = await tryCatch<T>(JSON.parse(value.body))
 
-  return [null, body ?? {} as T]
+  return [null, opts.toCamelCase ? toCamelCase(body ?? {}) : body ?? {}] as [null, T]
 }
 
 // Types for the result object with discriminated union

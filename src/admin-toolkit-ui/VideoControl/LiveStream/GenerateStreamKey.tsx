@@ -3,7 +3,7 @@ import { IEngine } from '@dcl/ecs'
 import ReactEcs, { UiEntity, Label } from '@dcl/react-ecs'
 import { Button } from '../../Button'
 import { Error } from '../../Error'
-import { getStreamKey } from '../api'
+import { generateStreamKey, getStreamKey } from '../api'
 import { LoadingDots } from '../../Loading'
 import { getComponents } from '../../../definitions'
 import { state } from '../..'
@@ -51,15 +51,15 @@ export function GenerateStreamKey({
                 margin: { bottom: 16 * scaleFactor }
               }}
               onMouseDown={async () => {
-                console.log('on mouse down')
                 setLoading(true)
-                const [error, data] = await getStreamKey()
+                const [error, data] = await generateStreamKey()
                 setLoading(false)
                 if (error) {
                   setError(error)
-                } else {
+                } else if (data) {
                   console.log('Genearte Stream Key Response: ', JSON.stringify(data))
-                  VideoControlState.getMutable(state.adminToolkitUiEntity).streamKey = 'some-stream-key'
+                  VideoControlState.getMutable(state.adminToolkitUiEntity).streamKey = data.streamingKey
+                  VideoControlState.getMutable(state.adminToolkitUiEntity).endsAt = data.endsAt
                 }
               }}
             />

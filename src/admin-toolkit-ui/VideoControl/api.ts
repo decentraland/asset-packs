@@ -1,17 +1,26 @@
-import { Result, wrapSignedFetch } from "../fetch-utils";
+import { Result, wrapSignedFetch } from "../fetch-utils"
+import { CamelCase, toCamelCase } from "../utils"
 
 const URLS = {
-  STREAM_KEY: `https://comms-gatekeeper.decentraland.zone/scene-admin`,
+  STREAM_KEY: `https://comms-gatekeeper.decentraland.zone/scene-stream-access`,
 }
 
 type StreamKeyResponse = {
-  id: string;
+  streamingUrl: string
+  streamingKey: string
+  createdAt: number
+  endsAt: number
 }
 
 export async function getStreamKey(): Promise<Result<StreamKeyResponse, string>>  {
-  return wrapSignedFetch<StreamKeyResponse>({ url: URLS.STREAM_KEY })
+  return wrapSignedFetch<StreamKeyResponse>({ url: URLS.STREAM_KEY }, { toCamelCase: true })
+}
+
+export async function generateStreamKey(): Promise<Result<StreamKeyResponse, string>>  {
+  return wrapSignedFetch<StreamKeyResponse>({ url: URLS.STREAM_KEY, init: { method: 'POST', headers: { }} }, { toCamelCase: true })
 }
 
 export async function revokeStreamKey(): Promise<Result<StreamKeyResponse, string>>  {
-  return wrapSignedFetch<StreamKeyResponse>({ url: URLS.STREAM_KEY, init: { method: 'DELETE', headers: {} } })
+  console.log('calling revoke stream')
+  return wrapSignedFetch<StreamKeyResponse>({ url: URLS.STREAM_KEY, init: { method: 'DELETE', headers: {} } }, { toCamelCase: true })
 }

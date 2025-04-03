@@ -2,13 +2,14 @@ import { Color4 } from '@dcl/sdk/math'
 import { DeepReadonlyObject, Entity, IEngine, PBVideoPlayer } from '@dcl/ecs'
 import ReactEcs, { UiEntity, Label } from '@dcl/react-ecs'
 import { ICONS } from '..'
-import { getAdminToolkitVideoControl } from '../utils'
 import { Header } from '../../Header'
 import { ShowStreamKey } from './ShowStreamKey'
 import { GenerateStreamKey } from './GenerateStreamKey'
 import { DeleteStreamKeyConfirmation } from './DeleteStreamKey'
 import { state } from '../..'
 import { getComponents } from '../../../definitions'
+import { getStreamKey } from '../api'
+import { setInterval } from '../../utils'
 
 export const LIVEKIT_STREAM_SRC = 'livekit-video://current-stream'
 
@@ -25,7 +26,27 @@ export function LiveStream({
 }) {
   const [showResetStreamKey, setResetStreamKey] = ReactEcs.useState<boolean>(false)
   const { VideoControlState } = getComponents(engine)
-  const streamKey = VideoControlState.getOrNull(state.adminToolkitUiEntity)?.streamKey ?? ''
+  const videoControlState = VideoControlState.getOrNull(state.adminToolkitUiEntity)
+  const streamKey = videoControlState?.streamKey
+  const streamKeyEndsAt = videoControlState?.endsAt
+  // console.log(videoControlState, videoControlState?.streamKey)
+  ReactEcs.useEffect(() => {
+    async function streamKeyFn() {
+      if (streamKey) return
+      const [error, data] = await getStreamKey()
+      if (error) {
+        console.log(error)
+      } else {
+        const videoControlState = VideoControlState.getMutable(
+          state.adminToolkitUiEntity,
+        )
+        videoControlState.endsAt = data?.endsAt
+        videoControlState.streamKey = data?.streamingKey ?? 'boedo-carnaval`'
+      }
+    }
+    streamKeyFn()
+  }, [])
+
 
   if (showResetStreamKey) {
     return <DeleteStreamKeyConfirmation
@@ -50,6 +71,7 @@ export function LiveStream({
       {streamKey ? (
         <ShowStreamKey
           streamKey={streamKey}
+          endsAt={streamKeyEndsAt ?? 0}
           scaleFactor={scaleFactor}
           engine={engine}
           entity={entity}

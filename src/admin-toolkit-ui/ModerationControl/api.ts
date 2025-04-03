@@ -1,4 +1,5 @@
 import { Result, wrapSignedFetch } from "../fetch-utils";
+import { CamelCase } from "../utils";
 
 const URLS = {
   SCENE_ADMIN: `https://comms-gatekeeper.decentraland.zone/scene-admin`,

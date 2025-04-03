@@ -28,6 +28,7 @@ import { getExplorerComponents } from '../components'
 import { BTN_MODERATION_CONTROL, BTN_MODERATION_CONTROL_ACTIVE, ModerationControl, moderationControlState, SceneAdmin } from './ModerationControl'
 import { getSceneAdmins } from './ModerationControl/api'
 import { ModalAdminList } from './ModerationControl/AdminList'
+import { getStreamKey } from './VideoControl/api'
 
 export const nextTickFunctions: (() => void)[] = []
 export let scaleFactor: number
@@ -129,7 +130,6 @@ export async function fetchSceneAdmins() {
     console.log(error)
     return
   }
-
   sceneAdminsCache = response?.map($ => ({
     name: $.admin,
     address: $.admin,
@@ -261,15 +261,10 @@ export async function initializeAdminData(
   if (!adminDataInitialized) {
     console.log('initializeAdminData - not initialized')
     const { TextAnnouncements, VideoControlState } = getComponents(engine)
-
-    // Initialize scene data
-    await Promise.all([initSceneDeployment(), initSceneOwners(), fetchSceneAdmins()])
-
     // Initialize AdminToolkitUiEntity
     state.adminToolkitUiEntity = engine.addEntity()
 
-    // Initialize VideoControl sync component
-    // initVideoControlSync(engine)
+
 
     // Initialize TextAnnouncements sync component
     initTextAnnouncementSync(engine)
@@ -280,11 +275,14 @@ export async function initializeAdminData(
     // Initialize Rewards sync
     initRewardsSync(engine, sdkHelpers)
 
+    VideoControlState.create(state.adminToolkitUiEntity)
+
     sdkHelpers?.syncEntity?.(
       state.adminToolkitUiEntity,
       [VideoControlState.componentId, TextAnnouncements.componentId],
       ADMIN_TOOLS_ENTITY,
     )
+
 
     engine.addSystem(() => {
       if (nextTickFunctions.length > 0) {
@@ -294,6 +292,13 @@ export async function initializeAdminData(
         }
       }
     }, Number.POSITIVE_INFINITY)
+
+    // Initialize scene data
+    await Promise.all([
+      initSceneDeployment(),
+      initSceneOwners(),
+      fetchSceneAdmins(),
+    ])
 
     adminDataInitialized = true
 

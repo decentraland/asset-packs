@@ -6,7 +6,6 @@ import { Button } from '../../Button'
 import { LoadingDots } from '../../Loading'
 import { Error } from '../../Error'
 import { revokeStreamKey } from '../api'
-import { getAdminToolkitVideoControl } from '../utils'
 import { getComponents } from '../../../definitions'
 import { state } from '../..'
 
@@ -20,7 +19,7 @@ export function DeleteStreamKeyConfirmation({
   onCancel(): void
 }) {
   const [isLoading, setIsLoading] = ReactEcs.useState(false)
-  const [error, setError] = ReactEcs.useState('Error re loco che')
+  const [error, setError] = ReactEcs.useState('')
   const { VideoControlState } = getComponents(engine)
 
   return (
@@ -91,18 +90,20 @@ export function DeleteStreamKeyConfirmation({
             }}
             uiBackground={{ color: Color4.fromHexString('#FB3B3B') }}
             onMouseDown={async () => {
-              if (!isLoading) {
-                setIsLoading(true)
-                const [error] = await revokeStreamKey()
-                if (error) {
-                  setError(error)
-                  setIsLoading(false)
-                } else {
-                  VideoControlState.getMutable(state.adminToolkitUiEntity).streamKey = ""
-                  // remove this page so it can generate a new key if the user wants
-                  onCancel()
-                }
+              setIsLoading(true)
+              const [error, data] = await revokeStreamKey()
+              if (error) {
+                console.log(error)
+                setError(error)
+                setIsLoading(false)
+              } else {
+                console.log('Revoke Stream Key', JSON.stringify(data))
+                VideoControlState.getMutable(state.adminToolkitUiEntity).streamKey = undefined
+                VideoControlState.getMutable(state.adminToolkitUiEntity).endsAt = undefined
+                // remove this page so it can generate a new key if the user wants
+                onCancel()
               }
+              console.log('finished')
             }}
           />
         )}

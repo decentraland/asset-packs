@@ -16,8 +16,10 @@ export function ShowStreamKey({
   entity,
   onReset,
   streamKey,
+  endsAt,
 }: {
   streamKey: string
+  endsAt: number,
   scaleFactor: number
   engine: IEngine
   entity: Entity
@@ -93,7 +95,7 @@ export function ShowStreamKey({
             fontSize={14 * scaleFactor}
           />
           <Label
-            value="3:45:23"
+            value={endsAt.toString()}
             color={Color4.fromHexString('#FFFFFFB2')}
             fontSize={14 * scaleFactor}
           />
