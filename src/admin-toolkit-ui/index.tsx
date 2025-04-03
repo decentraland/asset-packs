@@ -25,13 +25,18 @@ import { CONTENT_URL } from './constants'
 import { getSceneDeployment, getSceneOwners } from './utils'
 import { State, TabType, SelectedSmartItem } from './types'
 import { getExplorerComponents } from '../components'
+import { BTN_MODERATION_CONTROL, BTN_MODERATION_CONTROL_ACTIVE, ModerationControl, moderationControlState, SceneAdmin } from './ModerationControl'
+import { getSceneAdmins } from './ModerationControl/api'
+import { ModalAdminList } from './ModerationControl/AdminList'
+import { getStreamKey } from './VideoControl/api'
 
 export const nextTickFunctions: (() => void)[] = []
+export let scaleFactor: number
 
-let state: State = {
+export let state: State = {
   adminToolkitUiEntity: 0 as Entity,
-  panelOpen: false,
-  activeTab: TabType.NONE,
+  panelOpen: true,
+  activeTab: TabType.VIDEO_CONTROL,
   videoControl: {
     shareScreenUrl: undefined,
     selectedVideoPlayer: undefined,
@@ -62,6 +67,8 @@ let deploymentCache: {
 
 let sceneOwnersCache: string[] | null = null
 
+let sceneAdminsCache: SceneAdmin[]
+
 // const BTN_REWARDS_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-button.png`
 // const BTN_REWARDS_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-active-button.png`
 
@@ -77,7 +84,7 @@ const BTN_TEXT_ANNOUNCEMENT_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/asset
 const BTN_ADMIN_TOOLKIT_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-control-button.png`
 const BTN_ADMIN_TOOLKIT_BACKGROUND = `${CONTENT_URL}/admin_toolkit/assets/backgrounds/admin-tool-background.png`
 
-const containerBackgroundColor = Color4.create(0, 0, 0, 0.75)
+export const containerBackgroundColor = Color4.fromHexString('#000000BF')
 
 // The editor starts using entities from [8001].
 const ADMIN_TOOLS_ENTITY = 8000 as Entity
@@ -116,18 +123,19 @@ async function initSceneOwners() {
   }
 }
 
-function getVideoPlayers(engine: IEngine) {
-  const adminToolkitComponent = getAdminToolkitComponent(engine)
-
-  if (
-    !adminToolkitComponent ||
-    !adminToolkitComponent.videoControl ||
-    !adminToolkitComponent.videoControl.videoPlayers ||
-    adminToolkitComponent.videoControl.videoPlayers.length === 0
-  )
-    return []
-
-  return Array.from(adminToolkitComponent.videoControl.videoPlayers)
+export async function fetchSceneAdmins() {
+  const [error, response] = await getSceneAdmins()
+  if (error) {
+    // TODO show error;
+    console.log(error)
+    return
+  }
+  sceneAdminsCache = response?.map($ => ({
+    name: $.admin,
+    address: $.admin,
+    role: 'admin',
+    verified: false
+  })) ?? []
 }
 
 function getSmartItems(engine: IEngine) {
@@ -156,79 +164,6 @@ function getRewards(engine: IEngine) {
     return []
 
   return Array.from(adminToolkitComponent.rewardsControl.rewardItems)
-}
-
-function syncVideoPlayersState(engine: IEngine) {
-  const { VideoControlState } = getComponents(engine)
-  const { VideoPlayer } = getExplorerComponents(engine)
-
-  const videoControlState = VideoControlState.getOrNull(
-    state.adminToolkitUiEntity,
-  )
-  if (!videoControlState?.videoPlayers) return
-
-  // Iterate through each player in the control state
-  videoControlState.videoPlayers.forEach((controlPlayer) => {
-    const videoPlayer = VideoPlayer.getMutableOrNull(
-      controlPlayer.entity as Entity,
-    )
-    if (!videoPlayer) return
-
-    // Check and sync each property
-    if (
-      controlPlayer.src !== undefined &&
-      videoPlayer.src !== controlPlayer.src
-    ) {
-      videoPlayer.src = controlPlayer.src
-    }
-    if (videoPlayer.playing !== controlPlayer.playing) {
-      videoPlayer.playing = !!controlPlayer.playing
-    }
-    if (videoPlayer.volume !== controlPlayer.volume) {
-      videoPlayer.volume = controlPlayer.volume ?? 0
-    }
-    if (controlPlayer.position === -1 && videoPlayer.position === undefined) {
-      videoPlayer.position = -1
-    }
-    if (videoPlayer.position === -1 && controlPlayer.position === undefined) {
-      videoPlayer.position = undefined
-    }
-    if (videoPlayer.loop !== controlPlayer.loop) {
-      videoPlayer.loop = !!controlPlayer.loop
-    }
-  })
-}
-
-function initVideoControlSync(engine: IEngine) {
-  const { VideoControlState } = getComponents(engine)
-  const { VideoPlayer } = getExplorerComponents(engine)
-
-  const videoPlayers = getVideoPlayers(engine)
-
-  let syncVideoPlayers: any = []
-
-  videoPlayers.forEach((player) => {
-    const vp = VideoPlayer.getOrNull(player.entity as Entity)
-    if (vp) {
-      syncVideoPlayers.push({
-        entity: player.entity as Entity,
-        src: vp.src,
-        playing: vp.playing,
-        volume: vp.volume,
-        position: vp.position,
-        loop: vp.loop,
-      })
-    }
-  })
-
-  VideoControlState.createOrReplace(state.adminToolkitUiEntity, {
-    videoPlayers: syncVideoPlayers,
-  })
-
-  // Set up the sync system
-  engine.addSystem(() => {
-    syncVideoPlayersState(engine)
-  })
 }
 
 function initTextAnnouncementSync(engine: IEngine) {
@@ -311,16 +246,11 @@ export async function initializeAdminData(
   console.log('initializeAdminData')
   if (!adminDataInitialized) {
     console.log('initializeAdminData - not initialized')
-    const { VideoControlState, TextAnnouncements } = getComponents(engine)
-
-    // Initialize scene data
-    await Promise.all([initSceneDeployment(), initSceneOwners()])
-
+    const { TextAnnouncements, VideoControlState } = getComponents(engine)
     // Initialize AdminToolkitUiEntity
-    state.adminToolkitUiEntity = engine.addEntity()
+    state.adminToolkitUiEntity = getAdminToolkitEntity(engine) ?? engine.addEntity()
 
-    // Initialize VideoControl sync component
-    initVideoControlSync(engine)
+
 
     // Initialize TextAnnouncements sync component
     initTextAnnouncementSync(engine)
@@ -331,11 +261,16 @@ export async function initializeAdminData(
     // Initialize Rewards sync
     initRewardsSync(engine, sdkHelpers)
 
+    if (!VideoControlState.getOrNull(state.adminToolkitUiEntity)) {
+      VideoControlState.create(state.adminToolkitUiEntity)
+    }
+
     sdkHelpers?.syncEntity?.(
       state.adminToolkitUiEntity,
       [VideoControlState.componentId, TextAnnouncements.componentId],
       ADMIN_TOOLS_ENTITY,
     )
+
 
     engine.addSystem(() => {
       if (nextTickFunctions.length > 0) {
@@ -345,6 +280,13 @@ export async function initializeAdminData(
         }
       }
     }, Number.POSITIVE_INFINITY)
+
+    // Initialize scene data
+    await Promise.all([
+      initSceneDeployment(),
+      initSceneOwners(),
+      fetchSceneAdmins(),
+    ])
 
     adminDataInitialized = true
 
@@ -368,11 +310,11 @@ export function createAdminToolkitUI(
   })
 }
 
-function isSceneDeployer(playerAddress: string) {
+export function isSceneDeployer(playerAddress: string) {
   return deploymentCache?.deployedBy === playerAddress.toLowerCase()
 }
 
-function isSceneOwner(playerAddress: string) {
+export function isSceneOwner(playerAddress: string) {
   return (sceneOwnersCache || []).includes(playerAddress.toLowerCase())
 }
 
@@ -420,12 +362,12 @@ const uiComponent = (
   sdkHelpers?: ISDKHelpers,
   playersHelper?: IPlayersHelper,
 ) => {
-  const adminToolkitEntitie = getAdminToolkitComponent(engine)
+  const adminToolkitEntity = getAdminToolkitComponent(engine)
   const player = playersHelper?.getPlayer()
-  const isPlayerAdmin = isAllowedAdmin(engine, adminToolkitEntitie, player)
-  const scaleFactor = getScaleUIFactor(engine)
+  const isPlayerAdmin = isAllowedAdmin(engine, adminToolkitEntity, player)
+  scaleFactor = getScaleUIFactor(engine)
 
-  return (
+  return [
     <UiEntity
       uiTransform={{
         positionType: 'absolute',
@@ -456,6 +398,7 @@ const uiComponent = (
                 height: 50 * scaleFactor,
                 flexDirection: 'row',
                 alignItems: 'center',
+                borderRadius: 12 * scaleFactor,
                 padding: {
                   left: 12 * scaleFactor,
                   right: 12 * scaleFactor,
@@ -470,6 +413,40 @@ const uiComponent = (
                 uiTransform={{ flexGrow: 1 }}
               />
               <Button
+                id="admin_toolkit_moderation_control"
+                variant="text"
+                icon={
+                  state.activeTab === TabType.MODERATION_CONTROL
+                    ? BTN_MODERATION_CONTROL_ACTIVE
+                    : BTN_MODERATION_CONTROL
+                }
+                onlyIcon
+                uiTransform={{
+                  display: adminToolkitEntity.moderationControl.isEnabled
+                    ? 'flex'
+                    : 'none',
+                  width: 49 * scaleFactor,
+                  height: 42 * scaleFactor,
+                  margin: { right: 8 * scaleFactor },
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                iconTransform={{
+                  height: '100%',
+                  width: '100%',
+                }}
+                onMouseDown={() => {
+                  if (state.activeTab !== TabType.MODERATION_CONTROL) {
+                    state.activeTab = TabType.NONE
+                    nextTickFunctions.push(() => {
+                      state.activeTab = TabType.MODERATION_CONTROL
+                    })
+                  } else {
+                    state.activeTab = TabType.NONE
+                  }
+                }}
+              />
+              <Button
                 id="admin_toolkit_panel_video_control"
                 variant="text"
                 icon={
@@ -479,7 +456,7 @@ const uiComponent = (
                 }
                 onlyIcon
                 uiTransform={{
-                  display: adminToolkitEntitie.videoControl.isEnabled
+                  display: adminToolkitEntity.videoControl.isEnabled
                     ? 'flex'
                     : 'none',
                   width: 49 * scaleFactor,
@@ -513,7 +490,7 @@ const uiComponent = (
                 }
                 onlyIcon
                 uiTransform={{
-                  display: adminToolkitEntitie.smartItemsControl.isEnabled
+                  display: adminToolkitEntity.smartItemsControl.isEnabled
                     ? 'flex'
                     : 'none',
                   width: 49 * scaleFactor,
@@ -547,7 +524,7 @@ const uiComponent = (
                 }
                 onlyIcon
                 uiTransform={{
-                  display: adminToolkitEntitie.textAnnouncementControl.isEnabled
+                  display: adminToolkitEntity.textAnnouncementControl.isEnabled
                     ? 'flex'
                     : 'none',
                   width: 49 * scaleFactor,
@@ -571,78 +548,23 @@ const uiComponent = (
                   }
                 }}
               />
-              {/* <Button
-                id="admin_toolkit_panel_rewards_control"
-                variant="text"
-                icon={
-                  state.activeTab === TabType.REWARDS_CONTROL
-                    ? BTN_REWARDS_CONTROL_ACTIVE
-                    : BTN_REWARDS_CONTROL
-                }
-                onlyIcon
-                uiTransform={{
-                  display: adminToolkitEntitie.rewardsControl.isEnabled
-                    ? 'flex'
-                    : 'none',
-                  width: 49 * scaleFactor,
-                  height: 42 * scaleFactor,
-                  margin: '0',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-                iconTransform={{
-                  height: '100%',
-                  width: '100%',
-                }}
-                onMouseDown={() => {
-                  if (state.activeTab !== TabType.REWARDS_CONTROL) {
-                    state.activeTab = TabType.NONE
-                    nextTickFunctions.push(() => {
-                      state.activeTab = TabType.REWARDS_CONTROL
-                    })
-                  } else {
-                    state.activeTab = TabType.NONE
-                  }
-                }}
-              /> */}
             </UiEntity>
-            {state.activeTab !== TabType.NONE ? (
-              <UiEntity
-                uiTransform={{
-                  width: '100%',
-                  margin: {
-                    top: 10 * scaleFactor,
-                    right: 0,
-                    bottom: 0,
-                    left: 0,
-                  },
-                  padding: {
-                    top: 32 * scaleFactor,
-                    right: 32 * scaleFactor,
-                    bottom: 32 * scaleFactor,
-                    left: 32 * scaleFactor,
-                  },
-                }}
-                uiBackground={{ color: containerBackgroundColor }}
-              >
-                {state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL ? (
-                  <TextAnnouncementsControl
-                    engine={engine}
-                    state={state}
-                    player={player}
-                  />
-                ) : null}
-                {state.activeTab === TabType.VIDEO_CONTROL ? (
-                  <VideoControl engine={engine} state={state} />
-                ) : null}
-                {state.activeTab === TabType.SMART_ITEMS_CONTROL ? (
-                  <SmartItemsControl engine={engine} state={state} />
-                ) : null}
-                {/* {state.activeTab === TabType.REWARDS_CONTROL ? (
-                  <RewardsControl engine={engine} state={state} />
-                ) : null} */}
-              </UiEntity>
+            {state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL ? (
+              <TextAnnouncementsControl
+                engine={engine}
+                state={state}
+                player={player}
+              />
             ) : null}
+            {state.activeTab === TabType.VIDEO_CONTROL ? (
+              <VideoControl engine={engine} state={state} />
+            ) : null}
+            {state.activeTab === TabType.SMART_ITEMS_CONTROL ? (
+              <SmartItemsControl engine={engine} state={state} />
+            ) : null}
+            {state.activeTab === TabType.MODERATION_CONTROL && (
+              <ModerationControl engine={engine} player={player} />
+            )}
           </UiEntity>
           <UiEntity
             uiTransform={{
@@ -686,6 +608,13 @@ const uiComponent = (
         </UiEntity>
       ) : null}
       <TextAnnouncements engine={engine} state={state} />
-    </UiEntity>
-  )
+    </UiEntity>,
+    moderationControlState.showModalAdminList && (
+      <ModalAdminList
+        scaleFactor={scaleFactor}
+        sceneAdmins={sceneAdminsCache ?? []}
+        engine={engine}
+      />
+    ),
+  ]
 }

@@ -363,6 +363,7 @@ export function createComponents(engine: IEngine) {
       disableVideoPlayersSound: Schemas.Boolean,
       showAuthorOnVideoPlayers: Schemas.Boolean,
       linkAllVideoPlayers: Schemas.Boolean,
+      streamKey: Schemas.Optional(Schemas.String),
       videoPlayers: Schemas.Optional(
         Schemas.Array(
           Schemas.Map({
@@ -416,18 +417,8 @@ export function createComponents(engine: IEngine) {
   const VideoControlState = engine.defineComponent(
     ComponentName.VIDEO_CONTROL_STATE,
     {
-      videoPlayers: Schemas.Optional(
-        Schemas.Array(
-          Schemas.Map({
-            entity: Schemas.Int,
-            src: Schemas.String,
-            playing: Schemas.Optional(Schemas.Boolean),
-            volume: Schemas.Optional(Schemas.Float),
-            position: Schemas.Optional(Schemas.Float),
-            loop: Schemas.Optional(Schemas.Boolean),
-          }),
-        ),
-      ),
+      endsAt: Schemas.Optional(Schemas.Int64),
+      streamKey: Schemas.Optional(Schemas.String)
     },
   )
 
