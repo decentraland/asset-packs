@@ -1,15 +1,19 @@
 import { SignedFetchRequest, signedFetch } from "~system/SignedFetch"
-import { __DEV__ } from '@dcl/ecs/dist/runtime/invariant'
 import { toCamelCase } from "./utils"
+import { getRealm as getRealmRuntime, PBRealmInfo } from "~system/Runtime"
 
 type Opts = {
   toCamelCase?: boolean
 }
 export async function wrapSignedFetch<T extends any = unknown>(signedFetchBody: SignedFetchRequest, opts: Opts = {}): Promise<Result<T, string>> {
   // TODO: uncomment this
-  if (__DEV__ && false) {
+  const realm = await getRealm()
+  const TODO = false // remove this
+
+  if (realm?.isPreview && TODO) {
     return ["Cant do request on Local Preview", null]
   }
+
   const [error, value] = await tryCatch(signedFetch(signedFetchBody))
 
   if (!value?.ok || error) {
@@ -39,3 +43,17 @@ export async function tryCatch<T, E = Error>(
     return [error as E, null]
   }
 }
+
+let realmCache: PBRealmInfo | undefined
+
+export async function getRealm() {
+  if (realmCache) return realmCache
+  return realmCache = (await getRealmRuntime({})).realmInfo
+}
+getRealm()
+
+export function getDomain() {
+  if (!realmCache || realmCache.networkId === 1) return 'org'
+  return 'zone'
+}
+

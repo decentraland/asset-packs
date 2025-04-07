@@ -20,7 +20,7 @@ export function RemoveAdminConfirmation({
   engine: IEngine
 }) {
   const [isLoading, setIsLoading] = ReactEcs.useState(false)
-  const [error, setError] = ReactEcs.useState(false)
+  const [error, setError] = ReactEcs.useState('')
 
   return (
     <UiEntity
@@ -105,9 +105,7 @@ export function RemoveAdminConfirmation({
                 setIsLoading(true)
                 const [error] = await deleteSceneAdmin(admin.address)
                 if (error) {
-                  setError(true)
-                  console.log(error)
-                  // TODO: handle error
+                  setError(error)
                 } else {
                   moderationControlState.adminToRemove = undefined
                   await fetchSceneAdmins()
@@ -118,7 +116,7 @@ export function RemoveAdminConfirmation({
           />}
         </UiEntity>
           {isLoading && <LoadingDots scaleFactor={scaleFactor} engine={engine} />}
-          {error && <Error scaleFactor={scaleFactor} text="Please try again" />}
+          {error && <Error uiTransform={{ margin: { top: 16 * scaleFactor }} }  scaleFactor={scaleFactor} text={error} />}
       </UiEntity>
     </UiEntity>
   )

@@ -51,7 +51,6 @@ export function ModalAdminList({
         }}
         uiBackground={{ color: Color4.Black() }}
       >
-        {/* Header and Admin List container */}
         <UiEntity
           uiTransform={{
             display: 'flex',
@@ -93,14 +92,16 @@ export function ModalAdminList({
             />
             <Button
               id="close-modal"
-              value="✕"
-              variant="text"
+              onlyIcon
+              icon='assets/close.png'
+              variant="secondary"
               fontSize={20 * scaleFactor}
-              color={Color4.White()}
               uiTransform={{
                 position: { right: 0 },
                 positionType: 'absolute',
+                borderColor: Color4.Clear()
               }}
+              iconTransform={{ width: 32 * scaleFactor, height: 32 * scaleFactor }}
               onMouseDown={() =>
                 (moderationControlState.showModalAdminList = false)
               }
@@ -112,6 +113,7 @@ export function ModalAdminList({
             uiTransform={{
               flexDirection: 'column',
               width: '100%',
+              margin: { top: 16 * scaleFactor }
             }}
           >
             {sceneAdmins.map((user, index) => (
@@ -168,7 +170,7 @@ export function ModalAdminList({
                         }}
                       >
                         <Label
-                          value={`<b>${user.name ?? 'NAME'}</b>`}
+                          value={`<b>${user.name ?? '-'}</b>`}
                           fontSize={14 * scaleFactor}
                           color={Color4.White()}
                         />
@@ -210,8 +212,7 @@ export function ModalAdminList({
                       />
                     </UiEntity>
                   </UiEntity>
-                  {/* // TODO: this should be based on the current user roles */}
-                  {user.role === 'admin' && (
+                  {user.canBeRemoved && (
                     <Button
                       id={`remove-${index}`}
                       value="<b>Remove</b>"

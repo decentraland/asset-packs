@@ -17,6 +17,7 @@ function isValidAddress(value: string) {
 
 export function AddUserInput({ scaleFactor, onSubmit }: Props) {
   const [error, setError] = ReactEcs.useState(false)
+  const [loading, setLoading] = ReactEcs.useState(false)
   return (
     <UiEntity
       uiTransform={{
@@ -36,14 +37,16 @@ export function AddUserInput({ scaleFactor, onSubmit }: Props) {
       <UiEntity>
         <Input
           onChange={($) => {
+            console.log('onChange', $)
             $inputValue = $
           }}
           onSubmit={(value) => {
             onSubmit(value)
             $inputValue = ''
           }}
+          value={$inputValue}
           fontSize={16 * scaleFactor}
-          placeholder="Username or Wallet Address"
+          placeholder="Wallet Address"
           placeholderColor={Color4.create(160 / 255, 155 / 255, 168 / 255, 1)}
           color={Color4.Black()}
           uiBackground={{ color: Color4.White() }}
@@ -51,7 +54,7 @@ export function AddUserInput({ scaleFactor, onSubmit }: Props) {
             width: '100%',
             height: 42 * scaleFactor,
             margin: { bottom: 16 * scaleFactor },
-            borderColor: (!$inputValue || isValidAddress($inputValue)) ? Color4.White() : Color4.Red(),
+            borderColor: ((!$inputValue || isValidAddress($inputValue)) && !error) ? Color4.White() : Color4.Red(),
             borderWidth: 4,
             borderRadius: 8
           }}
@@ -69,22 +72,25 @@ export function AddUserInput({ scaleFactor, onSubmit }: Props) {
             padding: 0,
           }}
           onMouseDown={async () => {
+            if (loading) return
+            setLoading(true)
             const [error, data] = await postSceneAdmin($inputValue)
             if (data) {
+              setError(false)
               $inputValue = ''
               await fetchSceneAdmins()
             } else {
               console.log(error)
               setError(true)
-              $inputValue = ''
             }
+            setLoading(false)
           }}
         />
       </UiEntity>
       {error && (
         <Error
           uiTransform={{
-            margin: { top: -20, bottom: 10 },
+            margin: { top: -16 & scaleFactor, bottom: 16 * scaleFactor },
             justifyContent: 'flex-start',
           }}
           scaleFactor={scaleFactor}

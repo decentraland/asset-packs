@@ -41,7 +41,7 @@ export function LiveStream({
         console.log(error)
       } else {
         videoControlState.endsAt = data?.endsAt
-        videoControlState.streamKey = data?.streamingKey ?? 'boedo-carnaval`'
+        videoControlState.streamKey = data?.streamingKey ?? ''
       }
     }
     streamKeyFn()

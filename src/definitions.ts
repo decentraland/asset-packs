@@ -363,7 +363,6 @@ export function createComponents(engine: IEngine) {
       disableVideoPlayersSound: Schemas.Boolean,
       showAuthorOnVideoPlayers: Schemas.Boolean,
       linkAllVideoPlayers: Schemas.Boolean,
-      streamKey: Schemas.Optional(Schemas.String),
       videoPlayers: Schemas.Optional(
         Schemas.Array(
           Schemas.Map({

@@ -6,7 +6,6 @@ import ReactEcs, {
   UiBackgroundProps,
 } from '@dcl/react-ecs'
 import { Color4 } from '@dcl/sdk/math'
-import { CONTENT_URL } from './constants'
 import { scaleFactor } from '.'
 
 export const BTN_BACKGROUND_COLOR = {

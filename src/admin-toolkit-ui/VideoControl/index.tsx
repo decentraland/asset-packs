@@ -46,7 +46,7 @@ export function VideoControl({
   const [selectedEntity, selectedVideo] = useSelectedVideoPlayer(engine) ?? []
   const scaleFactor = getScaleUIFactor(engine)
   const videoPlayers = getVideoPlayers(engine)
-  const [selected, setSelected] = ReactEcs.useState<'video-url' | 'live' | undefined>('live') // TODO: change to undefined
+  const [selected, setSelected] = ReactEcs.useState<'video-url' | 'live' | undefined>(undefined)
 
   return (
     <UiEntity

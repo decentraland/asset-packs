@@ -15,35 +15,12 @@ import { CONTENT_URL } from './constants'
 import { State } from './types'
 import { Header } from './Header'
 import { Card } from './Card'
+import { getSmartItems } from '.'
 
 // Constants
 const ICONS = {
   SMART_ITEM_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/smart-item-control.png`,
 } as const
-
-// Helper Functions
-function getAdminToolkitSmartItemsControl(engine: IEngine) {
-  const { AdminTools } = getComponents(engine)
-  const adminToolkitEntities = Array.from(engine.getEntitiesWith(AdminTools))
-  return adminToolkitEntities.length > 0
-    ? adminToolkitEntities[0][1].smartItemsControl
-    : null
-}
-
-function getSmartItems(
-  engine: IEngine,
-): NonNullable<AdminTools['smartItemsControl']['smartItems']> {
-  const adminToolkitSmartItemsControl = getAdminToolkitSmartItemsControl(engine)
-
-  if (
-    !adminToolkitSmartItemsControl ||
-    !adminToolkitSmartItemsControl.smartItems ||
-    adminToolkitSmartItemsControl.smartItems.length === 0
-  )
-    return []
-
-  return Array.from(adminToolkitSmartItemsControl.smartItems)
-}
 
 function getSmartItemActions(
   engine: IEngine,
@@ -189,7 +166,6 @@ function ActionSelector({
 
   return (
     <UiEntity
-      key="SmartItemActionsControlDropdownWrapper"
       uiTransform={{
         flexDirection: 'column',
         margin: { bottom: 32 * scaleFactor },
@@ -203,8 +179,7 @@ function ActionSelector({
           margin: { bottom: 16 * scaleFactor },
         }}
       />
-      <Dropdown
-        key="SmartItemActionsControlDropdownSelector"
+      {actions.length ? <Dropdown
         acceptEmpty
         emptyLabel="Select Action"
         options={actions.map((action) => action.name)}
@@ -221,7 +196,7 @@ function ActionSelector({
           color: disabled ? Color4.Gray() : Color4.White(),
         }}
         color={Color4.Black()}
-      />
+      /> : <UiEntity />}
     </UiEntity>
   )
 }

@@ -2,7 +2,6 @@ import { DeepReadonlyObject, Entity, IEngine, PBVideoPlayer } from '@dcl/ecs'
 import { getComponents } from '../../definitions'
 import { getExplorerComponents } from '../../components'
 import { nextTickFunctions, state } from '../index'
-import { State } from '../types'
 import { DEFAULT_VOLUME } from '.'
 
 
@@ -55,13 +54,13 @@ export function createVideoPlayerControls(
   engine: IEngine
 ): VideoPlayerControls {
   const videoControl = getAdminToolkitVideoControl(engine)
-  const { VideoPlayer } = getExplorerComponents(engine)
+  const { VideoPlayer, NetworkEntity, SyncComponents } = getExplorerComponents(engine)
 
   checkVideoPlayerSound(entity, engine)
 
   return {
     play: () => {
-      if (VideoPlayer.get(entity).playing) return
+      // if (VideoPlayer.get(entity).playing) return
       VideoPlayer.getMutable(entity).playing = true
     },
     pause: () => VideoPlayer.getMutable(entity).playing = false,

@@ -25,6 +25,7 @@ export type SceneAdmin = {
   address: string
   role?: 'owner' | 'operator' | 'admin'
   verified?: boolean
+  canBeRemoved: boolean
 }
 
 type State = {
@@ -50,7 +51,7 @@ export function ModerationControl({ engine, player }: Props) {
       >
         <Header
           iconSrc={MODERATION_CONTROL_ICON}
-          title={`MODERATION TOOLS -  ${player?.name || 'asd'}`}
+          title="MODERATION TOOLS"
           scaleFactor={scaleFactor}
         />
         <AddUserInput scaleFactor={scaleFactor} onSubmit={console.log} />

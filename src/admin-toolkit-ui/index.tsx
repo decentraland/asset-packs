@@ -17,18 +17,15 @@ import {
 import { getScaleUIFactor } from '../ui'
 import { VideoControl } from './VideoControl'
 import { TextAnnouncementsControl } from './TextAnnouncementsControl'
-// import { RewardsControl } from './RewardsControl'
 import { SmartItemsControl } from './SmartItemsControl'
 import { Button } from './Button'
 import { TextAnnouncements } from './TextAnnouncements'
 import { CONTENT_URL } from './constants'
-import { getSceneDeployment, getSceneOwners } from './utils'
 import { State, TabType, SelectedSmartItem } from './types'
 import { getExplorerComponents } from '../components'
-import { BTN_MODERATION_CONTROL, BTN_MODERATION_CONTROL_ACTIVE, ModerationControl, moderationControlState, SceneAdmin } from './ModerationControl'
+import { BTN_MODERATION_CONTROL, ModerationControl, moderationControlState, SceneAdmin } from './ModerationControl'
 import { getSceneAdmins } from './ModerationControl/api'
 import { ModalAdminList } from './ModerationControl/AdminList'
-import { getStreamKey } from './VideoControl/api'
 
 export const nextTickFunctions: (() => void)[] = []
 export let scaleFactor: number
@@ -36,11 +33,9 @@ export let scaleFactor: number
 export let state: State = {
   adminToolkitUiEntity: 0 as Entity,
   panelOpen: true,
-  activeTab: TabType.VIDEO_CONTROL,
+  activeTab: TabType.SMART_ITEMS_CONTROL,
   videoControl: {
-    shareScreenUrl: undefined,
     selectedVideoPlayer: undefined,
-    linkAllVideoPlayers: undefined,
   },
   smartItemsControl: {
     selectedSmartItem: undefined,
@@ -58,28 +53,16 @@ export let state: State = {
   },
 }
 
-// Add cache objects at the top level
-let deploymentCache: {
-  data: any
-  deployedBy?: string
-  sceneBasePosition?: string[]
-} | null = null
-
-let sceneOwnersCache: string[] | null = null
-
 let sceneAdminsCache: SceneAdmin[]
 
 // const BTN_REWARDS_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-button.png`
 // const BTN_REWARDS_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-active-button.png`
 
 const BTN_VIDEO_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-video-control-button.png`
-const BTN_VIDEO_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-video-control-active-button.png`
 
 const BTN_SMART_ITEM_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-smart-item-control-button.png`
-const BTN_SMART_ITEM_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-smart-item-control-active-button.png`
 
 const BTN_TEXT_ANNOUNCEMENT_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-text-announcement-control-button.png`
-const BTN_TEXT_ANNOUNCEMENT_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-text-announcement-control-active-button.png`
 
 const BTN_ADMIN_TOOLKIT_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-control-button.png`
 const BTN_ADMIN_TOOLKIT_BACKGROUND = `${CONTENT_URL}/admin_toolkit/assets/backgrounds/admin-tool-background.png`
@@ -99,71 +82,35 @@ function getAdminToolkitComponent(engine: IEngine) {
   return Array.from(engine.getEntitiesWith(AdminTools))[0][1]
 }
 
-async function initSceneDeployment() {
-  if (deploymentCache !== null) return
-
-  const deployment = await getSceneDeployment()
-
-  if (deployment) {
-    deploymentCache = {
-      data: deployment,
-      deployedBy: deployment.deployedBy.toLowerCase(),
-      sceneBasePosition: deployment.metadata.scene.base.split(','),
-    }
-  }
-}
-
-async function initSceneOwners() {
-  if (sceneOwnersCache !== null) return
-
-  const owners = await getSceneOwners()
-
-  if (owners.length > 0) {
-    sceneOwnersCache = owners
-  }
-}
-
 export async function fetchSceneAdmins() {
   const [error, response] = await getSceneAdmins()
+
   if (error) {
-    // TODO show error;
-    console.log(error)
+    // user doesnt have permissions
     return
   }
-  sceneAdminsCache = response?.map($ => ({
-    name: $.admin,
-    address: $.admin,
-    role: 'admin',
-    verified: false
-  })) ?? []
+  console.log('sceneAdmins2', )
+  response?.forEach($ => console.log(JSON.stringify($)))
+  sceneAdminsCache =
+    response?.map(($) => ({
+      name: $.name,
+      address: $.admin,
+      role: 'admin',
+      verified: !$.name.includes('#'),
+      canBeRemoved: !!$.canBeRemoved
+    })) ?? []
 }
 
-function getSmartItems(engine: IEngine) {
+export function getSmartItems(engine: IEngine) {
   const adminToolkitComponent = getAdminToolkitComponent(engine)
 
-  if (
-    !adminToolkitComponent ||
-    !adminToolkitComponent.smartItemsControl ||
-    !adminToolkitComponent.smartItemsControl.smartItems ||
-    adminToolkitComponent.smartItemsControl.smartItems.length === 0
-  )
-    return []
-
-  return Array.from(adminToolkitComponent.smartItemsControl.smartItems)
+  return Array.from(adminToolkitComponent.smartItemsControl.smartItems ?? [])
 }
 
 function getRewards(engine: IEngine) {
   const adminToolkitComponent = getAdminToolkitComponent(engine)
 
-  if (
-    !adminToolkitComponent ||
-    !adminToolkitComponent.rewardsControl ||
-    !adminToolkitComponent.rewardsControl.rewardItems ||
-    adminToolkitComponent.rewardsControl.rewardItems.length === 0
-  )
-    return []
-
-  return Array.from(adminToolkitComponent.rewardsControl.rewardItems)
+  return Array.from(adminToolkitComponent?.rewardsControl?.rewardItems ?? [])
 }
 
 function initTextAnnouncementSync(engine: IEngine) {
@@ -250,8 +197,6 @@ export async function initializeAdminData(
     // Initialize AdminToolkitUiEntity
     state.adminToolkitUiEntity = getAdminToolkitEntity(engine) ?? engine.addEntity()
 
-
-
     // Initialize TextAnnouncements sync component
     initTextAnnouncementSync(engine)
 
@@ -271,7 +216,6 @@ export async function initializeAdminData(
       ADMIN_TOOLS_ENTITY,
     )
 
-
     engine.addSystem(() => {
       if (nextTickFunctions.length > 0) {
         const nextTick = nextTickFunctions.shift()
@@ -283,8 +227,6 @@ export async function initializeAdminData(
 
     // Initialize scene data
     await Promise.all([
-      initSceneDeployment(),
-      initSceneOwners(),
       fetchSceneAdmins(),
     ])
 
@@ -310,50 +252,17 @@ export function createAdminToolkitUI(
   })
 }
 
-export function isSceneDeployer(playerAddress: string) {
-  return deploymentCache?.deployedBy === playerAddress.toLowerCase()
-}
-
-export function isSceneOwner(playerAddress: string) {
-  return (sceneOwnersCache || []).includes(playerAddress.toLowerCase())
-}
-
 function isAllowedAdmin(
   _engine: IEngine,
   adminToolkitEntitie: ReturnType<typeof getAdminToolkitComponent>,
-  player?: GetPlayerDataRes | null,
+  player: GetPlayerDataRes | null | undefined,
 ) {
-  const { adminPermissions, authorizedAdminUsers } = adminToolkitEntitie
-
-  if (adminPermissions === AdminPermissions.PUBLIC) {
-    return true
-  }
-
   if (!player) return false
 
   const playerAddress = player.userId.toLowerCase()
+  const isAdmin = (sceneAdminsCache ?? []).find($ => $.address === playerAddress)
 
-  // Check if player is the deployer
-  if (authorizedAdminUsers.me && isSceneDeployer(playerAddress)) {
-    return true
-  }
-
-  // Check if player is a scene owner
-  if (authorizedAdminUsers.sceneOwners && isSceneOwner(playerAddress)) {
-    return true
-  }
-
-  // Check if player is in the allow list
-  if (
-    authorizedAdminUsers.allowList &&
-    authorizedAdminUsers.adminAllowList.some(
-      (wallet) => wallet.toLowerCase() === playerAddress,
-    )
-  ) {
-    return true
-  }
-
-  return false
+  return isAdmin
 }
 
 const uiComponent = (
@@ -414,12 +323,12 @@ const uiComponent = (
               />
               <Button
                 id="admin_toolkit_moderation_control"
-                variant="text"
-                icon={
+                variant={
                   state.activeTab === TabType.MODERATION_CONTROL
-                    ? BTN_MODERATION_CONTROL_ACTIVE
-                    : BTN_MODERATION_CONTROL
+                    ? 'primary'
+                    : 'text'
                 }
+                icon={BTN_MODERATION_CONTROL}
                 onlyIcon
                 uiTransform={{
                   display: adminToolkitEntity.moderationControl.isEnabled
@@ -431,10 +340,13 @@ const uiComponent = (
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
-                iconTransform={{
-                  height: '100%',
-                  width: '100%',
+                iconBackground={{
+                  color:
+                    state.activeTab === TabType.MODERATION_CONTROL
+                      ? Color4.Black()
+                      : Color4.White(),
                 }}
+                iconTransform={{ height: '100%', width: '100%' }}
                 onMouseDown={() => {
                   if (state.activeTab !== TabType.MODERATION_CONTROL) {
                     state.activeTab = TabType.NONE
@@ -448,12 +360,16 @@ const uiComponent = (
               />
               <Button
                 id="admin_toolkit_panel_video_control"
-                variant="text"
-                icon={
-                  state.activeTab === TabType.VIDEO_CONTROL
-                    ? BTN_VIDEO_CONTROL_ACTIVE
-                    : BTN_VIDEO_CONTROL
+                variant={
+                  state.activeTab === TabType.VIDEO_CONTROL ? 'primary' : 'text'
                 }
+                icon={BTN_VIDEO_CONTROL}
+                iconBackground={{
+                  color:
+                    state.activeTab === TabType.VIDEO_CONTROL
+                      ? Color4.Black()
+                      : Color4.White(),
+                }}
                 onlyIcon
                 uiTransform={{
                   display: adminToolkitEntity.videoControl.isEnabled
@@ -482,12 +398,18 @@ const uiComponent = (
               />
               <Button
                 id="admin_toolkit_panel_smart_items_control"
-                variant="text"
-                icon={
+                variant={
                   state.activeTab === TabType.SMART_ITEMS_CONTROL
-                    ? BTN_SMART_ITEM_CONTROL_ACTIVE
-                    : BTN_SMART_ITEM_CONTROL
+                    ? 'primary'
+                    : 'text'
                 }
+                icon={BTN_SMART_ITEM_CONTROL}
+                iconBackground={{
+                  color:
+                    state.activeTab === TabType.SMART_ITEMS_CONTROL
+                      ? Color4.Black()
+                      : Color4.White(),
+                }}
                 onlyIcon
                 uiTransform={{
                   display: adminToolkitEntity.smartItemsControl.isEnabled
@@ -516,12 +438,16 @@ const uiComponent = (
               />
               <Button
                 id="admin_toolkit_panel_text_announcement_control"
-                variant="text"
-                icon={
-                  state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL
-                    ? BTN_TEXT_ANNOUNCEMENT_CONTROL_ACTIVE
-                    : BTN_TEXT_ANNOUNCEMENT_CONTROL
+                variant={
+                  state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL ? 'primary' : 'text'
                 }
+                icon={BTN_TEXT_ANNOUNCEMENT_CONTROL}
+                iconBackground={{
+                  color:
+                    state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL
+                      ? Color4.Black()
+                      : Color4.White(),
+                }}
                 onlyIcon
                 uiTransform={{
                   display: adminToolkitEntity.textAnnouncementControl.isEnabled
