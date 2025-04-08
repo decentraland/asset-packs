@@ -91,14 +91,13 @@ export async function fetchSceneAdmins() {
   }
   console.log('sceneAdmins2', )
   response?.forEach($ => console.log(JSON.stringify($)))
-  sceneAdminsCache =
-    response?.map(($) => ({
+  sceneAdminsCache = (response ?? []).map(($) => ({
       name: $.name,
       address: $.admin,
-      role: 'admin',
+      role: 'admin' as const,
       verified: !$.name.includes('#'),
       canBeRemoved: !!$.canBeRemoved
-    })) ?? []
+    })).sort((a) => a.canBeRemoved ? 1 : -1)
 }
 
 export function getSmartItems(engine: IEngine) {

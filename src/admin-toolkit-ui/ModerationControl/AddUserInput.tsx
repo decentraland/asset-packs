@@ -18,6 +18,7 @@ function isValidAddress(value: string) {
 export function AddUserInput({ scaleFactor, onSubmit }: Props) {
   const [error, setError] = ReactEcs.useState(false)
   const [loading, setLoading] = ReactEcs.useState(false)
+
   return (
     <UiEntity
       uiTransform={{
@@ -37,7 +38,9 @@ export function AddUserInput({ scaleFactor, onSubmit }: Props) {
       <UiEntity>
         <Input
           onChange={($) => {
-            console.log('onChange', $)
+            if (error) {
+              setError(false)
+            }
             $inputValue = $
           }}
           onSubmit={(value) => {

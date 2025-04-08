@@ -60,7 +60,6 @@ export function createVideoPlayerControls(
 
   return {
     play: () => {
-      // if (VideoPlayer.get(entity).playing) return
       VideoPlayer.getMutable(entity).playing = true
     },
     pause: () => VideoPlayer.getMutable(entity).playing = false,
@@ -79,7 +78,6 @@ export function createVideoPlayerControls(
       console.log('TODO: Next Track clicked')
     },
     setVolume: (volumeOrStep) => {
-      console.log('set volume', volumeOrStep)
       // Don't allow volume changes if sound is disabled
       if (videoControl?.disableVideoPlayersSound) {
         return
@@ -90,7 +88,6 @@ export function createVideoPlayerControls(
       } else {
         const steps = Math.round((video.volume ?? DEFAULT_VOLUME) * 10)
         const newSteps = Math.max(0, Math.min(10, steps + (volumeOrStep as number) * 10))
-        console.log(newSteps / 10)
         video.volume = newSteps / 10
       }
     },
