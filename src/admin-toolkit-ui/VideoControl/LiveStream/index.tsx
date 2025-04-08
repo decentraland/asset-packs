@@ -38,7 +38,6 @@ export function LiveStream({
       if (error) {
         videoControlState.endsAt = undefined
         videoControlState.streamKey = undefined
-        console.log(error)
       } else {
         videoControlState.endsAt = data?.endsAt
         videoControlState.streamKey = data?.streamingKey ?? ''

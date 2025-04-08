@@ -32,8 +32,8 @@ export let scaleFactor: number
 
 export let state: State = {
   adminToolkitUiEntity: 0 as Entity,
-  panelOpen: true,
-  activeTab: TabType.SMART_ITEMS_CONTROL,
+  panelOpen: false,
+  activeTab: TabType.MODERATION_CONTROL,
   videoControl: {
     selectedVideoPlayer: undefined,
   },
@@ -89,8 +89,6 @@ export async function fetchSceneAdmins() {
     // user doesnt have permissions
     return
   }
-  console.log('sceneAdmins2', )
-  response?.forEach($ => console.log(JSON.stringify($)))
   sceneAdminsCache = (response ?? []).map(($) => ({
       name: $.name,
       address: $.admin,

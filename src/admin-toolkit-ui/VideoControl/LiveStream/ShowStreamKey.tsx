@@ -95,7 +95,7 @@ export function ShowStreamKey({
             fontSize={14 * scaleFactor}
           />
           <Label
-            value={endsAt.toString()}
+            value={formatTimeRemaining(endsAt)}
             color={Color4.fromHexString('#FFFFFFB2')}
             fontSize={14 * scaleFactor}
           />
@@ -153,4 +153,16 @@ export function ShowStreamKey({
       </UiEntity>
     </UiEntity>
   )
+}
+
+// Helper function to format time remaining in hh:mm:ss
+function formatTimeRemaining(endsAt: number): string {
+  const now = Date.now()
+  const timeRemaining = Math.max(0, endsAt - now)
+
+  const hours = Math.floor(timeRemaining / (1000 * 60 * 60))
+  const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60))
+  const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000)
+
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
 }

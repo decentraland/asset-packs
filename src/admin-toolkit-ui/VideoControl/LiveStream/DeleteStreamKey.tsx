@@ -93,17 +93,14 @@ export function DeleteStreamKeyConfirmation({
               setIsLoading(true)
               const [error, data] = await revokeStreamKey()
               if (error) {
-                console.log(error)
                 setError(error)
                 setIsLoading(false)
               } else {
-                console.log('Revoke Stream Key', JSON.stringify(data))
                 VideoControlState.getMutable(state.adminToolkitUiEntity).streamKey = undefined
                 VideoControlState.getMutable(state.adminToolkitUiEntity).endsAt = undefined
                 // remove this page so it can generate a new key if the user wants
                 onCancel()
               }
-              console.log('finished')
             }}
           />
         )}

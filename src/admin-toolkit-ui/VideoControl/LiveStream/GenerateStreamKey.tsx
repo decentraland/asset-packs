@@ -57,7 +57,6 @@ export function GenerateStreamKey({
                 if (error) {
                   setError(error)
                 } else if (data) {
-                  console.log('Genearte Stream Key Response: ', JSON.stringify(data))
                   VideoControlState.getMutable(state.adminToolkitUiEntity).streamKey = data.streamingKey
                   VideoControlState.getMutable(state.adminToolkitUiEntity).endsAt = data.endsAt
                 }
