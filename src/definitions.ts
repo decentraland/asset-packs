@@ -52,6 +52,7 @@ export * from './events'
 export * from './id'
 export * from './states'
 export * from './clone'
+export * from './enum-entity'
 export * from './lww'
 export * from './types'
 
@@ -409,7 +410,7 @@ export function createComponents(engine: IEngine) {
     {
       text: Schemas.String,
       author: Schemas.Optional(Schemas.String),
-      id: Schemas.String
+      id: Schemas.String,
     },
   )
 
