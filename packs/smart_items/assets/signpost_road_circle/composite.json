@@ -7,20 +7,20 @@
         "513": {
           "json": {
             "position": {
-              "x": 0.21539974212646484,
-              "y": 0.43155980110168457,
-              "z": 0.052764892578125
+              "x": 0,
+              "y": 2.0326292514801025,
+              "z": 0.03241157531738281
             },
             "rotation": {
               "x": 0,
               "y": 1,
               "z": 0,
-              "w": 6.123234924670329e-17
+              "w": 6.123234262925839e-17
             },
             "scale": {
-              "x": 0.3499518036842346,
-              "y": 0.3499518036842346,
-              "z": 0.3499518036842346
+              "x": 0.2676096558570862,
+              "y": 0.2676096558570862,
+              "z": 0.2676096558570862
             },
             "parent": 0
           }
@@ -47,7 +47,7 @@
       "data": {
         "0": {
           "json": {
-            "value": "Sign Neon Arrow"
+            "value": "Signpost Road Circle"
           }
         },
         "513": {
@@ -77,7 +77,7 @@
             "basicViewId": "text1",
             "text": "Your Text here",
             "font": 2,
-            "fontSize": 3,
+            "fontSize": 4,
             "fontAutoSize": false,
             "textAlign": 4,
             "paddingTop": 0,
@@ -92,9 +92,9 @@
               "b": 1
             },
             "textColor": {
-              "r": 0.7607843137254902,
-              "g": 1,
-              "b": 0.9725490196078431,
+              "r": 0,
+              "g": 0,
+              "b": 0,
               "a": 1
             }
           }
@@ -106,7 +106,7 @@
       "data": {
         "0": {
           "json": {
-            "src": "{assetPath}/sign_arrow.glb",
+            "src": "{assetPath}/signpost_circle.glb",
             "visibleMeshesCollisionMask": 1,
             "invisibleMeshesCollisionMask": 2
           }
