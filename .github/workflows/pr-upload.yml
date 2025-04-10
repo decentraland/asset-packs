@@ -20,7 +20,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build:js
+        run: npm run build
 
       - name: Get changed files
         id: changed-files
@@ -32,11 +32,9 @@ jobs:
 
       - name: Upload changed files
         run: |
-          while IFS= read -r file; do
-            if [ -f "$file" ]; then
-              npm run upload -- --files "$file"
-            fi
-          done < changed_files.txt
+          if grep -q '^packs/' changed_files.txt; then
+            npm run upload
+          fi
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
