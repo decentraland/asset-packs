@@ -89,13 +89,15 @@ export async function fetchSceneAdmins() {
     // user doesnt have permissions
     return
   }
-  sceneAdminsCache = (response ?? []).map(($) => ({
+  sceneAdminsCache = (response ?? [])
+    .map(($) => ({
       name: $.name,
       address: $.admin,
       role: 'admin' as const,
       verified: !$.name.includes('#'),
       canBeRemoved: !!$.canBeRemoved
-    })).sort((a) => a.canBeRemoved ? 1 : -1)
+    }))
+    .sort((a) => a.canBeRemoved ? 1 : -1)
 }
 
 export function getSmartItems(engine: IEngine) {
@@ -191,6 +193,7 @@ export async function initializeAdminData(
   if (!adminDataInitialized) {
     console.log('initializeAdminData - not initialized')
     const { TextAnnouncements, VideoControlState } = getComponents(engine)
+    const { VideoPlayer } = getExplorerComponents(engine)
     // Initialize AdminToolkitUiEntity
     state.adminToolkitUiEntity = getAdminToolkitEntity(engine) ?? engine.addEntity()
 

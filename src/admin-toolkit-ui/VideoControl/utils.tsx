@@ -54,7 +54,7 @@ export function createVideoPlayerControls(
   engine: IEngine
 ): VideoPlayerControls {
   const videoControl = getAdminToolkitVideoControl(engine)
-  const { VideoPlayer, NetworkEntity, SyncComponents } = getExplorerComponents(engine)
+  const { VideoPlayer } = getExplorerComponents(engine)
 
   checkVideoPlayerSound(entity, engine)
 
