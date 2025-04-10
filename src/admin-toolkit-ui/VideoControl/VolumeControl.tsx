@@ -11,18 +11,16 @@ export function VideoControlVolume({
   label,
   entity,
   video,
-  disabled
 }: {
   engine: IEngine
   label: string
   entity: Entity
   video: DeepReadonlyObject<PBVideoPlayer> | undefined
-  disabled?: boolean
 }) {
   const scaleFactor = getScaleUIFactor(engine)
   const controls = createVideoPlayerControls(entity, engine)
   const videoControl = getAdminToolkitVideoControl(engine)
-  const isSoundDisabled = disabled || videoControl?.disableVideoPlayersSound
+  const isSoundDisabled = videoControl?.disableVideoPlayersSound
   const volumePercentage = `${Math.round((video?.volume ?? DEFAULT_VOLUME) * 100)}%`
 
   return (

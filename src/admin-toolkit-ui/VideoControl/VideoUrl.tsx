@@ -93,7 +93,7 @@ export function VideoControlURL({
               ? '<b>Update</b>'
               : '<b>Activate</b>'
           }
-          labelTransform={{ margin: { left: 20 * scaleFactor, right: 20 * scaleFactor } }}
+          labelTransform={{ margin: { left: 6 * scaleFactor, right: 6 * scaleFactor } }}
           fontSize={16 * scaleFactor}
           uiBackground={{ color: COLORS.SUCCESS }}
           color={Color4.Black()}
@@ -122,9 +122,10 @@ export function VideoControlURL({
           id="video_control_play"
           value="<b>Play</b>"
           fontSize={18 * scaleFactor}
-          labelTransform={{ margin: { right: 20 } }}
+          labelTransform={{ margin: { right: 10 * scaleFactor } }}
           uiTransform={{
             margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
+            height: 42 * scaleFactor,
             minWidth: 69 * scaleFactor,
             alignItems: 'center',
             justifyContent: 'center',
@@ -144,9 +145,10 @@ export function VideoControlURL({
           id="video_control_pause"
           value="<b>Pause</b>"
           fontSize={18 * scaleFactor}
-          labelTransform={{ margin: { left: 20 * scaleFactor, right: 20 * scaleFactor } }}
+          labelTransform={{ margin: { left: 6 * scaleFactor, right: 6 * scaleFactor } }}
           uiTransform={{
             margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
+            height: 42 * scaleFactor,
             minWidth: 69 * scaleFactor,
             alignItems: 'center',
             justifyContent: 'center',
@@ -160,10 +162,11 @@ export function VideoControlURL({
           disabled={!isActive}
           id="video_control_restart"
           value="<b>Restart</b>"
-          labelTransform={{ margin: { left: 20 * scaleFactor, right: 20 * scaleFactor } }}
+          labelTransform={{ margin: { left: 6 * scaleFactor, right: 6 * scaleFactor } }}
           fontSize={18 * scaleFactor}
           uiTransform={{
             margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
+            height: 42 * scaleFactor,
             minWidth: 69 * scaleFactor,
             alignItems: 'center',
             justifyContent: 'center',
@@ -173,13 +176,32 @@ export function VideoControlURL({
             controls.restart()
           }}
         />
+        <Button
+          disabled={!isActive}
+          id="video_control_loop"
+          value={`<b>Loop: ${video?.loop ? 'On' : 'Off'}</b>`}
+          variant='secondary'
+          labelTransform={{ margin: { left: 6 * scaleFactor, right: 6 * scaleFactor } }}
+          fontSize={18 * scaleFactor}
+          uiTransform={{
+            margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
+            height: 42 * scaleFactor,
+            minWidth: 69 * scaleFactor,
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 0,
+          }}
+          color={Color4.White()}
+          onMouseDown={() => {
+            controls.setLoop(!video?.loop)
+          }}
+        />
       </UiEntity>
 
       <VideoControlVolume
         engine={engine}
         entity={entity}
         video={video}
-        disabled={!isActive}
         label="<b>Video Volume</b>"
       />
     </UiEntity>

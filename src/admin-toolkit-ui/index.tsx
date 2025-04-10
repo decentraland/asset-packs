@@ -5,10 +5,8 @@ import ReactEcs, {
   UiEntity,
   ReactBasedUiSystem,
 } from '@dcl/react-ecs'
-import { Entity, IEngine, PointerEventsSystem } from '@dcl/ecs'
-
+import { Entity, IEngine, MeshCollider, PointerEventsSystem } from '@dcl/ecs'
 import {
-  AdminPermissions,
   getComponents,
   GetPlayerDataRes,
   IPlayersHelper,
@@ -26,15 +24,14 @@ import { getExplorerComponents } from '../components'
 import { BTN_MODERATION_CONTROL, ModerationControl, moderationControlState, SceneAdmin } from './ModerationControl'
 import { getSceneAdmins } from './ModerationControl/api'
 import { ModalAdminList } from './ModerationControl/AdminList'
-import { getVideoPlayers } from './VideoControl/utils'
 
 export const nextTickFunctions: (() => void)[] = []
 export let scaleFactor: number
 
 export let state: State = {
   adminToolkitUiEntity: 0 as Entity,
-  panelOpen: true,
-  activeTab: TabType.VIDEO_CONTROL,
+  panelOpen: false,
+  activeTab: TabType.MODERATION_CONTROL,
   videoControl: {
     selectedVideoPlayer: undefined,
   },
@@ -54,7 +51,7 @@ export let state: State = {
   },
 }
 
-let sceneAdminsCache: SceneAdmin[]
+let sceneAdminsCache: SceneAdmin[] = []
 
 // const BTN_REWARDS_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-button.png`
 // const BTN_REWARDS_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-active-button.png`
@@ -88,6 +85,7 @@ export async function fetchSceneAdmins() {
 
   if (error) {
     // user doesnt have permissions
+    sceneAdminsCache = []
     return
   }
   sceneAdminsCache = (response ?? [])
@@ -261,7 +259,7 @@ function isAllowedAdmin(
   if (!player) return false
 
   const playerAddress = player.userId.toLowerCase()
-  const isAdmin = (sceneAdminsCache ?? []).find($ => $.address === playerAddress)
+  const isAdmin = sceneAdminsCache.find($ => $.address === playerAddress)
 
   return isAdmin
 }

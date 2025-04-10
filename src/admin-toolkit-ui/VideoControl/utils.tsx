@@ -7,13 +7,14 @@ import { DEFAULT_VOLUME } from '.'
 
 // Types
 interface VideoPlayerControls {
-  play: () => void
-  pause: () => void
-  restart: () => void
-  previous: () => void
-  next: () => void
-  setVolume: (volume: number) => void
-  setSource: (url: string) => void
+  play(): void
+  pause(): void
+  restart(): void
+  previous(): void
+  next(): void
+  setVolume(volume: number): void
+  setSource(url: string): void
+  setLoop(loop: boolean): void
 }
 
 export function getAdminToolkitVideoControl(engine: IEngine) {
@@ -97,6 +98,9 @@ export function createVideoPlayerControls(
         VideoPlayer.getMutable(entity).playing = true
       })
     },
+    setLoop(loop) {
+      VideoPlayer.getMutable(entity).loop = loop
+    }
   }
 }
 
