@@ -25,6 +25,7 @@ import { CONTENT_URL } from './constants'
 import { getSceneDeployment, getSceneOwners } from './utils'
 import { State, TabType, SelectedSmartItem } from './types'
 import { getExplorerComponents } from '../components'
+import { getNextEnumEntityId } from '../enum-entity'
 
 export const nextTickFunctions: (() => void)[] = []
 
@@ -78,9 +79,6 @@ const BTN_ADMIN_TOOLKIT_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/adm
 const BTN_ADMIN_TOOLKIT_BACKGROUND = `${CONTENT_URL}/admin_toolkit/assets/backgrounds/admin-tool-background.png`
 
 const containerBackgroundColor = Color4.create(0, 0, 0, 0.75)
-
-// The editor starts using entities from [8001].
-const ADMIN_TOOLS_ENTITY = 8000 as Entity
 
 function getAdminToolkitEntity(engine: IEngine) {
   const { AdminTools } = getComponents(engine)
@@ -237,7 +235,7 @@ function initTextAnnouncementSync(engine: IEngine) {
   TextAnnouncements.createOrReplace(state.adminToolkitUiEntity, {
     text: '',
     author: '',
-    id: ''
+    id: '',
   })
 }
 
@@ -246,8 +244,8 @@ function syncEntitiesComponents(
   engine: IEngine,
   entities: { entity: number | Entity }[],
   requiredComponentIds: number[],
+  parentEntity: Entity,
   sdkHelpers?: ISDKHelpers,
-  parentEntity: Entity = ADMIN_TOOLS_ENTITY,
 ) {
   const { SyncComponents } = getExplorerComponents(engine)
   const entitiesToSync: Entity[] = []
@@ -284,7 +282,13 @@ function initSmartItemsSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
   ]
 
   const smartItems = getSmartItems(engine)
-  syncEntitiesComponents(engine, smartItems, requiredComponentIds, sdkHelpers)
+  syncEntitiesComponents(
+    engine,
+    smartItems,
+    requiredComponentIds,
+    getNextEnumEntityId(engine),
+    sdkHelpers,
+  )
 }
 
 function initRewardsSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
@@ -299,7 +303,13 @@ function initRewardsSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
   ]
 
   const rewards = getRewards(engine)
-  syncEntitiesComponents(engine, rewards, requiredComponentIds, sdkHelpers)
+  syncEntitiesComponents(
+    engine,
+    rewards,
+    requiredComponentIds,
+    getNextEnumEntityId(engine),
+    sdkHelpers,
+  )
 }
 
 // Initialize admin data before UI rendering
@@ -334,7 +344,7 @@ export async function initializeAdminData(
     sdkHelpers?.syncEntity?.(
       state.adminToolkitUiEntity,
       [VideoControlState.componentId, TextAnnouncements.componentId],
-      ADMIN_TOOLS_ENTITY,
+      getNextEnumEntityId(engine),
     )
 
     engine.addSystem(() => {
