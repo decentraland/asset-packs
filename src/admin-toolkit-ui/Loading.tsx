@@ -1,6 +1,6 @@
-import { IEngine } from '@dcl/ecs'
+import { IEngine, UiTransform } from '@dcl/ecs'
 import { Color4 } from '@dcl/ecs-math'
-import ReactEcs, { UiEntity } from '@dcl/react-ecs'
+import ReactEcs, { UiEntity, UiTransformProps } from '@dcl/react-ecs'
 import { clearInterval, setInterval } from './utils'
 
 interface LoadingProps {
@@ -8,10 +8,12 @@ interface LoadingProps {
   engine: IEngine
   width?: number
   height?: number
+  uiTransform?: UiTransformProps
 }
 
 export function LoadingDots({
   scaleFactor,
+  uiTransform,
   engine,
   width = 10,
   height = 10,
@@ -38,6 +40,7 @@ export function LoadingDots({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        ...uiTransform
       }}
     >
       {[1, 2, 3].map((i) => (

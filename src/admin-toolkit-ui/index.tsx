@@ -26,14 +26,15 @@ import { getExplorerComponents } from '../components'
 import { BTN_MODERATION_CONTROL, ModerationControl, moderationControlState, SceneAdmin } from './ModerationControl'
 import { getSceneAdmins } from './ModerationControl/api'
 import { ModalAdminList } from './ModerationControl/AdminList'
+import { getVideoPlayers } from './VideoControl/utils'
 
 export const nextTickFunctions: (() => void)[] = []
 export let scaleFactor: number
 
 export let state: State = {
   adminToolkitUiEntity: 0 as Entity,
-  panelOpen: false,
-  activeTab: TabType.MODERATION_CONTROL,
+  panelOpen: true,
+  activeTab: TabType.VIDEO_CONTROL,
   videoControl: {
     selectedVideoPlayer: undefined,
   },

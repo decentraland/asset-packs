@@ -33,7 +33,7 @@ type State = {
   adminToRemove?: SceneAdmin
 }
 export const moderationControlState: State = {
-  showModalAdminList: false,
+  showModalAdminList: true,
   adminToRemove: undefined
 }
 

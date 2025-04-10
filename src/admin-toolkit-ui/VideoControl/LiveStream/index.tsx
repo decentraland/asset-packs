@@ -9,6 +9,7 @@ import { DeleteStreamKeyConfirmation } from './DeleteStreamKey'
 import { state } from '../..'
 import { getComponents } from '../../../definitions'
 import { getStreamKey } from '../api'
+import { LoadingDots } from '../../Loading'
 
 export const LIVEKIT_STREAM_SRC = 'livekit-video://current-stream'
 
@@ -24,6 +25,7 @@ export function LiveStream({
   video: DeepReadonlyObject<PBVideoPlayer> | undefined
 }) {
   const [showResetStreamKey, setResetStreamKey] = ReactEcs.useState<boolean>(false)
+  const [loading, setLoading] = ReactEcs.useState<boolean>(false)
   const { VideoControlState } = getComponents(engine)
   const videoControlState = VideoControlState.getOrNull(state.adminToolkitUiEntity)
   const streamKey = videoControlState?.streamKey
@@ -31,6 +33,7 @@ export function LiveStream({
 
   ReactEcs.useEffect(() => {
     async function streamKeyFn() {
+      if (!streamKey) setLoading(true)
       const [error, data] = await getStreamKey()
       const videoControlState = VideoControlState.getMutable(
         state.adminToolkitUiEntity,
@@ -42,6 +45,7 @@ export function LiveStream({
         videoControlState.endsAt = data?.endsAt
         videoControlState.streamKey = data?.streamingKey ?? ''
       }
+      setLoading(false)
     }
     streamKeyFn()
   }, [])
@@ -67,9 +71,11 @@ export function LiveStream({
         color={Color4.fromHexString('#A09BA8')}
         fontSize={16 * scaleFactor}
       />
-      {streamKey ? (
+      {loading ?
+        <LoadingDots uiTransform={{ minHeight: 400 * scaleFactor }} scaleFactor={scaleFactor} engine={engine} />
+        : streamKey ? (
         <ShowStreamKey
-          streamKey={streamKey}
+          streamKey={streamKey ?? ''}
           endsAt={streamKeyEndsAt ?? 0}
           scaleFactor={scaleFactor}
           engine={engine}
