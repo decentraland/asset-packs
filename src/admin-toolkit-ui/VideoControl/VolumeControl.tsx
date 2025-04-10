@@ -9,17 +9,20 @@ import { COLORS, DEFAULT_VOLUME, ICONS, VOLUME_STEP } from '.'
 export function VideoControlVolume({
   engine,
   label,
-  entity, video
+  entity,
+  video,
+  disabled
 }: {
   engine: IEngine
   label: string
   entity: Entity
   video: DeepReadonlyObject<PBVideoPlayer> | undefined
+  disabled?: boolean
 }) {
   const scaleFactor = getScaleUIFactor(engine)
   const controls = createVideoPlayerControls(entity, engine)
   const videoControl = getAdminToolkitVideoControl(engine)
-  const isSoundDisabled = videoControl?.disableVideoPlayersSound
+  const isSoundDisabled = disabled || videoControl?.disableVideoPlayersSound
   const volumePercentage = `${Math.round((video?.volume ?? DEFAULT_VOLUME) * 100)}%`
 
   return (

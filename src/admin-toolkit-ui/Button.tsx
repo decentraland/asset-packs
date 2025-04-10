@@ -104,6 +104,10 @@ export const Button = (props: CompositeButtonProps) => {
     variant = 'primary',
   } = props
 
+  ReactEcs.useEffect(() => {
+    buttonStates.set(buttonId, disabled ? DISABLED_STATE : ACTIVE_STATE)
+  }, [disabled])
+
   const buttonId = `button_${id}`
 
   // Get or set initial state

@@ -25,7 +25,7 @@ export function VideoControlURL({
     setVideoURL(url ?? "")
   }, [entity])
   const controls = createVideoPlayerControls(entity, engine)
-
+  const isActive = video && video.src.startsWith('https://')
   return (
     <UiEntity uiTransform={{ flexDirection: 'column', width: '100%' }}>
       <Header
@@ -118,6 +118,7 @@ export function VideoControlURL({
         }}
       >
         <Button
+          disabled={!isActive}
           id="video_control_play"
           value="<b>Play</b>"
           fontSize={18 * scaleFactor}
@@ -139,6 +140,7 @@ export function VideoControlURL({
           }}
         />
         <Button
+          disabled={!isActive}
           id="video_control_pause"
           value="<b>Pause</b>"
           fontSize={18 * scaleFactor}
@@ -155,6 +157,7 @@ export function VideoControlURL({
           }}
         />
         <Button
+          disabled={!isActive}
           id="video_control_restart"
           value="<b>Restart</b>"
           labelTransform={{ margin: { left: 20 * scaleFactor, right: 20 * scaleFactor } }}
@@ -176,6 +179,7 @@ export function VideoControlURL({
         engine={engine}
         entity={entity}
         video={video}
+        disabled={!isActive}
         label="<b>Video Volume</b>"
       />
     </UiEntity>
