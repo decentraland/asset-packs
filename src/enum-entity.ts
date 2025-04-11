@@ -1,7 +1,7 @@
 import { Entity, IEngine } from '@dcl/ecs'
 import { getExplorerComponents } from './components'
 
-export const ENUM_ENTITY_ID_START: Entity = 8000 as Entity
+export const ENUM_ENTITY_ID_START: Entity = 8001 as Entity
 export function getNextEnumEntityId(engine: IEngine): Entity {
   const { NetworkEntity } = getExplorerComponents(engine)
 

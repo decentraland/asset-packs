@@ -80,6 +80,9 @@ const BTN_ADMIN_TOOLKIT_BACKGROUND = `${CONTENT_URL}/admin_toolkit/assets/backgr
 
 const containerBackgroundColor = Color4.create(0, 0, 0, 0.75)
 
+// The network entities ids start from [8001].
+const ADMIN_TOOLS_ENTITY = 8000 as Entity
+
 function getAdminToolkitEntity(engine: IEngine) {
   const { AdminTools } = getComponents(engine)
   return Array.from(engine.getEntitiesWith(AdminTools))[0][0]
@@ -344,7 +347,7 @@ export async function initializeAdminData(
     sdkHelpers?.syncEntity?.(
       state.adminToolkitUiEntity,
       [VideoControlState.componentId, TextAnnouncements.componentId],
-      getNextEnumEntityId(engine),
+      ADMIN_TOOLS_ENTITY,
     )
 
     engine.addSystem(() => {
