@@ -300,10 +300,7 @@ export function ModalAdminList({
                 height: 25 * scaleFactor,
                 margin: { left: 8 * scaleFactor },
               }}
-              iconBackground={{
-                color:
-                  page <= 1 ? Color4.fromHexString('#323232') : Color4.White(),
-              }}
+              iconBackground={{ color: page <= 1 ? Color4.fromHexString('#323232') : Color4.White() }}
               color={
                 page <= 1 ? Color4.fromHexString('#323232') : Color4.White()
               }
@@ -335,11 +332,11 @@ export function ModalAdminList({
               labelTransform={{
                 margin: { left: 10 * scaleFactor },
               }}
-              iconBackground={{
-              color: page >= Math.ceil(sceneAdmins.length / ADMINS_PER_PAGE)
-                  ? Color4.fromHexString('#323232')
-                  : Color4.White()
-              }}
+              iconRightBackground={{
+                color: page >= Math.ceil(sceneAdmins.length / ADMINS_PER_PAGE)
+                    ? Color4.fromHexString('#323232')
+                    : Color4.White()
+                }}
               color={
                 page >= Math.ceil(sceneAdmins.length / ADMINS_PER_PAGE)
                   ? Color4.fromHexString('#323232')

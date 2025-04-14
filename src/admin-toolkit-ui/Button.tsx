@@ -80,6 +80,7 @@ interface CompositeButtonProps
   onlyIcon?: boolean
   iconTransform?: UiTransformProps
   iconBackground?: UiBackgroundProps
+  iconRightBackground?: UiBackgroundProps
   variant?: ButtonVariant
   labelTransform?: UiTransformProps
 }
@@ -101,6 +102,7 @@ export const Button = (props: CompositeButtonProps) => {
     uiBackground,
     uiTransform,
     labelTransform,
+    iconRightBackground,
     variant = 'primary',
   } = props
 
@@ -172,6 +174,7 @@ export const Button = (props: CompositeButtonProps) => {
               src: iconRight,
             },
             textureMode: 'stretch',
+            ...iconRightBackground
           }}
         />
       )}
