@@ -6,7 +6,10 @@ import { createVideoPlayerControls } from './utils'
 import { VideoControlVolume } from './VolumeControl'
 import { Button } from '../Button'
 import { Header } from '../Header'
-import { LIVEKIT_STREAM_SRC } from './LiveStream'
+import { LIVEKIT_STREAM_SRC, STREAMING_SUPPORT_URL } from './LiveStream'
+import { openExternalUrl } from '~system/RestrictedActions'
+
+const VIDEO_PLAYER_HELP_URL = 'https://docs.decentraland.org/creator/editor/scene-admin/#video-playing'
 
 export function VideoControlURL({
   engine,
@@ -28,11 +31,30 @@ export function VideoControlURL({
   const isActive = video && video.src.startsWith('https://')
   return (
     <UiEntity uiTransform={{ flexDirection: 'column', width: '100%' }}>
-      <Header
-        iconSrc={ICONS.VIDEO_SOURCE}
-        title="Video Player"
-        scaleFactor={scaleFactor}
-      />
+      <UiEntity
+        uiTransform={{ width: '100%', justifyContent: 'space-between' }}
+      >
+        <Header
+          iconSrc={ICONS.VIDEO_SOURCE}
+          title="Video Player"
+          scaleFactor={scaleFactor}
+        />
+        <UiEntity
+          onMouseDown={() => openExternalUrl({ url: VIDEO_PLAYER_HELP_URL })}
+          uiTransform={{
+            width: 25 * scaleFactor,
+            height: 25 * scaleFactor,
+            alignItems: 'center',
+          }}
+          uiBackground={{
+            textureMode: 'stretch',
+            color: Color4.White(),
+            texture: {
+              src: 'assets/help.png',
+            },
+          }}
+        />
+      </UiEntity>
       <Label
         value="Play videos in any screen."
         color={Color4.fromHexString('#A09BA8')}
@@ -72,35 +94,43 @@ export function VideoControlURL({
           margin: { top: 10 * scaleFactor },
         }}
       >
-        {video?.src.startsWith('https://') && <Button
-          id="video_control_share_screen_clear"
-          value="<b>Deactivate</b>"
-          variant="text"
-          fontSize={16 * scaleFactor}
-          color={Color4.White()}
-          uiTransform={{
-            margin: { right: 8 * scaleFactor },
-            padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
-          }}
-          onMouseDown={() => {
-            controls.setSource('')
-          }}
-        />}
-        {videoURL !== video?.src && videoURL && <Button
-          id="video_control_share_screen_share"
-          value={
-            video?.src && videoURL !== video.src && video.src !== LIVEKIT_STREAM_SRC
-              ? '<b>Update</b>'
-              : '<b>Activate</b>'
-          }
-          labelTransform={{ margin: { left: 6 * scaleFactor, right: 6 * scaleFactor } }}
-          fontSize={16 * scaleFactor}
-          uiBackground={{ color: COLORS.SUCCESS }}
-          color={Color4.Black()}
-          onMouseDown={() => {
-            controls.setSource(videoURL)
-          }}
-        />}
+        {video?.src.startsWith('https://') && (
+          <Button
+            id="video_control_share_screen_clear"
+            value="<b>Deactivate</b>"
+            variant="text"
+            fontSize={16 * scaleFactor}
+            color={Color4.White()}
+            uiTransform={{
+              margin: { right: 8 * scaleFactor },
+              padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
+            }}
+            onMouseDown={() => {
+              controls.setSource('')
+            }}
+          />
+        )}
+        {videoURL !== video?.src && videoURL && (
+          <Button
+            id="video_control_share_screen_share"
+            value={
+              video?.src &&
+              videoURL !== video.src &&
+              video.src !== LIVEKIT_STREAM_SRC
+                ? '<b>Update</b>'
+                : '<b>Activate</b>'
+            }
+            labelTransform={{
+              margin: { left: 6 * scaleFactor, right: 6 * scaleFactor },
+            }}
+            fontSize={16 * scaleFactor}
+            uiBackground={{ color: COLORS.SUCCESS }}
+            color={Color4.Black()}
+            onMouseDown={() => {
+              controls.setSource(videoURL)
+            }}
+          />
+        )}
       </UiEntity>
 
       <Label
@@ -145,11 +175,13 @@ export function VideoControlURL({
           id="video_control_pause"
           value="<b>Pause</b>"
           fontSize={18 * scaleFactor}
-          labelTransform={{ margin: { left: 6 * scaleFactor, right: 6 * scaleFactor } }}
+          labelTransform={{
+            margin: { left: 6 * scaleFactor, right: 6 * scaleFactor },
+          }}
           uiTransform={{
             margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
             height: 42 * scaleFactor,
-            minWidth: 69 * scaleFactor,
+            minWidth: 78 * scaleFactor,
             alignItems: 'center',
             justifyContent: 'center',
             padding: 0,
@@ -162,12 +194,14 @@ export function VideoControlURL({
           disabled={!isActive}
           id="video_control_restart"
           value="<b>Restart</b>"
-          labelTransform={{ margin: { left: 6 * scaleFactor, right: 6 * scaleFactor } }}
+          labelTransform={{
+            margin: { left: 6 * scaleFactor, right: 6 * scaleFactor },
+          }}
           fontSize={18 * scaleFactor}
           uiTransform={{
             margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
             height: 42 * scaleFactor,
-            minWidth: 69 * scaleFactor,
+            minWidth: 88 * scaleFactor,
             alignItems: 'center',
             justifyContent: 'center',
             padding: 0,
@@ -180,13 +214,14 @@ export function VideoControlURL({
           disabled={!isActive}
           id="video_control_loop"
           value={`<b>Loop: ${video?.loop ? 'On' : 'Off'}</b>`}
-          variant='secondary'
-          labelTransform={{ margin: { left: 6 * scaleFactor, right: 6 * scaleFactor } }}
+          variant="secondary"
+          labelTransform={{
+            margin: { left: 6 * scaleFactor, right: 6 * scaleFactor },
+          }}
           fontSize={18 * scaleFactor}
           uiTransform={{
-            margin: { top: 0, right: 16 * scaleFactor, bottom: 0, left: 0 },
             height: 42 * scaleFactor,
-            minWidth: 69 * scaleFactor,
+            minWidth: 100 * scaleFactor,
             alignItems: 'center',
             justifyContent: 'center',
             padding: 0,

@@ -54,6 +54,7 @@ export function ModalAdminList({
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
+          borderRadius: 12 * scaleFactor,
         }}
         uiBackground={{ color: Color4.Black() }}
       >
@@ -170,14 +171,17 @@ export function ModalAdminList({
                     </UiEntity>
 
                     <UiEntity
-                      uiTransform={{ display: 'flex', flexDirection: 'column' }}
+                      uiTransform={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                      }}
                     >
                       {user.name && (
                         <UiEntity
                           uiTransform={{
                             display: 'flex',
                             alignItems: 'center',
-                            margin: { bottom: -6 * scaleFactor },
                           }}
                         >
                           <Label
@@ -221,7 +225,7 @@ export function ModalAdminList({
                             >
                               <Label
                                 value={`<b>${
-                                  (user.role ?? "")?.charAt(0).toUpperCase() +
+                                  (user.role ?? '')?.charAt(0).toUpperCase() +
                                   user.role?.slice(1)
                                 }</b>`}
                                 fontSize={12 * scaleFactor}
@@ -232,7 +236,6 @@ export function ModalAdminList({
                         </UiEntity>
                       )}
                       <Label
-                        uiTransform={{ margin: { top: 10 } }}
                         fontSize={(user.name ? 12 : 14) * scaleFactor}
                         value={user.name ? user.address : `${user.address}`}
                         color={
@@ -290,15 +293,26 @@ export function ModalAdminList({
               value="Prev"
               variant="secondary"
               disabled={page <= 1}
-              fontSize={14 * scaleFactor}
+              fontSize={18 * scaleFactor}
+              icon="assets/chevron-back.png"
+              iconTransform={{
+                width: 25 * scaleFactor,
+                height: 25 * scaleFactor,
+                margin: { left: 8 * scaleFactor },
+              }}
+              iconBackground={{
+                color:
+                  page <= 1 ? Color4.fromHexString('#323232') : Color4.White(),
+              }}
               color={
                 page <= 1 ? Color4.fromHexString('#323232') : Color4.White()
               }
               labelTransform={{
-                margin: { left: 10 * scaleFactor, right: 10 * scaleFactor },
+                margin: { right: 10 * scaleFactor },
               }}
               uiTransform={{
-                height: 32 * scaleFactor,
+                height: 42 * scaleFactor,
+                alignItems: 'center',
               }}
               onMouseDown={() => setPage(page - 1)}
             />
@@ -311,9 +325,20 @@ export function ModalAdminList({
               id="next"
               value="<b>Next</b>"
               variant="secondary"
-              fontSize={14 * scaleFactor}
+              fontSize={18 * scaleFactor}
+              iconRight="assets/chevron-forward.png"
+              iconRightTransform={{
+                width: 25 * scaleFactor,
+                height: 25 * scaleFactor,
+                margin: { right: 8 * scaleFactor },
+              }}
               labelTransform={{
-                margin: { left: 10 * scaleFactor, right: 10 * scaleFactor },
+                margin: { left: 10 * scaleFactor },
+              }}
+              iconBackground={{
+              color: page >= Math.ceil(sceneAdmins.length / ADMINS_PER_PAGE)
+                  ? Color4.fromHexString('#323232')
+                  : Color4.White()
               }}
               color={
                 page >= Math.ceil(sceneAdmins.length / ADMINS_PER_PAGE)
@@ -322,7 +347,8 @@ export function ModalAdminList({
               }
               disabled={page >= Math.ceil(sceneAdmins.length / ADMINS_PER_PAGE)}
               uiTransform={{
-                height: 32 * scaleFactor,
+                alignItems: 'center',
+                height: 42 * scaleFactor,
               }}
               onMouseDown={() => setPage(page + 1)}
             />

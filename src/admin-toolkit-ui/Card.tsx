@@ -1,7 +1,8 @@
-import ReactEcs, { UiEntity } from "@dcl/react-ecs";
+import ReactEcs, { UiEntity, UiTransformProps } from "@dcl/react-ecs";
 import { containerBackgroundColor } from ".";
 
-export function Card({ scaleFactor, children }: { scaleFactor: number; children?: ReactEcs.JSX.Element }) {
+
+export function Card({ scaleFactor, children, uiTransform }: { scaleFactor: number; children?: ReactEcs.JSX.Element, uiTransform?: UiTransformProps }) {
   return (
     <UiEntity
       uiTransform={{
@@ -19,6 +20,7 @@ export function Card({ scaleFactor, children }: { scaleFactor: number; children?
           bottom: 32 * scaleFactor,
           left: 32 * scaleFactor,
         },
+        ...uiTransform
       }}
       uiBackground={{ color: containerBackgroundColor }}
     >

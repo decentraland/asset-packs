@@ -261,7 +261,7 @@ function isAllowedAdmin(
   const playerAddress = player.userId.toLowerCase()
   const isAdmin = sceneAdminsCache.find($ => $.address === playerAddress)
 
-  return isAdmin || true // TODO: remove this
+  return isAdmin
 }
 
 const uiComponent = (

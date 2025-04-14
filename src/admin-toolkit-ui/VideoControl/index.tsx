@@ -52,7 +52,17 @@ export function VideoControl({
     <UiEntity
       uiTransform={{ flexDirection: 'column', width: '100%', height: '100%' }}
     >
-      <Card scaleFactor={scaleFactor}>
+      <Card
+        scaleFactor={scaleFactor}
+        uiTransform={{
+          padding: {
+            top: 32 * scaleFactor,
+            right: 32 * scaleFactor,
+            bottom: 0,
+            left: 32 * scaleFactor,
+          },
+        }}
+      >
         <UiEntity
           uiTransform={{
             width: '100%',
@@ -80,7 +90,10 @@ export function VideoControl({
             }}
           >
             <Dropdown
-              options={videoPlayers.map((player) => `<b>${player.customName}</b>`)}
+              options={videoPlayers.map(
+                (player) =>
+                  `<b>${player.customName}</b>`,
+              )}
               selectedIndex={state.videoControl.selectedVideoPlayer ?? 0}
               onChange={(idx) => (state.videoControl.selectedVideoPlayer = idx)}
               textAlign="middle-left"
@@ -88,9 +101,6 @@ export function VideoControl({
               uiTransform={{
                 margin: { right: 8 * scaleFactor },
                 width: '100%',
-                borderColor: Color4.White(),
-                borderWidth: 4,
-                borderRadius: 12,
               }}
               uiBackground={{ color: Color4.White() }}
             />
@@ -119,8 +129,7 @@ export function VideoControl({
                 scaleFactor={scaleFactor}
                 selected={selected === 'video-url'}
                 active={
-                  selectedVideo &&
-                  selectedVideo.src.startsWith('https://')
+                  selectedVideo && selectedVideo.src.startsWith('https://')
                 }
               />
               <CustomButton
@@ -214,7 +223,7 @@ function CustomButton({ active, scaleFactor, value, id, onClick, icon, selected,
         />
       </UiEntity>
 
-      {active && <Active scaleFactor={scaleFactor} engine={engine} uiTransform={{ margin: { top: 6 * scaleFactor } }} />}
+      {active && <Active scaleFactor={scaleFactor} engine={engine} uiTransform={{ width: '90%', margin: { top: 6 * scaleFactor } }} />}
     </UiEntity>
   )
 }

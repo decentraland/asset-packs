@@ -10,8 +10,10 @@ import { state } from '../..'
 import { getComponents } from '../../../definitions'
 import { getStreamKey } from '../api'
 import { LoadingDots } from '../../Loading'
+import { openExternalUrl } from '~system/RestrictedActions'
 
 export const LIVEKIT_STREAM_SRC = 'livekit-video://current-stream'
+export const STREAMING_SUPPORT_URL = 'https://docs.decentraland.org//creator/editor/live-streaming'
 
 export function LiveStream({
   engine,
@@ -60,20 +62,44 @@ export function LiveStream({
   }
 
   return (
-    <UiEntity uiTransform={{ flexDirection: 'column' }}>
-      <Header
-        iconSrc={ICONS.LIVE_SOURCE}
-        title="Live Stream"
-        scaleFactor={scaleFactor}
-      />
+    <UiEntity uiTransform={{ flexDirection: 'column', width: '100%' }}>
+      <UiEntity
+        uiTransform={{ width: '100%', justifyContent: 'space-between' }}
+      >
+        <Header
+          iconSrc={ICONS.LIVE_SOURCE}
+          title="Live Stream"
+          scaleFactor={scaleFactor}
+        />
+        <UiEntity
+          onMouseDown={() => openExternalUrl({ url: STREAMING_SUPPORT_URL })}
+          uiTransform={{
+            width: 25 * scaleFactor,
+            height: 25 * scaleFactor,
+            alignItems: 'center',
+          }}
+          uiBackground={{
+            textureMode: 'stretch',
+            color: Color4.White(),
+            texture: {
+              src: 'assets/help.png',
+            },
+          }}
+        />
+      </UiEntity>
       <Label
+        textAlign="middle-left"
         value="Stream an existing feed providing using an RMTP server."
         color={Color4.fromHexString('#A09BA8')}
         fontSize={16 * scaleFactor}
       />
-      {loading ?
-        <LoadingDots uiTransform={{ minHeight: 400 * scaleFactor }} scaleFactor={scaleFactor} engine={engine} />
-        : streamKey ? (
+      {loading ? (
+        <LoadingDots
+          uiTransform={{ minHeight: 400 * scaleFactor }}
+          scaleFactor={scaleFactor}
+          engine={engine}
+        />
+      ) : streamKey ? (
         <ShowStreamKey
           streamKey={streamKey ?? ''}
           endsAt={streamKeyEndsAt ?? 0}
