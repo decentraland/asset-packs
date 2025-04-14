@@ -25,7 +25,6 @@ import { CONTENT_URL } from './constants'
 import { getSceneDeployment, getSceneOwners } from './utils'
 import { State, TabType, SelectedSmartItem } from './types'
 import { getExplorerComponents } from '../components'
-import { getNextEnumEntityId } from '../enum-entity'
 
 export const nextTickFunctions: (() => void)[] = []
 
@@ -242,15 +241,21 @@ function initTextAnnouncementSync(engine: IEngine) {
   })
 }
 
+function getNetworkParentEntity(engine: IEngine) {
+  const { NetworkEntity } = getExplorerComponents(engine)
+  return NetworkEntity.getOrCreateMutable(ADMIN_TOOLS_ENTITY, {
+    entityId: ADMIN_TOOLS_ENTITY,
+    networkId: 0,
+  })
+}
+
 // Helper function to sync entities components
 function syncEntitiesComponents(
   engine: IEngine,
   entities: { entity: number | Entity }[],
   requiredComponentIds: number[],
-  parentEntity: Entity,
-  sdkHelpers?: ISDKHelpers,
 ) {
-  const { SyncComponents } = getExplorerComponents(engine)
+  const { SyncComponents, NetworkParent } = getExplorerComponents(engine)
   const entitiesToSync: Entity[] = []
 
   entities.forEach((item) => {
@@ -266,14 +271,19 @@ function syncEntitiesComponents(
     }
   })
 
-  if (entitiesToSync.length > 0 && sdkHelpers?.syncEntity) {
+  if (entitiesToSync.length > 0) {
+    const parentNetworkEntity = getNetworkParentEntity(engine)
+
     entitiesToSync.forEach((entity) => {
-      sdkHelpers.syncEntity!(entity, requiredComponentIds, parentEntity)
+      NetworkParent.createOrReplace(entity, parentNetworkEntity)
+      SyncComponents.createOrReplace(entity, {
+        componentIds: requiredComponentIds,
+      })
     })
   }
 }
 
-function initSmartItemsSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
+function initSmartItemsSync(engine: IEngine) {
   const { Animator, Transform, Tween, VisibilityComponent } =
     getExplorerComponents(engine)
 
@@ -285,16 +295,10 @@ function initSmartItemsSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
   ]
 
   const smartItems = getSmartItems(engine)
-  syncEntitiesComponents(
-    engine,
-    smartItems,
-    requiredComponentIds,
-    getNextEnumEntityId(engine),
-    sdkHelpers,
-  )
+  syncEntitiesComponents(engine, smartItems, requiredComponentIds)
 }
 
-function initRewardsSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
+function initRewardsSync(engine: IEngine) {
   const { Animator, Transform, Tween, VisibilityComponent } =
     getExplorerComponents(engine)
 
@@ -306,21 +310,12 @@ function initRewardsSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
   ]
 
   const rewards = getRewards(engine)
-  syncEntitiesComponents(
-    engine,
-    rewards,
-    requiredComponentIds,
-    getNextEnumEntityId(engine),
-    sdkHelpers,
-  )
+  syncEntitiesComponents(engine, rewards, requiredComponentIds)
 }
 
 // Initialize admin data before UI rendering
 let adminDataInitialized = false
-export async function initializeAdminData(
-  engine: IEngine,
-  sdkHelpers?: ISDKHelpers,
-) {
+export async function initializeAdminData(engine: IEngine) {
   console.log('initializeAdminData')
   if (!adminDataInitialized) {
     console.log('initializeAdminData - not initialized')
@@ -339,15 +334,15 @@ export async function initializeAdminData(
     initTextAnnouncementSync(engine)
 
     // Initialize Smart Items sync
-    initSmartItemsSync(engine, sdkHelpers)
+    initSmartItemsSync(engine)
 
     // Initialize Rewards sync
-    initRewardsSync(engine, sdkHelpers)
+    initRewardsSync(engine)
 
-    sdkHelpers?.syncEntity?.(
-      state.adminToolkitUiEntity,
+    syncEntitiesComponents(
+      engine,
+      [{ entity: state.adminToolkitUiEntity }],
       [VideoControlState.componentId, TextAnnouncements.componentId],
-      ADMIN_TOOLS_ENTITY,
     )
 
     engine.addSystem(() => {
@@ -373,7 +368,7 @@ export function createAdminToolkitUI(
   playersHelper?: IPlayersHelper,
 ) {
   // Initialize admin data before setting up the UI
-  initializeAdminData(engine, sdkHelpers).then(() => {
+  initializeAdminData(engine).then(() => {
     console.log('createAdminToolkitUI - initialized')
     reactBasedUiSystem.setUiRenderer(() =>
       uiComponent(engine, pointerEventsSystem, sdkHelpers, playersHelper),

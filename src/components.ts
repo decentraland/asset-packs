@@ -21,6 +21,7 @@ import {
   PointerEvents as definePointerEvents,
   NetworkEntity as defineNetworkEntity,
   SyncComponents as defineSyncComponents,
+  NetworkParent as defineNetworkParent,
 } from '@dcl/ecs/dist/components'
 import { IEngine } from '@dcl/ecs'
 import { EngineComponents } from './definitions'
@@ -49,5 +50,6 @@ export function getExplorerComponents(engine: IEngine): EngineComponents {
     PointerEvents: definePointerEvents(engine),
     NetworkEntity: defineNetworkEntity(engine),
     SyncComponents: defineSyncComponents(engine),
+    NetworkParent: defineNetworkParent(engine),
   }
 }

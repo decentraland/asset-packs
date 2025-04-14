@@ -28,6 +28,7 @@ import {
   PBUiInput,
   PBUiInputResult,
   PBUiCanvasInformation,
+  NetworkParent,
 } from '@dcl/ecs'
 import { addActionType } from './action-types'
 import {
@@ -52,7 +53,6 @@ export * from './events'
 export * from './id'
 export * from './states'
 export * from './clone'
-export * from './enum-entity'
 export * from './lww'
 export * from './types'
 
@@ -469,6 +469,7 @@ export type EngineComponents = {
   PointerEvents: LastWriteWinElementSetComponentDefinition<PBPointerEvents>
   NetworkEntity: typeof NetworkEntity
   SyncComponents: typeof SyncComponents
+  NetworkParent: typeof NetworkParent
 }
 
 export function initComponents(engine: IEngine) {
