@@ -155,14 +155,19 @@ export function ShowStreamKey({
   )
 }
 
-// Helper function to format time remaining in hh:mm:ss
+// Helper function to format time remaining - shows days if > 1 day, otherwise shows hh:mm:ss
 function formatTimeRemaining(endsAt: number): string {
   const now = Date.now()
   const timeRemaining = Math.max(0, endsAt - now)
 
-  const hours = Math.floor(timeRemaining / (1000 * 60 * 60))
-  const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60))
-  const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000)
+  const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24))
 
-  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+  if (days >= 1) {
+    return `${days} ${days === 1 ? 'day' : 'days'}`
+  } else {
+    const hours = Math.floor(timeRemaining / (1000 * 60 * 60))
+    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60))
+    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000)
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+  }
 }

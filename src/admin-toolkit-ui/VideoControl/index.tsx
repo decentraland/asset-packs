@@ -48,6 +48,14 @@ export function VideoControl({
   const videoPlayers = getVideoPlayers(engine)
   const [selected, setSelected] = ReactEcs.useState<'video-url' | 'live' | undefined>(undefined)
 
+  ReactEcs.useEffect(() => {
+    setSelected(
+      selectedVideo && selectedVideo.src.startsWith('https://')
+        ? 'video-url'
+        : 'live',
+    )
+  }, [state.videoControl.selectedVideoPlayer])
+
   return (
     <UiEntity
       uiTransform={{ flexDirection: 'column', width: '100%', height: '100%' }}
@@ -89,29 +97,34 @@ export function VideoControl({
               margin: { bottom: 16 * scaleFactor },
             }}
           >
-            <Dropdown
-              options={videoPlayers.map(
-                (player) =>
-                  `<b>${player.customName}</b>`,
-              )}
-              selectedIndex={state.videoControl.selectedVideoPlayer ?? 0}
-              onChange={(idx) => (state.videoControl.selectedVideoPlayer = idx)}
-              textAlign="middle-left"
-              fontSize={16 * scaleFactor}
-              uiTransform={{
-                margin: { right: 8 * scaleFactor },
-                width: '100%',
-              }}
-              uiBackground={{ color: Color4.White() }}
-            />
-            <UiEntity
-              uiTransform={{
-                width: '100%',
-                height: 2,
-                margin: { top: 16 * scaleFactor, bottom: 16 * scaleFactor },
-              }}
-              uiBackground={{ color: Color4.fromHexString('#716B7C') }}
-            />
+            {videoPlayers.length > 1 && (
+              <UiEntity uiTransform={{  flexDirection: 'column' }}>
+                <Dropdown
+                  options={videoPlayers.map(
+                    (player) => `<b>${player.customName}</b>`,
+                  )}
+                  selectedIndex={state.videoControl.selectedVideoPlayer ?? 0}
+                  onChange={(idx) =>
+                    (state.videoControl.selectedVideoPlayer = idx)
+                  }
+                  textAlign="middle-left"
+                  fontSize={16 * scaleFactor}
+                  uiTransform={{
+                    margin: { right: 8 * scaleFactor },
+                    width: '100%',
+                  }}
+                  uiBackground={{ color: Color4.White() }}
+                />
+                <UiEntity
+                  uiTransform={{
+                    width: '100%',
+                    height: 2,
+                    margin: { top: 16 * scaleFactor, bottom: 8 * scaleFactor },
+                  }}
+                  uiBackground={{ color: Color4.fromHexString('#716B7C') }}
+                />
+              </UiEntity>
+            )}
             <UiEntity
               uiTransform={{
                 margin: { top: 10 * scaleFactor },

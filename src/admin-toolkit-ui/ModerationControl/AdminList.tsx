@@ -139,12 +139,13 @@ export function ModalAdminList({
                     alignItems: 'center',
                     height: 48 * scaleFactor,
                     padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
-                    margin: { bottom: 10 * scaleFactor },
+                    margin: { top: 4 * scaleFactor, bottom: 4 * scaleFactor },
                   }}
                 >
                   <UiEntity
                     uiTransform={{
                       display: 'flex',
+                      height: '100%',
                       justifyContent: 'center',
                     }}
                   >
@@ -158,8 +159,8 @@ export function ModalAdminList({
                     >
                       <UiEntity
                         uiTransform={{
-                          width: 30 * scaleFactor,
-                          height: 30 * scaleFactor,
+                          width: 28 * scaleFactor,
+                          height: 28 * scaleFactor,
                         }}
                         uiBackground={{
                           textureMode: 'stretch',
@@ -269,7 +270,7 @@ export function ModalAdminList({
                   uiTransform={{
                     width: '100%',
                     height: 1,
-                    margin: { top: -4 * scaleFactor, bottom: 4 * scaleFactor },
+                    // margin: { top: -4 * scaleFactor, bottom: 4 * scaleFactor },
                   }}
                   uiBackground={{ color: Color4.fromHexString('#43404A') }}
                 />

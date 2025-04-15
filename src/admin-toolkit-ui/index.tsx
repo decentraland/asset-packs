@@ -5,7 +5,7 @@ import ReactEcs, {
   UiEntity,
   ReactBasedUiSystem,
 } from '@dcl/react-ecs'
-import { Entity, IEngine, MeshCollider, PointerEventsSystem } from '@dcl/ecs'
+import { Entity, IEngine, PointerEventsSystem } from '@dcl/ecs'
 import {
   getComponents,
   GetPlayerDataRes,
