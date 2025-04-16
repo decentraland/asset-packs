@@ -7,6 +7,8 @@ import { GetPlayerDataRes } from '../types'
 import { Button } from './Button'
 import { CONTENT_URL } from './constants'
 import { State } from './types'
+import { Header } from './Header'
+import { Card } from './Card'
 
 const ICONS = {
   TEXT_ANNOUNCEMENT_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/text-announcement-control.png`,
@@ -29,140 +31,123 @@ export function TextAnnouncementsControl({
   const scaleFactor = getScaleUIFactor(engine)
 
   return (
-    <UiEntity
-      uiTransform={{
-        width: '100%',
-        height: '100%',
-        flexDirection: 'column',
-      }}
-    >
-      {/* Header */}
+    <Card scaleFactor={scaleFactor}>
       <UiEntity
         uiTransform={{
-          flexDirection: 'row',
-          display: 'flex',
-          alignItems: 'center',
-          margin: { bottom: 10 * scaleFactor },
-          height: 30 * scaleFactor,
+          width: '100%',
+          height: '100%',
+          flexDirection: 'column',
         }}
       >
-        <UiEntity
-          uiTransform={{ width: 30 * scaleFactor, height: 30 * scaleFactor }}
-          uiBackground={{
-            color: Color4.White(),
-            textureMode: 'stretch',
-            texture: { src: ICONS.TEXT_ANNOUNCEMENT_CONTROL },
-          }}
+        {/* Header */}
+        <Header
+          iconSrc={ICONS.TEXT_ANNOUNCEMENT_CONTROL}
+          scaleFactor={scaleFactor}
+          title="Text Announcements"
         />
-        <Label
-          value="<b>Text Announcements</b>"
-          uiTransform={{ margin: { bottom: 8, left: 20 } }}
-          fontSize={24 * scaleFactor}
-          color={Color4.White()}
-        />
-      </UiEntity>
-      <UiEntity uiTransform={{ flexDirection: 'column' }}>
-        <Label
-          value="<b>Message window</b>"
-          fontSize={16 * scaleFactor}
-          color={Color4.White()}
-          uiTransform={{ margin: { bottom: 16 * scaleFactor } }}
-        />
-
-        <Input
-          onSubmit={(value) => {
-            handleSendTextAnnouncement(engine, state, value, player)
-          }}
-          onChange={(value) => {
-            state.textAnnouncementControl.text = value
-          }}
-          fontSize={16 * scaleFactor}
-          placeholder={'Write your announcement here'}
-          placeholderColor={Color4.create(160 / 255, 155 / 255, 168 / 255, 1)}
-          color={Color4.Black()}
-          uiBackground={{ color: Color4.White() }}
-          uiTransform={{
-            width: '100%',
-            height: 80 * scaleFactor,
-            margin: { bottom: 16 * scaleFactor },
-          }}
-        />
-
-        <UiEntity
-          uiTransform={{
-            width: '100%',
-            height: 40 * scaleFactor,
-            flexDirection: 'row',
-            margin: {
-              bottom: 10 * scaleFactor,
-              top: 0,
-              right: 0,
-              left: 0,
-            },
-          }}
-        >
+        <UiEntity uiTransform={{ flexDirection: 'column' }}>
           <Label
-            value={`${state.textAnnouncementControl.text?.length ?? 0} / 90`}
-            fontSize={14 * scaleFactor}
-            color={Color4.create(187 / 255, 187 / 255, 187 / 255, 1)}
-            uiTransform={{ flexGrow: 1 }}
-            textAlign="top-left"
-          />
-          <Button
-            id="text_announcement_control_clear"
-            value="<b>Clear Announcements</b>"
-            variant="text"
+            value="<b>Message window</b>"
             fontSize={16 * scaleFactor}
             color={Color4.White()}
-            uiTransform={{
-              height: 40 * scaleFactor,
-              margin: { right: 8 * scaleFactor },
+            uiTransform={{ margin: { bottom: 16 * scaleFactor } }}
+          />
+
+          <Input
+            onSubmit={(value) => {
+              handleSendTextAnnouncement(engine, state, value, player)
             }}
-            onMouseDown={() => {
-              handleClearTextAnnouncement(engine, state)
+            onChange={(value) => {
+              state.textAnnouncementControl.text = value
+            }}
+            fontSize={16 * scaleFactor}
+            placeholder={'Write your announcement here'}
+            placeholderColor={Color4.create(160 / 255, 155 / 255, 168 / 255, 1)}
+            color={Color4.Black()}
+            uiBackground={{ color: Color4.White() }}
+            uiTransform={{
+              width: '100%',
+              height: 80 * scaleFactor,
+              margin: { bottom: 16 * scaleFactor },
             }}
           />
-          <Button
-            id="text_announcement_control_share"
-            value="<b>Share</b>"
-            variant="primary"
-            fontSize={16 * scaleFactor}
-            labelTransform={{ margin: '0 20' }}
-            uiTransform={{ height: 40 * scaleFactor }}
-            onMouseDown={() => {
-              handleSendTextAnnouncement(
-                engine,
-                state,
-                state.textAnnouncementControl.text,
-                player,
-              )
+
+          <UiEntity
+            uiTransform={{
+              width: '100%',
+              height: 40 * scaleFactor,
+              flexDirection: 'row',
+              margin: {
+                bottom: 10 * scaleFactor,
+                top: 0,
+                right: 0,
+                left: 0,
+              },
             }}
+          >
+            <Label
+              value={`${state.textAnnouncementControl.text?.length ?? 0} / 90`}
+              fontSize={14 * scaleFactor}
+              color={Color4.create(187 / 255, 187 / 255, 187 / 255, 1)}
+              uiTransform={{ flexGrow: 1 }}
+              textAlign="top-left"
+            />
+            <Button
+              id="text_announcement_control_clear"
+              value="<b>Clear Announcements</b>"
+              variant="text"
+              fontSize={16 * scaleFactor}
+              color={Color4.White()}
+              uiTransform={{
+                height: 40 * scaleFactor,
+                margin: { right: 8 * scaleFactor },
+              }}
+              onMouseDown={() => {
+                handleClearTextAnnouncement(engine, state)
+              }}
+            />
+            <Button
+              id="text_announcement_control_share"
+              value="<b>Share</b>"
+              variant="primary"
+              fontSize={16 * scaleFactor}
+              labelTransform={{ margin: { left: 20 * scaleFactor, right: 20 * scaleFactor } }}
+              uiTransform={{ height: 40 * scaleFactor }}
+              onMouseDown={() => {
+                handleSendTextAnnouncement(
+                  engine,
+                  state,
+                  state.textAnnouncementControl.text,
+                  player,
+                )
+              }}
+            />
+          </UiEntity>
+        </UiEntity>
+
+        <UiEntity uiTransform={{ minHeight: 30 * scaleFactor }}>
+          <UiEntity
+            uiTransform={{
+              display: ANNOUNCEMENT_STATE !== undefined ? 'flex' : 'none',
+              width: 30 * scaleFactor,
+              height: 30 * scaleFactor,
+            }}
+            uiBackground={{
+              texture: { src: ICONS.CHECK },
+              textureMode: 'stretch',
+            }}
+          />
+          <Label
+            uiTransform={{
+              display: ANNOUNCEMENT_STATE !== undefined ? 'flex' : 'none',
+            }}
+            value={`Message ${ANNOUNCEMENT_STATE === 'sent' ? 'sent' : 'cleared'}!`}
+            fontSize={14 * scaleFactor}
+            color={Color4.create(187 / 255, 187 / 255, 187 / 255, 1)}
           />
         </UiEntity>
       </UiEntity>
-
-      <UiEntity uiTransform={{ minHeight: 30 * scaleFactor }}>
-        <UiEntity
-          uiTransform={{
-            display: ANNOUNCEMENT_STATE !== undefined ? 'flex' : 'none',
-            width: 30 * scaleFactor,
-            height: 30 * scaleFactor,
-          }}
-          uiBackground={{
-            texture: { src: ICONS.CHECK },
-            textureMode: 'stretch',
-          }}
-        />
-        <Label
-          uiTransform={{
-            display: ANNOUNCEMENT_STATE !== undefined ? 'flex' : 'none',
-          }}
-          value={`Message ${ANNOUNCEMENT_STATE === 'sent' ? 'sent' : 'cleared'}!`}
-          fontSize={14 * scaleFactor}
-          color={Color4.create(187 / 255, 187 / 255, 187 / 255, 1)}
-        />
-      </UiEntity>
-    </UiEntity>
+    </Card>
   )
 }
 
