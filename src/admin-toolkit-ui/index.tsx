@@ -241,22 +241,13 @@ function initTextAnnouncementSync(engine: IEngine) {
   })
 }
 
-function getNetworkParentEntity(engine: IEngine) {
-  const { NetworkEntity } = getExplorerComponents(engine)
-  return NetworkEntity.getOrCreateMutable(ADMIN_TOOLS_ENTITY, {
-    entityId: ADMIN_TOOLS_ENTITY,
-    networkId: 0,
-  })
-}
-
 // Helper function to sync entities components
 function syncEntitiesComponents(
   engine: IEngine,
   entities: { entity: number | Entity }[],
   requiredComponentIds: number[],
 ) {
-  const { SyncComponents, NetworkParent } = getExplorerComponents(engine)
-  const entitiesToSync: Entity[] = []
+  const { SyncComponents } = getExplorerComponents(engine)
 
   entities.forEach((item) => {
     const entity = item.entity as Entity
@@ -266,21 +257,8 @@ function syncEntitiesComponents(
       const componentIds = new Set(syncComponents.componentIds)
       requiredComponentIds.forEach((id) => componentIds.add(id))
       syncComponents.componentIds = Array.from(componentIds)
-    } else {
-      entitiesToSync.push(entity)
     }
   })
-
-  if (entitiesToSync.length > 0) {
-    const parentNetworkEntity = getNetworkParentEntity(engine)
-
-    entitiesToSync.forEach((entity) => {
-      NetworkParent.createOrReplace(entity, parentNetworkEntity)
-      SyncComponents.createOrReplace(entity, {
-        componentIds: requiredComponentIds,
-      })
-    })
-  }
 }
 
 function initSmartItemsSync(engine: IEngine) {
@@ -315,7 +293,10 @@ function initRewardsSync(engine: IEngine) {
 
 // Initialize admin data before UI rendering
 let adminDataInitialized = false
-export async function initializeAdminData(engine: IEngine) {
+export async function initializeAdminData(
+  engine: IEngine,
+  sdkHelpers?: ISDKHelpers,
+) {
   console.log('initializeAdminData')
   if (!adminDataInitialized) {
     console.log('initializeAdminData - not initialized')
@@ -339,10 +320,10 @@ export async function initializeAdminData(engine: IEngine) {
     // Initialize Rewards sync
     initRewardsSync(engine)
 
-    syncEntitiesComponents(
-      engine,
-      [{ entity: state.adminToolkitUiEntity }],
+    sdkHelpers?.syncEntity?.(
+      state.adminToolkitUiEntity,
       [VideoControlState.componentId, TextAnnouncements.componentId],
+      ADMIN_TOOLS_ENTITY,
     )
 
     engine.addSystem(() => {
@@ -368,7 +349,7 @@ export function createAdminToolkitUI(
   playersHelper?: IPlayersHelper,
 ) {
   // Initialize admin data before setting up the UI
-  initializeAdminData(engine).then(() => {
+  initializeAdminData(engine, sdkHelpers).then(() => {
     console.log('createAdminToolkitUI - initialized')
     reactBasedUiSystem.setUiRenderer(() =>
       uiComponent(engine, pointerEventsSystem, sdkHelpers, playersHelper),
