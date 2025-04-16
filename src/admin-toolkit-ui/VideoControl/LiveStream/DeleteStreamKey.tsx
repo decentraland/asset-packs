@@ -34,7 +34,7 @@ export function DeleteStreamKeyConfirmation({
       }}
     >
       <Label
-        value="<b>Are you sure you want to reset your Stream Key?</b>"
+        value="<b>Are you sure you want to revoke your Stream Key?</b>"
         fontSize={16 * scaleFactor}
         color={Color4.fromHexString('#FCFCFC')}
       />
@@ -78,7 +78,7 @@ export function DeleteStreamKeyConfirmation({
         {!isLoading && (
           <Button
             id="stream_key_confirm_remove"
-            value={'<b>Confirm Reset</b>'}
+            value={'<b>Confirm Revoke</b>'}
             variant="primary"
             fontSize={18 * scaleFactor}
             color={Color4.White()}

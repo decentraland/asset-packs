@@ -140,7 +140,7 @@ export function ShowStreamKey({
       <UiEntity>
         <Button
           id="video_control_reset_stream_key"
-          value="<b>Reset Stream Key</b>"
+          value="<b>Revoke Stream Key</b>"
           variant="text"
           fontSize={16 * scaleFactor}
           color={Color4.fromHexString('#FB3B3B')}
