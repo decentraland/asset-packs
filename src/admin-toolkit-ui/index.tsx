@@ -79,7 +79,7 @@ const BTN_ADMIN_TOOLKIT_BACKGROUND = `${CONTENT_URL}/admin_toolkit/assets/backgr
 
 const containerBackgroundColor = Color4.create(0, 0, 0, 0.75)
 
-// The network entities ids start from [8001].
+// The editor starts using entities from [8001].
 const ADMIN_TOOLS_ENTITY = 8000 as Entity
 
 function getAdminToolkitEntity(engine: IEngine) {
@@ -237,58 +237,8 @@ function initTextAnnouncementSync(engine: IEngine) {
   TextAnnouncements.createOrReplace(state.adminToolkitUiEntity, {
     text: '',
     author: '',
-    id: '',
+    id: ''
   })
-}
-
-// Helper function to sync entities components
-function syncEntitiesComponents(
-  engine: IEngine,
-  entities: { entity: number | Entity }[],
-  requiredComponentIds: number[],
-) {
-  const { SyncComponents } = getExplorerComponents(engine)
-
-  entities.forEach((item) => {
-    const entity = item.entity as Entity
-    const syncComponents = SyncComponents.getMutableOrNull(entity)
-
-    if (syncComponents) {
-      const componentIds = new Set(syncComponents.componentIds)
-      requiredComponentIds.forEach((id) => componentIds.add(id))
-      syncComponents.componentIds = Array.from(componentIds)
-    }
-  })
-}
-
-function initSmartItemsSync(engine: IEngine) {
-  const { Animator, Transform, Tween, VisibilityComponent } =
-    getExplorerComponents(engine)
-
-  const requiredComponentIds = [
-    Animator.componentId,
-    Transform.componentId,
-    Tween.componentId,
-    VisibilityComponent.componentId,
-  ]
-
-  const smartItems = getSmartItems(engine)
-  syncEntitiesComponents(engine, smartItems, requiredComponentIds)
-}
-
-function initRewardsSync(engine: IEngine) {
-  const { Animator, Transform, Tween, VisibilityComponent } =
-    getExplorerComponents(engine)
-
-  const requiredComponentIds = [
-    Animator.componentId,
-    Transform.componentId,
-    Tween.componentId,
-    VisibilityComponent.componentId,
-  ]
-
-  const rewards = getRewards(engine)
-  syncEntitiesComponents(engine, rewards, requiredComponentIds)
 }
 
 // Initialize admin data before UI rendering
@@ -313,12 +263,6 @@ export async function initializeAdminData(
 
     // Initialize TextAnnouncements sync component
     initTextAnnouncementSync(engine)
-
-    // Initialize Smart Items sync
-    initSmartItemsSync(engine)
-
-    // Initialize Rewards sync
-    initRewardsSync(engine)
 
     sdkHelpers?.syncEntity?.(
       state.adminToolkitUiEntity,
