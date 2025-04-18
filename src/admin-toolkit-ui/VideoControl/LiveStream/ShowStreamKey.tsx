@@ -7,7 +7,7 @@ import {
 } from '../utils'
 import { VideoControlVolume } from '../VolumeControl'
 import { Button } from '../../Button'
-import { LIVEKIT_STREAM_SRC } from '.'
+import { LIVEKIT_STREAM_SRC } from '../../../definitions'
 
 export function ShowStreamKey({
   scaleFactor,

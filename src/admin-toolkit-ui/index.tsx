@@ -83,6 +83,8 @@ function getAdminToolkitComponent(engine: IEngine) {
 export async function fetchSceneAdmins() {
   const [error, response] = await getSceneAdmins()
 
+  console.log(JSON.stringify({ error, response }))
+
   if (error) {
     // user doesnt have permissions
     sceneAdminsCache = []

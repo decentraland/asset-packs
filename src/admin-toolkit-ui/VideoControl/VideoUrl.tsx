@@ -6,8 +6,8 @@ import { createVideoPlayerControls } from './utils'
 import { VideoControlVolume } from './VolumeControl'
 import { Button } from '../Button'
 import { Header } from '../Header'
-import { LIVEKIT_STREAM_SRC, STREAMING_SUPPORT_URL } from './LiveStream'
 import { openExternalUrl } from '~system/RestrictedActions'
+import { LIVEKIT_STREAM_SRC } from '../../definitions'
 
 const VIDEO_PLAYER_HELP_URL = 'https://docs.decentraland.org/creator/editor/scene-admin/#video-playing'
 

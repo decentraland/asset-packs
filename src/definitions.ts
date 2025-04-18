@@ -43,8 +43,11 @@ import {
   Colliders,
   ProximityLayer,
   AdminPermissions,
+  MediaSource,
 } from './enums'
 import { getExplorerComponents } from './components'
+
+export const LIVEKIT_STREAM_SRC = 'livekit-video://current-stream'
 
 export * from './enums'
 export * from './action-types'
@@ -243,6 +246,7 @@ export function getComponents(engine: IEngine) {
     Triggers: getComponent<Triggers>(ComponentName.TRIGGERS, engine),
     CounterBar: getComponent<CounterBar>(ComponentName.COUNTER_BAR, engine),
     AdminTools: getComponent<AdminTools>(ComponentName.ADMIN_TOOLS, engine),
+    VideoScreen: getComponent<VideoScreen>(ComponentName.VIDEO_SCREEN, engine),
     Rewards: getComponent<Rewards>(ComponentName.REWARDS, engine),
     TextAnnouncements: getComponent<TextAnnouncements>(
       ComponentName.TEXT_ANNOUNCEMENTS,
@@ -331,6 +335,12 @@ export function createComponents(engine: IEngine) {
     primaryColor: Schemas.Optional(Schemas.String),
     secondaryColor: Schemas.Optional(Schemas.String),
     maxValue: Schemas.Optional(Schemas.Float),
+  })
+
+  const VideoScreen = engine.defineComponent(ComponentName.VIDEO_SCREEN, {
+    thumbnail: Schemas.String,
+    defaultMediaSource: Schemas.EnumNumber<MediaSource>(MediaSource, MediaSource.VideoURL),
+    defaultURL: Schemas.String
   })
 
   const AdminTools = engine.defineComponent(ComponentName.ADMIN_TOOLS, {
@@ -432,6 +442,7 @@ export function createComponents(engine: IEngine) {
     Rewards,
     TextAnnouncements,
     VideoControlState,
+    VideoScreen
   }
 }
 
@@ -587,6 +598,11 @@ export type States = ReturnType<StatesComponent['schema']['deserialize']>
 export type AdminToolsComponent = Components['AdminTools']
 export type AdminTools = ReturnType<
   AdminToolsComponent['schema']['deserialize']
+>
+
+export type VideoScreenComponent = Components['VideoScreen']
+export type VideoScreen = ReturnType<
+  VideoScreenComponent['schema']['deserialize']
 >
 
 export type RewardsComponent = Components['Rewards']

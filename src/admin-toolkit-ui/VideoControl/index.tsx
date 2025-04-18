@@ -9,8 +9,9 @@ import { Header } from '../Header'
 import { getVideoPlayers, useSelectedVideoPlayer } from './utils'
 import { Card } from '../Card'
 import { VideoControlURL } from './VideoUrl'
-import { LIVEKIT_STREAM_SRC, LiveStream } from './LiveStream'
+import { LiveStream } from './LiveStream'
 import { Active } from '../Active'
+import { LIVEKIT_STREAM_SRC } from '../../definitions'
 
 // Constants
 export const ICONS = {
