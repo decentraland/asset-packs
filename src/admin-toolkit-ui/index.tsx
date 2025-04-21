@@ -24,6 +24,7 @@ import { getExplorerComponents } from '../components'
 import { BTN_MODERATION_CONTROL, ModerationControl, moderationControlState, SceneAdmin } from './ModerationControl'
 import { getSceneAdmins } from './ModerationControl/api'
 import { ModalAdminList } from './ModerationControl/AdminList'
+import { isPreview } from './fetch-utils'
 
 export const nextTickFunctions: (() => void)[] = []
 export let scaleFactor: number
@@ -31,7 +32,7 @@ export let scaleFactor: number
 export let state: State = {
   adminToolkitUiEntity: 0 as Entity,
   panelOpen: false,
-  activeTab: TabType.MODERATION_CONTROL,
+  activeTab: TabType.NONE,
   videoControl: {
     selectedVideoPlayer: undefined,
   },
@@ -199,7 +200,7 @@ function isAllowedAdmin(
   const playerAddress = player.userId.toLowerCase()
   const isAdmin = sceneAdminsCache.find($ => $.address === playerAddress)
 
-  return isAdmin
+  return isAdmin || isPreview()
 }
 
 const uiComponent = (
@@ -268,7 +269,7 @@ const uiComponent = (
                 icon={BTN_MODERATION_CONTROL}
                 onlyIcon
                 uiTransform={{
-                  display: adminToolkitEntity.moderationControl.isEnabled
+                  display: adminToolkitEntity.moderationControl.isEnabled && !isPreview()
                     ? 'flex'
                     : 'none',
                   width: 49 * scaleFactor,

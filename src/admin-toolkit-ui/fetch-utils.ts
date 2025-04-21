@@ -8,10 +8,9 @@ type Opts = {
 export async function wrapSignedFetch<T extends any = unknown>(signedFetchBody: SignedFetchRequest, opts: Opts = {}): Promise<Result<T, string>> {
   // TODO: uncomment this
   const realm = await getRealm()
-  const TODO = false // remove this
 
-  if (realm?.isPreview && TODO) {
-    return ["Cant do request on Local Preview", null]
+  if (realm?.isPreview) {
+    return ["Try again in Genesis/World. LocalPreview not supported.", null]
   }
 
   const [error, value] = await tryCatch(signedFetch(signedFetchBody))
@@ -50,7 +49,12 @@ export async function getRealm() {
   if (realmCache) return realmCache
   return realmCache = (await getRealmRuntime({})).realmInfo
 }
+
 getRealm()
+
+export function isPreview() {
+  return !!realmCache?.isPreview
+}
 
 export function getDomain() {
   if (!realmCache || realmCache.networkId === 1) return 'org'
