@@ -1,7 +1,7 @@
 {
   "id": "e64d56c0-9d68-4292-abae-1df6b239dd9f",
   "name": "Invisible Sphere",
-  "category": "utils",
+  "category": "primitives",
   "tags": [
     "invisible",
     "wall",

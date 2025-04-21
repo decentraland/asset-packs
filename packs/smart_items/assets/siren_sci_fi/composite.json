@@ -207,8 +207,8 @@
       "data": {
         "0": {
           "json": {
-            "isBasicViewEnabled": false,
-            "componentName": "Button",
+            "isBasicViewEnabled": true,
+            "componentName": "Siren",
             "fields": [
               {
                 "name": "Hover Text",
@@ -219,8 +219,7 @@
                 "type": "asset-packs::Triggers",
                 "basicViewId": "trigger-when-clicked"
               }
-            ],
-            "assetId": "756d3bb8-e73b-4bc7-8c55-1abd2c019d0f"
+            ]
           }
         }
       }

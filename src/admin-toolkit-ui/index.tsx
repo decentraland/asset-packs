@@ -123,67 +123,6 @@ function initTextAnnouncementSync(engine: IEngine) {
   })
 }
 
-// Helper function to sync entities components
-function syncEntitiesComponents(
-  engine: IEngine,
-  entities: { entity: number | Entity }[],
-  requiredComponentIds: number[],
-  sdkHelpers?: ISDKHelpers,
-  parentEntity: Entity = ADMIN_TOOLS_ENTITY,
-) {
-  const { SyncComponents } = getExplorerComponents(engine)
-  const entitiesToSync: Entity[] = []
-
-  entities.forEach((item) => {
-    const entity = item.entity as Entity
-    const syncComponents = SyncComponents.getMutableOrNull(entity)
-
-    if (syncComponents) {
-      const componentIds = new Set(syncComponents.componentIds)
-      requiredComponentIds.forEach((id) => componentIds.add(id))
-      syncComponents.componentIds = Array.from(componentIds)
-    } else {
-      entitiesToSync.push(entity)
-    }
-  })
-
-  if (entitiesToSync.length > 0 && sdkHelpers?.syncEntity) {
-    entitiesToSync.forEach((entity) => {
-      sdkHelpers.syncEntity!(entity, requiredComponentIds, parentEntity)
-    })
-  }
-}
-
-function initSmartItemsSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
-  const { Animator, Transform, Tween, VisibilityComponent } =
-    getExplorerComponents(engine)
-
-  const requiredComponentIds = [
-    Animator.componentId,
-    Transform.componentId,
-    Tween.componentId,
-    VisibilityComponent.componentId,
-  ]
-
-  const smartItems = getSmartItems(engine)
-  syncEntitiesComponents(engine, smartItems, requiredComponentIds, sdkHelpers)
-}
-
-function initRewardsSync(engine: IEngine, sdkHelpers?: ISDKHelpers) {
-  const { Animator, Transform, Tween, VisibilityComponent } =
-    getExplorerComponents(engine)
-
-  const requiredComponentIds = [
-    Animator.componentId,
-    Transform.componentId,
-    Tween.componentId,
-    VisibilityComponent.componentId,
-  ]
-
-  const rewards = getRewards(engine)
-  syncEntitiesComponents(engine, rewards, requiredComponentIds, sdkHelpers)
-}
-
 // Initialize admin data before UI rendering
 let adminDataInitialized = false
 export async function initializeAdminData(
@@ -201,11 +140,8 @@ export async function initializeAdminData(
     // Initialize TextAnnouncements sync component
     initTextAnnouncementSync(engine)
 
-    // Initialize Smart Items sync
-    initSmartItemsSync(engine, sdkHelpers)
-
-    // Initialize Rewards sync
-    initRewardsSync(engine, sdkHelpers)
+    // // Initialize Rewards sync
+    // initRewardsSync(engine, sdkHelpers)
 
     if (!VideoControlState.getOrNull(state.adminToolkitUiEntity)) {
       VideoControlState.create(state.adminToolkitUiEntity)

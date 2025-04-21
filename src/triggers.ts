@@ -328,19 +328,20 @@ export function createTriggersSystem(
   // ON_CLICK
   function initOnClickTrigger(entity: Entity) {
     const pointerEvent = PointerEvents.getMutableOrNull(entity)
-    const opts = { button: InputAction.IA_POINTER, hoverText: 'Click' }
+    let opts = { button: InputAction.IA_POINTER, hoverText: 'Click' }
 
     if (pointerEvent) {
-      // Avoid creating duplicats of the same pointerEvent.
-      // This issually happens with entities that are created at runtime and are being syncronized.
+      // Avoid creating duplicates of the same pointerEvent.
+      // This usually happens with entities that are created at runtime and are being syncronized.
       // If you receive an entity with pointerEvent this function inside the createTriggerSystem is generating another one with the same values.
-      pointerEvent.pointerEvents = pointerEvent.pointerEvents.filter(
-        ($) =>
-          !(
-            $.eventInfo?.button === opts.button &&
-            $.eventInfo.hoverText === opts.hoverText
-          ),
+      const existingIndex = pointerEvent.pointerEvents.findIndex(
+        ($) => $.eventInfo?.button === opts.button,
       )
+      if (existingIndex !== -1) {
+        const eventInfo = pointerEvent.pointerEvents[existingIndex].eventInfo
+        opts = { ...opts, ...eventInfo } // Merge default opts with the existing pointerEvent.
+        pointerEvent.pointerEvents.splice(existingIndex, 1)
+      }
     }
 
     pointerEventsSystem.onPointerDown(
@@ -358,21 +359,20 @@ export function createTriggersSystem(
   // ON_INPUT_ACTION
   function initOnInputActionTrigger(entity: Entity) {
     const pointerEvent = PointerEvents.getMutableOrNull(entity)
-
-    const opts = {
-      button: InputAction.IA_PRIMARY,
-      hoverText: 'Press',
-    }
+    let opts = { button: InputAction.IA_PRIMARY, hoverText: 'Press' }
 
     if (pointerEvent) {
       // Avoid creating duplicates of the same pointerEvent.
-      pointerEvent.pointerEvents = pointerEvent.pointerEvents.filter(
-        ($) =>
-          !(
-            $.eventInfo?.button === opts.button &&
-            $.eventInfo.hoverText === opts.hoverText
-          ),
+      // This usually happens with entities that are created at runtime and are being syncronized.
+      // If you receive an entity with pointerEvent this function inside the createTriggerSystem is generating another one with the same values.
+      const existingIndex = pointerEvent.pointerEvents.findIndex(
+        ($) => $.eventInfo?.button === opts.button,
       )
+      if (existingIndex !== -1) {
+        const eventInfo = pointerEvent.pointerEvents[existingIndex].eventInfo
+        opts = { ...opts, ...eventInfo } // Merge default opts with the existing pointerEvent.
+        pointerEvent.pointerEvents.splice(existingIndex, 1)
+      }
     }
 
     pointerEventsSystem.onPointerDown(
