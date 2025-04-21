@@ -1,11 +1,15 @@
 import { Color4 } from '@dcl/ecs-math'
 import ReactEcs, { UiEntity, Label, UiTransformProps } from '@dcl/react-ecs'
+import { CONTENT_URL } from './constants'
 
 interface LoadingProps {
   scaleFactor: number
   text: string
   uiTransform?: UiTransformProps
 }
+
+const ERROR_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/error.png`
+
 
 export function Error({
   scaleFactor,
@@ -34,14 +38,14 @@ export function Error({
         uiBackground={{
           textureMode: 'stretch',
           texture: {
-            src: 'assets/error.png',
+            src: ERROR_ICON ,
           },
         }}
       />
       <Label
         uiTransform={{
           width: 'auto',
-          maxWidth: '90%'
+          maxWidth: '90%',
         }}
         value={`<b>${text}</b>`}
         color={Color4.Red()}

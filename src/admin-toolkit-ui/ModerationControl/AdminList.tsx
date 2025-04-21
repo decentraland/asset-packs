@@ -5,6 +5,7 @@ import ReactEcs, { UiEntity, Label } from '@dcl/react-ecs'
 import { Button } from '../Button'
 import { RemoveAdminConfirmation } from './RemoveAdminConfirmation'
 import { moderationControlState, SceneAdmin } from '.'
+import { CONTENT_URL } from '../constants'
 
 
 type CurrentAdminProps = {
@@ -14,6 +15,14 @@ type CurrentAdminProps = {
 }
 
 const ADMINS_PER_PAGE = 5
+
+const ICONS = {
+  BACK: `${CONTENT_URL}/admin_toolkit/assets/icons/chevron-back.png`,
+  NEXT: `${CONTENT_URL}/admin_toolkit/assets/icons/chevron-forward.png`,
+  CLOSE: `${CONTENT_URL}/admin_toolkit/assets/icons/close.png`,
+  PERSON: `${CONTENT_URL}/admin_toolkit/assets/icons/person-outline.png`,
+  VERIFIED_USER: `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-verified-user.png`,
+}
 
 export function ModalAdminList({
   scaleFactor,
@@ -82,7 +91,7 @@ export function ModalAdminList({
               uiBackground={{
                 textureMode: 'stretch',
                 texture: {
-                  src: 'assets/verified_user.png',
+                  src: ICONS.VERIFIED_USER,
                 },
               }}
             />
@@ -100,7 +109,7 @@ export function ModalAdminList({
             <Button
               id="close-modal"
               onlyIcon
-              icon="assets/close.png"
+              icon={ICONS.CLOSE}
               variant="secondary"
               fontSize={20 * scaleFactor}
               uiTransform={{
@@ -165,7 +174,7 @@ export function ModalAdminList({
                         uiBackground={{
                           textureMode: 'stretch',
                           texture: {
-                            src: 'assets/person_outline.png',
+                            src: ICONS.PERSON,
                           },
                         }}
                       />
@@ -199,7 +208,7 @@ export function ModalAdminList({
                               uiBackground={{
                                 textureMode: 'stretch',
                                 texture: {
-                                  src: 'assets/verified.png',
+                                  src: ICONS.VERIFIED_USER,
                                 },
                                 color: Color4.White(),
                               }}
@@ -295,7 +304,7 @@ export function ModalAdminList({
               variant="secondary"
               disabled={page <= 1}
               fontSize={18 * scaleFactor}
-              icon="assets/chevron-back.png"
+              icon={ICONS.BACK}
               iconTransform={{
                 width: 25 * scaleFactor,
                 height: 25 * scaleFactor,
@@ -324,7 +333,7 @@ export function ModalAdminList({
               value="<b>Next</b>"
               variant="secondary"
               fontSize={18 * scaleFactor}
-              iconRight="assets/chevron-forward.png"
+              iconRight={ICONS.NEXT}
               iconRightTransform={{
                 width: 25 * scaleFactor,
                 height: 25 * scaleFactor,

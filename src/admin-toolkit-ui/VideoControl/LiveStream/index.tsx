@@ -11,6 +11,7 @@ import { getComponents } from '../../../definitions'
 import { getStreamKey } from '../api'
 import { LoadingDots } from '../../Loading'
 import { openExternalUrl } from '~system/RestrictedActions'
+import { HELP_ICON } from '../VideoUrl'
 
 export const LIVEKIT_STREAM_SRC = 'livekit-video://current-stream'
 export const STREAMING_SUPPORT_URL = 'https://docs.decentraland.org//creator/editor/live-streaming'
@@ -82,7 +83,7 @@ export function LiveStream({
             textureMode: 'stretch',
             color: Color4.White(),
             texture: {
-              src: 'assets/help.png',
+              src: HELP_ICON,
             },
           }}
         />

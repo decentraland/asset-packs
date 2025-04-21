@@ -21,8 +21,8 @@ export const ICONS = {
   PLAY_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-play-button.png`,
   VOLUME_MINUS_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-volume-minus-button.png`,
   VOLUME_PLUS_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-volume-plus-button.png`,
-  VIDEO_SOURCE: `assets/video.png`,
-  LIVE_SOURCE: `assets/live.png`
+  VIDEO_SOURCE: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-video.png`,
+  LIVE_SOURCE: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-live.png`,
 } as const
 
 

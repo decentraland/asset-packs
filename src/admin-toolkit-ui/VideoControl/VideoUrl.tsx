@@ -8,8 +8,11 @@ import { Button } from '../Button'
 import { Header } from '../Header'
 import { openExternalUrl } from '~system/RestrictedActions'
 import { LIVEKIT_STREAM_SRC } from '../../definitions'
+import { CONTENT_URL } from '../constants'
 
 const VIDEO_PLAYER_HELP_URL = 'https://docs.decentraland.org/creator/editor/scene-admin/#video-playing'
+export const HELP_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/help.png`
+
 
 export function VideoControlURL({
   engine,
@@ -49,9 +52,7 @@ export function VideoControlURL({
           uiBackground={{
             textureMode: 'stretch',
             color: Color4.White(),
-            texture: {
-              src: 'assets/help.png',
-            },
+            texture: { src: HELP_ICON },
           }}
         />
       </UiEntity>

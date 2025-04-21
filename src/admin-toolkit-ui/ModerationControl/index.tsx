@@ -8,6 +8,7 @@ import { AddUserInput } from './AddUserInput'
 import { Button } from '../Button'
 import { GetPlayerDataRes } from '../../types'
 import { Card } from '../Card'
+import { CONTENT_URL } from '../constants'
 
 
 type Props = {
@@ -16,9 +17,10 @@ type Props = {
 }
 
 // TODO: upload this to the content
-export const BTN_MODERATION_CONTROL = `assets/moderation-control.png`
-export const BTN_MODERATION_CONTROL_ACTIVE = `assets/moderation-control-active.png`
-const MODERATION_CONTROL_ICON = `assets/moderation-control-icon.png`
+export const BTN_MODERATION_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-moderation-control-button.png`
+export const MODERATION_CONTROL_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/moderation-control-icon.png`
+const VERIFIED_USER_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-verified-user`
+
 
 export type SceneAdmin = {
   name?: string
@@ -67,7 +69,7 @@ export function ModerationControl({ engine, player }: Props) {
             alignItems: 'center',
             justifyContent: 'center',
           }}
-          icon="assets/verified_user.png"
+          icon={VERIFIED_USER_ICON}
           iconTransform={{
             width: 25 * scaleFactor,
             height: 25 * scaleFactor,
