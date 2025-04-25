@@ -23,6 +23,38 @@ export function VideoControlVolume({
   const isSoundDisabled = videoControl?.disableVideoPlayersSound
   const volumePercentage = `${Math.round((video?.volume ?? DEFAULT_VOLUME) * 100)}%`
 
+  if (isSoundDisabled) {
+    return (
+      <UiEntity uiTransform={{ margin: { top: 4 * scaleFactor } }}>
+        <UiEntity
+          uiTransform={{ width: 24 * scaleFactor, height: 24 * scaleFactor, margin: { right: 8 * scaleFactor } }}
+          uiBackground={{
+            textureMode: 'stretch',
+            texture: {
+              src: ICONS.MUTE,
+            },
+            color: Color4.fromHexString('#A09BA8'),
+          }}
+        />
+        <Label
+          value="Sound is disabled for all screens"
+          color={Color4.fromHexString('#A09BA8')}
+          fontSize={14 * scaleFactor}
+        />
+        <UiEntity
+          uiTransform={{ width: 25 * scaleFactor, height: 25 * scaleFactor, margin: { left: 8 * scaleFactor } }}
+          uiBackground={{
+            textureMode: 'stretch',
+            texture: {
+              src: ICONS.INFO,
+            },
+            color: Color4.White()
+          }}
+        />
+      </UiEntity>
+    )
+  }
+
   return (
     <UiEntity
       uiTransform={{
@@ -62,7 +94,7 @@ export function VideoControlVolume({
             height: 25 * scaleFactor,
           }}
           onMouseDown={() => controls.setVolume(-VOLUME_STEP)}
-          disabled={isSoundDisabled}
+          disabled={isSoundDisabled || !video?.volume}
         />
         <Label
           value={volumePercentage}
@@ -73,6 +105,7 @@ export function VideoControlVolume({
             alignItems: 'center',
             justifyContent: 'center',
             padding: 0,
+            width: 50 * scaleFactor
           }}
         />
         <Button
@@ -93,26 +126,30 @@ export function VideoControlVolume({
             padding: 0,
           }}
           onMouseDown={() => controls.setVolume(VOLUME_STEP)}
-          disabled={isSoundDisabled}
+          disabled={isSoundDisabled || video?.volume === 1}
         />
         <Button
           id="video_control_volume_mute"
-          value="<b>Mute</b>"
-          variant="secondary"
+          variant={!video?.volume ? "primary" : "secondary"}
           fontSize={18 * scaleFactor}
-          labelTransform={{
-            margin: { left: 20 * scaleFactor, right: 20 * scaleFactor },
+          iconTransform={{ width: 24 * scaleFactor, height: 24 * scaleFactor}}
+          onlyIcon
+          icon={ICONS.MUTE}
+          iconBackground={{
+            color: video?.volume ? Color4.White() : Color4.Black()
           }}
-          color={Color4.fromHexString('#FCFCFC')}
           uiTransform={{
             borderColor: Color4.fromHexString('#FCFCFC'),
             borderWidth: 2,
+            width: 49 * scaleFactor,
             height: 42 * scaleFactor,
             alignItems: 'center',
             justifyContent: 'center',
             padding: 0,
           }}
-          onMouseDown={() => controls.setVolume(0)}
+          onMouseDown={() => {
+            controls.setVolume(!video?.volume ? 100 : 0)
+          }}
           disabled={isSoundDisabled}
         />
       </UiEntity>

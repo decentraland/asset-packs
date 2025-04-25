@@ -90,7 +90,7 @@ export function LiveStream({
       </UiEntity>
       <Label
         textAlign="middle-left"
-        value="Stream an existing feed providing using an RMTP server."
+        value="Use the RTMP server and stream key below in your broadcasting software to start streaming to this screen."
         color={Color4.fromHexString('#A09BA8')}
         fontSize={16 * scaleFactor}
       />
@@ -113,6 +113,11 @@ export function LiveStream({
       ) : (
         <GenerateStreamKey scaleFactor={scaleFactor} engine={engine} />
       )}
+      {!streamKey && <Label
+        fontSize={14 * scaleFactor}
+        color={Color4.fromHexString('#FF2D55')}
+        value="Do not share your stream key with anyone, and be careful not to display it on screen while streaming."
+      />}
     </UiEntity>
   )
 }

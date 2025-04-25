@@ -8,6 +8,13 @@ import {
 import { VideoControlVolume } from '../VolumeControl'
 import { Button } from '../../Button'
 import { LIVEKIT_STREAM_SRC } from '../../../definitions'
+import { ERROR_ICON } from '../../Error'
+import { CONTENT_URL } from '../../constants'
+
+const STREAM_ICONS = {
+  eyeShow: `${CONTENT_URL}/admin_toolkit/assets/icons/eye.png`,
+  eyeHide: `${CONTENT_URL}/admin_toolkit/assets/icons/eye-off.png`,
+}
 
 export function ShowStreamKey({
   scaleFactor,
@@ -27,6 +34,7 @@ export function ShowStreamKey({
   onReset(): void
 }) {
   const controls = createVideoPlayerControls(entity, engine)
+  const [showStreamkey, setShowStreamkey] = ReactEcs.useState(false)
 
   return (
     <UiEntity uiTransform={{ flexDirection: 'column' }}>
@@ -68,14 +76,32 @@ export function ShowStreamKey({
           margin: { bottom: 8 * scaleFactor, top: 8 * scaleFactor },
           height: 42 * scaleFactor,
           borderRadius: 12 * scaleFactor,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
         }}
         uiBackground={{ color: Color4.White() }}
       >
         <Label
           uiTransform={{ margin: { left: 16 * scaleFactor } }}
           fontSize={16 * scaleFactor}
-          value={`<b>${streamKey}</b>`}
+          value={`<b>${showStreamkey ? streamKey : '*********************************'}</b>`}
           color={Color4.fromHexString('#A09BA8')}
+        />
+        <UiEntity
+          uiTransform={{
+            width: 25 * scaleFactor,
+            height: 25 * scaleFactor,
+            margin: { right: 10 * scaleFactor },
+          }}
+          uiBackground={{
+            textureMode: 'stretch',
+            texture: {
+              src: showStreamkey ? STREAM_ICONS.eyeHide : STREAM_ICONS.eyeShow,
+            },
+            color: Color4.Black(),
+          }}
+          onMouseDown={() => setShowStreamkey(!showStreamkey)}
         />
       </UiEntity>
 
@@ -88,18 +114,49 @@ export function ShowStreamKey({
           margin: { top: 10 * scaleFactor, bottom: 16 * scaleFactor },
         }}
       >
-        <UiEntity uiTransform={{ flexDirection: 'column' }}>
-          <Label
-            value="Stream expires in:"
-            color={Color4.fromHexString('#FFFFFFB2')}
-            fontSize={14 * scaleFactor}
-          />
-          <Label
-            value={formatTimeRemaining(endsAt)}
-            color={Color4.fromHexString('#FFFFFFB2')}
-            fontSize={14 * scaleFactor}
-          />
-        </UiEntity>
+        {endsAt >= Date.now() ? (
+          <UiEntity uiTransform={{ flexDirection: 'column' }}>
+            <Label
+              value="Stream expires in:"
+              color={Color4.fromHexString('#FFFFFFB2')}
+              fontSize={14 * scaleFactor}
+            />
+            <Label
+              value={formatTimeRemaining(endsAt)}
+              color={Color4.fromHexString('#FFFFFFB2')}
+              fontSize={14 * scaleFactor}
+            />
+          </UiEntity>
+        ) : (
+          <UiEntity
+            uiTransform={{
+              flexDirection: 'row',
+              margin: { right: 10 * scaleFactor },
+              borderWidth: 2,
+              borderColor: Color4.Green(),
+            }}
+          >
+            <UiEntity
+              uiTransform={{
+                width: 15 * scaleFactor,
+                height: 15 * scaleFactor,
+                margin: { right: 4 * scaleFactor, top: 4 * scaleFactor },
+              }}
+              uiBackground={{
+                textureMode: 'stretch',
+                texture: {
+                  src: ERROR_ICON,
+                },
+              }}
+            />
+            <Label
+              fontSize={14 * scaleFactor}
+              textAlign="middle-left"
+              color={Color4.fromHexString('#FF0000')}
+              value="Stream timed out. Please restart stream in broadcasting software."
+            />
+          </UiEntity>
+        )}
         {video?.src === LIVEKIT_STREAM_SRC ? (
           <Button
             id="video_control_share_screen_clear"
@@ -108,6 +165,7 @@ export function ShowStreamKey({
             fontSize={16 * scaleFactor}
             color={Color4.White()}
             uiTransform={{
+              minWidth: 120 * scaleFactor,
               margin: { right: 8 * scaleFactor },
               padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
             }}
@@ -121,6 +179,9 @@ export function ShowStreamKey({
             value="<b>Activate</b>"
             labelTransform={{
               margin: { left: 20 * scaleFactor, right: 20 * scaleFactor },
+            }}
+            uiTransform={{
+              minWidth: 120 * scaleFactor,
             }}
             fontSize={16 * scaleFactor}
             uiBackground={{ color: COLORS.SUCCESS }}
@@ -140,7 +201,7 @@ export function ShowStreamKey({
       <UiEntity>
         <Button
           id="video_control_reset_stream_key"
-          value="<b>Revoke Stream Key</b>"
+          value="<b>Reset Stream Key</b>"
           variant="text"
           fontSize={16 * scaleFactor}
           color={Color4.fromHexString('#FB3B3B')}

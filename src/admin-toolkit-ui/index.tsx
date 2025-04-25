@@ -31,8 +31,8 @@ export let scaleFactor: number
 
 export let state: State = {
   adminToolkitUiEntity: 0 as Entity,
-  panelOpen: false,
-  activeTab: TabType.NONE,
+  panelOpen: true,
+  activeTab: TabType.VIDEO_CONTROL,
   videoControl: {
     selectedVideoPlayer: undefined,
   },
@@ -66,7 +66,7 @@ const BTN_TEXT_ANNOUNCEMENT_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons
 const BTN_ADMIN_TOOLKIT_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-control-button.png`
 const BTN_ADMIN_TOOLKIT_BACKGROUND = `${CONTENT_URL}/admin_toolkit/assets/backgrounds/admin-tool-background.png`
 
-export const containerBackgroundColor = Color4.fromHexString('#000000BF')
+export const containerBackgroundColor = Color4.create(0, 0, 0, 0.75)
 
 // The editor starts using entities from [8001].
 const ADMIN_TOOLS_ENTITY = 8000 as Entity
@@ -254,7 +254,7 @@ const uiComponent = (
               uiBackground={{ color: containerBackgroundColor }}
             >
               <Label
-                value="Admin Tools"
+                value="ADMIN TOOLS"
                 fontSize={20 * scaleFactor}
                 color={Color4.create(160, 155, 168, 1)}
                 uiTransform={{ flexGrow: 1 }}

@@ -8,8 +8,7 @@ interface LoadingProps {
   uiTransform?: UiTransformProps
 }
 
-const ERROR_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/error.png`
-
+export const ERROR_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/error.png`
 
 export function Error({
   scaleFactor,

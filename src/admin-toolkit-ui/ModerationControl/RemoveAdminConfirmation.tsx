@@ -45,14 +45,26 @@ export function RemoveAdminConfirmation({
         }}
         uiBackground={{ color: Color4.Black() }}
       >
-        <Label
-          value={`Are you sure you want to remove <b>${admin.name ?? admin.address}</b> from the Admin list?`}
-          fontSize={18 * scaleFactor}
-          color={Color4.White()}
-        />
+        <UiEntity uiTransform={{ flexDirection: 'row', maxWidth: 675 * scaleFactor }}>
+          <Label
+            value={`Are you sure you want to remove `}
+            fontSize={18 * scaleFactor}
+            color={Color4.White()}
+          />
+          <Label
+            value={`<b>${admin.name || (admin.address ? `${admin.address.substring(0, 6)}...${admin.address.substring(admin.address.length - 4)}` : '')}</b>`}
+            fontSize={18 * scaleFactor}
+            color={Color4.fromHexString('#FF2D55')}
+          />
+          <Label
+            value={` from the Admin list?`}
+            fontSize={18 * scaleFactor}
+            color={Color4.White()}
+          />
+        </UiEntity>
 
         <Label
-          value="This user will lose access to the Admin Tools for this scene"
+          value="If you proceed, they will lose access to tehe Admin Tools for this scene."
           fontSize={14 * scaleFactor}
           color={Color4.Gray()}
           uiTransform={{
@@ -66,57 +78,67 @@ export function RemoveAdminConfirmation({
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
-            width: '100%'
+            width: '100%',
           }}
         >
-          {!isLoading && <Button
-            id="cancel-remove"
-            value="<b>Cancel</b>"
-            variant="primary"
-            fontSize={16 * scaleFactor}
-            color={Color4.Black()}
-            uiTransform={{
-              width: 90 * scaleFactor,
-              height: 40 * scaleFactor,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              margin: { right: 30 * scaleFactor, left: 30 * scaleFactor },
-            }}
-            onMouseDown={() => {
-              moderationControlState.adminToRemove = undefined
-            }}
-          />}
-          {!isLoading && <Button
-            id="confirm-remove"
-            value={'<b>Remove Admin</b>'}
-            variant="primary"
-            fontSize={16 * scaleFactor}
-            color={Color4.White()}
-            uiTransform={{
-              width: 160 * scaleFactor,
-              height: 40 * scaleFactor,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-            uiBackground={{ color: Color4.fromHexString('#FF2D55') }}
-            onMouseDown={async () => {
-              if (!isLoading && admin.address) {
-                setIsLoading(true)
-                const [error] = await deleteSceneAdmin(admin.address)
-                if (error) {
-                  setError(error)
-                } else {
-                  moderationControlState.adminToRemove = undefined
-                  await fetchSceneAdmins()
+          {!isLoading && (
+            <Button
+              id="cancel-remove"
+              value="<b>Cancel</b>"
+              variant="primary"
+              fontSize={16 * scaleFactor}
+              color={Color4.Black()}
+              uiTransform={{
+                width: 90 * scaleFactor,
+                height: 40 * scaleFactor,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                margin: { right: 30 * scaleFactor, left: 30 * scaleFactor },
+              }}
+              onMouseDown={() => {
+                moderationControlState.adminToRemove = undefined
+              }}
+            />
+          )}
+          {!isLoading && (
+            <Button
+              id="confirm-remove"
+              value={'<b>Remove</b>'}
+              variant="primary"
+              fontSize={16 * scaleFactor}
+              color={Color4.White()}
+              uiTransform={{
+                width: 160 * scaleFactor,
+                height: 40 * scaleFactor,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              uiBackground={{ color: Color4.fromHexString('#FF2D55') }}
+              onMouseDown={async () => {
+                if (!isLoading && admin.address) {
+                  setIsLoading(true)
+                  const [error] = await deleteSceneAdmin(admin.address)
+                  if (error) {
+                    setError(error)
+                  } else {
+                    moderationControlState.adminToRemove = undefined
+                    await fetchSceneAdmins()
+                  }
+                  setIsLoading(false)
                 }
-                setIsLoading(false)
-              }
-            }}
-          />}
+              }}
+            />
+          )}
         </UiEntity>
-          {isLoading && <LoadingDots scaleFactor={scaleFactor} engine={engine} />}
-          {error && <Error uiTransform={{ margin: { top: 16 * scaleFactor }} }  scaleFactor={scaleFactor} text={error} />}
+        {isLoading && <LoadingDots scaleFactor={scaleFactor} engine={engine} />}
+        {error && (
+          <Error
+            uiTransform={{ margin: { top: 16 * scaleFactor } }}
+            scaleFactor={scaleFactor}
+            text={error}
+          />
+        )}
       </UiEntity>
     </UiEntity>
   )

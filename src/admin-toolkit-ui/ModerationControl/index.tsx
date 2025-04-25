@@ -19,7 +19,7 @@ type Props = {
 // TODO: upload this to the content
 export const BTN_MODERATION_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-moderation-control-button.png`
 export const MODERATION_CONTROL_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/moderation-control-icon.png`
-const VERIFIED_USER_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-verified-user`
+const VERIFIED_USER_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-verified-user.png`
 
 
 export type SceneAdmin = {
@@ -53,18 +53,18 @@ export function ModerationControl({ engine, player }: Props) {
       >
         <Header
           iconSrc={MODERATION_CONTROL_ICON}
-          title="MODERATION TOOLS"
+          title="PERMISSIONS"
           scaleFactor={scaleFactor}
         />
         <AddUserInput scaleFactor={scaleFactor} onSubmit={console.log} />
         <Button
           variant="secondary"
           id="moderation_control_admin_list"
-          value="<b>Admin List</b>"
+          value="<b>View Admin List</b>"
           fontSize={18 * scaleFactor}
           color={Color4.White()}
           uiTransform={{
-            width: 165 * scaleFactor,
+            width: 220 * scaleFactor,
             height: 42 * scaleFactor,
             alignItems: 'center',
             justifyContent: 'center',

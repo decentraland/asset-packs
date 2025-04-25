@@ -22,3 +22,7 @@ export async function generateStreamKey(): Promise<Result<StreamKeyResponse, str
 export async function revokeStreamKey(): Promise<Result<StreamKeyResponse, string>>  {
   return wrapSignedFetch<StreamKeyResponse>({ url: URLS().STREAM_KEY, init: { method: 'DELETE', headers: {} } })
 }
+
+export async function resetStreamKey(): Promise<Result<StreamKeyResponse, string>>  {
+  return wrapSignedFetch<StreamKeyResponse>({ url: URLS().STREAM_KEY, init: { method: 'PUT', headers: {} } }, { toCamelCase: true })
+}

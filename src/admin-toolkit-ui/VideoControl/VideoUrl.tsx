@@ -39,7 +39,7 @@ export function VideoControlURL({
       >
         <Header
           iconSrc={ICONS.VIDEO_SOURCE}
-          title="Video Player"
+          title="Video URL"
           scaleFactor={scaleFactor}
         />
         <UiEntity
@@ -57,7 +57,7 @@ export function VideoControlURL({
         />
       </UiEntity>
       <Label
-        value="Play videos in any screen."
+        value="Play videos from Vimeo by pasting a video URL below."
         color={Color4.fromHexString('#A09BA8')}
         fontSize={16 * scaleFactor}
       />
@@ -74,15 +74,16 @@ export function VideoControlURL({
         onChange={setVideoURL}
         value={videoURL}
         fontSize={16 * scaleFactor}
+        textAlign="top-left"
         placeholder="Paste your video URL"
         placeholderColor={Color4.create(160 / 255, 155 / 255, 168 / 255, 1)}
-        color={Color4.Black()}
-        uiBackground={{ color: Color4.White() }}
+        color={isActive ? Color4.Black() : Color4.fromHexString('#A09BA8')}
+        uiBackground={{ color: Color4.fromHexString('#FCFCFC') }}
         uiTransform={{
           borderRadius: 12,
           borderColor: Color4.White(),
           width: '100%',
-          height: 80 * scaleFactor,
+          height: 80 * scaleFactor
         }}
       />
 
@@ -111,8 +112,9 @@ export function VideoControlURL({
             }}
           />
         )}
-        {videoURL !== video?.src && videoURL && (
+        {(!videoURL || videoURL !== video?.src) && (
           <Button
+            disabled={!videoURL.startsWith('https://')}
             id="video_control_share_screen_share"
             value={
               video?.src &&
@@ -125,7 +127,11 @@ export function VideoControlURL({
               margin: { left: 6 * scaleFactor, right: 6 * scaleFactor },
             }}
             fontSize={16 * scaleFactor}
-            uiBackground={{ color: COLORS.SUCCESS }}
+            uiBackground={{
+              color: videoURL.startsWith('https://')
+                ? COLORS.SUCCESS
+                : Color4.fromHexString('#274431'),
+            }}
             color={Color4.Black()}
             onMouseDown={() => {
               controls.setSource(videoURL)
@@ -214,18 +220,19 @@ export function VideoControlURL({
         <Button
           disabled={!isActive}
           id="video_control_loop"
-          value={`<b>Loop: ${video?.loop ? 'On' : 'Off'}</b>`}
-          variant="secondary"
-          labelTransform={{
-            margin: { left: 6 * scaleFactor, right: 6 * scaleFactor },
-          }}
-          fontSize={18 * scaleFactor}
+          onlyIcon
+          variant={video?.loop ? 'primary' : 'secondary'}
           uiTransform={{
             height: 42 * scaleFactor,
-            minWidth: 100 * scaleFactor,
+            width: 49 * scaleFactor,
             alignItems: 'center',
             justifyContent: 'center',
             padding: 0,
+          }}
+          icon={ICONS.LOOP}
+          iconTransform={{ width: 25 * scaleFactor, height: 25 * scaleFactor }}
+          iconBackground={{
+            color: !video?.loop ? Color4.White() : Color4.Black(),
           }}
           color={Color4.White()}
           onMouseDown={() => {

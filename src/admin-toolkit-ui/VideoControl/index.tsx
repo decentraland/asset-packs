@@ -19,10 +19,13 @@ export const ICONS = {
   PREVIOUS_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-previous-button.png`,
   FORWARD_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-forward-button.png`,
   PLAY_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-play-button.png`,
+  MUTE: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-mute.png`,
+  LOOP: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-loop.png`,
   VOLUME_MINUS_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-volume-minus-button.png`,
   VOLUME_PLUS_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-volume-plus-button.png`,
   VIDEO_SOURCE: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-video.png`,
   LIVE_SOURCE: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-live.png`,
+  INFO: `${CONTENT_URL}/admin_toolkit/assets/icons/info.png`,
 } as const
 
 
@@ -85,12 +88,12 @@ export function VideoControl({
             title="<b>VIDEO SCREENS</b>"
             scaleFactor={scaleFactor}
           />
-          <Label
+          {videoPlayers.length > 1 && <Label
             value="<b>Current Screen</b>"
             fontSize={16 * scaleFactor}
             color={Color4.White()}
             uiTransform={{ margin: { bottom: 16 * scaleFactor } }}
-          />
+          />}
 
           <UiEntity
             uiTransform={{
@@ -99,7 +102,7 @@ export function VideoControl({
             }}
           >
             {videoPlayers.length > 1 && (
-              <UiEntity uiTransform={{  flexDirection: 'column' }}>
+              <UiEntity uiTransform={{ flexDirection: 'column' }}>
                 <Dropdown
                   options={videoPlayers.map(
                     (player) => `<b>${player.customName}</b>`,
@@ -116,49 +119,50 @@ export function VideoControl({
                   }}
                   uiBackground={{ color: Color4.White() }}
                 />
-                <UiEntity
-                  uiTransform={{
-                    width: '100%',
-                    height: 2,
-                    margin: { top: 16 * scaleFactor, bottom: 8 * scaleFactor },
-                  }}
-                  uiBackground={{ color: Color4.fromHexString('#716B7C') }}
-                />
               </UiEntity>
             )}
+            <Label
+              fontSize={16 * scaleFactor}
+              value="<b>Media Source</b>"
+              color={Color4.White()}
+              uiTransform={{ margin: { bottom: 2 * scaleFactor, top: 16 * scaleFactor } }}
+            />
             <UiEntity
               uiTransform={{
                 margin: { top: 10 * scaleFactor },
-                justifyContent: 'space-between',
                 flexDirection: 'row',
                 width: '100%',
               }}
             >
-              <CustomButton
-                engine={engine}
-                id="video_control_url"
-                value="<b>VIDEO</b>"
-                icon={ICONS.VIDEO_SOURCE}
-                onClick={() => setSelected('video-url')}
-                scaleFactor={scaleFactor}
-                selected={selected === 'video-url'}
-                active={
-                  selectedVideo && selectedVideo.src.startsWith('https://')
-                }
-              />
-              <CustomButton
-                engine={engine}
-                id="video_control_live"
-                value="<b>LIVE</b>"
-                icon={ICONS.LIVE_SOURCE}
-                onClick={() => setSelected('live')}
-                active={
-                  selectedVideo &&
-                  selectedVideo.src.startsWith(LIVEKIT_STREAM_SRC)
-                }
-                scaleFactor={scaleFactor}
-                selected={selected === 'live'}
-              />
+              <UiEntity uiTransform={{ width: '50%', padding: { right: 8 * scaleFactor } }}>
+                <CustomButton
+                  engine={engine}
+                  id="video_control_url"
+                  value="<b>VIDEO URL</b>"
+                  icon={ICONS.VIDEO_SOURCE}
+                  onClick={() => setSelected('video-url')}
+                  scaleFactor={scaleFactor}
+                  selected={selected === 'video-url'}
+                  active={
+                    selectedVideo && selectedVideo.src.startsWith('https://')
+                  }
+                />
+              </UiEntity>
+              <UiEntity uiTransform={{ width: '50%', padding: { left: 8 * scaleFactor } }}>
+                <CustomButton
+                  engine={engine}
+                  id="video_control_live"
+                  value="<b>LIVE STREAM</b>"
+                  icon={ICONS.LIVE_SOURCE}
+                  onClick={() => setSelected('live')}
+                  active={
+                    selectedVideo &&
+                    selectedVideo.src.startsWith(LIVEKIT_STREAM_SRC)
+                  }
+                  scaleFactor={scaleFactor}
+                  selected={selected === 'live'}
+                />
+              </UiEntity>
             </UiEntity>
           </UiEntity>
         </UiEntity>
@@ -202,7 +206,7 @@ interface Props {
 function CustomButton({ active, scaleFactor, value, id, onClick, icon, selected, engine }: Props) {
   return (
     <UiEntity
-      uiTransform={{ flexDirection: 'column', width: '50%', height: '100%' }}
+      uiTransform={{ flexDirection: 'column', height: '100%', width: '100%' }}
     >
       <UiEntity uiTransform={{ width: '100%' }}>
         <Button
@@ -226,18 +230,18 @@ function CustomButton({ active, scaleFactor, value, id, onClick, icon, selected,
           uiTransform={{
             padding: {
               top: 6 * scaleFactor,
-              right: 6 * scaleFactor,
               bottom: 6 * scaleFactor,
-              left: 6 * scaleFactor,
             },
+            borderRadius: 6 * scaleFactor,
             alignItems: 'center',
             justifyContent: 'center',
-            width: '90%',
+            width: '100%',
+            height: 36 * scaleFactor
           }}
         />
       </UiEntity>
 
-      {active && <Active scaleFactor={scaleFactor} engine={engine} uiTransform={{ width: '90%', margin: { top: 6 * scaleFactor } }} />}
+      {active && <Active scaleFactor={scaleFactor} engine={engine} uiTransform={{ width: '100%', margin: { top: 6 * scaleFactor } }} />}
     </UiEntity>
   )
 }

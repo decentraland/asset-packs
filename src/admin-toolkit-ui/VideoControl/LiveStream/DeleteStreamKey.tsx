@@ -5,7 +5,7 @@ import ReactEcs, { UiEntity, Label } from '@dcl/react-ecs'
 import { Button } from '../../Button'
 import { LoadingDots } from '../../Loading'
 import { Error } from '../../Error'
-import { revokeStreamKey } from '../api'
+import { resetStreamKey, revokeStreamKey } from '../api'
 import { getComponents } from '../../../definitions'
 import { state } from '../..'
 
@@ -34,13 +34,13 @@ export function DeleteStreamKeyConfirmation({
       }}
     >
       <Label
-        value="<b>Are you sure you want to revoke your Stream Key?</b>"
+        value="<b>Are you sure you want to reset your Stream Key?</b>"
         fontSize={16 * scaleFactor}
         color={Color4.fromHexString('#FCFCFC')}
       />
 
       <Label
-        value="This action will affect all active stream screens within this scene."
+        value="Active streams using this stream key will be disconnected."
         fontSize={14 * scaleFactor}
         color={Color4.fromHexString('#FFFFFFB2')}
         uiTransform={{
@@ -78,7 +78,7 @@ export function DeleteStreamKeyConfirmation({
         {!isLoading && (
           <Button
             id="stream_key_confirm_remove"
-            value={'<b>Confirm Revoke</b>'}
+            value={'<b>Reset</b>'}
             variant="primary"
             fontSize={18 * scaleFactor}
             color={Color4.White()}
@@ -91,13 +91,18 @@ export function DeleteStreamKeyConfirmation({
             uiBackground={{ color: Color4.fromHexString('#FB3B3B') }}
             onMouseDown={async () => {
               setIsLoading(true)
-              const [error, data] = await revokeStreamKey()
+              const [error, data] = await resetStreamKey()
+              console.log(JSON.stringify(data))
               if (error) {
                 setError(error)
                 setIsLoading(false)
               } else {
-                VideoControlState.getMutable(state.adminToolkitUiEntity).streamKey = undefined
-                VideoControlState.getMutable(state.adminToolkitUiEntity).endsAt = undefined
+                VideoControlState.getMutable(
+                  state.adminToolkitUiEntity,
+                ).streamKey = data?.streamingKey
+                VideoControlState.getMutable(
+                  state.adminToolkitUiEntity,
+                ).endsAt = data?.endsAt
                 // remove this page so it can generate a new key if the user wants
                 onCancel()
               }
