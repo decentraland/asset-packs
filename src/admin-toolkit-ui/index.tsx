@@ -31,8 +31,8 @@ export let scaleFactor: number
 
 export let state: State = {
   adminToolkitUiEntity: 0 as Entity,
-  panelOpen: true,
-  activeTab: TabType.VIDEO_CONTROL,
+  panelOpen: false,
+  activeTab: TabType.NONE,
   videoControl: {
     selectedVideoPlayer: undefined,
   },
