@@ -134,7 +134,7 @@ export async function initializeAdminData(
   if (!adminDataInitialized) {
     console.log('initializeAdminData - not initialized')
     const { TextAnnouncements, VideoControlState } = getComponents(engine)
-    const { VideoPlayer } = getExplorerComponents(engine)
+
     // Initialize AdminToolkitUiEntity
     state.adminToolkitUiEntity = getAdminToolkitEntity(engine) ?? engine.addEntity()
 
