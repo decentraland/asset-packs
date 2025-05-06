@@ -2,7 +2,7 @@ import { Color4 } from '@dcl/ecs-math'
 import ReactEcs, { UiEntity, Label, UiTransformProps } from '@dcl/react-ecs'
 import { CONTENT_URL } from './constants'
 
-interface LoadingProps {
+interface ErrorProps {
   scaleFactor: number
   text: string
   uiTransform?: UiTransformProps
@@ -14,7 +14,7 @@ export function Error({
   scaleFactor,
   text,
   uiTransform
-}: LoadingProps) {
+}: ErrorProps) {
   return (
     <UiEntity
       uiTransform={{

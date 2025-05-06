@@ -30,7 +30,7 @@ export function DeleteStreamKeyConfirmation({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 12,
+        borderRadius: 12 * scaleFactor,
       }}
     >
       <Label
@@ -92,17 +92,14 @@ export function DeleteStreamKeyConfirmation({
             onMouseDown={async () => {
               setIsLoading(true)
               const [error, data] = await resetStreamKey()
-              console.log(JSON.stringify(data))
               if (error) {
                 setError(error)
                 setIsLoading(false)
               } else {
-                VideoControlState.getMutable(
-                  state.adminToolkitUiEntity,
-                ).streamKey = data?.streamingKey
-                VideoControlState.getMutable(
-                  state.adminToolkitUiEntity,
-                ).endsAt = data?.endsAt
+                const videoControl = VideoControlState.getMutable(state.adminToolkitUiEntity)
+                videoControl.streamKey = data?.streamingKey
+                videoControl.endsAt = data?.endsAt
+
                 // remove this page so it can generate a new key if the user wants
                 onCancel()
               }

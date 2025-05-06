@@ -57,8 +57,11 @@ export function GenerateStreamKey({
                 if (error) {
                   setError(error)
                 } else if (data) {
-                  VideoControlState.getMutable(state.adminToolkitUiEntity).streamKey = data.streamingKey
-                  VideoControlState.getMutable(state.adminToolkitUiEntity).endsAt = data.endsAt
+                  const videoControl = VideoControlState.getMutable(
+                    state.adminToolkitUiEntity,
+                  )
+                  videoControl.streamKey = data.streamingKey
+                  videoControl.endsAt = data.endsAt
                 }
               }}
             />

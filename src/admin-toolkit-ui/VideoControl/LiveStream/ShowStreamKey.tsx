@@ -114,7 +114,7 @@ export function ShowStreamKey({
           margin: { top: 10 * scaleFactor, bottom: 16 * scaleFactor },
         }}
       >
-        {endsAt >= Date.now() ? (
+        {endsAt > Date.now() ? (
           <UiEntity uiTransform={{ flexDirection: 'column' }}>
             <Label
               value="Stream expires in:"
