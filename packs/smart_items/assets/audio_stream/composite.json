@@ -41,7 +41,7 @@
       "data": {
         "0": {
           "json": {
-            "url": "",
+            "url": "https://n07.radiojar.com/2qm1fc5kb.m4a?1617129761=&rj-tok=AAABeIR7VqwAilDFeUM39SDjmw&rj-ttl=5",
             "playing": true
           }
         }
@@ -67,7 +67,7 @@
               {
                 "name": "Play Audio Stream",
                 "type": "play_audio_stream",
-                "jsonPayload": "{ \"url\": \"\", \"volume\": 1 }"
+                "jsonPayload": "{ \"url\": \"https://n07.radiojar.com/2qm1fc5kb.m4a?1617129761=&rj-tok=AAABeIR7VqwAilDFeUM39SDjmw&rj-ttl=5\", \"volume\": 1 }"
               },
               {
                 "name": "Stop Audio Stream",
