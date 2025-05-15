@@ -86,6 +86,7 @@ export const ActionSchemas = {
     src: Schemas.String,
     loop: Schemas.Optional(Schemas.Boolean),
     volume: Schemas.Optional(Schemas.Float),
+    global: Schemas.Optional(Schemas.Boolean),
   }),
   [ActionType.STOP_SOUND]: Schemas.Map({}),
   [ActionType.SET_VISIBILITY]: Schemas.Map({
@@ -339,8 +340,11 @@ export function createComponents(engine: IEngine) {
 
   const VideoScreen = engine.defineComponent(ComponentName.VIDEO_SCREEN, {
     thumbnail: Schemas.String,
-    defaultMediaSource: Schemas.EnumNumber<MediaSource>(MediaSource, MediaSource.VideoURL),
-    defaultURL: Schemas.String
+    defaultMediaSource: Schemas.EnumNumber<MediaSource>(
+      MediaSource,
+      MediaSource.VideoURL,
+    ),
+    defaultURL: Schemas.String,
   })
 
   const AdminTools = engine.defineComponent(ComponentName.ADMIN_TOOLS, {
@@ -419,7 +423,7 @@ export function createComponents(engine: IEngine) {
     {
       text: Schemas.String,
       author: Schemas.Optional(Schemas.String),
-      id: Schemas.String
+      id: Schemas.String,
     },
   )
 
@@ -427,7 +431,7 @@ export function createComponents(engine: IEngine) {
     ComponentName.VIDEO_CONTROL_STATE,
     {
       endsAt: Schemas.Optional(Schemas.Int64),
-      streamKey: Schemas.Optional(Schemas.String)
+      streamKey: Schemas.Optional(Schemas.String),
     },
   )
 
@@ -442,7 +446,7 @@ export function createComponents(engine: IEngine) {
     Rewards,
     TextAnnouncements,
     VideoControlState,
-    VideoScreen
+    VideoScreen,
   }
 }
 
