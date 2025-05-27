@@ -6,7 +6,9 @@
       "data": {
         "0": {
           "json": {
-            "src": "{assetPath}/chest_fantasy.glb"
+            "src": "{assetPath}/chest_fantasy.glb",
+            "visibleMeshesCollisionMask": 1,
+            "invisibleMeshesCollisionMask": 2
           }
         }
       }

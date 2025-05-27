@@ -6,7 +6,9 @@
       "data": {
         "0": {
           "json": {
-            "src": "{assetPath}/hatch_anim.glb"
+            "src": "{assetPath}/hatch_anim.glb",
+            "visibleMeshesCollisionMask": 1,
+            "invisibleMeshesCollisionMask": 2
           }
         }
       }
