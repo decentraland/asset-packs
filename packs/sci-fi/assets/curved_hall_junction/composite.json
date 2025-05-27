@@ -6,7 +6,9 @@
       "data": {
         "0": {
           "json": {
-            "src": "{assetPath}/Hallway_Module_Curve_01/Hallway_Module_Curve_01.glb"
+            "src": "{assetPath}/Hallway_Module_Curve_01/Hallway_Module_Curve_01.glb",
+            "visibleMeshesCollisionMask": 1,
+            "invisibleMeshesCollisionMask": 2
           }
         }
       }
