@@ -10,8 +10,6 @@ interface VideoPlayerControls {
   play(): void
   pause(): void
   restart(): void
-  previous(): void
-  next(): void
   setVolume(volume: number): void
   setSource(url: string): void
   setLoop(loop: boolean): void
@@ -61,22 +59,24 @@ export function createVideoPlayerControls(
 
   return {
     play: () => {
-      VideoPlayer.getMutable(entity).playing = true
+      const video = VideoPlayer.getMutable(entity)
+      video.playing = true
+      video.position = undefined
     },
-    pause: () => VideoPlayer.getMutable(entity).playing = false,
+    pause: () => {
+      const video = VideoPlayer.getMutable(entity)
+      video.playing = false
+      video.position = undefined
+    },
     restart: () => {
-      VideoPlayer.getMutable(entity).playing = false
-      VideoPlayer.getMutable(entity).position = 0
+      const video = VideoPlayer.getMutable(entity)
+      video.playing = false
+      video.position = 0
       nextTickFunctions.push(() => {
         const video = VideoPlayer.getMutable(entity)
+        video.position = undefined
         video.playing = true
       })
-    },
-    previous: () => {
-      console.log('TODO: Previous Track clicked')
-    },
-    next: () => {
-      console.log('TODO: Next Track clicked')
     },
     setVolume: (volumeOrStep) => {
       // Don't allow volume changes if sound is disabled
@@ -84,6 +84,7 @@ export function createVideoPlayerControls(
         return
       }
       const video = VideoPlayer.getMutable(entity)
+      video.position = undefined
       if (volumeOrStep === 0) {
         video.volume = 0
       } else {
@@ -99,7 +100,9 @@ export function createVideoPlayerControls(
       })
     },
     setLoop(loop) {
-      VideoPlayer.getMutable(entity).loop = loop
+      const video = VideoPlayer.getMutable(entity)
+      video.loop = loop
+      video.position = undefined
     }
   }
 }

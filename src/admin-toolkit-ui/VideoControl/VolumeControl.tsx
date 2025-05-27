@@ -105,7 +105,7 @@ export function VideoControlVolume({
             alignItems: 'center',
             justifyContent: 'center',
             padding: 0,
-            width: 50 * scaleFactor
+            width: 60 * scaleFactor
           }}
         />
         <Button
