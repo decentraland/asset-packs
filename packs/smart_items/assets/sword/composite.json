@@ -37,7 +37,7 @@
               {
                 "name": "Play Attack Emote",
                 "type": "play_custom_emote",
-                "jsonPayload": "{ \"src\": \"{assetPath}/sword_attack.glb\", \"loop\": false }"
+                "jsonPayload": "{ \"src\": \"{assetPath}/sword_attack_emote.glb\", \"loop\": false }"
               },
               {
                 "name": "Damage",
