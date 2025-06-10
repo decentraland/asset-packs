@@ -31,7 +31,6 @@ import {
   triggerSceneEmote,
   openExternalUrl,
 } from '~system/RestrictedActions'
-import { getActiveVideoStreams } from '~system/CommsApi'
 import { FlatFetchInit, signedFetch } from '~system/SignedFetch'
 import { getRealm } from '~system/Runtime'
 import {
