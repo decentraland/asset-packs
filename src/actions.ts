@@ -848,6 +848,7 @@ export function createActionsSystem(
       }
       videoSource.volume = payload.volume ?? videoSource.volume
       videoSource.loop = payload.loop ?? videoSource.loop
+      videoSource.playing = true
     }
   }
   
