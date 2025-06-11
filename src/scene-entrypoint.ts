@@ -48,8 +48,8 @@ export function initAssetPacks(
     const pointerEventsSystem = createPointerEventsSystem(engine, inputSystem)
     const tweenSystem = createTweenSystem(engine)
     const reactBasedUiSystem = createReactBasedUiSystem(
-      engine,
-      pointerEventsSystem,
+      engine as any,
+      pointerEventsSystem as any,
     )
 
     // create systems that some components needs (VideoPlayer, etc)

@@ -31,7 +31,6 @@ import {
   triggerSceneEmote,
   openExternalUrl,
 } from '~system/RestrictedActions'
-import { getActiveVideoStreams } from '~system/CommsApi'
 import { FlatFetchInit, signedFetch } from '~system/SignedFetch'
 import { getRealm } from '~system/Runtime'
 import {
@@ -702,18 +701,20 @@ export function createActionsSystem(
     entity: Entity,
     payload: ActionPayload<ActionType.PLAY_SOUND>,
   ) {
-    const { src, loop, volume } = payload
+    const { src, loop, volume, global } = payload
     if (AudioSource.has(entity)) {
       AudioSource.playSound(entity, src)
       const audioSource = AudioSource.getMutable(entity)
       audioSource.loop = loop
       audioSource.volume = volume ?? 1
+      audioSource.global = global ?? false
     } else {
       AudioSource.create(entity, {
         audioClipUrl: src,
         loop,
         playing: true,
         volume: volume ?? 1,
+        global,
       })
     }
   }
@@ -817,48 +818,40 @@ export function createActionsSystem(
     void openExternalUrl({ url })
   }
 
-  async function getVideoSrc({
-    src,
-    dclCast,
-  }: ActionPayload<ActionType.PLAY_VIDEO_STREAM>) {
-    if (dclCast) {
-      const { streams } = await getActiveVideoStreams({})
-      return streams.length > 0 ? streams[0].trackSid : ''
-    }
-    return src ?? ''
-  }
-
   // PLAY_VIDEO
   function handlePlayVideo(
     entity: Entity,
     payload: ActionPayload<ActionType.PLAY_VIDEO_STREAM>,
   ) {
     const videoSource = VideoPlayer.getMutableOrNull(entity)
-
-    if (videoSource && videoSource.src) {
-      videoSource.playing = true
-    } else {
-      // Get the video src from a promise (Video File/Video Stream/DCL Cast)
-      getVideoSrc(payload).then((src) => {
-        if (!src) return
-
-        VideoPlayer.createOrReplace(entity, {
-          src,
-          volume: payload.volume ?? 1,
-          loop: payload.loop ?? false,
-          playing: true,
-        })
-
-        // Init video player material when the entity doesn't have a VideoPlayer component defined
-        initVideoPlayerComponentMaterial(
-          entity,
-          { Material },
-          Material.getOrNull(entity),
-        )
+    
+    if (!videoSource && payload.src) {
+      VideoPlayer.createOrReplace(entity, {
+        src: payload.src,
+        volume: payload.volume ?? 1,
+        loop: payload.loop ?? false,
+        playing: true,
       })
+
+      // Init video player material when the entity doesn't have a VideoPlayer component defined
+      initVideoPlayerComponentMaterial(
+        entity,
+        { Material },
+        Material.getOrNull(entity),
+      )
+    }
+    
+    
+    if (videoSource) {
+      if (videoSource?.src !== payload.src) {
+        videoSource.src = payload.src ?? ''
+      }
+      videoSource.volume = payload.volume ?? videoSource.volume
+      videoSource.loop = payload.loop ?? videoSource.loop
+      videoSource.playing = true
     }
   }
-
+  
   // STOP_VIDEO
   function handleStopVideo(
     entity: Entity,

@@ -8,6 +8,7 @@ export enum ComponentName {
   STATES = 'asset-packs::States',
   COUNTER_BAR = 'asset-packs::CounterBar',
   ADMIN_TOOLS = 'asset-packs::AdminTools',
+  VIDEO_SCREEN = 'asset-packs::VideoScreen',
   REWARDS = 'asset-packs::Rewards',
   TEXT_ANNOUNCEMENTS = 'asset-packs::TextAnnouncements',
   VIDEO_CONTROL_STATE = 'asset-packs::VideoControlState',
@@ -185,4 +186,9 @@ export enum ProximityLayer {
 export enum AdminPermissions {
   PUBLIC = 'PUBLIC',
   PRIVATE = 'PRIVATE',
+}
+
+export enum MediaSource {
+  VideoURL,
+  LiveStream
 }

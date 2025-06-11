@@ -17,9 +17,7 @@ export type State = {
   panelOpen: boolean
   activeTab: TabType
   videoControl: {
-    shareScreenUrl?: string
     selectedVideoPlayer: number | undefined
-    linkAllVideoPlayers?: boolean
   }
   smartItemsControl: {
     selectedSmartItem: number | undefined
