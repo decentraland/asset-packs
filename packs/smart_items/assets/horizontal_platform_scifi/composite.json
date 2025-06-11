@@ -7,7 +7,7 @@
         "0": {
           "json": {
             "src": "{assetPath}/horizontal_platform_scifi.glb",
-            "visibleMeshesCollisionMask": 2,
+            "visibleMeshesCollisionMask": 1,
             "invisibleMeshesCollisionMask": 2
           }
         }
