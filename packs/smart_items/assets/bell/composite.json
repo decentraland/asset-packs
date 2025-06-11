@@ -43,7 +43,7 @@
                 "eventType": 1,
                 "eventInfo": {
                   "button": 1,
-                  "hoverText": "Press",
+                  "hoverText": "Ring",
                   "maxDistance": 10,
                   "showFeedback": true
                 }
@@ -58,7 +58,9 @@
       "data": {
         "0": {
           "json": {
-            "componentIds": [1042, 1020]
+            "componentIds": [
+              "core::Animator",
+              "core::AudioSource"]
           }
         }
       }
@@ -88,12 +90,14 @@
               {
                 "name": "Stop Sound",
                 "type": "stop_sound",
-                "jsonPayload": "{}"
+                "jsonPayload": "{}",
+                "allowedInBasicView": true
               },
               {
                 "type": "batch",
                 "name": "Ring",
-                "jsonPayload": "{\"actions\":[\"Play Sound\",\"Play Animation\"]}"
+                "jsonPayload": "{\"actions\":[\"Play Sound\",\"Play Animation\"]}",
+                "allowedInBasicView": true
               }
             ]
           }

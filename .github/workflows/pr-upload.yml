@@ -1,0 +1,43 @@
+on:
+  pull_request:
+    branches:
+      - main
+name: pr-upload
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: 2
+
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build:js
+
+      - name: Get changed files
+        id: changed-files
+        run: |
+          git fetch origin main
+          git diff --name-only origin/main..HEAD > changed_files.txt
+          echo "Changed files in PR:"
+          cat changed_files.txt
+
+      - name: Upload changed files
+        run: |
+          if grep -q '^packs/' changed_files.txt; then
+            npm run upload
+          fi
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
+          S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME_DEV }}
+          S3_REGION: us-east-1
+          S3_UPLOAD_CONCURRENCY: 20

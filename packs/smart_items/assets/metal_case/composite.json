@@ -59,9 +59,9 @@
         "0": {
           "json": {
             "componentIds": [
-              1042,
-              1020,
-              2709697014
+              "core::Animator",
+              "core::AudioSource",
+              "asset-packs::States"
             ]
           }
         }
@@ -231,11 +231,7 @@
         "0": {
           "json": {
             "id": "{self}",
-            "value": [
-              "Opened",
-              "Closed",
-              "Toggle"
-            ],
+            "value": ["Opened", "Closed", "Toggle"],
             "defaultValue": "Closed"
           }
         }

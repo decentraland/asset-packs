@@ -62,13 +62,28 @@
               {
                 "name": "Hide",
                 "type": "set_visibility",
-                "jsonPayload": "{\"visible\":false,\"collider\":0}"
+                "jsonPayload": "{\"visible\":false,\"collider\":0}",
+                "allowedInBasicView": true
               },
               {
                 "name": "Show",
                 "type": "set_visibility",
-                "jsonPayload": "{\"visible\":true,\"collider\":0}"
+                "jsonPayload": "{\"visible\":true,\"collider\":0}",
+                "allowedInBasicView": true
               }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "componentName": "Arrow",
+            "fields": [
             ]
           }
         }

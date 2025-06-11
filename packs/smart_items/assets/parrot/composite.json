@@ -43,7 +43,7 @@
                 "eventType": 1,
                 "eventInfo": {
                   "button": 1,
-                  "hoverText": "Press",
+                  "hoverText": "Poke",
                   "maxDistance": 10,
                   "showFeedback": true
                 }
@@ -58,7 +58,11 @@
       "data": {
         "0": {
           "json": {
-            "componentIds": [1042, 1020, 2709697014]
+            "componentIds": [
+              "core::Animator",
+            "core::AudioSource",
+            "asset-packs::States"
+          ]
           }
         }
       }
@@ -103,12 +107,14 @@
               {
                 "type": "set_state",
                 "name": "Trigger",
-                "jsonPayload": "{\"state\":\"Triggered\"}"
+                "jsonPayload": "{\"state\":\"Triggered\"}",
+                "allowedInBasicView": true
               },
               {
                 "type": "set_state",
                 "name": "Disarm",
-                "jsonPayload": "{\"state\":\"Silent\"}"
+                "jsonPayload": "{\"state\":\"Silent\"}",
+                "allowedInBasicView": true
               }
             ]
           }
@@ -201,7 +207,7 @@
         "0": {
           "json": {
             "isBasicViewEnabled": true,
-            "componentName": "Button",
+            "componentName": "Parrot",
             "fields": [
               {
                 "name": "Hover Text",
@@ -212,8 +218,7 @@
                 "type": "asset-packs::Triggers",
                 "basicViewId": "trigger-when-clicked"
               }
-            ],
-            "assetId": "b7408c1a-6cc1-471d-980f-17cc83b0062f"
+            ]
           }
         }
       }

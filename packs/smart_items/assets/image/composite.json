@@ -117,24 +117,6 @@
           }
         }
       }
-    },
-    {
-      "name": "inspector::Config",
-      "data": {
-        "0": {
-          "json": {
-            "isBasicViewEnabled": false,
-            "componentName": "NFT Portrait",
-            "fields": [
-              {
-                "name": "NFT Portrait",
-                "type": "core::NftShape"
-              }
-            ],
-            "assetId": "dbffd66a-8c1f-4b34-bed4-c71ab5cb4024"
-          }
-        }
-      }
     }
   ]
 }

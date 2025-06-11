@@ -43,17 +43,21 @@
               {
                 "name": "Play once",
                 "type": "play_sound",
-                "jsonPayload": "{\"src\":\"{assetPath}/Swamp.mp3\"}"
+                "jsonPayload": "{\"src\":\"{assetPath}/Swamp.mp3\"}",
+                "allowedInBasicView": true
               },
               {
                 "name": "Loop",
                 "type": "play_sound",
-                "jsonPayload": "{\"loop\":true,\"src\":\"{assetPath}/Swamp.mp3\"}"
+                "jsonPayload": "{\"loop\":true,\"src\":\"{assetPath}/Swamp.mp3\"}",
+                "allowedInBasicView": true,
+                "basicViewId": "loop-sound"
               },
               {
                 "name": "Stop",
                 "type": "stop_sound",
-                "jsonPayload": "{}"
+                "jsonPayload": "{}",
+                "allowedInBasicView": true
               }
             ]
           }
@@ -76,6 +80,25 @@
                     "name": "Loop"
                   }
                 ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "componentName": "Ambient Sound",
+            "fields": [
+              {
+                "name": "Sound",
+                "type": "asset-packs::Actions",
+                "basicViewId": "loop-sound",
+                "layout": "{\"src\": { \"field\": \"TextField\", \"type\": \"text\", \"label\": \"Sound Path\" }  , \"volume\": { \"field\": \"RangeField\", \"label\": \"Volume\", \"step\": \"0.01\", \"min\": \"0\", \"max\": \"1\", \"default\": \"1\" } }"
               }
             ]
           }
