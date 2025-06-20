@@ -824,7 +824,6 @@ export function createActionsSystem(
     payload: ActionPayload<ActionType.PLAY_VIDEO_STREAM>,
   ) {
     const videoSource = VideoPlayer.getMutableOrNull(entity)
-    
     if (!videoSource && payload.src) {
       VideoPlayer.createOrReplace(entity, {
         src: payload.src,
@@ -840,8 +839,6 @@ export function createActionsSystem(
         Material.getOrNull(entity),
       )
     }
-    
-    
     if (videoSource) {
       if (videoSource?.src !== payload.src) {
         videoSource.src = payload.src ?? ''
@@ -851,7 +848,6 @@ export function createActionsSystem(
       videoSource.playing = true
     }
   }
-  
   // STOP_VIDEO
   function handleStopVideo(
     entity: Entity,
@@ -1182,7 +1178,18 @@ export function createActionsSystem(
     _payload: ActionPayload<ActionType.MOVE_PLAYER_HERE>,
   ) {
     const here = getWorldPosition(entity)
-    void movePlayerTo({ newRelativePosition: here })
+    const entityRotation = Transform.get(entity)
+
+    // We Want the player to look 1m in front of the entity
+    const forward = Vector3.Forward()
+    const rotatedDirection = Vector3.rotate(forward, entityRotation.rotation)
+    const moveDelta = Vector3.scale(rotatedDirection, 1)
+
+    void movePlayerTo({
+      newRelativePosition: here,
+      avatarTarget: Vector3.add(here, moveDelta),
+    })
+
     const triggerEvents = getTriggerEvents(entity)
     triggerEvents.emit(TriggerType.ON_PLAYER_SPAWN)
   }
