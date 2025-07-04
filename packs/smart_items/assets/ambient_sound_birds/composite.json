@@ -98,7 +98,7 @@
                 "name": "Sound",
                 "type": "asset-packs::Actions",
                 "basicViewId": "loop-sound",
-                "layout": "{\"src\": { \"field\": \"HybridField\", \"type\": \"text\", \"label\": \"Sound Path\" }  , \"volume\": { \"field\": \"RangeField\", \"label\": \"Volume\", \"step\": \"0.01\", \"min\": \"0\", \"max\": \"1\", \"defaultValue\": \"1\" }, \"global\": { \"field\": \"CheckboxField\", \"label\": \"Global\", \"defaultValue\": \"true\" } }"
+                "layout": "{\"src\": { \"field\": \"FileUploadField\", \"type\": \"text\", \"label\": \"Sound Path\" }  , \"volume\": { \"field\": \"RangeField\", \"label\": \"Volume\", \"step\": \"0.01\", \"min\": \"0\", \"max\": \"1\", \"defaultValue\": \"1\" } }"
               }
             ]
           }
