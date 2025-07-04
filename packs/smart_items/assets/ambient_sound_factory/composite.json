@@ -43,13 +43,13 @@
               {
                 "name": "Play once",
                 "type": "play_sound",
-                "jsonPayload": "{\"src\":\"{assetPath}/Factory.mp3\"}",
+                "jsonPayload": "{\"src\":\"{assetPath}/Factory.mp3\",\"global\":true}",
                 "allowedInBasicView": true
               },
               {
                 "name": "Loop",
                 "type": "play_sound",
-                "jsonPayload": "{\"loop\":true,\"src\":\"{assetPath}/Factory.mp3\"}",
+                "jsonPayload": "{\"loop\":true,\"src\":\"{assetPath}/Factory.mp3\",\"global\":true}",
                 "allowedInBasicView": true,
                 "basicViewId": "loop-sound"
               },
@@ -98,7 +98,7 @@
                 "name": "Sound",
                 "type": "asset-packs::Actions",
                 "basicViewId": "loop-sound",
-                "layout": "{\"src\": { \"field\": \"TextField\", \"type\": \"text\", \"label\": \"Sound Path\" }  , \"volume\": { \"field\": \"RangeField\", \"label\": \"Volume\", \"step\": \"0.01\", \"min\": \"0\", \"max\": \"1\", \"default\": \"1\" } }"
+                "layout": "{\"src\": { \"field\": \"FileUploadField\", \"type\": \"text\", \"label\": \"Sound Path\" }  , \"volume\": { \"field\": \"RangeField\", \"label\": \"Volume\", \"step\": \"0.01\", \"min\": \"0\", \"max\": \"1\", \"default\": \"1\" } }"
               }
             ]
           }

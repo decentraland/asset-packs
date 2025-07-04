@@ -7,7 +7,7 @@
         "0": {
           "json": {
             "src": "{assetPath}/ambient_sound.glb",
-            "visibleMeshesCollisionMask": 1,
+            "visibleMeshesCollisionMask": 0,
             "invisibleMeshesCollisionMask": 0
           }
         }
@@ -43,13 +43,13 @@
               {
                 "name": "Play once",
                 "type": "play_sound",
-                "jsonPayload": "{\"src\":\"{assetPath}/birds_(1).mp3\"}",
+                "jsonPayload": "{\"src\":\"{assetPath}/birds_(1).mp3\",\"global\":true}",
                 "allowedInBasicView": true
               },
               {
                 "name": "Loop",
                 "type": "play_sound",
-                "jsonPayload": "{\"loop\":true,\"src\":\"{assetPath}/birds_(1).mp3\"}",
+                "jsonPayload": "{\"loop\":true,\"src\":\"{assetPath}/birds_(1).mp3\",\"global\":true}",
                 "allowedInBasicView": true,
                 "basicViewId": "loop-sound"
               },
@@ -98,7 +98,7 @@
                 "name": "Sound",
                 "type": "asset-packs::Actions",
                 "basicViewId": "loop-sound",
-                "layout": "{\"src\": { \"field\": \"TextField\", \"type\": \"text\", \"label\": \"Sound Path\" }  , \"volume\": { \"field\": \"RangeField\", \"label\": \"Volume\", \"step\": \"0.01\", \"min\": \"0\", \"max\": \"1\", \"default\": \"1\" } }"
+                "layout": "{\"src\": { \"field\": \"HybridField\", \"type\": \"text\", \"label\": \"Sound Path\" }  , \"volume\": { \"field\": \"RangeField\", \"label\": \"Volume\", \"step\": \"0.01\", \"min\": \"0\", \"max\": \"1\", \"defaultValue\": \"1\" }, \"global\": { \"field\": \"CheckboxField\", \"label\": \"Global\", \"defaultValue\": \"true\" } }"
               }
             ]
           }
