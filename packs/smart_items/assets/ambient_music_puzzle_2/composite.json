@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "components": [
+    {
+      "name": "core::GltfContainer",
+      "data": {
+        "0": {
+          "json": {
+            "src": "{assetPath}/ambient_sound.glb",
+            "visibleMeshesCollisionMask": 0,
+            "invisibleMeshesCollisionMask": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "core-schema::Name",
+      "data": {
+        "0": {
+          "json": {
+            "value": "Music"
+          }
+        }
+      }
+    },
+    {
+      "name": "core::VisibilityComponent",
+      "data": {
+        "0": {
+          "json": {
+            "visible": false
+          }
+        }
+      }
+    },
+    {
+      "name": "asset-packs::Actions",
+      "data": {
+        "0": {
+          "json": {
+            "id": "{self}",
+            "value": [
+              {
+                "name": "Play once",
+                "type": "play_sound",
+                "jsonPayload": "{\"src\":\"{assetPath}/puzzle_2.mp3\",\"global\":true}",
+                "allowedInBasicView": true
+              },
+              {
+                "name": "Loop",
+                "type": "play_sound",
+                "jsonPayload": "{\"loop\":true,\"src\":\"{assetPath}/puzzle_2.mp3\",\"global\":true}",
+                "allowedInBasicView": true,
+                "basicViewId": "loop-sound"
+              },
+              {
+                "name": "Stop",
+                "type": "stop_sound",
+                "jsonPayload": "{}",
+                "allowedInBasicView": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "asset-packs::Triggers",
+      "data": {
+        "0": {
+          "json": {
+            "value": [
+              {
+                "type": "on_spawn",
+                "conditions": [],
+                "operation": "and",
+                "actions": [
+                  {
+                    "id": "{self:asset-packs::Actions}",
+                    "name": "Loop"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "componentName": "Ambient Music",
+            "fields": [
+              {
+                "name": "Sound",
+                "type": "asset-packs::Actions",
+                "basicViewId": "loop-sound",
+                "layout": "{\"src\": { \"field\": \"FileUploadField\", \"type\": \"text\", \"label\": \"Sound Path\" }  , \"volume\": { \"field\": \"RangeField\", \"label\": \"Volume\", \"step\": \"0.01\", \"min\": \"0\", \"max\": \"1\", \"defaultValue\": \"1\" } }"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+} 
