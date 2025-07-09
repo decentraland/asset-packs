@@ -59,6 +59,16 @@
                       "videoPlayerEntity": 0
                     }
                   }
+                },
+                "alphaTexture": {
+                  "tex": {
+                    "$case": "texture",
+                    "texture": {
+                      "src": "{assetPath}/circle_mask.png",
+                      "wrapMode": 0,
+                      "filterMode": 0
+                    }
+                  }
                 }
               }
             }
