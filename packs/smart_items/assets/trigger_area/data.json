@@ -2,8 +2,7 @@
   "id": "1ab2733f-1782-4521-9eda-6aa8ad684277",
   "name": "Trigger Area",
   "category": "utils",
-  "tags": [
-    "area",
-    "trigger"
-  ]
+  "tags": ["area", "trigger"],
+  "description": "An invisible interactive zone that triggers events.",
+  "author": "0x2A39D4F68133491F0442496f601cde2a945b6D31"
 }
