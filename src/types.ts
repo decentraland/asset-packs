@@ -46,6 +46,8 @@ export type AssetData = {
   category: string
   tags: string[]
   composite: AssetComposite
+  description?: string
+  author?: string
 }
 
 export type AssetDataWithoutComposite = Omit<AssetData, 'composite'>
