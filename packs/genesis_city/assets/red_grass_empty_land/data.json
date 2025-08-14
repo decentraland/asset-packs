@@ -1,6 +1,6 @@
 {
   "id": "bac3ac90-a3ca-4391-acff-2ce50ac10687",
   "name": "Red Grass - Empty Land",
-  "category": "tiles",
-  "tags": ["grass", "nature", "empty land", "red"]
+  "category": "ground",
+  "tags": ["grass", "nature", "empty land", "red", "path", "ground"]
 }
