@@ -2,8 +2,5 @@
   "id": "1ab2733f-1782-4521-9eda-6aa8ad684277",
   "name": "Trigger Area",
   "category": "utils",
-  "tags": [
-    "area",
-    "trigger"
-  ]
+  "tags": ["area", "trigger"]
 }
