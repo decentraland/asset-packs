@@ -6,5 +6,7 @@
     "health",
     "enemy",
     "damage"
-  ]
+  ],
+  "description": "A first aid kit that can be used to heal damage. It works together with the health bar smart item.",
+  "author": "Decentraland Foundation"
 }

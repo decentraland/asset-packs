@@ -5,6 +5,12 @@
   "tags": [
     "door",
     "trap",
-    "interactive"
-  ]
+    "interactive",
+    "metal",
+    "trapdoor",
+    "open",
+    "close"
+  ],
+  "description": "A metal trapdoor that can be opened and closed when clicked. It can be used to create a secret passage or a hidden area, or as a trap.",
+  "author": "Decentraland Foundation"
 }

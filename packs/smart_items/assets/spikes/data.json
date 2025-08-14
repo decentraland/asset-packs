@@ -6,5 +6,7 @@
     "health",
     "enemy",
     "damage"
-  ]
+  ],
+  "description": "A spike that can be used to damage the player. It can be used together with the health bar smart item.",
+  "author": "Decentraland Foundation"
 }

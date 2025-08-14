@@ -4,6 +4,14 @@
   "category": "utils",
   "tags": [
     "area",
-    "trigger"
-  ]
+    "trigger",
+    "invisible",
+    "activate",
+    "switch",
+    "sensor",
+    "detection",
+    "detect"
+  ],
+  "description": "An invisible area that can be used to activate other smart items when the player enters it.",
+  "author": "Decentraland Foundation"
 }

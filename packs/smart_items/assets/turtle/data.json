@@ -5,6 +5,11 @@
   "tags": [
     "platform",
     "horizontal",
-    "interactive"
-  ]
+    "interactive",
+    "turtle",
+    "sea",
+    "water"
+  ],
+  "description": "A horizontal platform that looks like a turtle. Players can stand on it to move back and forth.",
+  "author": "Decentraland Foundation"
 }

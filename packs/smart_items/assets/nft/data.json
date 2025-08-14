@@ -3,6 +3,13 @@
   "name": "NFT",
   "category": "media",
   "tags": [
-    "nft"
-  ]
+    "nft",
+    "collectible",
+    "token",
+    "digital",
+    "art",
+    "display"
+  ],
+  "description": "Display an NFT collectible image or gif, passing its collection contract address and token id. You can also add a stylized frame around it.",
+  "author": "Decentraland Foundation"
 }

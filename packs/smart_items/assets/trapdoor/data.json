@@ -6,5 +6,7 @@
     "door",
     "trap",
     "interactive"
-  ]
+  ],
+  "description": "A trapdoor that can be opened or closed. It can be used to create a trapdoor or a secret passage. It can be opened and closed by other smart items, for example a trigger area or a button.",
+  "author": "Decentraland Foundation"
 }

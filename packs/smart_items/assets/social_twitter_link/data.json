@@ -6,5 +6,7 @@
     "social",
     "links",
     "twitter"
-  ]
+  ],
+  "description": "A clickable item that can open your X page in a browser window. Paste a X page URL in the 'URL' field.",
+  "author": "Decentraland Foundation"
 }

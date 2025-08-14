@@ -4,6 +4,12 @@
   "category": "utils",
   "tags": [
     "click",
-    "area"
-  ]
+    "area",
+    "interaction",
+    "trigger",
+    "invisible",
+    "clickable"
+  ],
+  "description": "An invisible clickable area that can be used to trigger actions on other smart items.",
+  "author": "Decentraland Foundation"
 }

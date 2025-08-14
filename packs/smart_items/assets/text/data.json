@@ -3,6 +3,12 @@
   "name": "Text",
   "category": "Text",
   "tags": [
-    "text"
-  ]
+    "text",
+    "message",
+    "sign",
+    "description",
+    "label"
+  ],
+  "description": "Display text in the 3D world.",
+  "author": "Decentraland Foundation"
 }

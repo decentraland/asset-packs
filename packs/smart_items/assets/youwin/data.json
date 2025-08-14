@@ -2,5 +2,7 @@
   "id": "df06cace-c363-4a08-acdb-72abd2138696",
   "name": "You Win",
   "category": "game mechanics",
-  "tags": ["game mechanics", "victory", "celebration"]
+  "tags": ["game mechanics", "victory", "celebration", "announcement", "announce", "notification", "win", "you win", "win screen"],
+  "description": "A 3D text that can be used to display when the player wins a game. It is invisible by default and can be activated by other smart items, for example a trigger area or a button.",
+  "author": "Decentraland Foundation"
 }

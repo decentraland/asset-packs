@@ -1,10 +1,17 @@
 {
   "id": "65ce08be-0585-407d-a9ab-df68888263bf",
-  "name": "Horizontal Circular SciFi Alt",
+  "name": "Horizontal Circular SciFi Platform Alt",
   "category": "platforms",
   "tags": [
     "platform",
     "horizontal",
-    "interactive"
-  ]
+    "interactive",
+    "smart",
+    "sci-fi",
+    "circular",
+    "elevator",
+    "lift"
+  ],
+  "description": "A circular platform that moves back and forth. Players can jump on it to reach places.",
+  "author": "Decentraland Foundation"
 }

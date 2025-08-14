@@ -5,6 +5,12 @@
   "tags": [
     "health",
     "damage",
-    "breakable"
-  ]
+    "breakable",
+    "wood",
+    "wooden",
+    "wall",
+    "blockade"
+  ],
+  "description": "A wooden wall that can be broken by other smart items, for example a sword. It can be used to create a wooden wall or a wooden doorway. It can be used to block the path of players.",
+  "author": "Decentraland Foundation"
 }

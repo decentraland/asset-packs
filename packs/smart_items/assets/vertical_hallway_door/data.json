@@ -2,5 +2,7 @@
   "id": "6a1e54df-27cb-4099-99b9-26a2188246ab",
   "name": "Vertical Hallway Door - Fixed",
   "category": "doors",
-  "tags": ["door"]
+  "tags": ["door", "scifi", "hallway", "sliding", "interactive", "space ship", "spaceship"],
+  "description": "A sci-fi vertical door that slides up and down.",
+  "author": "Decentraland Foundation"
 }

@@ -6,6 +6,11 @@
     "platform",
     "vertical",
     "interactive",
-    "smart"
-  ]
+    "scifi",
+    "spaceship",
+    "elevator",
+    "lift"
+  ],
+  "description": "A sci-fi vertical platform that slides up and down.",
+  "author": "Decentraland Foundation"
 }

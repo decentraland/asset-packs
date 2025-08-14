@@ -2,5 +2,7 @@
   "id": "0c419cb9-bc21-4c51-977f-41a505a097f0",
   "name": "Admin Tools",
   "category": "utils",
-  "tags": ["admin", "tools", "moderation"]
+  "tags": ["admin", "tools", "moderation", "streaming", "announcements"],
+  "description": "Allows players with a Scene Admin role to play videos or live streams, send announcements, and trigger actions on smart items.",
+  "author": "Decentraland Foundation"
 }

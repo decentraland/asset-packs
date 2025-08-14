@@ -5,7 +5,8 @@
   "tags": [
     "health",
     "enemy",
-    "damage",
-    "weapon"
-  ]
+    "damage"
+  ],
+  "description": "A barrel that can be destroyed when damaged.",
+  "author": "Decentraland Foundation"
 }

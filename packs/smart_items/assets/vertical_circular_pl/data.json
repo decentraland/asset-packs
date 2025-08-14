@@ -6,6 +6,10 @@
     "platform",
     "vertical",
     "interactive",
-    "smart"
-  ]
+    "circular",
+    "elevator",
+    "lift"
+  ],
+  "description": "A vertical platform that moves up and down. Players can jump on it to reach higher places.",
+  "author": "Decentraland Foundation"
 }

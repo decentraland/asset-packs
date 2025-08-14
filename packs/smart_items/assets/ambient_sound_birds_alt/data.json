@@ -2,5 +2,7 @@
   "id": "00fb75c5-57b9-427b-bd21-cfc1e95f30a8",
   "name": "Ambient Sound - Birds Alt",
   "category": "sounds",
-  "tags": []
+  "tags": ["birds", "nature", "ambient", "sound", "soundscape"],
+  "description": "A relaxing ambient sound of birds chirping.",
+  "author": "Decentraland Foundation"
 }
