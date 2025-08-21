@@ -10,16 +10,6 @@
           }
         }
       }
-    },
-    {
-      "name": "core-schema::Name",
-      "data": {
-        "0": {
-          "json": {
-            "value": "bush01.glb"
-          }
-        }
-      }
     }
   ]
 }
