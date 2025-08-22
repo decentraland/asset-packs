@@ -106,8 +106,9 @@ def save_json(p: Path, obj: dict):
         fh.write("\n")
 
 def main():
+    print(os.getcwd())
     ap = argparse.ArgumentParser()
-    ap.add_argument("--assets-root", required=True)
+    # ap.add_argument("--assets-root", required=True)
     ap.add_argument("--max-tags", type=int, default=24)
     ap.add_argument("--syns-per-term", type=int, default=4)
     ap.add_argument("--dry-run", action="store_true")
@@ -115,29 +116,34 @@ def main():
 
     nlp = spacy.load("en_core_web_sm", disable=["ner", "parser", "textcat"])
 
-    root = Path(args.assets_root).expanduser().resolve()
-    asset_dirs = [p for p in root.iterdir() if p.is_dir()]
+    #root = Path("/Users/juanpasutti/documents/asset-packs/packs/").expanduser().resolve()
+    #print(root)
+    #asset_dirs = [p for p in root.iterdir() if p.is_dir()]
 
-    for ad in tqdm(sorted(asset_dirs), desc="Auto-tagging (ollama/llava)"):
-        thumb = find_thumbnail(ad)
-        if not thumb:
-            continue
-        data_json = ad / "data.json"
-        if not data_json.exists():
-            continue
+    #for ad in tqdm(sorted(asset_dirs), desc="Auto-tagging (ollama/llava)"):
+    for x in range(1):
+        # thumb = find_thumbnail(ad)
+        thumb = "/Users/juanpasutti/documents/asset-packs/packs/cyberpunk/assets/arcade_machine_blue/thumbnail.png"
+        #if not thumb:
+        #   continue
+        #data_json = ad / "data.json"
+        #if not data_json.exists():
+        #    continue
 
         # 1) Caption and raw keywords from llava
         try:
             caption = ollama_generate(
                 "Describe this image in one concise sentence.", thumb, temperature=0.2
             )
-            csv_keys = ollama_generate(
-                "List 15 short keywords (lowercase, nouns/adjectives, comma-separated) describing the image.",
-                thumb, temperature=0.6
-            )
+
         except Exception as e:
             print(f"ollama error on {thumb}: {e}", file=sys.stderr)
             continue
+
+        print("*******************************")
+        print(caption)
+        print("*******************************")
+        print(csv_keys)
 
         # 2) NLP keyword extraction + CSV parsing
         k_from_caption = extract_keywords_spacy(nlp, caption)
@@ -160,6 +166,8 @@ def main():
             continue
 
         save_json(data_json, obj)
+
+        break
 
 if __name__ == "__main__":
     main()
