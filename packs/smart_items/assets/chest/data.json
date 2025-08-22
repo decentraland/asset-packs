@@ -3,6 +3,11 @@
   "name": "Chest",
   "category": "chests",
   "tags": [
-    "door"
-  ]
+    "chest",
+    "treasure",
+    "loot",
+    "open"
+  ],
+  "description": "A chest that can be opened to reveal its contents. It can be used to store items.",
+  "author": "Decentraland Foundation"
 }

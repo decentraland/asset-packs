@@ -9,5 +9,7 @@
     "column",
     "pillar",
     "collider"
-  ]
+  ],
+  "description": "A cylinder that is invisible. It can be used to create a wall or a column that the player can't walk through.",
+  "author": "Decentraland Foundation"
 }

@@ -6,5 +6,7 @@
     "health",
     "enemy",
     "damage"
-  ]
+  ],
+  "description": "A tile of spikes that can be used to damage players. It can be used together with the Health Bar smart item.",
+  "author": "Decentraland Foundation"
 }

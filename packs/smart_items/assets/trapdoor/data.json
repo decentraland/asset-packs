@@ -6,5 +6,7 @@
     "door",
     "trap",
     "interactive"
-  ]
+  ],
+  "description": "A trapdoor that can only be opened or closed by another smart item (e.g. a trigger area or button), not by direct player clicks.",
+  "author": "Decentraland Foundation"
 }

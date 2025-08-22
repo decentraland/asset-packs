@@ -7,5 +7,7 @@
     "wall",
     "ramp",
     "collider"
-  ]
+  ],
+  "description": "A ramp that is invisible. It can be used to create a ramp for players to easily reach higher places.",
+  "author": "Decentraland Foundation"
 }

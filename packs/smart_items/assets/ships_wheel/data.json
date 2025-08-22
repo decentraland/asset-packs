@@ -3,6 +3,11 @@
   "name": "Ship's Wheel",
   "category": "buttons",
   "tags": [
-    "button"
-  ]
+    "button",
+    "switch",
+    "toggle",
+    "activate"
+  ],
+  "description": "A ship's wheel that can be clicked to spin and trigger actions on other smart items.",
+  "author": "Decentraland Foundation"
 }

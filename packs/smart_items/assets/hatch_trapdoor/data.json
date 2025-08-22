@@ -3,6 +3,14 @@
   "name": "Hatch Trapdoor",
   "category": "doors",
   "tags": [
-    "door"
-  ]
+    "door",
+    "hatch",
+    "trapdoor",
+    "open",
+    "close",
+    "glass",
+    "roof"
+  ],
+  "description": "A glass hatch that can be opened and closed when clicked.",
+  "author": "Decentraland Foundation"
 }

@@ -11,5 +11,7 @@
     "hemisphere",
     "globe",
     "collider"
-  ]
+  ],
+  "description": "A dome that is invisible. It can be used to create a semicircular wall that the player can't walk through.",
+  "author": "Decentraland Foundation"
 }
