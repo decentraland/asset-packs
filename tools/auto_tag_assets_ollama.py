@@ -1,4 +1,4 @@
-import argparse, base64, json, os, re, sys
+import argparse, base64, json, os, re, sys, time
 from pathlib import Path
 from typing import List, Set
 import requests
@@ -13,8 +13,10 @@ except Exception:
     nltk.download("wordnet"); nltk.download("omw-1.4")
     from nltk.corpus import wordnet as wn
 
-OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
-MODEL = os.environ.get("OLLAMA_MODEL", "llava")
+OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434")
+MODEL = os.environ.get("OLLAMA_MODEL", "llava:7b")
+CONNECT_TIMEOUT = 10
+READ_TIMEOUT = 900
 
 IMAGE_PATTERNS = [
     r"^thumb(nail)?\.(png|jpe?g|webp)$",
@@ -23,28 +25,58 @@ IMAGE_PATTERNS = [
 ]
 
 def find_thumbnail(asset_dir: Path) -> Path | None:
-    files = [f for f in asset_dir.iterdir() if f.is_file()]
-    for pat in IMAGE_PATTERNS:
+    # Search recursively: prefer thumbnail/preview names, else first image file
+    candidates = []
+    for pat in IMAGE_PATTERNS[:-1]:  # specific names first
         rx = re.compile(pat, re.IGNORECASE)
-        for f in files:
-            if rx.match(f.name):
+        for f in asset_dir.rglob("*"):
+            if f.is_file() and rx.match(f.name):
                 return f
-    return None
+    # fallback: any image file in subtree
+    for f in asset_dir.rglob("*"):
+        if f.is_file() and f.suffix.lower() in {".png", ".jpg", ".jpeg", ".webp"}:
+            candidates.append(f)
+    return candidates[0] if candidates else None
+
+def probe_server() -> bool:
+    try:
+        r = requests.get(f"{OLLAMA_URL}/api/version", timeout=(CONNECT_TIMEOUT, 5))
+        r.raise_for_status()
+        return True
+    except Exception:
+        return False
 
 def ollama_generate(prompt: str, image_path: Path, temperature: float = 0.6) -> str:
     with open(image_path, "rb") as fh:
         img_b64 = base64.b64encode(fh.read()).decode("utf-8")
     payload = {
         "model": MODEL,
-        "prompt": prompt,
-        "images": [img_b64],
+        "messages": [
+            {
+                "role": "user",
+                "content": prompt,
+                "images": [img_b64],
+            }
+        ],
         "stream": False,
-        "options": {"temperature": temperature}
+        "options": {"temperature": temperature},
     }
-    r = requests.post(f"{OLLAMA_URL}/api/generate", json=payload, timeout=120)
-    r.raise_for_status()
-    data = r.json()
-    return (data.get("response") or "").strip()
+    for attempt in range(5):
+        try:
+            r = requests.post(
+                f"{OLLAMA_URL}/api/chat",
+                json=payload,
+                timeout=(CONNECT_TIMEOUT, READ_TIMEOUT),
+            )
+            r.raise_for_status()
+            data = r.json()
+            msg = data.get("message", {})
+            text = msg.get("content") or data.get("response") or ""
+            return text.strip()
+        except Exception:
+            # Backoff; allow first attempt extra time for model load
+            time.sleep(15 if attempt == 0 else 5 * (attempt + 1))
+    return ""
 
 def normalize_phrase(s: str) -> str:
     s = s.lower().strip()
@@ -106,36 +138,63 @@ def save_json(p: Path, obj: dict):
         fh.write("\n")
 
 def main():
-    print(os.getcwd())
     ap = argparse.ArgumentParser()
-    # ap.add_argument("--assets-root", required=True)
+    ap.add_argument("--assets-root", required=True)
     ap.add_argument("--max-tags", type=int, default=24)
     ap.add_argument("--syns-per-term", type=int, default=4)
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--limit", type=int, default=0)
     args = ap.parse_args()
 
-    nlp = spacy.load("en_core_web_sm", disable=["ner", "parser", "textcat"])
+    if not probe_server():
+        print("Ollama server not responding at", OLLAMA_URL, file=sys.stderr)
+        sys.exit(1)
 
-    #root = Path("/Users/juanpasutti/documents/asset-packs/packs/").expanduser().resolve()
-    #print(root)
-    #asset_dirs = [p for p in root.iterdir() if p.is_dir()]
+    # Discover only real asset folders: .../assets/<asset>/data.json
+    root = Path(args.assets_root).expanduser().resolve()
+    data_files = list(root.rglob("data.json"))
+    asset_dirs = []
+    for p in data_files:
+        try:
+            if p.parent.parent.name == "assets":
+                asset_dirs.append(p.parent)
+        except Exception:
+            continue
+    asset_dirs = sorted(set(asset_dirs))
 
-    #for ad in tqdm(sorted(asset_dirs), desc="Auto-tagging (ollama/llava)"):
-    for x in range(1):
-        # thumb = find_thumbnail(ad)
-        thumb = "/Users/juanpasutti/documents/asset-packs/packs/cyberpunk/assets/arcade_machine_blue/thumbnail.png"
-        #if not thumb:
-        #   continue
-        #data_json = ad / "data.json"
-        #if not data_json.exists():
-        #    continue
+    # Warm model with first available image
+    first_img = None
+    for ad in asset_dirs:
+        t = find_thumbnail(ad)
+        if t:
+            first_img = t
+            break
+    if first_img:
+        try:
+            ollama_generate("ready?", first_img, temperature=0.0)
+        except Exception:
+            pass
+
+    processed = 0
+    for ad in tqdm(asset_dirs, desc="Auto-tagging (ollama/llava)"):
+        if args.limit and processed >= args.limit:
+            break
+        thumb = find_thumbnail(ad)
+        if not thumb:
+            continue
+        data_json = ad / "data.json"
+        if not data_json.exists():
+            continue
 
         # 1) Caption and raw keywords from llava
         try:
             caption = ollama_generate(
-                "Describe this image in one concise sentence.", thumb, temperature=0.2
+                "Describe this image in one concise sentence. This image is a thumbnail of a 3D asset, so it should be a description of the asset.", thumb, temperature=0.2
             )
-
+            csv_keys = ollama_generate(
+                "List 18 short keywords (lowercase, nouns/adjectives, comma-separated) describing the image.",
+                thumb, temperature=0.5
+            )
         except Exception as e:
             print(f"ollama error on {thumb}: {e}", file=sys.stderr)
             continue
@@ -144,11 +203,8 @@ def main():
         print(caption)
         print("*******************************")
         print(csv_keys)
-
-        # 2) NLP keyword extraction + CSV parsing
-        k_from_caption = extract_keywords_spacy(nlp, caption)
-        k_from_csv = parse_csv_keywords(csv_keys)
-        base_terms = k_from_caption.union(k_from_csv)
+        # 2) CSV parsing only
+        base_terms = parse_csv_keywords(csv_keys)
 
         # 3) Synonym expansion
         expanded = expand_synonyms_wordnet(base_terms, max_syns_per_term=args.syns_per_term)
@@ -162,12 +218,10 @@ def main():
         obj["tags"] = merged
 
         if args.dry_run:
-            print(f"[DRY] {data_json.name}: caption='{caption}' -> +{final_tags}")
-            continue
-
-        save_json(data_json, obj)
-
-        break
+            print(f"[DRY] {data_json.name}: +{final_tags}  description='" + caption + "'")
+        else:
+            save_json(data_json, obj)
+        processed += 1
 
 if __name__ == "__main__":
     main()
