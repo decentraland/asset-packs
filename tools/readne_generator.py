@@ -12,7 +12,7 @@ class ReadmeGenerator:
     
     def add_asset(self, asset, thumbnail, tags, description):
         asset_objet = {
-            "asset": asset,
+            "asset": str(thumbnail).split('assets/')[1].split("/thumbnail")[0],
             "thumbnail": str(thumbnail).split('asset-packs/')[1],
             "tags": tags,
             "description": description,
