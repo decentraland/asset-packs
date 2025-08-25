@@ -1,4 +1,6 @@
+import os
 from jinja2 import Environment, FileSystemLoader
+
 
 class ReadmeGenerator:
     """
@@ -11,7 +13,7 @@ class ReadmeGenerator:
     def add_asset(self, asset, thumbnail, tags, description):
         asset_objet = {
             "asset": asset,
-            "thumbnail": thumbnail,
+            "thumbnail": str(thumbnail).split('asset-packs/')[1],
             "tags": tags,
             "description": description,
         }
@@ -19,10 +21,14 @@ class ReadmeGenerator:
     
     def renderize_readme(self):
 
-        env = Environment(loader=FileSystemLoader("templates"))
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+        TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
+
+        env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
         template = env.get_template("README.template.md")
 
-        output = template.render(self.assets)
+        output = template.render(assets=self.assets)
 
         with open("test-output.md", "w", encoding="utf-8") as f:
             f.write(output)
