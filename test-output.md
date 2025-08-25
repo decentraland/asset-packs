@@ -5,27 +5,52 @@ Tests using OLLAMA and LLAVA for asset tagging and desription generation.
 ## Tests
 
 
-    **Asset**: data.json
-    ![Thumbnail](packs/cyberpunk/assets/a_blue/thumbnail.png)    
-    **Tags**: ['flesh', 'conventionaliseds', 'symbolic representation', 'alphabet', 'gloomy', 'missives', 'grim', 'symbolisation', 'print', 'first principle', 'pulley block', 'tag end', 'shape', 'signified', 'agency', 'body structures', 'abstract entity', 'gloomies', 'descriptors', 'stigmatization', 'substance', 'variants', 'abstraction', 'shred']
-    **Description**: The image displays a three-dimensional model of an abstract letter "A" with a simple design and a blue color scheme. It appears to be a stylized representation of the letter "A," possibly for use in graphic design or as part of a logo.
 
-    **Asset**: data.json
-    ![Thumbnail](packs/cyberpunk/assets/a_red/thumbnail.png)    
-    **Tags**: ['reports', 'holy scripture', 'flesh', 'symbolic representation', 'alphabet', 'print', 'missives', 'body structures', 'symbolisation', 'first principle', 'shape', 'logotype', 'records', 'emblematicals', 'variants', 'stigmatization', 'substance', 'document', 'components', 'upper case letter', 'import', 'designing', 'social functions', 'fount']
-    **Description**: The image shows a stylized red letter 'A' with a three-dimensional appearance, set against a black background.
+**Asset**: a_blue
 
-    **Asset**: data.json
-    ![Thumbnail](packs/cyberpunk/assets/arcade_machine_black/thumbnail.png)    
-    **Tags**: ['time slots', 'filmdom', 'gaming console', 'colonnades', 'nostalgic gaming', 'clits', 'gambling', 'joystick', 'organisations', 'stick', 'cars', 'gamer machine', 'push buttons', 'realness', 'expansion slot', 'interpretings', 'political machines', 'realism', 'gamblings', 'cabinets', 'one armed bandit', 'nontextual matters', 'display screen', 'concealments']
-    **Description**: The image shows a 3D model of an arcade machine with a small screen and buttons on the front. It has a classic design with a dark color scheme.
+![Thumbnail](packs/cyberpunk/assets/a_blue/thumbnail.png)   
 
-    **Asset**: data.json
-    ![Thumbnail](packs/cyberpunk/assets/arcade_machine_blue/thumbnail.png)    
-    **Tags**: ['vintage', 'department of the interior', 'filmdom', 'lawsuit', 'casing', 'colonnades', 'nostalgic', 'shows', 'clits', 'threshold', 'joystick', 'restraints', 'stick', 'video game machine', 'cars', 'push buttons', 'arcade', 'consoles', 'political machines', 'subjects', 'storage lockers', 'cabinets', 'controller', 'doorway']
-    **Description**: The image shows a 3D model of an arcade machine with a blue and white color scheme, featuring a screen displaying what appears to be a game interface, buttons, joysticks, and a coin slot on the front.
+**Tags**: ['varsity letter', 'intentionals', 'intentional', 'alphabetic characters', 'letter', 'alphabetic character', 'letter of the alphabet', 'varsity letters', 'cleverly designed']
 
-    **Asset**: data.json
-    ![Thumbnail](packs/cyberpunk/assets/arcade_machine_green/thumbnail.png)    
-    **Tags**: ['flesh', 'time slots', 'lawsuit', 'casing', 'colonnades', 'shows', 'clits', 'gambling', 'joystick', 'stick', 'cars', 'push buttons', 'expansion slot', 'dash', 'political machines', 'plots', 'video game', 'subjects', 'gamblings', 'plastic case', 'one armed bandit', 'signed', 'pixel art style', 'plot']
-    **Description**: The image shows a 3D model of an arcade machine with a green top and a screen displaying what appears to be a game interface, set against a black background.
+**Description**: The image shows a stylized, three-dimensional letter "A" with a modern and clean design, rendered in a blue color on a black background.
+
+
+
+**Asset**: a_red
+
+![Thumbnail](packs/cyberpunk/assets/a_red/thumbnail.png)   
+
+**Tags**: ['textual matters', 'conceptions', 'a', 'antiophthalmic factor', 'alphabetic characters', 'reddened', 'letter', 'alphabetic character', 'symbolisation', 'blood red', 'symbolization', 'baptistries', 'purposes', 'reddish', 'baptismal font', 'symbol', 'textbook', 'varsity letter', 'school text', 'baptistry', 'red', 'reddishes', 'symbolisations', 'monogram']
+
+**Description**: The image displays a three-dimensional rendering of an abstract letter 'A' with a red outline and a black fill, set against a dark background.
+
+
+
+**Asset**: arcade_machine_black
+
+![Thumbnail](packs/cyberpunk/assets/arcade_machine_black/thumbnail.png)   
+
+**Tags**: ['conceptions', 'restraint', 'motorcar', 'ascendencies', 'arcade machine', 'unit of measurement', 'gambling', 'showing', 'nontextual matters', 'gimmick', 'modelling', 'ascendancies', 'automobile', 'car', 'vibration', 'gamblings', 'collectors item', 'vibrations', 'electronic device', 'conception', 'pixel art', 'prowess', 'gimmicks', 'twist']
+
+**Description**: The image shows a 3D model of an arcade machine with a screen displaying a game interface and buttons for controls.
+
+
+
+**Asset**: arcade_machine_blue
+
+![Thumbnail](packs/cyberpunk/assets/arcade_machine_blue/thumbnail.png)   
+
+**Tags**: ['comptroller', 'gaming unit', 'time slots', 'motorcar', 'display screen', 'covert', 'one armed bandit', 'video game console', 'cabinets', 'loudspeakers', 'loudspeaker', 'arcade machine', 'unit of measurement', 'index numbers', 'button panel', 'cabinet', 'indicant', 'comptrollers', 'expansion slot', 'power indicator', 'whole', 'details', 'talker', 'console table']
+
+**Description**: The image displays a 3D model of an arcade machine with a blue exterior and a clear glass front, featuring a control panel with buttons and joysticks, and a screen displaying what appears to be a game interface with red and green elements.
+
+
+
+**Asset**: arcade_machine_green
+
+![Thumbnail](packs/cyberpunk/assets/arcade_machine_green/thumbnail.png)   
+
+**Tags**: ['playthings', 'public figure', 'motorcar', 'theoretical accounts', 'anatomy', 'fig', 'gamy', 'anatomies', 'spunkies', 'arcade game', 'collectable', 'leisure time', 'amusement', 'video displays', 'showing', 'action figure', 'details', 'leisure', 'gimmick', 'modelling', 'automobile', 'model', 'gameys', 'illumination']
+
+**Description**: The image shows a 3D model of an arcade machine with a green top and a blue screen displaying what appears to be a game interface. The machine has two joysticks on the front panel and several buttons around them. It is placed against a black background, emphasizing its design and features.
+
