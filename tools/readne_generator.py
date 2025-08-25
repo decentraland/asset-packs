@@ -19,7 +19,7 @@ class ReadmeGenerator:
     
     def renderize_readme(self):
 
-        env = Environment(loader=FileSystemLoader("templataes"))
+        env = Environment(loader=FileSystemLoader("templates"))
         template = env.get_template("README.template.md")
 
         output = template.render(self.assets)
