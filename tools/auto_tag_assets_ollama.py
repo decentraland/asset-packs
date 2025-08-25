@@ -6,6 +6,7 @@ from tqdm import tqdm
 import spacy
 import nltk
 import inflect
+from readne_generator import ReadmeGenerator
 
 try:
     from nltk.corpus import wordnet as wn
@@ -138,6 +139,8 @@ def save_json(p: Path, obj: dict):
         fh.write("\n")
 
 def main():
+    readme_generator = ReadmeGenerator()
+
     ap = argparse.ArgumentParser()
     ap.add_argument("--assets-root", required=True)
     ap.add_argument("--max-tags", type=int, default=24)
@@ -219,9 +222,17 @@ def main():
 
         if args.dry_run:
             print(f"[DRY] {data_json.name}: +{final_tags}  description='" + caption + "'")
+            readme_generator.add_asset(
+                data_json.name, 
+                thumb,
+                final_tags, 
+                caption,
+            )
         else:
             save_json(data_json, obj)
         processed += 1
+    
+    readme_generator.renderize_readme()
 
 if __name__ == "__main__":
     main()
