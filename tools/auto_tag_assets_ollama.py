@@ -25,6 +25,12 @@ IMAGE_PATTERNS = [
     r".*\.(png|jpe?g|webp)$",
 ]
 
+def create_prompt(asset_name, type):
+    if type == "description":
+        return f"Describe the object in the image in one concise sentence. This image is a thumbnail of a 3D asset, so it should be a description of the asset, leaving aside it's background and that is a 3D model. The name of the asset is: {asset_name}, take it into consideration."
+    else:
+        return f"List 18 short keywords (lowercase, nouns/adjectives, comma-separated) describing this 3D asset. It's name is: {asset_name}."
+
 def find_thumbnail(asset_dir: Path) -> Path | None:
     # Search recursively: prefer thumbnail/preview names, else first image file
     candidates = []
@@ -192,11 +198,14 @@ def main():
         # 1) Caption and raw keywords from llava
         try:
             caption = ollama_generate(
-                "Describe this image in one concise sentence. This image is a thumbnail of a 3D asset, so it should be a description of the asset.", thumb, temperature=0.2
+                create_prompt(str(thumb).split('assets/')[1].split("/thumbnail")[0], type="description"), 
+                thumb, 
+                temperature=0.2
             )
             csv_keys = ollama_generate(
-                "List 18 short keywords (lowercase, nouns/adjectives, comma-separated) describing the image.",
-                thumb, temperature=0.5
+                create_prompt(str(thumb).split('assets/')[1].split("/thumbnail")[0], type="tags"), 
+                thumb, 
+                temperature=0.5
             )
         except Exception as e:
             print(f"ollama error on {thumb}: {e}", file=sys.stderr)
@@ -228,11 +237,10 @@ def main():
                 final_tags, 
                 caption,
             )
+            readme_generator.renderize_readme()
         else:
             save_json(data_json, obj)
         processed += 1
-    
-    readme_generator.renderize_readme()
 
 if __name__ == "__main__":
     main()
