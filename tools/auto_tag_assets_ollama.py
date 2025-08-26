@@ -17,7 +17,8 @@ except Exception:
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434")
 MODEL = os.environ.get("OLLAMA_MODEL", "llava:7b")
 CONNECT_TIMEOUT = 10
-READ_TIMEOUT = 900
+READ_TIMEOUT = 300
+STREAM_IDLE_TIMEOUT = 30
 
 IMAGE_PATTERNS = [
     r"^thumb(nail)?\.(png|jpe?g|webp)$",
@@ -27,19 +28,19 @@ IMAGE_PATTERNS = [
 
 def create_prompt(asset_name, type):
     if type == "description":
+        print("creating propt for description")
         return f"Describe the object in the image in one concise sentence. This image is a thumbnail of a 3D asset, so it should be a description of the asset, leaving aside it's background and that is a 3D model. The name of the asset is: {asset_name}, take it into consideration."
     else:
+        print("creating prompt for tags")
         return f"List 18 short keywords (lowercase, nouns/adjectives, comma-separated) describing this 3D asset. It's name is: {asset_name}."
 
 def find_thumbnail(asset_dir: Path) -> Path | None:
-    # Search recursively: prefer thumbnail/preview names, else first image file
     candidates = []
-    for pat in IMAGE_PATTERNS[:-1]:  # specific names first
+    for pat in IMAGE_PATTERNS[:-1]:
         rx = re.compile(pat, re.IGNORECASE)
         for f in asset_dir.rglob("*"):
             if f.is_file() and rx.match(f.name):
                 return f
-    # fallback: any image file in subtree
     for f in asset_dir.rglob("*"):
         if f.is_file() and f.suffix.lower() in {".png", ".jpg", ".jpeg", ".webp"}:
             candidates.append(f)
@@ -59,29 +60,43 @@ def ollama_generate(prompt: str, image_path: Path, temperature: float = 0.6) -> 
     payload = {
         "model": MODEL,
         "messages": [
-            {
-                "role": "user",
-                "content": prompt,
-                "images": [img_b64],
-            }
+            {"role": "user", "content": prompt, "images": [img_b64]},
         ],
         "stream": False,
         "options": {"temperature": temperature},
     }
     for attempt in range(5):
         try:
-            r = requests.post(
+            with requests.post(
                 f"{OLLAMA_URL}/api/chat",
                 json=payload,
-                timeout=(CONNECT_TIMEOUT, READ_TIMEOUT),
-            )
-            r.raise_for_status()
-            data = r.json()
-            msg = data.get("message", {})
-            text = msg.get("content") or data.get("response") or ""
-            return text.strip()
+                stream=True,
+                timeout=(CONNECT_TIMEOUT, STREAM_IDLE_TIMEOUT),
+            ) as r:
+                r.raise_for_status()
+                chunks = []
+                start_time = time.time()
+                got_data = False
+                for line in r.iter_lines():
+                    if line:
+                        got_data = True
+                        start_time = time.time()
+                        try:
+                            data = json.loads(line.decode("utf-8"))
+                            if "message" in data:
+                                chunks.append(data["message"]["content"])
+                            elif "response" in data:
+                                chunks.append(data["response"])
+                        except Exception:
+                            continue
+                    if time.time() - start_time > STREAM_IDLE_TIMEOUT:
+                        print(f"[WARN] Stream idle >{STREAM_IDLE_TIMEOUT}s, cortando...")
+                        break
+                if not got_data:
+                    print(f"[WARN] No recibí nada del servidor para prompt='{prompt[:50]}...'")
+                text = "".join(chunks).strip()
+                return text
         except Exception:
-            # Backoff; allow first attempt extra time for model load
             time.sleep(15 if attempt == 0 else 5 * (attempt + 1))
     return ""
 
@@ -102,8 +117,7 @@ def extract_keywords_spacy(nlp, text: str) -> Set[str]:
     for tok in doc:
         if tok.pos_ in {"NOUN", "PROPN", "ADJ"}:
             cands.add(normalize_phrase(tok.lemma_))
-    cands = {c for c in cands if c and len(c) >= 3}
-    return cands
+    return {c for c in cands if c and len(c) >= 3}
 
 def parse_csv_keywords(s: str) -> Set[str]:
     parts = re.split(r"[,\n;]", s)
@@ -159,7 +173,6 @@ def main():
         print("Ollama server not responding at", OLLAMA_URL, file=sys.stderr)
         sys.exit(1)
 
-    # Discover only real asset folders: .../assets/<asset>/data.json
     root = Path(args.assets_root).expanduser().resolve()
     data_files = list(root.rglob("data.json"))
     asset_dirs = []
@@ -171,7 +184,6 @@ def main():
             continue
     asset_dirs = sorted(set(asset_dirs))
 
-    # Warm model with first available image
     first_img = None
     for ad in asset_dirs:
         t = find_thumbnail(ad)
@@ -195,18 +207,19 @@ def main():
         if not data_json.exists():
             continue
 
-        # 1) Caption and raw keywords from llava
         try:
             caption = ollama_generate(
                 create_prompt(str(thumb).split('assets/')[1].split("/thumbnail")[0], type="description"), 
                 thumb, 
                 temperature=0.2
             )
+            print("generated description")
             csv_keys = ollama_generate(
                 create_prompt(str(thumb).split('assets/')[1].split("/thumbnail")[0], type="tags"), 
                 thumb, 
-                temperature=0.5
+                temperature=0.2,
             )
+            print("generated tags")
         except Exception as e:
             print(f"ollama error on {thumb}: {e}", file=sys.stderr)
             continue
@@ -215,13 +228,9 @@ def main():
         print(caption)
         print("*******************************")
         print(csv_keys)
-        # 2) CSV parsing only
+
         base_terms = parse_csv_keywords(csv_keys)
-
-        # 3) Synonym expansion
         expanded = expand_synonyms_wordnet(base_terms, max_syns_per_term=args.syns_per_term)
-
-        # 4) Trim and write
         final_tags = list(dict.fromkeys([t for t in expanded if t]))[:args.max_tags]
 
         obj = load_json(data_json)
@@ -241,6 +250,8 @@ def main():
         else:
             save_json(data_json, obj)
         processed += 1
+
+        time.sleep(1)
 
 if __name__ == "__main__":
     main()
