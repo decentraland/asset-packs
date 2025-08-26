@@ -248,3 +248,51 @@ Tests using OLLAMA and LLAVA for asset tagging and desription generation.
 
 ---
 
+
+
+**Asset**: barrel_with_lid
+
+![Thumbnail](packs/cyberpunk/assets/barrel_with_lid/thumbnail.png)   
+
+**Tags**: ['open air', 'joseph black', 'boxful', 'overt', 'open airs', 'crownwork', 'special k', 'black', 'methamphetamine hydrochlorides', 'commons', 'chickenhearteds', 'sinister', 'palpebras', 'drivel', 'park', 'tripes', 'methamphetamine hydrochloride', 'textiles', 'lid', 'summit', 'piston chambers', 'chicken', 'overts', 'eyelids']
+
+**Description**: The image shows a 3D model of a cylindrical container with a lid on top. It appears to be a simple, stylized representation rather than a realistic one. The container has a yellow stripe around its middle and is colored black. There's a green substance inside the container, which could represent water or another liquid. The lid is also black and seems to fit snugly on top of the container.
+
+---
+
+
+
+**Asset**: barrel_yellow_oil
+
+![Thumbnail](packs/cyberpunk/assets/barrel_yellow_oil/thumbnail.png)   
+
+**Tags**: ['round top', 'chickenhearteds', 'crownwork', 'cycle', 'wide eyed', 'faces', 'palpebras', 'melted', 'form', 'melteds', 'supreme headquarters allied powers europe', 'design', 'summit', 'excogitations', 'repositions', 'textiles', 'lid', 'piston chambers', 'chicken', 'transparent', 'orangish', 'face', 'human body', 'unremarkable']
+
+**Description**: The image shows an orange 3D model of a barrel, which appears to be a simplified representation commonly used in computer graphics or as a placeholder for a real object. It has a cylindrical shape with a flat top and bottom, and there is a small hole on the top. This could be a stylized version of an oil barrel, given its color and the context provided by the asset name.
+
+---
+
+
+
+**Asset**: basketball_hoop
+
+![Thumbnail](packs/cyberpunk/assets/basketball_hoop/thumbnail.png)   
+
+**Tags**: ['conducting wires', 'basketball court', 'basketball hoops', 'textiles', 'basketball game', 'telephone circuits', 'sports equipment', 'game equipment', 'secret plan', 'gritties', 'game', 'demarcations', 'hoop', 'charge plates', 'rim', 'stuff', 'motor lodges', 'wickets', 'judicatures', 'secret plans', 'rings', 'lips', 'motor hotel', 'summercater']
+
+**Description**: The image shows a 3D model of a basketball hoop with a ball in the net.
+
+---
+
+
+
+**Asset**: beanbag_blue
+
+![Thumbnail](packs/cyberpunk/assets/beanbag_blue/thumbnail.png)   
+
+**Tags**: ['toy dog', 'solidness', 'balmy', 'cycle', 'wide eyed', 'surface', 'testicles', 'textiles', 'plushy', 'heaven', 'grain', 'glob', 'lucullan', 'particulars', 'ball', 'plush', 'sphere', 'dim witted', 'airfoil', 'clump', 'globes', 'charge plates', 'object', 'plushies']
+
+**Description**: The image shows a blue bean bag chair.
+
+---
+
