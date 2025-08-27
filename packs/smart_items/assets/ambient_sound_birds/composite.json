@@ -99,7 +99,7 @@
                 "items": [
                   {
                     "component": "asset-packs::Actions",
-                    "widget": "TextField",
+                    "widget": "FileUploadField",
                     "label": "Sound Path",
                     "path": "src",
                     "basicViewId": "loop-sound"
