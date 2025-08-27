@@ -279,6 +279,7 @@ export function createComponents(engine: IEngine) {
         jsonPayload: Schemas.String,
         allowedInBasicView: Schemas.Optional(Schemas.Boolean),
         basicViewId: Schemas.Optional(Schemas.String),
+        default: Schemas.Optional(Schemas.Boolean),
       }),
     ),
   })
