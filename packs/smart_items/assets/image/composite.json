@@ -117,6 +117,36 @@
           }
         }
       }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "label": "Image",
+            "sections": [
+              {
+                "id": "texture",
+                "label": "Texture Settings",
+                "items": [
+                  {
+                    "component": "core::Material",
+                    "widget": "FileUploadField",
+                    "label": "Image Texture",
+                    "type": "text",
+                    "path": "material.pbr.texture.text.texture.src"
+                  }
+                ],
+                "helpTooltip": {
+                  "text": "Upload an image to use as the texture for this material"
+                }
+              }
+            ],
+            "version": 2
+          }
+        }
+      }
     }
   ]
 }
