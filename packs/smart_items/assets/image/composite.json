@@ -139,7 +139,7 @@
                   }
                 ],
                 "helpTooltip": {
-                  "text": "Upload an image to use as the texture for this material"
+                  "text": "Upload an image file to use as a texture for this entity."
                 }
               }
             ],
