@@ -128,14 +128,16 @@
             "sections": [
               {
                 "id": "texture",
-                "label": "Texture Settings",
                 "items": [
                   {
                     "component": "core::Material",
                     "widget": "FileUploadField",
-                    "label": "Image Texture",
-                    "type": "text",
-                    "path": "material.pbr.texture.tex.texture.src"
+                    "path": "material.pbr.texture.tex.texture.src",
+                    "label": "Path",
+                    "props": {
+                      "acceptURLs": true,
+                      "accept": [".png", ".jpg", ".jpeg"]
+                    }
                   }
                 ],
                 "helpTooltip": {
