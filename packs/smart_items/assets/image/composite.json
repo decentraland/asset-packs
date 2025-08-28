@@ -135,7 +135,7 @@
                     "widget": "FileUploadField",
                     "label": "Image Texture",
                     "type": "text",
-                    "path": "material.pbr.texture.text.texture.src"
+                    "path": "material.pbr.texture.tex.texture.src"
                   }
                 ],
                 "helpTooltip": {
