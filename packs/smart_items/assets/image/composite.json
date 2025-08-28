@@ -139,12 +139,12 @@
                       "accept": [".png", ".jpg", ".jpeg"]
                     }
                   }
-                ],
-                "helpTooltip": {
-                  "text": "Upload an image file to use as a texture for this entity."
-                }
+                ]
               }
             ],
+            "helpTooltip": {
+              "text": "Upload an image file to use as a texture for this entity."
+            },
             "version": 2
           }
         }
