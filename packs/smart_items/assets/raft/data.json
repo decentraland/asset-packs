@@ -5,6 +5,12 @@
   "tags": [
     "platform",
     "horizontal",
-    "interactive"
-  ]
+    "interactive",
+    "raft",
+    "boat",
+    "water",
+    "floating"
+  ],
+  "description": "A horizontal moving platform that looks like a raft. Players can stand on it to move back and forth.",
+  "author": "Decentraland Foundation"
 }

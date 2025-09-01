@@ -3,6 +3,12 @@
   "name": "Text",
   "category": "Text",
   "tags": [
-    "text"
-  ]
+    "text",
+    "message",
+    "sign",
+    "description",
+    "label"
+  ],
+  "description": "2D text that can be placed at any position and orientation, not limited to surfaces.",
+  "author": "Decentraland Foundation"
 }

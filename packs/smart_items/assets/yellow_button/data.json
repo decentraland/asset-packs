@@ -3,6 +3,12 @@
   "name": "Yellow Button",
   "category": "buttons",
   "tags": [
-    "button"
-  ]
+    "button",
+    "yellow",
+    "activate",
+    "switch",
+    "toggle"
+  ],
+  "description": "A button that can be clicked to trigger actions on other smart items.",
+  "author": "Decentraland Foundation"
 }

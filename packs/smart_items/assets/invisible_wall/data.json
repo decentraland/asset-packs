@@ -6,5 +6,7 @@
     "invisible",
     "wall",
     "collider"
-  ]
+  ],
+  "description": "A wall that is invisible. It can be used to create a wall that the player can't walk through.",
+  "author": "Decentraland Foundation"
 }

@@ -3,6 +3,13 @@
   "name": "Toy Lever",
   "category": "levers",
   "tags": [
-    "lever"
-  ]
+    "lever",
+    "pull",
+    "push",
+    "pull lever",
+    "push lever",
+    "handle"
+  ],
+  "description": "A lever that can be pulled or pushed to trigger actions on other smart items.",
+  "author": "Decentraland Foundation"
 }

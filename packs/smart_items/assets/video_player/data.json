@@ -3,6 +3,9 @@
   "name": "Video Player",
   "category": "deprecated",
   "tags": [
-    "video"
-  ]
+    "video",
+    "screen"
+  ],
+  "description": "DEPRECATED: A video player that can be used to play videos.",
+  "author": "Decentraland Foundation"
 }

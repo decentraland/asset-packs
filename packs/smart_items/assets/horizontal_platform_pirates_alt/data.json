@@ -5,6 +5,12 @@
   "tags": [
     "platform",
     "horizontal",
-    "interactive"
-  ]
+    "interactive",
+    "floating",
+    "elevator",
+    "lift",
+    "island"
+  ],
+  "description": "A horizontal platform that moves back and forth. Players can jump on it to reach places.",
+  "author": "Decentraland Foundation"
 }

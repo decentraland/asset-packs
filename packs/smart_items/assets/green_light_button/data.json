@@ -3,6 +3,11 @@
   "name": "Green Light Button",
   "category": "buttons",
   "tags": [
-    "button"
-  ]
+    "button",
+    "switch",
+    "toggle",
+    "activate"
+  ],
+  "description": "A green button that can be clicked to trigger actions on other smart items.",
+  "author": "Decentraland Foundation"
 }

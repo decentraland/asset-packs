@@ -3,6 +3,11 @@
   "name": "Cyberpunk Door",
   "category": "doors",
   "tags": [
-    "door"
-  ]
+    "door",
+    "cyberpunk",
+    "neon",
+    "sliding"
+  ],
+  "description": "A cyberpunk door that slides open and closed when clicked.",
+  "author": "Decentraland Foundation"
 }

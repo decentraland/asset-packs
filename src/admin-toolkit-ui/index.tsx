@@ -227,7 +227,7 @@ const uiComponent = (
           uiTransform={{
             positionType: 'absolute',
             flexDirection: 'row',
-            position: { top: 80 * scaleFactor, right: 10 * scaleFactor },
+            position: { top: 120 * scaleFactor, right: 10 * scaleFactor },
           }}
         >
           <UiEntity

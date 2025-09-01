@@ -8,5 +8,7 @@
     "interactive",
     "taxi",
     "vehicle"
-  ]
+  ],
+  "description": "A horizontal platform that looks like a taxi. Players can stand on it to move back and forth.",
+  "author": "Decentraland Foundation"
 }

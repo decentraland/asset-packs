@@ -34,7 +34,8 @@
                 "name": "Open or Close",
                 "type": "set_state",
                 "jsonPayload": "{ \"state\": \"Toggle\" }",
-                "allowedInBasicView": true
+                "allowedInBasicView": true,
+                "default": true
               },
               {
                 "name": "Play Sound",
@@ -170,11 +171,7 @@
         "0": {
           "json": {
             "id": "{self}",
-            "value": [
-              "Open",
-              "Closed",
-              "Toggle"
-            ],
+            "value": ["Open", "Closed", "Toggle"],
             "defaultValue": "Closed"
           }
         }

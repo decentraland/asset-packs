@@ -10,5 +10,7 @@
     "globe",
     "round",
     "collider"
-  ]
+  ],
+  "description": "A sphere that is invisible. It can be used to create a round area that the player can't walk through.",
+  "author": "Decentraland Foundation"
 }

@@ -279,6 +279,7 @@ export function createComponents(engine: IEngine) {
         jsonPayload: Schemas.String,
         allowedInBasicView: Schemas.Optional(Schemas.Boolean),
         basicViewId: Schemas.Optional(Schemas.String),
+        default: Schemas.Optional(Schemas.Boolean),
       }),
     ),
   })
@@ -496,10 +497,10 @@ export function initComponents(engine: IEngine) {
 
 function getVideoTexture({ material }: PBMaterial): VideoTexture | undefined {
   if (
-    material?.$case === 'pbr' &&
-    material.pbr.texture?.tex?.$case === 'videoTexture'
+    material?.$case === 'unlit' &&
+    material.unlit.texture?.tex?.$case === 'videoTexture'
   ) {
-    return material.pbr.texture.tex.videoTexture
+    return material.unlit.texture.tex.videoTexture
   }
 
   return undefined
@@ -510,12 +511,12 @@ export function initVideoPlayerComponentMaterial(
   { Material }: Pick<EngineComponents, 'Material'>,
   material?: PBMaterial | null,
 ) {
-  if (!material || !material.material || material.material.$case !== 'pbr') {
+  if (!material || !material.material || material.material.$case !== 'unlit') {
     return null
   }
 
-  Material.setPbrMaterial(entity, {
-    ...material.material.pbr,
+  Material.setBasicMaterial(entity, {
+    ...material.material.unlit,
     texture: Material.Texture.Video({
       videoPlayerEntity: entity,
     }),

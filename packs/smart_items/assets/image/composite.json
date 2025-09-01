@@ -117,6 +117,38 @@
           }
         }
       }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "label": "Image",
+            "sections": [
+              {
+                "id": "texture",
+                "items": [
+                  {
+                    "component": "core::Material",
+                    "widget": "FileUploadField",
+                    "path": "material.pbr.texture.tex.texture.src",
+                    "label": "Path",
+                    "props": {
+                      "acceptURLs": true,
+                      "accept": [".png", ".jpg", ".jpeg"]
+                    }
+                  }
+                ]
+              }
+            ],
+            "helpTooltip": {
+              "text": "Upload an image file to use as a texture for this entity."
+            },
+            "version": 2
+          }
+        }
+      }
     }
   ]
 }

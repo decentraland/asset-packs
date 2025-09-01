@@ -3,6 +3,11 @@
   "name": "Iron Fence Door",
   "category": "doors",
   "tags": [
-    "door"
-  ]
+    "door",
+    "fence",
+    "iron",
+    "gate"
+  ],
+  "description": "A gate made of iron. It can be opened and closed when clicked.",
+  "author": "Decentraland Foundation"
 }

@@ -3,6 +3,12 @@
   "name": "Treasure Chest",
   "category": "chests",
   "tags": [
-    "door"
-  ]
+    "chest",
+    "treasure",
+    "loot",
+    "open",
+    "close"
+  ],
+  "description": "A chest that can be opened or closed. It can be used to store items.",
+  "author": "Decentraland Foundation"
 }

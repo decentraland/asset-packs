@@ -6,5 +6,7 @@
     "social",
     "links",
     "telegram"
-  ]
+  ],
+  "description": "A clickable item that can open your Telegram page in a browser window. Paste a Telegram page URL in the 'URL' field.",
+  "author": "Decentraland Foundation"
 }

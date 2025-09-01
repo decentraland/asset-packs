@@ -9,5 +9,7 @@
     "car",
     "flying",
     "vehicle"
-  ]
+  ],
+  "description": "A black horizontal platform that looks like a flying car. Players can stand on it to move back and forth.",
+  "author": "Decentraland Foundation"
 }
