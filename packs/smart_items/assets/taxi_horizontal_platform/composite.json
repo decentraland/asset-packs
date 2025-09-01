@@ -163,21 +163,50 @@
         "0": {
           "json": {
             "isBasicViewEnabled": true,
-            "componentName": "Horizontal Platform",
-            "fields": [
+            "label": "Horizontal Platform",
+            "version": 2,
+            "sections": [
               {
-                "name": "Tween",
-                "type": "core::Tween"
+                "id": "tween-settings",
+                "items": [
+                  {
+                    "component": "core::Tween",
+                    "widget": "RangeField",
+                    "label": "Distance",
+                    "path": "mode.move.end.x",
+                    "constraints": { "step": 0.1 },
+                    "transform": {
+                      "in": { "steps": [{ "op": "toNumber" }, { "op": "toFixed" }] },
+                      "out": { "steps": [{ "op": "toNumber" }] }
+                    }
+                  },
+                  {
+                    "component": "core::Tween",
+                    "widget": "RangeField",
+                    "label": "Duration",
+                    "path": "duration",
+                    "constraints": { "step": 1 },
+                    "transform": {
+                      "in": { "steps": [{ "op": "millisecondsToSeconds" }] },
+                      "out": { "steps": [{ "op": "secondsToMilliseconds" }] }
+                    }
+                  }
+                ]
               },
               {
-                "name": "When End Reached",
-                "type": "asset-packs::Triggers",
-                "basicViewId": "trigger-when-end-reached"
+                "id": "tween-settings-auto-start-loop",
+                "items": [
+                  { "component": "core::Tween", "widget": "CheckboxField", "label": "Auto Start", "path": "playing" },
+                  { "component": "core::TweenSequence", "widget": "CheckboxField", "label": "Loop", "path": "loop" }
+                ],
+                "columns": 2
               },
               {
-                "name": "When Start Reached",
-                "type": "asset-packs::Triggers",
-                "basicViewId": "trigger-when-start-reached"
+                "id": "triggers-settings",
+                "items": [
+                  { "component": "asset-packs::Triggers", "widget": "TriggerSection", "label": "When End Reached", "basicViewId": "trigger-when-end-reached" },
+                  { "component": "asset-packs::Triggers", "widget": "TriggerSection", "label": "When Start Reached", "basicViewId": "trigger-when-start-reached" }
+                ]
               }
             ]
           }
