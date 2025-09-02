@@ -43,13 +43,13 @@
               {
                 "name": "Play once",
                 "type": "play_sound",
-                "jsonPayload": "{\"src\":\"{assetPath}/City.mp3\"}",
+                "jsonPayload": "{\"src\":\"{assetPath}/City.mp3\",\"global\":true}",
                 "allowedInBasicView": true
               },
               {
                 "name": "Loop",
                 "type": "play_sound",
-                "jsonPayload": "{\"loop\":true,\"src\":\"{assetPath}/City.mp3\"}",
+                "jsonPayload": "{\"loop\":true,\"src\":\"{assetPath}/City.mp3\",\"global\":true}",
                 "allowedInBasicView": true,
                 "basicViewId": "loop-sound"
               },
