@@ -21,7 +21,9 @@
               {
                 "name": "Open Link",
                 "type": "open_link",
-                "jsonPayload": "{ \"url\": \"https://reddit.com\" }"
+                "jsonPayload": "{ \"url\": \"https://reddit.com\" }",
+                "allowedInBasicView": true,
+                "basicViewId": "open-link"
               }
             ]
           }
@@ -44,6 +46,35 @@
                 ]
               }
             ]
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "label": "Reddit Link",
+            "sections": [
+              {
+                "id": "link",
+                "items": [
+                  {
+                    "component": "asset-packs::Actions",
+                    "widget": "TextField",
+                    "label": "Reddit Link",
+                    "path": "url",
+                    "basicViewId": "open-link"
+                  }
+                ]
+              }
+            ],
+            "helpTooltip": {
+              "text": "Enter a Reddit URL to open when the item is clicked."
+            },
+            "version": 2
           }
         }
       }

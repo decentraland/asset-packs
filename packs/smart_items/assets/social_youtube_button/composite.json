@@ -21,7 +21,9 @@
               {
                 "name": "Open Link",
                 "type": "open_link",
-                "jsonPayload": "{ \"url\": \"https://youtube.com\" }"
+                "jsonPayload": "{ \"url\": \"https://youtube.com\" }",
+                "allowedInBasicView": true,
+                "basicViewId": "open-link"
               }
             ]
           }
@@ -44,6 +46,35 @@
                 ]
               }
             ]
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "label": "YouTube Link",
+            "sections": [
+              {
+                "id": "link",
+                "items": [
+                  {
+                    "component": "asset-packs::Actions",
+                    "widget": "TextField",
+                    "label": "YouTube Link",
+                    "path": "url",
+                    "basicViewId": "open-link"
+                  }
+                ]
+              }
+            ],
+            "helpTooltip": {
+              "text": "Enter a YouTube URL to open when the item is clicked."
+            },
+            "version": 2
           }
         }
       }

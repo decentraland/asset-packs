@@ -21,7 +21,9 @@
               {
                 "name": "Open Link",
                 "type": "open_link",
-                "jsonPayload": "{ \"url\": \"https://telegram.com\" }"
+                "jsonPayload": "{ \"url\": \"https://telegram.com\" }",
+                "allowedInBasicView": true,
+                "basicViewId": "open-link"
               }
             ]
           }
@@ -44,6 +46,35 @@
                 ]
               }
             ]
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "label": "Telegram Link",
+            "sections": [
+              {
+                "id": "link",
+                "items": [
+                  {
+                    "component": "asset-packs::Actions",
+                    "widget": "TextField",
+                    "label": "Telegram Link",
+                    "path": "url",
+                    "basicViewId": "open-link"
+                  }
+                ]
+              }
+            ],
+            "helpTooltip": {
+              "text": "Enter a Telegram URL to open when the item is clicked."
+            },
+            "version": 2
           }
         }
       }

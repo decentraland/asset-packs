@@ -21,7 +21,9 @@
               {
                 "name": "Open Link",
                 "type": "open_link",
-                "jsonPayload": "{ \"url\": \"https://discord.com\" }"
+                "jsonPayload": "{ \"url\": \"https://discord.com\" }",
+                "allowedInBasicView": true,
+                "basicViewId": "open-link"
               }
             ]
           }
@@ -44,6 +46,35 @@
                 ]
               }
             ]
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "label": "Discord Link",
+            "sections": [
+              {
+                "id": "link",
+                "items": [
+                  {
+                    "component": "asset-packs::Actions",
+                    "widget": "TextField",
+                    "label": "Discord Link",
+                    "path": "url",
+                    "basicViewId": "open-link"
+                  }
+                ]
+              }
+            ],
+            "helpTooltip": {
+              "text": "Enter a Discord server URL to open when the item is clicked."
+            },
+            "version": 2
           }
         }
       }

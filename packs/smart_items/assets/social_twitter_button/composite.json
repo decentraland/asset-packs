@@ -21,7 +21,9 @@
               {
                 "name": "Open Link",
                 "type": "open_link",
-                "jsonPayload": "{ \"url\": \"https://twitter.com\" }"
+                "jsonPayload": "{ \"url\": \"https://twitter.com\" }",
+                "allowedInBasicView": true,
+                "basicViewId": "open-link"
               }
             ]
           }
@@ -44,6 +46,35 @@
                 ]
               }
             ]
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "label": "Twitter Link",
+            "sections": [
+              {
+                "id": "link",
+                "items": [
+                  {
+                    "component": "asset-packs::Actions",
+                    "widget": "TextField",
+                    "label": "Twitter Link",
+                    "path": "url",
+                    "basicViewId": "open-link"
+                  }
+                ]
+              }
+            ],
+            "helpTooltip": {
+              "text": "Enter a Twitter URL to open when the item is clicked."
+            },
+            "version": 2
           }
         }
       }
