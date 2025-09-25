@@ -2,11 +2,33 @@
   "version": 1,
   "components": [
     {
+      "name": "core::Animator",
+      "data": {
+        "0": {
+          "json": {
+            "states": []
+          }
+        }
+      }
+    },
+    {
       "name": "core::GltfContainer",
       "data": {
         "0": {
           "json": {
-            "src": "{assetPath}/twitter.glb"
+            "src": "{assetPath}/xsocialmedia_triangle.glb",
+            "visibleMeshesCollisionMask": 0,
+            "invisibleMeshesCollisionMask": 3
+          }
+        }
+      }
+    },
+    {
+      "name": "core-schema::Name",
+      "data": {
+        "0": {
+          "json": {
+            "value": "Twitter Link"
           }
         }
       }
@@ -21,7 +43,7 @@
               {
                 "name": "Open Link",
                 "type": "open_link",
-                "jsonPayload": "{ \"url\": \"https://x.com/home\" }",
+                "jsonPayload": "{\"url\":\"https://x.com/home\"}",
                 "allowedInBasicView": true,
                 "basicViewId": "open-link"
               }
@@ -43,7 +65,8 @@
                     "id": "{self:asset-packs::Actions}",
                     "name": "Open Link"
                   }
-                ]
+                ],
+                "conditions": []
               }
             ]
           }
@@ -56,6 +79,9 @@
         "0": {
           "json": {
             "isBasicViewEnabled": true,
+            "componentName": "",
+            "fields": [],
+            "assetId": "ae504c4d-fa75-416c-a7bd-d96d5e0dd0b1",
             "label": "X Link",
             "sections": [
               {
