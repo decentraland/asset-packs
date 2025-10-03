@@ -45,12 +45,12 @@
               {
                 "name": "Tween to Start",
                 "type": "start_tween",
-                "jsonPayload": "{ \"type\": \"move_item\", \"end\": { \"x\": 0, \"y\": 0, \"z\": 0 }, \"relative\": true, \"interpolationType\": \"linear\", \"duration\": 5 }"
+                "jsonPayload": "{ \"type\": \"move_item\", \"end\": { \"x\": 0, \"y\": -6, \"z\": 0 }, \"relative\": true, \"interpolationType\": \"linear\", \"duration\": 5 }"
               },
               {
                 "name": "Tween to End",
                 "type": "start_tween",
-                "jsonPayload": "{ \"type\": \"move_item\", \"end\": { \"x\": 0, \"y\": 0, \"z\": 0 }, \"relative\": true, \"interpolationType\": \"linear\", \"duration\": 5 }"
+                "jsonPayload": "{ \"type\": \"move_item\", \"end\": { \"x\": 0, \"y\": 6, \"z\": 0 }, \"relative\": true, \"interpolationType\": \"linear\", \"duration\": 5 }"
               }
             ]
           }
