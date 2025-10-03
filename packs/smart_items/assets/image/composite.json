@@ -143,7 +143,7 @@
               }
             ],
             "helpTooltip": {
-              "text": "Upload an image file to use as a texture for this entity."
+              "text": "Upload a .png or .jpg image file, or paste a URL to use as a texture on this item."
             },
             "version": 2
           }
