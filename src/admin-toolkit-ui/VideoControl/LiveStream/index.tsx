@@ -29,24 +29,24 @@ export function LiveStream({
 }) {
   const [showResetStreamKey, setResetStreamKey] = ReactEcs.useState<boolean>(false)
   const [loading, setLoading] = ReactEcs.useState<boolean>(false)
+  const [hasStreamKey, setHasStreamKey] = ReactEcs.useState<boolean>(false)
   const { VideoControlState } = getComponents(engine)
   const videoControlState = VideoControlState.getOrNull(state.adminToolkitUiEntity)
-  const streamKey = videoControlState?.streamKey
   const streamKeyEndsAt = videoControlState?.endsAt
 
   ReactEcs.useEffect(() => {
     async function streamKeyFn() {
-      if (!streamKey) setLoading(true)
+      setLoading(true)
       const [error, data] = await getStreamKey()
       const videoControlState = VideoControlState.getMutable(
         state.adminToolkitUiEntity,
       )
       if (error) {
         videoControlState.endsAt = undefined
-        videoControlState.streamKey = undefined
+        setHasStreamKey(false)
       } else {
         videoControlState.endsAt = data?.endsAt
-        videoControlState.streamKey = data?.streamingKey ?? ''
+        setHasStreamKey(true)
       }
       setLoading(false)
     }
@@ -59,6 +59,9 @@ export function LiveStream({
       scaleFactor={scaleFactor}
       engine={engine}
       onCancel={() => setResetStreamKey(false)}
+      onReset={() => {
+        setResetStreamKey(false)
+      }}
     />
   }
 
@@ -100,9 +103,8 @@ export function LiveStream({
           scaleFactor={scaleFactor}
           engine={engine}
         />
-      ) : streamKey ? (
+      ) : hasStreamKey ? (
         <ShowStreamKey
-          streamKey={streamKey ?? ''}
           endsAt={streamKeyEndsAt ?? 0}
           scaleFactor={scaleFactor}
           engine={engine}
@@ -111,9 +113,13 @@ export function LiveStream({
           onReset={() => setResetStreamKey(true)}
         />
       ) : (
-        <GenerateStreamKey scaleFactor={scaleFactor} engine={engine} />
+        <GenerateStreamKey
+          scaleFactor={scaleFactor}
+          engine={engine}
+          onGenerate={() => setHasStreamKey(true)}
+        />
       )}
-      {!streamKey && <Label
+      {!hasStreamKey && <Label
         fontSize={14 * scaleFactor}
         color={Color4.fromHexString('#FF2D55')}
         value="Do not share your stream key with anyone, and be careful not to display it on screen while streaming."
@@ -121,4 +127,3 @@ export function LiveStream({
     </UiEntity>
   )
 }
-

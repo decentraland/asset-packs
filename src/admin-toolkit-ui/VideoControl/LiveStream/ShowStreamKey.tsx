@@ -10,11 +10,19 @@ import { Button } from '../../Button'
 import { LIVEKIT_STREAM_SRC } from '../../../definitions'
 import { ERROR_ICON } from '../../Error'
 import { CONTENT_URL } from '../../constants'
+import { getStreamKey } from '../api'
+import { LoadingDots } from '../../Loading'
+import { startTimeout, stopTimeout, startInterval, stopInterval } from '../../../timer'
+import { state } from '../..'
 
 const STREAM_ICONS = {
   eyeShow: `${CONTENT_URL}/admin_toolkit/assets/icons/eye.png`,
   eyeHide: `${CONTENT_URL}/admin_toolkit/assets/icons/eye-off.png`,
 }
+
+const AUTO_HIDE_DURATION_SECONDS = 30
+const STREAM_KEY_TIMEOUT_ACTION = 'video_control_stream_key_timeout'
+const STREAM_KEY_INTERVAL_ACTION = 'video_control_stream_key_interval'
 
 export function ShowStreamKey({
   scaleFactor,
@@ -22,10 +30,8 @@ export function ShowStreamKey({
   video,
   entity,
   onReset,
-  streamKey,
   endsAt,
 }: {
-  streamKey: string
   endsAt: number,
   scaleFactor: number
   engine: IEngine
@@ -35,6 +41,33 @@ export function ShowStreamKey({
 }) {
   const controls = createVideoPlayerControls(entity, engine)
   const [showStreamkey, setShowStreamkey] = ReactEcs.useState(false)
+  const [loading, setLoading] = ReactEcs.useState(false)
+  const [streamKey, setStreamKey] = ReactEcs.useState<string | undefined>(undefined)
+  const [timeRemaining, setTimeRemaining] = ReactEcs.useState(AUTO_HIDE_DURATION_SECONDS)
+
+  // auto-hide stream key after specified duration
+  ReactEcs.useEffect(() => {
+    if (streamKey) {
+      setTimeRemaining(AUTO_HIDE_DURATION_SECONDS)
+
+      startTimeout(state.adminToolkitUiEntity, STREAM_KEY_TIMEOUT_ACTION, AUTO_HIDE_DURATION_SECONDS, () => {
+        setStreamKey(undefined)
+        setShowStreamkey(false)
+        setTimeRemaining(0)
+      })
+
+      startInterval(state.adminToolkitUiEntity, STREAM_KEY_INTERVAL_ACTION, 0.1, () => {
+        setTimeRemaining((prev) => Math.max(0, prev - 0.1))
+      })
+
+      return () => {
+        stopTimeout(state.adminToolkitUiEntity, STREAM_KEY_TIMEOUT_ACTION)
+        stopInterval(state.adminToolkitUiEntity, STREAM_KEY_INTERVAL_ACTION)
+      }
+    } else {
+      setTimeRemaining(0)
+    }
+  }, [streamKey])
 
   return (
     <UiEntity uiTransform={{ flexDirection: 'column' }}>
@@ -70,38 +103,81 @@ export function ShowStreamKey({
           margin: { top: 16 * scaleFactor, bottom: 8 * scaleFactor },
         }}
       />
+      {loading ? (
+        <UiEntity
+          uiTransform={{
+            width: '100%',
+            margin: { bottom: 8 * scaleFactor, top: 8 * scaleFactor },
+            height: 42 * scaleFactor,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <LoadingDots scaleFactor={scaleFactor} engine={engine} />
+        </UiEntity>
+      ) : (
+        <UiEntity
+          uiTransform={{
+            width: '100%',
+            margin: { bottom: 8 * scaleFactor, top: 8 * scaleFactor },
+            height: 42 * scaleFactor,
+            borderRadius: 12 * scaleFactor,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+          uiBackground={{ color: Color4.White() }}
+        >
+          <Label
+            uiTransform={{ margin: { left: 16 * scaleFactor } }}
+            fontSize={16 * scaleFactor}
+            value={`<b>${showStreamkey && streamKey ? streamKey : '*********************************'}</b>`}
+            color={Color4.fromHexString('#A09BA8')}
+          />
+          <UiEntity
+            uiTransform={{
+              width: 25 * scaleFactor,
+              height: 25 * scaleFactor,
+              margin: { right: 10 * scaleFactor },
+            }}
+            uiBackground={{
+              textureMode: 'stretch',
+              texture: {
+                src: showStreamkey && streamKey ? STREAM_ICONS.eyeHide : STREAM_ICONS.eyeShow,
+              },
+              color: Color4.Black(),
+            }}
+            onMouseDown={async () => {
+              if (!streamKey) {
+                setLoading(true)
+                const [error, data] = await getStreamKey()
+                setLoading(false)
+                if (!error && data?.streamingKey) {
+                  setStreamKey(data.streamingKey)
+                  setShowStreamkey(true)
+                }
+              } else {
+                setShowStreamkey(!showStreamkey)
+              }
+            }}
+          />
+        </UiEntity>
+      )}
       <UiEntity
         uiTransform={{
           width: '100%',
-          margin: { bottom: 8 * scaleFactor, top: 8 * scaleFactor },
-          height: 42 * scaleFactor,
-          borderRadius: 12 * scaleFactor,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
+          height: 4 * scaleFactor,
+          margin: { top: 8 * scaleFactor },
+          display: streamKey && timeRemaining > 0 && showStreamkey ? 'flex' : 'none',
         }}
-        uiBackground={{ color: Color4.White() }}
+        uiBackground={{ color: Color4.fromHexString('#FFFFFF1A') }}
       >
-        <Label
-          uiTransform={{ margin: { left: 16 * scaleFactor } }}
-          fontSize={16 * scaleFactor}
-          value={`<b>${showStreamkey ? streamKey : '*********************************'}</b>`}
-          color={Color4.fromHexString('#A09BA8')}
-        />
         <UiEntity
           uiTransform={{
-            width: 25 * scaleFactor,
-            height: 25 * scaleFactor,
-            margin: { right: 10 * scaleFactor },
+            width: `${(timeRemaining / AUTO_HIDE_DURATION_SECONDS) * 100}%`,
+            height: '100%',
           }}
-          uiBackground={{
-            textureMode: 'stretch',
-            texture: {
-              src: showStreamkey ? STREAM_ICONS.eyeHide : STREAM_ICONS.eyeShow,
-            },
-            color: Color4.Black(),
-          }}
-          onMouseDown={() => setShowStreamkey(!showStreamkey)}
+          uiBackground={{ color: Color4.fromHexString('#00D3FF') }}
         />
       </UiEntity>
 

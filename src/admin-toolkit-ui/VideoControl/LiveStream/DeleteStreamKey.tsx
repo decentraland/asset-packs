@@ -13,10 +13,12 @@ export function DeleteStreamKeyConfirmation({
   scaleFactor,
   engine,
   onCancel,
+  onReset,
 }: {
   scaleFactor: number
   engine: IEngine
   onCancel(): void
+  onReset(): void
 }) {
   const [isLoading, setIsLoading] = ReactEcs.useState(false)
   const [error, setError] = ReactEcs.useState('')
@@ -97,11 +99,8 @@ export function DeleteStreamKeyConfirmation({
                 setIsLoading(false)
               } else {
                 const videoControl = VideoControlState.getMutable(state.adminToolkitUiEntity)
-                videoControl.streamKey = data?.streamingKey
                 videoControl.endsAt = data?.endsAt
-
-                // remove this page so it can generate a new key if the user wants
-                onCancel()
+                onReset()
               }
             }}
           />
