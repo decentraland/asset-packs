@@ -756,7 +756,10 @@ export function createActionsSystem(
     payload: ActionPayload<ActionType.ATTACH_TO_PLAYER>,
   ) {
     const { anchorPointId } = payload
-    AvatarAttach.createOrReplace(entity, { anchorPointId })
+    const user = playersHelper?.getPlayer()?.userId
+    if(user) {
+      AvatarAttach.createOrReplace(entity, { anchorPointId: anchorPointId, avatarId: user })
+    }
   }
 
   // DETACH_FROM_PLAYER
