@@ -1,9 +1,9 @@
 import { Color4 } from '@dcl/ecs-math'
 import ReactEcs, { UiEntity, Label, Input } from '@dcl/react-ecs'
 import { Button } from '../Button'
-import { postSceneAdmin } from './api'
+import { postSceneBan } from './api'
 import { Error } from '../Error'
-import { fetchSceneAdmins } from '..'
+import { getSceneBans } from './api'
 
 type Props = {
   scaleFactor: number
@@ -79,17 +79,32 @@ export function BanUserInput({ scaleFactor, onSubmit }: Props) {
           }}
           onMouseDown={async () => {
             if (loading) return
+            console.log('ALE=> Starting ban process for:', $inputValue)
             setLoading(true)
-            const [error, data] = await postSceneAdmin($inputValue)
+            const [error, data] = await postSceneBan($inputValue)
+            console.log(
+              'ALE=> postSceneBan response - error:',
+              error,
+              'data:',
+              data,
+            )
             if (data) {
               setError(false)
               $inputValue = ''
-              await fetchSceneAdmins()
+              console.log('ALE=> Ban successful, fetching updated bans list...')
+              const [getBansError, getBansData] = await getSceneBans()
+              console.log(
+                'ALE=> getSceneBans response - error:',
+                getBansError,
+                'data:',
+                getBansData,
+              )
             } else {
-              console.log(error)
+              console.log('ALE=> Ban failed with error:', error)
               setError(true)
             }
             setLoading(false)
+            console.log('ALE=> Ban process completed')
           }}
         />
       </UiEntity>

@@ -32,9 +32,11 @@ export type SceneAdmin = {
 type State = {
   showModalAdminList?: boolean
   adminToRemove?: SceneAdmin
+  showModalBanList?: boolean
 }
 export const moderationControlState: State = {
   showModalAdminList: false,
+  showModalBanList: false,
   adminToRemove: undefined,
 }
 
@@ -95,7 +97,7 @@ export function ModerationControl({ engine, player }: Props) {
             height: 25 * scaleFactor,
             margin: { right: 10 * scaleFactor },
           }}
-          onMouseDown={() => (moderationControlState.showModalAdminList = true)}
+          onMouseDown={() => (moderationControlState.showModalBanList = true)}
         />
       </UiEntity>
     </Card>
