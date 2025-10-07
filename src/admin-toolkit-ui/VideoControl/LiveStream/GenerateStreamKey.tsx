@@ -11,9 +11,11 @@ import { state } from '../..'
 export function GenerateStreamKey({
   scaleFactor,
   engine,
+  onGenerate,
 }: {
   scaleFactor: number
   engine: IEngine
+  onGenerate: () => void
 }) {
   const [loading, setLoading] = ReactEcs.useState<boolean>(false)
   const [error, setError] = ReactEcs.useState<string>('')
@@ -60,8 +62,8 @@ export function GenerateStreamKey({
                   const videoControl = VideoControlState.getMutable(
                     state.adminToolkitUiEntity,
                   )
-                  videoControl.streamKey = data.streamingKey
                   videoControl.endsAt = data.endsAt
+                  onGenerate()
                 }
               }}
             />

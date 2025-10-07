@@ -432,6 +432,7 @@ export function createComponents(engine: IEngine) {
     ComponentName.VIDEO_CONTROL_STATE,
     {
       endsAt: Schemas.Optional(Schemas.Int64),
+      /** @deprecated streamKey is deprecated and will be removed in a future version */
       streamKey: Schemas.Optional(Schemas.String),
     },
   )
