@@ -37,7 +37,9 @@
               {
                 "name": "Teleport",
                 "type": "teleport_player",
-                "jsonPayload": "{ \"x\": 0, \"y\": 0 }"
+                "jsonPayload": "{ \"x\": 0, \"y\": 0 }",
+                "basicViewId": "teleport-player",
+                "allowedInBasicView": true
               }
             ]
           }
@@ -58,6 +60,49 @@
                     "name": "Teleport"
                   }
                 ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "core::PointerEvents",
+      "data": {
+        "0": {
+          "json": {
+            "pointerEvents": [
+              {
+                "eventType": 1,
+                "eventInfo": {
+                  "button": 1,
+                  "hoverText": "Teleport",
+                  "maxDistance": 10,
+                  "showFeedback": true
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "componentName": "Scene Teleport",
+            "fields": [
+              {
+                "name": "Coordinates",
+                "type": "asset-packs::Actions",
+                "basicViewId": "teleport-player",
+                "layout": "{\"x\": { \"field\": \"TextField\", \"type\": \"number\", \"label\": \"Scene X\" }, \"y\": { \"field\": \"TextField\", \"type\": \"number\", \"label\": \"Scene Y\" } }"
+              },
+              {
+                "name": "Hover Text",
+                "type": "core::PointerEvents"
               }
             ]
           }
