@@ -9,7 +9,7 @@ import { Button } from '../Button'
 import { GetPlayerDataRes } from '../../types'
 import { Card } from '../Card'
 import { CONTENT_URL } from '../constants'
-
+import { BanUserInput } from './BanUserInput'
 
 type Props = {
   engine: IEngine
@@ -20,7 +20,6 @@ type Props = {
 export const BTN_MODERATION_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-moderation-control-button.png`
 export const MODERATION_CONTROL_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/moderation-control-icon.png`
 const VERIFIED_USER_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-verified-user.png`
-
 
 export type SceneAdmin = {
   name?: string
@@ -36,7 +35,7 @@ type State = {
 }
 export const moderationControlState: State = {
   showModalAdminList: false,
-  adminToRemove: undefined
+  adminToRemove: undefined,
 }
 
 export function ModerationControl({ engine, player }: Props) {
@@ -53,7 +52,7 @@ export function ModerationControl({ engine, player }: Props) {
       >
         <Header
           iconSrc={MODERATION_CONTROL_ICON}
-          title="PERMISSIONS"
+          title="PERMISSIONS & MODERATION"
           scaleFactor={scaleFactor}
         />
         <AddUserInput scaleFactor={scaleFactor} onSubmit={console.log} />
@@ -77,8 +76,28 @@ export function ModerationControl({ engine, player }: Props) {
           }}
           onMouseDown={() => (moderationControlState.showModalAdminList = true)}
         />
+        <BanUserInput scaleFactor={scaleFactor} onSubmit={console.log} />
+        <Button
+          variant="secondary"
+          id="moderation_control_admin_list"
+          value="<b>View Ban List</b>"
+          fontSize={18 * scaleFactor}
+          color={Color4.White()}
+          uiTransform={{
+            width: 220 * scaleFactor,
+            height: 42 * scaleFactor,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          icon={VERIFIED_USER_ICON}
+          iconTransform={{
+            width: 25 * scaleFactor,
+            height: 25 * scaleFactor,
+            margin: { right: 10 * scaleFactor },
+          }}
+          onMouseDown={() => (moderationControlState.showModalAdminList = true)}
+        />
       </UiEntity>
     </Card>
   )
 }
-
