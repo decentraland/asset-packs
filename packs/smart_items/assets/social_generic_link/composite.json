@@ -2,11 +2,33 @@
   "version": 1,
   "components": [
     {
+      "name": "core::Animator",
+      "data": {
+        "0": {
+          "json": {
+            "states": []
+          }
+        }
+      }
+    },
+    {
       "name": "core::GltfContainer",
       "data": {
         "0": {
           "json": {
-            "src": "{assetPath}/twitter.glb"
+            "src": "{assetPath}/linkwebchain_link.glb",
+            "visibleMeshesCollisionMask": 0,
+            "invisibleMeshesCollisionMask": 3
+          }
+        }
+      }
+    },
+    {
+      "name": "core-schema::Name",
+      "data": {
+        "0": {
+          "json": {
+            "value": "Generic Link"
           }
         }
       }
@@ -21,7 +43,7 @@
               {
                 "name": "Open Link",
                 "type": "open_link",
-                "jsonPayload": "{ \"url\": \"https://x.com/home\" }",
+                "jsonPayload": "{\"url\":\"www.decentraland.org\"}",
                 "allowedInBasicView": true,
                 "basicViewId": "open-link"
               }
@@ -43,7 +65,8 @@
                     "id": "{self:asset-packs::Actions}",
                     "name": "Open Link"
                   }
-                ]
+                ],
+                "conditions": []
               }
             ]
           }
@@ -56,7 +79,10 @@
         "0": {
           "json": {
             "isBasicViewEnabled": true,
-            "label": "X Link",
+            "componentName": "",
+            "fields": [],
+            "assetId": "e11d2848-b79d-4ddc-bfea-5033cbdd8f9f",
+            "label": "Website Link",
             "sections": [
               {
                 "id": "link",
@@ -64,7 +90,7 @@
                   {
                     "component": "asset-packs::Actions",
                     "widget": "TextField",
-                    "label": "X Link",
+                    "label": "Website Link",
                     "path": "url",
                     "basicViewId": "open-link"
                   }
@@ -72,7 +98,7 @@
               }
             ],
             "helpTooltip": {
-              "text": "Enter an X URL to open when the item is clicked."
+              "text": "Enter a Website URL to open when the item is clicked."
             },
             "version": 2
           }

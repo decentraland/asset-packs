@@ -21,7 +21,7 @@
               {
                 "name": "Open Link",
                 "type": "open_link",
-                "jsonPayload": "{ \"url\": \"https://twitter.com\" }",
+                "jsonPayload": "{ \"url\": \"https://x.com/home\" }",
                 "allowedInBasicView": true,
                 "basicViewId": "open-link"
               }
@@ -56,7 +56,7 @@
         "0": {
           "json": {
             "isBasicViewEnabled": true,
-            "label": "Twitter Link",
+            "label": "X Link",
             "sections": [
               {
                 "id": "link",
@@ -64,7 +64,7 @@
                   {
                     "component": "asset-packs::Actions",
                     "widget": "TextField",
-                    "label": "Twitter Link",
+                    "label": "X Link",
                     "path": "url",
                     "basicViewId": "open-link"
                   }
@@ -72,7 +72,7 @@
               }
             ],
             "helpTooltip": {
-              "text": "Enter a Twitter URL to open when the item is clicked."
+              "text": "Enter an X URL to open when the item is clicked."
             },
             "version": 2
           }

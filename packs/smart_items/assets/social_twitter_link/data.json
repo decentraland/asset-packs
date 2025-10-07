@@ -1,12 +1,13 @@
 {
   "id": "ae504c4d-fa75-416c-a7bd-d96d5e0dd0b1",
-  "name": "Twitter Link",
+  "name": "X Link",
   "category": "social",
   "tags": [
     "social",
     "links",
-    "twitter"
+    "twitter",
+    "x"
   ],
-  "description": "A clickable item that opens your Twitter page in a browser window. Paste a Twitter URL in the ‘URL’ field.",
+  "description": "A clickable item that opens your X page in a browser window. Paste an X URL in the ‘URL’ field.",
   "author": "Decentraland Foundation"
 }
