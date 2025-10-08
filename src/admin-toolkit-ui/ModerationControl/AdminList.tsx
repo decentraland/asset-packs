@@ -11,7 +11,7 @@ import {
   getModalBackgrounds,
   getModalColors,
   getPaginationColor,
-} from './styles/AdminList'
+} from './styles/AdminListStyles'
 
 type CurrentAdminProps = {
   scaleFactor: number

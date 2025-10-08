@@ -1,9 +1,15 @@
 import { Color4 } from '@dcl/ecs-math'
-import ReactEcs, { UiEntity, Label, Input } from "@dcl/react-ecs"
+import ReactEcs, { UiEntity, Label, Input } from '@dcl/react-ecs'
 import { Button } from '../Button'
 import { postSceneAdmin } from './api'
 import { Error } from '../Error'
 import { fetchSceneAdmins } from '..'
+import {
+  getAddUserInputStyles,
+  getAddUserInputColors,
+  getAddUserInputBackgrounds,
+  getInputBorderColor,
+} from './styles/AddUserInputStyles'
 
 type Props = {
   scaleFactor: number
@@ -18,22 +24,17 @@ function isValidAddress(value: string) {
 export function AddUserInput({ scaleFactor, onSubmit }: Props) {
   const [error, setError] = ReactEcs.useState(false)
   const [loading, setLoading] = ReactEcs.useState(false)
+  const styles = getAddUserInputStyles(scaleFactor)
+  const colors = getAddUserInputColors()
+  const backgrounds = getAddUserInputBackgrounds()
 
   return (
-    <UiEntity
-      uiTransform={{
-        display: 'flex',
-        flexDirection: 'column',
-        positionType: 'relative',
-      }}
-    >
+    <UiEntity uiTransform={styles.container}>
       <Label
         value="<b>Add an Admin</b>"
         fontSize={18 * scaleFactor}
-        color={Color4.White()}
-        uiTransform={{
-          margin: { bottom: 16 * scaleFactor },
-        }}
+        color={colors.white}
+        uiTransform={styles.title}
       />
       <UiEntity>
         <Input
@@ -50,30 +51,23 @@ export function AddUserInput({ scaleFactor, onSubmit }: Props) {
           value={$inputValue}
           fontSize={16 * scaleFactor}
           placeholder="Wallet Address"
-          placeholderColor={Color4.create(160 / 255, 155 / 255, 168 / 255, 1)}
-          color={Color4.Black()}
-          uiBackground={{ color: Color4.White() }}
+          placeholderColor={colors.placeholder}
+          color={colors.black}
+          uiBackground={backgrounds.input}
           uiTransform={{
-            width: '100%',
-            height: 42 * scaleFactor,
-            margin: { bottom: 16 * scaleFactor },
-            borderColor: ((!$inputValue || isValidAddress($inputValue)) && !error) ? Color4.White() : Color4.Red(),
-            borderWidth: 4,
-            borderRadius: 8
+            ...styles.input,
+            borderColor: getInputBorderColor(
+              $inputValue,
+              isValidAddress($inputValue),
+              error,
+            ),
           }}
         />
         <Button
           id="moderation_control_add_admin"
           value={'<b>Add</b>'}
           fontSize={18 * scaleFactor}
-          uiTransform={{
-            margin: { left: 10 * scaleFactor },
-            minWidth: 96 * scaleFactor,
-            height: 42 * scaleFactor,
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: 0,
-          }}
+          uiTransform={styles.button}
           onMouseDown={async () => {
             if (loading) return
             setLoading(true)
@@ -92,10 +86,7 @@ export function AddUserInput({ scaleFactor, onSubmit }: Props) {
       </UiEntity>
       {error && (
         <Error
-          uiTransform={{
-            margin: { top: -16 & scaleFactor, bottom: 16 * scaleFactor },
-            justifyContent: 'flex-start',
-          }}
+          uiTransform={styles.error}
           scaleFactor={scaleFactor}
           text="Please try again."
         />
