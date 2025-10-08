@@ -5,21 +5,28 @@ import ReactEcs, { UiEntity, Label } from '@dcl/react-ecs'
 import { Button } from '../Button'
 import { RemoveAdminConfirmation } from './RemoveAdminConfirmation'
 import { moderationControlState, SceneAdmin } from '.'
+import { BannedUser } from './api'
 import { CONTENT_URL } from '../constants'
 import {
   getModalStyles,
   getModalBackgrounds,
   getModalColors,
   getPaginationColor,
-} from './styles/AdminListStyles'
+} from './styles/UsersListStyles'
 
-type CurrentAdminProps = {
-  scaleFactor: number
-  sceneAdmins: SceneAdmin[]
-  engine: IEngine
+export enum UserListType {
+  ADMIN = 'admin',
+  BAN = 'ban',
 }
 
-const ADMINS_PER_PAGE = 5
+type ModalUserListProps = {
+  scaleFactor: number
+  users: SceneAdmin[] | BannedUser[]
+  engine: IEngine
+  type: UserListType
+}
+
+const USERS_PER_PAGE = 5
 
 const ICONS = {
   BACK: `${CONTENT_URL}/admin_toolkit/assets/icons/chevron-back.png`,
@@ -27,11 +34,33 @@ const ICONS = {
   CLOSE: `${CONTENT_URL}/admin_toolkit/assets/icons/close.png`,
 }
 
-export function ModalAdminList({
+const getModalTitle = (type: UserListType) => {
+  return type === UserListType.ADMIN ? '<b>ADMIN LIST</b>' : '<b>BAN LIST</b>'
+}
+
+const getCounterText = (type: UserListType, count: number) => {
+  const itemType = type === UserListType.ADMIN ? 'admins' : 'users'
+  return `(${count} ${itemType})`
+}
+
+const getActionButtonText = (type: UserListType) => {
+  return type === UserListType.ADMIN ? '<b>Remove</b>' : '<b>Unban</b>'
+}
+
+const closeModal = (type: UserListType) => {
+  if (type === UserListType.ADMIN) {
+    moderationControlState.showModalAdminList = false
+  } else {
+    moderationControlState.showModalBanList = false
+  }
+}
+
+export function ModalUserList({
   scaleFactor,
-  sceneAdmins,
+  users,
   engine,
-}: CurrentAdminProps) {
+  type,
+}: ModalUserListProps) {
   const [page, setPage] = ReactEcs.useState(1)
   const styles = getModalStyles(scaleFactor)
   const backgrounds = getModalBackgrounds()
@@ -46,9 +75,9 @@ export function ModalAdminList({
       />
     )
   }
-  const startIndex = (page - 1) * ADMINS_PER_PAGE
-  const endIndex = Math.min(startIndex + ADMINS_PER_PAGE, sceneAdmins.length)
-  const currentPageAdmins = sceneAdmins.slice(startIndex, endIndex)
+  const startIndex = (page - 1) * USERS_PER_PAGE
+  const endIndex = Math.min(startIndex + USERS_PER_PAGE, users.length)
+  const currentPageUsers = users.slice(startIndex, endIndex)
   return (
     <UiEntity uiTransform={styles.overlay}>
       <UiEntity
@@ -62,12 +91,12 @@ export function ModalAdminList({
               uiBackground={backgrounds.headerIcon}
             />
             <Label
-              value="<b>ADMIN LIST</b>"
+              value={getModalTitle(type)}
               fontSize={24 * scaleFactor}
               color={colors.white}
             />
             <Label
-              value={`(${sceneAdmins.length} admins)`}
+              value={getCounterText(type, users.length)}
               fontSize={16 * scaleFactor}
               color={colors.gray}
               uiTransform={styles.adminCount}
@@ -80,17 +109,15 @@ export function ModalAdminList({
               fontSize={20 * scaleFactor}
               uiTransform={styles.closeButton}
               iconTransform={styles.closeIcon}
-              onMouseDown={() =>
-                (moderationControlState.showModalAdminList = false)
-              }
+              onMouseDown={() => closeModal(type)}
             />
           </UiEntity>
 
           <UiEntity uiTransform={styles.listContainer}>
-            {currentPageAdmins.map((user, index) => (
+            {currentPageUsers.map((user, index) => (
               <UiEntity key={user.address} uiTransform={styles.adminItem}>
                 <UiEntity
-                  key={`admin-${user.name}`}
+                  key={`${type}-${user.name || user.address}`}
                   uiTransform={styles.adminRow}
                 >
                   <UiEntity uiTransform={styles.adminInfo}>
@@ -115,22 +142,25 @@ export function ModalAdminList({
                               uiBackground={backgrounds.verifiedIcon}
                             />
                           )}
-                          {(user.role === 'owner' ||
-                            user.role === 'operator') && (
-                            <UiEntity
-                              uiTransform={styles.roleBadge}
-                              uiBackground={backgrounds.roleBadge}
-                            >
-                              <Label
-                                value={`<b>${
-                                  (user.role ?? '')?.charAt(0).toUpperCase() +
-                                  user.role?.slice(1)
-                                }</b>`}
-                                fontSize={12 * scaleFactor}
-                                color={colors.black}
-                              />
-                            </UiEntity>
-                          )}
+                          {'role' in user &&
+                            (user.role === 'owner' ||
+                              user.role === 'operator') && (
+                              <UiEntity
+                                uiTransform={styles.roleBadge}
+                                uiBackground={backgrounds.roleBadge}
+                              >
+                                <Label
+                                  value={`<b>${
+                                    ('role' in user ? (user.role ?? '') : '')
+                                      ?.charAt(0)
+                                      .toUpperCase() +
+                                    ('role' in user ? user.role?.slice(1) : '')
+                                  }</b>`}
+                                  fontSize={12 * scaleFactor}
+                                  color={colors.black}
+                                />
+                              </UiEntity>
+                            )}
                         </UiEntity>
                       )}
                       <Label
@@ -142,14 +172,15 @@ export function ModalAdminList({
                   </UiEntity>
                   {user.canBeRemoved && (
                     <Button
-                      id={`remove-${index}`}
-                      value="<b>Remove</b>"
+                      id={`${type}-action-${index}`}
+                      value={getActionButtonText(type)}
                       variant="text"
                       fontSize={14 * scaleFactor}
                       color={colors.removeRed}
                       labelTransform={styles.removeButton}
                       onMouseDown={() => {
-                        moderationControlState.adminToRemove = user
+                        moderationControlState.adminToRemove =
+                          user as SceneAdmin
                       }}
                     />
                   )}
@@ -163,7 +194,7 @@ export function ModalAdminList({
           </UiEntity>
         </UiEntity>
 
-        {sceneAdmins.length > ADMINS_PER_PAGE && (
+        {users.length > USERS_PER_PAGE && (
           <UiEntity uiTransform={styles.pagination}>
             <Button
               id="prev"
@@ -180,7 +211,7 @@ export function ModalAdminList({
               onMouseDown={() => setPage(page - 1)}
             />
             <Label
-              value={`${page} / ${Math.ceil(sceneAdmins.length / ADMINS_PER_PAGE)}`}
+              value={`${page} / ${Math.ceil(users.length / USERS_PER_PAGE)}`}
               fontSize={14 * scaleFactor}
               color={colors.white}
             />
@@ -194,13 +225,13 @@ export function ModalAdminList({
               labelTransform={styles.nextLabel}
               iconRightBackground={{
                 color: getPaginationColor(
-                  page >= Math.ceil(sceneAdmins.length / ADMINS_PER_PAGE),
+                  page >= Math.ceil(users.length / USERS_PER_PAGE),
                 ),
               }}
               color={getPaginationColor(
-                page >= Math.ceil(sceneAdmins.length / ADMINS_PER_PAGE),
+                page >= Math.ceil(users.length / USERS_PER_PAGE),
               )}
-              disabled={page >= Math.ceil(sceneAdmins.length / ADMINS_PER_PAGE)}
+              disabled={page >= Math.ceil(users.length / USERS_PER_PAGE)}
               uiTransform={styles.paginationButton}
               onMouseDown={() => setPage(page + 1)}
             />

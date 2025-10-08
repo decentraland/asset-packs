@@ -1,5 +1,5 @@
-import { postSceneAdmin, postSceneBan, getSceneBans } from './api'
-import { fetchSceneAdmins } from '..'
+import { postSceneAdmin, postSceneBan } from './api'
+import { fetchSceneAdmins, fetchSceneBans } from '..'
 
 export const handleAddAdmin = async (
   inputValue: string,
@@ -42,13 +42,7 @@ export const handleBanUser = async (
     setError(false)
     clearInput()
     console.log('ALE=> Ban successful, fetching updated bans list...')
-    const [getBansError, getBansData] = await getSceneBans()
-    console.log(
-      'ALE=> getSceneBans response - error:',
-      getBansError,
-      'data:',
-      getBansData,
-    )
+    await fetchSceneBans()
   } else {
     console.log('ALE=> Ban failed with error:', error)
     setError(true)

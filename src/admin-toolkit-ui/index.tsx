@@ -20,15 +20,18 @@ import { Button } from './Button'
 import { TextAnnouncements } from './TextAnnouncements'
 import { CONTENT_URL } from './constants'
 import { State, TabType, SelectedSmartItem } from './types'
-import { getExplorerComponents } from '../components'
 import {
   BTN_MODERATION_CONTROL,
   ModerationControl,
   moderationControlState,
   SceneAdmin,
 } from './ModerationControl'
-import { getSceneAdmins } from './ModerationControl/api'
-import { ModalAdminList } from './ModerationControl/AdminList'
+import {
+  getSceneAdmins,
+  getSceneBans,
+  BannedUser,
+} from './ModerationControl/api'
+import { ModalUserList, UserListType } from './ModerationControl/UsersList'
 import { isPreview } from './fetch-utils'
 
 export const nextTickFunctions: (() => void)[] = []
@@ -58,6 +61,7 @@ export let state: State = {
 }
 
 let sceneAdminsCache: SceneAdmin[] = []
+let sceneBansCache: BannedUser[] = []
 
 // const BTN_REWARDS_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-button.png`
 // const BTN_REWARDS_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-active-button.png`
@@ -104,6 +108,35 @@ export async function fetchSceneAdmins() {
       canBeRemoved: !!$.canBeRemoved,
     }))
     .sort((a) => (a.canBeRemoved ? 1 : -1))
+}
+
+export async function fetchSceneBans() {
+  console.log('ALE=> Starting fetchSceneBans...')
+  const [error, response] = await getSceneBans()
+
+  if (error) {
+    console.log('ALE=> Failed to fetch scene bans:', JSON.stringify({ error }))
+    sceneBansCache = []
+    return
+  }
+
+  console.log('ALE=> Raw scene bans response:', response)
+  console.log('ALE=> Number of banned users:', response?.results?.length || 0)
+
+  sceneBansCache = (response?.results ?? []).map((ban) => ({
+    address: ban.banned_address,
+    name: undefined, // Banned users don't have names in the API
+    bannedBy: ban.banned_by,
+    bannedAt: ban.banned_at,
+    canBeRemoved: true,
+  }))
+
+  console.log('ALE=> Processed banned users cache:', sceneBansCache)
+  console.log('ALE=> fetchSceneBans completed successfully')
+}
+
+export function clearSceneBansCache() {
+  sceneBansCache = []
 }
 
 export function getSmartItems(engine: IEngine) {
@@ -481,10 +514,19 @@ const uiComponent = (
       <TextAnnouncements engine={engine} state={state} />
     </UiEntity>,
     moderationControlState.showModalAdminList && (
-      <ModalAdminList
+      <ModalUserList
         scaleFactor={scaleFactor}
-        sceneAdmins={sceneAdminsCache ?? []}
+        users={sceneAdminsCache ?? []}
         engine={engine}
+        type={UserListType.ADMIN}
+      />
+    ),
+    moderationControlState.showModalBanList && (
+      <ModalUserList
+        scaleFactor={scaleFactor}
+        users={sceneBansCache ?? []}
+        engine={engine}
+        type={UserListType.BAN}
       />
     ),
   ]

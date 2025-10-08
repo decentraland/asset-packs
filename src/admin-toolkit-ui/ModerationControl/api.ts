@@ -29,6 +29,14 @@ type SceneBansListResponse = {
   limit: number
 }
 
+export type BannedUser = {
+  address: string
+  name?: string
+  bannedBy: string
+  bannedAt: number
+  canBeRemoved: boolean
+}
+
 export async function getSceneAdmins(): Promise<
   Result<SceneAdminResponse[], string>
 > {

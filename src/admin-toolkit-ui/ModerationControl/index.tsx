@@ -9,6 +9,7 @@ import { Button } from '../Button'
 import { GetPlayerDataRes } from '../../types'
 import { Card } from '../Card'
 import { CONTENT_URL } from '../constants'
+import { fetchSceneBans } from '..'
 import {
   getModerationControlStyles,
   getModerationControlColors,
@@ -87,7 +88,11 @@ export function ModerationControl({ engine, player }: Props) {
           uiTransform={styles.banListButton}
           icon={VERIFIED_USER_ICON}
           iconTransform={styles.banListIcon}
-          onMouseDown={() => (moderationControlState.showModalBanList = true)}
+          onMouseDown={async () => {
+            console.log('ALE=> View Ban List button clicked')
+            await fetchSceneBans()
+            moderationControlState.showModalBanList = true
+          }}
         />
       </UiEntity>
     </Card>

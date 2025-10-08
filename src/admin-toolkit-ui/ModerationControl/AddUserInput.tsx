@@ -46,6 +46,40 @@ export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
         color={colors.white}
         uiTransform={styles.title}
       />
+      {type === PermissionType.BAN && (
+        <UiEntity
+          uiTransform={{
+            display: 'flex',
+            flexDirection: 'column',
+            margin: { top: 8 * scaleFactor, bottom: 8 * scaleFactor },
+          }}
+        >
+          <Label
+            value="<b>Banned users will be unable to:</b>"
+            fontSize={16 * scaleFactor}
+            color={colors.white}
+            uiTransform={{
+              margin: { bottom: 8 * scaleFactor },
+            }}
+          />
+          <Label
+            value="• Be seen or interact with the scene."
+            fontSize={14 * scaleFactor}
+            color={colors.white}
+            uiTransform={{
+              margin: { left: 8 * scaleFactor, bottom: 4 * scaleFactor },
+            }}
+          />
+          <Label
+            value="• Participate in the scene's chat."
+            fontSize={14 * scaleFactor}
+            color={colors.white}
+            uiTransform={{
+              margin: { left: 8 * scaleFactor },
+            }}
+          />
+        </UiEntity>
+      )}
       <UiEntity>
         <Input
           onChange={($) => {
