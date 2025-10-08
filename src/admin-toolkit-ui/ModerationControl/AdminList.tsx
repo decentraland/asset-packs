@@ -6,7 +6,12 @@ import { Button } from '../Button'
 import { RemoveAdminConfirmation } from './RemoveAdminConfirmation'
 import { moderationControlState, SceneAdmin } from '.'
 import { CONTENT_URL } from '../constants'
-
+import {
+  getModalStyles,
+  getModalBackgrounds,
+  getModalColors,
+  getPaginationColor,
+} from './styles/AdminList'
 
 type CurrentAdminProps = {
   scaleFactor: number
@@ -20,8 +25,6 @@ const ICONS = {
   BACK: `${CONTENT_URL}/admin_toolkit/assets/icons/chevron-back.png`,
   NEXT: `${CONTENT_URL}/admin_toolkit/assets/icons/chevron-forward.png`,
   CLOSE: `${CONTENT_URL}/admin_toolkit/assets/icons/close.png`,
-  PERSON: `${CONTENT_URL}/admin_toolkit/assets/icons/person-outline.png`,
-  VERIFIED_USER: `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-verified-user.png`,
 }
 
 export function ModalAdminList({
@@ -30,6 +33,10 @@ export function ModalAdminList({
   engine,
 }: CurrentAdminProps) {
   const [page, setPage] = ReactEcs.useState(1)
+  const styles = getModalStyles(scaleFactor)
+  const backgrounds = getModalBackgrounds()
+  const colors = getModalColors()
+
   if (moderationControlState.adminToRemove) {
     return (
       <RemoveAdminConfirmation
@@ -43,68 +50,27 @@ export function ModalAdminList({
   const endIndex = Math.min(startIndex + ADMINS_PER_PAGE, sceneAdmins.length)
   const currentPageAdmins = sceneAdmins.slice(startIndex, endIndex)
   return (
-    <UiEntity
-      uiTransform={{
-        width: '100%',
-        height: '100%',
-        positionType: 'absolute',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-      }}
-    >
+    <UiEntity uiTransform={styles.overlay}>
       <UiEntity
-        uiTransform={{
-          width: 675 * scaleFactor,
-          maxHeight: 679 * scaleFactor,
-          minHeight: 479 * scaleFactor,
-          padding: 20 * scaleFactor,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          borderRadius: 12 * scaleFactor,
-        }}
-        uiBackground={{ color: Color4.Black() }}
+        uiTransform={styles.container}
+        uiBackground={backgrounds.container}
       >
-        <UiEntity
-          uiTransform={{
-            display: 'flex',
-            flexDirection: 'column',
-            flexGrow: 1,
-          }}
-        >
-          {/* Header */}
-          <UiEntity
-            uiTransform={{
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-              margin: { bottom: 24 * scaleFactor },
-            }}
-          >
+        <UiEntity uiTransform={styles.content}>
+          <UiEntity uiTransform={styles.header}>
             <UiEntity
-              uiTransform={{
-                width: 30 * scaleFactor,
-                height: 30 * scaleFactor,
-                margin: { right: 10 * scaleFactor },
-              }}
-              uiBackground={{
-                textureMode: 'stretch',
-                texture: {
-                  src: ICONS.VERIFIED_USER,
-                },
-              }}
+              uiTransform={styles.headerIcon}
+              uiBackground={backgrounds.headerIcon}
             />
             <Label
               value="<b>ADMIN LIST</b>"
               fontSize={24 * scaleFactor}
-              color={Color4.White()}
+              color={colors.white}
             />
             <Label
               value={`(${sceneAdmins.length} admins)`}
               fontSize={16 * scaleFactor}
-              color={Color4.Gray()}
-              uiTransform={{ margin: { left: 8 * scaleFactor } }}
+              color={colors.gray}
+              uiTransform={styles.adminCount}
             />
             <Button
               id="close-modal"
@@ -112,126 +78,48 @@ export function ModalAdminList({
               icon={ICONS.CLOSE}
               variant="secondary"
               fontSize={20 * scaleFactor}
-              uiTransform={{
-                position: { right: 0 },
-                positionType: 'absolute',
-                borderColor: Color4.Clear(),
-              }}
-              iconTransform={{
-                width: 32 * scaleFactor,
-                height: 32 * scaleFactor,
-              }}
+              uiTransform={styles.closeButton}
+              iconTransform={styles.closeIcon}
               onMouseDown={() =>
                 (moderationControlState.showModalAdminList = false)
               }
             />
           </UiEntity>
 
-          {/* Admin List */}
-          <UiEntity
-            uiTransform={{
-              flexDirection: 'column',
-              width: '100%',
-              margin: { top: 16 * scaleFactor },
-            }}
-          >
+          <UiEntity uiTransform={styles.listContainer}>
             {currentPageAdmins.map((user, index) => (
-              <UiEntity
-                key={user.address}
-                uiTransform={{ display: 'flex', flexDirection: 'column' }}
-              >
+              <UiEntity key={user.address} uiTransform={styles.adminItem}>
                 <UiEntity
                   key={`admin-${user.name}`}
-                  uiTransform={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    height: 48 * scaleFactor,
-                    padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
-                    margin: { top: 4 * scaleFactor, bottom: 4 * scaleFactor },
-                  }}
+                  uiTransform={styles.adminRow}
                 >
-                  <UiEntity
-                    uiTransform={{
-                      display: 'flex',
-                      height: '100%',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <UiEntity
-                      uiTransform={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        margin: { right: 10 * scaleFactor },
-                      }}
-                    >
+                  <UiEntity uiTransform={styles.adminInfo}>
+                    <UiEntity uiTransform={styles.personIconContainer}>
                       <UiEntity
-                        uiTransform={{
-                          width: 28 * scaleFactor,
-                          height: 28 * scaleFactor,
-                        }}
-                        uiBackground={{
-                          textureMode: 'stretch',
-                          texture: {
-                            src: ICONS.PERSON,
-                          },
-                        }}
+                        uiTransform={styles.personIcon}
+                        uiBackground={backgrounds.personIcon}
                       />
                     </UiEntity>
 
-                    <UiEntity
-                      uiTransform={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                      }}
-                    >
+                    <UiEntity uiTransform={styles.adminDetails}>
                       {user.name && (
-                        <UiEntity
-                          uiTransform={{
-                            display: 'flex',
-                            alignItems: 'center',
-                          }}
-                        >
+                        <UiEntity uiTransform={styles.nameContainer}>
                           <Label
                             value={`<b>${user.name}</b>`}
                             fontSize={14 * scaleFactor}
-                            color={Color4.White()}
+                            color={colors.white}
                           />
                           {!user.name.includes('#') && (
                             <UiEntity
-                              uiTransform={{
-                                width: 14 * scaleFactor,
-                                height: 14 * scaleFactor,
-                              }}
-                              uiBackground={{
-                                textureMode: 'stretch',
-                                texture: {
-                                  src: ICONS.VERIFIED_USER,
-                                },
-                                color: Color4.White(),
-                              }}
+                              uiTransform={styles.verifiedIcon}
+                              uiBackground={backgrounds.verifiedIcon}
                             />
                           )}
                           {(user.role === 'owner' ||
                             user.role === 'operator') && (
                             <UiEntity
-                              uiTransform={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                width: 'auto',
-                                height: 20 * scaleFactor,
-                                padding: {
-                                  left: 4 * scaleFactor,
-                                },
-                                margin: { left: 8 * scaleFactor },
-                                borderRadius: 4 * scaleFactor,
-                              }}
-                              uiBackground={{
-                                color: Color4.fromHexString('#A09BA8'),
-                              }}
+                              uiTransform={styles.roleBadge}
+                              uiBackground={backgrounds.roleBadge}
                             >
                               <Label
                                 value={`<b>${
@@ -239,7 +127,7 @@ export function ModalAdminList({
                                   user.role?.slice(1)
                                 }</b>`}
                                 fontSize={12 * scaleFactor}
-                                color={Color4.Black()}
+                                color={colors.black}
                               />
                             </UiEntity>
                           )}
@@ -248,11 +136,7 @@ export function ModalAdminList({
                       <Label
                         fontSize={(user.name ? 12 : 14) * scaleFactor}
                         value={user.name ? user.address : `${user.address}`}
-                        color={
-                          user.name
-                            ? Color4.fromHexString('#716B7C')
-                            : Color4.White()
-                        }
+                        color={user.name ? colors.addressGray : colors.white}
                       />
                     </UiEntity>
                   </UiEntity>
@@ -262,13 +146,8 @@ export function ModalAdminList({
                       value="<b>Remove</b>"
                       variant="text"
                       fontSize={14 * scaleFactor}
-                      color={Color4.fromHexString('#FF2D55FF')}
-                      labelTransform={{
-                        margin: {
-                          left: 10 * scaleFactor,
-                          right: 10 * scaleFactor,
-                        },
-                      }}
+                      color={colors.removeRed}
+                      labelTransform={styles.removeButton}
                       onMouseDown={() => {
                         moderationControlState.adminToRemove = user
                       }}
@@ -276,12 +155,8 @@ export function ModalAdminList({
                   )}
                 </UiEntity>
                 <UiEntity
-                  uiTransform={{
-                    width: '100%',
-                    height: 1,
-                    // margin: { top: -4 * scaleFactor, bottom: 4 * scaleFactor },
-                  }}
-                  uiBackground={{ color: Color4.fromHexString('#43404A') }}
+                  uiTransform={styles.divider}
+                  uiBackground={backgrounds.divider}
                 />
               </UiEntity>
             ))}
@@ -289,15 +164,7 @@ export function ModalAdminList({
         </UiEntity>
 
         {sceneAdmins.length > ADMINS_PER_PAGE && (
-          <UiEntity
-            uiTransform={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              margin: { top: 20 * scaleFactor },
-              padding: { left: 10 * scaleFactor, right: 10 * scaleFactor },
-            }}
-          >
+          <UiEntity uiTransform={styles.pagination}>
             <Button
               id="prev"
               value="Prev"
@@ -305,28 +172,17 @@ export function ModalAdminList({
               disabled={page <= 1}
               fontSize={18 * scaleFactor}
               icon={ICONS.BACK}
-              iconTransform={{
-                width: 25 * scaleFactor,
-                height: 25 * scaleFactor,
-                margin: { left: 8 * scaleFactor },
-              }}
-              iconBackground={{ color: page <= 1 ? Color4.fromHexString('#323232') : Color4.White() }}
-              color={
-                page <= 1 ? Color4.fromHexString('#323232') : Color4.White()
-              }
-              labelTransform={{
-                margin: { right: 10 * scaleFactor },
-              }}
-              uiTransform={{
-                height: 42 * scaleFactor,
-                alignItems: 'center',
-              }}
+              iconTransform={styles.prevIcon}
+              iconBackground={{ color: getPaginationColor(page <= 1) }}
+              color={getPaginationColor(page <= 1)}
+              labelTransform={styles.prevLabel}
+              uiTransform={styles.paginationButton}
               onMouseDown={() => setPage(page - 1)}
             />
             <Label
               value={`${page} / ${Math.ceil(sceneAdmins.length / ADMINS_PER_PAGE)}`}
               fontSize={14 * scaleFactor}
-              color={Color4.White()}
+              color={colors.white}
             />
             <Button
               id="next"
@@ -334,29 +190,18 @@ export function ModalAdminList({
               variant="secondary"
               fontSize={18 * scaleFactor}
               iconRight={ICONS.NEXT}
-              iconRightTransform={{
-                width: 25 * scaleFactor,
-                height: 25 * scaleFactor,
-                margin: { right: 8 * scaleFactor },
-              }}
-              labelTransform={{
-                margin: { left: 10 * scaleFactor },
-              }}
+              iconRightTransform={styles.nextIcon}
+              labelTransform={styles.nextLabel}
               iconRightBackground={{
-                color: page >= Math.ceil(sceneAdmins.length / ADMINS_PER_PAGE)
-                    ? Color4.fromHexString('#323232')
-                    : Color4.White()
-                }}
-              color={
-                page >= Math.ceil(sceneAdmins.length / ADMINS_PER_PAGE)
-                  ? Color4.fromHexString('#323232')
-                  : Color4.White()
-              }
-              disabled={page >= Math.ceil(sceneAdmins.length / ADMINS_PER_PAGE)}
-              uiTransform={{
-                alignItems: 'center',
-                height: 42 * scaleFactor,
+                color: getPaginationColor(
+                  page >= Math.ceil(sceneAdmins.length / ADMINS_PER_PAGE),
+                ),
               }}
+              color={getPaginationColor(
+                page >= Math.ceil(sceneAdmins.length / ADMINS_PER_PAGE),
+              )}
+              disabled={page >= Math.ceil(sceneAdmins.length / ADMINS_PER_PAGE)}
+              uiTransform={styles.paginationButton}
               onMouseDown={() => setPage(page + 1)}
             />
           </UiEntity>
