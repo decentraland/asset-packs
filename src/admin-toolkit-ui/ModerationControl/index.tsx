@@ -4,12 +4,15 @@ import ReactEcs, { UiEntity } from '@dcl/react-ecs'
 
 import { Header } from '../Header'
 import { getScaleUIFactor } from '../../ui'
-import { AddUserInput } from './AddUserInput'
+import { AddUserInput, PermissionType } from './AddUserInput'
 import { Button } from '../Button'
 import { GetPlayerDataRes } from '../../types'
 import { Card } from '../Card'
 import { CONTENT_URL } from '../constants'
-import { BanUserInput } from './BanUserInput'
+import {
+  getModerationControlStyles,
+  getModerationControlColors,
+} from './styles/ModerationControlStyles'
 
 type Props = {
   engine: IEngine
@@ -42,61 +45,48 @@ export const moderationControlState: State = {
 
 export function ModerationControl({ engine, player }: Props) {
   const scaleFactor = getScaleUIFactor(engine)
+  const styles = getModerationControlStyles(scaleFactor)
+  const colors = getModerationControlColors()
 
   return (
     <Card scaleFactor={scaleFactor}>
-      <UiEntity
-        uiTransform={{
-          width: '100%',
-          height: '100%',
-          flexDirection: 'column',
-        }}
-      >
+      <UiEntity uiTransform={styles.container}>
         <Header
           iconSrc={MODERATION_CONTROL_ICON}
           title="PERMISSIONS & MODERATION"
           scaleFactor={scaleFactor}
         />
-        <AddUserInput scaleFactor={scaleFactor} onSubmit={console.log} />
+        <AddUserInput
+          scaleFactor={scaleFactor}
+          onSubmit={console.log}
+          type={PermissionType.ADMIN}
+        />
         <Button
           variant="secondary"
           id="moderation_control_admin_list"
           value="<b>View Admin List</b>"
           fontSize={18 * scaleFactor}
-          color={Color4.White()}
-          uiTransform={{
-            width: 220 * scaleFactor,
-            height: 42 * scaleFactor,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
+          color={colors.white}
+          uiTransform={styles.adminListButton}
           icon={VERIFIED_USER_ICON}
-          iconTransform={{
-            width: 25 * scaleFactor,
-            height: 25 * scaleFactor,
-            margin: { right: 10 * scaleFactor },
-          }}
+          iconTransform={styles.adminListIcon}
           onMouseDown={() => (moderationControlState.showModalAdminList = true)}
         />
-        <BanUserInput scaleFactor={scaleFactor} onSubmit={console.log} />
+        <UiEntity uiTransform={styles.divider} />
+        <AddUserInput
+          scaleFactor={scaleFactor}
+          onSubmit={console.log}
+          type={PermissionType.BAN}
+        />
         <Button
           variant="secondary"
-          id="moderation_control_admin_list"
+          id="moderation_control_ban_list"
           value="<b>View Ban List</b>"
           fontSize={18 * scaleFactor}
-          color={Color4.White()}
-          uiTransform={{
-            width: 220 * scaleFactor,
-            height: 42 * scaleFactor,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
+          color={colors.white}
+          uiTransform={styles.banListButton}
           icon={VERIFIED_USER_ICON}
-          iconTransform={{
-            width: 25 * scaleFactor,
-            height: 25 * scaleFactor,
-            margin: { right: 10 * scaleFactor },
-          }}
+          iconTransform={styles.banListIcon}
           onMouseDown={() => (moderationControlState.showModalBanList = true)}
         />
       </UiEntity>
