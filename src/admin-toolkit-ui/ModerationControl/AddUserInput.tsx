@@ -21,8 +21,6 @@ type Props = {
   type: PermissionType
 }
 
-let $inputValue: string = ''
-
 function isValidAddress(value: string) {
   return /^0x[a-fA-F0-9]{40}$/.test(value)
 }
@@ -30,6 +28,7 @@ function isValidAddress(value: string) {
 export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
   const [error, setError] = ReactEcs.useState(false)
   const [loading, setLoading] = ReactEcs.useState(false)
+  const [inputValue, setInputValue] = ReactEcs.useState('')
   const styles = getAddUserInputStyles(scaleFactor)
   const colors = getAddUserInputColors()
   const backgrounds = getAddUserInputBackgrounds()
@@ -51,7 +50,14 @@ export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
           uiTransform={{
             display: 'flex',
             flexDirection: 'column',
-            margin: { top: 8 * scaleFactor, bottom: 8 * scaleFactor },
+            margin: { top: 12 * scaleFactor, bottom: 16 * scaleFactor },
+            padding: {
+              top: 8 * scaleFactor,
+              bottom: 8 * scaleFactor,
+              left: 12 * scaleFactor,
+              right: 12 * scaleFactor,
+            },
+            width: '100%',
           }}
         >
           <Label
@@ -82,13 +88,13 @@ export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
       )}
       <UiEntity>
         <Input
-          onChange={($) => {
+          onChange={(value) => {
             if (error) {
               setError(false)
             }
-            $inputValue = $
+            setInputValue(value)
           }}
-          value={$inputValue}
+          value={inputValue}
           fontSize={16 * scaleFactor}
           placeholder="Wallet Address"
           placeholderColor={colors.placeholder}
@@ -97,14 +103,18 @@ export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
           uiTransform={{
             ...styles.input,
             borderColor: getInputBorderColor(
-              $inputValue,
-              isValidAddress($inputValue),
+              inputValue,
+              isValidAddress(inputValue),
               error,
             ),
           }}
         />
         <Button
-          id="moderation_control_add_admin"
+          id={
+            type === PermissionType.ADMIN
+              ? 'moderation_control_add_admin'
+              : 'moderation_control_ban_user'
+          }
           value={type === PermissionType.ADMIN ? '<b>Add</b>' : '<b>Ban</b>'}
           fontSize={18 * scaleFactor}
           uiTransform={styles.button}
@@ -112,18 +122,13 @@ export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
             if (loading) return
 
             const clearInput = () => {
-              $inputValue = ''
+              setInputValue('')
             }
 
             if (type === PermissionType.ADMIN) {
-              await handleAddAdmin(
-                $inputValue,
-                setError,
-                setLoading,
-                clearInput,
-              )
+              await handleAddAdmin(inputValue, setError, setLoading, clearInput)
             } else {
-              await handleBanUser($inputValue, setError, setLoading, clearInput)
+              await handleBanUser(inputValue, setError, setLoading, clearInput)
             }
           }}
         />

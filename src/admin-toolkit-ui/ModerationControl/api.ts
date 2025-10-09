@@ -16,7 +16,8 @@ type SceneAdminResponse = {
 type SceneBanUser = {
   id: string
   place_id: string
-  banned_address: string
+  bannedAddress: string
+  name: string
   banned_by: string
   banned_at: number
 }

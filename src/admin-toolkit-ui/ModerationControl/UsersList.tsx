@@ -5,7 +5,6 @@ import ReactEcs, { UiEntity, Label } from '@dcl/react-ecs'
 import { Button } from '../Button'
 import { RemoveAdminConfirmation } from './RemoveAdminConfirmation'
 import { moderationControlState, SceneAdmin } from '.'
-import { BannedUser } from './api'
 import { CONTENT_URL } from '../constants'
 import {
   getModalStyles,
@@ -21,7 +20,7 @@ export enum UserListType {
 
 type ModalUserListProps = {
   scaleFactor: number
-  users: SceneAdmin[] | BannedUser[]
+  users: any[] // Use raw API data directly
   engine: IEngine
   type: UserListType
 }
@@ -99,7 +98,7 @@ export function ModalUserList({
               value={getCounterText(type, users.length)}
               fontSize={16 * scaleFactor}
               color={colors.gray}
-              uiTransform={styles.adminCount}
+              uiTransform={styles.usersCount}
             />
             <Button
               id="close-modal"
@@ -115,12 +114,15 @@ export function ModalUserList({
 
           <UiEntity uiTransform={styles.listContainer}>
             {currentPageUsers.map((user, index) => (
-              <UiEntity key={user.address} uiTransform={styles.adminItem}>
+              <UiEntity
+                key={user.address || user.bannedAddress}
+                uiTransform={styles.userItem}
+              >
                 <UiEntity
-                  key={`${type}-${user.name || user.address}`}
-                  uiTransform={styles.adminRow}
+                  key={`${type}-${user.name || user.address || user.bannedAddress}`}
+                  uiTransform={styles.userRow}
                 >
-                  <UiEntity uiTransform={styles.adminInfo}>
+                  <UiEntity uiTransform={styles.userInfo}>
                     <UiEntity uiTransform={styles.personIconContainer}>
                       <UiEntity
                         uiTransform={styles.personIcon}
@@ -128,7 +130,7 @@ export function ModalUserList({
                       />
                     </UiEntity>
 
-                    <UiEntity uiTransform={styles.adminDetails}>
+                    <UiEntity uiTransform={styles.userDetails}>
                       {user.name && (
                         <UiEntity uiTransform={styles.nameContainer}>
                           <Label
@@ -165,12 +167,16 @@ export function ModalUserList({
                       )}
                       <Label
                         fontSize={(user.name ? 12 : 14) * scaleFactor}
-                        value={user.name ? user.address : `${user.address}`}
+                        value={
+                          user.name
+                            ? user.address || user.bannedAddress
+                            : `${user.address || user.bannedAddress}`
+                        }
                         color={user.name ? colors.addressGray : colors.white}
                       />
                     </UiEntity>
                   </UiEntity>
-                  {user.canBeRemoved && (
+                  {user.canBeRemoved !== false && (
                     <Button
                       id={`${type}-action-${index}`}
                       value={getActionButtonText(type)}

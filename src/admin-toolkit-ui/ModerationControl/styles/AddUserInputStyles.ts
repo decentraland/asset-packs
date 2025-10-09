@@ -7,7 +7,7 @@ export const getAddUserInputStyles = (scaleFactor: number) => ({
     positionType: 'relative' as const,
   },
   title: {
-    margin: { bottom: 16 * scaleFactor },
+    margin: { bottom: 2 * scaleFactor },
   },
   input: {
     width: '100%' as const,

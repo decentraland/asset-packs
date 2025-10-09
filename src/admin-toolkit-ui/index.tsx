@@ -61,7 +61,7 @@ export let state: State = {
 }
 
 let sceneAdminsCache: SceneAdmin[] = []
-let sceneBansCache: BannedUser[] = []
+let sceneBansCache: any[] = [] // Use raw API data directly
 
 // const BTN_REWARDS_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-button.png`
 // const BTN_REWARDS_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-active-button.png`
@@ -123,13 +123,8 @@ export async function fetchSceneBans() {
   console.log('ALE=> Raw scene bans response:', response)
   console.log('ALE=> Number of banned users:', response?.results?.length || 0)
 
-  sceneBansCache = (response?.results ?? []).map((ban) => ({
-    address: ban.banned_address,
-    name: undefined, // Banned users don't have names in the API
-    bannedBy: ban.banned_by,
-    bannedAt: ban.banned_at,
-    canBeRemoved: true,
-  }))
+  // Use API data directly - no mapping needed
+  sceneBansCache = response?.results ?? []
 
   console.log('ALE=> Processed banned users cache:', sceneBansCache)
   console.log('ALE=> fetchSceneBans completed successfully')

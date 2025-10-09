@@ -41,7 +41,7 @@ export const getModalStyles = (scaleFactor: number) => ({
     height: 30 * scaleFactor,
     margin: { right: 10 * scaleFactor },
   },
-  adminCount: {
+  usersCount: {
     margin: { left: 8 * scaleFactor },
   },
   closeButton: {
@@ -58,11 +58,11 @@ export const getModalStyles = (scaleFactor: number) => ({
     width: '100%' as const,
     margin: { top: 16 * scaleFactor },
   },
-  adminItem: {
+  userItem: {
     display: 'flex' as const,
     flexDirection: 'column' as const,
   },
-  adminRow: {
+  userRow: {
     flexDirection: 'row' as const,
     justifyContent: 'space-between' as const,
     alignItems: 'center' as const,
@@ -70,7 +70,7 @@ export const getModalStyles = (scaleFactor: number) => ({
     padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
     margin: { top: 4 * scaleFactor, bottom: 4 * scaleFactor },
   },
-  adminInfo: {
+  userInfo: {
     display: 'flex' as const,
     height: '100%' as const,
     justifyContent: 'center' as const,
@@ -85,7 +85,7 @@ export const getModalStyles = (scaleFactor: number) => ({
     width: 28 * scaleFactor,
     height: 28 * scaleFactor,
   },
-  adminDetails: {
+  userDetails: {
     display: 'flex' as const,
     flexDirection: 'column' as const,
     justifyContent: 'center' as const,
