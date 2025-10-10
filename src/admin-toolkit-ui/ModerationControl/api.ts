@@ -13,13 +13,9 @@ type SceneAdminResponse = {
   canBeRemoved: boolean
 }
 
-type SceneBanUser = {
-  id: string
-  place_id: string
+export type SceneBanUser = {
   bannedAddress: string
   name: string
-  banned_by: string
-  banned_at: number
 }
 
 type SceneBansListResponse = {
@@ -28,14 +24,6 @@ type SceneBansListResponse = {
   page: number
   pages: number
   limit: number
-}
-
-export type BannedUser = {
-  address: string
-  name?: string
-  bannedBy: string
-  bannedAt: number
-  canBeRemoved: boolean
 }
 
 export async function getSceneAdmins(): Promise<

@@ -29,7 +29,7 @@ import {
 import {
   getSceneAdmins,
   getSceneBans,
-  BannedUser,
+  SceneBanUser,
 } from './ModerationControl/api'
 import { ModalUserList, UserListType } from './ModerationControl/UsersList'
 import { isPreview } from './fetch-utils'
@@ -61,7 +61,7 @@ export let state: State = {
 }
 
 let sceneAdminsCache: SceneAdmin[] = []
-let sceneBansCache: any[] = [] // Use raw API data directly
+let sceneBansCache: SceneBanUser[] = []
 
 // const BTN_REWARDS_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-button.png`
 // const BTN_REWARDS_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-active-button.png`
@@ -120,14 +120,16 @@ export async function fetchSceneBans() {
     return
   }
 
-  console.log('ALE=> Raw scene bans response:', response)
-  console.log('ALE=> Number of banned users:', response?.results?.length || 0)
-
-  // Use API data directly - no mapping needed
   sceneBansCache = response?.results ?? []
 
-  console.log('ALE=> Processed banned users cache:', sceneBansCache)
-  console.log('ALE=> fetchSceneBans completed successfully')
+  // TODO remove logs
+  if (response?.results) {
+    response.results.forEach((user, index) => {
+      console.log(`ALE=> Banned user ${index}:`, user)
+      console.log(`ALE=> User ${index} keys:`, Object.keys(user))
+      console.log(`ALE=> User ${index} values:`, Object.values(user))
+    })
+  }
 }
 
 export function clearSceneBansCache() {

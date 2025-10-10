@@ -12,6 +12,9 @@ import {
   getModalColors,
   getPaginationColor,
 } from './styles/UsersListStyles'
+import { handleUnbanUser } from './utils'
+import { SceneBanUser } from './api'
+import { clearInterval, setInterval } from '../utils'
 
 export enum UserListType {
   ADMIN = 'admin',
@@ -65,6 +68,41 @@ export function ModalUserList({
   const backgrounds = getModalBackgrounds()
   const colors = getModalColors()
 
+  const handleRemoveUser = async (user: SceneAdmin | SceneBanUser) => {
+    if (type === UserListType.ADMIN) {
+      moderationControlState.adminToRemove = user as SceneAdmin
+    } else {
+      const bannedUser = user as SceneBanUser
+      //TODO remove logs
+      console.log('ALE=> user keys:', Object.keys(user))
+      console.log('ALE=> user values:', Object.values(user))
+
+      const success = await handleUnbanUser(bannedUser.bannedAddress)
+      if (success) {
+        const username = bannedUser.name || bannedUser.bannedAddress
+        moderationControlState.unbanMessage = `${username} has been unbanned from your scene`
+      }
+    }
+  }
+
+  ReactEcs.useEffect(() => {
+    if (moderationControlState.unbanMessage) {
+      let counter = 0
+      const interval = setInterval(
+        engine,
+        () => {
+          counter += 100
+          if (counter >= 3000) {
+            moderationControlState.unbanMessage = null
+          }
+        },
+        100,
+      )
+
+      return () => clearInterval(engine, interval)
+    }
+  }, [moderationControlState.unbanMessage])
+
   if (moderationControlState.adminToRemove) {
     return (
       <RemoveAdminConfirmation
@@ -74,6 +112,7 @@ export function ModalUserList({
       />
     )
   }
+
   const startIndex = (page - 1) * USERS_PER_PAGE
   const endIndex = Math.min(startIndex + USERS_PER_PAGE, users.length)
   const currentPageUsers = users.slice(startIndex, endIndex)
@@ -176,7 +215,8 @@ export function ModalUserList({
                       />
                     </UiEntity>
                   </UiEntity>
-                  {user.canBeRemoved !== false && (
+                  {(user.canBeRemoved !== false ||
+                    type === UserListType.BAN) && (
                     <Button
                       id={`${type}-action-${index}`}
                       value={getActionButtonText(type)}
@@ -184,10 +224,7 @@ export function ModalUserList({
                       fontSize={14 * scaleFactor}
                       color={colors.removeRed}
                       labelTransform={styles.removeButton}
-                      onMouseDown={() => {
-                        moderationControlState.adminToRemove =
-                          user as SceneAdmin
-                      }}
+                      onMouseDown={() => handleRemoveUser(user)}
                     />
                   )}
                 </UiEntity>
@@ -240,6 +277,31 @@ export function ModalUserList({
               disabled={page >= Math.ceil(users.length / USERS_PER_PAGE)}
               uiTransform={styles.paginationButton}
               onMouseDown={() => setPage(page + 1)}
+            />
+          </UiEntity>
+        )}
+
+        {moderationControlState.unbanMessage && (
+          <UiEntity
+            uiTransform={{
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+              margin: { top: 16 * scaleFactor },
+            }}
+          >
+            <Label
+              value={moderationControlState.unbanMessage}
+              fontSize={14 * scaleFactor}
+              color={Color4.White()}
+              uiTransform={{
+                padding: {
+                  top: 8 * scaleFactor,
+                  bottom: 8 * scaleFactor,
+                  left: 16 * scaleFactor,
+                  right: 16 * scaleFactor,
+                },
+              }}
             />
           </UiEntity>
         )}

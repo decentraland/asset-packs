@@ -1,4 +1,4 @@
-import { postSceneAdmin, postSceneBan } from './api'
+import { postSceneAdmin, postSceneBan, deleteSceneBan } from './api'
 import { fetchSceneAdmins, fetchSceneBans } from '..'
 
 export const handleAddAdmin = async (
@@ -8,10 +8,8 @@ export const handleAddAdmin = async (
   clearInput: () => void,
 ) => {
   if (!inputValue) return
-
   setLoading(true)
   const [error, data] = await postSceneAdmin(inputValue)
-
   if (data) {
     setError(false)
     clearInput()
@@ -50,4 +48,24 @@ export const handleBanUser = async (
 
   setLoading(false)
   console.log('ALE=> Ban process completed')
+}
+
+export const handleUnbanUser = async (address: string): Promise<boolean> => {
+  if (!address) return false
+
+  console.log('ALE=> Starting unban process for:', address)
+
+  const [error, data] = await deleteSceneBan(address)
+  console.log('ALE=> deleteSceneBan response - error:', error, 'data:', data)
+
+  if (data) {
+    console.log('ALE=> Unban successful, fetching updated bans list...')
+    await fetchSceneBans()
+    console.log('ALE=> Unban process completed')
+    return true
+  } else {
+    console.log('ALE=> Unban failed with error:', error)
+    console.log('ALE=> Unban process completed')
+    return false
+  }
 }

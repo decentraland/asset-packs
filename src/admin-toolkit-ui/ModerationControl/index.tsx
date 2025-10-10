@@ -37,11 +37,13 @@ type State = {
   showModalAdminList?: boolean
   adminToRemove?: SceneAdmin
   showModalBanList?: boolean
+  unbanMessage?: string | null
 }
 export const moderationControlState: State = {
   showModalAdminList: false,
   showModalBanList: false,
   adminToRemove: undefined,
+  unbanMessage: null as string | null,
 }
 
 export function ModerationControl({ engine, player }: Props) {
