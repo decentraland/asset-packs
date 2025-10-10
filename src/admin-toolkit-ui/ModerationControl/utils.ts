@@ -2,14 +2,13 @@ import { postSceneAdmin, postSceneBan, deleteSceneBan } from './api'
 import { fetchSceneAdmins, fetchSceneBans } from '..'
 
 export const handleAddAdmin = async (
-  inputValue: string,
+  adminData: { admin: string } | { name: string },
   setError: (error: boolean) => void,
   setLoading: (loading: boolean) => void,
   clearInput: () => void,
 ) => {
-  if (!inputValue) return
   setLoading(true)
-  const [error, data] = await postSceneAdmin(inputValue)
+  const [error, data] = await postSceneAdmin(adminData)
   if (data) {
     setError(false)
     clearInput()
@@ -23,17 +22,15 @@ export const handleAddAdmin = async (
 }
 
 export const handleBanUser = async (
-  inputValue: string,
+  banData: { banned_address: string } | { banned_name: string },
   setError: (error: boolean) => void,
   setLoading: (loading: boolean) => void,
   clearInput: () => void,
 ) => {
-  if (!inputValue) return
-
-  console.log('ALE=> Starting ban process for:', inputValue)
+  console.log('ALE=> Starting ban process for:', banData)
   setLoading(true)
 
-  const [error, data] = await postSceneBan(inputValue)
+  const [error, data] = await postSceneBan(banData)
   console.log('ALE=> postSceneBan response - error:', error, 'data:', data)
 
   if (data) {

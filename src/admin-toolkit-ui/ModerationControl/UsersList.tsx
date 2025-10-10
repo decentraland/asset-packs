@@ -281,7 +281,7 @@ export function ModalUserList({
           </UiEntity>
         )}
 
-        {moderationControlState.unbanMessage && (
+        {type === UserListType.BAN && moderationControlState.unbanMessage && (
           <UiEntity
             uiTransform={{
               width: '100%',

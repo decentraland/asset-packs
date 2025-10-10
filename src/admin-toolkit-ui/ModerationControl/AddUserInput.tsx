@@ -25,6 +25,10 @@ function isValidAddress(value: string) {
   return /^0x[a-fA-F0-9]{40}$/.test(value)
 }
 
+function isAddress(value: string) {
+  return value.startsWith('0x')
+}
+
 export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
   const [error, setError] = ReactEcs.useState(false)
   const [loading, setLoading] = ReactEcs.useState(false)
@@ -120,22 +124,17 @@ export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
       <UiEntity>
         <Input
           onChange={(value) => {
-            if (error) {
-              setError(false)
-            }
             setInputValue(value)
           }}
           value={inputValue}
           fontSize={16 * scaleFactor}
-          placeholder="Wallet Address"
-          placeholderColor={colors.placeholder}
-          color={colors.black}
+          placeholder={inputValue ? '' : 'Enter a NAME or wallet address'}
           uiBackground={backgrounds.input}
           uiTransform={{
             ...styles.input,
             borderColor: getInputBorderColor(
               inputValue,
-              isValidAddress(inputValue),
+              isAddress(inputValue) ? isValidAddress(inputValue) : true,
               error,
             ),
           }}
@@ -152,14 +151,25 @@ export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
           onMouseDown={async () => {
             if (loading) return
 
+            if (isAddress(inputValue) && !isValidAddress(inputValue)) {
+              setError(true)
+              return
+            }
+
             const clearInput = () => {
               setInputValue('')
             }
 
             if (type === PermissionType.ADMIN) {
-              await handleAddAdmin(inputValue, setError, setLoading, clearInput)
+              const adminData = isAddress(inputValue)
+                ? { admin: inputValue }
+                : { name: inputValue }
+              await handleAddAdmin(adminData, setError, setLoading, clearInput)
             } else {
-              await handleBanUser(inputValue, setError, setLoading, clearInput)
+              const banData = isAddress(inputValue)
+                ? { banned_address: inputValue }
+                : { banned_name: inputValue }
+              await handleBanUser(banData, setError, setLoading, clearInput)
             }
           }}
         />

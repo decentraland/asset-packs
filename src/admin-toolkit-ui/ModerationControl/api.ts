@@ -32,13 +32,16 @@ export async function getSceneAdmins(): Promise<
   return wrapSignedFetch<SceneAdminResponse[]>({ url: URLS().SCENE_ADMIN })
 }
 
-export async function postSceneAdmin<T = unknown>(address: string) {
+export async function postSceneAdmin<T = unknown>(
+  adminData: { admin: string } | { name: string },
+) {
+  console.log('ALE=> postSceneAdmin called with:', adminData)
   return wrapSignedFetch<T>({
     url: URLS().SCENE_ADMIN,
     init: {
       method: 'POST',
       headers: {},
-      body: JSON.stringify({ admin: address }),
+      body: JSON.stringify(adminData),
     },
   })
 }
@@ -54,13 +57,16 @@ export async function deleteSceneAdmin<T = unknown>(address: string) {
   })
 }
 
-export async function postSceneBan<T = unknown>(address: string) {
+export async function postSceneBan<T = unknown>(
+  banData: { banned_address: string } | { banned_name: string },
+) {
+  console.log('ALE=> postSceneBan called with:', banData)
   return wrapSignedFetch<T>({
     url: URLS().SCENE_BAN,
     init: {
       method: 'POST',
       headers: {},
-      body: JSON.stringify({ banned_address: address }),
+      body: JSON.stringify(banData),
     },
   })
 }
