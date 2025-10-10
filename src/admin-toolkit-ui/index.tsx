@@ -457,9 +457,9 @@ const uiComponent = (
                 player={player}
               />
             ) : null}
-            {state.activeTab === TabType.VIDEO_CONTROL ? (
+            {/* {state.activeTab === TabType.VIDEO_CONTROL ? (
               <VideoControl engine={engine} state={state} />
-            ) : null}
+            ) : null} */}
             {state.activeTab === TabType.SMART_ITEMS_CONTROL ? (
               <SmartItemsControl engine={engine} state={state} />
             ) : null}

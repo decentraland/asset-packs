@@ -8,6 +8,7 @@ import {
   getAddUserInputBackgrounds,
 } from './styles/AddUserInputStyles'
 import { handleAddAdmin, handleBanUser } from './utils'
+import { BanUserDescription } from './BanUserDescription'
 
 export enum PermissionType {
   ADMIN = 'admin',
@@ -82,77 +83,7 @@ export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
         color={colors.white}
       />
       {type === PermissionType.BAN && (
-        <UiEntity
-          uiTransform={{
-            display: 'flex',
-            flexDirection: 'column',
-            margin: { top: 8 * scaleFactor, bottom: 16 * scaleFactor },
-            padding: {
-              top: 4 * scaleFactor,
-              bottom: 4 * scaleFactor,
-              left: 12 * scaleFactor,
-              right: 12 * scaleFactor,
-            },
-            width: '100%',
-          }}
-        >
-          <Label
-            value="<b>Banned users CAN'T:</b>"
-            fontSize={14 * scaleFactor}
-            color={colors.white}
-            uiTransform={{
-              margin: { bottom: 4 * scaleFactor },
-            }}
-          />
-          <Label
-            value="- See your scene build"
-            fontSize={14 * scaleFactor}
-            color={colors.white}
-            uiTransform={{
-              margin: { bottom: 2 * scaleFactor },
-            }}
-          />
-          <Label
-            value="- Send messages in the Nearby chat"
-            fontSize={14 * scaleFactor}
-            color={colors.white}
-            uiTransform={{
-              margin: { bottom: 2 * scaleFactor },
-            }}
-          />
-          <Label
-            value="- Be seen by other users"
-            fontSize={14 * scaleFactor}
-            color={colors.white}
-            uiTransform={{
-              margin: { bottom: 12 * scaleFactor },
-            }}
-          />
-          <Label
-            value="<b>Banned users CAN still:</b>"
-            fontSize={14 * scaleFactor}
-            color={colors.white}
-            uiTransform={{
-              margin: { bottom: 4 * scaleFactor },
-            }}
-          />
-          <Label
-            value="- See other users"
-            fontSize={14 * scaleFactor}
-            color={colors.white}
-            uiTransform={{
-              margin: { bottom: 2 * scaleFactor },
-            }}
-          />
-          <Label
-            value="- See the messages in the Nearby chat"
-            fontSize={14 * scaleFactor}
-            color={colors.white}
-            uiTransform={{
-              margin: { bottom: 16 * scaleFactor },
-            }}
-          />
-        </UiEntity>
+        <BanUserDescription scaleFactor={scaleFactor} />
       )}
       <UiEntity>
         <Input

@@ -28,6 +28,33 @@ export const getAddUserInputStyles = (scaleFactor: number) => ({
     margin: { top: -16, bottom: 16 * scaleFactor },
     justifyContent: 'flex-start' as const,
   },
+  bannedInfoContainer: {
+    display: 'flex' as const,
+    flexDirection: 'column' as const,
+    margin: { top: 8 * scaleFactor, bottom: 16 * scaleFactor },
+    padding: {
+      top: 4 * scaleFactor,
+      bottom: 4 * scaleFactor,
+      left: 12 * scaleFactor,
+      right: 12 * scaleFactor,
+    },
+    width: '100%' as const,
+  },
+  bannedInfoTitle: {
+    margin: { bottom: 4 * scaleFactor },
+  },
+  bannedInfoItem: {
+    margin: { bottom: 2 * scaleFactor },
+  },
+  bannedInfoSeparator: {
+    margin: { bottom: 12 * scaleFactor },
+  },
+  bannedInfoSectionTitle: {
+    margin: { bottom: 4 * scaleFactor },
+  },
+  bannedInfoLastItem: {
+    margin: { bottom: 16 * scaleFactor },
+  },
 })
 
 export const getAddUserInputColors = () => ({
