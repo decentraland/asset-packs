@@ -23,7 +23,8 @@ export enum UserListType {
 
 type ModalUserListProps = {
   scaleFactor: number
-  users: any[] // Use raw API data directly
+  //TODO: use proper types
+  users: any[]
   engine: IEngine
   type: UserListType
 }

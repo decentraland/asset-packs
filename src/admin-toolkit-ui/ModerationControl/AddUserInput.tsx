@@ -6,7 +6,6 @@ import {
   getAddUserInputStyles,
   getAddUserInputColors,
   getAddUserInputBackgrounds,
-  getInputBorderColor,
 } from './styles/AddUserInputStyles'
 import { handleAddAdmin, handleBanUser } from './utils'
 
@@ -25,17 +24,51 @@ function isValidAddress(value: string) {
   return /^0x[a-fA-F0-9]{40}$/.test(value)
 }
 
+//Names can have 15 characters max, if the characters exceeded that, we assume is an address
 function isAddress(value: string) {
-  return value.startsWith('0x')
+  return value.length > 15
 }
 
 export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
-  const [error, setError] = ReactEcs.useState(false)
+  const [submitError, setSubmitError] = ReactEcs.useState(false)
+  const [validationError, setValidationError] = ReactEcs.useState('')
   const [loading, setLoading] = ReactEcs.useState(false)
   const [inputValue, setInputValue] = ReactEcs.useState('')
   const styles = getAddUserInputStyles(scaleFactor)
   const colors = getAddUserInputColors()
   const backgrounds = getAddUserInputBackgrounds()
+
+  const handleSubmit = async () => {
+    if (loading) return
+
+    const trimmedValue = inputValue.trim()
+
+    if (!trimmedValue || trimmedValue.length <= 2) {
+      setValidationError('Provide a valid address or NAME')
+      return
+    }
+
+    if (isAddress(trimmedValue) && !isValidAddress(trimmedValue)) {
+      setValidationError('Provide a valid address format')
+      return
+    }
+
+    const clearInput = () => {
+      setInputValue('')
+    }
+
+    if (type === PermissionType.ADMIN) {
+      const adminData = isAddress(trimmedValue)
+        ? { admin: trimmedValue }
+        : { name: trimmedValue }
+      await handleAddAdmin(adminData, setSubmitError, setLoading, clearInput)
+    } else {
+      const banData = isAddress(trimmedValue)
+        ? { banned_address: trimmedValue }
+        : { banned_name: trimmedValue }
+      await handleBanUser(banData, setSubmitError, setLoading, clearInput)
+    }
+  }
 
   return (
     <UiEntity uiTransform={styles.container}>
@@ -124,19 +157,17 @@ export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
       <UiEntity>
         <Input
           onChange={(value) => {
+            setSubmitError(false)
+            setValidationError('')
             setInputValue(value)
           }}
           value={inputValue}
           fontSize={16 * scaleFactor}
-          placeholder={inputValue ? '' : 'Enter a NAME or wallet address'}
+          placeholder={'Enter a NAME or wallet address'}
           uiBackground={backgrounds.input}
           uiTransform={{
             ...styles.input,
-            borderColor: getInputBorderColor(
-              inputValue,
-              isAddress(inputValue) ? isValidAddress(inputValue) : true,
-              error,
-            ),
+            borderColor: validationError ? colors.red : colors.white,
           }}
         />
         <Button
@@ -148,33 +179,19 @@ export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
           value={type === PermissionType.ADMIN ? '<b>Add</b>' : '<b>Ban</b>'}
           fontSize={18 * scaleFactor}
           uiTransform={styles.button}
-          onMouseDown={async () => {
-            if (loading) return
-
-            if (isAddress(inputValue) && !isValidAddress(inputValue)) {
-              setError(true)
-              return
-            }
-
-            const clearInput = () => {
-              setInputValue('')
-            }
-
-            if (type === PermissionType.ADMIN) {
-              const adminData = isAddress(inputValue)
-                ? { admin: inputValue }
-                : { name: inputValue }
-              await handleAddAdmin(adminData, setError, setLoading, clearInput)
-            } else {
-              const banData = isAddress(inputValue)
-                ? { banned_address: inputValue }
-                : { banned_name: inputValue }
-              await handleBanUser(banData, setError, setLoading, clearInput)
-            }
-          }}
+          onMouseDown={handleSubmit}
         />
       </UiEntity>
-      {error && (
+
+      {validationError && (
+        <Error
+          uiTransform={styles.error}
+          scaleFactor={scaleFactor}
+          text={validationError}
+        />
+      )}
+
+      {submitError && (
         <Error
           uiTransform={styles.error}
           scaleFactor={scaleFactor}

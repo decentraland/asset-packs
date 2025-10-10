@@ -37,15 +37,6 @@ export const getAddUserInputColors = () => ({
   placeholder: Color4.create(160 / 255, 155 / 255, 168 / 255, 1),
 })
 
-export const getInputBorderColor = (
-  inputValue: string,
-  isValid: boolean,
-  hasError: boolean,
-) => {
-  const colors = getAddUserInputColors()
-  return (!inputValue || isValid) && !hasError ? colors.white : colors.red
-}
-
 export const getAddUserInputBackgrounds = () => ({
   input: { color: Color4.White() },
 })

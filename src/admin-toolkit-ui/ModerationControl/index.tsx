@@ -24,6 +24,7 @@ type Props = {
 export const BTN_MODERATION_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-moderation-control-button.png`
 export const MODERATION_CONTROL_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/moderation-control-icon.png`
 const VERIFIED_USER_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-verified-user.png`
+const BAN_USER_ICON = `https://builder-items.decentraland.zone/admin_toolkit/assets/icons/ban.png`
 
 export type SceneAdmin = {
   name?: string
@@ -88,10 +89,9 @@ export function ModerationControl({ engine, player }: Props) {
           fontSize={18 * scaleFactor}
           color={colors.white}
           uiTransform={styles.banListButton}
-          icon={VERIFIED_USER_ICON}
+          icon={BAN_USER_ICON}
           iconTransform={styles.banListIcon}
           onMouseDown={async () => {
-            console.log('ALE=> View Ban List button clicked')
             await fetchSceneBans()
             moderationControlState.showModalBanList = true
           }}
