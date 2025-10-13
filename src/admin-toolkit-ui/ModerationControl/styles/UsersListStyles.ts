@@ -1,9 +1,11 @@
 import { Color4 } from '@dcl/ecs-math'
 import { CONTENT_URL } from '../../constants'
 
+//TODO: rename to ORG
 const ICONS = {
   VERIFIED_USER: `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-verified-user.png`,
   PERSON: `${CONTENT_URL}/admin_toolkit/assets/icons/person-outline.png`,
+  BAN: `https://builder-items.decentraland.zone/admin_toolkit/assets/icons/ban.png`,
 }
 
 export const getModalStyles = (scaleFactor: number) => ({
@@ -163,6 +165,12 @@ export const getModalBackgrounds = () => ({
     textureMode: 'stretch' as const,
     texture: {
       src: ICONS.PERSON,
+    },
+  },
+  banIcon: {
+    textureMode: 'stretch' as const,
+    texture: {
+      src: ICONS.BAN,
     },
   },
   verifiedIcon: {

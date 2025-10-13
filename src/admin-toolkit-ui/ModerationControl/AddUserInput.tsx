@@ -93,7 +93,7 @@ export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
             setInputValue(value)
           }}
           value={inputValue}
-          fontSize={16 * scaleFactor}
+          fontSize={14 * scaleFactor}
           placeholder={'Enter a NAME or wallet address'}
           uiBackground={backgrounds.input}
           uiTransform={{

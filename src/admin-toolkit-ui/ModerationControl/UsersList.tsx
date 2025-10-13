@@ -127,7 +127,11 @@ export function ModalUserList({
           <UiEntity uiTransform={styles.header}>
             <UiEntity
               uiTransform={styles.headerIcon}
-              uiBackground={backgrounds.headerIcon}
+              uiBackground={
+                type === UserListType.BAN
+                  ? backgrounds.banIcon
+                  : backgrounds.headerIcon
+              }
             />
             <Label
               value={getModalTitle(type)}

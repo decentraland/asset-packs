@@ -20,7 +20,7 @@ type Props = {
   player: GetPlayerDataRes | null | undefined
 }
 
-// TODO: upload this to the content
+// TODO: rename to ORG
 export const BTN_MODERATION_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-moderation-control-button.png`
 export const MODERATION_CONTROL_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/moderation-control-icon.png`
 const VERIFIED_USER_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-verified-user.png`
