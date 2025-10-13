@@ -111,25 +111,14 @@ export async function fetchSceneAdmins() {
 }
 
 export async function fetchSceneBans() {
-  console.log('ALE=> Starting fetchSceneBans...')
   const [error, response] = await getSceneBans()
 
   if (error) {
-    console.log('ALE=> Failed to fetch scene bans:', JSON.stringify({ error }))
     sceneBansCache = []
     return
   }
 
   sceneBansCache = response?.results ?? []
-
-  // TODO remove logs
-  if (response?.results) {
-    response.results.forEach((user, index) => {
-      console.log(`ALE=> Banned user ${index}:`, user)
-      console.log(`ALE=> User ${index} keys:`, Object.keys(user))
-      console.log(`ALE=> User ${index} values:`, Object.values(user))
-    })
-  }
 }
 
 export function clearSceneBansCache() {

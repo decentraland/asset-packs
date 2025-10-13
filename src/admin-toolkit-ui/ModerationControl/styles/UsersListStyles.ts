@@ -149,6 +149,20 @@ export const getModalStyles = (scaleFactor: number) => ({
   nextLabel: {
     margin: { left: 10 * scaleFactor },
   },
+  messageContainer: {
+    width: '100%' as const,
+    justifyContent: 'center' as const,
+    alignItems: 'center' as const,
+    margin: { top: 16 * scaleFactor },
+  },
+  messageLabel: {
+    padding: {
+      top: 8 * scaleFactor,
+      bottom: 8 * scaleFactor,
+      left: 16 * scaleFactor,
+      right: 16 * scaleFactor,
+    },
+  },
 })
 
 export const getModalBackgrounds = () => ({

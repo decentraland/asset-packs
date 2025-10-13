@@ -35,7 +35,6 @@ export async function getSceneAdmins(): Promise<
 export async function postSceneAdmin<T = unknown>(
   adminData: { admin: string } | { name: string },
 ) {
-  console.log('ALE=> postSceneAdmin called with:', adminData)
   return wrapSignedFetch<T>({
     url: URLS().SCENE_ADMIN,
     init: {
@@ -60,7 +59,6 @@ export async function deleteSceneAdmin<T = unknown>(address: string) {
 export async function postSceneBan<T = unknown>(
   banData: { banned_address: string } | { banned_name: string },
 ) {
-  console.log('ALE=> postSceneBan called with:', banData)
   return wrapSignedFetch<T>({
     url: URLS().SCENE_BAN,
     init: {

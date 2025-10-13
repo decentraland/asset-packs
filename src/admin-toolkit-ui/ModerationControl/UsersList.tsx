@@ -23,18 +23,28 @@ export enum UserListType {
 
 type ModalUserListProps = {
   scaleFactor: number
-  //TODO: use proper types
-  users: any[]
+  users: SceneAdmin[] | SceneBanUser[]
   engine: IEngine
   type: UserListType
 }
-
 const USERS_PER_PAGE = 5
 
 const ICONS = {
   BACK: `${CONTENT_URL}/admin_toolkit/assets/icons/chevron-back.png`,
   NEXT: `${CONTENT_URL}/admin_toolkit/assets/icons/chevron-forward.png`,
   CLOSE: `${CONTENT_URL}/admin_toolkit/assets/icons/close.png`,
+}
+
+const getUserKey = (user: SceneAdmin | SceneBanUser): string => {
+  return 'address' in user ? user.address : user.bannedAddress
+}
+
+const getUserAddress = (user: SceneAdmin | SceneBanUser): string => {
+  return 'address' in user ? user.address : user.bannedAddress
+}
+
+const canUserBeRemoved = (user: SceneAdmin | SceneBanUser): boolean => {
+  return 'canBeRemoved' in user ? user.canBeRemoved !== false : true
 }
 
 const getModalTitle = (type: UserListType) => {
@@ -74,9 +84,6 @@ export function ModalUserList({
       moderationControlState.adminToRemove = user as SceneAdmin
     } else {
       const bannedUser = user as SceneBanUser
-      //TODO remove logs
-      console.log('ALE=> user keys:', Object.keys(user))
-      console.log('ALE=> user values:', Object.values(user))
 
       const success = await handleUnbanUser(bannedUser.bannedAddress)
       if (success) {
@@ -161,12 +168,9 @@ export function ModalUserList({
 
           <UiEntity uiTransform={styles.listContainer}>
             {currentPageUsers.map((user, index) => (
-              <UiEntity
-                key={user.address || user.bannedAddress}
-                uiTransform={styles.userItem}
-              >
+              <UiEntity key={getUserKey(user)} uiTransform={styles.userItem}>
                 <UiEntity
-                  key={`${type}-${user.name || user.address || user.bannedAddress}`}
+                  key={`${type}-${user.name || getUserAddress(user)}`}
                   uiTransform={styles.userRow}
                 >
                   <UiEntity uiTransform={styles.userInfo}>
@@ -216,15 +220,14 @@ export function ModalUserList({
                         fontSize={(user.name ? 12 : 14) * scaleFactor}
                         value={
                           user.name
-                            ? user.address || user.bannedAddress
-                            : `${user.address || user.bannedAddress}`
+                            ? getUserAddress(user)
+                            : getUserAddress(user)
                         }
                         color={user.name ? colors.addressGray : colors.white}
                       />
                     </UiEntity>
                   </UiEntity>
-                  {(user.canBeRemoved !== false ||
-                    type === UserListType.BAN) && (
+                  {(canUserBeRemoved(user) || type === UserListType.BAN) && (
                     <Button
                       id={`${type}-action-${index}`}
                       value={getActionButtonText(type)}
@@ -290,26 +293,12 @@ export function ModalUserList({
         )}
 
         {type === UserListType.BAN && moderationControlState.unbanMessage && (
-          <UiEntity
-            uiTransform={{
-              width: '100%',
-              justifyContent: 'center',
-              alignItems: 'center',
-              margin: { top: 16 * scaleFactor },
-            }}
-          >
+          <UiEntity uiTransform={styles.messageContainer}>
             <Label
               value={moderationControlState.unbanMessage}
               fontSize={14 * scaleFactor}
               color={Color4.White()}
-              uiTransform={{
-                padding: {
-                  top: 8 * scaleFactor,
-                  bottom: 8 * scaleFactor,
-                  left: 16 * scaleFactor,
-                  right: 16 * scaleFactor,
-                },
-              }}
+              uiTransform={styles.messageLabel}
             />
           </UiEntity>
         )}

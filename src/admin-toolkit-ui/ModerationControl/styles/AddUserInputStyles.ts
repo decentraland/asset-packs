@@ -47,22 +47,21 @@ export const getAddUserInputStyles = (scaleFactor: number) => ({
     padding: {
       top: 4 * scaleFactor,
       bottom: 4 * scaleFactor,
+      left: 12 * scaleFactor,
+      right: 12 * scaleFactor,
     },
     width: 10000 * scaleFactor,
   },
-  bannedInfoTitle: {
-    margin: { bottom: 4 * scaleFactor },
-  },
-  bannedInfoItem: {
+  marginBottomSmall: {
     margin: { bottom: 2 * scaleFactor },
   },
-  bannedInfoSeparator: {
-    margin: { bottom: 12 * scaleFactor },
-  },
-  bannedInfoSectionTitle: {
+  marginBottomMedium: {
     margin: { bottom: 4 * scaleFactor },
   },
-  bannedInfoLastItem: {
+  marginBottomLarge: {
+    margin: { bottom: 12 * scaleFactor },
+  },
+  marginBottomXLarge: {
     margin: { bottom: 16 * scaleFactor },
   },
 })

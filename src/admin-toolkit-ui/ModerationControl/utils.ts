@@ -36,7 +36,6 @@ export const handleBanUser = async (
   } else {
     setError('Please try again with a valid NAME or wallet address.')
   }
-
   setLoading(false)
 }
 
