@@ -2,5 +2,19 @@
   "id": "3ea6ee78-4805-4d92-9978-289f6aba633d",
   "name": "Floor - Red Small",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "aesthetic",
+    "appearance",
+    "environment",
+    "floor",
+    "ground",
+    "interior",
+    "room",
+    "space",
+    "surface",
+    "terrain",
+    "tile",
+    "visual"
+  ],
+  "caption": "Red floor."
 }

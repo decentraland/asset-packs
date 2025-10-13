@@ -12,6 +12,18 @@
     "golden",
     "gold",
     "wood",
-    "tool"
-  ]
+    "tool",
+    "blast",
+    "bomb",
+    "destruction",
+    "detonate",
+    "detonation",
+    "explosive",
+    "grip",
+    "handheld",
+    "handle",
+    "held",
+    "mechanism"
+  ],
+  "caption": "Hand-held hook with explosive device."
 }

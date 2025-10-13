@@ -12,6 +12,19 @@
     "vehicle",
     "wheel",
     "wheels",
-    "brown"
-  ]
+    "brown",
+    "cycle",
+    "cycling",
+    "driving",
+    "environment",
+    "landscape",
+    "outdoor",
+    "pedal",
+    "scenery",
+    "speed",
+    "sport",
+    "terrain",
+    "transportation"
+  ],
+  "caption": "Brown bicycle with white wheels."
 }

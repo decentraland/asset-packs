@@ -2,5 +2,19 @@
   "id": "d21bb810-5777-42d7-bd07-c76fc4643fd0",
   "name": "Basketball Hoop",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "arena",
+    "ball",
+    "basket",
+    "basketball",
+    "competition",
+    "court",
+    "goal",
+    "hoop",
+    "net",
+    "ring",
+    "sport",
+    "stadium"
+  ],
+  "caption": "Basketball hoop with ball in the net."
 }

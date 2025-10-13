@@ -2,5 +2,19 @@
   "id": "bb1d0557-fba7-4d0c-a823-c33b665845d8",
   "name": "Table 4",
   "category": "furniture",
-  "tags": []
+  "tags": [
+    "coffee",
+    "desk",
+    "dining",
+    "furniture",
+    "kitchen",
+    "maple",
+    "oak",
+    "pine",
+    "seating",
+    "surface",
+    "table",
+    "tableware"
+  ],
+  "caption": "Dark brown coffee table."
 }

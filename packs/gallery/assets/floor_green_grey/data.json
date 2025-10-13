@@ -2,5 +2,14 @@
   "id": "63078fa1-c320-4603-8bc4-6bcf9e372289",
   "name": "Floor - Green Grey",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "floor",
+    "hue",
+    "pattern",
+    "shade",
+    "surface",
+    "tile",
+    "tone"
+  ],
+  "caption": "Green and Grey Floor Pattern"
 }

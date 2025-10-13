@@ -9,6 +9,15 @@
     "stones",
     "rock",
     "rocks",
-    "forest"
-  ]
+    "forest",
+    "architectural",
+    "block",
+    "curved",
+    "earthy",
+    "natural",
+    "rounded",
+    "sculpted",
+    "textured"
+  ],
+  "caption": "Curved stone block."
 }

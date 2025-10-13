@@ -7,6 +7,17 @@
     "power",
     "spark",
     "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "caution",
+    "illumination",
+    "intersection",
+    "pedestrian",
+    "safety",
+    "signal",
+    "traffic",
+    "vehicle",
+    "visibility",
+    "warning"
+  ],
+  "caption": "Yellow corner lamp."
 }

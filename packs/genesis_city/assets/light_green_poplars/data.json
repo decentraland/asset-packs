@@ -14,6 +14,19 @@
     "park",
     "garden",
     "backyard",
-    "yard"
-  ]
+    "yard",
+    "branch",
+    "environment",
+    "foliage",
+    "growth",
+    "landscape",
+    "leaf",
+    "leaves",
+    "outdoor",
+    "plant",
+    "roots",
+    "trunk",
+    "vegetation"
+  ],
+  "caption": "Green tree in the forest."
 }

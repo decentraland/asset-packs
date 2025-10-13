@@ -10,6 +10,16 @@
     "wood",
     "wooden",
     "bucket",
-    "water"
-  ]
+    "water",
+    "container",
+    "furniture",
+    "handle",
+    "oak",
+    "pine",
+    "rest",
+    "seat",
+    "storage",
+    "vessel"
+  ],
+  "caption": "Wooden bucket with a handle."
 }

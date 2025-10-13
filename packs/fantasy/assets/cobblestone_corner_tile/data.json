@@ -7,6 +7,15 @@
     "tile",
     "cobblestone",
     "stone",
-    "corner"
-  ]
+    "corner",
+    "building",
+    "crack",
+    "floor",
+    "ground",
+    "path",
+    "pavement",
+    "surface",
+    "terrain"
+  ],
+  "caption": "Gray cobblestone tile with cracks."
 }

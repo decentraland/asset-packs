@@ -2,5 +2,15 @@
   "id": "0cb6e351-0b1b-4c1e-b4c3-5418266fda61",
   "name": "Window - Pink Large",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "bigger",
+    "frame",
+    "hue",
+    "shade",
+    "shape",
+    "size",
+    "tint",
+    "window"
+  ],
+  "caption": "Vintage pink window frame."
 }

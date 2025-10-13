@@ -6,6 +6,14 @@
     "structures",
     "archway",
     "wood",
-    "gate"
-  ]
+    "gate",
+    "banner",
+    "dark",
+    "entrance",
+    "honor",
+    "japanese",
+    "lanterns",
+    "loyalty"
+  ],
+  "caption": "Traditional Japanese archway with glowing lanterns."
 }

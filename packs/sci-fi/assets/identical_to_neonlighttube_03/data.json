@@ -7,6 +7,17 @@
     "power",
     "spark",
     "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "electric",
+    "energy",
+    "fixture",
+    "glow",
+    "identical",
+    "illumination",
+    "lighting",
+    "neonlighttube",
+    "searchable",
+    "tube"
+  ],
+  "caption": "Purple neon light tube."
 }

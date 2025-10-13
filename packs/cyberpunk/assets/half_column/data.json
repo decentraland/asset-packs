@@ -2,5 +2,14 @@
   "id": "5b2e270f-4b89-464f-ab93-75b8f68de5e1",
   "name": "Half Column",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "column",
+    "picture",
+    "split",
+    "standing",
+    "surface",
+    "thumbnail",
+    "upright"
+  ],
+  "caption": "Half column with glowing blue accents."
 }

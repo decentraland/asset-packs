@@ -6,6 +6,18 @@
     "genesis",
     "city",
     "town",
-    "ground"
-  ]
+    "ground",
+    "aesthetic",
+    "appearance",
+    "dots",
+    "earthy",
+    "mud",
+    "muddy",
+    "pattern",
+    "scatter",
+    "surface",
+    "terrain",
+    "visual"
+  ],
+  "caption": "Red, textured surface with white dots."
 }

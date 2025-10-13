@@ -2,5 +2,19 @@
   "id": "cce36f8c-1d5e-4c47-93ee-bdc73318e762",
   "name": "Cracked Sand",
   "category": "ground",
-  "tags": []
+  "tags": [
+    "cracked",
+    "desert",
+    "dust",
+    "earth",
+    "fractured",
+    "grit",
+    "ground",
+    "rough",
+    "sand",
+    "soil",
+    "surface",
+    "terrain"
+  ],
+  "caption": "Dusty terrain texture."
 }

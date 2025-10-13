@@ -6,6 +6,17 @@
     "fantasy",
     "stone",
     "magic",
-    "rune"
-  ]
+    "rune",
+    "artifact",
+    "ball",
+    "glowing",
+    "lines",
+    "magical",
+    "mystical",
+    "orb",
+    "relic",
+    "spherical",
+    "surface"
+  ],
+  "caption": "Glowing, blue-lit sphere."
 }

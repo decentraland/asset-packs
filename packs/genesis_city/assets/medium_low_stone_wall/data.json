@@ -14,6 +14,15 @@
     "fence",
     "fences",
     "garden",
-    "park"
-  ]
+    "park",
+    "architectural",
+    "building",
+    "furniture",
+    "grain",
+    "interior",
+    "pattern",
+    "plank",
+    "structure"
+  ],
+  "caption": "Wooden plank with visible grain."
 }

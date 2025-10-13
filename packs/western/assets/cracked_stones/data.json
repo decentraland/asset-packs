@@ -2,5 +2,18 @@
   "id": "568e0e3c-e431-4554-83f4-9eac727bb2d6",
   "name": "Cracked Stones",
   "category": "ground",
-  "tags": []
+  "tags": [
+    "boulder",
+    "crack",
+    "cracked",
+    "fissure",
+    "granite",
+    "pattern",
+    "pebble",
+    "rockface",
+    "rough",
+    "stones",
+    "surface"
+  ],
+  "caption": "Cracked stone texture."
 }

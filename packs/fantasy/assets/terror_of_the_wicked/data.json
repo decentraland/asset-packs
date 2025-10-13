@@ -7,6 +7,19 @@
     "book",
     "codex",
     "knowledge",
-    "shelf"
-  ]
+    "shelf",
+    "binding",
+    "bookshelf",
+    "cover",
+    "ink",
+    "leather",
+    "library",
+    "manuscript",
+    "paper",
+    "parchment",
+    "reading",
+    "spine",
+    "tome"
+  ],
+  "caption": "Blue symbol on a worn leather book."
 }

@@ -9,6 +9,16 @@
     "decorations",
     "jewel",
     "jewels",
-    "gemstone"
-  ]
+    "gemstone",
+    "faceted",
+    "gem",
+    "luxury",
+    "mineral",
+    "precious",
+    "shiny",
+    "smooth",
+    "surface",
+    "valuable"
+  ],
+  "caption": "Green gemstone with a smooth surface."
 }

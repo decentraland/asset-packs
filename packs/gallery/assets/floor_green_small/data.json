@@ -2,5 +2,22 @@
   "id": "95411b55-1007-4e23-9e25-591b53e64ba3",
   "name": "Floor - Green Small",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "carpet",
+    "environment",
+    "field",
+    "floor",
+    "foliage",
+    "grass",
+    "ground",
+    "landscape",
+    "lawn",
+    "meadow",
+    "nature",
+    "outdoor",
+    "plant",
+    "surface",
+    "terrain"
+  ],
+  "caption": "Green floor."
 }

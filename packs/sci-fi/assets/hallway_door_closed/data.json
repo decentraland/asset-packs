@@ -5,6 +5,19 @@
   "tags": [
     "scifi",
     "alien",
-    "base"
-  ]
+    "base",
+    "barrier",
+    "corridor",
+    "divider",
+    "doorway",
+    "entrance",
+    "gate",
+    "obstacle",
+    "obstruction",
+    "passage",
+    "portal",
+    "room",
+    "threshold"
+  ],
+  "caption": "Closed door with red stripe at bottom."
 }

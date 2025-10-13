@@ -8,6 +8,13 @@
     "crystal",
     "gem",
     "gemstone",
-    "stone"
-  ]
+    "stone",
+    "artifact",
+    "jewel",
+    "mystical",
+    "precious",
+    "relic",
+    "valuable"
+  ],
+  "caption": "Blue, crystal-like object with jagged edges."
 }

@@ -2,5 +2,16 @@
   "id": "c12b0faf-2187-489d-b838-06ba2c9cd6d0",
   "name": "Wall - BathroomTiles",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "appearance",
+    "bathroom",
+    "ceramic",
+    "glass",
+    "glossy",
+    "mirror",
+    "reflective",
+    "surface",
+    "tile"
+  ],
+  "caption": "Blue glass tile."
 }

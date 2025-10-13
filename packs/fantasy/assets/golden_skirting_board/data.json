@@ -8,6 +8,12 @@
     "board",
     "baseboard",
     "golden",
-    "gold"
-  ]
+    "gold",
+    "furniture",
+    "interior",
+    "molding",
+    "surface",
+    "trim"
+  ],
+  "caption": "Wooden skirting board with golden finish."
 }

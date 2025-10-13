@@ -5,6 +5,19 @@
   "tags": [
     "scifi",
     "tile",
-    "planet"
-  ]
+    "planet",
+    "atmosphere",
+    "environment",
+    "hue",
+    "landscape",
+    "searchable",
+    "shade",
+    "sky",
+    "surface",
+    "terrain",
+    "tone",
+    "violet",
+    "world"
+  ],
+  "caption": "Textured surface with pink color."
 }

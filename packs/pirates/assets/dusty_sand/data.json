@@ -6,6 +6,19 @@
     "pirate",
     "paradise",
     "pirates",
-    "ground"
-  ]
+    "ground",
+    "blur",
+    "coarse",
+    "desert",
+    "dirt",
+    "dusty",
+    "earth",
+    "gravel",
+    "rough",
+    "sand",
+    "sandy",
+    "surface",
+    "terrain"
+  ],
+  "caption": "Dusty desert terrain"
 }

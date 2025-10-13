@@ -2,5 +2,18 @@
   "id": "dbf318ee-9c03-4301-82c9-47a0041d263a",
   "name": "Doorframe - HexagonGrid",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architecture",
+    "building",
+    "doorframe",
+    "frame",
+    "grid",
+    "hexagon",
+    "hexagongrid",
+    "pattern",
+    "rectangle",
+    "shape",
+    "structure"
+  ],
+  "caption": "Grid metal door frame."
 }

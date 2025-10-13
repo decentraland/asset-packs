@@ -13,6 +13,16 @@
     "barrel",
     "powder",
     "boom",
-    "danger"
-  ]
+    "danger",
+    "band",
+    "container",
+    "explosive",
+    "fuel",
+    "gunpowder",
+    "keg",
+    "storage",
+    "tank",
+    "vessel"
+  ],
+  "caption": "Wooden barrel with metal bands."
 }

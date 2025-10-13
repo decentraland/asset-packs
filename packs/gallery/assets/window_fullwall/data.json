@@ -2,5 +2,17 @@
   "id": "7cd98940-78b6-4b61-af5d-da43f3360022",
   "name": "Window - FullWall ",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architectural",
+    "clear",
+    "frame",
+    "fullwall",
+    "glass",
+    "ledge",
+    "pane",
+    "sill",
+    "transparent",
+    "window"
+  ],
+  "caption": "Large glass window."
 }

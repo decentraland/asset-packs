@@ -7,6 +7,18 @@
     "stone",
     "brick",
     "wall",
-    "corner"
-  ]
+    "corner",
+    "arch",
+    "architecture",
+    "building",
+    "castle",
+    "curved",
+    "fortress",
+    "palace",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Textured brick wall with curved top."
 }

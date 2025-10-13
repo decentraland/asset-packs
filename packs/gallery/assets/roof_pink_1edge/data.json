@@ -2,5 +2,17 @@
   "id": "589276f9-77d8-41f8-bedc-bfa01ca7e339",
   "name": "Roof - Pink 1Edge",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architecture",
+    "building",
+    "exterior",
+    "facade",
+    "hue",
+    "roof",
+    "shade",
+    "structure",
+    "surface",
+    "tone"
+  ],
+  "caption": "Single-edged roof."
 }

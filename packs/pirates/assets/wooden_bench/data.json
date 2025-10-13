@@ -10,6 +10,18 @@
     "wood",
     "wooden",
     "seat",
-    "bench"
-  ]
+    "bench",
+    "comfort",
+    "desk",
+    "dining",
+    "kitchen",
+    "maple",
+    "oak",
+    "pine",
+    "rest",
+    "seating",
+    "surface",
+    "table"
+  ],
+  "caption": "Brown wooden bench with two slats."
 }

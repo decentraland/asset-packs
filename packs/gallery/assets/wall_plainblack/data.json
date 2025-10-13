@@ -2,5 +2,12 @@
   "id": "d36f333b-c736-4db8-a5e2-6ab47d4364b9",
   "name": "Wall - PlainBlack",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architectural",
+    "dark",
+    "minimalist",
+    "solid",
+    "surface"
+  ],
+  "caption": "Black wall."
 }

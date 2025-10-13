@@ -2,5 +2,15 @@
   "id": "c11f79b5-b07c-4842-80fb-98e96496aa75",
   "name": "Roof - Purple 3Edges Small",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architectural",
+    "building",
+    "roof",
+    "searchable",
+    "shape",
+    "sided",
+    "triangular",
+    "type"
+  ],
+  "caption": "Purple roof with three edges."
 }

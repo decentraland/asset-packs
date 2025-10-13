@@ -12,6 +12,16 @@
     "rock",
     "rocks",
     "arch",
-    "beach"
-  ]
+    "beach",
+    "architecture",
+    "boulder",
+    "formation",
+    "jagged",
+    "natural",
+    "rugged",
+    "shape",
+    "structure",
+    "surface"
+  ],
+  "caption": "Jagged rock formation with a smooth top."
 }

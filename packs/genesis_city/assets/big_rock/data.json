@@ -11,6 +11,17 @@
     "rocks",
     "stone",
     "stones",
-    "forest"
-  ]
+    "forest",
+    "boulder",
+    "earthy",
+    "geological",
+    "landscape",
+    "mineral",
+    "natural",
+    "rocky",
+    "rough",
+    "spherical",
+    "terrain"
+  ],
+  "caption": "Gray rock with rough surface."
 }

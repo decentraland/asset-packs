@@ -9,6 +9,18 @@
     "stones",
     "rock",
     "rocks",
-    "forest"
-  ]
+    "forest",
+    "boulder",
+    "cluster",
+    "dark",
+    "earthy",
+    "environment",
+    "geology",
+    "landscape",
+    "mineral",
+    "rocky",
+    "rugged",
+    "terrain"
+  ],
+  "caption": "Dark rocky cluster."
 }

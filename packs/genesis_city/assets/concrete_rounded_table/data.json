@@ -9,6 +9,19 @@
     "furniture",
     "table",
     "cafe",
-    "concrete"
-  ]
+    "concrete",
+    "base",
+    "comfort",
+    "desk",
+    "dining",
+    "kitchen",
+    "maple",
+    "oak",
+    "pine",
+    "rest",
+    "seat",
+    "seating",
+    "surface"
+  ],
+  "caption": "Metal base table"
 }

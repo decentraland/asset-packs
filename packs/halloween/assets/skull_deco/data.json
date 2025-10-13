@@ -2,5 +2,18 @@
   "id": "1b5eeccc-be7b-475e-8002-21dc5d4d9f21",
   "name": "Skull Deco",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "deco",
+    "expression",
+    "face",
+    "horror",
+    "skull",
+    "skullart",
+    "skullcap",
+    "skulldesign",
+    "skullmodel",
+    "spooky",
+    "spookyexpression"
+  ],
+  "caption": "Spooky 3D skull with glowing red eyes."
 }

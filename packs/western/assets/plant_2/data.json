@@ -2,5 +2,19 @@
   "id": "ec8b2557-4819-4a6c-a443-2fe15e7e980a",
   "name": "Plant 2",
   "category": "nature",
-  "tags": []
+  "tags": [
+    "botanical",
+    "environment",
+    "flora",
+    "foliage",
+    "leaves",
+    "nature",
+    "outdoor",
+    "plant",
+    "plantlife",
+    "rocks",
+    "terrain",
+    "vegetation"
+  ],
+  "caption": "Tall green plant with brown leaves."
 }

@@ -12,6 +12,18 @@
     "actors",
     "light",
     "show",
-    "street"
-  ]
+    "street",
+    "awning",
+    "backdrop",
+    "entertainment",
+    "lights",
+    "outdoor",
+    "performance",
+    "play",
+    "scenery",
+    "setting",
+    "stage",
+    "venue"
+  ],
+  "caption": "Outdoor theater under a colorful awning."
 }

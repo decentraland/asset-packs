@@ -7,6 +7,16 @@
     "stool",
     "chair",
     "stone",
-    "rune"
-  ]
+    "rune",
+    "comfort",
+    "desk",
+    "dining",
+    "furniture",
+    "kitchen",
+    "rest",
+    "seat",
+    "surface",
+    "table"
+  ],
+  "caption": "Blue glowing stool on black background."
 }

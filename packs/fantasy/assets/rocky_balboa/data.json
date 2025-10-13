@@ -9,6 +9,18 @@
     "stones",
     "rock",
     "rocks",
-    "forest"
-  ]
+    "forest",
+    "balboa",
+    "ball",
+    "boulder",
+    "geode",
+    "granite",
+    "marble",
+    "rocky",
+    "rough",
+    "rounded",
+    "spherical",
+    "textured"
+  ],
+  "caption": "Spherical object with rough texture."
 }

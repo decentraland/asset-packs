@@ -13,6 +13,20 @@
     "parcel",
     "realstate",
     "real",
-    "state"
-  ]
+    "state",
+    "advertisement",
+    "agent",
+    "commercial",
+    "display",
+    "estate",
+    "listing",
+    "market",
+    "office",
+    "outdoor",
+    "property",
+    "public",
+    "realtor",
+    "signage"
+  ],
+  "caption": "For Sale Real Estate Sign"
 }

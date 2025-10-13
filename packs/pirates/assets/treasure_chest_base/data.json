@@ -17,6 +17,15 @@
     "doubloon",
     "doubloons",
     "coin",
-    "coins"
-  ]
+    "coins",
+    "box",
+    "container",
+    "loot",
+    "pile",
+    "riches",
+    "trove",
+    "vessel",
+    "wealth"
+  ],
+  "caption": "Glowing treasure chest overflowing with golden coins."
 }

@@ -7,6 +7,18 @@
     "power",
     "spark",
     "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "appearance",
+    "beam",
+    "glow",
+    "glowing",
+    "hue",
+    "illumination",
+    "luminescent",
+    "radiance",
+    "radiant",
+    "shine",
+    "visual"
+  ],
+  "caption": "Blue glowing cube."
 }

@@ -13,6 +13,18 @@
     "spokes",
     "steel",
     "tire",
-    "felloes"
-  ]
+    "felloes",
+    "carriage",
+    "cart",
+    "gear",
+    "mechanism",
+    "motion",
+    "rotation",
+    "round",
+    "transportation",
+    "turning",
+    "vehicle",
+    "wheelbarrow"
+  ],
+  "caption": "Wooden wheel with metal spokes."
 }

@@ -9,6 +9,20 @@
     "gemstone",
     "gold",
     "golden",
-    "iron"
-  ]
+    "iron",
+    "artifact",
+    "candelabra",
+    "candle",
+    "comfort",
+    "desk",
+    "dining",
+    "furniture",
+    "holder",
+    "kitchen",
+    "luxury",
+    "seating",
+    "surface",
+    "table"
+  ],
+  "caption": "Blue crystal atop golden candle holder."
 }

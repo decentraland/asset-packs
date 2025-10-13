@@ -10,6 +10,21 @@
     "wood",
     "bridge",
     "river",
-    "water"
-  ]
+    "water",
+    "arch",
+    "arches",
+    "balusters",
+    "beam",
+    "beams",
+    "columns",
+    "construction",
+    "crossing",
+    "decking",
+    "fencing",
+    "flooring",
+    "gates",
+    "handrails",
+    "latticework"
+  ],
+  "caption": "Wooden bridge with metal railings."
 }

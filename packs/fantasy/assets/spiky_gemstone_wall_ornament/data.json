@@ -9,6 +9,13 @@
     "gold",
     "golden",
     "gem",
-    "gemstone"
-  ]
+    "gemstone",
+    "ally",
+    "facets",
+    "facetted",
+    "shaped",
+    "spiked",
+    "spiky"
+  ],
+  "caption": "Decorative wall ornament with spiked facets."
 }

@@ -12,6 +12,20 @@
     "statue",
     "garden",
     "park",
-    "wall"
-  ]
+    "wall",
+    "architecture",
+    "building",
+    "castle",
+    "defense",
+    "fortress",
+    "monument",
+    "palace",
+    "protection",
+    "royal",
+    "security",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Stone pillar."
 }

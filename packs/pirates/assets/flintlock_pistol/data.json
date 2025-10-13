@@ -16,6 +16,20 @@
     "weapon",
     "powder",
     "boom",
-    "bang"
-  ]
+    "bang",
+    "ammo",
+    "antique",
+    "armament",
+    "combat",
+    "firearm",
+    "flintlock",
+    "handgun",
+    "handle",
+    "historical",
+    "musket",
+    "pistol",
+    "rifle",
+    "shooting"
+  ],
+  "caption": "Flintlock Pistol with Wooden Handle and Metal Barrel"
 }

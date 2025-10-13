@@ -6,6 +6,18 @@
     "fantasy",
     "hammer",
     "stone",
-    "tool"
-  ]
+    "tool",
+    "appearance",
+    "artifact",
+    "building",
+    "construction",
+    "craft",
+    "function",
+    "handle",
+    "head",
+    "nail",
+    "relic",
+    "work"
+  ],
+  "caption": "Wooden-handled metal hammer."
 }

@@ -11,6 +11,22 @@
     "rocks",
     "stone",
     "stones",
-    "forest"
-  ]
+    "forest",
+    "architecture",
+    "building",
+    "castle",
+    "defense",
+    "edifice",
+    "fortress",
+    "medium",
+    "monument",
+    "palace",
+    "protection",
+    "rounded",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Rocky terrain with glowing embers."
 }

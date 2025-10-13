@@ -2,5 +2,18 @@
   "id": "47c2adab-2cf0-4b80-b249-f08854e8f87f",
   "name": "Skull Deco Cyan",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "bone",
+    "decal",
+    "face",
+    "graphic",
+    "headpiece",
+    "helmet",
+    "mask",
+    "skeleton",
+    "skull",
+    "skullcap",
+    "visage"
+  ],
+  "caption": "3D Skull Decal Graphic"
 }

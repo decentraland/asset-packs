@@ -15,6 +15,12 @@
     "yard",
     "tile",
     "city",
-    "road"
-  ]
+    "road",
+    "floor",
+    "flooring",
+    "pattern",
+    "scheme",
+    "surface"
+  ],
+  "caption": "White tile flooring pattern."
 }

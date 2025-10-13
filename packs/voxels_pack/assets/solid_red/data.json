@@ -2,5 +2,14 @@
   "id": "894982cf-7f4c-482a-bc41-cc9ab2adfbbc",
   "name": "Solid Red",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "aesthetic",
+    "appearance",
+    "form",
+    "glossy",
+    "shape",
+    "surface",
+    "visual"
+  ],
+  "caption": "Red cube with glossy surface."
 }

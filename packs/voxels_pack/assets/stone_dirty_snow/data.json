@@ -2,5 +2,18 @@
   "id": "d7aa4c4a-a90a-46d8-ab6f-6aad32273f12",
   "name": "Stone - Dirty Snow",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "base",
+    "block",
+    "environment",
+    "frosty",
+    "ground",
+    "icy",
+    "rocky",
+    "shaped",
+    "snow",
+    "terrain",
+    "winter"
+  ],
+  "caption": "Cube-shaped block with snowy texture."
 }

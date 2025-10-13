@@ -2,5 +2,15 @@
   "id": "ed413173-b804-46c4-87c4-2a1a655c10a3",
   "name": "WallCorner - DiagonalBoard ",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "board",
+    "boarding",
+    "diagonal",
+    "panel",
+    "rail",
+    "structure",
+    "surface",
+    "system"
+  ],
+  "caption": "Corner piece with diagonal boarding."
 }

@@ -10,6 +10,16 @@
     "cobblestones",
     "stone",
     "stones",
-    "path"
-  ]
+    "path",
+    "architecture",
+    "asphalt",
+    "broken",
+    "concrete",
+    "curved",
+    "landscape",
+    "pavement",
+    "surface",
+    "terrain"
+  ],
+  "caption": "Broken stone path with curved edges."
 }

@@ -7,6 +7,17 @@
     "book",
     "codex",
     "knowledge",
-    "shelf"
-  ]
+    "shelf",
+    "bookshelf",
+    "document",
+    "leather",
+    "manuscript",
+    "page",
+    "paper",
+    "parchment",
+    "scroll",
+    "surface",
+    "tome"
+  ],
+  "caption": "Open book with visible pages."
 }

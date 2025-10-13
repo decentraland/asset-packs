@@ -6,6 +6,11 @@
     "fantasy",
     "stair",
     "stone",
-    "step"
-  ]
+    "step",
+    "flight",
+    "staircase",
+    "steps",
+    "stepway"
+  ],
+  "caption": "Three-step stone staircase."
 }

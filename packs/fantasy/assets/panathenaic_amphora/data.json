@@ -6,6 +6,15 @@
     "fantasy",
     "vase",
     "liquid",
-    "ceramic"
-  ]
+    "ceramic",
+    "amphora",
+    "container",
+    "greek",
+    "handle",
+    "lid",
+    "storage",
+    "tank",
+    "vessel"
+  ],
+  "caption": "Antique Greek vase with handles."
 }

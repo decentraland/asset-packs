@@ -12,6 +12,20 @@
     "rock",
     "rocks",
     "pillar",
-    "pillars"
-  ]
+    "pillars",
+    "architecture",
+    "building",
+    "castle",
+    "concrete",
+    "defense",
+    "fortress",
+    "landmark",
+    "monument",
+    "palace",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Three pillar-like structures made of stone blocks."
 }

@@ -7,6 +7,17 @@
     "power",
     "spark",
     "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "advertisement",
+    "border",
+    "building",
+    "display",
+    "exterior",
+    "facade",
+    "glow",
+    "illumination",
+    "shopfront",
+    "storefront"
+  ],
+  "caption": "Neon sign with glowing yellow letters."
 }

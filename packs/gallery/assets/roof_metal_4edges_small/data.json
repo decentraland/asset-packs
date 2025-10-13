@@ -2,5 +2,18 @@
   "id": "17b69cd7-35c9-4a0e-929c-e294ab3921c6",
   "name": "Roof - Metal 4Edges Small",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "appearance",
+    "attribute",
+    "characteristic",
+    "edges",
+    "four",
+    "pattern",
+    "quality",
+    "roof",
+    "roofing",
+    "shape",
+    "type"
+  ],
+  "caption": "Metal roof with four edges."
 }

@@ -11,6 +11,17 @@
     "wooden",
     "dock",
     "stick",
-    "sticks"
-  ]
+    "sticks",
+    "architecture",
+    "barrier",
+    "boundary",
+    "building",
+    "enclosure",
+    "environment",
+    "nature",
+    "outdoor",
+    "structure",
+    "timber"
+  ],
+  "caption": "Wooden fence."
 }

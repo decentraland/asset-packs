@@ -2,5 +2,17 @@
   "id": "e3c3c4a7-abe2-4f1e-a21f-8a5b23227fad",
   "name": "Manhole - Red",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "border",
+    "container",
+    "cover",
+    "fuel",
+    "hazardous",
+    "lid",
+    "manhole",
+    "storage",
+    "toxic",
+    "vessel"
+  ],
+  "caption": "Red manhole cover with black border."
 }

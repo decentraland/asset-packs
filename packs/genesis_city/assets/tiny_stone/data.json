@@ -11,6 +11,19 @@
     "rocks",
     "stone",
     "stones",
-    "forest"
-  ]
+    "forest",
+    "asteroid",
+    "celestial",
+    "cosmic",
+    "debris",
+    "fragment",
+    "gravity",
+    "mass",
+    "mineral",
+    "orbiting",
+    "planetoid",
+    "satellite",
+    "space"
+  ],
+  "caption": "Rock in space."
 }

@@ -8,6 +8,20 @@
     "town",
     "structures",
     "garden",
-    "park"
-  ]
+    "park",
+    "arch",
+    "architecture",
+    "building",
+    "canopy",
+    "column",
+    "outdoor",
+    "pergola",
+    "roof",
+    "rounded",
+    "searchable",
+    "shade",
+    "structure",
+    "support"
+  ],
+  "caption": "Pergola with a wooden top."
 }

@@ -12,6 +12,19 @@
     "river",
     "water",
     "rounded",
-    "round"
-  ]
+    "round",
+    "arch",
+    "architectural",
+    "construction",
+    "crossing",
+    "decor",
+    "edging",
+    "floor",
+    "forest",
+    "furniture",
+    "hardwood",
+    "span",
+    "structure"
+  ],
+  "caption": "Wooden bridge with rugged edges."
 }

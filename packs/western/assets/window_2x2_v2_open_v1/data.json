@@ -2,5 +2,19 @@
   "id": "8d81998a-b921-47f0-9aad-5b8845b0dd2a",
   "name": "Window 2x2 V2 Open v1",
   "category": "structures",
-  "tags": []
+  "tags": [
+    "aperture",
+    "clear",
+    "frame",
+    "glass",
+    "glazed",
+    "opening",
+    "pane",
+    "sight",
+    "transparent",
+    "view",
+    "window",
+    "windowpane"
+  ],
+  "caption": "Brown-framed window with blue panes."
 }

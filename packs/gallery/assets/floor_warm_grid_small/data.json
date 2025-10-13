@@ -2,5 +2,15 @@
   "id": "2d270d19-1c5d-4905-b5a4-4899e6aeca37",
   "name": "Floor - Warm Grid Small",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "appearance",
+    "form",
+    "grid",
+    "layout",
+    "pattern",
+    "shape",
+    "space",
+    "visual"
+  ],
+  "caption": "Red grid pattern on black background."
 }

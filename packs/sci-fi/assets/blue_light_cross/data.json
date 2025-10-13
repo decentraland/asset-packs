@@ -7,6 +7,19 @@
     "power",
     "spark",
     "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "beacon",
+    "beam",
+    "cross",
+    "glow",
+    "glowing",
+    "halo",
+    "illumination",
+    "luminescent",
+    "luminous",
+    "radiance",
+    "radiant",
+    "spotlight"
+  ],
+  "caption": "Blue-lit cross with glowing center."
 }

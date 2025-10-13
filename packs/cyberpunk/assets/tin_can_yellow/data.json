@@ -2,5 +2,18 @@
   "id": "d72e9736-7bba-4f83-b4f0-144a7c9f00fe",
   "name": "Tin Can - Yellow",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "automation",
+    "can",
+    "container",
+    "fuel",
+    "hazardous",
+    "lid",
+    "storage",
+    "tank",
+    "tin",
+    "toxic",
+    "vessel"
+  ],
+  "caption": "Orange can with a yellow lid."
 }

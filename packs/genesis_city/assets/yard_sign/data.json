@@ -8,6 +8,20 @@
     "town",
     "decoration",
     "sign",
-    "yard"
-  ]
+    "yard",
+    "building",
+    "dwelling",
+    "entrance",
+    "garden",
+    "gate",
+    "home",
+    "house",
+    "outdoor",
+    "post",
+    "residence",
+    "roof",
+    "stand",
+    "structure"
+  ],
+  "caption": "Wooden sign with red roof."
 }

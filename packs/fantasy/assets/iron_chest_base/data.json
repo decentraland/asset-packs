@@ -5,6 +5,13 @@
   "tags": [
     "fantasy",
     "chest",
-    "iron"
-  ]
+    "iron",
+    "container",
+    "furniture",
+    "interior",
+    "room",
+    "space",
+    "storage"
+  ],
+  "caption": "Brown metal chest."
 }

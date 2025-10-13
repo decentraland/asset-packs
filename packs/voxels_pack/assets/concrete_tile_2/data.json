@@ -2,5 +2,17 @@
   "id": "26eec0be-ab77-49a6-98f0-a82dd336944f",
   "name": "Concrete tile",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "aesthetic",
+    "appearance",
+    "clarity",
+    "effect",
+    "glass",
+    "reflective",
+    "surface",
+    "transparency",
+    "transparent",
+    "visual"
+  ],
+  "caption": "Transparent Cube"
 }

@@ -2,5 +2,17 @@
   "id": "a83f44c6-cb5d-4895-be94-42c4f666933a",
   "name": "Roof - Beige Corner Small",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architectural",
+    "building",
+    "exterior",
+    "facade",
+    "fragment",
+    "roof",
+    "roofing",
+    "section",
+    "surface",
+    "tile"
+  ],
+  "caption": "Beige roof section."
 }

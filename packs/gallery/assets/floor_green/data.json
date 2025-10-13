@@ -2,5 +2,22 @@
   "id": "854d4b7e-a3f5-4619-bd0a-61793a8a8d6a",
   "name": "Floor - Green",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "field",
+    "floor",
+    "foliage",
+    "grass",
+    "ground",
+    "hue",
+    "landscape",
+    "lawn",
+    "meadow",
+    "nature",
+    "outdoor",
+    "pattern",
+    "surface",
+    "terrain",
+    "turf"
+  ],
+  "caption": "Green floor."
 }

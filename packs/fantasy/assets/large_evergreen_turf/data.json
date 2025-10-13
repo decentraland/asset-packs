@@ -8,6 +8,20 @@
     "forest",
     "grass",
     "evergreen",
-    "turf"
-  ]
+    "turf",
+    "artificial",
+    "environment",
+    "field",
+    "ground",
+    "landscape",
+    "lawn",
+    "meadow",
+    "nature",
+    "outdoor",
+    "scenery",
+    "surface",
+    "synthetic",
+    "terrain"
+  ],
+  "caption": "Artificial turf field."
 }

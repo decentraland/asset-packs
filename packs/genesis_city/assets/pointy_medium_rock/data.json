@@ -11,6 +11,19 @@
     "rocks",
     "stone",
     "stones",
-    "forest"
-  ]
+    "forest",
+    "boulder",
+    "earth",
+    "environment",
+    "formation",
+    "geological",
+    "landscape",
+    "mineral",
+    "natural",
+    "pointy",
+    "surface",
+    "terrain",
+    "topography"
+  ],
+  "caption": "Gray rock with a pointed top."
 }

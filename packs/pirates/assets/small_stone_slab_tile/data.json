@@ -10,6 +10,15 @@
     "cobblestones",
     "stone",
     "stones",
-    "path"
-  ]
+    "path",
+    "architecture",
+    "building",
+    "monument",
+    "pattern",
+    "slab",
+    "structure",
+    "surface",
+    "tile"
+  ],
+  "caption": "Stone tile with a natural finish."
 }

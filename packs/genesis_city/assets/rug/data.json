@@ -10,6 +10,15 @@
     "rug",
     "carpet",
     "brown",
-    "old"
-  ]
+    "old",
+    "border",
+    "fabric",
+    "floor",
+    "furniture",
+    "interior",
+    "pattern",
+    "room",
+    "space"
+  ],
+  "caption": "Red border rug."
 }

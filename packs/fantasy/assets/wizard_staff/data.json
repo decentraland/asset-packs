@@ -12,6 +12,15 @@
     "wooden",
     "fabric",
     "gem",
-    "gemstone"
-  ]
+    "gemstone",
+    "artifact",
+    "ceremonial",
+    "enchanted",
+    "mystic",
+    "ribbon",
+    "ritual",
+    "spellcasting",
+    "wand"
+  ],
+  "caption": "Blue ribbon tied around wooden staff."
 }

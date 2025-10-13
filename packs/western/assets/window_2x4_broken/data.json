@@ -2,5 +2,22 @@
   "id": "6663c8b1-ab4b-45fa-a80f-58f3b08d8b60",
   "name": "Window 2x4 Broken",
   "category": "structures",
-  "tags": []
+  "tags": [
+    "broken",
+    "crack",
+    "damage",
+    "fragment",
+    "frame",
+    "glass",
+    "missing",
+    "pane",
+    "panes",
+    "searchable",
+    "shatter",
+    "shattered",
+    "sill",
+    "splinter",
+    "window"
+  ],
+  "caption": "Broken glass window with two panes missing."
 }

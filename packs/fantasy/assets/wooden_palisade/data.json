@@ -6,6 +6,20 @@
     "fantasy",
     "palisade",
     "wood",
-    "wooden"
-  ]
+    "wooden",
+    "barrier",
+    "building",
+    "castle",
+    "defense",
+    "enclosure",
+    "fortification",
+    "fortress",
+    "gate",
+    "palace",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Wooden palisade fence."
 }

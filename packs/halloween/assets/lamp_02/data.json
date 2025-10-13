@@ -2,5 +2,22 @@
   "id": "d26772f7-6b24-4abf-b612-5b640428fe69",
   "name": "Lamp 02",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "base",
+    "cozy",
+    "dark",
+    "desk",
+    "dining",
+    "fixture",
+    "furniture",
+    "glow",
+    "illumination",
+    "kitchen",
+    "lamp",
+    "lighting",
+    "shade",
+    "surface",
+    "table"
+  ],
+  "caption": "Orange lamp on a dark background."
 }

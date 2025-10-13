@@ -10,6 +10,18 @@
     "bottle",
     "drink",
     "beverage",
-    "alcohol"
-  ]
+    "alcohol",
+    "advertisement",
+    "advertising",
+    "branding",
+    "cap",
+    "container",
+    "label",
+    "logo",
+    "packaging",
+    "product",
+    "signage",
+    "vessel"
+  ],
+  "caption": "Blue bottle with yellow label."
 }

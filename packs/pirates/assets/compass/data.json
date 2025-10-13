@@ -15,6 +15,14 @@
     "north",
     "south",
     "east",
-    "west"
-  ]
+    "west",
+    "border",
+    "compass",
+    "direction",
+    "directional",
+    "navigation",
+    "orienting",
+    "pointing"
+  ],
+  "caption": "Glowing compass with a red arrow."
 }

@@ -7,6 +7,17 @@
     "power",
     "spark",
     "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "beam",
+    "bright",
+    "electric",
+    "fluorescent",
+    "glow",
+    "glowing",
+    "hue",
+    "illumination",
+    "radiant",
+    "tube"
+  ],
+  "caption": "Neon tube emitting bright yellow light."
 }

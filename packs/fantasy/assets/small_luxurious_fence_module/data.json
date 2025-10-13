@@ -7,6 +7,16 @@
     "fence",
     "stone",
     "gold",
-    "module"
-  ]
+    "module",
+    "elegant",
+    "gate",
+    "golden",
+    "luxurious",
+    "opulent",
+    "premium",
+    "railing",
+    "refined",
+    "upscale"
+  ],
+  "caption": "Glowing golden gate for your luxury fence."
 }

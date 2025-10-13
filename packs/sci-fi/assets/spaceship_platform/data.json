@@ -6,6 +6,15 @@
     "scifi",
     "port",
     "dock",
-    "spaceship"
-  ]
+    "spaceship",
+    "central",
+    "cockpit",
+    "control",
+    "dashboard",
+    "panel",
+    "space",
+    "station",
+    "terminal"
+  ],
+  "caption": "Central console on black background."
 }

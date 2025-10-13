@@ -7,6 +7,20 @@
     "torch",
     "gem",
     "gemstone",
-    "light"
-  ]
+    "light",
+    "artifact",
+    "burning",
+    "combustion",
+    "enchanted",
+    "fire",
+    "flame",
+    "glowing",
+    "heat",
+    "mystic",
+    "mystical",
+    "radiant",
+    "relic",
+    "smoke"
+  ],
+  "caption": "Black torch-shaped container for blue gem."
 }

@@ -10,6 +10,21 @@
     "container",
     "garden",
     "park",
-    "backyard"
-  ]
+    "backyard",
+    "field",
+    "gauge",
+    "grass",
+    "ground",
+    "lawn",
+    "marker",
+    "meadow",
+    "measuring",
+    "outdoor",
+    "row",
+    "ruler",
+    "scale",
+    "strip",
+    "stripe"
+  ],
+  "caption": "Green bar with gray stripe, resembles ruler."
 }

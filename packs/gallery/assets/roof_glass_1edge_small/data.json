@@ -2,5 +2,19 @@
   "id": "d7138903-2199-4f34-8e15-e5d103cb2ef7",
   "name": "Roof - Glass 1Edge small",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "clear",
+    "fragile",
+    "glass",
+    "glassy",
+    "pane",
+    "reflective",
+    "roof",
+    "shiny",
+    "sleek",
+    "smooth",
+    "transparent",
+    "window"
+  ],
+  "caption": "Glass roof with a single edge."
 }

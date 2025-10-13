@@ -2,5 +2,21 @@
   "id": "fe753160-1c5a-467f-becb-c422fef1d67f",
   "name": "Fire Hydrant - Red",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "accent",
+    "aquatic",
+    "burning",
+    "combustion",
+    "emergency",
+    "fire",
+    "flame",
+    "fluid",
+    "fuel",
+    "heat",
+    "hydrant",
+    "infrastructure",
+    "lake",
+    "liquid"
+  ],
+  "caption": "Red fire hydrant."
 }

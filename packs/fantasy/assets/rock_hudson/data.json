@@ -9,6 +9,14 @@
     "stones",
     "rock",
     "rocks",
-    "forest"
-  ]
+    "forest",
+    "appearance",
+    "form",
+    "function",
+    "mineral",
+    "shape",
+    "solid",
+    "surface"
+  ],
+  "caption": "Gray rock with a smooth surface."
 }

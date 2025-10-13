@@ -6,6 +6,16 @@
     "fantasy",
     "tile",
     "stone",
-    "path"
-  ]
+    "path",
+    "earthy",
+    "floor",
+    "granite",
+    "ground",
+    "natural",
+    "rough",
+    "rugged",
+    "surface",
+    "terrain"
+  ],
+  "caption": "Rough-textured stone tile."
 }

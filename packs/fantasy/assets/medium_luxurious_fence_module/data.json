@@ -7,6 +7,17 @@
     "fence",
     "stone",
     "gold",
-    "module"
-  ]
+    "module",
+    "barrier",
+    "elite",
+    "enclosure",
+    "finials",
+    "gate",
+    "luxurious",
+    "luxury",
+    "ornate",
+    "rail",
+    "railings"
+  ],
+  "caption": "Luxurious fence module with ornate finials."
 }

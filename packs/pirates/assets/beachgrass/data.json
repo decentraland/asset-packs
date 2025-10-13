@@ -11,6 +11,18 @@
     "beach",
     "foliage",
     "plant",
-    "plants"
-  ]
+    "plants",
+    "beachgrass",
+    "coastal",
+    "environment",
+    "field",
+    "grass",
+    "ground",
+    "herb",
+    "lawn",
+    "meadow",
+    "ocean",
+    "outdoor"
+  ],
+  "caption": "Green grass in a field."
 }

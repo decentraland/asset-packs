@@ -2,5 +2,15 @@
   "id": "32049ed9-26e5-4fc2-965f-6e09e7084984",
   "name": "WallCorner - Glass ",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architectural",
+    "border",
+    "frame",
+    "glass",
+    "pane",
+    "surface",
+    "transparent",
+    "window"
+  ],
+  "caption": "Black glass corner for wall."
 }

@@ -11,6 +11,20 @@
     "sunshade",
     "garden",
     "beach",
-    "tent"
-  ]
+    "tent",
+    "canopy",
+    "comfort",
+    "desk",
+    "dining",
+    "furniture",
+    "kitchen",
+    "maple",
+    "oak",
+    "pine",
+    "rectangular",
+    "seating",
+    "surface",
+    "table"
+  ],
+  "caption": "Red wooden table."
 }

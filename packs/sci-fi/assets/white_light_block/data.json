@@ -7,6 +7,14 @@
     "power",
     "spark",
     "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "block",
+    "curved",
+    "flat",
+    "opaque",
+    "prism",
+    "rectangular",
+    "transparent"
+  ],
+  "caption": "Light-colored block with flat top and bottom."
 }

@@ -13,6 +13,17 @@
     "sword",
     "weapon",
     "golden",
-    "gold"
-  ]
+    "gold",
+    "battle",
+    "blade",
+    "combat",
+    "dagger",
+    "grip",
+    "handle",
+    "hilt",
+    "knight",
+    "sharp",
+    "steel"
+  ],
+  "caption": "Blue-handled sword."
 }

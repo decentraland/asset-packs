@@ -5,6 +5,20 @@
   "tags": [
     "scifi",
     "tile",
-    "ground"
-  ]
+    "ground",
+    "architectural",
+    "arrangement",
+    "building",
+    "floor",
+    "furniture",
+    "grid",
+    "interior",
+    "layout",
+    "lines",
+    "panel",
+    "pattern",
+    "placement",
+    "plan"
+  ],
+  "caption": "Red grid marks floor panel's position."
 }

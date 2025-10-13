@@ -6,6 +6,15 @@
     "scifi",
     "dock",
     "port",
-    "metal"
-  ]
+    "metal",
+    "arc",
+    "curved",
+    "elevated",
+    "flat",
+    "form",
+    "shape",
+    "stripe",
+    "surface"
+  ],
+  "caption": "Red-stripe curved platform."
 }

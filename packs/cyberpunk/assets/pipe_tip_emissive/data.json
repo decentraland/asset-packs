@@ -2,5 +2,18 @@
   "id": "df696d6a-4364-4af5-8718-2c4fda8d08ea",
   "name": "Pipe - Tip Emissive",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "beam",
+    "emissive",
+    "glow",
+    "highlight",
+    "illumination",
+    "pipe",
+    "radiance",
+    "radiant",
+    "shine",
+    "spotlight",
+    "tip"
+  ],
+  "caption": "Emissive pipe tip on black background."
 }

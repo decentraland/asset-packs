@@ -8,6 +8,16 @@
     "wooden",
     "lamp",
     "post",
-    "iron"
-  ]
+    "iron",
+    "architecture",
+    "building",
+    "fortress",
+    "furniture",
+    "nature",
+    "outdoor",
+    "street",
+    "stronghold",
+    "structure"
+  ],
+  "caption": "Street Lamp Post"
 }

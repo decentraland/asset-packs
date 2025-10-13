@@ -2,5 +2,21 @@
   "id": "cc53236c-87c2-4e63-b27d-39cc061c17df",
   "name": "Beam Exterior 2",
   "category": "structures",
-  "tags": []
+  "tags": [
+    "arch",
+    "base",
+    "beam",
+    "bridge",
+    "column",
+    "construction",
+    "crossing",
+    "foundation",
+    "frame",
+    "like",
+    "river",
+    "span",
+    "structure",
+    "support"
+  ],
+  "caption": "Wooden bridge-like structure with four vertical supports."
 }

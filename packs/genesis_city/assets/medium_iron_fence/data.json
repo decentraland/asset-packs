@@ -12,6 +12,13 @@
     "metal",
     "iron",
     "park",
-    "garden"
-  ]
+    "garden",
+    "barrier",
+    "boundary",
+    "enclosure",
+    "fortification",
+    "grid",
+    "structure"
+  ],
+  "caption": "Black metal fence with vertical and horizontal bars."
 }

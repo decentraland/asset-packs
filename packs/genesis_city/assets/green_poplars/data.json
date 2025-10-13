@@ -14,6 +14,16 @@
     "park",
     "garden",
     "backyard",
-    "yard"
-  ]
+    "yard",
+    "branch",
+    "foliage",
+    "leafy",
+    "leaves",
+    "outdoor",
+    "poplar",
+    "poplars",
+    "roots",
+    "trunk"
+  ],
+  "caption": "Poplar tree model."
 }

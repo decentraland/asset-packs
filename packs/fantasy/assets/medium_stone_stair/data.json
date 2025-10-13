@@ -6,6 +6,16 @@
     "fantasy",
     "stair",
     "stone",
-    "step"
-  ]
+    "step",
+    "architecture",
+    "building",
+    "furniture",
+    "interior",
+    "layout",
+    "pattern",
+    "space",
+    "staircase",
+    "structure"
+  ],
+  "caption": "Staircase with modern steps."
 }

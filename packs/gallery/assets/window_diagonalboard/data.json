@@ -2,5 +2,21 @@
   "id": "53d63d66-9a69-461c-8b6a-5b7c0608f07a",
   "name": "Window - DiagonalBoard ",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "board",
+    "diagonal",
+    "diagonalboard",
+    "frame",
+    "glass",
+    "grid",
+    "pane",
+    "panel",
+    "pattern",
+    "rectangle",
+    "shape",
+    "slat",
+    "surface",
+    "window"
+  ],
+  "caption": "Diagonal glass partition separates two areas."
 }

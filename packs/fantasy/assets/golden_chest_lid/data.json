@@ -6,6 +6,17 @@
     "fantasy",
     "chest",
     "gold",
-    "golden"
-  ]
+    "golden",
+    "box",
+    "container",
+    "lid",
+    "luxury",
+    "ornate",
+    "precious",
+    "riches",
+    "storage",
+    "valuable",
+    "wealth"
+  ],
+  "caption": "Golden treasure chest."
 }

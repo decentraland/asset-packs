@@ -12,6 +12,15 @@
     "vegetable",
     "vegetables",
     "market",
-    "edible"
-  ]
+    "edible",
+    "agriculture",
+    "food",
+    "garden",
+    "harvest",
+    "plant",
+    "produce",
+    "stem",
+    "tomato"
+  ],
+  "caption": "Red tomato with green stem."
 }

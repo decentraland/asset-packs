@@ -9,6 +9,20 @@
     "furniture",
     "wood",
     "table",
-    "outdoor"
-  ]
+    "outdoor",
+    "bench",
+    "branch",
+    "comfort",
+    "desk",
+    "dining",
+    "foliage",
+    "forest",
+    "kitchen",
+    "nature",
+    "oak",
+    "picnic",
+    "seating",
+    "surface"
+  ],
+  "caption": "Wooden picnic table for four."
 }

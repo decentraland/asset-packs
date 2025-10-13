@@ -11,6 +11,16 @@
     "scroll",
     "leather",
     "strips",
-    "rope"
-  ]
+    "rope",
+    "artifact",
+    "chart",
+    "crest",
+    "document",
+    "map",
+    "navigation",
+    "parchment",
+    "relic",
+    "seal"
+  ],
+  "caption": "Red seal on ancient parchment scroll."
 }

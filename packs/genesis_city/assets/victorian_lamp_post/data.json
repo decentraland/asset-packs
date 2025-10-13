@@ -13,6 +13,14 @@
     "lighting",
     "street",
     "city",
-    "park"
-  ]
+    "park",
+    "antique",
+    "architectural",
+    "building",
+    "fixture",
+    "globe",
+    "structure",
+    "victorian"
+  ],
+  "caption": "Yellow globe atop tall metal lamp post."
 }

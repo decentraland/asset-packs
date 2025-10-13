@@ -6,6 +6,17 @@
     "scifi",
     "robot",
     "tech",
-    "machine"
-  ]
+    "machine",
+    "camera",
+    "dark",
+    "elevated",
+    "exploration",
+    "futuristic",
+    "landscape",
+    "rover",
+    "surveillance",
+    "terrain",
+    "vehicle"
+  ],
+  "caption": "Orange rover with camera on top."
 }

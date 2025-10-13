@@ -2,5 +2,19 @@
   "id": "2da9347a-052e-4d05-8fb8-23ca4f2008a5",
   "name": "Lamp - Purple",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "ambiance",
+    "base",
+    "fixture",
+    "furniture",
+    "hue",
+    "illumination",
+    "interior",
+    "lamp",
+    "lighting",
+    "room",
+    "shade",
+    "space"
+  ],
+  "caption": "Purple lamp on a wooden base."
 }

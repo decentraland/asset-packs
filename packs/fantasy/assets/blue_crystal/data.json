@@ -3,6 +3,15 @@
   "name": "Blue Crystal",
   "category": "decorations",
   "tags": [
-    "fantasy"
-  ]
+    "fantasy",
+    "crystal",
+    "faceted",
+    "form",
+    "gemstone",
+    "hue",
+    "jagged",
+    "mineral",
+    "shape"
+  ],
+  "caption": "Blue crystal with sharp edges."
 }

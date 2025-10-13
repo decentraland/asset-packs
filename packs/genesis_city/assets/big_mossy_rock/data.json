@@ -13,6 +13,15 @@
     "stones",
     "forest",
     "moss",
-    "mossy"
-  ]
+    "mossy",
+    "crust",
+    "egg",
+    "environment",
+    "foliage",
+    "growth",
+    "lichen",
+    "outdoor",
+    "pattern"
+  ],
+  "caption": "Egg-shaped object with green and white moss-like texture."
 }

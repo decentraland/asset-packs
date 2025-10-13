@@ -2,5 +2,20 @@
   "id": "207a06d7-e801-42e8-8e36-2a887a728917",
   "name": "Roof - Black Corner",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "data",
+    "form",
+    "fragment",
+    "information",
+    "module",
+    "resource",
+    "roof",
+    "section",
+    "segment",
+    "shape",
+    "specification",
+    "surface",
+    "tile"
+  ],
+  "caption": "Black roof with a sharp corner."
 }

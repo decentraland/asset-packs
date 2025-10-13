@@ -11,6 +11,18 @@
     "wooden",
     "dock",
     "pillar",
-    "pillars"
-  ]
+    "pillars",
+    "construction",
+    "floating",
+    "foundation",
+    "ground",
+    "harbor",
+    "mooring",
+    "pier",
+    "piling",
+    "structure",
+    "support",
+    "timber"
+  ],
+  "caption": "Floating dock support structure."
 }

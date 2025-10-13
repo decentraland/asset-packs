@@ -13,6 +13,13 @@
     "rounded",
     "ammunition",
     "shot",
-    "cannon"
-  ]
+    "cannon",
+    "ball",
+    "collection",
+    "globe",
+    "orb",
+    "pile",
+    "spherical"
+  ],
+  "caption": "Balls of glowing blue spheres."
 }

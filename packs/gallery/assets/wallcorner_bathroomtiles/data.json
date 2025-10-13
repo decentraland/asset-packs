@@ -2,5 +2,15 @@
   "id": "42650a24-c606-457d-a2c7-e155169c4190",
   "name": "WallCorner - BathroomTiles ",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "bathroom",
+    "ceramic",
+    "floor",
+    "marble",
+    "pattern",
+    "porcelain",
+    "surface",
+    "tile"
+  ],
+  "caption": "Bathroom corner tile"
 }

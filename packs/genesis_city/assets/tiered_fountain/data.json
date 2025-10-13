@@ -11,6 +11,20 @@
     "fountain",
     "stone",
     "park",
-    "garden"
-  ]
+    "garden",
+    "aquatic",
+    "architecture",
+    "basin",
+    "environment",
+    "fluid",
+    "lake",
+    "landscape",
+    "liquid",
+    "monument",
+    "ocean",
+    "outdoor",
+    "river",
+    "sculpture"
+  ],
+  "caption": "Fountain features statues at both levels."
 }

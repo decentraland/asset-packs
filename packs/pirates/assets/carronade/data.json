@@ -12,6 +12,21 @@
     "wooden",
     "weapon",
     "boom",
-    "wick"
-  ]
+    "wick",
+    "ammo",
+    "armor",
+    "artillery",
+    "bullet",
+    "cannon",
+    "combat",
+    "firearm",
+    "fortification",
+    "gun",
+    "rifle",
+    "shooting",
+    "siege",
+    "stronghold",
+    "warfare"
+  ],
+  "caption": "Wooden wheel atop an old cannon."
 }

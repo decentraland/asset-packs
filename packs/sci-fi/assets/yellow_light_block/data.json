@@ -7,6 +7,17 @@
     "power",
     "spark",
     "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "beacon",
+    "block",
+    "brightness",
+    "glow",
+    "illumination",
+    "luminosity",
+    "radiance",
+    "signal",
+    "visibility",
+    "warning"
+  ],
+  "caption": "Yellow Light Block"
 }

@@ -6,6 +6,15 @@
     "scifi",
     "computer",
     "parts",
-    "spaceship"
-  ]
+    "spaceship",
+    "border",
+    "eye",
+    "gem",
+    "gemstone",
+    "jewel",
+    "metallic",
+    "shape",
+    "shiny"
+  ],
+  "caption": "Red gemstone with metallic border."
 }

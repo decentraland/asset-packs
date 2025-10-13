@@ -6,6 +6,20 @@
     "fantasy",
     "wax",
     "unlit",
-    "light"
-  ]
+    "light",
+    "ambiance",
+    "atmosphere",
+    "burning",
+    "candle",
+    "candlestick",
+    "combustion",
+    "fire",
+    "flame",
+    "flameless",
+    "heat",
+    "holder",
+    "lighting",
+    "smoke"
+  ],
+  "caption": "Unlit candle with a white wick."
 }

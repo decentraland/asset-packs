@@ -7,6 +7,17 @@
     "column",
     "wood",
     "wooden",
-    "iron"
-  ]
+    "iron",
+    "architecture",
+    "block",
+    "building",
+    "comfort",
+    "furniture",
+    "maple",
+    "oak",
+    "pine",
+    "seating",
+    "structure"
+  ],
+  "caption": "Two wooden blocks atop a column."
 }

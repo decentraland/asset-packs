@@ -6,6 +6,18 @@
     "fantasy",
     "stone",
     "brick",
-    "wall"
-  ]
+    "wall",
+    "architecture",
+    "building",
+    "castle",
+    "dark",
+    "fortress",
+    "greyish",
+    "palace",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Dark grey textured brick wall."
 }

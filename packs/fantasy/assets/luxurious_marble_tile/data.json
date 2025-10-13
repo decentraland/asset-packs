@@ -7,6 +7,12 @@
     "tile",
     "marble",
     "pattern",
-    "luxurious"
-  ]
+    "luxurious",
+    "countertop",
+    "flooring",
+    "interior",
+    "realistic",
+    "surface"
+  ],
+  "caption": "Luxurious marble tile with realistic texture."
 }

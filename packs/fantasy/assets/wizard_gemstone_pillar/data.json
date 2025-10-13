@@ -8,6 +8,14 @@
     "gold",
     "golden",
     "gem",
-    "gemstone"
-  ]
+    "gemstone",
+    "architecture",
+    "artifact",
+    "magical",
+    "monument",
+    "structure",
+    "themed",
+    "wizard"
+  ],
+  "caption": "Blue gemstone pillar with glowing blue gem."
 }

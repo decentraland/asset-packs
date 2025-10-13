@@ -9,6 +9,16 @@
     "stones",
     "rock",
     "rocks",
-    "forest"
-  ]
+    "forest",
+    "ally",
+    "form",
+    "geological",
+    "inanimate",
+    "jagged",
+    "landscape",
+    "shape",
+    "solid",
+    "terrain"
+  ],
+  "caption": "Black, jagged rock."
 }

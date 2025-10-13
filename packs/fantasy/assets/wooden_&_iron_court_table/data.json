@@ -11,6 +11,14 @@
     "iron",
     "gold",
     "golden",
-    "court"
-  ]
+    "court",
+    "base",
+    "cartoonish",
+    "desk",
+    "dining",
+    "furniture",
+    "kitchen",
+    "surface"
+  ],
+  "caption": "Blue table on brown base."
 }

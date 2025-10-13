@@ -6,6 +6,12 @@
     "fantasy",
     "roof",
     "tower",
-    "hut"
-  ]
+    "hut",
+    "architecture",
+    "building",
+    "pointed",
+    "structure",
+    "thatched"
+  ],
+  "caption": "A traditional, thatched-roof hut."
 }

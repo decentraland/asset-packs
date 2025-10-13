@@ -8,6 +8,18 @@
     "rune",
     "runes",
     "ritual",
-    "pedestal"
-  ]
+    "pedestal",
+    "altar",
+    "artifact",
+    "ceremonial",
+    "enchanted",
+    "glowing",
+    "magical",
+    "mysterious",
+    "mystic",
+    "mystical",
+    "relic",
+    "sacred"
+  ],
+  "caption": "Glowing runes adorn ancient ritual pedestal."
 }

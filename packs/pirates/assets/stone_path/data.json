@@ -10,6 +10,13 @@
     "cobblestones",
     "stone",
     "stones",
-    "path"
-  ]
+    "path",
+    "ground",
+    "pattern",
+    "pavement",
+    "surface",
+    "terrain",
+    "walkway"
+  ],
+  "caption": "Gray stones line ancient stone path."
 }

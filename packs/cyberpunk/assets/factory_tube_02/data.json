@@ -2,5 +2,15 @@
   "id": "05393e82-0acd-40ea-837a-02752445bbf0",
   "name": "Factory Tube 02",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "container",
+    "cylindrical",
+    "pattern",
+    "shape",
+    "storage",
+    "stripe",
+    "tube",
+    "vessel"
+  ],
+  "caption": "Red and white striped tube on black background."
 }

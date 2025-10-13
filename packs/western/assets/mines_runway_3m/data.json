@@ -2,5 +2,17 @@
   "id": "55200c25-ce41-4fd4-a647-8f50035bf61c",
   "name": "Mines Runway 3M",
   "category": "tiles",
-  "tags": []
+  "tags": [
+    "architecture",
+    "building",
+    "construction",
+    "furniture",
+    "interior",
+    "plank",
+    "planks",
+    "runway",
+    "structure",
+    "surface"
+  ],
+  "caption": "Wooden plank runway."
 }

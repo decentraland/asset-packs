@@ -7,6 +7,17 @@
     "power",
     "spark",
     "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "beam",
+    "brightness",
+    "fixture",
+    "floor",
+    "glow",
+    "illumination",
+    "luminous",
+    "radiance",
+    "radiant",
+    "spotlight"
+  ],
+  "caption": "Yellow coin on black background."
 }

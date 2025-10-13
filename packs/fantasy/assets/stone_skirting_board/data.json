@@ -7,6 +7,11 @@
     "skirting",
     "board",
     "baseboard",
-    "stone"
-  ]
+    "stone",
+    "architectural",
+    "pattern",
+    "surface",
+    "trim"
+  ],
+  "caption": "Gray skirting board."
 }

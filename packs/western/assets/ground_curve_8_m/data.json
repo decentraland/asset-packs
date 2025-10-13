@@ -2,5 +2,14 @@
   "id": "9c2bde7c-8eaa-4dc6-8627-d6f2ea6be88b",
   "name": "Ground Curve 8 M",
   "category": "tiles",
-  "tags": []
+  "tags": [
+    "appearance",
+    "curve",
+    "form",
+    "paper",
+    "shape",
+    "surface",
+    "visual"
+  ],
+  "caption": "Curved yellow paper."
 }

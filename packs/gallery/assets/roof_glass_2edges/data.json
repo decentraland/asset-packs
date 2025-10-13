@@ -2,5 +2,20 @@
   "id": "804c94f9-20d8-4fd3-aca0-d096cad08ff7",
   "name": "Roof - Glass 2Edges",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architectural",
+    "building",
+    "clear",
+    "glass",
+    "glassy",
+    "glazing",
+    "pane",
+    "panes",
+    "roof",
+    "roofing",
+    "structure",
+    "transparent",
+    "window"
+  ],
+  "caption": "Glass roof with two sloping edges."
 }

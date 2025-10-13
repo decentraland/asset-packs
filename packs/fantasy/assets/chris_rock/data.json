@@ -9,6 +9,16 @@
     "stones",
     "rock",
     "rocks",
-    "forest"
-  ]
+    "forest",
+    "boulder",
+    "chunk",
+    "dark",
+    "fragment",
+    "jagged",
+    "mineral",
+    "rocky",
+    "rough",
+    "surface"
+  ],
+  "caption": "Black, jagged rock with rough surface."
 }

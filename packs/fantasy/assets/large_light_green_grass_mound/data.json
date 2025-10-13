@@ -7,6 +7,20 @@
     "mound",
     "forest",
     "grass",
-    "evergreen"
-  ]
+    "evergreen",
+    "environment",
+    "field",
+    "flora",
+    "foliage",
+    "ground",
+    "growth",
+    "landscape",
+    "lawn",
+    "meadow",
+    "nature",
+    "outdoor",
+    "plant",
+    "terrain"
+  ],
+  "caption": "Green grassy hill."
 }

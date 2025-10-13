@@ -12,6 +12,20 @@
     "rock",
     "rocks",
     "stone",
-    "stones"
-  ]
+    "stones",
+    "aquatic",
+    "environment",
+    "fluid",
+    "ground",
+    "lake",
+    "landscape",
+    "liquid",
+    "ocean",
+    "outdoor",
+    "pool",
+    "river",
+    "scenery",
+    "shore"
+  ],
+  "caption": "A serene pond surrounded by rocks."
 }

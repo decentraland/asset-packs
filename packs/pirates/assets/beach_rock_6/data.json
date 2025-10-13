@@ -11,6 +11,17 @@
     "stones",
     "rock",
     "rocks",
-    "beach"
-  ]
+    "beach",
+    "boulder",
+    "coastal",
+    "granite",
+    "ocean",
+    "pebble",
+    "sand",
+    "shore",
+    "shoreline",
+    "tide",
+    "wave"
+  ],
+  "caption": "Rock from the beach."
 }

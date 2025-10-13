@@ -2,5 +2,18 @@
   "id": "0f74b25a-306b-4aa8-9ea4-ed6e06517a85",
   "name": "Concrete",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "block",
+    "building",
+    "concrete",
+    "construction",
+    "foundation",
+    "ground",
+    "pavement",
+    "rough",
+    "structure",
+    "surface",
+    "terrain"
+  ],
+  "caption": "Concrete Block"
 }

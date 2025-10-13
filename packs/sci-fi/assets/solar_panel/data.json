@@ -8,6 +8,15 @@
     "parts",
     "power",
     "energy",
-    "sun"
-  ]
+    "sun",
+    "grid",
+    "illumination",
+    "mount",
+    "panel",
+    "photovoltaic",
+    "renewable",
+    "solar",
+    "stand"
+  ],
+  "caption": "Solar Panel with Grid Top Stand"
 }

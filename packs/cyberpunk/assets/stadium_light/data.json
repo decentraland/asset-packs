@@ -2,5 +2,20 @@
   "id": "edd861c4-e0d2-41e3-b4f5-0144f3f4cdff",
   "name": "Stadium Light",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "arena",
+    "athletics",
+    "beam",
+    "field",
+    "fixture",
+    "ground",
+    "illumination",
+    "lighting",
+    "pole",
+    "sports",
+    "spotlight",
+    "stadium",
+    "structure"
+  ],
+  "caption": "Black adjustable stadium light with metal pole."
 }

@@ -9,6 +9,20 @@
     "round",
     "wood",
     "wooden",
-    "iron"
-  ]
+    "iron",
+    "base",
+    "combat",
+    "comfort",
+    "desk",
+    "dining",
+    "furniture",
+    "kitchen",
+    "maple",
+    "oak",
+    "pine",
+    "seating",
+    "surface",
+    "vehicle"
+  ],
+  "caption": "Brown wooden table."
 }

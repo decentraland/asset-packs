@@ -9,6 +9,17 @@
     "wall",
     "threshold",
     "open",
-    "window"
-  ]
+    "window",
+    "architecture",
+    "building",
+    "castle",
+    "fortress",
+    "frame",
+    "palace",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Brick wall featuring a window frame."
 }

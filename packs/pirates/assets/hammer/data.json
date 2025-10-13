@@ -12,6 +12,21 @@
     "wooden",
     "leather",
     "strips",
-    "tool"
-  ]
+    "tool",
+    "blunt",
+    "building",
+    "construction",
+    "craft",
+    "force",
+    "function",
+    "hammer",
+    "handle",
+    "head",
+    "instrument",
+    "nail",
+    "strike",
+    "utility",
+    "work"
+  ],
+  "caption": "Wooden handle hammer."
 }

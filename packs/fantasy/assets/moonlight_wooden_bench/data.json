@@ -3,6 +3,16 @@
   "name": "Moonlight Wooden Bench",
   "category": "decorations",
   "tags": [
-    "fantasy"
-  ]
+    "fantasy",
+    "base",
+    "beam",
+    "bench",
+    "comfort",
+    "furniture",
+    "post",
+    "seating",
+    "structure",
+    "support"
+  ],
+  "caption": "Wooden bench with vertical posts and horizontal beam."
 }

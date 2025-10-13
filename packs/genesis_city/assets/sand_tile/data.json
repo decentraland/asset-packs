@@ -11,6 +11,15 @@
     "path",
     "sidewalk",
     "beach",
-    "tile"
-  ]
+    "tile",
+    "desert",
+    "dune",
+    "earth",
+    "grain",
+    "ground",
+    "smooth",
+    "surface",
+    "terrain"
+  ],
+  "caption": "Light-colored sand tile with smooth surface."
 }

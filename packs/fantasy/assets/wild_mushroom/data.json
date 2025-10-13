@@ -7,6 +7,15 @@
     "mushroom",
     "herb",
     "forest",
-    "ingredient"
-  ]
+    "ingredient",
+    "creature",
+    "environment",
+    "flora",
+    "foliage",
+    "fungal",
+    "nature",
+    "outdoor",
+    "pattern"
+  ],
+  "caption": "A glowing blue-green mushroom."
 }

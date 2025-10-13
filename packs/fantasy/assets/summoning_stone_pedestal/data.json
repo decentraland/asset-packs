@@ -8,6 +8,12 @@
     "circular",
     "summon",
     "forest",
-    "pedestal"
-  ]
+    "pedestal",
+    "base",
+    "foundation",
+    "round",
+    "structure",
+    "support"
+  ],
+  "caption": "Stone pedestal with a circular top."
 }

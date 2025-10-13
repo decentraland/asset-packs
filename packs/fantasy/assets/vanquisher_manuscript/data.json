@@ -7,6 +7,16 @@
     "book",
     "codex",
     "knowledge",
-    "shelf"
-  ]
+    "shelf",
+    "artifact",
+    "cover",
+    "golden",
+    "leather",
+    "manuscript",
+    "ornate",
+    "pages",
+    "relic",
+    "spine"
+  ],
+  "caption": "Open book with golden cover and pink symbol."
 }

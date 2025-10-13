@@ -11,6 +11,20 @@
     "water",
     "tiered",
     "fountain",
-    "plaza"
-  ]
+    "plaza",
+    "aquatic",
+    "architectural",
+    "basin",
+    "centerpiece",
+    "flowing",
+    "fluid",
+    "interest",
+    "lake",
+    "liquid",
+    "ocean",
+    "pool",
+    "river",
+    "sculpture"
+  ],
+  "caption": "Fountain with flowing water in dark background."
 }

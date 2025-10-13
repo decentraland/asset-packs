@@ -2,5 +2,15 @@
   "id": "f5340f26-3d46-4b69-95e0-8e046f92a21e",
   "name": "Traffic Light A",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "caution",
+    "illumination",
+    "indicator",
+    "signal",
+    "stop",
+    "traffic",
+    "visibility",
+    "warning"
+  ],
+  "caption": "Traffic Light with Red, Yellow, and Green Lights."
 }

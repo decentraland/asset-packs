@@ -7,6 +7,16 @@
     "window",
     "stone",
     "stained",
-    "glass"
-  ]
+    "glass",
+    "art",
+    "artwork",
+    "colored",
+    "colors",
+    "frame",
+    "intricate",
+    "panel",
+    "patterns",
+    "shades"
+  ],
+  "caption": "Stained glass window with blue and orange shapes."
 }

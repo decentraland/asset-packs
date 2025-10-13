@@ -10,6 +10,17 @@
     "chair",
     "seat",
     "folding",
-    "stool"
-  ]
+    "stool",
+    "base",
+    "desk",
+    "dining",
+    "kitchen",
+    "leg",
+    "office",
+    "portable",
+    "rest",
+    "sitting",
+    "surface"
+  ],
+  "caption": "Black folding stool."
 }

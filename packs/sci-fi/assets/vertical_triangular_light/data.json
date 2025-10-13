@@ -7,6 +7,17 @@
     "power",
     "spark",
     "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "beam",
+    "brightness",
+    "column",
+    "glow",
+    "illumination",
+    "luminous",
+    "radiance",
+    "shaft",
+    "spotlight",
+    "upright"
+  ],
+  "caption": "Vertical light with glowing tip."
 }

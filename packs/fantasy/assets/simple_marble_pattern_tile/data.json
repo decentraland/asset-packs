@@ -7,6 +7,15 @@
     "tile",
     "marble",
     "pattern",
-    "simple"
-  ]
+    "simple",
+    "form",
+    "furniture",
+    "geometric",
+    "interior",
+    "room",
+    "shape",
+    "space",
+    "surface"
+  ],
+  "caption": "Marble pattern tile."
 }

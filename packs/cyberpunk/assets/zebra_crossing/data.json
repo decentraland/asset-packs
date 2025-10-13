@@ -2,5 +2,17 @@
   "id": "aab32db2-13ee-48e8-94ce-183d6db8557a",
   "name": "Zebra Crossing",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "crossing",
+    "highway",
+    "pedestrian",
+    "roadsign",
+    "safety",
+    "street",
+    "stripe",
+    "traffic",
+    "warning",
+    "zebra"
+  ],
+  "caption": "Zebra crossing sign."
 }

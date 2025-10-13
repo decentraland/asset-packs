@@ -12,6 +12,18 @@
     "tent",
     "sticks",
     "fabric",
-    "canopy"
-  ]
+    "canopy",
+    "building",
+    "desk",
+    "dining",
+    "furniture",
+    "kitchen",
+    "merchant",
+    "stripe",
+    "structure",
+    "surface",
+    "table",
+    "tented"
+  ],
+  "caption": "Blue tent with a red stripe."
 }

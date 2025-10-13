@@ -2,5 +2,21 @@
   "id": "0b6f92f1-d1c4-4924-a1e3-e9031c414151",
   "name": "Lamp - Blue",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "base",
+    "desk",
+    "dining",
+    "fixture",
+    "furniture",
+    "illumination",
+    "interior",
+    "kitchen",
+    "lamp",
+    "lighting",
+    "office",
+    "room",
+    "surface",
+    "table"
+  ],
+  "caption": "Lamp with a sturdy metal base."
 }

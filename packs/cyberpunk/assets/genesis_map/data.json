@@ -2,5 +2,13 @@
   "id": "724b29cd-a904-4164-8670-900f958f4e5b",
   "name": "Genesis Map",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "emblem",
+    "eras",
+    "graphics",
+    "logo",
+    "marker",
+    "monument"
+  ],
+  "caption": "Red 'S' sign on black background."
 }

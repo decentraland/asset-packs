@@ -12,6 +12,14 @@
     "beverage",
     "alcohol",
     "paper",
-    "message"
-  ]
+    "message",
+    "container",
+    "cork",
+    "nautical",
+    "ocean",
+    "relic",
+    "storage",
+    "vessel"
+  ],
+  "caption": "Green glass bottle with wooden cork."
 }

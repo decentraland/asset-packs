@@ -7,6 +7,10 @@
     "power",
     "spark",
     "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "fixture",
+    "illumination",
+    "mounted"
+  ],
+  "caption": "Wall-mounted light fixture with glowing screen."
 }

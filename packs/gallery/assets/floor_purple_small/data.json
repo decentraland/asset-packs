@@ -2,5 +2,17 @@
   "id": "c00f3ad1-5ac5-44f5-b6f4-873210c30557",
   "name": "Floor - Purple Small",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "floor",
+    "flooring",
+    "ground",
+    "interior",
+    "pattern",
+    "room",
+    "space",
+    "surface",
+    "tile",
+    "tileset"
+  ],
+  "caption": "Purple floor tile."
 }

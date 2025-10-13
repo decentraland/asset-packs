@@ -7,6 +7,13 @@
     "tile",
     "wood",
     "wooden",
-    "parquet"
-  ]
+    "parquet",
+    "floor",
+    "furniture",
+    "interior",
+    "pattern",
+    "surface",
+    "woodwork"
+  ],
+  "caption": "Wooden parquet tile."
 }

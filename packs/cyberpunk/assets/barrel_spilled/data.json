@@ -2,5 +2,20 @@
   "id": "be6d4ae2-d88b-4c7e-aaf1-42323e044ed6",
   "name": "Barrel Spilled",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "chemical",
+    "container",
+    "fuel",
+    "hazardous",
+    "liquid",
+    "oil",
+    "petroleum",
+    "radioactive",
+    "spill",
+    "storage",
+    "tank",
+    "toxic",
+    "vessel"
+  ],
+  "caption": "Spilled barrel with glowing green liquid."
 }

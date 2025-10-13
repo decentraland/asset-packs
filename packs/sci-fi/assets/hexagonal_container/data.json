@@ -6,6 +6,15 @@
     "scifi",
     "storage",
     "spaceship",
-    "lab"
-  ]
+    "lab",
+    "box",
+    "container",
+    "cylindrical",
+    "drum",
+    "hexagon",
+    "lid",
+    "tank",
+    "vessel"
+  ],
+  "caption": "Open-top container beside closed one."
 }

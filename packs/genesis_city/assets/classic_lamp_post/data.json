@@ -13,6 +13,18 @@
     "lighting",
     "street",
     "city",
-    "park"
-  ]
+    "park",
+    "desk",
+    "dining",
+    "fixture",
+    "furniture",
+    "interior",
+    "kitchen",
+    "minimalist",
+    "office",
+    "room",
+    "surface",
+    "table"
+  ],
+  "caption": "Classic lamp post with glowing light."
 }

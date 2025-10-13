@@ -6,6 +6,19 @@
     "scifi",
     "energy",
     "supply",
-    "power"
-  ]
+    "power",
+    "bottle",
+    "container",
+    "drum",
+    "fuel",
+    "hazardous",
+    "petroleum",
+    "plasma",
+    "radioactive",
+    "storage",
+    "tank",
+    "toxic",
+    "vessel"
+  ],
+  "caption": "Pink bottle with white lid on black base."
 }

@@ -12,6 +12,17 @@
     "metal",
     "iron",
     "park",
-    "garden"
-  ]
+    "garden",
+    "barrier",
+    "boundary",
+    "defense",
+    "enclosure",
+    "fortification",
+    "gate",
+    "perimeter",
+    "protection",
+    "security",
+    "structure"
+  ],
+  "caption": "Metal iron fence."
 }

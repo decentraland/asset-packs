@@ -2,5 +2,14 @@
   "id": "52c06a9b-cde7-4c26-a20f-cac87d9fe744",
   "name": "Sand 2",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "aesthetic",
+    "appearance",
+    "block",
+    "form",
+    "shape",
+    "shaped",
+    "visual"
+  ],
+  "caption": "Red textured cube."
 }

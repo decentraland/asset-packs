@@ -9,6 +9,16 @@
     "stones",
     "rock",
     "rocks",
-    "forest"
-  ]
+    "forest",
+    "artifact",
+    "grave",
+    "headstone",
+    "memorial",
+    "monument",
+    "pedestal",
+    "relic",
+    "shelf",
+    "tombstone"
+  ],
+  "caption": "Stone shelf with a glowing top."
 }

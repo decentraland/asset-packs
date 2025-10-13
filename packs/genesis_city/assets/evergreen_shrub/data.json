@@ -12,6 +12,19 @@
     "garden",
     "forest",
     "mountain",
-    "shrub"
-  ]
+    "shrub",
+    "animal",
+    "creature",
+    "environment",
+    "flora",
+    "foliage",
+    "greenery",
+    "landscape",
+    "leafy",
+    "outdoor",
+    "plant",
+    "scenery",
+    "vegetation"
+  ],
+  "caption": "Turtle"
 }

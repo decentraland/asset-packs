@@ -5,6 +5,14 @@
   "tags": [
     "fantasy",
     "chest",
-    "iron"
-  ]
+    "iron",
+    "compartment",
+    "container",
+    "interior",
+    "lid",
+    "loot",
+    "secure",
+    "storage"
+  ],
+  "caption": "Open chest with glowing blue light inside."
 }

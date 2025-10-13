@@ -6,6 +6,17 @@
     "fantasy",
     "stair",
     "stone",
-    "step"
-  ]
+    "step",
+    "antique",
+    "architecture",
+    "building",
+    "exterior",
+    "furniture",
+    "historic",
+    "interior",
+    "pattern",
+    "stairs",
+    "structure"
+  ],
+  "caption": "Stone stairs."
 }

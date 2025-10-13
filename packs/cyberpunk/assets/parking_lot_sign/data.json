@@ -2,5 +2,16 @@
   "id": "0c0dee87-21a4-4406-a436-ed45f3549b28",
   "name": "Parking Lot Sign",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "directional",
+    "entrance",
+    "garage",
+    "letter",
+    "lot",
+    "outdoor",
+    "parking",
+    "traffic",
+    "warning"
+  ],
+  "caption": "Blue sign featuring a glowing white 'p'."
 }

@@ -10,6 +10,17 @@
     "cobblestones",
     "stone",
     "stones",
-    "path"
-  ]
+    "path",
+    "collection",
+    "earth",
+    "ground",
+    "natural",
+    "pebble",
+    "pebbles",
+    "rocks",
+    "surface",
+    "terrain",
+    "tile"
+  ],
+  "caption": "Collection of small rocks."
 }

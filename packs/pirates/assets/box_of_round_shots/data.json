@@ -13,6 +13,20 @@
     "rounded",
     "ammunition",
     "shot",
-    "cannon"
-  ]
+    "cannon",
+    "box",
+    "chemical",
+    "container",
+    "fuel",
+    "hazardous",
+    "oil",
+    "petroleum",
+    "radioactive",
+    "rocks",
+    "shots",
+    "storage",
+    "toxic",
+    "vessel"
+  ],
+  "caption": "Wooden box containing black rocks."
 }

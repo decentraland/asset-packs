@@ -15,6 +15,17 @@
     "garden",
     "backyard",
     "yard",
-    "farm"
-  ]
+    "farm",
+    "barrier",
+    "boundary",
+    "enclosure",
+    "landscape",
+    "medium",
+    "nature",
+    "outdoor",
+    "rail",
+    "scenery",
+    "searchable"
+  ],
+  "caption": "Wooden fence with two horizontal rails."
 }

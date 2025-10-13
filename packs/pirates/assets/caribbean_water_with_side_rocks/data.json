@@ -13,6 +13,18 @@
     "stone",
     "stones",
     "beach",
-    "ocean"
-  ]
+    "ocean",
+    "aquatic",
+    "calm",
+    "environment",
+    "fluid",
+    "island",
+    "lake",
+    "landscape",
+    "liquid",
+    "river",
+    "scenery",
+    "sea"
+  ],
+  "caption": "Serene lake with an island and rocks."
 }

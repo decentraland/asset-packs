@@ -7,6 +7,17 @@
     "iron",
     "wood",
     "wooden",
-    "sharp"
-  ]
+    "sharp",
+    "axe",
+    "combat",
+    "crafting",
+    "function",
+    "furniture",
+    "grip",
+    "handle",
+    "head",
+    "utility",
+    "weapon"
+  ],
+  "caption": "Axe with wooden handle."
 }

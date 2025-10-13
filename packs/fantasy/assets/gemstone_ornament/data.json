@@ -8,6 +8,14 @@
     "wall",
     "gem",
     "gemstone",
-    "stone"
-  ]
+    "stone",
+    "adornment",
+    "artifact",
+    "collectible",
+    "jewel",
+    "luxury",
+    "precious",
+    "valuable"
+  ],
+  "caption": "Purple gemstone in a black frame."
 }

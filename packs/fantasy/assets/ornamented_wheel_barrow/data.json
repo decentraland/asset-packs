@@ -9,6 +9,16 @@
     "iron",
     "wheel",
     "golden",
-    "gold"
-  ]
+    "gold",
+    "barrow",
+    "farm",
+    "furniture",
+    "garden",
+    "gardening",
+    "handle",
+    "ornamented",
+    "outdoor",
+    "wheelbarrow"
+  ],
+  "caption": "Vintage wheelbarrow with ornate metal handle."
 }

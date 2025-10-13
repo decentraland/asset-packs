@@ -2,5 +2,19 @@
   "id": "f249df45-9451-4f9d-adb4-10a6a8c9e986",
   "name": "Roof -Navy",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architecture",
+    "block",
+    "building",
+    "facade",
+    "flat",
+    "form",
+    "roof",
+    "roofed",
+    "shape",
+    "simplified",
+    "structure",
+    "surface"
+  ],
+  "caption": "Basic building block roof structure."
 }

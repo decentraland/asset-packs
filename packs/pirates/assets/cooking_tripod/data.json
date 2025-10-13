@@ -10,6 +10,18 @@
     "stick",
     "sticks",
     "rope",
-    "hook"
-  ]
+    "hook",
+    "camping",
+    "campinggear",
+    "campinglife",
+    "campingtrip",
+    "gear",
+    "key",
+    "outdoor",
+    "travel",
+    "tripod",
+    "utility",
+    "wilderness"
+  ],
+  "caption": "Camping tripod with glowing red key attached."
 }

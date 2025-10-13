@@ -13,6 +13,11 @@
     "fence",
     "fences",
     "garden",
-    "park"
-  ]
+    "park",
+    "architectural",
+    "barrier",
+    "boundary",
+    "ornamented"
+  ],
+  "caption": "Ornate stone railing."
 }

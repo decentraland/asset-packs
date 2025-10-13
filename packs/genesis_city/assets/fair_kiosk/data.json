@@ -9,6 +9,19 @@
     "structures",
     "fair",
     "kiosk",
-    "market"
-  ]
+    "market",
+    "combat",
+    "comfort",
+    "counter",
+    "desk",
+    "dining",
+    "furniture",
+    "kitchen",
+    "roof",
+    "seating",
+    "surface",
+    "table",
+    "vehicle"
+  ],
+  "caption": "Red kiosk with wooden roof and counter."
 }

@@ -2,5 +2,18 @@
   "id": "85cd4fa9-6fe9-4a0e-9fcf-f85181776180",
   "name": "Roof - Pink Tiles",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architectural",
+    "building",
+    "facade",
+    "hue",
+    "pattern",
+    "roof",
+    "shade",
+    "structure",
+    "surface",
+    "tile",
+    "tiles"
+  ],
+  "caption": "Red tile roof."
 }

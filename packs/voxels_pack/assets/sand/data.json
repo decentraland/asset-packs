@@ -2,5 +2,21 @@
   "id": "72926a7f-46aa-48df-a276-aaa8e7bfb485",
   "name": "Sand",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "beach",
+    "desert",
+    "dune",
+    "earthy",
+    "environment",
+    "golden",
+    "grain",
+    "landscape",
+    "natural",
+    "sand",
+    "sandstone",
+    "shoreline",
+    "surface",
+    "terrain"
+  ],
+  "caption": "Golden sand dune."
 }

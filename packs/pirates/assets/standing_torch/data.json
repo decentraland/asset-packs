@@ -13,6 +13,20 @@
     "iron",
     "torch",
     "fire",
-    "jungle"
-  ]
+    "jungle",
+    "burning",
+    "combustion",
+    "flame",
+    "flameless",
+    "fuel",
+    "handle",
+    "head",
+    "heat",
+    "ignition",
+    "lantern",
+    "smoke",
+    "torchlight",
+    "wick"
+  ],
+  "caption": "Standing torch with wooden handle."
 }

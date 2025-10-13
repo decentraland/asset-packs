@@ -6,6 +6,16 @@
     "scifi",
     "air",
     "vent",
-    "union"
-  ]
+    "union",
+    "appliance",
+    "ductwork",
+    "fixture",
+    "glow",
+    "illumination",
+    "junction",
+    "lighting",
+    "pipe",
+    "ventilation"
+  ],
+  "caption": "Orange lighted orb."
 }

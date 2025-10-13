@@ -13,6 +13,19 @@
     "stone",
     "stones",
     "beach",
-    "ocean"
-  ]
+    "ocean",
+    "coastal",
+    "coastline",
+    "field",
+    "grass",
+    "ground",
+    "landscape",
+    "lawn",
+    "meadow",
+    "outdoor",
+    "patch",
+    "rocky",
+    "seashore"
+  ],
+  "caption": "Rocky shoreline with rocks and grass."
 }

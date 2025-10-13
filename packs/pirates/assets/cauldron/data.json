@@ -10,6 +10,18 @@
     "iron",
     "soup",
     "meal",
-    "stew"
-  ]
+    "stew",
+    "brew",
+    "cauldron",
+    "caustic",
+    "container",
+    "cooking",
+    "handle",
+    "kitchen",
+    "lid",
+    "pot",
+    "potion",
+    "vessel"
+  ],
+  "caption": "Cauldron with glowing red liquid inside."
 }

@@ -6,6 +6,15 @@
     "scifi",
     "guard",
     "wall",
-    "split"
-  ]
+    "split",
+    "barrier",
+    "blockage",
+    "containment",
+    "curve",
+    "obstruction",
+    "rail",
+    "railing",
+    "sectioning"
+  ],
+  "caption": "Yellow metal railing with curved top."
 }

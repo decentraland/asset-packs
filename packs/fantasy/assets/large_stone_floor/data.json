@@ -7,6 +7,14 @@
     "stone",
     "floor",
     "path",
-    "tile"
-  ]
+    "tile",
+    "architectural",
+    "building",
+    "earthy",
+    "flooring",
+    "natural",
+    "structure",
+    "surface"
+  ],
+  "caption": "Stone floor texture."
 }

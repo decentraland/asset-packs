@@ -2,5 +2,12 @@
   "id": "43620f88-c288-4f78-aabd-7be1b0ff4521",
   "name": "Doorframe - GreenGrey",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "appearance",
+    "doorframe",
+    "frame",
+    "function",
+    "greengrey"
+  ],
+  "caption": "Green door frame."
 }

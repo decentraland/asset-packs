@@ -9,6 +9,15 @@
     "decoration",
     "paint",
     "bucket",
-    "construction"
-  ]
+    "construction",
+    "art",
+    "container",
+    "drum",
+    "furniture",
+    "handle",
+    "storage",
+    "tank",
+    "vessel"
+  ],
+  "caption": "Blue paint bucket with a handle."
 }

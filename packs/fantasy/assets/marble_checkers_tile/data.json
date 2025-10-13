@@ -7,6 +7,14 @@
     "tile",
     "marble",
     "pattern",
-    "checkers"
-  ]
+    "checkers",
+    "checkered",
+    "floor",
+    "floorplan",
+    "grid",
+    "ground",
+    "layout",
+    "surface"
+  ],
+  "caption": "Checkered tile with marble texture."
 }

@@ -2,5 +2,17 @@
   "id": "2f83aea7-3f35-400f-8ca5-9fc95c4d99b2",
   "name": "Glass",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "clear",
+    "form",
+    "glass",
+    "outline",
+    "pane",
+    "shape",
+    "surface",
+    "transparent",
+    "visual",
+    "window"
+  ],
+  "caption": "Blue cube."
 }

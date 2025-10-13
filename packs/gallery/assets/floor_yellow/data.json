@@ -2,5 +2,14 @@
   "id": "6471ac91-980e-4361-b0fb-77e677353fbe",
   "name": "Floor - Yellow",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "aesthetic",
+    "floor",
+    "hue",
+    "pattern",
+    "surface",
+    "tile",
+    "visual"
+  ],
+  "caption": "Yellow floor tile."
 }

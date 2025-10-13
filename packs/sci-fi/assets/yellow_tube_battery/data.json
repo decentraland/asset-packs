@@ -8,6 +8,16 @@
     "power",
     "supply",
     "electricity",
-    "plasma"
-  ]
+    "plasma",
+    "battery",
+    "container",
+    "cylindrical",
+    "electric",
+    "fuel",
+    "storage",
+    "transportation",
+    "tube",
+    "vessel"
+  ],
+  "caption": "Cylindrical battery with glowing blue accents."
 }

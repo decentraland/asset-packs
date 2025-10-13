@@ -16,6 +16,14 @@
     "danger",
     "rum",
     "fabric",
-    "blanket"
-  ]
+    "blanket",
+    "container",
+    "cylindrical",
+    "drum",
+    "hoop",
+    "storage",
+    "tank",
+    "vessel"
+  ],
+  "caption": "Wooden barrel with metal hoop."
 }

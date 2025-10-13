@@ -10,6 +10,18 @@
     "bottle",
     "drink",
     "beverage",
-    "alcohol"
-  ]
+    "alcohol",
+    "chemical",
+    "container",
+    "drum",
+    "fuel",
+    "hazardous",
+    "label",
+    "petroleum",
+    "storage",
+    "tank",
+    "toxic",
+    "vessel"
+  ],
+  "caption": "Blue bottle with a label."
 }

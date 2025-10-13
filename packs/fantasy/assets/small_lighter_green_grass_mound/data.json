@@ -7,6 +7,20 @@
     "mound",
     "forest",
     "grass",
-    "evergreen"
-  ]
+    "evergreen",
+    "environment",
+    "field",
+    "flora",
+    "foliage",
+    "ground",
+    "growth",
+    "landscape",
+    "lawn",
+    "lighter",
+    "meadow",
+    "nature",
+    "outdoor",
+    "plant"
+  ],
+  "caption": "Mound of grass"
 }

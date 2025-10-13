@@ -2,5 +2,20 @@
   "id": "3cc68e95-331c-4539-b952-9dc2d31941eb",
   "name": "Window - HexagonGrid ",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "arrangement",
+    "form",
+    "glass",
+    "grid",
+    "hexagon",
+    "hexagongrid",
+    "layout",
+    "pane",
+    "pattern",
+    "shape",
+    "structure",
+    "surface",
+    "window"
+  ],
+  "caption": "Grid-patterned window."
 }

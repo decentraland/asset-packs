@@ -2,5 +2,18 @@
   "id": "b422c06b-4307-4c80-be9a-e9040d1f32c7",
   "name": "Dirt - Red Sand",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "block",
+    "dirt",
+    "earthy",
+    "granular",
+    "ground",
+    "rocky",
+    "rough",
+    "sand",
+    "sedimentary",
+    "surface",
+    "terrain"
+  ],
+  "caption": "Dirt-like block"
 }

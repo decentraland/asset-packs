@@ -8,6 +8,15 @@
     "unlit",
     "light",
     "gold",
-    "golden"
-  ]
+    "golden",
+    "candle",
+    "centerpiece",
+    "coins",
+    "flame",
+    "holder",
+    "luxury",
+    "ornate",
+    "tableware"
+  ],
+  "caption": "Golden coin on top of white candle."
 }

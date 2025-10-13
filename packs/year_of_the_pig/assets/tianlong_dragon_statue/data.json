@@ -7,6 +7,18 @@
     "statue",
     "dragon",
     "stone",
-    "tianlong"
-  ]
+    "tianlong",
+    "architecture",
+    "art",
+    "beast",
+    "creature",
+    "cultural",
+    "figure",
+    "historical",
+    "monument",
+    "mythical",
+    "relic",
+    "sculpture"
+  ],
+  "caption": "Glowing dragon statue."
 }

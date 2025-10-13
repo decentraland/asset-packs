@@ -10,6 +10,21 @@
     "wine",
     "glass",
     "romantic",
-    "dinner"
-  ]
+    "dinner",
+    "base",
+    "beverage",
+    "container",
+    "cup",
+    "desk",
+    "dining",
+    "drinking",
+    "furniture",
+    "glassware",
+    "kitchen",
+    "serving",
+    "stem",
+    "surface",
+    "table"
+  ],
+  "caption": "Blue wine glass with stem."
 }

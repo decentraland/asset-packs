@@ -2,5 +2,18 @@
   "id": "0951c25d-b6f4-4050-9a53-99c461a84363",
   "name": "Mines Wood Fence2 4M",
   "category": "structures",
-  "tags": []
+  "tags": [
+    "architecture",
+    "barrier",
+    "boundary",
+    "building",
+    "defense",
+    "enclosure",
+    "fortification",
+    "gate",
+    "panel",
+    "protection",
+    "structure"
+  ],
+  "caption": "Wooden fence with four panels."
 }

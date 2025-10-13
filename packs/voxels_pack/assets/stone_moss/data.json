@@ -2,5 +2,17 @@
   "id": "02de79e1-bd4b-4db1-8f1d-b5c8ae628f70",
   "name": "Stone - Moss",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "block",
+    "environment",
+    "foliage",
+    "growth",
+    "landscape",
+    "moss",
+    "nature",
+    "surface",
+    "terrain",
+    "vegetation"
+  ],
+  "caption": "Gray stone block with green moss."
 }

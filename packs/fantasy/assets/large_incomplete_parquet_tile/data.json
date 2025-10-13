@@ -7,6 +7,15 @@
     "tile",
     "wood",
     "wooden",
-    "parquet"
-  ]
+    "parquet",
+    "floor",
+    "furniture",
+    "incomplete",
+    "interior",
+    "pattern",
+    "room",
+    "space",
+    "surface"
+  ],
+  "caption": "Incomplete parquet tile."
 }

@@ -8,6 +8,15 @@
     "iron",
     "silk",
     "upholstered",
-    "wood"
-  ]
+    "wood",
+    "carriage",
+    "furniture",
+    "horse",
+    "interior",
+    "ride",
+    "roof",
+    "transport",
+    "vehicle"
+  ],
+  "caption": "Blue carriage with purple interior and brown roof."
 }

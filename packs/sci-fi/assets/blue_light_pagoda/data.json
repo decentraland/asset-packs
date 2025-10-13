@@ -7,6 +7,17 @@
     "power",
     "spark",
     "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "architecture",
+    "building",
+    "illumination",
+    "lantern",
+    "monument",
+    "pagoda",
+    "roof",
+    "shrine",
+    "structure",
+    "tower"
+  ],
+  "caption": "Blue-lit pagoda."
 }

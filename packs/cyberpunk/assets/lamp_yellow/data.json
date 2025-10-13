@@ -2,5 +2,22 @@
   "id": "968cfa8d-c9c4-4e82-9c23-07a05bd51164",
   "name": "Lamp - Yellow",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "base",
+    "desk",
+    "dining",
+    "fixture",
+    "furniture",
+    "glow",
+    "illumination",
+    "interior",
+    "kitchen",
+    "lamp",
+    "lighting",
+    "office",
+    "room",
+    "surface",
+    "table"
+  ],
+  "caption": "Lamp on table."
 }

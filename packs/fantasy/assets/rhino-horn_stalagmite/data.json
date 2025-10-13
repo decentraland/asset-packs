@@ -8,6 +8,17 @@
     "stone",
     "cave",
     "forest",
-    "ruins"
-  ]
+    "ruins",
+    "formation",
+    "geology",
+    "horn",
+    "mineral",
+    "pointy",
+    "rhino",
+    "sharp",
+    "stalactite",
+    "surface",
+    "tapering"
+  ],
+  "caption": "Tall, pointed stalagmite-like structure."
 }

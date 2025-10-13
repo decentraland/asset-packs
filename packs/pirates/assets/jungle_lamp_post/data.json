@@ -13,6 +13,17 @@
     "lamps",
     "iron",
     "rope",
-    "post"
-  ]
+    "post",
+    "architecture",
+    "building",
+    "fixture",
+    "industrial",
+    "jungle",
+    "lantern",
+    "lighting",
+    "outdoor",
+    "street",
+    "structure"
+  ],
+  "caption": "Glowing street lamp post with lanterns."
 }

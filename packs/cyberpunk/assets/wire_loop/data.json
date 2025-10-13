@@ -2,5 +2,18 @@
   "id": "a9423bf9-4f76-44ea-ac5a-4da2c93ba40a",
   "name": "Wire Loop",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "cable",
+    "cord",
+    "fiber",
+    "filament",
+    "loop",
+    "pattern",
+    "rope",
+    "strand",
+    "twine",
+    "weave",
+    "wire"
+  ],
+  "caption": "Glowing metal wire loop."
 }

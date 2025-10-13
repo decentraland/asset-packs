@@ -9,6 +9,17 @@
     "stones",
     "rock",
     "rocks",
-    "forest"
-  ]
+    "forest",
+    "collection",
+    "dark",
+    "earthy",
+    "gravel",
+    "ground",
+    "pebble",
+    "pebbles",
+    "round",
+    "space",
+    "surface"
+  ],
+  "caption": "Five glowing pebbles on a dark floor."
 }

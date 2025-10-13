@@ -5,6 +5,16 @@
   "tags": [
     "scifi",
     "tile",
-    "ground"
-  ]
+    "ground",
+    "accent",
+    "border",
+    "cross",
+    "floor",
+    "furniture",
+    "interior",
+    "panel",
+    "room",
+    "visual"
+  ],
+  "caption": "Orange border on wooden floor panel."
 }

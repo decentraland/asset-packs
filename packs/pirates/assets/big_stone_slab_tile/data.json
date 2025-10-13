@@ -10,6 +10,12 @@
     "cobblestones",
     "stone",
     "stones",
-    "path"
-  ]
+    "path",
+    "collection",
+    "grid",
+    "pattern",
+    "slab",
+    "tile"
+  ],
+  "caption": "Gray tile grid layout."
 }

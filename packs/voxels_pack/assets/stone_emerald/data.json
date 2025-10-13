@@ -2,5 +2,16 @@
   "id": "ad8d434b-ce0b-4d92-800a-ea0e9dcec4e8",
   "name": "Stone - Emerald",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architecture",
+    "block",
+    "emerald",
+    "gemstone",
+    "intricate",
+    "monument",
+    "pattern",
+    "structure",
+    "surface"
+  ],
+  "caption": "Emerald block with intricate stone patterns."
 }

@@ -2,5 +2,18 @@
   "id": "a4f62a39-366b-4c84-9b52-863c43e551f6",
   "name": "Window 4x4 V2 Open",
   "category": "structures",
-  "tags": []
+  "tags": [
+    "aperture",
+    "entrance",
+    "frame",
+    "glass",
+    "glow",
+    "illumination",
+    "pane",
+    "transparent",
+    "view",
+    "window",
+    "windowpane"
+  ],
+  "caption": "Blue glow emanates from the open window."
 }

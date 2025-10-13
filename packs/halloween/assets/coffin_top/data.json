@@ -2,5 +2,16 @@
   "id": "b438f0ac-a81b-4e87-bd5b-03165185576c",
   "name": "Coffin Top",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "box",
+    "burial",
+    "coffin",
+    "container",
+    "death",
+    "funeral",
+    "grave",
+    "lid",
+    "tomb"
+  ],
+  "caption": "Red wooden coffin with a lid."
 }

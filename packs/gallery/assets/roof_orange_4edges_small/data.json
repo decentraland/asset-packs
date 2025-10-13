@@ -2,5 +2,13 @@
   "id": "976ad059-1e0a-40a7-a577-1e464d5456a7",
   "name": "Roof - Orange 4Edges Small",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "form",
+    "four",
+    "geometric",
+    "outline",
+    "shape",
+    "silhouette"
+  ],
+  "caption": "Basic geometric shape."
 }

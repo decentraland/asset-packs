@@ -10,6 +10,15 @@
     "flag",
     "banner",
     "lamp",
-    "post"
-  ]
+    "post",
+    "advertisement",
+    "exterior",
+    "illumination",
+    "lighting",
+    "public",
+    "signage",
+    "street",
+    "urban"
+  ],
+  "caption": "Tall street lamp with glowing blue banner."
 }

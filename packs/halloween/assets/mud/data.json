@@ -2,5 +2,21 @@
   "id": "baade16e-e423-436b-8c7c-142069afd0e6",
   "name": "Mud",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "dirt",
+    "dirty",
+    "earth",
+    "ground",
+    "messy",
+    "mire",
+    "mud",
+    "muddy",
+    "mudslide",
+    "puddle",
+    "squelch",
+    "surface",
+    "terrain",
+    "wet"
+  ],
+  "caption": "Muddy surface with dark center."
 }

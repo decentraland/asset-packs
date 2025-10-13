@@ -9,6 +9,18 @@
     "decoration",
     "construction",
     "wood",
-    "pallet"
-  ]
+    "pallet",
+    "beam",
+    "box",
+    "building",
+    "container",
+    "crate",
+    "frame",
+    "pallette",
+    "plank",
+    "slat",
+    "storage",
+    "structure"
+  ],
+  "caption": "Wooden pallet with four horizontal slats."
 }

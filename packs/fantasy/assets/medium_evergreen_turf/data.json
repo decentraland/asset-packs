@@ -8,6 +8,21 @@
     "forest",
     "grass",
     "evergreen",
-    "turf"
-  ]
+    "turf",
+    "earth",
+    "environment",
+    "field",
+    "foliage",
+    "ground",
+    "landscape",
+    "lawn",
+    "meadow",
+    "natural",
+    "nature",
+    "outdoor",
+    "soil",
+    "surface",
+    "terrain"
+  ],
+  "caption": "Green, angular surface."
 }

@@ -6,6 +6,16 @@
     "fantasy",
     "rune",
     "stone",
-    "magic"
-  ]
+    "magic",
+    "artifact",
+    "crack",
+    "effect",
+    "energy",
+    "glow",
+    "mystical",
+    "power",
+    "relic",
+    "spell"
+  ],
+  "caption": "Magic stone with glowing blue cracks."
 }

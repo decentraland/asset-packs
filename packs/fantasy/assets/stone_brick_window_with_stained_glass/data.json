@@ -9,6 +9,16 @@
     "wall",
     "window",
     "glass",
-    "stained"
-  ]
+    "stained",
+    "architecture",
+    "building",
+    "castle",
+    "fortress",
+    "palace",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Stained Glass Window in Old Stone Building"
 }

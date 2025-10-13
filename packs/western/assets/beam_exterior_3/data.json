@@ -2,5 +2,22 @@
   "id": "8cb72f7b-0216-4bef-a9e9-dbef377eca14",
   "name": "Beam Exterior 3",
   "category": "structures",
-  "tags": []
+  "tags": [
+    "arch",
+    "beam",
+    "bridge",
+    "building",
+    "construction",
+    "crossing",
+    "frame",
+    "framework",
+    "latticework",
+    "river",
+    "scaffolding",
+    "span",
+    "structure",
+    "support",
+    "trestle"
+  ],
+  "caption": "Wooden scaffold with horizontal beams."
 }

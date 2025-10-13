@@ -9,6 +9,18 @@
     "nature",
     "wood",
     "forest",
-    "log"
-  ]
+    "log",
+    "branch",
+    "environment",
+    "foliage",
+    "leaves",
+    "natural",
+    "oak",
+    "outdoor",
+    "roots",
+    "rustic",
+    "tree",
+    "trunk"
+  ],
+  "caption": "Wooden log with a branch."
 }

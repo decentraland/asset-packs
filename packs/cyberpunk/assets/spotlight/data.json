@@ -2,5 +2,20 @@
   "id": "3ddda096-a798-432e-ba66-61354bccbcc9",
   "name": "Spotlight",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "beam",
+    "brightness",
+    "focus",
+    "glare",
+    "glow",
+    "highlight",
+    "illumination",
+    "intensity",
+    "luminance",
+    "radiance",
+    "shine",
+    "spotlight",
+    "spotlighting"
+  ],
+  "caption": "Glowing spotlight."
 }

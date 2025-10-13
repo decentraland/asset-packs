@@ -7,6 +7,16 @@
     "power",
     "spark",
     "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "beam",
+    "column",
+    "cylindrical",
+    "glow",
+    "glowing",
+    "illumination",
+    "luminous",
+    "radiant",
+    "spotlight"
+  ],
+  "caption": "Tall, glowing orange cylinder."
 }

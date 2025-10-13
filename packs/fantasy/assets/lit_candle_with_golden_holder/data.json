@@ -8,6 +8,19 @@
     "lit",
     "light",
     "gold",
-    "golden"
-  ]
+    "golden",
+    "ambiance",
+    "burning",
+    "candle",
+    "combustion",
+    "cozy",
+    "fire",
+    "flame",
+    "heat",
+    "holder",
+    "interior",
+    "lighting",
+    "smoke"
+  ],
+  "caption": "Glowing candle in ornate holder."
 }

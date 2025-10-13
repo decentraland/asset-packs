@@ -2,5 +2,16 @@
   "id": "7d98983b-2d58-4066-a889-1eff3cd09772",
   "name": "Floor - Peach Small",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "aesthetic",
+    "appearance",
+    "border",
+    "floor",
+    "function",
+    "pattern",
+    "peach",
+    "surface",
+    "tile"
+  ],
+  "caption": "Red floor tile with black border."
 }

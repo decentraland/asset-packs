@@ -2,5 +2,15 @@
   "id": "16351f2c-d9ca-4522-8db2-3f55b1474596",
   "name": "Tile Border",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "border",
+    "bordering",
+    "frame",
+    "outline",
+    "pattern",
+    "rectangle",
+    "shape",
+    "tile"
+  ],
+  "caption": "White border tile on black background."
 }

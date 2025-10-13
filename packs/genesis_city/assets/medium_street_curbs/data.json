@@ -11,6 +11,15 @@
     "sidewalk",
     "curb",
     "curbs",
-    "city"
-  ]
+    "city",
+    "architecture",
+    "block",
+    "brick",
+    "building",
+    "edging",
+    "pattern",
+    "structure",
+    "surface"
+  ],
+  "caption": "Wooden block with sharp edges."
 }

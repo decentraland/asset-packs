@@ -5,6 +5,18 @@
   "tags": [
     "scifi",
     "tile",
-    "ground"
-  ]
+    "ground",
+    "ceiling",
+    "floor",
+    "furniture",
+    "futuristic",
+    "glow",
+    "hexagonal",
+    "illumination",
+    "interior",
+    "panel",
+    "room",
+    "sleek"
+  ],
+  "caption": "Blue-lit floor panel."
 }

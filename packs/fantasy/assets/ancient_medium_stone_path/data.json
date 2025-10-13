@@ -11,6 +11,16 @@
     "rock",
     "rocks",
     "forest",
-    "path"
-  ]
+    "path",
+    "architecture",
+    "brick",
+    "building",
+    "grayish",
+    "medium",
+    "monument",
+    "pavement",
+    "relic",
+    "structure"
+  ],
+  "caption": "Gray stone building blocks."
 }

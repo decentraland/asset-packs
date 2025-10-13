@@ -14,6 +14,21 @@
     "ropes",
     "old",
     "pillar",
-    "pillars"
-  ]
+    "pillars",
+    "arch",
+    "bridge",
+    "construction",
+    "countryside",
+    "crossing",
+    "earthy",
+    "natural",
+    "plank",
+    "planks",
+    "railing",
+    "railings",
+    "river",
+    "rural",
+    "rustic"
+  ],
+  "caption": "Rustic rope bridge with wooden planks."
 }

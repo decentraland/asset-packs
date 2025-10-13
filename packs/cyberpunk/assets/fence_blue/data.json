@@ -2,5 +2,17 @@
   "id": "87187c4c-e90f-4407-9b7a-259beab4eebd",
   "name": "Fence - Blue",
   "category": "structures",
-  "tags": []
+  "tags": [
+    "barrier",
+    "boundary",
+    "enclosure",
+    "environment",
+    "landscape",
+    "obstacle",
+    "outdoor",
+    "scenery",
+    "structure",
+    "terrain"
+  ],
+  "caption": "Blue fence."
 }

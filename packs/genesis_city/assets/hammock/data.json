@@ -8,6 +8,20 @@
     "town",
     "decoration",
     "comfy",
-    "beach"
-  ]
+    "beach",
+    "bedding",
+    "checkered",
+    "comfort",
+    "fabric",
+    "furniture",
+    "hammock",
+    "home",
+    "interior",
+    "outdoor",
+    "pattern",
+    "relaxation",
+    "sleeping",
+    "textile"
+  ],
+  "caption": "Checkered hammock for lounging."
 }

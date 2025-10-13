@@ -2,5 +2,17 @@
   "id": "a51b2b23-e6cf-4ccf-8243-70f745583d2e",
   "name": "Wall - PlainGreen",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architectural",
+    "building",
+    "environment",
+    "foliage",
+    "nature",
+    "outdoor",
+    "plaingreen",
+    "structure",
+    "surface",
+    "vegetation"
+  ],
+  "caption": "Green surface on top."
 }

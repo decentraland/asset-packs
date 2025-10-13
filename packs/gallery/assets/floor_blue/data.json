@@ -2,5 +2,18 @@
   "id": "2cbf4dd1-e47f-488e-b426-68b980c3e3e6",
   "name": "Floor - Blue",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "diamond",
+    "floor",
+    "floorplan",
+    "interior",
+    "pattern",
+    "rhombus",
+    "room",
+    "shape",
+    "space",
+    "surface",
+    "tile"
+  ],
+  "caption": "Blue diamond-shaped floor tile."
 }

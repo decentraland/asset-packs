@@ -9,6 +9,19 @@
     "decoration",
     "hat",
     "construction",
-    "orange"
-  ]
+    "orange",
+    "armor",
+    "debris",
+    "defense",
+    "gear",
+    "guard",
+    "hazard",
+    "headgear",
+    "helmet",
+    "job",
+    "knight",
+    "protection",
+    "protective"
+  ],
+  "caption": "Orange hard hat for safety."
 }

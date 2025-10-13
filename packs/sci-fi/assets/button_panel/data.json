@@ -5,6 +5,18 @@
   "tags": [
     "scifi",
     "controls",
-    "trigger"
-  ]
+    "trigger",
+    "activation",
+    "clickable",
+    "control",
+    "function",
+    "graphical",
+    "input",
+    "interactive",
+    "interface",
+    "panel",
+    "user",
+    "visual"
+  ],
+  "caption": "Red button on top of control panel."
 }

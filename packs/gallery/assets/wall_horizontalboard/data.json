@@ -2,5 +2,18 @@
   "id": "3e7afb1d-3108-475c-a343-57c7f33554a8",
   "name": "Wall - HorizontalBoard",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "aesthetic",
+    "appearance",
+    "board",
+    "composition",
+    "format",
+    "function",
+    "layout",
+    "pattern",
+    "structure",
+    "surface",
+    "visual"
+  ],
+  "caption": "Horizontal game board with a grid."
 }

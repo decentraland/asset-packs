@@ -7,6 +7,17 @@
     "power",
     "spark",
     "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "beacon",
+    "beam",
+    "cross",
+    "glow",
+    "illumination",
+    "indicator",
+    "radiance",
+    "ray",
+    "signal",
+    "warning"
+  ],
+  "caption": "Cross-shaped sign with glowing yellow bars."
 }

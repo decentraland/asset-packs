@@ -8,6 +8,16 @@
     "town",
     "furniture",
     "blue",
-    "table"
-  ]
+    "table",
+    "desk",
+    "dining",
+    "hue",
+    "interior",
+    "kitchen",
+    "leg",
+    "room",
+    "shade",
+    "surface"
+  ],
+  "caption": "Blue table with four legs."
 }

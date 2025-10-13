@@ -2,5 +2,20 @@
   "id": "8a081836-0083-489b-8aec-4d96e1522f5b",
   "name": "Window - Yellow Large",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "border",
+    "bright",
+    "frame",
+    "glass",
+    "glow",
+    "mirror",
+    "reflection",
+    "reflective",
+    "shiny",
+    "sunlight",
+    "surface",
+    "window",
+    "yellowish"
+  ],
+  "caption": "Mirror in yellow window frame."
 }

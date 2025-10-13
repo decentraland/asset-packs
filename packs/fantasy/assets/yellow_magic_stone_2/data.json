@@ -8,6 +8,15 @@
     "crystal",
     "gem",
     "gemstone",
-    "stone"
-  ]
+    "stone",
+    "artifact",
+    "energy",
+    "glowing",
+    "mystical",
+    "power",
+    "relic",
+    "shine",
+    "sparkle"
+  ],
+  "caption": "Yellow glowing magic stone."
 }

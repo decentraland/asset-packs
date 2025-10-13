@@ -6,6 +6,18 @@
     "fantasy",
     "mountain",
     "rock",
-    "rocks"
-  ]
+    "rocks",
+    "cobblestone",
+    "earthy",
+    "environment",
+    "jagged",
+    "landscape",
+    "natural",
+    "peak",
+    "rocky",
+    "rugged",
+    "scenery",
+    "terrain"
+  ],
+  "caption": "Brown mountain with jagged peak."
 }

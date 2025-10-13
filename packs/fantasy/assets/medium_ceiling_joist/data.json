@@ -8,6 +8,17 @@
     "wood",
     "wooden",
     "joist",
-    "cealing"
-  ]
+    "cealing",
+    "architecture",
+    "beam",
+    "building",
+    "ceiling",
+    "construction",
+    "frame",
+    "framework",
+    "structure",
+    "support",
+    "timber"
+  ],
+  "caption": "Wooden ceiling beam."
 }

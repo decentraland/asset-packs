@@ -9,6 +9,22 @@
     "decorations",
     "wick",
     "wax",
-    "light"
-  ]
+    "light",
+    "ambiance",
+    "burning",
+    "candle",
+    "centerpiece",
+    "combustion",
+    "cozy",
+    "desk",
+    "dining",
+    "fire",
+    "flame",
+    "furniture",
+    "heat",
+    "kitchen",
+    "smoke",
+    "surface"
+  ],
+  "caption": "Tall white candle with a glowing wick."
 }

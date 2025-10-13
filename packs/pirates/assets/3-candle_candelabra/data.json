@@ -10,6 +10,20 @@
     "golden",
     "candle",
     "light",
-    "holder"
-  ]
+    "holder",
+    "burning",
+    "candelabra",
+    "candlestick",
+    "centerpiece",
+    "combustion",
+    "fire",
+    "flame",
+    "furniture",
+    "heat",
+    "illumination",
+    "smoke",
+    "tableware",
+    "tiered"
+  ],
+  "caption": "Three-tiered candelabra with glowing candles."
 }

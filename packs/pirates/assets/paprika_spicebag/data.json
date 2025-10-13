@@ -10,6 +10,18 @@
     "spices",
     "sack",
     "fabric",
-    "leather"
-  ]
+    "leather",
+    "bag",
+    "cargo",
+    "chemical",
+    "container",
+    "fuel",
+    "hazardous",
+    "paprika",
+    "spicebag",
+    "storage",
+    "toxic",
+    "vessel"
+  ],
+  "caption": "Red spice bag containing a spicy powder."
 }

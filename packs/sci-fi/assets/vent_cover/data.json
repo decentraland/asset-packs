@@ -7,6 +7,16 @@
     "vent",
     "round",
     "grey",
-    "air"
-  ]
+    "air",
+    "airflow",
+    "cover",
+    "grille",
+    "hole",
+    "lid",
+    "opening",
+    "panel",
+    "seal",
+    "ventilation"
+  ],
+  "caption": "Circular vent cover with central hole."
 }

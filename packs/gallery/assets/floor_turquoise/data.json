@@ -2,5 +2,15 @@
   "id": "8819c509-fd96-4149-a194-e5f53879380e",
   "name": "Floor - Turquoise",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "floor",
+    "hue",
+    "pattern",
+    "shade",
+    "shape",
+    "surface",
+    "tone",
+    "turquoise"
+  ],
+  "caption": "Blue floor pattern."
 }

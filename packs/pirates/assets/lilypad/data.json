@@ -11,6 +11,19 @@
     "foliage",
     "plant",
     "plants",
-    "water"
-  ]
+    "water",
+    "aquatic",
+    "environment",
+    "floating",
+    "fluid",
+    "lake",
+    "lily",
+    "liquid",
+    "ocean",
+    "outdoor",
+    "pond",
+    "river",
+    "scenery"
+  ],
+  "caption": "Floating green lily pad."
 }

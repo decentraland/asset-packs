@@ -10,6 +10,22 @@
     "wood",
     "wooden",
     "empty",
-    "crate"
-  ]
+    "crate",
+    "compartment",
+    "desk",
+    "dining",
+    "display",
+    "furniture",
+    "kitchen",
+    "market",
+    "merchant",
+    "rustic",
+    "shelf",
+    "shop",
+    "stall",
+    "stand",
+    "surface",
+    "table"
+  ],
+  "caption": "Rustic wooden stand for storing goods."
 }

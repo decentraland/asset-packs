@@ -6,6 +6,21 @@
     "genesis",
     "city",
     "town",
-    "ground"
-  ]
+    "ground",
+    "centipede",
+    "environment",
+    "field",
+    "foliage",
+    "grass",
+    "landscape",
+    "lawn",
+    "meadow",
+    "nature",
+    "outdoor",
+    "scenery",
+    "surface",
+    "terrain",
+    "vegetation"
+  ],
+  "caption": "Crawling centipede on a lush green field."
 }

@@ -6,6 +6,18 @@
     "fantasy",
     "tile",
     "stone",
-    "path"
-  ]
+    "path",
+    "earthy",
+    "flat",
+    "granite",
+    "ground",
+    "marble",
+    "natural",
+    "rugged",
+    "surface",
+    "terrain",
+    "textured",
+    "uneven"
+  ],
+  "caption": "Uneven stone tile."
 }

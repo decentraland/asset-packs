@@ -12,6 +12,18 @@
     "tent",
     "sticks",
     "fabric",
-    "canopy"
-  ]
+    "canopy",
+    "bazaar",
+    "cardboard",
+    "cloth",
+    "commerce",
+    "goods",
+    "market",
+    "stall",
+    "striped",
+    "tablecloth",
+    "textile",
+    "vendor"
+  ],
+  "caption": "Red and white striped tablecloth."
 }

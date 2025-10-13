@@ -11,6 +11,19 @@
     "water",
     "tiered",
     "fountain",
-    "plaza"
-  ]
+    "plaza",
+    "aquatic",
+    "architecture",
+    "basin",
+    "centerpiece",
+    "fluid",
+    "lake",
+    "liquid",
+    "ocean",
+    "pool",
+    "river",
+    "sculpture",
+    "spout"
+  ],
+  "caption": "Fountain with two spouts in blue."
 }

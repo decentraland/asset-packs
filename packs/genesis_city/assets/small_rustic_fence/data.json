@@ -15,6 +15,15 @@
     "garden",
     "backyard",
     "yard",
-    "farm"
-  ]
+    "farm",
+    "barrier",
+    "enclosure",
+    "gate",
+    "landscape",
+    "nature",
+    "outdoor",
+    "post",
+    "slats"
+  ],
+  "caption": "Wooden fence with three vertical slats."
 }

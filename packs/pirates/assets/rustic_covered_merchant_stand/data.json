@@ -11,6 +11,22 @@
     "wooden",
     "crate",
     "fabric",
-    "blanket"
-  ]
+    "blanket",
+    "branch",
+    "cover",
+    "foliage",
+    "forest",
+    "furniture",
+    "leaves",
+    "market",
+    "merchant",
+    "nature",
+    "outdoor",
+    "roots",
+    "rustic",
+    "stall",
+    "stand",
+    "tree"
+  ],
+  "caption": "Wooden merchant stand with a covered top."
 }

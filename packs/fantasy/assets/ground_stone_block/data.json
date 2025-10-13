@@ -9,6 +9,16 @@
     "stones",
     "rock",
     "rocks",
-    "forest"
-  ]
+    "forest",
+    "appearance",
+    "block",
+    "form",
+    "function",
+    "mass",
+    "shape",
+    "solid",
+    "structure",
+    "surface"
+  ],
+  "caption": "Black block with a smooth surface."
 }

@@ -10,6 +10,20 @@
     "wood",
     "wooden",
     "seat",
-    "square"
-  ]
+    "square",
+    "chair",
+    "comfort",
+    "desk",
+    "dining",
+    "kitchen",
+    "maple",
+    "oak",
+    "office",
+    "pine",
+    "rest",
+    "rustic",
+    "seating",
+    "sit"
+  ],
+  "caption": "Wooden stool."
 }

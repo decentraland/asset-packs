@@ -8,6 +8,16 @@
     "wood",
     "wooden",
     "module",
-    "end"
-  ]
+    "end",
+    "barrier",
+    "boundary",
+    "enclosure",
+    "gate",
+    "picket",
+    "post",
+    "railing",
+    "rosewood",
+    "searchable"
+  ],
+  "caption": "Red fence post."
 }

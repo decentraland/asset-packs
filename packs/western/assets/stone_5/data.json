@@ -2,5 +2,17 @@
   "id": "875bcee1-bdbe-44dd-842c-e5fdff9bf2e5",
   "name": "Stone 5",
   "category": "nature",
-  "tags": []
+  "tags": [
+    "earthy",
+    "form",
+    "ground",
+    "landscape",
+    "mass",
+    "natural",
+    "shape",
+    "size",
+    "surface",
+    "terrain"
+  ],
+  "caption": "Five brown stones in different shapes."
 }

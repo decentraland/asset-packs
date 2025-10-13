@@ -8,6 +8,17 @@
     "communications",
     "comms",
     "radar",
-    "dish"
-  ]
+    "dish",
+    "aerial",
+    "broadcasting",
+    "communication",
+    "receiver",
+    "satellite",
+    "signal",
+    "space",
+    "station",
+    "technology",
+    "transmitter"
+  ],
+  "caption": "Glowing satellite dish atop large antenna."
 }

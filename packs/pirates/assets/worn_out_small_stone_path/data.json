@@ -10,6 +10,17 @@
     "cobblestones",
     "stone",
     "stones",
-    "path"
-  ]
+    "path",
+    "decay",
+    "environment",
+    "gravel",
+    "landscape",
+    "natural",
+    "outdoor",
+    "pavement",
+    "terrain",
+    "weathered",
+    "worn"
+  ],
+  "caption": "Stone path with worn stones."
 }

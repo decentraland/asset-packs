@@ -6,6 +6,15 @@
     "fantasy",
     "table",
     "stone",
-    "rune"
-  ]
+    "rune",
+    "base",
+    "dark",
+    "desk",
+    "dining",
+    "furniture",
+    "kitchen",
+    "leg",
+    "surface"
+  ],
+  "caption": "Dark grey wooden table with four legs."
 }

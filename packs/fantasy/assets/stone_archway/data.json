@@ -7,6 +7,19 @@
     "archway",
     "arc",
     "threshold",
-    "stone"
-  ]
+    "stone",
+    "architecture",
+    "brick",
+    "building",
+    "castle",
+    "defense",
+    "fortress",
+    "palace",
+    "royal",
+    "stonebrick",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Stone brick archway."
 }

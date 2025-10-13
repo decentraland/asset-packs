@@ -12,6 +12,18 @@
     "rocks",
     "stone",
     "stones",
-    "magic"
-  ]
+    "magic",
+    "artifact",
+    "enchanted",
+    "fiery",
+    "gemstone",
+    "glowing",
+    "magical",
+    "mystic",
+    "mystical",
+    "ornate",
+    "radiant",
+    "relic"
+  ],
+  "caption": "Glowing red magic stone."
 }

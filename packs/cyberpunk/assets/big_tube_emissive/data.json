@@ -2,5 +2,18 @@
   "id": "5c6034df-1da1-4b7b-9dbc-58655a056984",
   "name": "Big Tube - Emissive",
   "category": "structures",
-  "tags": []
+  "tags": [
+    "beacon",
+    "curved",
+    "emissive",
+    "glow",
+    "glowing",
+    "illumination",
+    "luminescent",
+    "radiance",
+    "radiant",
+    "spotlight",
+    "tube"
+  ],
+  "caption": "Black curved lamp with glowing orange core."
 }

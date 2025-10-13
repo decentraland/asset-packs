@@ -6,6 +6,16 @@
     "fantasy",
     "stone",
     "block",
-    "column"
-  ]
+    "column",
+    "architectural",
+    "artifact",
+    "building",
+    "historical",
+    "monument",
+    "monumentality",
+    "pedestal",
+    "relic",
+    "structure"
+  ],
+  "caption": "Stone column."
 }

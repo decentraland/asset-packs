@@ -2,5 +2,18 @@
   "id": "f5878d84-951e-4deb-9eeb-5feaf716136c",
   "name": "Manhole - Purple",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "border",
+    "cap",
+    "cover",
+    "dye",
+    "hue",
+    "lid",
+    "manhole",
+    "paint",
+    "pigment",
+    "shade",
+    "tint"
+  ],
+  "caption": "Purple manhole cover with black border."
 }

@@ -7,6 +7,17 @@
     "power",
     "spark",
     "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "beacon",
+    "beam",
+    "cross",
+    "glow",
+    "halo",
+    "illumination",
+    "luminary",
+    "radiance",
+    "radiant",
+    "spotlight"
+  ],
+  "caption": "Glowing cross-shaped lanterns"
 }

@@ -2,5 +2,18 @@
   "id": "a7c127cf-0f13-4da0-ab0a-4616868590dc",
   "name": "Bricks - Red",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "appearance",
+    "architectural",
+    "block",
+    "brick",
+    "bricks",
+    "building",
+    "construction",
+    "form",
+    "hue",
+    "shape",
+    "structure"
+  ],
+  "caption": "Red brick cube."
 }

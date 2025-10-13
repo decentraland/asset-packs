@@ -13,6 +13,19 @@
     "stone",
     "stones",
     "beach",
-    "ocean"
-  ]
+    "ocean",
+    "aquatic",
+    "caribbean",
+    "coastline",
+    "fluid",
+    "island",
+    "lake",
+    "liquid",
+    "marine",
+    "reef",
+    "river",
+    "sea",
+    "shore"
+  ],
+  "caption": "Pond with two rocky sides."
 }

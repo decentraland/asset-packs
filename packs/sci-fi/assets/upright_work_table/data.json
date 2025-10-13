@@ -6,6 +6,16 @@
     "scifi",
     "base",
     "tool",
-    "work"
-  ]
+    "work",
+    "accent",
+    "desk",
+    "dining",
+    "furniture",
+    "kitchen",
+    "office",
+    "surface",
+    "table",
+    "workspace"
+  ],
+  "caption": "Blue table with orange accents."
 }

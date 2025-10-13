@@ -2,5 +2,11 @@
   "id": "b1d3b76e-9996-46ab-9618-5b325e3bcfbc",
   "name": "Roof - Beige 1Edge",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "appearance",
+    "pattern",
+    "roof",
+    "shape"
+  ],
+  "caption": "Yellow roof with one sloping edge."
 }

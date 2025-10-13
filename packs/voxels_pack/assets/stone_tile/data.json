@@ -2,5 +2,13 @@
   "id": "ea4d5e3b-8607-4db5-921c-c88a2c9aeaef",
   "name": "Stone tile",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "dark",
+    "floor",
+    "ground",
+    "pattern",
+    "surface",
+    "tile"
+  ],
+  "caption": "Dark grey cube."
 }

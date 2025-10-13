@@ -10,6 +10,19 @@
     "green",
     "desert",
     "wilderness",
-    "garden"
-  ]
+    "garden",
+    "cactus",
+    "environment",
+    "flora",
+    "foliage",
+    "landscape",
+    "outdoor",
+    "plant",
+    "prickly",
+    "spiny",
+    "succulent",
+    "terrain",
+    "vegetation"
+  ],
+  "caption": "Prickly desert plant."
 }

@@ -9,6 +9,20 @@
     "stones",
     "rock",
     "rocks",
-    "forest"
-  ]
+    "forest",
+    "cap",
+    "capitan",
+    "formation",
+    "granite",
+    "landmark",
+    "monument",
+    "mountain",
+    "national",
+    "park",
+    "peak",
+    "sculpture",
+    "statue",
+    "yosemite"
+  ],
+  "caption": "Rock formation inspired by El Capitan's peak."
 }

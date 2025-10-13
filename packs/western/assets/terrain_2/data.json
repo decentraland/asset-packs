@@ -2,5 +2,22 @@
   "id": "06037e7f-3bca-4d9b-b1fa-6a2fc901ec94",
   "name": "Terrain 2",
   "category": "nature",
-  "tags": []
+  "tags": [
+    "earth",
+    "elevation",
+    "environment",
+    "geography",
+    "ground",
+    "hill",
+    "landform",
+    "landscape",
+    "mound",
+    "natural",
+    "outdoor",
+    "peak",
+    "searchable",
+    "surface",
+    "terrain"
+  ],
+  "caption": "Hill or mound with a summit."
 }

@@ -7,6 +7,18 @@
     "stone",
     "lantern",
     "traditional",
-    "garden"
-  ]
+    "garden",
+    "architecture",
+    "building",
+    "castle",
+    "defense",
+    "fortress",
+    "pagoda",
+    "palace",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Traditional stone pagoda with glowing lantern."
 }

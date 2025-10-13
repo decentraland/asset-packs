@@ -2,5 +2,18 @@
   "id": "745e64a6-be65-4d84-b453-1e673b04e2be",
   "name": " Grave  21",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architecture",
+    "base",
+    "building",
+    "fireplace",
+    "fixture",
+    "glass",
+    "lantern",
+    "lighting",
+    "monument",
+    "outdoor",
+    "structure"
+  ],
+  "caption": "Outdoor lantern with glass dome and metal base."
 }

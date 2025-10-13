@@ -7,6 +7,16 @@
     "tile",
     "cobblestone",
     "stone",
-    "corner"
-  ]
+    "corner",
+    "architecture",
+    "building",
+    "dark",
+    "floor",
+    "ground",
+    "path",
+    "pavement",
+    "structure",
+    "surface"
+  ],
+  "caption": "Cobblestone tile with a sharp edge."
 }

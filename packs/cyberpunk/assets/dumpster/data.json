@@ -2,5 +2,19 @@
   "id": "096f46e2-7183-47f8-bb4e-9c16a34f029e",
   "name": "Dumpster",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "can",
+    "container",
+    "disposal",
+    "dumpster",
+    "garbage",
+    "lid",
+    "recycling",
+    "storage",
+    "surface",
+    "trash",
+    "vessel",
+    "waste"
+  ],
+  "caption": "Green trash can with open lid."
 }

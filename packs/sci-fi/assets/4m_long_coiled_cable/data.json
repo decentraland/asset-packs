@@ -7,6 +7,18 @@
     "energy",
     "power",
     "electricity",
-    "connectors"
-  ]
+    "connectors",
+    "cable",
+    "coiled",
+    "connector",
+    "cord",
+    "electrical",
+    "facility",
+    "infrastructure",
+    "outlet",
+    "plug",
+    "utility",
+    "wire"
+  ],
+  "caption": "Coiled cable with glowing yellow connector."
 }

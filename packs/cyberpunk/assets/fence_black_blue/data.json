@@ -2,5 +2,17 @@
   "id": "39a866c3-ec17-43fa-941b-9e71ed136725",
   "name": "Fence Black - Blue",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "barrier",
+    "border",
+    "boundary",
+    "enclosure",
+    "fencepost",
+    "gate",
+    "grid",
+    "outline",
+    "structure",
+    "wireframe"
+  ],
+  "caption": "Black wireframe fence."
 }

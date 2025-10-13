@@ -9,6 +9,17 @@
     "gold",
     "golden",
     "jewellery",
-    "jewels"
-  ]
+    "jewels",
+    "artifact",
+    "box",
+    "container",
+    "jewel",
+    "jewelled",
+    "lid",
+    "luxury",
+    "ornate",
+    "pedestal",
+    "precious"
+  ],
+  "caption": "Jeweled box with ornate lid."
 }

@@ -7,6 +7,19 @@
     "wood",
     "iron",
     "barrel",
-    "fairy"
-  ]
+    "fairy",
+    "anything",
+    "container",
+    "drum",
+    "else",
+    "fuel",
+    "hazardous",
+    "let",
+    "lid",
+    "storage",
+    "tank",
+    "toxic",
+    "vessel"
+  ],
+  "caption": "Blue-lidded red barrel."
 }

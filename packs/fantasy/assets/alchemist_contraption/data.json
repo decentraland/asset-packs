@@ -8,6 +8,20 @@
     "gold",
     "golden",
     "gem",
-    "gemstone"
-  ]
+    "gemstone",
+    "alchemist",
+    "alchemy",
+    "arcane",
+    "brew",
+    "cauldron",
+    "contraption",
+    "experiment",
+    "flame",
+    "laboratory",
+    "mystic",
+    "potion",
+    "science",
+    "tower"
+  ],
+  "caption": "Alchemist's Tower with Blue Flame"
 }

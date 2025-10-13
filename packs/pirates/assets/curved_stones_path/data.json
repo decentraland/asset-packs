@@ -10,6 +10,17 @@
     "cobblestones",
     "stone",
     "stones",
-    "path"
-  ]
+    "path",
+    "architecture",
+    "castle",
+    "curved",
+    "fortress",
+    "palace",
+    "pathway",
+    "royal",
+    "stonework",
+    "stronghold",
+    "tower"
+  ],
+  "caption": "Curved stone pathway leading to treasure."
 }

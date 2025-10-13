@@ -9,6 +9,22 @@
     "stones",
     "rock",
     "rocks",
-    "forest"
-  ]
+    "forest",
+    "block",
+    "building",
+    "castle",
+    "earth",
+    "fortress",
+    "ground",
+    "landscape",
+    "monument",
+    "palace",
+    "royal",
+    "stoneblock",
+    "stronghold",
+    "structure",
+    "terrain",
+    "tower"
+  ],
+  "caption": "Three gray stone blocks."
 }

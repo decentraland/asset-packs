@@ -2,5 +2,14 @@
   "id": "333b531c-8189-494c-9816-53b51c51973f",
   "name": "Roof - Red 1Edge Small",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architectural",
+    "building",
+    "roof",
+    "shape",
+    "surface",
+    "tile",
+    "type"
+  ],
+  "caption": "Red roof with one edge."
 }

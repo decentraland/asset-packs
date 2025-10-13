@@ -10,6 +10,15 @@
     "bottle",
     "drink",
     "beverage",
-    "alcohol"
-  ]
+    "alcohol",
+    "beer",
+    "bottlecap",
+    "cap",
+    "container",
+    "glass",
+    "liquid",
+    "upright",
+    "vessel"
+  ],
+  "caption": "Pink bottle with gold cap on black background."
 }

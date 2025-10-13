@@ -7,6 +7,16 @@
     "power",
     "spark",
     "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "architecture",
+    "art",
+    "building",
+    "monument",
+    "oriental",
+    "pagoda",
+    "pagodan",
+    "structure",
+    "tiered"
+  ],
+  "caption": "Pagoda with three tiers on black background."
 }

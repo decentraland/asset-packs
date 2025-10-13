@@ -7,6 +7,18 @@
     "electric",
     "electricity",
     "power",
-    "laser"
-  ]
+    "laser",
+    "architecture",
+    "automation",
+    "building",
+    "defense",
+    "fortress",
+    "palace",
+    "pole",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Electricity Tower with Four Poles"
 }

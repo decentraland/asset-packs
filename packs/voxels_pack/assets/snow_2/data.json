@@ -2,5 +2,19 @@
   "id": "19e1df10-f3cb-4c58-9db9-fd6abf5d63ab",
   "name": "Snow",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architecture",
+    "comb",
+    "exterior",
+    "geometric",
+    "hexagon",
+    "honey",
+    "honeycomb",
+    "interior",
+    "pattern",
+    "shape",
+    "structure",
+    "wax"
+  ],
+  "caption": "Honeycomb-patterned hexagonal container."
 }

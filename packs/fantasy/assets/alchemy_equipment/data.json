@@ -7,6 +7,14 @@
     "alchemy",
     "lab",
     "equipment",
-    "potion"
-  ]
+    "potion",
+    "alchemical",
+    "artifact",
+    "experiment",
+    "frame",
+    "handle",
+    "laboratory",
+    "magical"
+  ],
+  "caption": "Medieval-style alchemist's equipment with glowing spheres."
 }

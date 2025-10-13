@@ -12,6 +12,19 @@
     "river",
     "water",
     "rounded",
-    "round"
-  ]
+    "round",
+    "arch",
+    "architecture",
+    "building",
+    "construction",
+    "crossing",
+    "defense",
+    "edging",
+    "fortress",
+    "palace",
+    "royal",
+    "span",
+    "stronghold"
+  ],
+  "caption": "Woody bridge with sharp edges."
 }

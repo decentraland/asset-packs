@@ -6,6 +6,14 @@
     "genesis",
     "city",
     "town",
-    "ground"
-  ]
+    "ground",
+    "architecture",
+    "brick",
+    "building",
+    "fortress",
+    "grain",
+    "pattern",
+    "structure"
+  ],
+  "caption": "Warm wood grain texture."
 }

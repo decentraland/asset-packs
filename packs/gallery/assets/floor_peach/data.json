@@ -2,5 +2,15 @@
   "id": "9bcb50b8-63cb-46d7-a8b4-851ec6e9292b",
   "name": "Floor - Peach",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "floor",
+    "furniture",
+    "interior",
+    "pattern",
+    "peach",
+    "searchable",
+    "surface",
+    "tile"
+  ],
+  "caption": "Red and black pattern on black background."
 }

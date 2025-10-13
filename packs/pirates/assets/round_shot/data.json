@@ -13,6 +13,16 @@
     "rounded",
     "ammunition",
     "shot",
-    "cannon"
-  ]
+    "cannon",
+    "appearance",
+    "ball",
+    "form",
+    "globe",
+    "orb",
+    "shape",
+    "spherical",
+    "surface",
+    "visual"
+  ],
+  "caption": "Spherical object with textured surface."
 }

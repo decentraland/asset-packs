@@ -4,6 +4,16 @@
   "category": "tiles",
   "tags": [
     "scifi",
-    "tile"
-  ]
+    "tile",
+    "form",
+    "jagged",
+    "landscape",
+    "planet",
+    "planetoid",
+    "rocky",
+    "shape",
+    "surface",
+    "terrain"
+  ],
+  "caption": "Red, jagged edge planetoid."
 }

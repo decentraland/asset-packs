@@ -10,6 +10,19 @@
     "fruit",
     "fruits",
     "market",
-    "edible"
-  ]
+    "edible",
+    "acidic",
+    "citrus",
+    "citrusy",
+    "drink",
+    "food",
+    "glossy",
+    "juice",
+    "kitchen",
+    "lemon",
+    "shape",
+    "sour",
+    "surface"
+  ],
+  "caption": "Yellow lemon-shaped object."
 }

@@ -2,5 +2,17 @@
   "id": "8880cce8-844b-4686-9fd8-a73874be7983",
   "name": "Floor - Wood",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "floor",
+    "floorboard",
+    "flooring",
+    "furniture",
+    "interior",
+    "pattern",
+    "plank",
+    "room",
+    "space",
+    "surface"
+  ],
+  "caption": "Wooden floor with three planks."
 }

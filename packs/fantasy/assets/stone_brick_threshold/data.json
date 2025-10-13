@@ -9,6 +9,15 @@
     "wall",
     "threshold",
     "open",
-    "door"
-  ]
+    "door",
+    "architecture",
+    "entrance",
+    "floor",
+    "path",
+    "pavement",
+    "step",
+    "surface",
+    "tile"
+  ],
+  "caption": "Stone brick threshold."
 }

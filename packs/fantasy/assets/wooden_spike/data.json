@@ -7,6 +7,20 @@
     "wood",
     "wooden",
     "spike",
-    "iron"
-  ]
+    "iron",
+    "branch",
+    "environment",
+    "foliage",
+    "forest",
+    "leaves",
+    "nature",
+    "organic",
+    "outdoor",
+    "pointed",
+    "roots",
+    "spiked",
+    "tree",
+    "trunk"
+  ],
+  "caption": "Tall, spiked, pointed top."
 }

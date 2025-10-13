@@ -13,6 +13,18 @@
     "stones",
     "forest",
     "moss",
-    "mossy"
-  ]
+    "mossy",
+    "earthy",
+    "environment",
+    "foliage",
+    "geological",
+    "landscape",
+    "natural",
+    "organic",
+    "outdoor",
+    "scenery",
+    "terrain",
+    "vegetation"
+  ],
+  "caption": "Moss-covered boulder"
 }

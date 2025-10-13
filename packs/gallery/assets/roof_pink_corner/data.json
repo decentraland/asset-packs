@@ -2,5 +2,17 @@
   "id": "d99fffdb-cffc-447b-bb59-9997c1626d46",
   "name": "Roof - Pink Corner",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architecture",
+    "building",
+    "exterior",
+    "facade",
+    "form",
+    "function",
+    "roof",
+    "shape",
+    "structure",
+    "surface"
+  ],
+  "caption": "Pink corner roof."
 }

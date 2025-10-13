@@ -2,5 +2,21 @@
   "id": "898eae14-e505-4525-aa76-827a01e6da89",
   "name": "Window - DarkGrey ",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "border",
+    "dark",
+    "darkgrey",
+    "flat",
+    "frame",
+    "glass",
+    "opaque",
+    "pane",
+    "rectangle",
+    "shading",
+    "shape",
+    "solid",
+    "transparent",
+    "window"
+  ],
+  "caption": "Dark grey window with one pane."
 }

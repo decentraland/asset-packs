@@ -6,6 +6,15 @@
     "fantasy",
     "gold",
     "fork",
-    "tableware"
-  ]
+    "tableware",
+    "border",
+    "diamond",
+    "gemstone",
+    "golden",
+    "metallic",
+    "plate",
+    "shape",
+    "shiny"
+  ],
+  "caption": "Orange diamond-shaped game with yellow border."
 }

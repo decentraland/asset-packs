@@ -13,6 +13,16 @@
     "chest",
     "trunk",
     "gold",
-    "golden"
-  ]
+    "golden",
+    "box",
+    "container",
+    "drum",
+    "lid",
+    "loot",
+    "riches",
+    "storage",
+    "tank",
+    "vessel"
+  ],
+  "caption": "Treasure Chest with Open Lid"
 }

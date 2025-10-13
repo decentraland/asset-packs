@@ -9,6 +9,17 @@
     "furniture",
     "beach",
     "seat",
-    "chair"
-  ]
+    "chair",
+    "container",
+    "dining",
+    "folding",
+    "kitchen",
+    "oak",
+    "office",
+    "outdoor",
+    "rest",
+    "sitting",
+    "storage"
+  ],
+  "caption": "Blue folding chair."
 }

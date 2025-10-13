@@ -9,6 +9,14 @@
     "stones",
     "rock",
     "rocks",
-    "forest"
-  ]
+    "forest",
+    "dark",
+    "form",
+    "irregular",
+    "shape",
+    "smooth",
+    "solid",
+    "surface"
+  ],
+  "caption": "Dark, rough rock on a dark background."
 }

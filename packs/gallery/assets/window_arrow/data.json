@@ -2,5 +2,17 @@
   "id": "fbadbfcf-d8f7-4da0-a257-305985b82a2b",
   "name": "Window - Arrow ",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "arrowhead",
+    "border",
+    "clear",
+    "frame",
+    "glass",
+    "graphic",
+    "pane",
+    "transparent",
+    "window",
+    "windowpane"
+  ],
+  "caption": "Window with glowing arrow."
 }

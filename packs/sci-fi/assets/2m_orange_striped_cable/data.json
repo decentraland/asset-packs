@@ -7,6 +7,18 @@
     "energy",
     "power",
     "electricity",
-    "connectors"
-  ]
+    "connectors",
+    "cable",
+    "cord",
+    "fabric",
+    "fiber",
+    "filament",
+    "hue",
+    "ribbon",
+    "strip",
+    "stripe",
+    "textile",
+    "wire"
+  ],
+  "caption": "Orange striped cable."
 }

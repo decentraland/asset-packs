@@ -2,5 +2,21 @@
   "id": "f38f0a83-881b-4080-abba-a6f7ffe671a4",
   "name": "Doorframe - Glass",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "clear",
+    "doorframe",
+    "entrance",
+    "frame",
+    "glass",
+    "glassy",
+    "materialtype",
+    "pane",
+    "reflective",
+    "shiny",
+    "smooth",
+    "surface",
+    "transparent",
+    "window"
+  ],
+  "caption": "Glass door frame."
 }

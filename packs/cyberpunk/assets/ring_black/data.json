@@ -2,5 +2,13 @@
   "id": "6ad03769-b1d4-42d1-87f0-988f1993feba",
   "name": "Ring - Black",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "graphic",
+    "line",
+    "pattern",
+    "ring",
+    "round",
+    "shape"
+  ],
+  "caption": "Black ring with glowing center."
 }

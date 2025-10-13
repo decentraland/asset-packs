@@ -5,6 +5,17 @@
   "tags": [
     "scifi",
     "tile",
-    "ground"
-  ]
+    "ground",
+    "flat",
+    "floor",
+    "furniture",
+    "hexagonal",
+    "panel",
+    "rectangular",
+    "room",
+    "shaped",
+    "space",
+    "surface"
+  ],
+  "caption": "Floor panel with top and bottom."
 }

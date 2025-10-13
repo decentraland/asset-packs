@@ -6,6 +6,13 @@
     "fantasy",
     "tile",
     "stone",
-    "path"
-  ]
+    "path",
+    "dark",
+    "floor",
+    "granite",
+    "ground",
+    "pattern",
+    "surface"
+  ],
+  "caption": "Dark colored tile or stone."
 }

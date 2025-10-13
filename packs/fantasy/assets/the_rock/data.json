@@ -9,6 +9,14 @@
     "stones",
     "rock",
     "rocks",
-    "forest"
-  ]
+    "forest",
+    "appearance",
+    "artifact",
+    "dark",
+    "glossy",
+    "irregular",
+    "shape",
+    "surface"
+  ],
+  "caption": "Black, rough rock."
 }

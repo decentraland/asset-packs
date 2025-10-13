@@ -12,6 +12,15 @@
     "fence",
     "fences",
     "garden",
-    "park"
-  ]
+    "park",
+    "architecture",
+    "building",
+    "construction",
+    "panel",
+    "paneling",
+    "plank",
+    "structure",
+    "surface"
+  ],
+  "caption": "Wooden plank, light brown in color."
 }

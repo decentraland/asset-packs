@@ -2,5 +2,13 @@
   "id": "cce63be5-5cff-4843-bc9d-f3c910bebea3",
   "name": "Fruit 3",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "box",
+    "container",
+    "crystal",
+    "gemstone",
+    "glowing",
+    "riches"
+  ],
+  "caption": "Brown wooden box containing glowing orange crystals."
 }

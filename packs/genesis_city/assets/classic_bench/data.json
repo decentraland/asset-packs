@@ -9,6 +9,19 @@
     "furniture",
     "park",
     "wood",
-    "seat"
-  ]
+    "seat",
+    "bench",
+    "chair",
+    "comfort",
+    "dining",
+    "kitchen",
+    "maple",
+    "oak",
+    "office",
+    "pine",
+    "rest",
+    "seating",
+    "sitting"
+  ],
+  "caption": "Classic wooden bench with metal legs."
 }

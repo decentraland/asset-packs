@@ -8,6 +8,17 @@
     "lantern",
     "old",
     "ancient",
-    "garden"
-  ]
+    "garden",
+    "architecture",
+    "artifact",
+    "building",
+    "cultural",
+    "historical",
+    "monument",
+    "oriental",
+    "pagoda",
+    "relic",
+    "structure"
+  ],
+  "caption": "Ancient stone pagoda lantern."
 }

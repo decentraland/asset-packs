@@ -10,6 +10,16 @@
     "cobblestones",
     "stone",
     "stones",
-    "path"
-  ]
+    "path",
+    "dirt",
+    "gravel",
+    "ground",
+    "landscape",
+    "pavement",
+    "sidewalk",
+    "surface",
+    "terrain",
+    "walkway"
+  ],
+  "caption": "Stone path leading through the forest."
 }

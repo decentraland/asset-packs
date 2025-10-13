@@ -2,5 +2,16 @@
   "id": "e20955a1-286a-4d28-aecb-17715fa2009b",
   "name": "Stone 6",
   "category": "nature",
-  "tags": []
+  "tags": [
+    "boulder",
+    "earthy",
+    "granite",
+    "ground",
+    "landscape",
+    "natural",
+    "pebble",
+    "surface",
+    "terrain"
+  ],
+  "caption": "Three brown stones."
 }

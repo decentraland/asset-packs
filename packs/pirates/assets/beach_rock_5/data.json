@@ -11,6 +11,18 @@
     "stones",
     "rock",
     "rocks",
-    "beach"
-  ]
+    "beach",
+    "boulder",
+    "earthy",
+    "environment",
+    "geological",
+    "landscape",
+    "mineral",
+    "natural",
+    "outdoor",
+    "rough",
+    "surface",
+    "terrain"
+  ],
+  "caption": "Rock with rough, weathered surface."
 }

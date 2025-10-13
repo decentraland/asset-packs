@@ -2,5 +2,16 @@
   "id": "902f8b3a-580b-4d6c-b89a-a6b253927d51",
   "name": "Pipe - Emissive",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "emissive",
+    "fixture",
+    "glowing",
+    "illumination",
+    "industrial",
+    "lighting",
+    "metallic",
+    "pipe",
+    "radiant"
+  ],
+  "caption": "Emissive metal pipe"
 }
