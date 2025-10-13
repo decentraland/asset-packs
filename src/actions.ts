@@ -24,7 +24,7 @@ import {
   getPlayerPosition,
   getWorldPosition,
   getWorldRotation,
-} from '@dcl-sdk/utils'
+} from './helpers'
 import { requestTeleport } from '~system/UserActionModule'
 import {
   movePlayerTo,
