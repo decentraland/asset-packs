@@ -464,7 +464,11 @@ const uiComponent = (
               <SmartItemsControl engine={engine} state={state} />
             ) : null}
             {state.activeTab === TabType.MODERATION_CONTROL && (
-              <ModerationControl engine={engine} player={player} />
+              <ModerationControl
+                engine={engine}
+                player={player}
+                sceneAdmins={sceneAdminsCache}
+              />
             )}
           </UiEntity>
           <UiEntity

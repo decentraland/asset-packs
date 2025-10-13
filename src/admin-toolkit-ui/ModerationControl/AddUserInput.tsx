@@ -1,7 +1,5 @@
-import { Color4 } from '@dcl/ecs-math'
 import ReactEcs, { UiEntity, Label, Input } from '@dcl/react-ecs'
 import { Button } from '../Button'
-import { Error } from '../Error'
 import {
   getAddUserInputStyles,
   getAddUserInputColors,
@@ -9,6 +7,8 @@ import {
 } from './styles/AddUserInputStyles'
 import { handleAddAdmin, handleBanUser } from './utils'
 import { BanUserDescription } from './BanUserDescription'
+
+import { SceneAdmin } from '.'
 
 export enum PermissionType {
   ADMIN = 'admin',
@@ -19,6 +19,7 @@ type Props = {
   scaleFactor: number
   onSubmit(value: string): void
   type: PermissionType
+  sceneAdmins: SceneAdmin[]
 }
 
 function isValidAddress(value: string) {
@@ -30,27 +31,38 @@ function isAddress(value: string) {
   return value.length > 15
 }
 
-export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
-  const [submitError, setSubmitError] = ReactEcs.useState(false)
-  const [validationError, setValidationError] = ReactEcs.useState('')
+export function AddUserInput({
+  scaleFactor,
+  onSubmit,
+  type,
+  sceneAdmins,
+}: Props) {
+  const [error, setError] = ReactEcs.useState('')
   const [loading, setLoading] = ReactEcs.useState(false)
   const [inputValue, setInputValue] = ReactEcs.useState('')
   const styles = getAddUserInputStyles(scaleFactor)
   const colors = getAddUserInputColors()
   const backgrounds = getAddUserInputBackgrounds()
+  sceneAdmins.forEach((admin) => {
+    console.log('name', admin.name)
+    console.log('address', admin.address)
+  })
+
+  const isAdmin = (user: string) =>
+    sceneAdmins.some((admin) => admin.address === user || admin.name === user)
 
   const handleSubmit = async () => {
     if (loading) return
 
-    const trimmedValue = inputValue.trim()
+    const submitValue = inputValue.trim()
 
-    if (!trimmedValue || trimmedValue.length <= 2) {
-      setValidationError('Provide a valid address or NAME')
+    if (!submitValue || submitValue.length <= 2) {
+      setError('Provide a valid address or NAME')
       return
     }
 
-    if (isAddress(trimmedValue) && !isValidAddress(trimmedValue)) {
-      setValidationError('Provide a valid address format')
+    if (isAddress(submitValue) && !isValidAddress(submitValue)) {
+      setError('Provide a valid address format')
       return
     }
 
@@ -59,15 +71,21 @@ export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
     }
 
     if (type === PermissionType.ADMIN) {
-      const adminData = isAddress(trimmedValue)
-        ? { admin: trimmedValue }
-        : { name: trimmedValue }
-      await handleAddAdmin(adminData, setSubmitError, setLoading, clearInput)
+      const adminData = isAddress(submitValue)
+        ? { admin: submitValue }
+        : { name: submitValue }
+      await handleAddAdmin(adminData, setError, setLoading, clearInput)
     } else {
-      const banData = isAddress(trimmedValue)
-        ? { banned_address: trimmedValue }
-        : { banned_name: trimmedValue }
-      await handleBanUser(banData, setSubmitError, setLoading, clearInput)
+      if (isAdmin(submitValue)) {
+        setError(
+          'Admin users cannot be banned. Please remove this user from the Admin List and try again.',
+        )
+        return
+      }
+      const banData = isAddress(submitValue)
+        ? { banned_address: submitValue }
+        : { banned_name: submitValue }
+      await handleBanUser(banData, setError, setLoading, clearInput)
     }
   }
 
@@ -81,6 +99,7 @@ export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
         }
         fontSize={18 * scaleFactor}
         color={colors.white}
+        uiTransform={styles.title}
       />
       {type === PermissionType.BAN && (
         <BanUserDescription scaleFactor={scaleFactor} />
@@ -88,8 +107,7 @@ export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
       <UiEntity>
         <Input
           onChange={(value) => {
-            setSubmitError(false)
-            setValidationError('')
+            setError('')
             setInputValue(value)
           }}
           value={inputValue}
@@ -97,8 +115,11 @@ export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
           placeholder={'Enter a NAME or wallet address'}
           uiBackground={backgrounds.input}
           uiTransform={{
-            ...styles.input,
-            borderColor: validationError ? colors.red : colors.white,
+            borderColor: error ? colors.red : colors.white,
+            width: '100%',
+            height: 48 * scaleFactor,
+            margin: { bottom: 8 * scaleFactor },
+            borderRadius: 4 * scaleFactor,
           }}
         />
         <Button
@@ -114,20 +135,14 @@ export function AddUserInput({ scaleFactor, onSubmit, type }: Props) {
         />
       </UiEntity>
 
-      {validationError && (
-        <Error
-          uiTransform={styles.error}
-          scaleFactor={scaleFactor}
-          text={validationError}
-        />
-      )}
-
-      {submitError && (
-        <Error
-          uiTransform={styles.error}
-          scaleFactor={scaleFactor}
-          text="Please try again."
-        />
+      {error && (
+        <UiEntity uiTransform={styles.error}>
+          <UiEntity
+            uiTransform={styles.errorIcon}
+            uiBackground={backgrounds.errorIcon}
+          />
+          <Label value={error} fontSize={14 * scaleFactor} color={colors.red} />
+        </UiEntity>
       )}
     </UiEntity>
   )

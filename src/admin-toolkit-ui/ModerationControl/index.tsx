@@ -18,6 +18,7 @@ import {
 type Props = {
   engine: IEngine
   player: GetPlayerDataRes | null | undefined
+  sceneAdmins: SceneAdmin[]
 }
 
 // TODO: rename to ORG
@@ -47,7 +48,7 @@ export const moderationControlState: State = {
   unbanMessage: null as string | null,
 }
 
-export function ModerationControl({ engine, player }: Props) {
+export function ModerationControl({ engine, player, sceneAdmins }: Props) {
   const scaleFactor = getScaleUIFactor(engine)
   const styles = getModerationControlStyles(scaleFactor)
   const colors = getModerationControlColors()
@@ -57,13 +58,14 @@ export function ModerationControl({ engine, player }: Props) {
       <UiEntity uiTransform={styles.container}>
         <Header
           iconSrc={MODERATION_CONTROL_ICON}
-          title="PERMISSIONS & MODERATION"
+          title="Permissions & Moderation"
           scaleFactor={scaleFactor}
         />
         <AddUserInput
           scaleFactor={scaleFactor}
           onSubmit={console.log}
           type={PermissionType.ADMIN}
+          sceneAdmins={sceneAdmins}
         />
         <Button
           variant="secondary"
@@ -81,6 +83,7 @@ export function ModerationControl({ engine, player }: Props) {
           scaleFactor={scaleFactor}
           onSubmit={console.log}
           type={PermissionType.BAN}
+          sceneAdmins={sceneAdmins}
         />
         <Button
           variant="secondary"

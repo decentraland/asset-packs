@@ -11,6 +11,7 @@ export const getModerationControlStyles = (scaleFactor: number) => ({
     height: 42 * scaleFactor,
     alignItems: 'center' as const,
     justifyContent: 'center' as const,
+    margin: { top: 8 * scaleFactor },
   },
   adminListIcon: {
     width: 25 * scaleFactor,

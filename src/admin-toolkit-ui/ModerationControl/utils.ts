@@ -3,19 +3,19 @@ import { fetchSceneAdmins, fetchSceneBans } from '..'
 
 export const handleAddAdmin = async (
   adminData: { admin: string } | { name: string },
-  setError: (error: boolean) => void,
+  setError: (error: string) => void,
   setLoading: (loading: boolean) => void,
   clearInput: () => void,
 ) => {
   setLoading(true)
   const [error, data] = await postSceneAdmin(adminData)
   if (data) {
-    setError(false)
+    setError('')
     clearInput()
     await fetchSceneAdmins()
   } else {
     console.log(error)
-    setError(true)
+    setError('Please try again with a valid NAME or wallet address.')
   }
 
   setLoading(false)
@@ -23,7 +23,7 @@ export const handleAddAdmin = async (
 
 export const handleBanUser = async (
   banData: { banned_address: string } | { banned_name: string },
-  setError: (error: boolean) => void,
+  setError: (error: string) => void,
   setLoading: (loading: boolean) => void,
   clearInput: () => void,
 ) => {
@@ -34,13 +34,13 @@ export const handleBanUser = async (
   console.log('ALE=> postSceneBan response - error:', error, 'data:', data)
 
   if (data) {
-    setError(false)
+    setError('')
     clearInput()
     console.log('ALE=> Ban successful, fetching updated bans list...')
     await fetchSceneBans()
   } else {
     console.log('ALE=> Ban failed with error:', error)
-    setError(true)
+    setError('Please try again with a valid NAME or wallet address.')
   }
 
   setLoading(false)

@@ -1,4 +1,7 @@
 import { Color4 } from '@dcl/ecs-math'
+import { CONTENT_URL } from '../../constants'
+
+const ERROR_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/error.png`
 
 export const getAddUserInputStyles = (scaleFactor: number) => ({
   container: {
@@ -7,17 +10,17 @@ export const getAddUserInputStyles = (scaleFactor: number) => ({
     positionType: 'relative' as const,
   },
   title: {
-    margin: { bottom: 2 * scaleFactor },
+    margin: { bottom: 8 * scaleFactor },
   },
   input: {
     width: '100%' as const,
     height: 42 * scaleFactor,
     margin: { bottom: 16 * scaleFactor },
-    borderWidth: 4,
-    borderRadius: 8,
+    borderWidth: 4 * scaleFactor,
+    borderRadius: 8 * scaleFactor,
   },
   button: {
-    margin: { left: 10 * scaleFactor },
+    margin: { top: 8 * scaleFactor, left: 10 * scaleFactor },
     minWidth: 96 * scaleFactor,
     height: 42 * scaleFactor,
     alignItems: 'center' as const,
@@ -25,20 +28,26 @@ export const getAddUserInputStyles = (scaleFactor: number) => ({
     padding: 0,
   },
   error: {
-    margin: { top: -16, bottom: 16 * scaleFactor },
+    display: 'flex' as const,
+    flexDirection: 'row' as const,
+    alignItems: 'center' as const,
     justifyContent: 'flex-start' as const,
+    margin: { top: 8 * scaleFactor, bottom: 8 * scaleFactor },
+  },
+  errorIcon: {
+    width: 16 * scaleFactor,
+    height: 16 * scaleFactor,
+    margin: { right: 8 * scaleFactor },
   },
   bannedInfoContainer: {
     display: 'flex' as const,
     flexDirection: 'column' as const,
-    margin: { top: 8 * scaleFactor, bottom: 16 * scaleFactor },
+    margin: { bottom: 8 * scaleFactor },
     padding: {
       top: 4 * scaleFactor,
       bottom: 4 * scaleFactor,
-      left: 12 * scaleFactor,
-      right: 12 * scaleFactor,
     },
-    width: '100%' as const,
+    width: 10000 * scaleFactor,
   },
   bannedInfoTitle: {
     margin: { bottom: 4 * scaleFactor },
@@ -66,4 +75,10 @@ export const getAddUserInputColors = () => ({
 
 export const getAddUserInputBackgrounds = () => ({
   input: { color: Color4.White() },
+  errorIcon: {
+    textureMode: 'stretch' as const,
+    texture: {
+      src: ERROR_ICON,
+    },
+  },
 })
