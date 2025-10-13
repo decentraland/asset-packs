@@ -82,6 +82,9 @@ export function ModalUserList({
       if (success) {
         const username = bannedUser.name || bannedUser.bannedAddress
         moderationControlState.unbanMessage = `${username} has been unbanned from your scene`
+      } else {
+        moderationControlState.unbanMessage =
+          'We were unable to unban this user'
       }
     }
   }

@@ -63,7 +63,6 @@ export function ModerationControl({ engine, player, sceneAdmins }: Props) {
         />
         <AddUserInput
           scaleFactor={scaleFactor}
-          onSubmit={console.log}
           type={PermissionType.ADMIN}
           sceneAdmins={sceneAdmins}
         />
@@ -81,7 +80,6 @@ export function ModerationControl({ engine, player, sceneAdmins }: Props) {
         <UiEntity uiTransform={styles.divider} />
         <AddUserInput
           scaleFactor={scaleFactor}
-          onSubmit={console.log}
           type={PermissionType.BAN}
           sceneAdmins={sceneAdmins}
         />

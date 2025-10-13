@@ -17,7 +17,6 @@ export enum PermissionType {
 
 type Props = {
   scaleFactor: number
-  onSubmit(value: string): void
   type: PermissionType
   sceneAdmins: SceneAdmin[]
 }
@@ -31,22 +30,13 @@ function isAddress(value: string) {
   return value.length > 15
 }
 
-export function AddUserInput({
-  scaleFactor,
-  onSubmit,
-  type,
-  sceneAdmins,
-}: Props) {
+export function AddUserInput({ scaleFactor, type, sceneAdmins }: Props) {
   const [error, setError] = ReactEcs.useState('')
   const [loading, setLoading] = ReactEcs.useState(false)
   const [inputValue, setInputValue] = ReactEcs.useState('')
   const styles = getAddUserInputStyles(scaleFactor)
   const colors = getAddUserInputColors()
   const backgrounds = getAddUserInputBackgrounds()
-  sceneAdmins.forEach((admin) => {
-    console.log('name', admin.name)
-    console.log('address', admin.address)
-  })
 
   const isAdmin = (user: string) =>
     sceneAdmins.some((admin) => admin.address === user || admin.name === user)
@@ -118,7 +108,6 @@ export function AddUserInput({
             borderColor: error ? colors.red : colors.white,
             width: '100%',
             height: 48 * scaleFactor,
-            margin: { bottom: 8 * scaleFactor },
             borderRadius: 4 * scaleFactor,
           }}
         />

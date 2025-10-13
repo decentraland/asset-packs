@@ -8,6 +8,7 @@ export const getAddUserInputStyles = (scaleFactor: number) => ({
     display: 'flex' as const,
     flexDirection: 'column' as const,
     positionType: 'relative' as const,
+    margin: { bottom: 8 * scaleFactor },
   },
   title: {
     margin: { bottom: 8 * scaleFactor },
@@ -15,12 +16,12 @@ export const getAddUserInputStyles = (scaleFactor: number) => ({
   input: {
     width: '100%' as const,
     height: 42 * scaleFactor,
-    margin: { bottom: 16 * scaleFactor },
+
     borderWidth: 4 * scaleFactor,
     borderRadius: 8 * scaleFactor,
   },
   button: {
-    margin: { top: 8 * scaleFactor, left: 10 * scaleFactor },
+    margin: { left: 10 * scaleFactor },
     minWidth: 96 * scaleFactor,
     height: 42 * scaleFactor,
     alignItems: 'center' as const,
