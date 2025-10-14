@@ -153,9 +153,7 @@ export async function initializeAdminData(
   engine: IEngine,
   sdkHelpers?: ISDKHelpers,
 ) {
-  console.log('initializeAdminData')
   if (!adminDataInitialized) {
-    console.log('initializeAdminData - not initialized')
     const { TextAnnouncements, VideoControlState } = getComponents(engine)
 
     // Initialize AdminToolkitUiEntity
@@ -188,7 +186,7 @@ export async function initializeAdminData(
     }, Number.POSITIVE_INFINITY)
 
     // Initialize scene data
-    await Promise.all([fetchSceneAdmins()])
+    await Promise.all([fetchSceneAdmins(), fetchSceneBans()])
 
     adminDataInitialized = true
 

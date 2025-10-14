@@ -8,13 +8,13 @@ export const handleAddAdmin = async (
   clearInput: () => void,
 ) => {
   setLoading(true)
-  const [data] = await postSceneAdmin(adminData)
-  if (data) {
+  const [error, _] = await postSceneAdmin(adminData)
+  if (error) {
+    setError('Please try again with a valid NAME or wallet address.')
+  } else {
     setError('')
     clearInput()
     await fetchSceneAdmins()
-  } else {
-    setError('Please try again with a valid NAME or wallet address.')
   }
   setLoading(false)
 }
@@ -26,26 +26,25 @@ export const handleBanUser = async (
   clearInput: () => void,
 ) => {
   setLoading(true)
+  const [error, _] = await postSceneBan(banData)
 
-  const [data] = await postSceneBan(banData)
-
-  if (data) {
+  if (error) {
+    setError('Please try again with a valid NAME or wallet address.')
+  } else {
     setError('')
     clearInput()
     await fetchSceneBans()
-  } else {
-    setError('Please try again with a valid NAME or wallet address.')
   }
   setLoading(false)
 }
 
 export const handleUnbanUser = async (address: string): Promise<boolean> => {
   if (!address) return false
-  const [data] = await deleteSceneBan(address)
-  if (data) {
+  const [error, _] = await deleteSceneBan(address)
+  if (error) {
     await fetchSceneBans()
-    return true
-  } else {
     return false
+  } else {
+    return true
   }
 }
