@@ -6,24 +6,14 @@ export const getModerationControlStyles = (scaleFactor: number) => ({
     height: '100%' as const,
     flexDirection: 'column' as const,
   },
-  adminListButton: {
+  viewListButton: {
     width: 220 * scaleFactor,
     height: 42 * scaleFactor,
     alignItems: 'center' as const,
     justifyContent: 'center' as const,
+    margin: { top: 16 * scaleFactor },
   },
-  adminListIcon: {
-    width: 25 * scaleFactor,
-    height: 25 * scaleFactor,
-    margin: { right: 10 * scaleFactor },
-  },
-  banListButton: {
-    width: 220 * scaleFactor,
-    height: 42 * scaleFactor,
-    alignItems: 'center' as const,
-    justifyContent: 'center' as const,
-  },
-  banListIcon: {
+  viewListIcon: {
     width: 25 * scaleFactor,
     height: 25 * scaleFactor,
     margin: { right: 10 * scaleFactor },

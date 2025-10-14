@@ -72,9 +72,9 @@ export function ModerationControl({ engine, player, sceneAdmins }: Props) {
           value="<b>View Admin List</b>"
           fontSize={18 * scaleFactor}
           color={colors.white}
-          uiTransform={styles.adminListButton}
+          uiTransform={styles.viewListButton}
           icon={VERIFIED_USER_ICON}
-          iconTransform={styles.adminListIcon}
+          iconTransform={styles.viewListIcon}
           onMouseDown={() => (moderationControlState.showModalAdminList = true)}
         />
         <UiEntity uiTransform={styles.divider} />
@@ -89,9 +89,9 @@ export function ModerationControl({ engine, player, sceneAdmins }: Props) {
           value="<b>View Ban List</b>"
           fontSize={18 * scaleFactor}
           color={colors.white}
-          uiTransform={styles.banListButton}
+          uiTransform={styles.viewListButton}
           icon={BAN_USER_ICON}
-          iconTransform={styles.banListIcon}
+          iconTransform={styles.viewListIcon}
           onMouseDown={async () => {
             await fetchSceneBans()
             moderationControlState.showModalBanList = true

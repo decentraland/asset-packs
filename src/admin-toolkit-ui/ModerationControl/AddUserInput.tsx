@@ -125,12 +125,19 @@ export function AddUserInput({ scaleFactor, type, sceneAdmins }: Props) {
       </UiEntity>
 
       {error && (
-        <UiEntity uiTransform={styles.error}>
+        <UiEntity uiTransform={styles.errorContainer}>
           <UiEntity
             uiTransform={styles.errorIcon}
             uiBackground={backgrounds.errorIcon}
           />
-          <Label value={error} fontSize={14 * scaleFactor} color={colors.red} />
+          <UiEntity
+            uiText={{
+              value: error,
+              fontSize: 14 * scaleFactor,
+              color: colors.red,
+              textAlign: 'top-left',
+            }}
+          />
         </UiEntity>
       )}
     </UiEntity>

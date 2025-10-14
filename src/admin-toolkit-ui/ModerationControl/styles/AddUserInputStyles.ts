@@ -7,7 +7,6 @@ export const getAddUserInputStyles = (scaleFactor: number) => ({
   container: {
     display: 'flex' as const,
     flexDirection: 'column' as const,
-    positionType: 'relative' as const,
     margin: { bottom: 8 * scaleFactor },
   },
   title: {
@@ -16,7 +15,6 @@ export const getAddUserInputStyles = (scaleFactor: number) => ({
   input: {
     width: '100%' as const,
     height: 42 * scaleFactor,
-
     borderWidth: 4 * scaleFactor,
     borderRadius: 8 * scaleFactor,
   },
@@ -28,12 +26,14 @@ export const getAddUserInputStyles = (scaleFactor: number) => ({
     justifyContent: 'center' as const,
     padding: 0,
   },
-  error: {
+  errorContainer: {
+    width: '100%' as const,
     display: 'flex' as const,
     flexDirection: 'row' as const,
-    alignItems: 'center' as const,
+    alignItems: 'baseline' as const,
     justifyContent: 'flex-start' as const,
-    margin: { top: 8 * scaleFactor, bottom: 8 * scaleFactor },
+    height: 20 * scaleFactor,
+    margin: { top: 8 * scaleFactor, bottom: 12 * scaleFactor },
   },
   errorIcon: {
     width: 16 * scaleFactor,
