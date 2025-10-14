@@ -82,3 +82,10 @@ export const getAddUserInputBackgrounds = () => ({
     },
   },
 })
+
+export const getBanUserTextStyles = (scaleFactor: number) => ({
+  fontSize: 14 * scaleFactor,
+  color: Color4.White(),
+  textAlign: 'top-left' as const,
+  textWrap: 'nowrap' as const,
+})

@@ -2,6 +2,7 @@ import ReactEcs, { UiEntity, Label } from '@dcl/react-ecs'
 import {
   getAddUserInputStyles,
   getAddUserInputColors,
+  getBanUserTextStyles,
 } from './styles/AddUserInputStyles'
 
 type Props = {
@@ -10,50 +11,57 @@ type Props = {
 
 export function BanUserDescription({ scaleFactor }: Props) {
   const styles = getAddUserInputStyles(scaleFactor)
-  const colors = getAddUserInputColors()
+  const textStyles = getBanUserTextStyles(scaleFactor)
 
   return (
     <UiEntity uiTransform={styles.bannedInfoContainer}>
-      <Label
-        value="<b>Banned users CAN'T:</b>"
-        fontSize={14 * scaleFactor}
-        color={colors.white}
+      <UiEntity
+        uiText={{
+          value: "<b>Banned users CAN'T:</b>",
+          ...textStyles,
+        }}
         uiTransform={styles.marginBottomMedium}
       />
-      <Label
-        value="- See your scene build"
-        fontSize={14 * scaleFactor}
-        color={colors.white}
+      <UiEntity
+        uiText={{
+          value: '- See your scene build',
+          ...textStyles,
+        }}
         uiTransform={styles.marginBottomSmall}
       />
-      <Label
-        value="- Send messages in the Nearby chat"
-        fontSize={14 * scaleFactor}
-        color={colors.white}
+      <UiEntity
+        uiText={{
+          value: '- Send messages in the Nearby chat',
+          ...textStyles,
+        }}
         uiTransform={styles.marginBottomSmall}
       />
-      <Label
-        value="- Be seen by other users"
-        fontSize={14 * scaleFactor}
-        color={colors.white}
+      <UiEntity
+        uiText={{
+          value: '- Be seen by other users',
+          ...textStyles,
+        }}
         uiTransform={styles.marginBottomLarge}
       />
-      <Label
-        value="<b>Banned users CAN still:</b>"
-        fontSize={14 * scaleFactor}
-        color={colors.white}
+      <UiEntity
+        uiText={{
+          value: '<b>Banned users CAN still:</b>',
+          ...textStyles,
+        }}
         uiTransform={styles.marginBottomMedium}
       />
-      <Label
-        value="- See other users"
-        fontSize={14 * scaleFactor}
-        color={colors.white}
+      <UiEntity
+        uiText={{
+          value: '- See other users',
+          ...textStyles,
+        }}
         uiTransform={styles.marginBottomSmall}
       />
-      <Label
-        value="- See the messages in the Nearby chat"
-        fontSize={14 * scaleFactor}
-        color={colors.white}
+      <UiEntity
+        uiText={{
+          value: '- See the messages in the Nearby chat',
+          ...textStyles,
+        }}
         uiTransform={styles.marginBottomXLarge}
       />
     </UiEntity>
