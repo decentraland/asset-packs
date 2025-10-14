@@ -5,10 +5,15 @@
   "tags": [
     "fantasy",
     "nature",
-    "stone",
-    "stones",
     "rock",
     "rocks",
-    "forest"
-  ]
+    "forest",
+    "appearance",
+    "block",
+    "function",
+    "mass",
+    "shape",
+    "structure"
+  ],
+  "caption": "Black block with a smooth surface."
 }

@@ -7,6 +7,18 @@
     "energy",
     "power",
     "electricity",
-    "connectors"
-  ]
+    "connectors",
+    "cable",
+    "connector",
+    "cord",
+    "electrical",
+    "fixture",
+    "hardware",
+    "plug",
+    "socket",
+    "terminal",
+    "utility",
+    "wire"
+  ],
+  "caption": "Yellow cable with glowing connector."
 }

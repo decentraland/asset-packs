@@ -8,7 +8,12 @@
     "wall",
     "gold",
     "golden",
-    "gem",
-    "gemstone"
-  ]
+    "art",
+    "elegance",
+    "hue",
+    "luxury",
+    "motif",
+    "ornamentation"
+  ],
+  "caption": "Purple and orange wall decoration."
 }

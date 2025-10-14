@@ -6,7 +6,11 @@
     "fantasy",
     "tile",
     "marble",
-    "pattern",
-    "checkers"
-  ]
+    "checkers",
+    "checkered",
+    "floorplan",
+    "grid",
+    "layout"
+  ],
+  "caption": "Checkered tile with marble texture."
 }

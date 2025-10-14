@@ -10,6 +10,15 @@
     "box",
     "cardboard",
     "mail",
-    "square"
-  ]
+    "square",
+    "container",
+    "drum",
+    "furniture",
+    "label",
+    "seat",
+    "storage",
+    "tank",
+    "vessel"
+  ],
+  "caption": "Cardboard box with a label."
 }

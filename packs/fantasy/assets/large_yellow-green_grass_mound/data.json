@@ -7,6 +7,19 @@
     "mound",
     "forest",
     "grass",
-    "evergreen"
-  ]
+    "evergreen",
+    "field",
+    "foliage",
+    "growth",
+    "landscape",
+    "lawn",
+    "meadow",
+    "nature",
+    "outdoor",
+    "plant",
+    "searchable",
+    "terrain",
+    "vegetation"
+  ],
+  "caption": "Yellow-green grass mound."
 }

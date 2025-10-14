@@ -2,5 +2,18 @@
   "id": "a0c2c372-6e30-425b-afd1-ece5c83b4382",
   "name": "Stone with Cow Skull",
   "category": "nature",
-  "tags": []
+  "tags": [
+    "animal",
+    "art",
+    "burial",
+    "cow",
+    "creature",
+    "grave",
+    "head",
+    "monument",
+    "relic",
+    "sculpture",
+    "skull"
+  ],
+  "caption": "Skull-adorned rock."
 }

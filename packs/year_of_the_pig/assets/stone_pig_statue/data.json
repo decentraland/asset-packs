@@ -6,6 +6,21 @@
     "structures",
     "statue",
     "pig",
-    "stone"
-  ]
+    "animal",
+    "art",
+    "bark",
+    "bronze",
+    "canine",
+    "ceramic",
+    "clay",
+    "collectible",
+    "dog",
+    "domestic",
+    "figurine",
+    "loyal",
+    "memorial",
+    "monument",
+    "pet"
+  ],
+  "caption": "Dog statue with a glowing finish."
 }

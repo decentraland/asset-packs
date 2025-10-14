@@ -8,6 +8,17 @@
     "forest",
     "grass",
     "evergreen",
-    "turf"
-  ]
+    "turf",
+    "branch",
+    "field",
+    "foliage",
+    "lawn",
+    "leaves",
+    "meadow",
+    "natural",
+    "nature",
+    "organic",
+    "outdoor"
+  ],
+  "caption": "Evergreen tree with green foliage."
 }

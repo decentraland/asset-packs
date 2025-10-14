@@ -12,6 +12,14 @@
     "vehicle",
     "wheel",
     "wheels",
-    "blue"
-  ]
+    "blue",
+    "cycle",
+    "cycling",
+    "pedal",
+    "seat",
+    "speed",
+    "sport",
+    "transportation"
+  ],
+  "caption": "Blue bicycle with glowing orange seat."
 }

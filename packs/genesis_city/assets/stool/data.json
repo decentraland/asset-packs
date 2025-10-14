@@ -8,6 +8,20 @@
     "town",
     "furniture",
     "wood",
-    "seat"
-  ]
+    "seat",
+    "chair",
+    "comfort",
+    "desk",
+    "dining",
+    "kitchen",
+    "maple",
+    "oak",
+    "office",
+    "pine",
+    "rest",
+    "seating",
+    "sitting",
+    "stool"
+  ],
+  "caption": "Wooden stool."
 }

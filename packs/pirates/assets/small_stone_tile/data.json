@@ -8,8 +8,15 @@
     "pirates",
     "tiles",
     "cobblestones",
-    "stone",
-    "stones",
-    "path"
-  ]
+    "path",
+    "collection",
+    "earth",
+    "natural",
+    "pebble",
+    "pebbles",
+    "rocks",
+    "terrain",
+    "tile"
+  ],
+  "caption": "Collection of small rocks."
 }

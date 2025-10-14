@@ -6,6 +6,13 @@
     "genesis",
     "city",
     "town",
-    "ground"
-  ]
+    "architecture",
+    "building",
+    "cobblestone",
+    "path",
+    "pavement",
+    "structure",
+    "terrain"
+  ],
+  "caption": "Cobblestone texture on stone floor."
 }

@@ -8,7 +8,12 @@
     "wall",
     "gold",
     "golden",
-    "gem",
-    "gemstone"
-  ]
+    "artifact",
+    "jewel",
+    "luxury",
+    "noble",
+    "regal",
+    "rich"
+  ],
+  "caption": "Purple gemstone wall ornament."
 }

@@ -2,5 +2,15 @@
   "id": "4253760c-b091-4192-8e00-a075c9f2f614",
   "name": "Stone - Dark Snow",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "cold",
+    "frost",
+    "frozen",
+    "glacial",
+    "ice",
+    "icy",
+    "snow",
+    "winter"
+  ],
+  "caption": "Dark blue icy surface."
 }

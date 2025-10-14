@@ -2,5 +2,14 @@
   "id": "b8ce327d-0003-43ac-bbb1-7cb5aef1500a",
   "name": "Wall - PlainYellow",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architectural",
+    "building",
+    "flat",
+    "interior",
+    "reference",
+    "scheme",
+    "visual"
+  ],
+  "caption": "Plain yellow wall."
 }

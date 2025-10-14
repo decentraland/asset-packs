@@ -6,6 +6,18 @@
     "fantasy",
     "vase",
     "liquid",
-    "ceramic"
-  ]
+    "ceramic",
+    "container",
+    "cup",
+    "desk",
+    "dining",
+    "furniture",
+    "glass",
+    "handle",
+    "kitchen",
+    "pottery",
+    "table",
+    "tableware"
+  ],
+  "caption": "Orange vase with a handle."
 }

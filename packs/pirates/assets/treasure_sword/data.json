@@ -9,10 +9,17 @@
     "decorations",
     "gold",
     "golden",
-    "iron",
     "leather",
     "sword",
     "excalibur",
-    "weapon"
-  ]
+    "weapon",
+    "artifact",
+    "blade",
+    "combat",
+    "noble",
+    "regal",
+    "relic",
+    "royal"
+  ],
+  "caption": "Purple gemstone sword."
 }

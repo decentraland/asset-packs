@@ -14,6 +14,22 @@
     "steel",
     "tire",
     "felloes",
-    "box"
-  ]
+    "box",
+    "agriculture",
+    "barrow",
+    "bed",
+    "bedroom",
+    "container",
+    "farm",
+    "furniture",
+    "garden",
+    "mattress",
+    "nature",
+    "outdoor",
+    "pillow",
+    "rest",
+    "rustic",
+    "sleep"
+  ],
+  "caption": "Wooden wheelbarrow for gardening use."
 }

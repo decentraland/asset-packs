@@ -6,7 +6,15 @@
     "scifi",
     "power",
     "spark",
-    "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "beacon",
+    "brightness",
+    "glow",
+    "glowing",
+    "illumination",
+    "luminous",
+    "radiance",
+    "visibility"
+  ],
+  "caption": "Yellow glowing cube."
 }

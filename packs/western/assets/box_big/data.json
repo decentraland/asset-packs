@@ -2,5 +2,16 @@
   "id": "92ba0e3a-58ac-43ab-87af-d65f699e62c7",
   "name": "Box Big",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "box",
+    "container",
+    "crate",
+    "furniture",
+    "interior",
+    "package",
+    "room",
+    "storage",
+    "vessel"
+  ],
+  "caption": "Brown wooden box."
 }

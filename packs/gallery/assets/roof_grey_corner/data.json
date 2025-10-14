@@ -2,5 +2,17 @@
   "id": "7f14c9a3-e908-4e63-b54b-f9e3db484e14",
   "name": "Roof - Grey Corner",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architecture",
+    "building",
+    "defense",
+    "fortress",
+    "palace",
+    "roof",
+    "roofed",
+    "royal",
+    "stronghold",
+    "structure"
+  ],
+  "caption": "Grey concrete roof."
 }

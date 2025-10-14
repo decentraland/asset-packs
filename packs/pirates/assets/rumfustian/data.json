@@ -10,6 +10,17 @@
     "bottle",
     "drink",
     "beverage",
-    "alcohol"
-  ]
+    "alcohol",
+    "container",
+    "drum",
+    "fuel",
+    "hazardous",
+    "label",
+    "ribbon",
+    "storage",
+    "tank",
+    "toxic",
+    "vessel"
+  ],
+  "caption": "Blue bottle with orange label and yellow ribbon."
 }

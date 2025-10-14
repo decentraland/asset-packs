@@ -5,6 +5,17 @@
   "tags": [
     "scifi",
     "storage",
-    "spaceship"
-  ]
+    "spaceship",
+    "appliance",
+    "cabinet",
+    "container",
+    "drawer",
+    "fridge",
+    "furniture",
+    "handle",
+    "interior",
+    "kitchen",
+    "room"
+  ],
+  "caption": "Gray refrigerator with a handle."
 }

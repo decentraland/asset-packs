@@ -9,6 +9,20 @@
     "furniture",
     "table",
     "wood",
-    "coffee"
-  ]
+    "coffee",
+    "chair",
+    "desk",
+    "dining",
+    "kitchen",
+    "leg",
+    "maple",
+    "oak",
+    "office",
+    "pine",
+    "rest",
+    "seat",
+    "seating",
+    "sitting"
+  ],
+  "caption": "Wooden coffee table with four sturdy legs."
 }

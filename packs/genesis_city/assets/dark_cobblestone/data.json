@@ -6,6 +6,12 @@
     "genesis",
     "city",
     "town",
-    "ground"
-  ]
+    "cobblestone",
+    "dusk",
+    "evening",
+    "gloom",
+    "night",
+    "shade"
+  ],
+  "caption": "Cobblestone floor with dark color scheme."
 }

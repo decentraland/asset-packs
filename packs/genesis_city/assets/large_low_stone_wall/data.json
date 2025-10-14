@@ -7,14 +7,23 @@
     "city",
     "town",
     "structures",
-    "stone",
-    "stone",
     "wall",
     "rail",
     "railing",
     "fence",
     "fences",
     "garden",
-    "park"
-  ]
+    "park",
+    "architectural",
+    "beam",
+    "building",
+    "minimalist",
+    "patternless",
+    "plank",
+    "profile",
+    "structural",
+    "structure",
+    "textureless"
+  ],
+  "caption": "Long wooden plank."
 }

@@ -6,9 +6,18 @@
     "fantasy",
     "book",
     "codex",
-    "knowledge",
     "bookshelf",
     "wood",
-    "wooden"
-  ]
+    "wooden",
+    "bookcase",
+    "cabinet",
+    "drawers",
+    "furniture",
+    "interior",
+    "oak",
+    "room",
+    "shelf",
+    "storage"
+  ],
+  "caption": "Wooden 3-tier bookshelf with drawers."
 }

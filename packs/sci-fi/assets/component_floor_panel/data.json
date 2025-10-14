@@ -5,6 +5,12 @@
   "tags": [
     "scifi",
     "tile",
-    "ground"
-  ]
+    "checkered",
+    "furniture",
+    "interior",
+    "panel",
+    "paneling",
+    "room"
+  ],
+  "caption": "Checkered floor panel."
 }

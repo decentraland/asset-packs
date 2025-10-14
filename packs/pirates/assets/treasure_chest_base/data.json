@@ -9,7 +9,6 @@
     "decorations",
     "wood",
     "wooden",
-    "iron",
     "chest",
     "trunk",
     "gold",
@@ -17,6 +16,15 @@
     "doubloon",
     "doubloons",
     "coin",
-    "coins"
-  ]
+    "coins",
+    "box",
+    "container",
+    "loot",
+    "pile",
+    "riches",
+    "trove",
+    "vessel",
+    "wealth"
+  ],
+  "caption": "Glowing treasure chest overflowing with golden coins."
 }

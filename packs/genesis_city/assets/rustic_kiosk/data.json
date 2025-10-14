@@ -10,6 +10,14 @@
     "fair",
     "kiosk",
     "market",
-    "rustic"
-  ]
+    "rustic",
+    "antique",
+    "canopy",
+    "cart",
+    "outdoor",
+    "stall",
+    "striped",
+    "vendor"
+  ],
+  "caption": "Red and white striped wooden cart."
 }

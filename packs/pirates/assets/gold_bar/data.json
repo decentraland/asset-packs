@@ -9,6 +9,11 @@
     "decorations",
     "gold",
     "golden",
-    "bar"
-  ]
+    "bar",
+    "appearance",
+    "brick",
+    "rectangle",
+    "shape"
+  ],
+  "caption": "Orange brick-shaped structure."
 }

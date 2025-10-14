@@ -14,6 +14,17 @@
     "park",
     "garden",
     "backyard",
-    "yard"
-  ]
+    "yard",
+    "branch",
+    "foliage",
+    "leaves",
+    "natural",
+    "outdoor",
+    "pine",
+    "pinecone",
+    "roots",
+    "rounded",
+    "trunk"
+  ],
+  "caption": "Yellow pine tree with glowing top."
 }

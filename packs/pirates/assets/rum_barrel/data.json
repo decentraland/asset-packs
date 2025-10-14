@@ -9,13 +9,20 @@
     "furniture",
     "wood",
     "wooden",
-    "iron",
     "barrel",
     "powder",
     "boom",
     "danger",
     "rum",
     "fabric",
-    "blanket"
-  ]
+    "blanket",
+    "container",
+    "cylindrical",
+    "drum",
+    "hoop",
+    "storage",
+    "tank",
+    "vessel"
+  ],
+  "caption": "Wooden barrel with metal hoop."
 }

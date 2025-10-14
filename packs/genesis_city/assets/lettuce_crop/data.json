@@ -10,6 +10,15 @@
     "farm",
     "crop",
     "vegetation",
-    "lettuce"
-  ]
+    "lettuce",
+    "container",
+    "drum",
+    "foliage",
+    "plants",
+    "pots",
+    "storage",
+    "tank",
+    "vessel"
+  ],
+  "caption": "Blue pots with green plants on an orange surface."
 }

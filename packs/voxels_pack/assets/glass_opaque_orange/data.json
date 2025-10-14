@@ -2,5 +2,14 @@
   "id": "f124f8a1-929b-4ec0-996a-d41db4c6dee9",
   "name": "Glass Opaque Orange",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "dye",
+    "glass",
+    "hue",
+    "opaque",
+    "pigment",
+    "shade",
+    "tint"
+  ],
+  "caption": "Orange glass cube."
 }

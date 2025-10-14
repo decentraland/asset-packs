@@ -5,6 +5,17 @@
   "tags": [
     "scifi",
     "tile",
-    "planet"
-  ]
+    "planet",
+    "earth",
+    "glow",
+    "hue",
+    "illumination",
+    "land",
+    "landscape",
+    "shade",
+    "sun",
+    "terrain",
+    "tone"
+  ],
+  "caption": "Orange desert terrain."
 }

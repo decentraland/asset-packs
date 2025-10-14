@@ -5,6 +5,12 @@
   "tags": [
     "scifi",
     "tile",
-    "ground"
-  ]
+    "checkerboard",
+    "checkered",
+    "floorcovering",
+    "grid",
+    "panel",
+    "room"
+  ],
+  "caption": "White checkered floor panel."
 }

@@ -7,11 +7,18 @@
     "paradise",
     "pirates",
     "nature",
-    "stone",
-    "stones",
     "rock",
     "rocks",
     "arch",
-    "beach"
-  ]
+    "beach",
+    "architecture",
+    "boulder",
+    "formation",
+    "jagged",
+    "natural",
+    "rugged",
+    "shape",
+    "structure"
+  ],
+  "caption": "Jagged rock formation with a smooth top."
 }

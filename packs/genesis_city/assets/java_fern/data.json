@@ -13,6 +13,14 @@
     "forest",
     "park",
     "yard",
-    "backyard"
-  ]
+    "backyard",
+    "artwork",
+    "botanical",
+    "foliage",
+    "leaf",
+    "outdoor",
+    "plant",
+    "vegetation"
+  ],
+  "caption": "A green fern."
 }

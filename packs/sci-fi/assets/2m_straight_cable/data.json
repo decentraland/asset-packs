@@ -7,6 +7,18 @@
     "energy",
     "power",
     "electricity",
-    "connectors"
-  ]
+    "connectors",
+    "attachment",
+    "cable",
+    "clip",
+    "cord",
+    "electrical",
+    "fastener",
+    "grip",
+    "handle",
+    "straight",
+    "utility",
+    "wire"
+  ],
+  "caption": "Yellow cable with attached clip."
 }

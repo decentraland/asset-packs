@@ -9,10 +9,16 @@
     "decorations",
     "jewel",
     "jewels",
-    "gemstone",
     "jewellery",
     "gold",
     "golden",
-    "framed"
-  ]
+    "framed",
+    "adornment",
+    "facet",
+    "jewelry",
+    "luxury",
+    "precious",
+    "sapphire"
+  ],
+  "caption": "Orange gemstone with a glowing blue facet."
 }

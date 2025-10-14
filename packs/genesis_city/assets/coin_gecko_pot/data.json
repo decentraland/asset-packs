@@ -11,6 +11,16 @@
     "coin",
     "gecko",
     "coingecko",
-    "crypto"
-  ]
+    "crypto",
+    "animal",
+    "ceramic",
+    "collectible",
+    "figurine",
+    "habitat",
+    "reptile",
+    "sculpture",
+    "statue",
+    "terrarium"
+  ],
+  "caption": "Green gecko figurine in a red pot."
 }

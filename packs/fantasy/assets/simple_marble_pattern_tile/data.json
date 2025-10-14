@@ -6,7 +6,13 @@
     "fantasy",
     "tile",
     "marble",
-    "pattern",
-    "simple"
-  ]
+    "simple",
+    "furniture",
+    "geometric",
+    "interior",
+    "room",
+    "shape",
+    "space"
+  ],
+  "caption": "Marble pattern tile."
 }

@@ -2,5 +2,14 @@
   "id": "b1dfbfa6-1c3f-4dd1-8f1d-34c72042512c",
   "name": "Doorframe - Arrow",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architecture",
+    "building",
+    "corridor",
+    "doorframe",
+    "doorway",
+    "entrance",
+    "structure"
+  ],
+  "caption": "Door frame with glowing arrow."
 }

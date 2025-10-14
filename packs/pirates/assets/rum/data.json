@@ -10,6 +10,19 @@
     "bottle",
     "drink",
     "beverage",
-    "alcohol"
-  ]
+    "alcohol",
+    "cap",
+    "chemical",
+    "container",
+    "fuel",
+    "hazardous",
+    "oil",
+    "petroleum",
+    "radioactive",
+    "storage",
+    "tank",
+    "toxic",
+    "vessel"
+  ],
+  "caption": "Blue bottle with gold cap."
 }

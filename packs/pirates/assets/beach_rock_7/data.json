@@ -7,10 +7,19 @@
     "paradise",
     "pirates",
     "nature",
-    "stone",
-    "stones",
     "rock",
     "rocks",
-    "beach"
-  ]
+    "beach",
+    "boulder",
+    "coastal",
+    "granite",
+    "ocean",
+    "pebble",
+    "sandstone",
+    "shore",
+    "surf",
+    "tide",
+    "wave"
+  ],
+  "caption": "Rock from the beach."
 }

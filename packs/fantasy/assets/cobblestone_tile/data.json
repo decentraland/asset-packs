@@ -6,6 +6,10 @@
     "fantasy",
     "tile",
     "cobblestone",
-    "stone"
-  ]
+    "earth",
+    "path",
+    "pavement",
+    "terrain"
+  ],
+  "caption": "Cobblestone tile."
 }

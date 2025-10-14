@@ -8,6 +8,16 @@
     "wood",
     "wooden",
     "joist",
-    "cealing"
-  ]
+    "cealing",
+    "beam",
+    "building",
+    "ceiling",
+    "construction",
+    "framing",
+    "load",
+    "structure",
+    "timber",
+    "weight"
+  ],
+  "caption": "Wooden beam supporting the ceiling."
 }

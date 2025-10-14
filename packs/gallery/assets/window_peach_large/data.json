@@ -2,5 +2,14 @@
   "id": "fbb90efb-dbec-4dc2-bc0e-24290fe007c0",
   "name": "Window - Peach Large",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "appearance",
+    "glass",
+    "pane",
+    "rectangle",
+    "shape",
+    "visual",
+    "window"
+  ],
+  "caption": "Red window with a black frame."
 }

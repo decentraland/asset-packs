@@ -6,9 +6,19 @@
     "fantasy",
     "table",
     "tabern",
-    "round",
     "wood",
     "wooden",
-    "iron"
-  ]
+    "combat",
+    "comfort",
+    "desk",
+    "dining",
+    "furniture",
+    "kitchen",
+    "maple",
+    "oak",
+    "pine",
+    "seating",
+    "vehicle"
+  ],
+  "caption": "Brown wooden table."
 }

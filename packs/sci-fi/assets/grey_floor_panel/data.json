@@ -5,6 +5,13 @@
   "tags": [
     "scifi",
     "tile",
-    "ground"
-  ]
+    "appearance",
+    "construction",
+    "functionality",
+    "panel",
+    "seam",
+    "usability",
+    "visual"
+  ],
+  "caption": "Floor panel featuring a visible seam."
 }

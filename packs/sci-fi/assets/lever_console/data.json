@@ -6,6 +6,14 @@
     "scifi",
     "trigger",
     "button",
-    "enable"
-  ]
+    "enable",
+    "control",
+    "grip",
+    "handle",
+    "hardware",
+    "interface",
+    "mechanism",
+    "switch"
+  ],
+  "caption": "Yellow lever console."
 }

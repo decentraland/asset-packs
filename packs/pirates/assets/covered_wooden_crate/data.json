@@ -12,6 +12,16 @@
     "crate",
     "box",
     "fabric",
-    "blanket"
-  ]
+    "blanket",
+    "container",
+    "covered",
+    "drum",
+    "fuel",
+    "hazardous",
+    "storage",
+    "tank",
+    "toxic",
+    "vessel"
+  ],
+  "caption": "Wooden crate with a lid."
 }

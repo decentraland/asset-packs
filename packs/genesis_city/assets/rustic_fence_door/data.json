@@ -17,6 +17,17 @@
     "yard",
     "farm",
     "door",
-    "entrance"
-  ]
+    "entrance",
+    "antique",
+    "bed",
+    "bedroom",
+    "furniture",
+    "interior",
+    "ladder",
+    "mattress",
+    "pillow",
+    "rest",
+    "sleep"
+  ],
+  "caption": "Wooden bed frame with ladder."
 }

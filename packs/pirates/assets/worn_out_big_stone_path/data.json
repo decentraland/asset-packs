@@ -8,8 +8,15 @@
     "pirates",
     "tiles",
     "cobblestones",
-    "stone",
-    "stones",
-    "path"
-  ]
+    "path",
+    "erosion",
+    "gravel",
+    "landscape",
+    "pavement",
+    "tear",
+    "terrain",
+    "wear",
+    "worn"
+  ],
+  "caption": "Worn stone path with weathered stones."
 }

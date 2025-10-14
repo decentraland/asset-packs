@@ -2,5 +2,20 @@
   "id": "c65c05cf-1e93-4fec-9cca-754c9becdf5e",
   "name": "Speed Bump",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "asphalt",
+    "bump",
+    "collision",
+    "highway",
+    "hump",
+    "impact",
+    "incline",
+    "obstacle",
+    "roadblock",
+    "speed",
+    "terrain",
+    "traffic",
+    "vehicle"
+  ],
+  "caption": "Speed bump on the road."
 }

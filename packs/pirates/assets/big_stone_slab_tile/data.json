@@ -8,8 +8,11 @@
     "pirates",
     "tiles",
     "cobblestones",
-    "stone",
-    "stones",
-    "path"
-  ]
+    "path",
+    "collection",
+    "grid",
+    "slab",
+    "tile"
+  ],
+  "caption": "Gray tile grid layout."
 }

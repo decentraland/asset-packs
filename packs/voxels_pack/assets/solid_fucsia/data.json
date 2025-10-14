@@ -2,5 +2,13 @@
   "id": "f86bf73e-56fc-4f29-88ee-aa14335be3a8",
   "name": "Solid Fucsia",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "hue",
+    "pigment",
+    "shade",
+    "shape",
+    "smooth",
+    "tint"
+  ],
+  "caption": "Pink cube with a smooth surface."
 }

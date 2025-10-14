@@ -7,6 +7,18 @@
     "tree",
     "dead",
     "dry",
-    "forest"
-  ]
+    "forest",
+    "branch",
+    "foliage",
+    "fortress",
+    "leaves",
+    "nature",
+    "organic",
+    "outdoor",
+    "roots",
+    "stronghold",
+    "trunk",
+    "twisted"
+  ],
+  "caption": "Dead tree with gnarled branches."
 }

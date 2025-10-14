@@ -8,6 +8,15 @@
     "light",
     "gauze",
     "red",
-    "candle"
-  ]
+    "candle",
+    "ambiance",
+    "cozy",
+    "flame",
+    "glow",
+    "handle",
+    "interior",
+    "room",
+    "warm"
+  ],
+  "caption": "Red lantern with glowing candle."
 }

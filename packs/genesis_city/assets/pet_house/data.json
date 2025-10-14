@@ -13,6 +13,20 @@
     "animals",
     "yard",
     "backyard",
-    "house"
-  ]
+    "house",
+    "architecture",
+    "building",
+    "defense",
+    "dwelling",
+    "fortress",
+    "home",
+    "palace",
+    "residence",
+    "roof",
+    "royal",
+    "stronghold",
+    "structure",
+    "window"
+  ],
+  "caption": "Blue house with a red door."
 }

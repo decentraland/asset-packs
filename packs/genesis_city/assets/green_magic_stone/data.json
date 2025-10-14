@@ -10,8 +10,15 @@
     "green",
     "rock",
     "rocks",
-    "stone",
-    "stones",
-    "magic"
-  ]
+    "magic",
+    "artifact",
+    "brownish",
+    "enchanted",
+    "magical",
+    "mystic",
+    "mystical",
+    "relic",
+    "swirl"
+  ],
+  "caption": "Magic brown stone with swirling green."
 }

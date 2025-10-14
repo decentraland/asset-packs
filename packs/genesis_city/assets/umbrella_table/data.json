@@ -9,6 +9,19 @@
     "decoration",
     "table",
     "umbrella",
-    "beach"
-  ]
+    "beach",
+    "camping",
+    "canopy",
+    "desk",
+    "dining",
+    "folding",
+    "furniture",
+    "kitchen",
+    "outdoor",
+    "picnic",
+    "portable",
+    "shade",
+    "shelter"
+  ],
+  "caption": "Blue folding table with built-in umbrella."
 }

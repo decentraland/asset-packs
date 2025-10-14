@@ -7,6 +7,15 @@
     "fence",
     "wood",
     "wooden",
-    "module"
-  ]
+    "module",
+    "architecture",
+    "bolt",
+    "garden",
+    "landscape",
+    "nature",
+    "outdoor",
+    "rosewood",
+    "structure"
+  ],
+  "caption": "Red wooden fence module with glowing bolt."
 }

@@ -10,6 +10,17 @@
     "decoration",
     "grass",
     "brick",
-    "bricks"
-  ]
+    "bricks",
+    "bed",
+    "bedroom",
+    "field",
+    "furniture",
+    "lawn",
+    "mattress",
+    "meadow",
+    "outdoor",
+    "pillow",
+    "rest"
+  ],
+  "caption": "Green-topped brick."
 }

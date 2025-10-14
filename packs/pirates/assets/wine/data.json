@@ -10,6 +10,18 @@
     "bottle",
     "drink",
     "beverage",
-    "alcohol"
-  ]
+    "alcohol",
+    "cellar",
+    "container",
+    "fermentation",
+    "glass",
+    "grapes",
+    "liquid",
+    "liquor",
+    "vessel",
+    "vineyard",
+    "wine",
+    "wineglass"
+  ],
+  "caption": "A bottle of fine red wine."
 }

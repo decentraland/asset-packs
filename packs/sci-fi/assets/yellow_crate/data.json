@@ -5,6 +5,14 @@
   "tags": [
     "scifi",
     "box",
-    "storage"
-  ]
+    "storage",
+    "container",
+    "crate",
+    "function",
+    "furniture",
+    "switch",
+    "transport",
+    "vehicle"
+  ],
+  "caption": "Yellow crate has a glowing red switch."
 }

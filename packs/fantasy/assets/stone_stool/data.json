@@ -6,7 +6,15 @@
     "fantasy",
     "stool",
     "chair",
-    "stone",
-    "rune"
-  ]
+    "rune",
+    "comfort",
+    "desk",
+    "dining",
+    "furniture",
+    "kitchen",
+    "rest",
+    "seat",
+    "table"
+  ],
+  "caption": "Blue glowing stool."
 }

@@ -12,6 +12,19 @@
     "river",
     "water",
     "rope",
-    "jungle"
-  ]
+    "jungle",
+    "access",
+    "arch",
+    "connection",
+    "construction",
+    "crossing",
+    "pathway",
+    "point",
+    "rail",
+    "railing",
+    "span",
+    "structure",
+    "suspension"
+  ],
+  "caption": "Wooden rope bridge with railings."
 }

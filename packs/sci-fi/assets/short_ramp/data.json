@@ -6,6 +6,13 @@
     "scifi",
     "dock",
     "port",
-    "metal"
-  ]
+    "metal",
+    "appearance",
+    "gradient",
+    "incline",
+    "slope",
+    "stripe",
+    "visual"
+  ],
+  "caption": "Red striped ramp."
 }

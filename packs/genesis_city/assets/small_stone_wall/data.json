@@ -7,11 +7,16 @@
     "city",
     "town",
     "structures",
-    "stone",
     "wall",
     "fence",
     "fences",
     "garden",
-    "park"
-  ]
+    "park",
+    "architectural",
+    "colored",
+    "furniture",
+    "plank",
+    "raised"
+  ],
+  "caption": "Wooden plank with raised edge."
 }

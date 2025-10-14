@@ -6,10 +6,18 @@
     "fantasy",
     "book",
     "codex",
-    "knowledge",
     "bookshelf",
     "wood",
     "wooden",
-    "nails"
-  ]
+    "nails",
+    "bolts",
+    "bookcase",
+    "cabinet",
+    "container",
+    "furniture",
+    "shelf",
+    "storage",
+    "tiered"
+  ],
+  "caption": "Wooden bookshelf with metal bolts."
 }

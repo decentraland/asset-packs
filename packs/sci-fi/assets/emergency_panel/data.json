@@ -4,7 +4,19 @@
   "category": "structures",
   "tags": [
     "scifi",
-    "floor",
-    "tile"
-  ]
+    "tile",
+    "alarm",
+    "alert",
+    "caution",
+    "display",
+    "emergency",
+    "flashing",
+    "indicator",
+    "notice",
+    "panel",
+    "signal",
+    "stripe",
+    "warning"
+  ],
+  "caption": "Emergency panel with glowing yellow stripe."
 }

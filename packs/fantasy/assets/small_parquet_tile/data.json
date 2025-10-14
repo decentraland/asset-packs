@@ -7,6 +7,11 @@
     "tile",
     "wood",
     "wooden",
-    "parquet"
-  ]
+    "parquet",
+    "furniture",
+    "interior",
+    "room",
+    "space"
+  ],
+  "caption": "Brown and pink parquet tiles."
 }

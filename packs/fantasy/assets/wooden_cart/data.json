@@ -6,6 +6,18 @@
     "fantasy",
     "wheels",
     "wood",
-    "cart"
-  ]
+    "cart",
+    "cargo",
+    "container",
+    "fuel",
+    "furniture",
+    "rest",
+    "seat",
+    "storage",
+    "tank",
+    "transport",
+    "vehicle",
+    "vessel"
+  ],
+  "caption": "Wooden cart with four wheels."
 }

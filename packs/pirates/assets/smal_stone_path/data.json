@@ -8,8 +8,14 @@
     "pirates",
     "tiles",
     "cobblestones",
-    "stone",
-    "stones",
-    "path"
-  ]
+    "path",
+    "dirt",
+    "gravel",
+    "landscape",
+    "pavement",
+    "sidewalk",
+    "terrain",
+    "walkway"
+  ],
+  "caption": "Stone path leading through the forest."
 }

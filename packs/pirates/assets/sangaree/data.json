@@ -10,6 +10,17 @@
     "bottle",
     "drink",
     "beverage",
-    "alcohol"
-  ]
+    "alcohol",
+    "container",
+    "drum",
+    "fuel",
+    "hazardous",
+    "spout",
+    "storage",
+    "tank",
+    "toxic",
+    "vessel",
+    "watering"
+  ],
+  "caption": "Red watering can with spout."
 }

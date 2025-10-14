@@ -6,6 +6,21 @@
     "scifi",
     "space",
     "planet",
-    "soil"
-  ]
+    "soil",
+    "dirt",
+    "drips",
+    "fluid",
+    "glossy",
+    "liquid",
+    "messy",
+    "puddle",
+    "spill",
+    "splashing",
+    "splashy",
+    "splat",
+    "splatter",
+    "stain",
+    "wet"
+  ],
+  "caption": "Red splatter paint on a glossy surface."
 }

@@ -6,8 +6,13 @@
     "fantasy",
     "ornament",
     "wall",
-    "gem",
-    "gemstone",
-    "stone"
-  ]
+    "adornment",
+    "artifact",
+    "collectible",
+    "jewel",
+    "luxury",
+    "precious",
+    "valuable"
+  ],
+  "caption": "Purple gemstone in a black frame."
 }
