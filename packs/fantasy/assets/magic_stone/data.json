@@ -4,7 +4,6 @@
   "category": "decorations",
   "tags": [
     "fantasy",
-    "stone",
     "magic",
     "rune",
     "artifact",
@@ -15,8 +14,7 @@
     "mystical",
     "orb",
     "relic",
-    "spherical",
-    "surface"
+    "spherical"
   ],
   "caption": "Glowing, blue-lit sphere."
 }

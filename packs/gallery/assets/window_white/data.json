@@ -3,17 +3,13 @@
   "name": "Window - White ",
   "category": "decorations",
   "tags": [
-    "border",
     "clear",
-    "form",
-    "frame",
     "glass",
     "opaque",
     "outline",
     "pane",
     "rectangle",
     "shape",
-    "transparent",
     "window"
   ],
   "caption": "White window with a black outline."

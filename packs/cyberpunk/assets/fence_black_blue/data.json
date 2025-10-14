@@ -4,15 +4,13 @@
   "category": "decorations",
   "tags": [
     "barrier",
-    "border",
     "boundary",
     "enclosure",
     "fencepost",
     "gate",
     "grid",
     "outline",
-    "structure",
-    "wireframe"
+    "structure"
   ],
   "caption": "Black wireframe fence."
 }

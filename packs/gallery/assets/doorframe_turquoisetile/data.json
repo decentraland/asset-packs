@@ -6,14 +6,11 @@
     "architecture",
     "building",
     "doorframe",
-    "frame",
     "furniture",
     "interior",
-    "pattern",
     "room",
     "structure",
     "tile",
-    "tileset",
     "turquoisetile"
   ],
   "caption": "Blue and white tile door frame."

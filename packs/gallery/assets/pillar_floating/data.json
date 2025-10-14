@@ -7,11 +7,9 @@
     "building",
     "column",
     "fixture",
-    "floating",
     "monument",
     "structure",
-    "support",
     "upright"
   ],
-  "caption": "Floating pillar of stone."
+  "caption": "Pillar of stone."
 }

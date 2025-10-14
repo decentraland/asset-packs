@@ -6,11 +6,9 @@
     "scifi",
     "power",
     "spark",
-    "base",
     "spaceship",
     "beam",
     "disc",
-    "floor",
     "glow",
     "glowing",
     "illumination",
@@ -18,9 +16,7 @@
     "radiance",
     "radiant",
     "shape",
-    "source",
-    "spotlight",
-    "surface"
+    "source"
   ],
   "caption": "Black disc with glowing center."
 }

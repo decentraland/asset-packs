@@ -6,7 +6,6 @@
     "brightness",
     "colour",
     "darkened",
-    "frame",
     "glass",
     "greyish",
     "hue",
@@ -15,7 +14,6 @@
     "pane",
     "shaded",
     "tinted",
-    "transparent",
     "window"
   ],
   "caption": "Grey framed window."

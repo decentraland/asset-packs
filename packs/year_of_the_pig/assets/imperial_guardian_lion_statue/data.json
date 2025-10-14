@@ -6,7 +6,6 @@
     "structures",
     "statue",
     "lion",
-    "stone",
     "guardian",
     "imperial",
     "animal",
@@ -19,5 +18,5 @@
     "regal",
     "sculpture"
   ],
-  "caption": "Lion statue"
+  "caption": "Lion statue."
 }

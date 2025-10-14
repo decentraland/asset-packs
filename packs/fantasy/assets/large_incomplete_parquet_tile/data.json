@@ -8,14 +8,11 @@
     "wood",
     "wooden",
     "parquet",
-    "floor",
     "furniture",
     "incomplete",
     "interior",
-    "pattern",
     "room",
-    "space",
-    "surface"
+    "space"
   ],
   "caption": "Incomplete parquet tile."
 }

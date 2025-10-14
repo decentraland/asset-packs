@@ -6,14 +6,12 @@
     "access",
     "building",
     "construction",
-    "framework",
     "ladder",
     "level",
     "rail",
     "safety",
     "scaffold",
-    "structure",
-    "support"
+    "structure"
   ],
   "caption": "Wooden scaffolding with multiple levels."
 }

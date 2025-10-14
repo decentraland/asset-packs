@@ -3,16 +3,13 @@
   "name": "Wall - HorizontalBoard",
   "category": "decorations",
   "tags": [
-    "aesthetic",
     "appearance",
     "board",
     "composition",
     "format",
     "function",
     "layout",
-    "pattern",
     "structure",
-    "surface",
     "visual"
   ],
   "caption": "Horizontal game board with a grid."

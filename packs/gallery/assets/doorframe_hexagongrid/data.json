@@ -6,11 +6,9 @@
     "architecture",
     "building",
     "doorframe",
-    "frame",
     "grid",
     "hexagon",
     "hexagongrid",
-    "pattern",
     "rectangle",
     "shape",
     "structure"

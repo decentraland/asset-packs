@@ -13,7 +13,6 @@
     "ambiance",
     "burning",
     "candle",
-    "centerpiece",
     "combustion",
     "cozy",
     "desk",
@@ -23,8 +22,7 @@
     "furniture",
     "heat",
     "kitchen",
-    "smoke",
-    "surface"
+    "smoke"
   ],
   "caption": "Tall white candle with a glowing wick."
 }

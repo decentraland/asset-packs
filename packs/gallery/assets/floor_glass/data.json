@@ -6,13 +6,10 @@
     "architectural",
     "effect",
     "flat",
-    "floor",
     "glass",
     "reflective",
     "shiny",
     "smooth",
-    "surface",
-    "transparent",
     "visual"
   ],
   "caption": "Glass floor."

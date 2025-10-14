@@ -6,7 +6,6 @@
     "scifi",
     "power",
     "spark",
-    "base",
     "spaceship",
     "beacon",
     "block",
@@ -19,5 +18,5 @@
     "visibility",
     "warning"
   ],
-  "caption": "Yellow Light Block"
+  "caption": "Yellow light block."
 }

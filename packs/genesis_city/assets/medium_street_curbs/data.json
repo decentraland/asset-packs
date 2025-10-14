@@ -17,9 +17,7 @@
     "brick",
     "building",
     "edging",
-    "pattern",
-    "structure",
-    "surface"
+    "structure"
   ],
   "caption": "Wooden block with sharp edges."
 }

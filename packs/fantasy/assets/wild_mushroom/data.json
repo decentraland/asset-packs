@@ -9,13 +9,11 @@
     "forest",
     "ingredient",
     "creature",
-    "environment",
     "flora",
     "foliage",
     "fungal",
     "nature",
-    "outdoor",
-    "pattern"
+    "outdoor"
   ],
   "caption": "A glowing blue-green mushroom."
 }

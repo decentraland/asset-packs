@@ -3,14 +3,10 @@
   "name": "Tile Border",
   "category": "decorations",
   "tags": [
-    "border",
-    "bordering",
-    "frame",
     "outline",
-    "pattern",
     "rectangle",
     "shape",
     "tile"
   ],
-  "caption": "White border tile on black background."
+  "caption": "White border tile."
 }

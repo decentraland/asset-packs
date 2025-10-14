@@ -3,11 +3,9 @@
   "name": "Window 2x2 Closed",
   "category": "structures",
   "tags": [
-    "dark",
-    "frame",
     "pane",
     "window",
     "windowpane"
   ],
-  "caption": "Dark brown frame on black background."
+  "caption": "Dark brown frame."
 }

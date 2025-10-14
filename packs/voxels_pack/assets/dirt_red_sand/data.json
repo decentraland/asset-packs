@@ -7,13 +7,11 @@
     "dirt",
     "earthy",
     "granular",
-    "ground",
     "rocky",
     "rough",
     "sand",
     "sedimentary",
-    "surface",
     "terrain"
   ],
-  "caption": "Dirt-like block"
+  "caption": "Dirt-like block."
 }

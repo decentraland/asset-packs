@@ -6,7 +6,6 @@
     "fantasy",
     "book",
     "codex",
-    "knowledge",
     "shelf",
     "bookshelf",
     "document",
@@ -16,7 +15,6 @@
     "paper",
     "parchment",
     "scroll",
-    "surface",
     "tome"
   ],
   "caption": "Open book with visible pages."

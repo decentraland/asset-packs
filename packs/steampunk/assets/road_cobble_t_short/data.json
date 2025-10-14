@@ -10,8 +10,7 @@
     "highway",
     "path",
     "pavement",
-    "roadway",
-    "surface"
+    "roadway"
   ],
   "caption": "Cobblestone road surface."
 }

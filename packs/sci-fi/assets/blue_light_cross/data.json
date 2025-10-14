@@ -6,7 +6,6 @@
     "scifi",
     "power",
     "spark",
-    "base",
     "spaceship",
     "beacon",
     "beam",
@@ -18,8 +17,7 @@
     "luminescent",
     "luminous",
     "radiance",
-    "radiant",
-    "spotlight"
+    "radiant"
   ],
   "caption": "Blue-lit cross with glowing center."
 }

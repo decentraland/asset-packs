@@ -6,7 +6,6 @@
     "genesis",
     "city",
     "town",
-    "ground",
     "architecture",
     "asphalt",
     "building",
@@ -15,8 +14,7 @@
     "foundation",
     "pavement",
     "slab",
-    "structure",
-    "surface"
+    "structure"
   ],
   "caption": "Concrete in a snowy winter scene."
 }

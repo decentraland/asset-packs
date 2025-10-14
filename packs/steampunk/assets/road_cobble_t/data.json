@@ -9,12 +9,10 @@
     "dirt",
     "earth",
     "gravel",
-    "ground",
     "highway",
     "landscape",
     "path",
     "pavement",
-    "surface",
     "terrain"
   ],
   "caption": "Old cobblestone road."

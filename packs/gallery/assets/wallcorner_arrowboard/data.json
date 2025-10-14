@@ -10,8 +10,7 @@
     "marker",
     "navigation",
     "path",
-    "shape",
-    "surface"
+    "shape"
   ],
   "caption": "Corner with glowing arrow on its surface."
 }

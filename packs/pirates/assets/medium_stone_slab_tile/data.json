@@ -8,18 +8,12 @@
     "pirates",
     "tiles",
     "cobblestones",
-    "stone",
-    "stones",
     "path",
-    "base",
-    "floor",
     "foundation",
     "granite",
     "marble",
     "monument",
-    "pedestal",
     "slab",
-    "surface",
     "tile"
   ],
   "caption": "Stone slab tile."

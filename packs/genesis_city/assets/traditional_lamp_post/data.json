@@ -10,7 +10,6 @@
     "lamp",
     "post",
     "light",
-    "lighting",
     "street",
     "city",
     "park",
@@ -23,7 +22,6 @@
     "kitchen",
     "office",
     "room",
-    "surface",
     "table"
   ],
   "caption": "Traditional lamp post with glowing yellow light."

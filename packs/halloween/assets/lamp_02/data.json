@@ -3,9 +3,7 @@
   "name": "Lamp 02",
   "category": "decorations",
   "tags": [
-    "base",
     "cozy",
-    "dark",
     "desk",
     "dining",
     "fixture",
@@ -14,10 +12,8 @@
     "illumination",
     "kitchen",
     "lamp",
-    "lighting",
     "shade",
-    "surface",
     "table"
   ],
-  "caption": "Orange lamp on a dark background."
+  "caption": "Orange lamp on a."
 }

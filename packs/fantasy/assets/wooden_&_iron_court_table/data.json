@@ -8,17 +8,14 @@
     "fabric",
     "wood",
     "wooden",
-    "iron",
     "gold",
     "golden",
     "court",
-    "base",
     "cartoonish",
     "desk",
     "dining",
     "furniture",
-    "kitchen",
-    "surface"
+    "kitchen"
   ],
   "caption": "Blue table on brown base."
 }

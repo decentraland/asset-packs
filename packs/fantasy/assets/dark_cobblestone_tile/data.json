@@ -6,16 +6,11 @@
     "fantasy",
     "tile",
     "cobblestone",
-    "stone",
     "brick",
     "building",
     "concrete",
-    "dark",
-    "floor",
-    "ground",
     "path",
-    "pavement",
-    "surface"
+    "pavement"
   ],
-  "caption": "Cobblestone tile"
+  "caption": "Cobblestone tile."
 }

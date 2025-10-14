@@ -3,14 +3,11 @@
   "name": "Wall - LEDGrid",
   "category": "decorations",
   "tags": [
-    "aesthetic",
     "glow",
     "grid",
     "illumination",
     "led",
-    "lighting",
-    "pattern",
     "visual"
   ],
-  "caption": "Pink LED grid on black background."
+  "caption": "Pink led grid."
 }

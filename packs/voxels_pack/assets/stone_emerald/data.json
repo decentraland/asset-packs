@@ -6,12 +6,9 @@
     "architecture",
     "block",
     "emerald",
-    "gemstone",
     "intricate",
     "monument",
-    "pattern",
-    "structure",
-    "surface"
+    "structure"
   ],
   "caption": "Emerald block with intricate stone patterns."
 }

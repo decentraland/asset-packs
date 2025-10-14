@@ -5,17 +5,13 @@
   "tags": [
     "beam",
     "brightness",
-    "focus",
     "glare",
     "glow",
-    "highlight",
     "illumination",
     "intensity",
     "luminance",
     "radiance",
-    "shine",
-    "spotlight",
-    "spotlighting"
+    "shine"
   ],
   "caption": "Glowing spotlight."
 }

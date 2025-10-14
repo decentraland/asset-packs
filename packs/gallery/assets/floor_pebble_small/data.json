@@ -3,12 +3,8 @@
   "name": "Floor - Pebble Small",
   "category": "decorations",
   "tags": [
-    "floor",
     "gravel",
-    "ground",
-    "pattern",
-    "pebble",
-    "surface"
+    "pebble"
   ],
   "caption": "Black pebble floor."
 }

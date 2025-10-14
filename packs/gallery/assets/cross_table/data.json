@@ -14,10 +14,8 @@
     "logo",
     "mark",
     "marker",
-    "pattern",
     "shape",
-    "surface",
     "table"
   ],
-  "caption": "Table with an 'X' symbol on top."
+  "caption": "Table with an 'x' symbol on top."
 }

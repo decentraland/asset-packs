@@ -8,17 +8,12 @@
     "town",
     "nature",
     "rock",
-    "stone",
     "rock",
-    "stones",
-    "form",
     "pebble",
     "pebbles",
     "rocks",
-    "round",
     "shape",
-    "smooth",
-    "surface"
+    "smooth"
   ],
   "caption": "Pebble with smooth surface."
 }

@@ -6,13 +6,9 @@
     "appearance",
     "building",
     "concrete",
-    "floor",
     "function",
-    "ground",
-    "pattern",
     "reflective",
     "structure",
-    "surface",
     "tile"
   ],
   "caption": "White cube with a reflective surface."

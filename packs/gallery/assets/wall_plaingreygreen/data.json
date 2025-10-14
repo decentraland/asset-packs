@@ -3,12 +3,10 @@
   "name": "Wall - PlainGreyGreen",
   "category": "decorations",
   "tags": [
-    "environment",
     "foliage",
     "nature",
     "plaingreygreen",
-    "plank",
-    "surface"
+    "plank"
   ],
   "caption": "Green wooden wall plank."
 }

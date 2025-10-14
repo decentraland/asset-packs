@@ -8,9 +8,7 @@
     "building",
     "diagonal",
     "diagonaltile",
-    "pattern",
     "structure",
-    "surface",
     "tile"
   ],
   "caption": "Diagonal tile wall."

@@ -6,17 +6,12 @@
     "fantasy",
     "tile",
     "cobblestone",
-    "stone",
     "corner",
     "architecture",
     "building",
-    "dark",
-    "floor",
-    "ground",
     "path",
     "pavement",
-    "structure",
-    "surface"
+    "structure"
   ],
   "caption": "Cobblestone tile with a sharp edge."
 }

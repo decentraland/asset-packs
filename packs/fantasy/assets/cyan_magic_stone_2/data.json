@@ -6,9 +6,6 @@
     "fantasy",
     "cyan",
     "crystal",
-    "gem",
-    "gemstone",
-    "stone",
     "artifact",
     "celestial",
     "cosmic",
@@ -21,5 +18,5 @@
     "radiant",
     "space"
   ],
-  "caption": "Glowing blue cube in space."
+  "caption": "Glowing blue cube."
 }

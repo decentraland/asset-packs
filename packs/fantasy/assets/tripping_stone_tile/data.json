@@ -5,14 +5,8 @@
   "tags": [
     "fantasy",
     "tile",
-    "stone",
     "path",
-    "dark",
-    "floor",
-    "granite",
-    "ground",
-    "pattern",
-    "surface"
+    "granite"
   ],
   "caption": "Dark colored tile or stone."
 }

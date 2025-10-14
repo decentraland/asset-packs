@@ -11,9 +11,7 @@
     "hexagon",
     "hexagongrid",
     "layout",
-    "pattern",
-    "structure",
-    "surface"
+    "structure"
   ],
   "caption": "Grid pattern on wall."
 }

@@ -6,10 +6,8 @@
     "block",
     "furniture",
     "interior",
-    "pattern",
     "peach",
-    "plainpeach",
-    "surface"
+    "plainpeach"
   ],
   "caption": "Red block with a plain peach texture."
 }

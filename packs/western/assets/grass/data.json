@@ -3,11 +3,9 @@
   "name": "Grass",
   "category": "ground",
   "tags": [
-    "environment",
     "field",
     "foliage",
     "grass",
-    "ground",
     "lawn",
     "leafy",
     "lush",
@@ -16,8 +14,7 @@
     "natural",
     "nature",
     "outdoor",
-    "plant",
-    "surface"
+    "plant"
   ],
   "caption": "Grassy terrain with mossy texture."
 }

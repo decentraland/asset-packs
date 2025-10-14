@@ -10,9 +10,8 @@
     "roof",
     "skylight",
     "structure",
-    "transparent",
     "vault",
     "window"
   ],
-  "caption": "Glass roof"
+  "caption": "Glass roof."
 }

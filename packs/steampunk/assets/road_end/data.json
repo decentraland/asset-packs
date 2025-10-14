@@ -3,12 +3,10 @@
   "name": "Road End",
   "category": "tiles",
   "tags": [
-    "environment",
     "highway",
     "infrastructure",
     "intersection",
     "landscape",
-    "scenery",
     "signage",
     "stop",
     "traffic",

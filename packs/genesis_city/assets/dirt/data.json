@@ -6,7 +6,6 @@
     "genesis",
     "city",
     "town",
-    "ground",
     "dirt",
     "dust",
     "earth",
@@ -17,7 +16,6 @@
     "particle",
     "soil",
     "speck",
-    "surface",
     "terrain"
   ],
   "caption": "Dirt-like surface with grainy texture."

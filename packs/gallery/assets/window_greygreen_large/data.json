@@ -3,8 +3,6 @@
   "name": "Window - GreyGreen Large",
   "category": "decorations",
   "tags": [
-    "dark",
-    "frame",
     "glass",
     "greygreen",
     "interior",
@@ -15,7 +13,6 @@
     "reflective",
     "shaded",
     "tinted",
-    "transparent",
     "window"
   ],
   "caption": "Grey-green window with dark interior."

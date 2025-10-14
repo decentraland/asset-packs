@@ -6,7 +6,6 @@
     "brownish",
     "cave",
     "corridor",
-    "dark",
     "excavation",
     "interior",
     "mine",
@@ -15,8 +14,7 @@
     "reddish",
     "tunnel",
     "tunneling",
-    "tunnelway",
-    "underground"
+    "tunnelway"
   ],
   "caption": "Brown tunnel with glowing red interior."
 }

@@ -6,10 +6,8 @@
     "architecture",
     "building",
     "exterior",
-    "form",
     "roof",
-    "shape",
-    "surface"
+    "shape"
   ],
   "caption": "Corner roof in a bright pink color."
 }

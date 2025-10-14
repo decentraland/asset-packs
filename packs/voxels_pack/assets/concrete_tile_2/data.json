@@ -3,16 +3,13 @@
   "name": "Concrete tile",
   "category": "decorations",
   "tags": [
-    "aesthetic",
     "appearance",
     "clarity",
     "effect",
     "glass",
     "reflective",
-    "surface",
     "transparency",
-    "transparent",
     "visual"
   ],
-  "caption": "Transparent Cube"
+  "caption": "Transparent cube."
 }

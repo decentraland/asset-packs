@@ -12,7 +12,6 @@
     "beverage",
     "alcohol",
     "ambiance",
-    "centerpiece",
     "container",
     "desk",
     "dining",
@@ -24,8 +23,7 @@
     "kitchen",
     "lantern",
     "room",
-    "shade",
-    "surface"
+    "shade"
   ],
   "caption": "Blue glass lantern."
 }

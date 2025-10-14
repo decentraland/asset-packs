@@ -16,9 +16,7 @@
     "dune",
     "earth",
     "grain",
-    "ground",
     "smooth",
-    "surface",
     "terrain"
   ],
   "caption": "Light-colored sand tile with smooth surface."

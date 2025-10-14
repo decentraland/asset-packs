@@ -19,10 +19,8 @@
     "furniture",
     "grain",
     "interior",
-    "pattern",
     "room",
-    "structure",
-    "surface"
+    "structure"
   ],
   "caption": "Wooden tile with smooth surface."
 }

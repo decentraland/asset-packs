@@ -3,16 +3,11 @@
   "name": "Floor - Purple",
   "category": "decorations",
   "tags": [
-    "border",
-    "floor",
-    "ground",
     "hue",
     "interior",
     "outline",
-    "pattern",
     "room",
     "shade",
-    "surface",
     "tile"
   ],
   "caption": "Purple floor with a black outline."

@@ -6,18 +6,15 @@
     "scifi",
     "power",
     "spark",
-    "base",
     "spaceship",
     "beam",
     "brightness",
     "fixture",
-    "floor",
     "glow",
     "illumination",
     "luminous",
     "radiance",
-    "radiant",
-    "spotlight"
+    "radiant"
   ],
-  "caption": "Yellow coin on black background."
+  "caption": "Yellow coin."
 }

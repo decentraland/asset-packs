@@ -14,12 +14,10 @@
     "dunes",
     "elevation",
     "grain",
-    "ground",
     "hill",
     "landscape",
     "mound",
     "sandy",
-    "surface",
     "terrain"
   ],
   "caption": "Dunes of shifting golden sand."

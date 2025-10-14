@@ -7,7 +7,6 @@
     "ascent",
     "curved",
     "descent",
-    "floating",
     "furniture",
     "incline",
     "ladder",
@@ -17,5 +16,5 @@
     "stairway",
     "step"
   ],
-  "caption": "Floating U-shaped staircase."
+  "caption": "U-shaped staircase."
 }

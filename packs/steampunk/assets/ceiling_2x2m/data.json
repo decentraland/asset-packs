@@ -4,7 +4,6 @@
   "category": "tiles",
   "tags": [
     "architectural",
-    "border",
     "building",
     "ceiling",
     "flat",
@@ -14,8 +13,7 @@
     "rectangular",
     "room",
     "shape",
-    "spatial",
-    "surface"
+    "spatial"
   ],
   "caption": "Red 2x2 meter ceiling tile."
 }

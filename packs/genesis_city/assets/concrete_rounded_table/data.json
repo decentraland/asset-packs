@@ -10,7 +10,6 @@
     "table",
     "cafe",
     "concrete",
-    "base",
     "comfort",
     "desk",
     "dining",
@@ -20,8 +19,7 @@
     "pine",
     "rest",
     "seat",
-    "seating",
-    "surface"
+    "seating"
   ],
-  "caption": "Metal base table"
+  "caption": "Metal base table."
 }

@@ -8,8 +8,7 @@
     "exterior",
     "facade",
     "roof",
-    "structure",
-    "surface"
+    "structure"
   ],
   "caption": "Roof with two edges."
 }

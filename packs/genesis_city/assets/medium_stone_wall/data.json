@@ -7,7 +7,6 @@
     "city",
     "town",
     "structures",
-    "stone",
     "wall",
     "fence",
     "fences",
@@ -19,8 +18,7 @@
     "panel",
     "paneling",
     "plank",
-    "structure",
-    "surface"
+    "structure"
   ],
   "caption": "Wooden plank, light brown in color."
 }

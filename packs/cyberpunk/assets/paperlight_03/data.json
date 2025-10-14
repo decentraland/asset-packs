@@ -8,10 +8,8 @@
     "hole",
     "illumination",
     "lantern",
-    "lighting",
     "pendant",
-    "string",
-    "suspended"
+    "string"
   ],
-  "caption": "Suspended red cube with glowing center."
+  "caption": "Red cube with glowing center."
 }

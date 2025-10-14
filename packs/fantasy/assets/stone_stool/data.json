@@ -6,7 +6,6 @@
     "fantasy",
     "stool",
     "chair",
-    "stone",
     "rune",
     "comfort",
     "desk",
@@ -15,8 +14,7 @@
     "kitchen",
     "rest",
     "seat",
-    "surface",
     "table"
   ],
-  "caption": "Blue glowing stool on black background."
+  "caption": "Blue glowing stool."
 }

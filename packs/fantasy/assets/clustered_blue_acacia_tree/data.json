@@ -11,7 +11,6 @@
     "botanical",
     "branch",
     "desert",
-    "environment",
     "flora",
     "foliage",
     "landscape",
@@ -21,5 +20,5 @@
     "outdoor",
     "roots"
   ],
-  "caption": "Blue Acacia Tree"
+  "caption": "Blue acacia tree."
 }

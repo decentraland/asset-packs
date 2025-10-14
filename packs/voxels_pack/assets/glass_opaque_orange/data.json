@@ -9,9 +9,7 @@
     "opaque",
     "pigment",
     "shade",
-    "surface",
-    "tint",
-    "transparent"
+    "tint"
   ],
   "caption": "Orange glass cube."
 }

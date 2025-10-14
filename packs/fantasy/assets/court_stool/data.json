@@ -8,7 +8,6 @@
     "stool",
     "chair",
     "court",
-    "stone",
     "comfort",
     "desk",
     "dining",
@@ -19,8 +18,7 @@
     "seat",
     "seating",
     "sitting",
-    "surface",
     "table"
   ],
-  "caption": "Blue top, black base stool."
+  "caption": "Blue top, stool."
 }

@@ -13,10 +13,7 @@
     "city",
     "tile",
     "concrete",
-    "ground",
-    "pattern",
     "pavement",
-    "surface",
     "urban",
     "walkway"
   ],

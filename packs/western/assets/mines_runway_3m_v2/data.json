@@ -9,13 +9,11 @@
     "highway",
     "layout",
     "mines",
-    "pattern",
     "pavement",
     "planks",
     "runway",
     "searchable",
-    "strip",
-    "surface"
+    "strip"
   ],
   "caption": "Four colored planks on a runway."
 }

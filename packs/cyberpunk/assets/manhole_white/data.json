@@ -9,14 +9,12 @@
     "drain",
     "entrance",
     "hole",
-    "lid",
     "manhole",
     "opening",
     "passage",
     "pipe",
     "sewer",
-    "tunnel",
-    "underground"
+    "tunnel"
   ],
   "caption": "Manhole cover with a metal lid."
 }

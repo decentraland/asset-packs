@@ -6,9 +6,7 @@
     "aperture",
     "backdrop",
     "blackness",
-    "dark",
     "evening",
-    "frame",
     "glass",
     "night",
     "opening",
@@ -19,5 +17,5 @@
     "window",
     "windowpane"
   ],
-  "caption": "Open window on dark background."
+  "caption": "Open window on."
 }

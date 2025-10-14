@@ -10,11 +10,9 @@
     "grain",
     "gravel",
     "grit",
-    "pattern",
     "sand",
     "speck",
-    "speckle",
-    "surface"
+    "speckle"
   ],
   "caption": "Dotted surface, similar to sand or gravel."
 }

@@ -7,12 +7,8 @@
     "asphalt",
     "cobble",
     "cobblestone",
-    "dark",
-    "environment",
     "landscape",
-    "pattern",
     "pavement",
-    "surface",
     "terrain"
   ],
   "caption": "Cobblestone road section in dark grey."

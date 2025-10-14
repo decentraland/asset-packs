@@ -9,7 +9,6 @@
     "decorations",
     "jewel",
     "jewels",
-    "gemstone",
     "jewellery",
     "gold",
     "golden",
@@ -19,8 +18,7 @@
     "jewelry",
     "luxury",
     "necklace",
-    "pendant",
-    "ring"
+    "pendant"
   ],
   "caption": "Blue gemstone-shaped object with orange border."
 }

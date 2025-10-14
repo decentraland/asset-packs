@@ -3,7 +3,6 @@
   "name": "Stool B",
   "category": "furniture",
   "tags": [
-    "border",
     "chair",
     "desk",
     "dining",
@@ -12,11 +11,9 @@
     "office",
     "rest",
     "seat",
-    "sit",
     "sitting",
     "stool",
-    "surface",
     "table"
   ],
-  "caption": "Blue stool on black surface."
+  "caption": "Blue stool on."
 }

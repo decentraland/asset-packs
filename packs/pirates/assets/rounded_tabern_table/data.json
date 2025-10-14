@@ -10,7 +10,6 @@
     "wood",
     "wooden",
     "table",
-    "round",
     "antique",
     "desk",
     "dining",
@@ -19,8 +18,7 @@
     "kitchen",
     "natural",
     "organic",
-    "rustic",
-    "surface"
+    "rustic"
   ],
   "caption": "Rustic wooden table."
 }

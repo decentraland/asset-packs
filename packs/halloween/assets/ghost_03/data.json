@@ -4,11 +4,9 @@
   "category": "decorations",
   "tags": [
     "apparition",
-    "dark",
     "entity",
     "ethereal",
     "figure",
-    "form",
     "ghost",
     "lower",
     "phantom",
@@ -16,8 +14,7 @@
     "shape",
     "silhouette",
     "specter",
-    "spirit",
-    "transparent"
+    "spirit"
   ],
   "caption": "Ghostly figure with darkened lower half."
 }

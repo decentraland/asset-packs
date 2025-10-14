@@ -5,7 +5,6 @@
   "tags": [
     "clear",
     "foliage",
-    "frame",
     "glass",
     "hue",
     "leaf",
@@ -14,7 +13,6 @@
     "shade",
     "shape",
     "tint",
-    "transparent",
     "window"
   ],
   "caption": "Green window with a rectangular frame."

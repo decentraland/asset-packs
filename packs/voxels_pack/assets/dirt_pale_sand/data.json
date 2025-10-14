@@ -8,9 +8,7 @@
     "cubic",
     "dirt",
     "earthy",
-    "ground",
     "landscape",
-    "layer",
     "natural",
     "pale",
     "sand",
@@ -18,5 +16,5 @@
     "shape",
     "structure"
   ],
-  "caption": "Dirt block with pale sand layer"
+  "caption": "Dirt block with pale sand layer."
 }

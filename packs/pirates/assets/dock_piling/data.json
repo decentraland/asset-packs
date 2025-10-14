@@ -13,16 +13,13 @@
     "pillar",
     "pillars",
     "construction",
-    "floating",
     "foundation",
-    "ground",
     "harbor",
     "mooring",
     "pier",
     "piling",
     "structure",
-    "support",
     "timber"
   ],
-  "caption": "Floating dock support structure."
+  "caption": "Dock support structure."
 }

@@ -8,7 +8,6 @@
     "unlit",
     "light",
     "ambiance",
-    "atmosphere",
     "burning",
     "candle",
     "candlestick",
@@ -18,7 +17,6 @@
     "flameless",
     "heat",
     "holder",
-    "lighting",
     "smoke"
   ],
   "caption": "Unlit candle with a white wick."

@@ -6,9 +6,7 @@
     "genesis",
     "city",
     "town",
-    "ground",
     "centipede",
-    "environment",
     "field",
     "foliage",
     "grass",
@@ -17,8 +15,6 @@
     "meadow",
     "nature",
     "outdoor",
-    "scenery",
-    "surface",
     "terrain",
     "vegetation"
   ],

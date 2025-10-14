@@ -5,16 +5,12 @@
   "tags": [
     "scifi",
     "tile",
-    "ground",
     "building",
-    "floor",
     "furniture",
     "interior",
     "panel",
-    "pattern",
     "room",
-    "stripe",
-    "surface"
+    "stripe"
   ],
   "caption": "Yellow stripe on wooden floor panel."
 }

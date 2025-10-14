@@ -6,13 +6,9 @@
     "fantasy",
     "tile",
     "cobblestone",
-    "stone",
     "earth",
-    "ground",
     "path",
-    "pattern",
     "pavement",
-    "surface",
     "terrain"
   ],
   "caption": "Cobblestone tile."

@@ -13,8 +13,7 @@
     "pipe",
     "radiant",
     "reflective",
-    "shiny",
-    "transparent"
+    "shiny"
   ],
   "caption": "Glowing screen on a retro-style pipe."
 }

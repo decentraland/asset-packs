@@ -8,13 +8,10 @@
     "wood",
     "wooden",
     "leather",
-    "iron",
     "eye",
     "artifact",
     "box",
     "container",
-    "gem",
-    "lid",
     "mysterious",
     "mythic",
     "ornate",
@@ -22,5 +19,5 @@
     "relic",
     "vessel"
   ],
-  "caption": "A glowing Pandora's box opens to reveal gem."
+  "caption": "A glowing pandora's box opens to reveal gem."
 }

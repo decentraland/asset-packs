@@ -8,8 +8,6 @@
     "pirates",
     "tiles",
     "cobblestones",
-    "stone",
-    "stones",
     "path",
     "architecture",
     "asphalt",
@@ -18,7 +16,6 @@
     "curved",
     "landscape",
     "pavement",
-    "surface",
     "terrain"
   ],
   "caption": "Broken stone path with curved edges."

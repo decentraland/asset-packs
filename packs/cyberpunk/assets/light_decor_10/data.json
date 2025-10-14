@@ -11,11 +11,9 @@
     "glow",
     "illumination",
     "interior",
-    "lighting",
     "luminous",
     "radiance",
-    "shining",
-    "spotlight"
+    "shining"
   ],
   "caption": "Glowing pendant light."
 }

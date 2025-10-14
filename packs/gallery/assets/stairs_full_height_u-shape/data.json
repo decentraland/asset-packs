@@ -4,7 +4,6 @@
   "category": "decorations",
   "tags": [
     "balcony",
-    "flight",
     "handrail",
     "height",
     "ladder",
@@ -14,8 +13,7 @@
     "staircase",
     "stairs",
     "stairway",
-    "step",
-    "support"
+    "step"
   ],
-  "caption": "Full-height, U-shaped staircase."
+  "caption": "Full-height, u-shaped staircase."
 }

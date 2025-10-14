@@ -8,12 +8,10 @@
     "concrete",
     "construction",
     "foundation",
-    "ground",
     "pavement",
     "rough",
     "structure",
-    "surface",
     "terrain"
   ],
-  "caption": "Concrete Block"
+  "caption": "Concrete block."
 }

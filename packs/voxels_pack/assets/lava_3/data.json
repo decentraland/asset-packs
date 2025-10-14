@@ -11,11 +11,9 @@
     "flame",
     "glossy",
     "heat",
-    "hot",
     "lava",
     "molten",
-    "smoke",
-    "surface"
+    "smoke"
   ],
-  "caption": "Lava Block"
+  "caption": "Lava block."
 }

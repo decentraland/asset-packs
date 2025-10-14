@@ -8,10 +8,9 @@
     "glowing",
     "illumination",
     "industrial",
-    "lighting",
     "metallic",
     "pipe",
     "radiant"
   ],
-  "caption": "Emissive metal pipe"
+  "caption": "Emissive metal pipe."
 }

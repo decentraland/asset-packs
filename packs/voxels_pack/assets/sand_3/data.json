@@ -6,7 +6,6 @@
     "beach",
     "desert",
     "dune",
-    "environment",
     "geology",
     "granular",
     "landscape",
@@ -17,5 +16,5 @@
     "terrain",
     "yellowish"
   ],
-  "caption": "Dune-colored cube"
+  "caption": "Dune-colored cube."
 }

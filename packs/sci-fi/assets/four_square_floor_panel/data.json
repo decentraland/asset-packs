@@ -5,16 +5,12 @@
   "tags": [
     "scifi",
     "tile",
-    "ground",
-    "floor",
     "four",
     "grid",
     "layout",
     "panel",
-    "pattern",
     "room",
-    "space",
-    "surface"
+    "space"
   ],
   "caption": "Four glowing floor panels."
 }

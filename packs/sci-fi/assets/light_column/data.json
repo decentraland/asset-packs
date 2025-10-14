@@ -6,7 +6,6 @@
     "scifi",
     "power",
     "spark",
-    "base",
     "spaceship",
     "beam",
     "column",
@@ -15,8 +14,7 @@
     "glowing",
     "illumination",
     "luminous",
-    "radiant",
-    "spotlight"
+    "radiant"
   ],
   "caption": "Tall, glowing orange cylinder."
 }

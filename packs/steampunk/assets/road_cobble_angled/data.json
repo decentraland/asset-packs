@@ -7,13 +7,11 @@
     "block",
     "cobble",
     "cobblestone",
-    "pattern",
     "pavement",
     "paving",
     "pavingblock",
     "perspective",
-    "roadsurface",
-    "surface"
+    "roadsurface"
   ],
-  "caption": "Cobblestone paving blocks"
+  "caption": "Cobblestone paving blocks."
 }

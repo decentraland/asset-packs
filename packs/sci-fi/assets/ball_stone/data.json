@@ -8,13 +8,9 @@
     "planet",
     "ally",
     "ball",
-    "form",
-    "gemstone",
     "marble",
     "orb",
-    "round",
-    "shape",
-    "surface"
+    "shape"
   ],
   "caption": "Red, rounded ally with a smooth surface."
 }

@@ -9,7 +9,6 @@
     "decorations",
     "wood",
     "wooden",
-    "iron",
     "chest",
     "trunk",
     "gold",
@@ -17,12 +16,11 @@
     "box",
     "container",
     "drum",
-    "lid",
     "loot",
     "riches",
     "storage",
     "tank",
     "vessel"
   ],
-  "caption": "Treasure Chest with Open Lid"
+  "caption": "Treasure chest with open lid."
 }

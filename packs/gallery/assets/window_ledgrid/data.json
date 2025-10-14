@@ -12,11 +12,9 @@
     "interface",
     "led",
     "ledgrid",
-    "lighting",
     "panel",
-    "surface",
     "technology",
     "window"
   ],
-  "caption": "LED Grid Window"
+  "caption": "Led grid window."
 }

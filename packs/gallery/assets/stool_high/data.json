@@ -3,7 +3,6 @@
   "name": "Stool - High",
   "category": "decorations",
   "tags": [
-    "base",
     "chair",
     "desk",
     "dining",
@@ -15,9 +14,7 @@
     "rest",
     "seat",
     "sitting",
-    "stool",
-    "support",
-    "surface"
+    "stool"
   ],
   "caption": "Black metal stool."
 }

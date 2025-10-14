@@ -6,14 +6,12 @@
     "beam",
     "emissive",
     "glow",
-    "highlight",
     "illumination",
     "pipe",
     "radiance",
     "radiant",
     "shine",
-    "spotlight",
     "tip"
   ],
-  "caption": "Emissive pipe tip on black background."
+  "caption": "Emissive pipe tip."
 }

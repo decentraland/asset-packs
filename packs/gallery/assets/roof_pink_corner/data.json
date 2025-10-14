@@ -7,12 +7,10 @@
     "building",
     "exterior",
     "facade",
-    "form",
     "function",
     "roof",
     "shape",
-    "structure",
-    "surface"
+    "structure"
   ],
   "caption": "Pink corner roof."
 }

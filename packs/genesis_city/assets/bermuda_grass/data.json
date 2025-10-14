@@ -6,9 +6,7 @@
     "genesis",
     "city",
     "town",
-    "ground",
     "dot",
-    "environment",
     "field",
     "foliage",
     "grass",
@@ -17,7 +15,6 @@
     "meadow",
     "nature",
     "outdoor",
-    "pattern",
     "plant",
     "polka",
     "turf"

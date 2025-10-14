@@ -6,7 +6,6 @@
     "scifi",
     "spaceship",
     "tech",
-    "base",
     "chamber",
     "cold",
     "containment",
@@ -21,5 +20,5 @@
     "science",
     "technology"
   ],
-  "caption": "Cryogenic chamber"
+  "caption": "Cryogenic chamber."
 }

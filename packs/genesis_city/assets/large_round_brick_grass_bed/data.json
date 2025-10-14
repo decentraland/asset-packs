@@ -11,16 +11,11 @@
     "grass",
     "brick",
     "bricks",
-    "environment",
     "field",
-    "floor",
-    "ground",
     "landscape",
     "lawn",
     "meadow",
     "outdoor",
-    "round",
-    "surface",
     "terrain"
   ],
   "caption": "A brick on the ground."

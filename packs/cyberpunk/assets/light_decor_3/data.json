@@ -3,16 +3,12 @@
   "name": "Light Decor 3",
   "category": "decorations",
   "tags": [
-    "aesthetic",
     "ambiance",
-    "atmosphere",
     "glow",
     "illumination",
-    "lighting",
-    "lights",
     "source",
     "strip",
     "visual"
   ],
-  "caption": "Glowing LED strip"
+  "caption": "Glowing led strip."
 }

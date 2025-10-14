@@ -11,21 +11,15 @@
     "pond",
     "rock",
     "rocks",
-    "stone",
-    "stones",
     "aquatic",
-    "environment",
     "fluid",
-    "ground",
     "lake",
     "landscape",
     "liquid",
     "ocean",
     "outdoor",
     "river",
-    "scenery",
-    "shore",
-    "surface"
+    "shore"
   ],
   "caption": "A serene pond with a rocky edge."
 }

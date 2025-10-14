@@ -9,8 +9,6 @@
     "nature",
     "rock",
     "rocks",
-    "stone",
-    "stones",
     "forest",
     "asteroid",
     "celestial",
@@ -25,5 +23,5 @@
     "satellite",
     "space"
   ],
-  "caption": "Rock in space."
+  "caption": ""
 }

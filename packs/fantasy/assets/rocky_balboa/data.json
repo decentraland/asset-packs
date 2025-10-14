@@ -5,8 +5,6 @@
   "tags": [
     "fantasy",
     "nature",
-    "stone",
-    "stones",
     "rock",
     "rocks",
     "forest",
@@ -19,8 +17,7 @@
     "rocky",
     "rough",
     "rounded",
-    "spherical",
-    "textured"
+    "spherical"
   ],
   "caption": "Spherical object with rough texture."
 }

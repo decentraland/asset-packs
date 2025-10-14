@@ -11,13 +11,10 @@
     "ball",
     "celestial",
     "entity",
-    "form",
     "orb",
-    "round",
     "shape",
     "smooth",
-    "space",
-    "surface"
+    "space"
   ],
   "caption": "Asteroid-shaped object with a smooth surface."
 }

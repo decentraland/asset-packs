@@ -6,7 +6,6 @@
     "fantasy",
     "book",
     "codex",
-    "knowledge",
     "shelf",
     "artifact",
     "bookshelf",
@@ -18,7 +17,6 @@
     "prophecy",
     "relic",
     "scroll",
-    "surface",
     "tome"
   ],
   "caption": "Open book with visible pages."

@@ -6,7 +6,6 @@
     "clear",
     "doorframe",
     "entrance",
-    "frame",
     "glass",
     "glassy",
     "materialtype",
@@ -14,8 +13,6 @@
     "reflective",
     "shiny",
     "smooth",
-    "surface",
-    "transparent",
     "window"
   ],
   "caption": "Glass door frame."

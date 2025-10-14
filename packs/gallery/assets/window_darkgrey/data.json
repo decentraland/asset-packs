@@ -3,19 +3,14 @@
   "name": "Window - DarkGrey ",
   "category": "decorations",
   "tags": [
-    "border",
-    "dark",
     "darkgrey",
     "flat",
-    "frame",
     "glass",
     "opaque",
     "pane",
     "rectangle",
     "shading",
     "shape",
-    "solid",
-    "transparent",
     "window"
   ],
   "caption": "Dark grey window with one pane."

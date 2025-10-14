@@ -10,12 +10,10 @@
     "box",
     "container",
     "delivery",
-    "floating",
-    "gemstone",
     "mailbox",
     "package",
     "postal",
     "stationery"
   ],
-  "caption": "Blue gemstone-topped floating mailbox."
+  "caption": "Blue gemstone-topped mailbox."
 }

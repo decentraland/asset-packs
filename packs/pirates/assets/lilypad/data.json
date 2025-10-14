@@ -13,8 +13,6 @@
     "plants",
     "water",
     "aquatic",
-    "environment",
-    "floating",
     "fluid",
     "lake",
     "lily",
@@ -22,8 +20,7 @@
     "ocean",
     "outdoor",
     "pond",
-    "river",
-    "scenery"
+    "river"
   ],
-  "caption": "Floating green lily pad."
+  "caption": "Green lily pad."
 }

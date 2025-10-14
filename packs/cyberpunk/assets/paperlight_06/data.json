@@ -10,11 +10,9 @@
     "glowing",
     "illumination",
     "lamp",
-    "lights",
     "luminous",
     "radiance",
-    "radiant",
-    "spotlight"
+    "radiant"
   ],
   "caption": "Red light bulb with glowing top lights."
 }

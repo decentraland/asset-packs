@@ -16,11 +16,7 @@
     "tile",
     "city",
     "road",
-    "floor",
-    "flooring",
-    "pattern",
-    "scheme",
-    "surface"
+    "scheme"
   ],
   "caption": "White tile flooring pattern."
 }

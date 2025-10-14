@@ -6,13 +6,11 @@
     "boards",
     "doorframe",
     "entrance",
-    "frame",
     "furniture",
     "interior",
     "panel",
     "pinkboard",
-    "pinkboards",
-    "surface"
+    "pinkboards"
   ],
   "caption": "Pink wooden door frame."
 }

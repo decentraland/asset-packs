@@ -8,18 +8,14 @@
     "pirates",
     "tiles",
     "cobblestones",
-    "stone",
-    "stones",
     "path",
     "earthy",
     "geological",
     "grayish",
     "natural",
-    "pattern",
     "rocky",
-    "surface",
     "terrain",
     "tile"
   ],
-  "caption": "Gray rocks in pattern on black background."
+  "caption": "Gray rocks in pattern."
 }

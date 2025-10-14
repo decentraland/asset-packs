@@ -8,8 +8,6 @@
     "pirates",
     "tiles",
     "cobblestones",
-    "stone",
-    "stones",
     "path",
     "asphalt",
     "grayish",
@@ -19,7 +17,6 @@
     "pavement",
     "rocky",
     "stonepath",
-    "surface",
     "terrain"
   ],
   "caption": "Gray stone pathway leading to ancient ruins."

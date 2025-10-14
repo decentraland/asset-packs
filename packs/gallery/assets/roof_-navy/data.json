@@ -8,13 +8,11 @@
     "building",
     "facade",
     "flat",
-    "form",
     "roof",
     "roofed",
     "shape",
     "simplified",
-    "structure",
-    "surface"
+    "structure"
   ],
   "caption": "Basic building block roof structure."
 }

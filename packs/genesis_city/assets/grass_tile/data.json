@@ -18,7 +18,6 @@
     "earthy",
     "field",
     "foliage",
-    "ground",
     "landscape",
     "lawn",
     "meadow",
@@ -26,7 +25,6 @@
     "nature",
     "outdoor",
     "plant",
-    "surface",
     "terrain"
   ],
   "caption": "Green grass tile."

@@ -3,7 +3,6 @@
   "name": "Door Marco Normal",
   "category": "structures",
   "tags": [
-    "dark",
     "doorframe",
     "doorhandle",
     "doorway",
@@ -11,8 +10,7 @@
     "flat",
     "gate",
     "metallic",
-    "portal",
-    "surface"
+    "portal"
   ],
-  "caption": "Dark vertical door with black background."
+  "caption": "Dark vertical door with."
 }

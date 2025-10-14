@@ -6,7 +6,6 @@
     "fantasy",
     "book",
     "codex",
-    "knowledge",
     "shelf",
     "bookshelf",
     "cover",
@@ -20,5 +19,5 @@
     "spine",
     "story"
   ],
-  "caption": "Blue-spined book on black background."
+  "caption": "Blue-spined book."
 }

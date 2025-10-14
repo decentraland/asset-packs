@@ -3,7 +3,6 @@
   "name": "Glass - Opaque Pink",
   "category": "decorations",
   "tags": [
-    "aesthetic",
     "appearance",
     "glass",
     "glassy",
@@ -11,9 +10,7 @@
     "opaque",
     "pinkish",
     "reflective",
-    "shiny",
-    "surface",
-    "transparent"
+    "shiny"
   ],
   "caption": "Opaque pink cube with reflective surface."
 }

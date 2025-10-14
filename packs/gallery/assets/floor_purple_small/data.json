@@ -3,16 +3,10 @@
   "name": "Floor - Purple Small",
   "category": "decorations",
   "tags": [
-    "floor",
-    "flooring",
-    "ground",
     "interior",
-    "pattern",
     "room",
     "space",
-    "surface",
-    "tile",
-    "tileset"
+    "tile"
   ],
   "caption": "Purple floor tile."
 }

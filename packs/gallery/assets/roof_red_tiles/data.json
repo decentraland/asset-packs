@@ -10,10 +10,8 @@
     "facade",
     "roof",
     "structure",
-    "surface",
     "tile",
-    "tiles",
-    "tileset"
+    "tiles"
   ],
   "caption": "Red tile roof."
 }

@@ -3,14 +3,10 @@
   "name": "Glossy Aetherea Tiles",
   "category": "ground",
   "tags": [
-    "aesthetic",
-    "floor",
-    "flooring",
     "glossy",
     "reflective",
     "shine",
-    "surface",
     "tile"
   ],
-  "caption": "Glossy tile floor"
+  "caption": "Glossy tile floor."
 }

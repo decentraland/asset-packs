@@ -7,7 +7,6 @@
     "branch",
     "foliage",
     "forest",
-    "form",
     "leaves",
     "nature",
     "outdoor",
@@ -17,5 +16,5 @@
     "tree",
     "trunk"
   ],
-  "caption": "Black tree without leaves on dark background."
+  "caption": "Black tree without leaves on."
 }

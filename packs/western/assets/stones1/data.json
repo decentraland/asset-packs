@@ -3,13 +3,9 @@
   "name": "Stones1",
   "category": "ground",
   "tags": [
-    "dark",
     "earth",
-    "floor",
     "granite",
-    "ground",
     "slate",
-    "surface",
     "terrain",
     "tile"
   ],

@@ -7,11 +7,9 @@
     "building",
     "construction",
     "doorframe",
-    "frame",
     "industrial",
     "metallic",
-    "structural",
-    "surface"
+    "structural"
   ],
   "caption": "Metal door frame."
 }

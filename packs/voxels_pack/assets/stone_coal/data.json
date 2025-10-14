@@ -10,8 +10,7 @@
     "ice",
     "icy",
     "mineral",
-    "resource",
-    "surface"
+    "resource"
   ],
-  "caption": "Frozen surface material"
+  "caption": "Frozen surface material."
 }

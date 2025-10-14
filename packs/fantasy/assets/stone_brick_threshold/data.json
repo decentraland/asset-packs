@@ -4,7 +4,6 @@
   "category": "structures",
   "tags": [
     "fantasy",
-    "stone",
     "brick",
     "wall",
     "threshold",
@@ -12,11 +11,9 @@
     "door",
     "architecture",
     "entrance",
-    "floor",
     "path",
     "pavement",
     "step",
-    "surface",
     "tile"
   ],
   "caption": "Stone brick threshold."

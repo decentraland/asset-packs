@@ -3,7 +3,6 @@
   "name": "Stones - Dark",
   "category": "decorations",
   "tags": [
-    "dark",
     "darkblue",
     "earthy",
     "geological",
@@ -13,8 +12,7 @@
     "rocky",
     "rough",
     "searchable",
-    "slate",
-    "stones"
+    "slate"
   ],
   "caption": "Dark blue stone with rough texture."
 }

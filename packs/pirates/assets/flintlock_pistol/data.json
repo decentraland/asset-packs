@@ -7,7 +7,6 @@
     "paradise",
     "pirates",
     "decorations",
-    "iron",
     "wood",
     "brass",
     "trigger",
@@ -31,5 +30,5 @@
     "rifle",
     "shooting"
   ],
-  "caption": "Flintlock Pistol with Wooden Handle and Metal Barrel"
+  "caption": "Flintlock pistol with wooden handle and metal barrel."
 }

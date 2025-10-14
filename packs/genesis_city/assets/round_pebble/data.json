@@ -8,9 +8,7 @@
     "town",
     "nature",
     "rock",
-    "stone",
     "rock",
-    "stones",
     "ball",
     "earthy",
     "granite",
@@ -18,7 +16,6 @@
     "mineral",
     "natural",
     "pebble",
-    "round",
     "rounded"
   ],
   "caption": "Small brown rock."

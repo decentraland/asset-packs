@@ -8,16 +8,12 @@
     "pirates",
     "tiles",
     "cobblestones",
-    "stone",
-    "stones",
     "path",
     "architecture",
     "building",
     "monument",
-    "pattern",
     "slab",
     "structure",
-    "surface",
     "tile"
   ],
   "caption": "Stone tile with a natural finish."

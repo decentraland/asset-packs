@@ -3,15 +3,12 @@
   "name": "Mines Model Ramp",
   "category": "structures",
   "tags": [
-    "environment",
     "gradient",
     "incline",
     "landscape",
     "pathway",
     "rampway",
-    "scenery",
     "slope",
-    "surface",
     "terrain"
   ],
   "caption": "Orange, sloping ramp with smooth surface."

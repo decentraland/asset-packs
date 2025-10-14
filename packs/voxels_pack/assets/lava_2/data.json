@@ -11,12 +11,10 @@
     "flame",
     "glowing",
     "heat",
-    "hot",
     "lava",
     "magma",
     "molten",
-    "pattern",
     "smoke"
   ],
-  "caption": "Lava Block"
+  "caption": "Lava block."
 }

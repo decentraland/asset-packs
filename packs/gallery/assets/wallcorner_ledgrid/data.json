@@ -8,10 +8,7 @@
     "glowlight",
     "grid",
     "illumination",
-    "ledgrid",
-    "lighting",
-    "pattern",
-    "surface"
+    "ledgrid"
   ],
-  "caption": "Corner with glowing LED grid."
+  "caption": "Corner with glowing led grid."
 }

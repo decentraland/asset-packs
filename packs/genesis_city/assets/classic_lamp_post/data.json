@@ -10,7 +10,6 @@
     "lamp",
     "post",
     "light",
-    "lighting",
     "street",
     "city",
     "park",
@@ -23,7 +22,6 @@
     "minimalist",
     "office",
     "room",
-    "surface",
     "table"
   ],
   "caption": "Classic lamp post with glowing light."

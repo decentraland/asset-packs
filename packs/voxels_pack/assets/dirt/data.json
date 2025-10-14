@@ -7,7 +7,6 @@
     "dirtiness",
     "earth",
     "earthy",
-    "ground",
     "groundcover",
     "landscape",
     "natural",
@@ -15,5 +14,5 @@
     "soil",
     "terrain"
   ],
-  "caption": "Dirt-like substance"
+  "caption": "Dirt-like substance."
 }

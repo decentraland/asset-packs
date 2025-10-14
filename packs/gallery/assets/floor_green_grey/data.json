@@ -3,13 +3,10 @@
   "name": "Floor - Green Grey",
   "category": "decorations",
   "tags": [
-    "floor",
     "hue",
-    "pattern",
     "shade",
-    "surface",
     "tile",
     "tone"
   ],
-  "caption": "Green and Grey Floor Pattern"
+  "caption": "Green and grey floor pattern."
 }

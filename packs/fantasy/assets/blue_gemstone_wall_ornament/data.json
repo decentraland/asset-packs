@@ -8,14 +8,10 @@
     "wall",
     "gold",
     "golden",
-    "gem",
-    "gemstone",
-    "base",
     "elegance",
     "jewel",
     "luxury",
-    "motif",
-    "pattern"
+    "motif"
   ],
   "caption": "Blue gemstone on golden base."
 }

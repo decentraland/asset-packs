@@ -3,7 +3,6 @@
   "name": "Lamp - Yellow",
   "category": "decorations",
   "tags": [
-    "base",
     "desk",
     "dining",
     "fixture",
@@ -13,10 +12,8 @@
     "interior",
     "kitchen",
     "lamp",
-    "lighting",
     "office",
     "room",
-    "surface",
     "table"
   ],
   "caption": "Lamp on table."

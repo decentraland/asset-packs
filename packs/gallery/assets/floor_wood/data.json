@@ -3,16 +3,12 @@
   "name": "Floor - Wood",
   "category": "decorations",
   "tags": [
-    "floor",
     "floorboard",
-    "flooring",
     "furniture",
     "interior",
-    "pattern",
     "plank",
     "room",
-    "space",
-    "surface"
+    "space"
   ],
   "caption": "Wooden floor with three planks."
 }

@@ -3,10 +3,8 @@
   "name": "Window 2x2 V2 Closed",
   "category": "structures",
   "tags": [
-    "dark",
     "darkbackground",
     "darkframe",
-    "frame",
     "minimalist",
     "pane",
     "shadow",
@@ -14,5 +12,5 @@
     "window",
     "windowpane"
   ],
-  "caption": "Dark-framed window on black background."
+  "caption": "Dark-framed window."
 }

@@ -8,15 +8,10 @@
     "port",
     "metal",
     "appearance",
-    "base",
-    "border",
     "flat",
-    "floor",
-    "ground",
     "rectangular",
     "shape",
-    "surface",
     "visual"
   ],
-  "caption": "Red border platform on black base."
+  "caption": "Red border platform on."
 }

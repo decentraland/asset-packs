@@ -13,8 +13,7 @@
     "pipe",
     "radiance",
     "radiant",
-    "shine",
-    "spotlight"
+    "shine"
   ],
   "caption": "Emissive pipe cap."
 }

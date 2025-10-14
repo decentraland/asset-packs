@@ -6,15 +6,11 @@
     "fantasy",
     "tile",
     "cobblestone",
-    "stone",
     "corner",
     "building",
     "crack",
-    "floor",
-    "ground",
     "path",
     "pavement",
-    "surface",
     "terrain"
   ],
   "caption": "Gray cobblestone tile with cracks."

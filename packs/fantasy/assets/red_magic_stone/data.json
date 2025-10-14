@@ -6,9 +6,6 @@
     "fantasy",
     "red",
     "crystal",
-    "gem",
-    "gemstone",
-    "stone",
     "artifact",
     "fiery",
     "focal",
@@ -18,5 +15,5 @@
     "relic",
     "vibrant"
   ],
-  "caption": "Magic Stone in Center."
+  "caption": "Magic stone in center."
 }

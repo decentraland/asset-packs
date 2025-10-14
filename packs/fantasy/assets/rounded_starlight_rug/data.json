@@ -8,11 +8,9 @@
     "rug",
     "star",
     "wizard",
-    "round",
     "rounded",
     "celestial",
     "constellation",
-    "dark",
     "emblem",
     "glow",
     "logo",
@@ -22,5 +20,5 @@
     "starlight",
     "stellar"
   ],
-  "caption": "Star emblem on dark background."
+  "caption": "Star emblem on."
 }

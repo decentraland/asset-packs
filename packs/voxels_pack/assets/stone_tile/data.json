@@ -3,11 +3,6 @@
   "name": "Stone tile",
   "category": "decorations",
   "tags": [
-    "dark",
-    "floor",
-    "ground",
-    "pattern",
-    "surface",
     "tile"
   ],
   "caption": "Dark grey cube."

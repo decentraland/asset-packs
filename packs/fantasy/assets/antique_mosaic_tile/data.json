@@ -11,12 +11,9 @@
     "art",
     "artifact",
     "collectible",
-    "floor",
     "historical",
     "mosaicart",
-    "pattern",
-    "relic",
-    "tileset"
+    "relic"
   ],
   "caption": "Antique mosaic tile."
 }

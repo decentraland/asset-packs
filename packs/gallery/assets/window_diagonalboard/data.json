@@ -6,16 +6,13 @@
     "board",
     "diagonal",
     "diagonalboard",
-    "frame",
     "glass",
     "grid",
     "pane",
     "panel",
-    "pattern",
     "rectangle",
     "shape",
     "slat",
-    "surface",
     "window"
   ],
   "caption": "Diagonal glass partition separates two areas."

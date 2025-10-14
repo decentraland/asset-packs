@@ -6,13 +6,11 @@
     "barrier",
     "beam",
     "deck",
-    "frame",
     "post",
     "rail",
     "railing",
     "searchable",
-    "structure",
-    "support"
+    "structure"
   ],
   "caption": "Wooden railing with vertical posts and horizontal bar."
 }

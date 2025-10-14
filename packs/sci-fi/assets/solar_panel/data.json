@@ -11,12 +11,10 @@
     "sun",
     "grid",
     "illumination",
-    "mount",
     "panel",
     "photovoltaic",
     "renewable",
-    "solar",
-    "stand"
+    "solar"
   ],
-  "caption": "Solar Panel with Grid Top Stand"
+  "caption": "Solar panel with grid top stand."
 }
