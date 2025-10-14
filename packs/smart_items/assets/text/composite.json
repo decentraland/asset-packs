@@ -7,7 +7,10 @@
         "0": {
           "json": {
             "text": "Text",
-            "font": 2
+            "font": 2,
+            "fontSize": 6,
+            "fontAutoSize": true,
+            "textAlign": 4
           }
         }
       }
