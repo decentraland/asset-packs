@@ -48,11 +48,20 @@ const canUserBeRemoved = (user: SceneAdmin | SceneBanUser): boolean => {
 }
 
 const getModalTitle = (type: UserListType) => {
-  return type === UserListType.ADMIN ? '<b>ADMIN LIST</b>' : '<b>BAN LIST</b>'
+  return type === UserListType.ADMIN
+    ? '<b>ADMIN LIST</b>'
+    : '<b>SCENE BAN LIST</b>'
 }
 
 const getCounterText = (type: UserListType, count: number) => {
-  const itemType = type === UserListType.ADMIN ? 'admins' : 'users'
+  const itemType =
+    type === UserListType.ADMIN
+      ? count === 1
+        ? 'admin'
+        : 'admins'
+      : count === 1
+        ? 'user'
+        : 'users'
   return `(${count} ${itemType})`
 }
 

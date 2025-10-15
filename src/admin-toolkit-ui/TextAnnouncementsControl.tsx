@@ -43,7 +43,7 @@ export function TextAnnouncementsControl({
         <Header
           iconSrc={ICONS.TEXT_ANNOUNCEMENT_CONTROL}
           scaleFactor={scaleFactor}
-          title="Text Announcements"
+          title="TEXT ANNOUNCEMENTS"
         />
         <UiEntity uiTransform={{ flexDirection: 'column' }}>
           <Label
@@ -111,7 +111,9 @@ export function TextAnnouncementsControl({
               value="<b>Share</b>"
               variant="primary"
               fontSize={16 * scaleFactor}
-              labelTransform={{ margin: { left: 20 * scaleFactor, right: 20 * scaleFactor } }}
+              labelTransform={{
+                margin: { left: 20 * scaleFactor, right: 20 * scaleFactor },
+              }}
               uiTransform={{ height: 40 * scaleFactor }}
               onMouseDown={() => {
                 handleSendTextAnnouncement(
@@ -176,7 +178,9 @@ function handleSendTextAnnouncement(
   }
 
   const { TextAnnouncements } = getComponents(engine)
-  const textAnnouncement = TextAnnouncements.getMutableOrNull(state.adminToolkitUiEntity)
+  const textAnnouncement = TextAnnouncements.getMutableOrNull(
+    state.adminToolkitUiEntity,
+  )
 
   if (textAnnouncement) {
     const author = player?.name

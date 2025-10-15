@@ -85,7 +85,7 @@ export function AddUserInput({ scaleFactor, type, sceneAdmins }: Props) {
         value={
           type === PermissionType.ADMIN
             ? '<b>Add an Admin</b>'
-            : '<b>Ban a User from Scene</b>'
+            : '<b>Ban User from Scene</b>'
         }
         fontSize={18 * scaleFactor}
         color={colors.white}
@@ -105,10 +105,8 @@ export function AddUserInput({ scaleFactor, type, sceneAdmins }: Props) {
           placeholder={'Enter a NAME or wallet address'}
           uiBackground={backgrounds.input}
           uiTransform={{
+            ...styles.input,
             borderColor: error ? colors.red : colors.white,
-            width: '100%',
-            height: 48 * scaleFactor,
-            borderRadius: 4 * scaleFactor,
           }}
         />
         <Button
@@ -120,7 +118,11 @@ export function AddUserInput({ scaleFactor, type, sceneAdmins }: Props) {
           value={type === PermissionType.ADMIN ? '<b>Add</b>' : '<b>Ban</b>'}
           fontSize={18 * scaleFactor}
           uiTransform={styles.button}
+          color={type === PermissionType.BAN ? colors.white : undefined}
           onMouseDown={handleSubmit}
+          uiBackground={{
+            color: type === PermissionType.BAN ? colors.pink : undefined,
+          }}
         />
       </UiEntity>
 

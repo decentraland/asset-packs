@@ -58,7 +58,7 @@ export function ModerationControl({ engine, player, sceneAdmins }: Props) {
       <UiEntity uiTransform={styles.container}>
         <Header
           iconSrc={MODERATION_CONTROL_ICON}
-          title="Permissions & Moderation"
+          title="PERMISSIONS & MODERATION"
           scaleFactor={scaleFactor}
         />
         <AddUserInput

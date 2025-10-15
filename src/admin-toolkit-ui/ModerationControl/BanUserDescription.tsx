@@ -1,7 +1,6 @@
-import ReactEcs, { UiEntity, Label } from '@dcl/react-ecs'
+import ReactEcs, { UiEntity } from '@dcl/react-ecs'
 import {
   getAddUserInputStyles,
-  getAddUserInputColors,
   getBanUserTextStyles,
 } from './styles/AddUserInputStyles'
 
@@ -17,52 +16,18 @@ export function BanUserDescription({ scaleFactor }: Props) {
     <UiEntity uiTransform={styles.bannedInfoContainer}>
       <UiEntity
         uiText={{
-          value: "<b>Banned users CAN'T:</b>",
+          value:
+            "<b>Banned users CAN'T:</b> See your scene, send messages in the Nearby chat, or be seen by other users.",
           ...textStyles,
         }}
         uiTransform={styles.marginBottomMedium}
       />
       <UiEntity
         uiText={{
-          value: '- See your scene build',
+          value:
+            '<b>Banned users CAN still:</b> See other users and see the messages in the Nearby chat.</b>',
           ...textStyles,
         }}
-        uiTransform={styles.marginBottomSmall}
-      />
-      <UiEntity
-        uiText={{
-          value: '- Send messages in the Nearby chat',
-          ...textStyles,
-        }}
-        uiTransform={styles.marginBottomSmall}
-      />
-      <UiEntity
-        uiText={{
-          value: '- Be seen by other users',
-          ...textStyles,
-        }}
-        uiTransform={styles.marginBottomLarge}
-      />
-      <UiEntity
-        uiText={{
-          value: '<b>Banned users CAN still:</b>',
-          ...textStyles,
-        }}
-        uiTransform={styles.marginBottomMedium}
-      />
-      <UiEntity
-        uiText={{
-          value: '- See other users',
-          ...textStyles,
-        }}
-        uiTransform={styles.marginBottomSmall}
-      />
-      <UiEntity
-        uiText={{
-          value: '- See the messages in the Nearby chat',
-          ...textStyles,
-        }}
-        uiTransform={styles.marginBottomXLarge}
       />
     </UiEntity>
   )

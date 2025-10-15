@@ -14,14 +14,14 @@ export const getAddUserInputStyles = (scaleFactor: number) => ({
   },
   input: {
     width: '100%' as const,
-    height: 42 * scaleFactor,
     borderWidth: 4 * scaleFactor,
     borderRadius: 8 * scaleFactor,
+    height: 48 * scaleFactor,
   },
   button: {
     margin: { left: 10 * scaleFactor },
     minWidth: 96 * scaleFactor,
-    height: 42 * scaleFactor,
+    height: 48 * scaleFactor,
     alignItems: 'center' as const,
     justifyContent: 'center' as const,
     padding: 0,
@@ -33,7 +33,6 @@ export const getAddUserInputStyles = (scaleFactor: number) => ({
     alignItems: 'baseline' as const,
     justifyContent: 'flex-start' as const,
     height: 20 * scaleFactor,
-    margin: { top: 8 * scaleFactor, bottom: 12 * scaleFactor },
   },
   errorIcon: {
     width: 16 * scaleFactor,
@@ -46,23 +45,11 @@ export const getAddUserInputStyles = (scaleFactor: number) => ({
     margin: { bottom: 8 * scaleFactor },
     padding: {
       top: 4 * scaleFactor,
-      bottom: 4 * scaleFactor,
-      left: 12 * scaleFactor,
-      right: 12 * scaleFactor,
+      bottom: 8 * scaleFactor,
     },
-    width: 10000 * scaleFactor,
-  },
-  marginBottomSmall: {
-    margin: { bottom: 2 * scaleFactor },
   },
   marginBottomMedium: {
     margin: { bottom: 4 * scaleFactor },
-  },
-  marginBottomLarge: {
-    margin: { bottom: 12 * scaleFactor },
-  },
-  marginBottomXLarge: {
-    margin: { bottom: 16 * scaleFactor },
   },
 })
 
@@ -70,7 +57,7 @@ export const getAddUserInputColors = () => ({
   white: Color4.White(),
   black: Color4.Black(),
   red: Color4.Red(),
-  placeholder: Color4.create(160 / 255, 155 / 255, 168 / 255, 1),
+  pink: Color4.fromHexString('#FB3B3B'),
 })
 
 export const getAddUserInputBackgrounds = () => ({
@@ -87,5 +74,4 @@ export const getBanUserTextStyles = (scaleFactor: number) => ({
   fontSize: 14 * scaleFactor,
   color: Color4.White(),
   textAlign: 'top-left' as const,
-  textWrap: 'nowrap' as const,
 })
