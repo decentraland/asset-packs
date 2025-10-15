@@ -1,19 +1,22 @@
 import { Color4 } from '@dcl/ecs-math'
+import { UiTransformProps } from '@dcl/react-ecs'
 import { CONTENT_URL } from '../../constants'
 
 const ERROR_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/error.png`
 
-export const getAddUserInputStyles = (scaleFactor: number) => ({
+export const getAddUserInputStyles = (
+  scaleFactor: number,
+): Record<string, UiTransformProps> => ({
   container: {
-    display: 'flex' as const,
-    flexDirection: 'column' as const,
+    display: 'flex',
+    flexDirection: 'column',
     margin: { bottom: 8 * scaleFactor },
   },
   title: {
     margin: { bottom: 8 * scaleFactor },
   },
   input: {
-    width: '100%' as const,
+    width: '100%',
     borderWidth: 4 * scaleFactor,
     borderRadius: 8 * scaleFactor,
     height: 48 * scaleFactor,
@@ -22,17 +25,17 @@ export const getAddUserInputStyles = (scaleFactor: number) => ({
     margin: { left: 10 * scaleFactor },
     minWidth: 96 * scaleFactor,
     height: 48 * scaleFactor,
-    alignItems: 'center' as const,
-    justifyContent: 'center' as const,
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: 0,
   },
   errorContainer: {
-    width: '100%' as const,
-    display: 'flex' as const,
-    flexDirection: 'row' as const,
-    alignItems: 'baseline' as const,
-    justifyContent: 'flex-start' as const,
-    height: 20 * scaleFactor,
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    height: 'auto',
+    margin: { top: 4 * scaleFactor },
   },
   errorIcon: {
     width: 16 * scaleFactor,
@@ -40,8 +43,8 @@ export const getAddUserInputStyles = (scaleFactor: number) => ({
     margin: { right: 8 * scaleFactor },
   },
   bannedInfoContainer: {
-    display: 'flex' as const,
-    flexDirection: 'column' as const,
+    display: 'flex',
+    flexDirection: 'column',
     margin: { bottom: 8 * scaleFactor },
     padding: {
       top: 4 * scaleFactor,

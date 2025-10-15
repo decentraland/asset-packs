@@ -1,4 +1,5 @@
 import { Color4 } from '@dcl/ecs-math'
+import { UiTransformProps } from '@dcl/react-ecs'
 import { CONTENT_URL } from '../../constants'
 
 //TODO: rename to ORG
@@ -8,34 +9,36 @@ const ICONS = {
   BAN: `https://builder-items.decentraland.zone/admin_toolkit/assets/icons/ban.png`,
 }
 
-export const getModalStyles = (scaleFactor: number) => ({
+export const getModalStyles = (
+  scaleFactor: number,
+): Record<string, UiTransformProps> => ({
   overlay: {
-    width: '100%' as const,
-    height: '100%' as const,
-    positionType: 'absolute' as const,
-    display: 'flex' as const,
-    justifyContent: 'center' as const,
-    alignItems: 'center' as const,
-    flexDirection: 'row' as const,
+    width: '100%',
+    height: '100%',
+    positionType: 'absolute',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   container: {
     width: 675 * scaleFactor,
     maxHeight: 679 * scaleFactor,
     minHeight: 479 * scaleFactor,
     padding: 20 * scaleFactor,
-    display: 'flex' as const,
-    flexDirection: 'column' as const,
-    justifyContent: 'space-between' as const,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
     borderRadius: 12 * scaleFactor,
   },
   content: {
-    display: 'flex' as const,
-    flexDirection: 'column' as const,
+    display: 'flex',
+    flexDirection: 'column',
     flexGrow: 1,
   },
   header: {
-    justifyContent: 'flex-start' as const,
-    alignItems: 'center' as const,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     margin: { bottom: 24 * scaleFactor },
   },
   headerIcon: {
@@ -48,7 +51,7 @@ export const getModalStyles = (scaleFactor: number) => ({
   },
   closeButton: {
     position: { right: 0 },
-    positionType: 'absolute' as const,
+    positionType: 'absolute',
     borderColor: Color4.Clear(),
   },
   closeIcon: {
@@ -56,31 +59,31 @@ export const getModalStyles = (scaleFactor: number) => ({
     height: 32 * scaleFactor,
   },
   listContainer: {
-    flexDirection: 'column' as const,
-    width: '100%' as const,
+    flexDirection: 'column',
+    width: '100%',
     margin: { top: 16 * scaleFactor },
   },
   userItem: {
-    display: 'flex' as const,
-    flexDirection: 'column' as const,
+    display: 'flex',
+    flexDirection: 'column',
   },
   userRow: {
-    flexDirection: 'row' as const,
-    justifyContent: 'space-between' as const,
-    alignItems: 'center' as const,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     height: 48 * scaleFactor,
     padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
     margin: { top: 4 * scaleFactor, bottom: 4 * scaleFactor },
   },
   userInfo: {
-    display: 'flex' as const,
-    height: '100%' as const,
-    justifyContent: 'center' as const,
+    display: 'flex',
+    height: '100%',
+    justifyContent: 'center',
   },
   personIconContainer: {
-    display: 'flex' as const,
-    alignItems: 'center' as const,
-    justifyContent: 'center' as const,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     margin: { right: 10 * scaleFactor },
   },
   personIcon: {
@@ -88,23 +91,23 @@ export const getModalStyles = (scaleFactor: number) => ({
     height: 28 * scaleFactor,
   },
   userDetails: {
-    display: 'flex' as const,
-    flexDirection: 'column' as const,
-    justifyContent: 'center' as const,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
   nameContainer: {
-    display: 'flex' as const,
-    alignItems: 'center' as const,
+    display: 'flex',
+    alignItems: 'center',
   },
   verifiedIcon: {
     width: 14 * scaleFactor,
     height: 14 * scaleFactor,
   },
   roleBadge: {
-    display: 'flex' as const,
-    alignItems: 'center' as const,
-    justifyContent: 'center' as const,
-    width: 'auto' as const,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 'auto',
     height: 20 * scaleFactor,
     padding: {
       left: 4 * scaleFactor,
@@ -119,19 +122,19 @@ export const getModalStyles = (scaleFactor: number) => ({
     },
   },
   divider: {
-    width: '100%' as const,
+    width: '100%',
     height: 1,
   },
   pagination: {
-    flexDirection: 'row' as const,
-    justifyContent: 'space-between' as const,
-    alignItems: 'center' as const,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     margin: { top: 20 * scaleFactor },
     padding: { left: 10 * scaleFactor, right: 10 * scaleFactor },
   },
   paginationButton: {
     height: 42 * scaleFactor,
-    alignItems: 'center' as const,
+    alignItems: 'center',
   },
   prevIcon: {
     width: 25 * scaleFactor,
@@ -150,9 +153,9 @@ export const getModalStyles = (scaleFactor: number) => ({
     margin: { left: 10 * scaleFactor },
   },
   messageContainer: {
-    width: '100%' as const,
-    justifyContent: 'center' as const,
-    alignItems: 'center' as const,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
     margin: { top: 16 * scaleFactor },
   },
   messageLabel: {

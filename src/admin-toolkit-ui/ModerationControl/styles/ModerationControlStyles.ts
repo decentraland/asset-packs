@@ -1,16 +1,19 @@
 import { Color4 } from '@dcl/ecs-math'
+import { UiTransformProps } from '@dcl/react-ecs'
 
-export const getModerationControlStyles = (scaleFactor: number) => ({
+export const getModerationControlStyles = (
+  scaleFactor: number,
+): Record<string, UiTransformProps> => ({
   container: {
-    width: '100%' as const,
-    height: '100%' as const,
-    flexDirection: 'column' as const,
+    width: '100%',
+    height: '100%',
+    flexDirection: 'column',
   },
   viewListButton: {
     width: 220 * scaleFactor,
     height: 42 * scaleFactor,
-    alignItems: 'center' as const,
-    justifyContent: 'center' as const,
+    alignItems: 'center',
+    justifyContent: 'center',
     margin: { top: 16 * scaleFactor },
   },
   viewListIcon: {
@@ -20,7 +23,7 @@ export const getModerationControlStyles = (scaleFactor: number) => ({
   },
   divider: {
     margin: { top: 16 * scaleFactor, bottom: 16 * scaleFactor },
-    width: '100%' as const,
+    width: '100%',
     height: 1,
     borderWidth: 1,
     borderColor: Color4.fromHexString('#43404A'),
