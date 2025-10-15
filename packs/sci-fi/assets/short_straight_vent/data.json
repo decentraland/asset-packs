@@ -7,6 +7,17 @@
     "air",
     "vent",
     "straight",
-    "short"
-  ]
+    "short",
+    "airflow",
+    "cylindrical",
+    "duct",
+    "exhaust",
+    "fan",
+    "gas",
+    "pipe",
+    "stripe",
+    "tube",
+    "ventilation"
+  ],
+  "caption": "Cylindrical object with yellow stripe."
 }

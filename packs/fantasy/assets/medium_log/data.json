@@ -7,6 +7,20 @@
     "forest",
     "log",
     "wood",
-    "wooden"
-  ]
+    "wooden",
+    "branch",
+    "crack",
+    "foliage",
+    "leaves",
+    "natural",
+    "nature",
+    "organic",
+    "outdoor",
+    "roots",
+    "rustic",
+    "timber",
+    "tree",
+    "trunk"
+  ],
+  "caption": "Log with a visible crack."
 }

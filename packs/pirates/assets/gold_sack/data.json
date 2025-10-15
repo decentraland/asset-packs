@@ -11,6 +11,17 @@
     "sack",
     "coin",
     "coins",
-    "gold"
-  ]
+    "gold",
+    "bag",
+    "glittering",
+    "hoard",
+    "money",
+    "pouch",
+    "precious",
+    "riches",
+    "searchable",
+    "valuable",
+    "wealth"
+  ],
+  "caption": "Gold coins in a worn leather sack."
 }

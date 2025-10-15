@@ -6,8 +6,13 @@
     "fantasy",
     "white",
     "crystal",
-    "gem",
-    "gemstone",
-    "stone"
-  ]
+    "artifact",
+    "glow",
+    "glowing",
+    "luminescent",
+    "mystical",
+    "radiant",
+    "shape"
+  ],
+  "caption": "Black circle with white border."
 }

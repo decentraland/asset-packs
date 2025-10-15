@@ -13,6 +13,18 @@
     "city",
     "hour",
     "hours",
-    "post"
-  ]
+    "post",
+    "dial",
+    "display",
+    "faceplate",
+    "gauge",
+    "hourglass",
+    "indicator",
+    "marker",
+    "sundial",
+    "timepiece",
+    "timer",
+    "visor"
+  ],
+  "caption": "Vintage street clock with glowing face."
 }

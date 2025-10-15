@@ -8,9 +8,20 @@
     "pirates",
     "decorations",
     "brass",
-    "iron",
     "leather",
     "sword",
-    "weapon"
-  ]
+    "weapon",
+    "blade",
+    "combat",
+    "fighter",
+    "handle",
+    "hilt",
+    "scabbard",
+    "scimitar",
+    "sharp",
+    "sheath",
+    "steel",
+    "warrior"
+  ],
+  "caption": "Scimitar with yellow handle."
 }

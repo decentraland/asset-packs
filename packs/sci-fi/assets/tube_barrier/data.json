@@ -6,6 +6,17 @@
     "scifi",
     "guard",
     "wall",
-    "split"
-  ]
+    "split",
+    "barrier",
+    "caution",
+    "container",
+    "obstacle",
+    "roadblock",
+    "safety",
+    "shape",
+    "traffic",
+    "tube",
+    "warning"
+  ],
+  "caption": "Yellow tube-shaped barrier with black stripes."
 }

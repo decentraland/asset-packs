@@ -6,6 +6,17 @@
     "fantasy",
     "vase",
     "liquid",
-    "silver"
-  ]
+    "silver",
+    "appliance",
+    "cooking",
+    "electric",
+    "energy",
+    "glow",
+    "heat",
+    "illumination",
+    "kettle",
+    "power",
+    "steam"
+  ],
+  "caption": "Electric kettle with glowing blue light."
 }

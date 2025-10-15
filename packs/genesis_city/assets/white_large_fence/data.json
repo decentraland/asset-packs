@@ -15,6 +15,16 @@
     "garden",
     "backyard",
     "yard",
-    "farm"
-  ]
+    "farm",
+    "barrier",
+    "enclosure",
+    "fencepost",
+    "gate",
+    "picket",
+    "post",
+    "railing",
+    "slats",
+    "structure"
+  ],
+  "caption": "Long white fence with multiple vertical slats."
 }

@@ -2,5 +2,20 @@
   "id": "76c6300e-d786-4922-a54f-93b4c54021a3",
   "name": "Drawer 2",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "access",
+    "cabinet",
+    "closure",
+    "compartment",
+    "container",
+    "drawer",
+    "fixture",
+    "furniture",
+    "handle",
+    "hardware",
+    "mechanism",
+    "opening",
+    "storage"
+  ],
+  "caption": "Single-handle wooden drawer."
 }

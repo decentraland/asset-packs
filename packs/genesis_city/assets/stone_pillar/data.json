@@ -7,11 +7,25 @@
     "city",
     "town",
     "structures",
-    "stone",
     "pillar",
     "column",
     "garden",
     "park",
-    "wall"
-  ]
+    "wall",
+    "architecture",
+    "building",
+    "castle",
+    "defense",
+    "fortress",
+    "like",
+    "monument",
+    "monumental",
+    "monumentality",
+    "palace",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Tall, stone pillar."
 }

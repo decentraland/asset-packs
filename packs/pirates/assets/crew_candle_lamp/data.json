@@ -12,6 +12,17 @@
     "crew",
     "ship",
     "flagship",
-    "night"
-  ]
+    "night",
+    "ambiance",
+    "cozy",
+    "fixture",
+    "flame",
+    "glow",
+    "illumination",
+    "interior",
+    "lantern",
+    "room",
+    "warm"
+  ],
+  "caption": "Blue lantern with glowing candle."
 }

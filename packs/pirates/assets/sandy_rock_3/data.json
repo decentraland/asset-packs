@@ -7,12 +7,20 @@
     "paradise",
     "pirates",
     "nature",
-    "stone",
-    "stones",
     "rock",
     "rocks",
     "sand",
     "sandy",
-    "beach"
-  ]
+    "beach",
+    "boulder",
+    "earthy",
+    "geological",
+    "jagged",
+    "landscape",
+    "natural",
+    "rocky",
+    "rugged",
+    "terrain"
+  ],
+  "caption": "Brown rock with jagged edges."
 }

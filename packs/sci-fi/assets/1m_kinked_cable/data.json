@@ -7,6 +7,16 @@
     "energy",
     "power",
     "electricity",
-    "connectors"
-  ]
+    "connectors",
+    "appliance",
+    "cable",
+    "connector",
+    "electrical",
+    "fixture",
+    "hardware",
+    "kinked",
+    "utility",
+    "wire"
+  ],
+  "caption": "Kinked cable with yellow connector."
 }

@@ -9,6 +9,20 @@
     "wood",
     "wooden",
     "rope",
-    "sail"
-  ]
+    "sail",
+    "boat",
+    "cargo",
+    "dock",
+    "harbor",
+    "marine",
+    "nautical",
+    "ocean",
+    "pallet",
+    "sailing",
+    "ship",
+    "transport",
+    "vessel",
+    "water"
+  ],
+  "caption": "Wooden raft with sail on top."
 }

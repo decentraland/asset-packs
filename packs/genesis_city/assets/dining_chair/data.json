@@ -11,6 +11,17 @@
     "seat",
     "dining",
     "dinner",
-    "chair"
-  ]
+    "chair",
+    "comfort",
+    "desk",
+    "kitchen",
+    "maple",
+    "oak",
+    "office",
+    "pine",
+    "rest",
+    "seating",
+    "sitting"
+  ],
+  "caption": "Red leather armchair."
 }

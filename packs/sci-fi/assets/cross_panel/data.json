@@ -4,7 +4,14 @@
   "category": "structures",
   "tags": [
     "scifi",
-    "floor",
-    "tile"
-  ]
+    "tile",
+    "cross",
+    "emblem",
+    "graphic",
+    "graphics",
+    "panel",
+    "shape",
+    "visual"
+  ],
+  "caption": "Yellow cross with glowing screen."
 }

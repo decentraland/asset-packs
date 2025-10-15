@@ -8,8 +8,12 @@
     "town",
     "nature",
     "rock",
-    "stone",
     "rock",
-    "stones"
-  ]
+    "earthy",
+    "isolation",
+    "natural",
+    "pebble",
+    "terrain"
+  ],
+  "caption": "Brown pebble on plain green surface."
 }

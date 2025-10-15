@@ -11,6 +11,14 @@
     "sunshade",
     "garden",
     "beach",
-    "tent"
-  ]
+    "tent",
+    "canopy",
+    "desk",
+    "dining",
+    "furniture",
+    "kitchen",
+    "shape",
+    "table"
+  ],
+  "caption": "Blue table with green base."
 }

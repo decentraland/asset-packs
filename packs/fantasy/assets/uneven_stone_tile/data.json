@@ -5,7 +5,15 @@
   "tags": [
     "fantasy",
     "tile",
-    "stone",
-    "path"
-  ]
+    "path",
+    "earthy",
+    "flat",
+    "granite",
+    "marble",
+    "natural",
+    "rugged",
+    "terrain",
+    "uneven"
+  ],
+  "caption": "Uneven stone tile."
 }

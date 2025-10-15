@@ -6,7 +6,12 @@
     "fantasy",
     "tile",
     "cobblestone",
-    "stone",
-    "corner"
-  ]
+    "corner",
+    "architecture",
+    "building",
+    "path",
+    "pavement",
+    "structure"
+  ],
+  "caption": "Cobblestone tile with a sharp edge."
 }

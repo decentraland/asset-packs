@@ -9,10 +9,16 @@
     "decorations",
     "jewel",
     "jewels",
-    "gemstone",
     "jewellery",
     "gold",
     "golden",
-    "framed"
-  ]
+    "framed",
+    "adornment",
+    "beauty",
+    "jewelry",
+    "luxury",
+    "precious",
+    "valuable"
+  ],
+  "caption": "Purple gemstone."
 }

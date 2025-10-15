@@ -2,5 +2,9 @@
   "id": "32ff9402-7af2-4884-ab67-87a5ec8c502f",
   "name": "Roof - Lime 1Edge Small",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "roof",
+    "structure"
+  ],
+  "caption": "Lime green roof."
 }

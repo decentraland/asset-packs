@@ -2,5 +2,17 @@
   "id": "4390da75-f41d-4bc1-94c4-6d32612938e7",
   "name": "Roof - Grey Small",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architecture",
+    "building",
+    "defense",
+    "fortress",
+    "palace",
+    "protection",
+    "roof",
+    "royal",
+    "stronghold",
+    "structure"
+  ],
+  "caption": "Grey metal roof."
 }

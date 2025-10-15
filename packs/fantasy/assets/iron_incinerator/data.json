@@ -4,8 +4,18 @@
   "category": "decorations",
   "tags": [
     "fantasy",
-    "iron",
     "incinerator",
-    "fire"
-  ]
+    "fire",
+    "burning",
+    "combustion",
+    "flame",
+    "forge",
+    "furnace",
+    "heat",
+    "industrial",
+    "kiln",
+    "smelter",
+    "smoke"
+  ],
+  "caption": "Industrial furnace for burning materials."
 }

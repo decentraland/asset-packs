@@ -6,6 +6,12 @@
     "scifi",
     "dock",
     "port",
-    "metal"
-  ]
+    "metal",
+    "flat",
+    "outline",
+    "rectangle",
+    "shape",
+    "straight"
+  ],
+  "caption": "Red border platform."
 }

@@ -4,8 +4,16 @@
   "category": "structures",
   "tags": [
     "fantasy",
-    "stone",
     "block",
-    "column"
-  ]
+    "column",
+    "architectural",
+    "artifact",
+    "building",
+    "historical",
+    "monument",
+    "monumentality",
+    "relic",
+    "structure"
+  ],
+  "caption": "Stone column."
 }

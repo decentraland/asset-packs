@@ -7,6 +7,19 @@
     "holy",
     "water",
     "empty",
-    "reservoir"
-  ]
+    "reservoir",
+    "aquatic",
+    "band",
+    "clear",
+    "container",
+    "fluid",
+    "glassy",
+    "lake",
+    "liquid",
+    "ocean",
+    "reflective",
+    "river",
+    "shiny"
+  ],
+  "caption": "Empty holy water reservoir with blue and orange stripes."
 }

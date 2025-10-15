@@ -5,8 +5,16 @@
   "tags": [
     "scifi",
     "vent",
-    "round",
     "grey",
-    "air"
-  ]
+    "air",
+    "airflow",
+    "cover",
+    "grille",
+    "hole",
+    "opening",
+    "panel",
+    "seal",
+    "ventilation"
+  ],
+  "caption": "Circular vent cover with central hole."
 }

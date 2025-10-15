@@ -2,5 +2,16 @@
   "id": "ae9037fd-cfa0-4012-b3a5-d006d8f5cc9e",
   "name": "Stone - Diamond",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architecture",
+    "block",
+    "building",
+    "crystal",
+    "diamond",
+    "jewel",
+    "luxury",
+    "precious",
+    "sparkling"
+  ],
+  "caption": "Blue crystal block with glowing diamonds."
 }

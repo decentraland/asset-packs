@@ -12,6 +12,14 @@
     "flag",
     "skull",
     "paint",
-    "painted"
-  ]
+    "painted",
+    "banner",
+    "crest",
+    "emblem",
+    "flagpole",
+    "nautical",
+    "pennant",
+    "pole"
+  ],
+  "caption": "Skull-adorned black flag on wooden pole."
 }

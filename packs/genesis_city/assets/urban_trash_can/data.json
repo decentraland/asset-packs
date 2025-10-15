@@ -9,8 +9,17 @@
     "decoration",
     "trash",
     "garbage",
-    "can",
     "street",
-    "city"
-  ]
+    "city",
+    "bin",
+    "container",
+    "dumpster",
+    "handle",
+    "outdoor",
+    "receptacle",
+    "recycling",
+    "urban",
+    "waste"
+  ],
+  "caption": "Abandoned urban trash can."
 }

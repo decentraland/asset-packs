@@ -6,8 +6,13 @@
     "fantasy",
     "ornament",
     "wall",
-    "gem",
-    "gemstone",
-    "stone"
-  ]
+    "adornment",
+    "crystal",
+    "elegance",
+    "jewelry",
+    "luxury",
+    "shine",
+    "sparkle"
+  ],
+  "caption": "Black gemstone ornament."
 }

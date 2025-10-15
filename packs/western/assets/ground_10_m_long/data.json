@@ -2,5 +2,15 @@
   "id": "845adf39-cf21-44b7-a1a5-4ad4e87cb521",
   "name": "Ground 10 M Long",
   "category": "tiles",
-  "tags": []
+  "tags": [
+    "cardboard",
+    "hue",
+    "landscape",
+    "natural",
+    "organic",
+    "outdoor",
+    "paper",
+    "terrain"
+  ],
+  "caption": "Old newspaper with yellow tint."
 }

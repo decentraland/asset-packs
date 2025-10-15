@@ -10,6 +10,17 @@
     "gold",
     "golden",
     "coin",
-    "coins"
-  ]
+    "coins",
+    "collectible",
+    "currency",
+    "hoard",
+    "loot",
+    "money",
+    "pieces",
+    "precious",
+    "riches",
+    "valuable",
+    "wealth"
+  ],
+  "caption": "Golden coins."
 }

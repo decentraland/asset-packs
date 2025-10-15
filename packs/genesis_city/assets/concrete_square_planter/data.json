@@ -11,6 +11,13 @@
     "container",
     "flower",
     "flowers",
-    "concrete"
-  ]
+    "concrete",
+    "garden",
+    "hole",
+    "outdoor",
+    "plant",
+    "storage",
+    "vessel"
+  ],
+  "caption": "Gray planter with hole for planting."
 }

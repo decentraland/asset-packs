@@ -7,6 +7,12 @@
     "lantern",
     "light",
     "gauze",
-    "red"
-  ]
+    "red",
+    "candle",
+    "cover",
+    "fabric",
+    "shade",
+    "textile"
+  ],
+  "caption": "Red lantern with yellow gauze cover."
 }

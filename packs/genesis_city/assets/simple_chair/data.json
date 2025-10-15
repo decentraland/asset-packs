@@ -10,6 +10,17 @@
     "wood",
     "seat",
     "simple",
-    "chair"
-  ]
+    "chair",
+    "backrest",
+    "comfort",
+    "dining",
+    "interior",
+    "kitchen",
+    "office",
+    "rest",
+    "room",
+    "sitting",
+    "space"
+  ],
+  "caption": "Red leather armchair."
 }

@@ -5,6 +5,17 @@
   "tags": [
     "scifi",
     "alien",
-    "base"
-  ]
+    "architecture",
+    "building",
+    "corridor",
+    "entrance",
+    "exit",
+    "facade",
+    "interior",
+    "passage",
+    "room",
+    "space",
+    "structure"
+  ],
+  "caption": "Short hallway with a single door."
 }

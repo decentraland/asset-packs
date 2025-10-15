@@ -8,8 +8,13 @@
     "pirates",
     "tiles",
     "cobblestones",
-    "stone",
-    "stones",
-    "path"
-  ]
+    "path",
+    "foundation",
+    "granite",
+    "marble",
+    "monument",
+    "slab",
+    "tile"
+  ],
+  "caption": "Stone slab tile."
 }

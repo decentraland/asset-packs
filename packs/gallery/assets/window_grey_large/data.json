@@ -2,5 +2,19 @@
   "id": "8747c56a-6f21-4ea1-90f2-f2130bd681b3",
   "name": "Window - Grey Large",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "brightness",
+    "colour",
+    "darkened",
+    "glass",
+    "greyish",
+    "hue",
+    "illumination",
+    "opaque",
+    "pane",
+    "shaded",
+    "tinted",
+    "window"
+  ],
+  "caption": "Grey framed window."
 }

@@ -10,6 +10,13 @@
     "post",
     "umbrella",
     "cafe",
-    "city"
-  ]
+    "city",
+    "canopy",
+    "outdoor",
+    "rain",
+    "shade",
+    "shelter",
+    "weather"
+  ],
+  "caption": "Black umbrella with a sturdy handle."
 }

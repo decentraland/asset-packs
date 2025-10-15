@@ -12,6 +12,18 @@
     "residential",
     "yard",
     "house",
-    "postman"
-  ]
+    "postman",
+    "building",
+    "delivery",
+    "dwelling",
+    "exterior",
+    "home",
+    "mailbox",
+    "outdoor",
+    "post",
+    "postal",
+    "residence",
+    "roof"
+  ],
+  "caption": "Red mailbox on green background."
 }

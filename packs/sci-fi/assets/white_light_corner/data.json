@@ -6,7 +6,16 @@
     "scifi",
     "power",
     "spark",
-    "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "beam",
+    "brightness",
+    "glow",
+    "illuminant",
+    "illumination",
+    "luminous",
+    "radiance",
+    "radiant",
+    "shine"
+  ],
+  "caption": "White glowing corner lamp."
 }

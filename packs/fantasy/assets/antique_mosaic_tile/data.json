@@ -6,6 +6,14 @@
     "fantasy",
     "tile",
     "mosaic",
-    "marble"
-  ]
+    "marble",
+    "antique",
+    "art",
+    "artifact",
+    "collectible",
+    "historical",
+    "mosaicart",
+    "relic"
+  ],
+  "caption": "Antique mosaic tile."
 }

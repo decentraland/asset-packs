@@ -12,6 +12,16 @@
     "metal",
     "city",
     "limit",
-    "limits"
-  ]
+    "limits",
+    "barrier",
+    "boundary",
+    "building",
+    "enclosure",
+    "gate",
+    "grid",
+    "post",
+    "railing",
+    "structure"
+  ],
+  "caption": "Metal fence with barbed wire."
 }

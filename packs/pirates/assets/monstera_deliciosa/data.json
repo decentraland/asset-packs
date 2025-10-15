@@ -11,6 +11,17 @@
     "beach",
     "foliage",
     "plant",
-    "plants"
-  ]
+    "plants",
+    "botanical",
+    "damage",
+    "decay",
+    "flora",
+    "hole",
+    "leaf",
+    "leafy",
+    "monstera",
+    "natural",
+    "organic"
+  ],
+  "caption": "Monstera leaf with a hole."
 }

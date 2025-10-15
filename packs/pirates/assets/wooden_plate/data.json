@@ -11,6 +11,15 @@
     "wooden",
     "cooking",
     "dish",
-    "meal"
-  ]
+    "meal",
+    "brownish",
+    "ceramic",
+    "earthy",
+    "furniture",
+    "natural",
+    "plate",
+    "rustic",
+    "tableware"
+  ],
+  "caption": "Woody wooden plate."
 }

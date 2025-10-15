@@ -9,9 +9,17 @@
     "decorations",
     "wood",
     "wooden",
-    "iron",
     "spear",
     "leather",
-    "weapon"
-  ]
+    "weapon",
+    "battle",
+    "combat",
+    "hunting",
+    "pointy",
+    "shaft",
+    "sharp",
+    "spearhead",
+    "string"
+  ],
+  "caption": "Red string attached to a spear."
 }

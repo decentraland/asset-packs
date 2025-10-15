@@ -13,6 +13,16 @@
     "coingecko",
     "decentraland",
     "crypto",
-    "logo"
-  ]
+    "logo",
+    "animal",
+    "bronze",
+    "collectible",
+    "creature",
+    "figurine",
+    "mythical",
+    "reptile",
+    "sculpture",
+    "statue"
+  ],
+  "caption": "Gecko statue with glowing eyes."
 }

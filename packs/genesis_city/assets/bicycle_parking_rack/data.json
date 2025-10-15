@@ -11,6 +11,20 @@
     "bike",
     "park",
     "hipster",
-    "Netherlands"
-  ]
+    "Netherlands",
+    "building",
+    "cycle",
+    "cycling",
+    "facility",
+    "highway",
+    "infrastructure",
+    "parking",
+    "pedal",
+    "rack",
+    "sport",
+    "structure",
+    "transportation",
+    "urban"
+  ],
+  "caption": "Bicycle parking rack."
 }

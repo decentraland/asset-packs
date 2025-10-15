@@ -10,6 +10,18 @@
     "wood",
     "wooden",
     "seat",
-    "round"
-  ]
+    "backrest",
+    "chair",
+    "comfort",
+    "desk",
+    "dining",
+    "kitchen",
+    "natural",
+    "office",
+    "outdoor",
+    "rest",
+    "rustic",
+    "sitting"
+  ],
+  "caption": "Wooden stool with natural finish."
 }

@@ -12,6 +12,17 @@
     "dock",
     "pillar",
     "pillars",
-    "old"
-  ]
+    "old",
+    "building",
+    "fortress",
+    "missing",
+    "module",
+    "palace",
+    "plank",
+    "planks",
+    "royal",
+    "stronghold",
+    "structure"
+  ],
+  "caption": "Dock module with missing planks."
 }

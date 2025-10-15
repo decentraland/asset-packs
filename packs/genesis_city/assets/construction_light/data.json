@@ -9,6 +9,15 @@
     "furniture",
     "construction",
     "light",
-    "lighting"
-  ]
+    "building",
+    "camera",
+    "landscape",
+    "outdoor",
+    "photography",
+    "site",
+    "tripod",
+    "utility",
+    "work"
+  ],
+  "caption": "Yellow tripod with camera on top."
 }

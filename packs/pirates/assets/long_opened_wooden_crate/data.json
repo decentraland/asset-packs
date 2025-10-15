@@ -11,6 +11,12 @@
     "wooden",
     "crate",
     "box",
-    "open"
-  ]
+    "open",
+    "container",
+    "furniture",
+    "seating",
+    "storage",
+    "vessel"
+  ],
+  "caption": "Large wooden crate on the ground."
 }

@@ -2,5 +2,17 @@
   "id": "c2b3ad02-f078-4f12-9f0b-f050ac810202",
   "name": "Mines Car Track 1M",
   "category": "structures",
-  "tags": []
+  "tags": [
+    "beam",
+    "board",
+    "carpentry",
+    "construction",
+    "furniture",
+    "nail",
+    "plank",
+    "rail",
+    "timber",
+    "track"
+  ],
+  "caption": "Wooden plank with two exposed nails."
 }

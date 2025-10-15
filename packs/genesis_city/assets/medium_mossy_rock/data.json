@@ -9,10 +9,16 @@
     "nature",
     "rock",
     "rocks",
-    "stone",
-    "stones",
     "forest",
     "moss",
-    "mossy"
-  ]
+    "mossy",
+    "earthy",
+    "foliage",
+    "growth",
+    "natural",
+    "outdoor",
+    "terrain",
+    "vegetation"
+  ],
+  "caption": "Rock covered in green moss."
 }

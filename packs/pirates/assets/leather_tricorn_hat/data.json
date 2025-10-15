@@ -11,6 +11,16 @@
     "hat",
     "red",
     "golden",
-    "strips"
-  ]
+    "strips",
+    "attire",
+    "brim",
+    "clothing",
+    "costume",
+    "fashion",
+    "headgear",
+    "historical",
+    "nobility",
+    "tricorn"
+  ],
+  "caption": "Red tricorn hat with black brim."
 }

@@ -7,6 +7,16 @@
     "energy",
     "power",
     "electricity",
-    "connectors"
-  ]
+    "connectors",
+    "adapter",
+    "appliance",
+    "cable",
+    "connector",
+    "cord",
+    "function",
+    "hardware",
+    "plug",
+    "utility"
+  ],
+  "caption": "Orange and black cable adapter."
 }

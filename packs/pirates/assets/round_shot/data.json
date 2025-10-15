@@ -7,12 +7,18 @@
     "paradise",
     "pirates",
     "decorations",
-    "iron",
     "sphere",
-    "round",
     "rounded",
     "ammunition",
     "shot",
-    "cannon"
-  ]
+    "cannon",
+    "appearance",
+    "ball",
+    "globe",
+    "orb",
+    "shape",
+    "spherical",
+    "visual"
+  ],
+  "caption": "Spherical object with textured surface."
 }

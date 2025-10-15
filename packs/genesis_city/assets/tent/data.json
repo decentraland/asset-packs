@@ -9,6 +9,18 @@
     "structures",
     "tent",
     "camping",
-    "forest"
-  ]
+    "forest",
+    "canopy",
+    "canvas",
+    "fabric",
+    "fabricate",
+    "fabricated",
+    "outdoor",
+    "pitched",
+    "poles",
+    "shelter",
+    "structure",
+    "tented"
+  ],
+  "caption": "Blue tent with wooden poles."
 }

@@ -2,5 +2,12 @@
   "id": "aa028663-0f32-4467-b501-2ad4d6783dee",
   "name": "Wall - DiagonalBoard",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "board",
+    "diagonal",
+    "flat",
+    "panel",
+    "structure"
+  ],
+  "caption": "Diagonal board panel."
 }

@@ -5,6 +5,17 @@
   "tags": [
     "scifi",
     "tile",
-    "planet"
-  ]
+    "planet",
+    "desert",
+    "earthy",
+    "fiery",
+    "glow",
+    "heat",
+    "rocky",
+    "sand",
+    "sun",
+    "terrain",
+    "warm"
+  ],
+  "caption": "Orange planetary terrain."
 }

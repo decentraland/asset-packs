@@ -7,6 +7,15 @@
     "mushroom",
     "herb",
     "forest",
-    "ingredient"
-  ]
+    "ingredient",
+    "crystal",
+    "cut",
+    "faceted",
+    "jewel",
+    "luxury",
+    "precious",
+    "sparkling",
+    "valuable"
+  ],
+  "caption": "Green gemstone with faceted surface."
 }

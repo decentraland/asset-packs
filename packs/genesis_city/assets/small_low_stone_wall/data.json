@@ -7,12 +7,25 @@
     "city",
     "town",
     "structures",
-    "stone",
     "rail",
     "railing",
     "fence",
     "fences",
     "garden",
-    "park"
-  ]
+    "park",
+    "architecture",
+    "barrier",
+    "building",
+    "castle",
+    "defense",
+    "fortification",
+    "fortress",
+    "monument",
+    "palace",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Stone wall."
 }

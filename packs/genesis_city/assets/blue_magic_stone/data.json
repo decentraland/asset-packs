@@ -10,8 +10,11 @@
     "blue",
     "rock",
     "rocks",
-    "stone",
-    "stones",
-    "magic"
-  ]
+    "magic",
+    "artifact",
+    "mysterious",
+    "mystical",
+    "relic"
+  ],
+  "caption": "Blue magic symbol on ancient brown stone."
 }

@@ -5,10 +5,16 @@
   "tags": [
     "fantasy",
     "nature",
-    "stone",
-    "stones",
     "rock",
     "rocks",
-    "forest"
-  ]
+    "forest",
+    "boulder",
+    "chunk",
+    "fragment",
+    "jagged",
+    "mineral",
+    "rocky",
+    "rough"
+  ],
+  "caption": "Black, jagged rock with rough surface."
 }

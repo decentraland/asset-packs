@@ -11,6 +11,17 @@
     "beach",
     "foliage",
     "plant",
-    "plants"
-  ]
+    "plants",
+    "bush",
+    "flora",
+    "herb",
+    "jungle",
+    "leaves",
+    "outdoor",
+    "shrub",
+    "shrubbery",
+    "tropical",
+    "vegetation"
+  ],
+  "caption": "Green plant with multiple leaves."
 }

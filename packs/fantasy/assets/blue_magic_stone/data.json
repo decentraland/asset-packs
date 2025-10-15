@@ -6,8 +6,13 @@
     "fantasy",
     "blue",
     "crystal",
-    "gem",
-    "gemstone",
-    "stone"
-  ]
+    "artifact",
+    "collectible",
+    "enchanted",
+    "mysterious",
+    "mystical",
+    "powerful",
+    "spell"
+  ],
+  "caption": "Blue glowing magic stone."
 }

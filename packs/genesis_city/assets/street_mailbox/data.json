@@ -11,6 +11,17 @@
     "box",
     "street",
     "city",
-    "postman"
-  ]
+    "postman",
+    "container",
+    "delivery",
+    "letter",
+    "mailbox",
+    "postal",
+    "postalbox",
+    "postbox",
+    "receptacle",
+    "slot",
+    "stationery"
+  ],
+  "caption": "Blue mailbox with a letter slot."
 }

@@ -2,5 +2,12 @@
   "id": "1f9097e6-bfcf-4e55-a7c3-2f2e7375c96f",
   "name": "Window - White Large",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "glass",
+    "interface",
+    "opaque",
+    "visual",
+    "window"
+  ],
+  "caption": "White window with dark frame."
 }

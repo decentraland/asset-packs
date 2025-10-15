@@ -12,6 +12,15 @@
     "market",
     "fruit",
     "fruits",
-    "edible"
-  ]
+    "edible",
+    "arrangement",
+    "basket",
+    "bowl",
+    "cart",
+    "display",
+    "selection",
+    "shop",
+    "vendor"
+  ],
+  "caption": "Fresh fruit stand."
 }

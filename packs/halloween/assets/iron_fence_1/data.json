@@ -2,5 +2,13 @@
   "id": "b42bb7e3-19a3-4535-94ba-07735298d5d9",
   "name": "Iron Fence 1",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "barrier",
+    "boundary",
+    "enclosure",
+    "grid",
+    "security",
+    "wire"
+  ],
+  "caption": "Black wire fence with six vertical bars."
 }

@@ -12,6 +12,21 @@
     "fish",
     "crate",
     "fabric",
-    "blanket"
-  ]
+    "blanket",
+    "boat",
+    "coastal",
+    "dock",
+    "fishing",
+    "harbor",
+    "marine",
+    "market",
+    "merchant",
+    "nautical",
+    "ocean",
+    "rustic",
+    "sailing",
+    "seafood",
+    "ship"
+  ],
+  "caption": "Fish stand made of wood."
 }

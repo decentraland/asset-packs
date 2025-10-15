@@ -6,6 +6,16 @@
     "scifi",
     "box",
     "storage",
-    "safe"
-  ]
+    "safe",
+    "chamber",
+    "compartment",
+    "container",
+    "key",
+    "lock",
+    "riches",
+    "secure",
+    "sleek",
+    "vault"
+  ],
+  "caption": "Vault with glowing screen and multiple compartments."
 }

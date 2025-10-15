@@ -2,5 +2,18 @@
   "id": "4061ae67-07ea-448e-b5f5-a004ca3f018e",
   "name": "Fence Wood V5 1",
   "category": "structures",
-  "tags": []
+  "tags": [
+    "barrier",
+    "boundary",
+    "enclosure",
+    "landscape",
+    "natural",
+    "nature",
+    "outdoor",
+    "rustic",
+    "searchable",
+    "slats",
+    "terrain"
+  ],
+  "caption": "Wooden fence featuring vertical slats."
 }

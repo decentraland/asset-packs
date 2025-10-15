@@ -6,6 +6,17 @@
     "structures",
     "archway",
     "wood",
-    "gate"
-  ]
+    "gate",
+    "architecture",
+    "building",
+    "doorway",
+    "entrance",
+    "japanese",
+    "kindness",
+    "monument",
+    "roof",
+    "structure",
+    "supports"
+  ],
+  "caption": "Red japanese archway with black supports."
 }

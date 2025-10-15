@@ -6,6 +6,15 @@
     "genesis",
     "city",
     "town",
-    "ground"
-  ]
+    "desert",
+    "dots",
+    "dust",
+    "grain",
+    "sand",
+    "sandy",
+    "scatter",
+    "speckle",
+    "terrain"
+  ],
+  "caption": "Yellow sandy terrain with scattered dots."
 }

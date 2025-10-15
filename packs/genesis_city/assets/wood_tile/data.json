@@ -14,6 +14,13 @@
     "backyard",
     "yard",
     "tile",
-    "deck"
-  ]
+    "deck",
+    "building",
+    "furniture",
+    "grain",
+    "interior",
+    "room",
+    "structure"
+  ],
+  "caption": "Wooden tile with smooth surface."
 }

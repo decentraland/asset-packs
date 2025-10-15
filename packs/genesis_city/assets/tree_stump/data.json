@@ -14,6 +14,17 @@
     "garden",
     "backyard",
     "yard",
-    "log"
-  ]
+    "log",
+    "branch",
+    "foliage",
+    "hollow",
+    "leaves",
+    "oak",
+    "outdoor",
+    "roots",
+    "rustic",
+    "stump",
+    "trunk"
+  ],
+  "caption": "Rough-hewn wooden stump."
 }

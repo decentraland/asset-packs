@@ -13,6 +13,20 @@
     "rope",
     "ropes",
     "pillar",
-    "pillars"
-  ]
+    "pillars",
+    "arch",
+    "bridge",
+    "cable",
+    "construction",
+    "crossing",
+    "handrail",
+    "landscape",
+    "pathway",
+    "planks",
+    "pulley",
+    "river",
+    "rustic",
+    "span"
+  ],
+  "caption": "Wooden rope bridge spanning a chasm."
 }

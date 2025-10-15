@@ -6,6 +6,17 @@
     "scifi",
     "cosmic",
     "hole",
-    "planet"
-  ]
+    "planet",
+    "ally",
+    "crater",
+    "earth",
+    "formation",
+    "geological",
+    "hill",
+    "landscape",
+    "mound",
+    "shape",
+    "terrain"
+  ],
+  "caption": "Red, crater-like dome with smooth surface."
 }

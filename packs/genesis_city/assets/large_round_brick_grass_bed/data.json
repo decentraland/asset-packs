@@ -10,6 +10,13 @@
     "decoration",
     "grass",
     "brick",
-    "bricks"
-  ]
+    "bricks",
+    "field",
+    "landscape",
+    "lawn",
+    "meadow",
+    "outdoor",
+    "terrain"
+  ],
+  "caption": "A brick on the ground."
 }

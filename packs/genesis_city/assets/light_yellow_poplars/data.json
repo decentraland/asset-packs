@@ -14,6 +14,17 @@
     "park",
     "garden",
     "backyard",
-    "yard"
-  ]
+    "yard",
+    "branch",
+    "foliage",
+    "leaves",
+    "natural",
+    "organic",
+    "outdoor",
+    "poplar",
+    "roots",
+    "sunlight",
+    "trunk"
+  ],
+  "caption": "A tree with yellow leaves."
 }

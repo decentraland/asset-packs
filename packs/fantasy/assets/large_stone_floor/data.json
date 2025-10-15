@@ -4,9 +4,13 @@
   "category": "tiles",
   "tags": [
     "fantasy",
-    "stone",
-    "floor",
     "path",
-    "tile"
-  ]
+    "tile",
+    "architectural",
+    "building",
+    "earthy",
+    "natural",
+    "structure"
+  ],
+  "caption": "Stone floor texture."
 }

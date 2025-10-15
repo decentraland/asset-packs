@@ -6,8 +6,22 @@
     "fantasy",
     "wood",
     "wooden",
-    "sit",
     "stool",
-    "circular"
-  ]
+    "circular",
+    "chair",
+    "comfort",
+    "desk",
+    "dining",
+    "furniture",
+    "kitchen",
+    "maple",
+    "oak",
+    "office",
+    "pine",
+    "rest",
+    "seat",
+    "seating",
+    "sitting"
+  ],
+  "caption": "Wooden stool with a flat top."
 }

@@ -11,6 +11,14 @@
     "sidewalk",
     "curb",
     "curbs",
-    "city"
-  ]
+    "city",
+    "architecture",
+    "asphalt",
+    "building",
+    "concrete",
+    "pavement",
+    "structure",
+    "urban"
+  ],
+  "caption": "Street curb."
 }

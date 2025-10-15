@@ -2,5 +2,16 @@
   "id": "06d9804d-51d5-4857-b022-cefbf1b7398f",
   "name": "TNT",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "alert",
+    "detonate",
+    "explosive",
+    "hazardous",
+    "lettering",
+    "signage",
+    "tnt",
+    "toxic",
+    "warning"
+  ],
+  "caption": "Tnt written in white on a glowing cube."
 }

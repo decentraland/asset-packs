@@ -12,6 +12,15 @@
     "treasure",
     "chest",
     "lootbox",
-    "loot"
-  ]
+    "loot",
+    "container",
+    "drum",
+    "handle",
+    "riches",
+    "storage",
+    "tank",
+    "trunk",
+    "vessel"
+  ],
+  "caption": "Treasure chest with handle."
 }

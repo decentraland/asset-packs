@@ -2,5 +2,20 @@
   "id": "dc4f8ff2-1f2a-47cc-937a-d48dda62578a",
   "name": "Window 2x4 V3 B Open",
   "category": "structures",
-  "tags": []
+  "tags": [
+    "aperture",
+    "backdrop",
+    "blackness",
+    "evening",
+    "glass",
+    "night",
+    "opening",
+    "shadow",
+    "shutter",
+    "shuttered",
+    "silhouette",
+    "window",
+    "windowpane"
+  ],
+  "caption": "Open window on."
 }

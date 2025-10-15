@@ -7,9 +7,19 @@
     "paradise",
     "pirates",
     "decorations",
-    "iron",
     "soup",
     "meal",
-    "stew"
-  ]
+    "stew",
+    "brew",
+    "cauldron",
+    "caustic",
+    "container",
+    "cooking",
+    "handle",
+    "kitchen",
+    "pot",
+    "potion",
+    "vessel"
+  ],
+  "caption": "Cauldron with glowing red liquid inside."
 }

@@ -2,5 +2,12 @@
   "id": "d88c0589-ae81-4a6a-b377-70503e170856",
   "name": "Floor - Pebble",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "earthy",
+    "landscape",
+    "natural",
+    "pebble",
+    "terrain"
+  ],
+  "caption": "Three-patterned pebble floor."
 }

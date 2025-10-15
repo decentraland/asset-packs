@@ -5,9 +5,21 @@
   "tags": [
     "fantasy",
     "fence",
-    "iron",
-    "stone",
     "module",
-    "end"
-  ]
+    "end",
+    "architecture",
+    "barrier",
+    "building",
+    "castle",
+    "defense",
+    "fortification",
+    "fortress",
+    "gate",
+    "palace",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Iron and stone fence section."
 }

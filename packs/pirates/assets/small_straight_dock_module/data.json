@@ -11,6 +11,17 @@
     "wooden",
     "dock",
     "pillar",
-    "pillars"
-  ]
+    "pillars",
+    "building",
+    "castle",
+    "defense",
+    "fortress",
+    "module",
+    "palace",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Dock module with a wooden top."
 }

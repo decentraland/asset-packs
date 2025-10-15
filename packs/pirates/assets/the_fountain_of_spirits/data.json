@@ -7,10 +7,22 @@
     "paradise",
     "pirates",
     "structures",
-    "stone",
     "water",
     "tiered",
     "fountain",
-    "plaza"
-  ]
+    "plaza",
+    "aquatic",
+    "architectural",
+    "basin",
+    "flowing",
+    "fluid",
+    "interest",
+    "lake",
+    "liquid",
+    "ocean",
+    "pool",
+    "river",
+    "sculpture"
+  ],
+  "caption": "Fountain with flowing water in."
 }

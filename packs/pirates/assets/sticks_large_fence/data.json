@@ -11,6 +11,16 @@
     "wooden",
     "dock",
     "stick",
-    "sticks"
-  ]
+    "sticks",
+    "barrier",
+    "branch",
+    "foliage",
+    "nature",
+    "outdoor",
+    "pole",
+    "rustic",
+    "structure",
+    "trunk"
+  ],
+  "caption": "Brown stick fence."
 }

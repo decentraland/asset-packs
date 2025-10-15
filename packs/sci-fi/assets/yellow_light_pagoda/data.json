@@ -6,7 +6,16 @@
     "scifi",
     "power",
     "spark",
-    "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "architecture",
+    "building",
+    "fortress",
+    "pagoda",
+    "palace",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Yellow pagoda with glowing top."
 }

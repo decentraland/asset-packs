@@ -10,6 +10,14 @@
     "cafe",
     "street",
     "city",
-    "sign"
-  ]
+    "sign",
+    "chalkboard",
+    "colored",
+    "easel",
+    "lines",
+    "outdoor",
+    "restaurant",
+    "shapes"
+  ],
+  "caption": "Chalkboard sign with colorful sections on easel."
 }

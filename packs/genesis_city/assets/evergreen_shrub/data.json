@@ -11,7 +11,17 @@
     "park",
     "garden",
     "forest",
-    "mountain",
-    "shrub"
-  ]
+    "shrub",
+    "animal",
+    "creature",
+    "flora",
+    "foliage",
+    "greenery",
+    "landscape",
+    "leafy",
+    "outdoor",
+    "plant",
+    "vegetation"
+  ],
+  "caption": ""
 }

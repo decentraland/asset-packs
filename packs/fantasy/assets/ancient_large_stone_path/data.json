@@ -6,11 +6,19 @@
     "fantasy",
     "nature",
     "tile",
-    "stone",
-    "stones",
     "rock",
     "rocks",
     "forest",
-    "path"
-  ]
+    "path",
+    "architecture",
+    "building",
+    "historical",
+    "landmark",
+    "monument",
+    "pathway",
+    "pavement",
+    "ruins",
+    "structure"
+  ],
+  "caption": "Stone path in a ruined village."
 }

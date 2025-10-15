@@ -7,7 +7,15 @@
     "lamp",
     "ceiling",
     "witch",
-    "gem",
-    "gemstone"
-  ]
+    "ambiance",
+    "fixture",
+    "glow",
+    "hanging",
+    "interior",
+    "lantern",
+    "room",
+    "string",
+    "warm"
+  ],
+  "caption": "Wooden lantern with glowing red light."
 }

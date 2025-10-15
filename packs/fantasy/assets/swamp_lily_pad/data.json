@@ -6,6 +6,22 @@
     "fantasy",
     "swamp",
     "forest",
-    "water"
-  ]
+    "water",
+    "aquatic",
+    "bloom",
+    "botanical",
+    "colorful",
+    "flower",
+    "fluid",
+    "foliage",
+    "garden",
+    "lake",
+    "leafy",
+    "lily",
+    "liquid",
+    "nature",
+    "ocean",
+    "petal"
+  ],
+  "caption": "Lily pad."
 }

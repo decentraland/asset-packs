@@ -11,6 +11,18 @@
     "wooden",
     "wheel",
     "ship",
-    "flagship"
-  ]
+    "flagship",
+    "control",
+    "driving",
+    "gear",
+    "handle",
+    "mechanism",
+    "rotate",
+    "spin",
+    "steering",
+    "transportation",
+    "turn",
+    "vehicle"
+  ],
+  "caption": "Vintage steering wheel with attachments."
 }
