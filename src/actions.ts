@@ -70,6 +70,7 @@ import { initTriggers, damageTargets, healTargets } from './triggers'
 import { followMap } from './transform'
 import { getEasingFunctionFromInterpolation } from './tweens'
 import { REWARDS_SERVER_URL } from './admin-toolkit-ui/constants'
+import type { TextureMovementType as SdkTextureMovementType } from '@dcl/ecs/dist/components/generated/pb/decentraland/sdk/components/tween.gen'
 
 const initedEntities = new Set<Entity>()
 const uiStacks = new Map<string, Entity>()
@@ -177,6 +178,17 @@ export function createActionsSystem(
           }
           case ActionType.START_TWEEN: {
             handleStartTween(entity, getPayload<ActionType.START_TWEEN>(action))
+            break
+          }
+          case ActionType.STOP_TWEEN: {
+            handleStopTween(entity)
+            break
+          }
+          case ActionType.SLIDE_TEXTURE: {
+            handleSlideTexture(
+              entity,
+              getPayload<ActionType.SLIDE_TEXTURE>(action),
+            )
             break
           }
           case ActionType.SET_COUNTER: {
@@ -617,6 +629,10 @@ export function createActionsSystem(
           tween = handleScaleItem(entity, payload)
           break
         }
+        case TweenType.KEEP_ROTATING_ITEM: {
+          tween = handleKeepRotatingItem(entity, payload)
+          break
+        }
         default: {
           throw new Error(`Unknown tween type: ${payload.type}`)
         }
@@ -744,6 +760,53 @@ export function createActionsSystem(
       }),
       duration: duration * 1000, // from secs to ms
       easingFunction: getEasingFunctionFromInterpolation(interpolationType),
+    })
+  }
+
+  // KEEP_ROTATING_ITEM (continuous rotation)
+  function handleKeepRotatingItem(
+    entity: Entity,
+    tween: ActionPayload<ActionType.START_TWEEN>,
+  ) {
+    const { duration, interpolationType } = tween
+    const dir = tween.direction ?? { x: 0, y: 1, z: 0 }
+    const speed = tween.speed ?? 1
+
+    return TweenComponent.createOrReplace(entity, {
+      mode: Tween.Mode.RotateContinuous({
+        direction: Quaternion.fromEulerDegrees(dir.x, dir.y, dir.z),
+        speed,
+      }),
+      duration: (duration ?? 0) * 1000,
+      easingFunction: getEasingFunctionFromInterpolation(interpolationType),
+    })
+  }
+
+  // STOP_TWEEN
+  function handleStopTween(entity: Entity) {
+    if (TweenComponent.has(entity)) {
+      TweenComponent.deleteFrom(entity)
+    }
+  }
+
+  // SLIDE_TEXTURE
+  function handleSlideTexture(
+    entity: Entity,
+    payload: ActionPayload<ActionType.SLIDE_TEXTURE>,
+  ) {
+    const dir = payload.direction
+    const speed = payload.speed
+    const movementType = payload.movementType as unknown as SdkTextureMovementType | undefined
+    const duration = payload.duration ?? 0
+
+    return TweenComponent.createOrReplace(entity, {
+      mode: Tween.Mode.TextureMoveContinuous({
+        direction: { x: dir.x, y: dir.y },
+        speed,
+        movementType,
+      }),
+      duration: duration * 1000,
+      easingFunction: 0,
     })
   }
 

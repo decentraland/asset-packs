@@ -48,6 +48,7 @@ import {
   ProximityLayer,
   AdminPermissions,
   MediaSource,
+  TextureMovementType,
 } from './enums'
 import { getExplorerComponents } from './components'
 
@@ -78,6 +79,9 @@ export const ActionSchemas = {
     ),
     duration: Schemas.Float,
     relative: Schemas.Boolean,
+    // For KEEP_ROTATING_ITEM
+    direction: Schemas.Optional(Schemas.Vector3),
+    speed: Schemas.Optional(Schemas.Float),
   }),
   [ActionType.SET_COUNTER]: Schemas.Map({ counter: Schemas.Int }),
   [ActionType.INCREMENT_COUNTER]: Schemas.Map({
@@ -236,6 +240,15 @@ export const ActionSchemas = {
     text: Schemas.String,
     fontSize: Schemas.Optional(Schemas.Float),
     color: Schemas.Optional(Schemas.Color4),
+  }),
+  [ActionType.STOP_TWEEN]: Schemas.Map({}),
+  [ActionType.SLIDE_TEXTURE]: Schemas.Map({
+    direction: Schemas.Map({ x: Schemas.Float, y: Schemas.Float }),
+    speed: Schemas.Float,
+    movementType: Schemas.Optional(
+      Schemas.EnumNumber(TextureMovementType, TextureMovementType.TMT_OFFSET),
+    ),
+    duration: Schemas.Optional(Schemas.Float),
   }),
 }
 
