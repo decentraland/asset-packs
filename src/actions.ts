@@ -110,6 +110,8 @@ export function createActionsSystem(
     TweenSequence,
     VideoPlayer,
     LightSource,
+    MainCamera,
+    VirtualCamera,
   } = getExplorerComponents(engine)
   const { Actions, States, Counter, Triggers, Rewards } = getComponents(engine)
 
@@ -431,6 +433,13 @@ export function createActionsSystem(
             )
             break
           }
+          case ActionType.CHANGE_CAMERA: {
+            handleChangeCamera(
+              entity,
+              getPayload<ActionType.CHANGE_CAMERA>(action),
+            )
+            break
+          }
           default:
             break
         }
@@ -466,6 +475,29 @@ export function createActionsSystem(
     if (payload.active !== undefined) light.active = payload.active
     if (payload.color) light.color = payload.color
     if (payload.intensity !== undefined) light.intensity = payload.intensity
+  }
+
+  // CHANGE_CAMERA
+  function handleChangeCamera(
+    _entity: Entity,
+    payload: ActionPayload<ActionType.CHANGE_CAMERA>,
+  ) {
+    const target = payload.virtualCameraEntity
+    if (!target || target === 0) {
+      if (MainCamera.has(engine.CameraEntity)) {
+        MainCamera.deleteFrom(engine.CameraEntity)
+      }
+      return
+    }
+
+    // Ensure the selected entity has VirtualCamera before applying
+    if (!VirtualCamera.has(target)) {
+      return
+    }
+
+    MainCamera.createOrReplace(engine.CameraEntity, {
+      virtualCameraEntity: target,
+    })
   }
 
   // PLAY_ANIMATION

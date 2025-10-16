@@ -5,6 +5,8 @@ import {
   MaterialComponentDefinitionExtended,
   PBMaterial,
   PBVideoPlayer,
+  PBMainCamera,
+  PBVirtualCamera,
   Schemas,
   VideoTexture,
   AnimatorComponentDefinitionExtended,
@@ -224,6 +226,10 @@ export const ActionSchemas = {
     active: Schemas.Optional(Schemas.Boolean),
     color: Schemas.Optional(Schemas.Color3),
     intensity: Schemas.Optional(Schemas.Float),
+  }),
+  [ActionType.CHANGE_CAMERA]: Schemas.Map({
+    /** If undefined or 0, treated as NONE */
+    virtualCameraEntity: Schemas.Optional(Schemas.Entity),
   }),
 }
 
@@ -471,6 +477,8 @@ export type EngineComponents = {
   MeshRenderer: MeshRendererComponentDefinitionExtended
   VideoPlayer: LastWriteWinElementSetComponentDefinition<PBVideoPlayer>
   LightSource: LastWriteWinElementSetComponentDefinition<PBLightSource>
+  VirtualCamera: LastWriteWinElementSetComponentDefinition<PBVirtualCamera>
+  MainCamera: LastWriteWinElementSetComponentDefinition<PBMainCamera>
   UiTransform: LastWriteWinElementSetComponentDefinition<PBUiTransform>
   UiText: LastWriteWinElementSetComponentDefinition<PBUiText>
   UiBackground: LastWriteWinElementSetComponentDefinition<PBUiBackground>
