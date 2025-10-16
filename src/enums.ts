@@ -86,6 +86,9 @@ export enum ActionType {
   BATCH = 'batch',
   HEAL_PLAYER = 'heal_player',
   CLAIM_AIRDROP = 'claim_airdrop',
+  LIGHTS_ON = 'lights_on',
+  LIGHTS_OFF = 'lights_off',
+  LIGHTS_MODIFY = 'lights_modify',
 }
 
 export enum TriggerType {

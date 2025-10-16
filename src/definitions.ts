@@ -22,6 +22,7 @@ import {
   PBTween,
   PBTweenSequence,
   PBPointerEvents,
+  PBLightSource,
   NetworkEntity,
   SyncComponents,
   AudioSourceComponentDefinitionExtended,
@@ -217,6 +218,13 @@ export const ActionSchemas = {
     multiplier: Schemas.Int,
   }),
   [ActionType.CLAIM_AIRDROP]: Schemas.Map({}),
+  [ActionType.LIGHTS_ON]: Schemas.Map({}),
+  [ActionType.LIGHTS_OFF]: Schemas.Map({}),
+  [ActionType.LIGHTS_MODIFY]: Schemas.Map({
+    active: Schemas.Optional(Schemas.Boolean),
+    color: Schemas.Optional(Schemas.Color3),
+    intensity: Schemas.Optional(Schemas.Float),
+  }),
 }
 
 export type ActionPayload<T extends ActionType = any> =
@@ -462,6 +470,7 @@ export type EngineComponents = {
   Material: MaterialComponentDefinitionExtended
   MeshRenderer: MeshRendererComponentDefinitionExtended
   VideoPlayer: LastWriteWinElementSetComponentDefinition<PBVideoPlayer>
+  LightSource: LastWriteWinElementSetComponentDefinition<PBLightSource>
   UiTransform: LastWriteWinElementSetComponentDefinition<PBUiTransform>
   UiText: LastWriteWinElementSetComponentDefinition<PBUiText>
   UiBackground: LastWriteWinElementSetComponentDefinition<PBUiBackground>

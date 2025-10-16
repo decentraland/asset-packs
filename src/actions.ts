@@ -109,6 +109,7 @@ export function createActionsSystem(
     Tween: TweenComponent,
     TweenSequence,
     VideoPlayer,
+    LightSource,
   } = getExplorerComponents(engine)
   const { Actions, States, Counter, Triggers, Rewards } = getComponents(engine)
 
@@ -415,6 +416,21 @@ export function createActionsSystem(
             )
             break
           }
+          case ActionType.LIGHTS_ON: {
+            handleLightsOn(entity)
+            break
+          }
+          case ActionType.LIGHTS_OFF: {
+            handleLightsOff(entity)
+            break
+          }
+          case ActionType.LIGHTS_MODIFY: {
+            handleLightsModify(
+              entity,
+              getPayload<ActionType.LIGHTS_MODIFY>(action),
+            )
+            break
+          }
           default:
             break
         }
@@ -422,6 +438,34 @@ export function createActionsSystem(
     }
 
     initedEntities.add(entity)
+  }
+
+  // LIGHTS_ON
+  function handleLightsOn(entity: Entity) {
+    const light = LightSource.getMutableOrNull(entity)
+    if (light) {
+      light.active = true
+    }
+  }
+
+  // LIGHTS_OFF
+  function handleLightsOff(entity: Entity) {
+    const light = LightSource.getMutableOrNull(entity)
+    if (light) {
+      light.active = false
+    }
+  }
+
+  // LIGHTS_MODIFY
+  function handleLightsModify(
+    entity: Entity,
+    payload: ActionPayload<ActionType.LIGHTS_MODIFY>,
+  ) {
+    const light = LightSource.getMutableOrNull(entity)
+    if (!light) return
+    if (payload.active !== undefined) light.active = payload.active
+    if (payload.color) light.color = payload.color
+    if (payload.intensity !== undefined) light.intensity = payload.intensity
   }
 
   // PLAY_ANIMATION
