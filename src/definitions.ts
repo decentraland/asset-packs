@@ -17,6 +17,7 @@ import {
   PBGltfContainer,
   PBUiTransform,
   PBUiText,
+  PBTextShape,
   PBUiBackground,
   MeshRendererComponentDefinitionExtended,
   PBBillboard,
@@ -230,6 +231,11 @@ export const ActionSchemas = {
   [ActionType.CHANGE_CAMERA]: Schemas.Map({
     /** If undefined or 0, treated as NONE */
     virtualCameraEntity: Schemas.Optional(Schemas.Entity),
+  }),
+  [ActionType.CHANGE_TEXT]: Schemas.Map({
+    text: Schemas.String,
+    fontSize: Schemas.Optional(Schemas.Float),
+    color: Schemas.Optional(Schemas.Color4),
   }),
 }
 
@@ -479,6 +485,7 @@ export type EngineComponents = {
   LightSource: LastWriteWinElementSetComponentDefinition<PBLightSource>
   VirtualCamera: LastWriteWinElementSetComponentDefinition<PBVirtualCamera>
   MainCamera: LastWriteWinElementSetComponentDefinition<PBMainCamera>
+  TextShape: LastWriteWinElementSetComponentDefinition<PBTextShape>
   UiTransform: LastWriteWinElementSetComponentDefinition<PBUiTransform>
   UiText: LastWriteWinElementSetComponentDefinition<PBUiText>
   UiBackground: LastWriteWinElementSetComponentDefinition<PBUiBackground>

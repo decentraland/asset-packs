@@ -112,6 +112,7 @@ export function createActionsSystem(
     LightSource,
     MainCamera,
     VirtualCamera,
+    TextShape,
   } = getExplorerComponents(engine)
   const { Actions, States, Counter, Triggers, Rewards } = getComponents(engine)
 
@@ -440,6 +441,13 @@ export function createActionsSystem(
             )
             break
           }
+          case ActionType.CHANGE_TEXT: {
+            handleChangeText(
+              entity,
+              getPayload<ActionType.CHANGE_TEXT>(action),
+            )
+            break
+          }
           default:
             break
         }
@@ -498,6 +506,19 @@ export function createActionsSystem(
     MainCamera.createOrReplace(engine.CameraEntity, {
       virtualCameraEntity: target,
     })
+  }
+
+  // CHANGE_TEXT
+  function handleChangeText(
+    entity: Entity,
+    payload: ActionPayload<ActionType.CHANGE_TEXT>,
+  ) {
+    const text = TextShape.getMutableOrNull(entity)
+    if (!text) return
+
+    text.text = payload.text
+    if (payload.fontSize !== undefined) text.fontSize = payload.fontSize
+    if (payload.color) text.textColor = payload.color
   }
 
   // PLAY_ANIMATION

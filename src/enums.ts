@@ -90,6 +90,7 @@ export enum ActionType {
   LIGHTS_OFF = 'lights_off',
   LIGHTS_MODIFY = 'lights_modify',
   CHANGE_CAMERA = 'change_camera',
+  CHANGE_TEXT = 'change_text',
 }
 
 export enum TriggerType {
