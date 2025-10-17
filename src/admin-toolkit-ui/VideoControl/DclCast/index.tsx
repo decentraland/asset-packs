@@ -71,7 +71,7 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
         uiTransform={{
           width: '100%',
           height: '100%',
-          margin: { bottom: 16 * scaleFactor },
+          margin: { bottom: 6 * scaleFactor },
         }}
       >
         <UiEntity
@@ -116,15 +116,17 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
         >
           <UiEntity
             uiTransform={{
-              flexDirection: 'row',
+              display: 'flex',
+              flexDirection: 'column',
               width: '100%',
               height: '100%',
+              alignItems: 'flex-start',
             }}
           >
             <Label
               value={'Room ID'}
               uiTransform={{
-                margin: { bottom: 2 * scaleFactor },
+                margin: { bottom: 16 * scaleFactor },
               }}
               fontSize={24 * scaleFactor}
               color={Color4.White()}
@@ -132,7 +134,7 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
             <Label
               value={'Expires in 4 days'}
               uiTransform={{
-                margin: { bottom: 2 * scaleFactor },
+                margin: { top: 12 * scaleFactor },
               }}
               fontSize={14 * scaleFactor}
               color={Color4.fromHexString('#716B7C')}
@@ -140,10 +142,24 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
           </UiEntity>
           <Button
             id="dcl_cast_get_room_id"
-            value="<b>Get Room ID</b>"
+            value="<b>Activate</b>"
             variant="text"
             fontSize={16 * scaleFactor}
             color={Color4.White()}
+            uiBackground={{ color: Color4.fromHexString('#34CE77') }}
+            uiTransform={{
+              padding: {
+                top: 6 * scaleFactor,
+                bottom: 6 * scaleFactor,
+                left: 4 * scaleFactor,
+                right: 4 * scaleFactor,
+              },
+              borderRadius: 6 * scaleFactor,
+              width: '100%',
+              height: 36 * scaleFactor,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
           />
         </UiEntity>
 
