@@ -100,7 +100,7 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
             left: 16 * scaleFactor,
             right: 16 * scaleFactor,
             top: 24 * scaleFactor,
-            bottom: 24 * scaleFactor,
+            bottom: 16 * scaleFactor,
           },
         }}
       >
@@ -174,12 +174,12 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
             }}
           >
             <Label
-              value={'Cast speakers'}
+              value={'<b>Cast speakers</b>'}
               fontSize={18 * scaleFactor}
               color={Color4.White()}
             />
             <Label
-              value={'Open Link'}
+              value={'<b>Open Link</b>'}
               fontSize={18 * scaleFactor}
               color={Color4.White()}
             />
@@ -199,22 +199,47 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'space-between',
-              margin: { bottom: 8 * scaleFactor },
               width: '100%',
             }}
           >
             <Label
-              value={'Viewers'}
+              value={'<b>Viewers</b>'}
               fontSize={18 * scaleFactor}
               color={Color4.White()}
             />
             <Label
-              value={'Open Link'}
+              value={'<b>Open Link</b>'}
               fontSize={18 * scaleFactor}
               color={Color4.White()}
             />
           </UiEntity>
         </UiEntity>
+      </UiEntity>
+      <UiEntity
+        uiTransform={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'flex-start',
+          margin: { top: 8 * scaleFactor },
+        }}
+      >
+        <Button
+          id="dcl_rese_room"
+          value="<b>Reset Room ID</b>"
+          variant="text"
+          fontSize={16 * scaleFactor}
+          color={Color4.Red()}
+          uiTransform={{
+            padding: {
+              top: 6 * scaleFactor,
+              bottom: 6 * scaleFactor,
+              left: 4 * scaleFactor,
+              right: 4 * scaleFactor,
+            },
+            width: 'auto',
+            height: 36 * scaleFactor,
+          }}
+        />
       </UiEntity>
     </UiEntity>
   )
