@@ -107,19 +107,19 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
         <UiEntity
           uiTransform={{
             width: '100%',
-            height: '100%',
             display: 'flex',
+            flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'flex-start',
+            margin: { bottom: 18 * scaleFactor },
           }}
         >
           <UiEntity
             uiTransform={{
               display: 'flex',
               flexDirection: 'column',
-              width: '100%',
-              height: '100%',
               alignItems: 'flex-start',
+              width: 'auto',
             }}
           >
             <Label
@@ -148,7 +148,7 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
                 right: 4 * scaleFactor,
               },
               borderRadius: 6 * scaleFactor,
-              width: '100%',
+              width: 'auto',
               height: 36 * scaleFactor,
               alignItems: 'center',
               justifyContent: 'center',
@@ -160,9 +160,7 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
             display: 'flex',
             flexDirection: 'column',
             width: '100%',
-            height: '100%',
             alignItems: 'flex-start',
-            margin: { top: 4 * scaleFactor },
           }}
         >
           <UiEntity
@@ -188,7 +186,7 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
           </UiEntity>
           <UiEntity
             uiTransform={{
-              margin: { top: 32 * scaleFactor, bottom: 32 * scaleFactor },
+              margin: { top: 18 * scaleFactor, bottom: 18 * scaleFactor },
               width: '100%',
               height: 1,
               borderWidth: 1,
