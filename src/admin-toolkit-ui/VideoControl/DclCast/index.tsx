@@ -5,7 +5,6 @@ import { getScaleUIFactor } from '../../../ui'
 import { IEngine } from '@dcl/ecs'
 import { getRoomId } from '../api'
 import { CONTENT_URL } from '../../constants'
-import { Header } from '../../Header'
 
 const ICONS = {
   VIDEO_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control.png`,
@@ -22,8 +21,8 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
       <UiEntity
         uiTransform={{
           width: '100%',
-          height: '100%',
           display: 'flex',
+          flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
         }}
@@ -32,6 +31,7 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
           uiTransform={{
             flexDirection: 'row',
             alignItems: 'center',
+            margin: { bottom: 12 * scaleFactor },
           }}
         >
           <UiEntity
@@ -70,8 +70,7 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
       <UiEntity
         uiTransform={{
           width: '100%',
-          height: '100%',
-          margin: { bottom: 6 * scaleFactor },
+          margin: { bottom: 24 * scaleFactor },
         }}
       >
         <UiEntity
@@ -111,7 +110,7 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
             height: '100%',
             display: 'flex',
             justifyContent: 'space-between',
-            alignItems: 'center',
+            alignItems: 'flex-start',
           }}
         >
           <UiEntity
@@ -125,17 +124,11 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
           >
             <Label
               value={'Room ID'}
-              uiTransform={{
-                margin: { bottom: 16 * scaleFactor },
-              }}
               fontSize={24 * scaleFactor}
               color={Color4.White()}
             />
             <Label
               value={'Expires in 4 days'}
-              uiTransform={{
-                margin: { top: 12 * scaleFactor },
-              }}
               fontSize={14 * scaleFactor}
               color={Color4.fromHexString('#716B7C')}
             />
@@ -162,8 +155,77 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
             }}
           />
         </UiEntity>
+        <UiEntity
+          uiTransform={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: '100%',
+            height: '100%',
+            alignItems: 'flex-start',
+            margin: { top: 4 * scaleFactor },
+          }}
+        >
+          <UiEntity
+            uiTransform={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: '100%',
+              margin: { bottom: 8 * scaleFactor },
+            }}
+          >
+            <Label
+              value={'Cast speakers'}
+              fontSize={18 * scaleFactor}
+              color={Color4.White()}
+            />
+            <Label
+              value={'Open Link'}
+              fontSize={18 * scaleFactor}
+              color={Color4.White()}
+            />
+          </UiEntity>
+          <UiEntity
+            uiTransform={{
+              margin: { top: 32 * scaleFactor, bottom: 32 * scaleFactor },
+              width: '100%',
+              height: 1,
+              borderWidth: 1,
+              borderColor: Color4.fromHexString('#43404A'),
+            }}
+          />
+          <UiEntity
+            uiTransform={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              margin: { bottom: 8 * scaleFactor },
+              width: '100%',
+            }}
+          >
+            <Label
+              value={'Viewers'}
+              fontSize={18 * scaleFactor}
+              color={Color4.White()}
+            />
+            <Label
+              value={'Open Link'}
+              fontSize={18 * scaleFactor}
+              color={Color4.White()}
+            />
+          </UiEntity>
+        </UiEntity>
+      </UiEntity>
+    </UiEntity>
+  )
+}
 
-        {/* <Button
+export default DclCast
+
+{
+  /* <Button
           id="dcl_cast_get_room_id"
           value="<b>Get Room ID</b>"
           variant="text"
@@ -189,10 +251,5 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
                 })
             }
           }}
-        /> */}
-      </UiEntity>
-    </UiEntity>
-  )
+        /> */
 }
-
-export default DclCast
