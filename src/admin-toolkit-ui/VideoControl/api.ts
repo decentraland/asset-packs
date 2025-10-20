@@ -12,6 +12,16 @@ type StreamKeyResponse = {
   endsAt: number
 }
 
+export type RoomIdResponse = {
+  streamLink: string
+  watcherLink: string
+  streamingKey: string
+  placeId: string
+  placeName: string
+  expiresAt: number
+  expiresInDays: number
+}
+
 export async function getStreamKey(): Promise<
   Result<StreamKeyResponse, string>
 > {
@@ -48,9 +58,9 @@ export async function resetStreamKey(): Promise<
   )
 }
 
-export async function getRoomId(): Promise<Result<string, string>> {
-  return wrapSignedFetch<string>(
-    { url: URLS().GENERATE_ROOM_ID, init: { method: 'POST', headers: {} } },
+export async function getRoomId(): Promise<Result<RoomIdResponse, string>> {
+  return wrapSignedFetch<RoomIdResponse>(
+    { url: URLS().GENERATE_ROOM_ID },
     { toCamelCase: true },
   )
 }

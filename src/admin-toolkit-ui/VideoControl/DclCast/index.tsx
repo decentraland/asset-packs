@@ -3,7 +3,7 @@ import { Color4 } from '@dcl/sdk/math'
 import { Button } from '../../Button'
 import { getScaleUIFactor } from '../../../ui'
 import { IEngine } from '@dcl/ecs'
-import { getRoomId } from '../api'
+import { getRoomId, RoomIdResponse } from '../api'
 import { CONTENT_URL } from '../../constants'
 
 const ICONS = {
@@ -13,6 +13,34 @@ const ICONS = {
 
 const DclCast = ({ engine }: { engine: IEngine }) => {
   const scaleFactor = getScaleUIFactor(engine)
+  const [roomId, setRoomId] = ReactEcs.useState<RoomIdResponse | undefined>({
+    streamLink: '',
+    watcherLink: '',
+    streamingKey: '',
+    placeId: '',
+    placeName: '',
+    expiresAt: 0,
+    expiresInDays: 0,
+  })
+
+  ReactEcs.useEffect(() => {
+    async function getRoomIdFn() {
+      const [error, data] = await getRoomId()
+      if (error) {
+        console.error(error)
+      } else {
+        console.log('Room ID Data:', data)
+        data &&
+          Object.keys(data).forEach((key) => {
+            console.log(
+              `ALE - Key: ${key}, Value:`,
+              data?.[key as keyof typeof data],
+            )
+          })
+      }
+    }
+    getRoomIdFn()
+  }, [])
 
   return (
     <UiEntity
@@ -139,6 +167,22 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
             variant="text"
             fontSize={16 * scaleFactor}
             color={Color4.White()}
+            // TODO: remove from here
+            onMouseDown={async () => {
+              const [error, data] = await getRoomId()
+              if (error) {
+                console.error(error)
+              } else {
+                console.log('Room ID Data:', data)
+                data &&
+                  Object.keys(data).forEach((key) => {
+                    console.log(
+                      `ALE - Key: ${key}, Value:`,
+                      data?.[key as keyof typeof data],
+                    )
+                  })
+              }
+            }}
             uiBackground={{ color: Color4.fromHexString('#34CE77') }}
             uiTransform={{
               padding: {
@@ -246,33 +290,3 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
 }
 
 export default DclCast
-
-{
-  /* <Button
-          id="dcl_cast_get_room_id"
-          value="<b>Get Room ID</b>"
-          variant="text"
-          fontSize={16 * scaleFactor}
-          color={Color4.White()}
-          uiTransform={{
-            minWidth: 120 * scaleFactor,
-            margin: { right: 8 * scaleFactor },
-            padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
-          }}
-          onMouseDown={async () => {
-            const [error, data] = await getRoomId()
-            if (error) {
-              console.error(error)
-            } else {
-              console.log('Room ID Data:', data)
-              data &&
-                Object.keys(data).forEach((key) => {
-                  console.log(
-                    `ALE - Key: ${key}, Value:`,
-                    data?.[key as keyof typeof data],
-                  )
-                })
-            }
-          }}
-        /> */
-}
