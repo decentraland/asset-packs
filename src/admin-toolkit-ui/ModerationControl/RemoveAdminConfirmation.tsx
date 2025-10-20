@@ -9,7 +9,6 @@ import { LoadingDots } from '../Loading'
 import { Error } from '../Error'
 import { fetchSceneAdmins } from '..'
 
-
 export function RemoveAdminConfirmation({
   scaleFactor,
   admin,
@@ -45,7 +44,9 @@ export function RemoveAdminConfirmation({
         }}
         uiBackground={{ color: Color4.Black() }}
       >
-        <UiEntity uiTransform={{ flexDirection: 'row', maxWidth: 675 * scaleFactor }}>
+        <UiEntity
+          uiTransform={{ flexDirection: 'row', maxWidth: 675 * scaleFactor }}
+        >
           <Label
             value={`Are you sure you want to remove `}
             fontSize={18 * scaleFactor}
