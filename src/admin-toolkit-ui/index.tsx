@@ -288,12 +288,12 @@ const uiComponent = (
                 }
                 icon={BTN_MODERATION_CONTROL}
                 onlyIcon
-                //TODO change this
                 uiTransform={{
-                  // display: adminToolkitEntity.moderationControl.isEnabled && !isPreview()
-                  display: adminToolkitEntity.moderationControl.isEnabled
-                    ? 'flex'
-                    : 'none',
+                  display:
+                    adminToolkitEntity.moderationControl.isEnabled &&
+                    !isPreview()
+                      ? 'flex'
+                      : 'none',
                   width: 49 * scaleFactor,
                   height: 42 * scaleFactor,
                   margin: { right: 8 * scaleFactor },
