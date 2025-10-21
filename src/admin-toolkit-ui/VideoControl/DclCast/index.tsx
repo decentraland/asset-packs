@@ -9,6 +9,7 @@ import { State } from '../../types'
 
 import { Header } from '../../Header'
 import DclCastInfo from './DclCastInfo'
+import { LoadingDots } from '../../Loading'
 
 const ICONS = {
   VIDEO_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control.png`,
@@ -22,6 +23,7 @@ export async function handleGetDclCastInfo(state: State) {
   const [error, data] = await getDclCastInfo()
   if (error) {
     console.error(error)
+    return null
   } else {
     if (data) {
       console.log('DCL Cast Info:', data)
@@ -34,16 +36,36 @@ export async function handleGetDclCastInfo(state: State) {
           )
         })
       state.videoControl.dclCast = data
+      return data
     }
   }
 }
 
 const DclCast = ({ engine, state }: { engine: IEngine; state: State }) => {
   const scaleFactor = getScaleUIFactor(engine)
+  const [isLoading, setIsLoading] = ReactEcs.useState(false)
+  const [error, setError] = ReactEcs.useState(false)
 
   ReactEcs.useEffect(() => {
-    if (state.videoControl.dclCast) return
-    handleGetDclCastInfo(state)
+    const fetchDclCastInfo = async () => {
+      setIsLoading(true)
+      setError(false)
+
+      if (state.videoControl.dclCast) {
+        setIsLoading(false)
+        return
+      }
+
+      const result = await handleGetDclCastInfo(state)
+
+      if (!result) {
+        setError(true)
+      }
+
+      setIsLoading(false)
+    }
+
+    fetchDclCastInfo()
   }, [])
 
   return (
@@ -76,13 +98,34 @@ const DclCast = ({ engine, state }: { engine: IEngine; state: State }) => {
           }}
         />
       </UiEntity>
-      <DclCastInfo
-        scaleFactor={scaleFactor}
-        state={state}
-        onResetRoomId={async () => {
-          await handleGetDclCastInfo(state)
-        }}
-      />
+      {isLoading && (
+        <LoadingDots
+          uiTransform={{ minHeight: 400 * scaleFactor }}
+          scaleFactor={scaleFactor}
+          engine={engine}
+        />
+      )}
+      {error && (
+        <UiEntity
+          uiTransform={{ margin: { top: 16 * scaleFactor } }}
+          uiText={{
+            value: 'Failed to fetch DCL Cast info',
+            fontSize: 16 * scaleFactor,
+            color: Color4.Red(),
+            textAlign: 'top-left',
+            textWrap: 'wrap',
+          }}
+        />
+      )}
+      {!isLoading && !error && (
+        <DclCastInfo
+          scaleFactor={scaleFactor}
+          state={state}
+          onResetRoomId={async () => {
+            await handleGetDclCastInfo(state)
+          }}
+        />
+      )}
     </UiEntity>
   )
 }
