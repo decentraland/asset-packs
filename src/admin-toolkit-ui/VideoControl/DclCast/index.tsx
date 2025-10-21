@@ -7,11 +7,15 @@ import { getDclCastInfo } from '../api'
 import { CONTENT_URL } from '../../constants'
 import { State } from '../../types'
 import { openExternalUrl } from '~system/RestrictedActions'
+import { Header } from '../../Header'
 
 const ICONS = {
   VIDEO_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control.png`,
-  LINK_ICON: `../../../../packs/smart_items/assets/admin_toolkit/assets/icons/open-link.png`,
-} as const
+  LINK_ICON:
+    'https://builder-items.decentraland.zone/admin_toolkit/assets/icons/open-link.png',
+  DCL_CAST_ICON:
+    'https://builder-items.decentraland.zone/admin_toolkit/assets/icons/dcl-cast.png',
+}
 
 export async function handleGetDclCastInfo(state: State) {
   const [error, data] = await getDclCastInfo()
@@ -45,42 +49,11 @@ const DclCast = ({ engine, state }: { engine: IEngine; state: State }) => {
     <UiEntity
       uiTransform={{ flexDirection: 'column', width: '100%', height: '100%' }}
     >
-      <UiEntity
-        uiTransform={{
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
-        <UiEntity
-          uiTransform={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            margin: { bottom: 12 * scaleFactor },
-          }}
-        >
-          <UiEntity
-            uiTransform={{ width: 30 * scaleFactor, height: 30 * scaleFactor }}
-            uiBackground={{
-              textureMode: 'stretch',
-              texture: {
-                src: ICONS.VIDEO_CONTROL,
-              },
-              color: Color4.White(),
-            }}
-          />
-          <Label
-            value={`<b>DCL Cast</b>`}
-            uiTransform={{
-              margin: { bottom: 2 * scaleFactor, left: 10 * scaleFactor },
-            }}
-            fontSize={24 * scaleFactor}
-            color={Color4.White()}
-          />
-        </UiEntity>
-      </UiEntity>
+      <Header
+        iconSrc={ICONS.DCL_CAST_ICON}
+        title="DCL Cast"
+        scaleFactor={scaleFactor}
+      />
       <UiEntity
         uiTransform={{
           width: '100%',
@@ -114,7 +87,7 @@ const DclCast = ({ engine, state }: { engine: IEngine; state: State }) => {
             left: 16 * scaleFactor,
             right: 16 * scaleFactor,
             top: 24 * scaleFactor,
-            bottom: 16 * scaleFactor,
+            bottom: 8 * scaleFactor,
           },
         }}
       >
@@ -145,6 +118,9 @@ const DclCast = ({ engine, state }: { engine: IEngine; state: State }) => {
               value={`Expires in ${state.videoControl.dclCast?.expiresInDays} days`}
               fontSize={14 * scaleFactor}
               color={Color4.fromHexString('#716B7C')}
+              uiTransform={{
+                margin: { top: -4 * scaleFactor },
+              }}
             />
           </UiEntity>
           <Button
@@ -242,7 +218,7 @@ const DclCast = ({ engine, state }: { engine: IEngine; state: State }) => {
           </UiEntity>
           <UiEntity
             uiTransform={{
-              margin: { top: 18 * scaleFactor, bottom: 18 * scaleFactor },
+              margin: { top: 16 * scaleFactor, bottom: 16 * scaleFactor },
               width: '100%',
               height: 1,
               borderWidth: 1,
@@ -262,6 +238,7 @@ const DclCast = ({ engine, state }: { engine: IEngine; state: State }) => {
               uiTransform={{
                 display: 'flex',
                 flexDirection: 'column',
+                margin: { bottom: 4 * scaleFactor },
               }}
             >
               <Label
