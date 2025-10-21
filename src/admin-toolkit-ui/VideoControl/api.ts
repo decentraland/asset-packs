@@ -2,7 +2,7 @@ import { getDomain, Result, wrapSignedFetch } from '../fetch-utils'
 
 const URLS = () => ({
   STREAM_KEY: `https://comms-gatekeeper.decentraland.${getDomain()}/scene-stream-access`,
-  GENERATE_ROOM_ID: `https://comms-gatekeeper.decentraland.${getDomain()}/cast/generate-stream-link`,
+  GET_DCL_CAST_INFO: `https://comms-gatekeeper.decentraland.${getDomain()}/cast/generate-stream-link`,
 })
 
 type StreamKeyResponse = {
@@ -12,7 +12,7 @@ type StreamKeyResponse = {
   endsAt: number
 }
 
-export type RoomIdResponse = {
+export type DclCastResponse = {
   streamLink: string
   watcherLink: string
   streamingKey: string
@@ -58,9 +58,11 @@ export async function resetStreamKey(): Promise<
   )
 }
 
-export async function getRoomId(): Promise<Result<RoomIdResponse, string>> {
-  return wrapSignedFetch<RoomIdResponse>(
-    { url: URLS().GENERATE_ROOM_ID },
+export async function getDclCastInfo(): Promise<
+  Result<DclCastResponse, string>
+> {
+  return wrapSignedFetch<DclCastResponse>(
+    { url: URLS().GET_DCL_CAST_INFO },
     { toCamelCase: true },
   )
 }

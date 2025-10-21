@@ -1,4 +1,5 @@
 import { Entity } from '@dcl/ecs'
+import { DclCastResponse } from './VideoControl/api'
 
 // Tab enum for type safety
 export enum TabType {
@@ -18,6 +19,7 @@ export type State = {
   activeTab: TabType
   videoControl: {
     selectedVideoPlayer: number | undefined
+    dclCast: DclCastResponse | undefined
   }
   smartItemsControl: {
     selectedSmartItem: number | undefined

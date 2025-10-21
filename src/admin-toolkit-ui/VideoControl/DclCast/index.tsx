@@ -3,43 +3,41 @@ import { Color4 } from '@dcl/sdk/math'
 import { Button } from '../../Button'
 import { getScaleUIFactor } from '../../../ui'
 import { IEngine } from '@dcl/ecs'
-import { getRoomId, RoomIdResponse } from '../api'
+import { getDclCastInfo } from '../api'
 import { CONTENT_URL } from '../../constants'
+import { State } from '../../types'
 
 const ICONS = {
   VIDEO_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control.png`,
   HELP_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/help.png`,
 } as const
 
-const DclCast = ({ engine }: { engine: IEngine }) => {
+export async function handleGetDclCastInfo(state: State) {
+  const [error, data] = await getDclCastInfo()
+  if (error) {
+    console.error(error)
+  } else {
+    if (data) {
+      console.log('DCL Cast Info:', data)
+      //TODO remove links
+      data &&
+        Object.keys(data).forEach((key) => {
+          console.log(
+            `ALE - Key: ${key}, Value:`,
+            data?.[key as keyof typeof data],
+          )
+        })
+      state.videoControl.dclCast = data
+    }
+  }
+}
+
+const DclCast = ({ engine, state }: { engine: IEngine; state: State }) => {
   const scaleFactor = getScaleUIFactor(engine)
-  const [roomId, setRoomId] = ReactEcs.useState<RoomIdResponse | undefined>({
-    streamLink: '',
-    watcherLink: '',
-    streamingKey: '',
-    placeId: '',
-    placeName: '',
-    expiresAt: 0,
-    expiresInDays: 0,
-  })
 
   ReactEcs.useEffect(() => {
-    async function getRoomIdFn() {
-      const [error, data] = await getRoomId()
-      if (error) {
-        console.error(error)
-      } else {
-        console.log('Room ID Data:', data)
-        data &&
-          Object.keys(data).forEach((key) => {
-            console.log(
-              `ALE - Key: ${key}, Value:`,
-              data?.[key as keyof typeof data],
-            )
-          })
-      }
-    }
-    getRoomIdFn()
+    if (state.videoControl.dclCast) return
+    handleGetDclCastInfo(state)
   }, [])
 
   return (
@@ -104,7 +102,7 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
         <UiEntity
           uiText={{
             value:
-              'Generate your room ID and use <u>DCL Cast</u> to let others join your cast or watch live.',
+              'Use a browser-based DCL Cast room to easily stream camera and screen feed to a screen in your scene.',
             fontSize: 16 * scaleFactor,
             color: Color4.fromHexString('#A09BA8'),
 
@@ -167,22 +165,7 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
             variant="text"
             fontSize={16 * scaleFactor}
             color={Color4.White()}
-            // TODO: remove from here
-            onMouseDown={async () => {
-              const [error, data] = await getRoomId()
-              if (error) {
-                console.error(error)
-              } else {
-                console.log('Room ID Data:', data)
-                data &&
-                  Object.keys(data).forEach((key) => {
-                    console.log(
-                      `ALE - Key: ${key}, Value:`,
-                      data?.[key as keyof typeof data],
-                    )
-                  })
-              }
-            }}
+            // TODO: activate
             uiBackground={{ color: Color4.fromHexString('#34CE77') }}
             uiTransform={{
               padding: {
@@ -273,6 +256,9 @@ const DclCast = ({ engine }: { engine: IEngine }) => {
           variant="text"
           fontSize={16 * scaleFactor}
           color={Color4.Red()}
+          onMouseDown={async () => {
+            await handleGetDclCastInfo(state)
+          }}
           uiTransform={{
             padding: {
               top: 6 * scaleFactor,

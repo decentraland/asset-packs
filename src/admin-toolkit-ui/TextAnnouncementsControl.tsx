@@ -160,7 +160,7 @@ export function TextAnnouncementsControl({
         </UiEntity>
       </Card>
       <Card scaleFactor={scaleFactor}>
-        <DclCast engine={engine} />
+        <DclCast engine={engine} state={state} />
       </Card>
     </UiEntity>
   )

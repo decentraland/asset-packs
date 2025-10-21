@@ -21,7 +21,12 @@ import { TextAnnouncements } from './TextAnnouncements'
 import { CONTENT_URL } from './constants'
 import { State, TabType, SelectedSmartItem } from './types'
 import { getExplorerComponents } from '../components'
-import { BTN_MODERATION_CONTROL, ModerationControl, moderationControlState, SceneAdmin } from './ModerationControl'
+import {
+  BTN_MODERATION_CONTROL,
+  ModerationControl,
+  moderationControlState,
+  SceneAdmin,
+} from './ModerationControl'
 import { getSceneAdmins } from './ModerationControl/api'
 import { ModalAdminList } from './ModerationControl/AdminList'
 import { isPreview } from './fetch-utils'
@@ -35,6 +40,7 @@ export let state: State = {
   activeTab: TabType.NONE,
   videoControl: {
     selectedVideoPlayer: undefined,
+    dclCast: undefined,
   },
   smartItemsControl: {
     selectedSmartItem: undefined,
@@ -84,7 +90,6 @@ function getAdminToolkitComponent(engine: IEngine) {
 export async function fetchSceneAdmins() {
   const [error, response] = await getSceneAdmins()
 
-
   if (error) {
     // user doesnt have permissions
     console.log(JSON.stringify({ error }))
@@ -97,9 +102,9 @@ export async function fetchSceneAdmins() {
       address: $.admin,
       role: 'admin' as const,
       verified: !$.name.includes('#'),
-      canBeRemoved: !!$.canBeRemoved
+      canBeRemoved: !!$.canBeRemoved,
     }))
-    .sort((a) => a.canBeRemoved ? 1 : -1)
+    .sort((a) => (a.canBeRemoved ? 1 : -1))
 }
 
 export function getSmartItems(engine: IEngine) {
@@ -120,7 +125,7 @@ function initTextAnnouncementSync(engine: IEngine) {
   TextAnnouncements.createOrReplace(state.adminToolkitUiEntity, {
     text: '',
     author: '',
-    id: ''
+    id: '',
   })
 }
 
@@ -136,7 +141,8 @@ export async function initializeAdminData(
     const { TextAnnouncements, VideoControlState } = getComponents(engine)
 
     // Initialize AdminToolkitUiEntity
-    state.adminToolkitUiEntity = getAdminToolkitEntity(engine) ?? engine.addEntity()
+    state.adminToolkitUiEntity =
+      getAdminToolkitEntity(engine) ?? engine.addEntity()
 
     // Initialize TextAnnouncements sync component
     initTextAnnouncementSync(engine)
@@ -164,9 +170,7 @@ export async function initializeAdminData(
     }, Number.POSITIVE_INFINITY)
 
     // Initialize scene data
-    await Promise.all([
-      fetchSceneAdmins(),
-    ])
+    await Promise.all([fetchSceneAdmins()])
 
     adminDataInitialized = true
 
@@ -198,7 +202,7 @@ function isAllowedAdmin(
   if (!player) return false
 
   const playerAddress = player.userId.toLowerCase()
-  const isAdmin = sceneAdminsCache.find($ => $.address === playerAddress)
+  const isAdmin = sceneAdminsCache.find(($) => $.address === playerAddress)
 
   return isAdmin || isPreview()
 }
@@ -269,9 +273,11 @@ const uiComponent = (
                 icon={BTN_MODERATION_CONTROL}
                 onlyIcon
                 uiTransform={{
-                  display: adminToolkitEntity.moderationControl.isEnabled && !isPreview()
-                    ? 'flex'
-                    : 'none',
+                  display:
+                    adminToolkitEntity.moderationControl.isEnabled &&
+                    !isPreview()
+                      ? 'flex'
+                      : 'none',
                   width: 49 * scaleFactor,
                   height: 42 * scaleFactor,
                   margin: { right: 8 * scaleFactor },
@@ -377,7 +383,9 @@ const uiComponent = (
               <Button
                 id="admin_toolkit_panel_text_announcement_control"
                 variant={
-                  state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL ? 'primary' : 'text'
+                  state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL
+                    ? 'primary'
+                    : 'text'
                 }
                 icon={BTN_TEXT_ANNOUNCEMENT_CONTROL}
                 iconBackground={{
