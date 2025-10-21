@@ -6,10 +6,11 @@ import { IEngine } from '@dcl/ecs'
 import { getDclCastInfo } from '../api'
 import { CONTENT_URL } from '../../constants'
 import { State } from '../../types'
+import { openExternalUrl } from '~system/RestrictedActions'
 
 const ICONS = {
   VIDEO_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control.png`,
-  HELP_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/help.png`,
+  LINK_ICON: `../../../../packs/smart_items/assets/admin_toolkit/assets/icons/open-link.png`,
 } as const
 
 export async function handleGetDclCastInfo(state: State) {
@@ -19,7 +20,7 @@ export async function handleGetDclCastInfo(state: State) {
   } else {
     if (data) {
       console.log('DCL Cast Info:', data)
-      //TODO remove links
+      //TODO REMOVE LOGS
       data &&
         Object.keys(data).forEach((key) => {
           console.log(
@@ -79,19 +80,6 @@ const DclCast = ({ engine, state }: { engine: IEngine; state: State }) => {
             color={Color4.White()}
           />
         </UiEntity>
-        <UiEntity
-          uiTransform={{
-            width: 24 * scaleFactor,
-            height: 24 * scaleFactor,
-          }}
-          uiBackground={{
-            texture: {
-              src: ICONS.HELP_ICON,
-            },
-            textureMode: 'stretch',
-            color: Color4.White(),
-          }}
-        />
       </UiEntity>
       <UiEntity
         uiTransform={{
@@ -149,12 +137,12 @@ const DclCast = ({ engine, state }: { engine: IEngine; state: State }) => {
             }}
           >
             <Label
-              value={'Room ID'}
+              value={'<b>Room ID</b>'}
               fontSize={24 * scaleFactor}
               color={Color4.White()}
             />
             <Label
-              value={'Expires in 4 days'}
+              value={`Expires in ${state.videoControl.dclCast?.expiresInDays} days`}
               fontSize={14 * scaleFactor}
               color={Color4.fromHexString('#716B7C')}
             />
@@ -165,7 +153,7 @@ const DclCast = ({ engine, state }: { engine: IEngine; state: State }) => {
             variant="text"
             fontSize={16 * scaleFactor}
             color={Color4.White()}
-            // TODO: activate
+            // TODO: activate / deactivate status
             uiBackground={{ color: Color4.fromHexString('#34CE77') }}
             uiTransform={{
               padding: {
@@ -200,16 +188,57 @@ const DclCast = ({ engine, state }: { engine: IEngine; state: State }) => {
               margin: { bottom: 8 * scaleFactor },
             }}
           >
-            <Label
-              value={'<b>Cast speakers</b>'}
-              fontSize={18 * scaleFactor}
-              color={Color4.White()}
-            />
-            <Label
-              value={'<b>Open Link</b>'}
-              fontSize={18 * scaleFactor}
-              color={Color4.White()}
-            />
+            <UiEntity
+              uiTransform={{
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <Label
+                value={'<b>Cast speakers</b>'}
+                fontSize={18 * scaleFactor}
+                color={Color4.White()}
+              />
+              <UiEntity
+                uiText={{
+                  value: 'This link grants streaming access.',
+                  fontSize: 14 * scaleFactor,
+                  color: Color4.fromHexString('#716B7C'),
+                  textAlign: 'top-left',
+                }}
+              />
+            </UiEntity>
+            <UiEntity
+              uiTransform={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}
+              onMouseDown={() => {
+                state.videoControl.dclCast?.streamLink &&
+                  openExternalUrl({
+                    url: state.videoControl.dclCast?.streamLink,
+                  })
+              }}
+            >
+              <UiEntity
+                uiTransform={{
+                  width: 24 * scaleFactor,
+                  height: 24 * scaleFactor,
+                }}
+                uiBackground={{
+                  texture: {
+                    src: ICONS.LINK_ICON,
+                  },
+                  textureMode: 'stretch',
+                }}
+              />
+              <Label
+                value={'<b>Open Link</b>'}
+                fontSize={18 * scaleFactor}
+                color={Color4.White()}
+              />
+            </UiEntity>
           </UiEntity>
           <UiEntity
             uiTransform={{
@@ -229,16 +258,57 @@ const DclCast = ({ engine, state }: { engine: IEngine; state: State }) => {
               width: '100%',
             }}
           >
-            <Label
-              value={'<b>Viewers</b>'}
-              fontSize={18 * scaleFactor}
-              color={Color4.White()}
-            />
-            <Label
-              value={'<b>Open Link</b>'}
-              fontSize={18 * scaleFactor}
-              color={Color4.White()}
-            />
+            <UiEntity
+              uiTransform={{
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <Label
+                value={'<b>Viewers</b>'}
+                fontSize={18 * scaleFactor}
+                color={Color4.White()}
+              />
+              <UiEntity
+                uiText={{
+                  value: 'This link grants viewing access.',
+                  fontSize: 14 * scaleFactor,
+                  color: Color4.fromHexString('#716B7C'),
+                  textAlign: 'top-left',
+                }}
+              />
+            </UiEntity>
+            <UiEntity
+              uiTransform={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}
+              onMouseDown={() => {
+                state.videoControl.dclCast?.watcherLink &&
+                  openExternalUrl({
+                    url: state.videoControl.dclCast?.watcherLink,
+                  })
+              }}
+            >
+              <UiEntity
+                uiTransform={{
+                  width: 24 * scaleFactor,
+                  height: 24 * scaleFactor,
+                }}
+                uiBackground={{
+                  texture: {
+                    src: ICONS.LINK_ICON,
+                  },
+                  textureMode: 'stretch',
+                }}
+              />
+              <Label
+                value={'<b>Open Link</b>'}
+                fontSize={18 * scaleFactor}
+                color={Color4.White()}
+              />
+            </UiEntity>
           </UiEntity>
         </UiEntity>
       </UiEntity>
