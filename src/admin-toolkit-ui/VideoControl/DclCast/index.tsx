@@ -10,6 +10,7 @@ import { State } from '../../types'
 import { Header } from '../../Header'
 import DclCastInfo from './DclCastInfo'
 import { LoadingDots } from '../../Loading'
+import { Button } from '../../Button'
 
 const ICONS = {
   VIDEO_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control.png`,
@@ -46,25 +47,25 @@ const DclCast = ({ engine, state }: { engine: IEngine; state: State }) => {
   const [isLoading, setIsLoading] = ReactEcs.useState(false)
   const [error, setError] = ReactEcs.useState(false)
 
-  ReactEcs.useEffect(() => {
-    const fetchDclCastInfo = async () => {
-      setIsLoading(true)
-      setError(false)
+  const fetchDclCastInfo = async () => {
+    setIsLoading(true)
+    setError(false)
 
-      if (state.videoControl.dclCast) {
-        setIsLoading(false)
-        return
-      }
-
-      const result = await handleGetDclCastInfo(state)
-
-      if (!result) {
-        setError(true)
-      }
-
+    if (state.videoControl.dclCast) {
       setIsLoading(false)
+      return
     }
 
+    const result = await handleGetDclCastInfo(state)
+
+    if (!result) {
+      setError(true)
+    }
+
+    setIsLoading(false)
+  }
+
+  ReactEcs.useEffect(() => {
     fetchDclCastInfo()
   }, [])
 
@@ -107,22 +108,56 @@ const DclCast = ({ engine, state }: { engine: IEngine; state: State }) => {
       )}
       {error && (
         <UiEntity
-          uiTransform={{ margin: { top: 16 * scaleFactor } }}
-          uiText={{
-            value: 'Failed to fetch DCL Cast info',
-            fontSize: 16 * scaleFactor,
-            color: Color4.Red(),
-            textAlign: 'top-left',
-            textWrap: 'wrap',
+          uiTransform={{
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
-        />
+        >
+          <UiEntity
+            uiText={{
+              value: '<b>Failed to fetch DCL Cast info</b>',
+              fontSize: 16 * scaleFactor,
+              color: Color4.White(),
+            }}
+            uiTransform={{ margin: { bottom: 8 * scaleFactor } }}
+          />
+          <UiEntity
+            uiText={{
+              value: 'Please retry.',
+              fontSize: 16 * scaleFactor,
+              color: Color4.Gray(),
+            }}
+          />
+          <Button
+            id="dcl_cast_retry"
+            value="<b>Retry</b>"
+            variant="secondary"
+            fontSize={16 * scaleFactor}
+            color={Color4.White()}
+            onMouseDown={() => {
+              handleGetDclCastInfo(state)
+            }}
+            uiTransform={{
+              margin: { top: 16 * scaleFactor },
+              padding: {
+                top: 8 * scaleFactor,
+                bottom: 8 * scaleFactor,
+                left: 16 * scaleFactor,
+                right: 16 * scaleFactor,
+              },
+            }}
+          />
+        </UiEntity>
       )}
       {!isLoading && !error && (
         <DclCastInfo
           scaleFactor={scaleFactor}
           state={state}
           onResetRoomId={async () => {
-            await handleGetDclCastInfo(state)
+            fetchDclCastInfo()
           }}
         />
       )}
