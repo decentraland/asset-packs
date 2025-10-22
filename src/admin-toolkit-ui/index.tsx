@@ -20,15 +20,18 @@ import { Button } from './Button'
 import { TextAnnouncements } from './TextAnnouncements'
 import { CONTENT_URL } from './constants'
 import { State, TabType, SelectedSmartItem } from './types'
-import { getExplorerComponents } from '../components'
 import {
   BTN_MODERATION_CONTROL,
   ModerationControl,
   moderationControlState,
   SceneAdmin,
 } from './ModerationControl'
-import { getSceneAdmins } from './ModerationControl/api'
-import { ModalAdminList } from './ModerationControl/AdminList'
+import {
+  getSceneAdmins,
+  getSceneBans,
+  SceneBanUser,
+} from './ModerationControl/api'
+import { ModalUserList, UserListType } from './ModerationControl/UsersList'
 import { isPreview } from './fetch-utils'
 
 export const nextTickFunctions: (() => void)[] = []
@@ -59,6 +62,7 @@ export let state: State = {
 }
 
 let sceneAdminsCache: SceneAdmin[] = []
+let sceneBansCache: SceneBanUser[] = []
 
 // const BTN_REWARDS_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-button.png`
 // const BTN_REWARDS_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-active-button.png`
@@ -107,6 +111,21 @@ export async function fetchSceneAdmins() {
     .sort((a) => (a.canBeRemoved ? 1 : -1))
 }
 
+export async function fetchSceneBans() {
+  const [error, response] = await getSceneBans()
+
+  if (error) {
+    sceneBansCache = []
+    return
+  }
+
+  sceneBansCache = response?.results ?? []
+}
+
+export function clearSceneBansCache() {
+  sceneBansCache = []
+}
+
 export function getSmartItems(engine: IEngine) {
   const adminToolkitComponent = getAdminToolkitComponent(engine)
 
@@ -135,9 +154,7 @@ export async function initializeAdminData(
   engine: IEngine,
   sdkHelpers?: ISDKHelpers,
 ) {
-  console.log('initializeAdminData')
   if (!adminDataInitialized) {
-    console.log('initializeAdminData - not initialized')
     const { TextAnnouncements, VideoControlState } = getComponents(engine)
 
     // Initialize AdminToolkitUiEntity
@@ -170,7 +187,7 @@ export async function initializeAdminData(
     }, Number.POSITIVE_INFINITY)
 
     // Initialize scene data
-    await Promise.all([fetchSceneAdmins()])
+    await Promise.all([fetchSceneAdmins(), fetchSceneBans()])
 
     adminDataInitialized = true
 
@@ -435,7 +452,11 @@ const uiComponent = (
               <SmartItemsControl engine={engine} state={state} />
             ) : null}
             {state.activeTab === TabType.MODERATION_CONTROL && (
-              <ModerationControl engine={engine} player={player} />
+              <ModerationControl
+                engine={engine}
+                player={player}
+                sceneAdmins={sceneAdminsCache}
+              />
             )}
           </UiEntity>
           <UiEntity
@@ -482,10 +503,19 @@ const uiComponent = (
       <TextAnnouncements engine={engine} state={state} />
     </UiEntity>,
     moderationControlState.showModalAdminList && (
-      <ModalAdminList
+      <ModalUserList
         scaleFactor={scaleFactor}
-        sceneAdmins={sceneAdminsCache ?? []}
+        users={sceneAdminsCache ?? []}
         engine={engine}
+        type={UserListType.ADMIN}
+      />
+    ),
+    moderationControlState.showModalBanList && (
+      <ModalUserList
+        scaleFactor={scaleFactor}
+        users={sceneBansCache ?? []}
+        engine={engine}
+        type={UserListType.BAN}
       />
     ),
   ]

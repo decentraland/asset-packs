@@ -135,7 +135,6 @@ export function TextAnnouncementsControl({
               />
             </UiEntity>
           </UiEntity>
-
           <UiEntity uiTransform={{ minHeight: 30 * scaleFactor }}>
             <UiEntity
               uiTransform={{
