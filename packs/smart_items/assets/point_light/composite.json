@@ -38,12 +38,19 @@
       "data": {
         "0": {
           "json": {
+            "active": true,
             "color": {
               "r": 1,
               "g": 1,
               "b": 1
             },
-            "intensity": 16000
+            "intensity": 16000,
+            "range": -1,
+            "shadow": true,
+            "type": {
+              "$case": "point",
+              "point": {}
+            }
           }
         }
       }
