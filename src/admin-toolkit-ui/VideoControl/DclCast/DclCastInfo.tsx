@@ -276,25 +276,20 @@ const DclCastInfo = ({
           video={video}
           label="<b>Cast volume</b>"
         />
-        <Button
-          id="dcl_rese_room"
-          value="<b>Reset Room ID</b>"
-          variant="text"
-          fontSize={16 * scaleFactor}
-          color={Color4.Red()}
-          onMouseDown={onResetRoomId}
-          uiTransform={{
-            padding: {
-              top: 6 * scaleFactor,
-              bottom: 6 * scaleFactor,
-              left: 4 * scaleFactor,
-              right: 4 * scaleFactor,
-            },
-            width: 'auto',
-            height: 36 * scaleFactor,
-            margin: { top: 12 * scaleFactor },
-          }}
-        />
+        <UiEntity>
+          <Button
+            id="dcl_cast_reset_room_id"
+            value="<b>Reset Room ID</b>"
+            variant="text"
+            fontSize={16 * scaleFactor}
+            color={Color4.fromHexString('#FB3B3B')}
+            uiTransform={{
+              margin: { right: 8 * scaleFactor, top: 20 * scaleFactor },
+              padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
+            }}
+            onMouseDown={onResetRoomId}
+          />
+        </UiEntity>
       </UiEntity>
     </UiEntity>
   )

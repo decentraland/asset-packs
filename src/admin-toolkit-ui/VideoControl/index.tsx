@@ -146,13 +146,12 @@ export function VideoControl({
                 margin: { top: 10 * scaleFactor },
                 flexDirection: 'row',
                 width: '100%',
-                justifyContent: 'space-evenly',
+                justifyContent: 'space-between',
               }}
             >
               <UiEntity
                 uiTransform={{
-                  padding: { right: 8 * scaleFactor },
-                  width: '30%',
+                  width: '33%',
                 }}
               >
                 <CustomButton
@@ -172,8 +171,7 @@ export function VideoControl({
               </UiEntity>
               <UiEntity
                 uiTransform={{
-                  padding: { left: 8 * scaleFactor },
-                  width: '30%',
+                  width: '33%',
                 }}
               >
                 <CustomButton
@@ -192,8 +190,7 @@ export function VideoControl({
               </UiEntity>
               <UiEntity
                 uiTransform={{
-                  padding: { right: 8 * scaleFactor },
-                  width: '30%',
+                  width: '33%',
                 }}
               >
                 <CustomButton
