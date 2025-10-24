@@ -6,6 +6,8 @@ import { Button } from '../../Button'
 import { State } from '../../types'
 import { openExternalUrl } from '~system/RestrictedActions'
 import { VideoControlVolume } from '../VolumeControl'
+import { DCL_CAST_TYPE } from '../../../definitions'
+import { createVideoPlayerControls } from '../utils'
 
 const ICONS = {
   LINK_ICON:
@@ -27,6 +29,7 @@ const DclCastInfo = ({
   entity: Entity
   video: DeepReadonlyObject<PBVideoPlayer> | undefined
 }) => {
+  const controls = createVideoPlayerControls(entity, engine)
   return (
     <UiEntity
       uiTransform={{ flexDirection: 'column', width: '100%', height: '100%' }}
@@ -79,28 +82,41 @@ const DclCastInfo = ({
               }}
             />
           </UiEntity>
-          <Button
-            id="dcl_cast_get_room_id"
-            value="<b>Activate</b>"
-            variant="text"
-            fontSize={16 * scaleFactor}
-            color={Color4.White()}
-            // TODO: activate / deactivate status
-            uiBackground={{ color: Color4.fromHexString('#34CE77') }}
-            uiTransform={{
-              padding: {
-                top: 6 * scaleFactor,
-                bottom: 6 * scaleFactor,
-                left: 4 * scaleFactor,
-                right: 4 * scaleFactor,
-              },
-              borderRadius: 6 * scaleFactor,
-              width: 'auto',
-              height: 36 * scaleFactor,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          />
+          {/* TODO: ADD IS_DCL_CAST TO UTILS */}
+          {video?.src.startsWith(DCL_CAST_TYPE) ? (
+            <Button
+              id="dcl_cast_deactivate"
+              value="<b>Deactivate</b>"
+              variant="text"
+              fontSize={16 * scaleFactor}
+              color={Color4.White()}
+              uiTransform={{
+                minWidth: 120 * scaleFactor,
+                margin: { right: 8 * scaleFactor },
+                padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
+              }}
+              onMouseDown={() => {
+                controls.setSource('')
+              }}
+            />
+          ) : (
+            <Button
+              id="dcl_cast_activate"
+              value="<b>Activate</b>"
+              labelTransform={{
+                margin: { left: 20 * scaleFactor, right: 20 * scaleFactor },
+              }}
+              uiTransform={{
+                minWidth: 120 * scaleFactor,
+              }}
+              fontSize={16 * scaleFactor}
+              uiBackground={{ color: Color4.fromHexString('#34CE77') }}
+              color={Color4.Black()}
+              onMouseDown={() => {
+                controls.setSource(state.videoControl.dclCast?.streamLink || '')
+              }}
+            />
+          )}
         </UiEntity>
         <UiEntity
           uiTransform={{
@@ -251,8 +267,7 @@ const DclCastInfo = ({
         uiTransform={{
           width: '100%',
           display: 'flex',
-          justifyContent: 'flex-start',
-          flexDirection: 'row',
+          flexDirection: 'column',
           margin: { top: 8 * scaleFactor },
         }}
       >
