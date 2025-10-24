@@ -2,7 +2,7 @@ import ReactEcs, { Label, UiEntity } from '@dcl/react-ecs'
 import { Color4 } from '@dcl/sdk/math'
 
 import { getScaleUIFactor } from '../../../ui'
-import { IEngine } from '@dcl/ecs'
+import { DeepReadonlyObject, Entity, IEngine, PBVideoPlayer } from '@dcl/ecs'
 import { getDclCastInfo } from '../api'
 import { CONTENT_URL } from '../../constants'
 import { State } from '../../types'
@@ -12,6 +12,7 @@ import DclCastInfo from './DclCastInfo'
 import { LoadingDots } from '../../Loading'
 import { Button } from '../../Button'
 
+//TODO CHANGE ICONS URL
 const ICONS = {
   VIDEO_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control.png`,
   LINK_ICON:
@@ -42,7 +43,17 @@ export async function handleGetDclCastInfo(state: State) {
   }
 }
 
-const DclCast = ({ engine, state }: { engine: IEngine; state: State }) => {
+const DclCast = ({
+  engine,
+  state,
+  entity,
+  video,
+}: {
+  engine: IEngine
+  state: State
+  entity: Entity
+  video: DeepReadonlyObject<PBVideoPlayer> | undefined
+}) => {
   const scaleFactor = getScaleUIFactor(engine)
   const [isLoading, setIsLoading] = ReactEcs.useState(false)
   const [error, setError] = ReactEcs.useState(false)
@@ -156,6 +167,8 @@ const DclCast = ({ engine, state }: { engine: IEngine; state: State }) => {
         <DclCastInfo
           scaleFactor={scaleFactor}
           state={state}
+          entity={entity}
+          video={video}
           onResetRoomId={async () => {
             fetchDclCastInfo()
           }}

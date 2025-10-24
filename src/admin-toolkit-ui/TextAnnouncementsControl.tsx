@@ -1,4 +1,4 @@
-import { IEngine } from '@dcl/ecs'
+import { Entity, IEngine } from '@dcl/ecs'
 import ReactEcs, { Label, UiEntity, Input } from '@dcl/react-ecs'
 import { Color4 } from '@dcl/sdk/math'
 import { getComponents } from '../definitions'
@@ -157,9 +157,6 @@ export function TextAnnouncementsControl({
             />
           </UiEntity>
         </UiEntity>
-      </Card>
-      <Card scaleFactor={scaleFactor}>
-        <DclCast engine={engine} state={state} />
       </Card>
     </UiEntity>
   )

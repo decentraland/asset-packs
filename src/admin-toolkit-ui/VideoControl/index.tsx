@@ -11,9 +11,15 @@ import { Card } from '../Card'
 import { VideoControlURL } from './VideoUrl'
 import { LiveStream } from './LiveStream'
 import { Active } from '../Active'
-import { LIVEKIT_STREAM_SRC } from '../../definitions'
+import {
+  DCL_CAST_TYPE,
+  LIVEKIT_STREAM_SRC,
+  VIDEO_URL_TYPE,
+} from '../../definitions'
+import DclCast from './DclCast'
 
 // Constants
+//CHANGE ICONS
 export const ICONS = {
   VIDEO_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control.png`,
   PREVIOUS_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-previous-button.png`,
@@ -25,9 +31,10 @@ export const ICONS = {
   VOLUME_PLUS_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-volume-plus-button.png`,
   VIDEO_SOURCE: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-video.png`,
   LIVE_SOURCE: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-live.png`,
+  DCL_CAST_SOURCE:
+    'https://builder-items.decentraland.zone/admin_toolkit/assets/icons/dcl-cast.png',
   INFO: `${CONTENT_URL}/admin_toolkit/assets/icons/info.png`,
 } as const
-
 
 export const VOLUME_STEP = 0.1
 export const DEFAULT_VOLUME = 1
@@ -37,7 +44,6 @@ export const COLORS = {
   GRAY: Color4.create(160 / 255, 155 / 255, 168 / 255, 1),
   SUCCESS: Color4.fromHexString('#34CE77'),
 } as const
-
 
 // Main component
 export function VideoControl({
@@ -50,13 +56,17 @@ export function VideoControl({
   const [selectedEntity, selectedVideo] = useSelectedVideoPlayer(engine) ?? []
   const scaleFactor = getScaleUIFactor(engine)
   const videoPlayers = getVideoPlayers(engine)
-  const [selected, setSelected] = ReactEcs.useState<'video-url' | 'live' | undefined>(undefined)
+  const [selected, setSelected] = ReactEcs.useState<
+    'video-url' | 'live' | 'dcl-cast' | undefined
+  >(undefined)
 
   ReactEcs.useEffect(() => {
     setSelected(
-      selectedVideo && selectedVideo.src.startsWith('https://')
-        ? 'video-url'
-        : 'live',
+      selectedVideo && selectedVideo.src.startsWith(DCL_CAST_TYPE)
+        ? 'dcl-cast'
+        : selectedVideo && selectedVideo.src.startsWith(VIDEO_URL_TYPE)
+          ? 'video-url'
+          : 'live',
     )
   }, [state.videoControl.selectedVideoPlayer])
 
@@ -88,12 +98,14 @@ export function VideoControl({
             title="<b>VIDEO SCREENS</b>"
             scaleFactor={scaleFactor}
           />
-          {videoPlayers.length > 1 && <Label
-            value="<b>Current Screen</b>"
-            fontSize={16 * scaleFactor}
-            color={Color4.White()}
-            uiTransform={{ margin: { bottom: 16 * scaleFactor } }}
-          />}
+          {videoPlayers.length > 1 && (
+            <Label
+              value="<b>Current Screen</b>"
+              fontSize={16 * scaleFactor}
+              color={Color4.White()}
+              uiTransform={{ margin: { bottom: 16 * scaleFactor } }}
+            />
+          )}
 
           <UiEntity
             uiTransform={{
@@ -125,7 +137,9 @@ export function VideoControl({
               fontSize={16 * scaleFactor}
               value="<b>Media Source</b>"
               color={Color4.White()}
-              uiTransform={{ margin: { bottom: 2 * scaleFactor, top: 16 * scaleFactor } }}
+              uiTransform={{
+                margin: { bottom: 2 * scaleFactor, top: 16 * scaleFactor },
+              }}
             />
             <UiEntity
               uiTransform={{
@@ -134,7 +148,12 @@ export function VideoControl({
                 width: '100%',
               }}
             >
-              <UiEntity uiTransform={{ width: '50%', padding: { right: 8 * scaleFactor } }}>
+              <UiEntity
+                uiTransform={{
+                  width: '33.3%',
+                  padding: { right: 8 * scaleFactor },
+                }}
+              >
                 <CustomButton
                   engine={engine}
                   id="video_control_url"
@@ -144,11 +163,18 @@ export function VideoControl({
                   scaleFactor={scaleFactor}
                   selected={selected === 'video-url'}
                   active={
-                    selectedVideo && selectedVideo.src.startsWith('https://')
+                    selectedVideo &&
+                    selectedVideo.src.startsWith(VIDEO_URL_TYPE) &&
+                    !selectedVideo.src.startsWith(DCL_CAST_TYPE)
                   }
                 />
               </UiEntity>
-              <UiEntity uiTransform={{ width: '50%', padding: { left: 8 * scaleFactor } }}>
+              <UiEntity
+                uiTransform={{
+                  width: '33.3%',
+                  padding: { left: 8 * scaleFactor },
+                }}
+              >
                 <CustomButton
                   engine={engine}
                   id="video_control_live"
@@ -161,6 +187,25 @@ export function VideoControl({
                   }
                   scaleFactor={scaleFactor}
                   selected={selected === 'live'}
+                />
+              </UiEntity>
+              <UiEntity
+                uiTransform={{
+                  width: '33.3%',
+                  padding: { right: 8 * scaleFactor },
+                }}
+              >
+                <CustomButton
+                  engine={engine}
+                  id="video_control_dcl_cast"
+                  value="<b>DCL CAST</b>"
+                  icon={ICONS.DCL_CAST_SOURCE}
+                  onClick={() => setSelected('dcl-cast')}
+                  scaleFactor={scaleFactor}
+                  selected={selected === 'dcl-cast'}
+                  active={
+                    selectedVideo && selectedVideo.src.startsWith(DCL_CAST_TYPE)
+                  }
                 />
               </UiEntity>
             </UiEntity>
@@ -185,12 +230,19 @@ export function VideoControl({
               video={selectedVideo}
             />
           )}
+          {selected === 'dcl-cast' && (
+            <DclCast
+              engine={engine}
+              state={state}
+              entity={selectedEntity}
+              video={selectedVideo}
+            />
+          )}
         </Card>
       )}
     </UiEntity>
   )
 }
-
 
 interface Props {
   id: string
@@ -203,7 +255,16 @@ interface Props {
   active?: boolean
 }
 
-function CustomButton({ active, scaleFactor, value, id, onClick, icon, selected, engine }: Props) {
+function CustomButton({
+  active,
+  scaleFactor,
+  value,
+  id,
+  onClick,
+  icon,
+  selected,
+  engine,
+}: Props) {
   return (
     <UiEntity
       uiTransform={{ flexDirection: 'column', height: '100%', width: '100%' }}
@@ -236,12 +297,18 @@ function CustomButton({ active, scaleFactor, value, id, onClick, icon, selected,
             alignItems: 'center',
             justifyContent: 'center',
             width: '100%',
-            height: 36 * scaleFactor
+            height: 36 * scaleFactor,
           }}
         />
       </UiEntity>
 
-      {active && <Active scaleFactor={scaleFactor} engine={engine} uiTransform={{ width: '100%', margin: { top: 6 * scaleFactor } }} />}
+      {active && (
+        <Active
+          scaleFactor={scaleFactor}
+          engine={engine}
+          uiTransform={{ width: '100%', margin: { top: 6 * scaleFactor } }}
+        />
+      )}
     </UiEntity>
   )
 }

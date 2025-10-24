@@ -1,8 +1,11 @@
+import { Entity, IEngine } from '@dcl/ecs'
+import { DeepReadonlyObject, PBVideoPlayer } from '@dcl/ecs'
 import ReactEcs, { Label, UiEntity } from '@dcl/react-ecs'
 import { Color4 } from '@dcl/sdk/math'
 import { Button } from '../../Button'
 import { State } from '../../types'
 import { openExternalUrl } from '~system/RestrictedActions'
+import { VideoControlVolume } from '../VolumeControl'
 
 const ICONS = {
   LINK_ICON:
@@ -12,11 +15,17 @@ const ICONS = {
 const DclCastInfo = ({
   scaleFactor,
   state,
+  engine,
   onResetRoomId,
+  entity,
+  video,
 }: {
   scaleFactor: number
   state: State
+  engine: IEngine
   onResetRoomId: () => Promise<void>
+  entity: Entity
+  video: DeepReadonlyObject<PBVideoPlayer> | undefined
 }) => {
   return (
     <UiEntity
@@ -160,6 +169,7 @@ const DclCastInfo = ({
                 value={'<b>Open Link</b>'}
                 fontSize={18 * scaleFactor}
                 color={Color4.White()}
+                uiTransform={{ margin: { left: 4 * scaleFactor } }}
               />
             </UiEntity>
           </UiEntity>
@@ -231,6 +241,7 @@ const DclCastInfo = ({
                 value={'<b>Open Link</b>'}
                 fontSize={18 * scaleFactor}
                 color={Color4.White()}
+                uiTransform={{ margin: { left: 4 * scaleFactor } }}
               />
             </UiEntity>
           </UiEntity>
@@ -241,9 +252,16 @@ const DclCastInfo = ({
           width: '100%',
           display: 'flex',
           justifyContent: 'flex-start',
+          flexDirection: 'row',
           margin: { top: 8 * scaleFactor },
         }}
       >
+        <VideoControlVolume
+          engine={engine}
+          entity={entity}
+          video={video}
+          label="<b>Cast volume</b>"
+        />
         <Button
           id="dcl_rese_room"
           value="<b>Reset Room ID</b>"
