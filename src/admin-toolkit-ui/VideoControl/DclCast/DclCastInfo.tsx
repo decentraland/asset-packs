@@ -171,8 +171,8 @@ const DclCastInfo = ({
             >
               <UiEntity
                 uiTransform={{
-                  width: 24 * scaleFactor,
-                  height: 24 * scaleFactor,
+                  width: 20 * scaleFactor,
+                  height: 20 * scaleFactor,
                 }}
                 uiBackground={{
                   texture: {
@@ -243,8 +243,8 @@ const DclCastInfo = ({
             >
               <UiEntity
                 uiTransform={{
-                  width: 24 * scaleFactor,
-                  height: 24 * scaleFactor,
+                  width: 20 * scaleFactor,
+                  height: 20 * scaleFactor,
                 }}
                 uiBackground={{
                   texture: {
@@ -265,7 +265,6 @@ const DclCastInfo = ({
       </UiEntity>
       <UiEntity
         uiTransform={{
-          width: '100%',
           display: 'flex',
           flexDirection: 'column',
           margin: { top: 8 * scaleFactor },
@@ -293,6 +292,7 @@ const DclCastInfo = ({
             },
             width: 'auto',
             height: 36 * scaleFactor,
+            margin: { top: 12 * scaleFactor },
           }}
         />
       </UiEntity>

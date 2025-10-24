@@ -2,7 +2,7 @@ import { Color4 } from '@dcl/sdk/math'
 import { DeepReadonlyObject, IEngine, PBVideoPlayer, Entity } from '@dcl/ecs'
 import ReactEcs, { UiEntity, Input, Label } from '@dcl/react-ecs'
 import { COLORS, ICONS } from '.'
-import { createVideoPlayerControls } from './utils'
+import { createVideoPlayerControls, isVideoStream } from './utils'
 import { VideoControlVolume } from './VolumeControl'
 import { Button } from '../Button'
 import { Header } from '../Header'
@@ -10,9 +10,9 @@ import { openExternalUrl } from '~system/RestrictedActions'
 import { LIVEKIT_STREAM_SRC } from '../../definitions'
 import { CONTENT_URL } from '../constants'
 
-const VIDEO_PLAYER_HELP_URL = 'https://docs.decentraland.org/creator/editor/scene-admin/#video-playing'
+const VIDEO_PLAYER_HELP_URL =
+  'https://docs.decentraland.org/creator/editor/scene-admin/#video-playing'
 export const HELP_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/help.png`
-
 
 export function VideoControlURL({
   engine,
@@ -25,13 +25,13 @@ export function VideoControlURL({
   entity: Entity
   video: DeepReadonlyObject<PBVideoPlayer> | undefined
 }) {
-  const [videoURL, setVideoURL] = ReactEcs.useState("")
+  const [videoURL, setVideoURL] = ReactEcs.useState('')
   ReactEcs.useEffect(() => {
     const url = video?.src === LIVEKIT_STREAM_SRC ? '' : video?.src
-    setVideoURL(url ?? "")
+    setVideoURL(url ?? '')
   }, [entity])
   const controls = createVideoPlayerControls(entity, engine)
-  const isActive = video && video.src.startsWith('https://')
+  const isActive = video && isVideoStream(video.src)
   return (
     <UiEntity uiTransform={{ flexDirection: 'column', width: '100%' }}>
       <UiEntity
@@ -83,7 +83,7 @@ export function VideoControlURL({
           borderRadius: 12,
           borderColor: Color4.White(),
           width: '100%',
-          height: 80 * scaleFactor
+          height: 80 * scaleFactor,
         }}
       />
 
@@ -96,7 +96,7 @@ export function VideoControlURL({
           margin: { top: 10 * scaleFactor },
         }}
       >
-        {video?.src.startsWith('https://') && (
+        {video?.src && isVideoStream(video.src) && (
           <Button
             id="video_control_share_screen_clear"
             value="<b>Deactivate</b>"
@@ -114,7 +114,7 @@ export function VideoControlURL({
         )}
         {(!videoURL || videoURL !== video?.src) && (
           <Button
-            disabled={!videoURL.startsWith('https://')}
+            disabled={!isVideoStream(videoURL)}
             id="video_control_share_screen_share"
             value={
               video?.src &&
@@ -128,7 +128,7 @@ export function VideoControlURL({
             }}
             fontSize={16 * scaleFactor}
             uiBackground={{
-              color: videoURL.startsWith('https://')
+              color: isVideoStream(videoURL)
                 ? COLORS.SUCCESS
                 : Color4.fromHexString('#274431'),
             }}
