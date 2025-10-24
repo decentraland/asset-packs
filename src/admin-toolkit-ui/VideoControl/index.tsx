@@ -149,63 +149,66 @@ export function VideoControl({
                 justifyContent: 'space-evenly',
               }}
             >
-              {/* <UiEntity
-                uiTransform={{
-                  padding: { right: 8 * scaleFactor },
-                }}
-              > */}
-              <CustomButton
-                engine={engine}
-                id="video_control_url"
-                value="<b>VIDEO URL</b>"
-                icon={ICONS.VIDEO_SOURCE}
-                onClick={() => setSelected('video-url')}
-                scaleFactor={scaleFactor}
-                selected={selected === 'video-url'}
-                active={
-                  selectedVideo &&
-                  selectedVideo.src.startsWith(VIDEO_URL_TYPE) &&
-                  !selectedVideo.src.startsWith(DCL_CAST_TYPE)
-                }
-              />
-              {/* </UiEntity> */}
-              {/* <UiEntity
-                uiTransform={{
-                  padding: { left: 8 * scaleFactor },
-                }}
-              > */}
-              <CustomButton
-                engine={engine}
-                id="video_control_live"
-                value="<b>LIVE STREAM</b>"
-                icon={ICONS.LIVE_SOURCE}
-                onClick={() => setSelected('live')}
-                active={
-                  selectedVideo &&
-                  selectedVideo.src.startsWith(LIVEKIT_STREAM_SRC)
-                }
-                scaleFactor={scaleFactor}
-                selected={selected === 'live'}
-              />
-              {/* </UiEntity>
               <UiEntity
                 uiTransform={{
                   padding: { right: 8 * scaleFactor },
+                  width: '33%',
                 }}
-              > */}
-              <CustomButton
-                engine={engine}
-                id="video_control_dcl_cast"
-                value="<b>DCL CAST</b>"
-                icon={ICONS.DCL_CAST_SOURCE}
-                onClick={() => setSelected('dcl-cast')}
-                scaleFactor={scaleFactor}
-                selected={selected === 'dcl-cast'}
-                active={
-                  selectedVideo && selectedVideo.src.startsWith(DCL_CAST_TYPE)
-                }
-              />
-              {/* </UiEntity> */}
+              >
+                <CustomButton
+                  engine={engine}
+                  id="video_control_url"
+                  value="<b>VIDEO URL</b>"
+                  icon={ICONS.VIDEO_SOURCE}
+                  onClick={() => setSelected('video-url')}
+                  scaleFactor={scaleFactor}
+                  selected={selected === 'video-url'}
+                  active={
+                    selectedVideo &&
+                    selectedVideo.src.startsWith(VIDEO_URL_TYPE) &&
+                    !selectedVideo.src.startsWith(DCL_CAST_TYPE)
+                  }
+                />
+              </UiEntity>
+              <UiEntity
+                uiTransform={{
+                  padding: { left: 8 * scaleFactor },
+                  width: '33%',
+                }}
+              >
+                <CustomButton
+                  engine={engine}
+                  id="video_control_live"
+                  value="<b>LIVE STREAM</b>"
+                  icon={ICONS.LIVE_SOURCE}
+                  onClick={() => setSelected('live')}
+                  active={
+                    selectedVideo &&
+                    selectedVideo.src.startsWith(LIVEKIT_STREAM_SRC)
+                  }
+                  scaleFactor={scaleFactor}
+                  selected={selected === 'live'}
+                />
+              </UiEntity>
+              <UiEntity
+                uiTransform={{
+                  padding: { right: 8 * scaleFactor },
+                  width: '33%',
+                }}
+              >
+                <CustomButton
+                  engine={engine}
+                  id="video_control_dcl_cast"
+                  value="<b>DCL CAST</b>"
+                  icon={ICONS.DCL_CAST_SOURCE}
+                  onClick={() => setSelected('dcl-cast')}
+                  scaleFactor={scaleFactor}
+                  selected={selected === 'dcl-cast'}
+                  active={
+                    selectedVideo && selectedVideo.src.startsWith(DCL_CAST_TYPE)
+                  }
+                />
+              </UiEntity>
             </UiEntity>
           </UiEntity>
         </UiEntity>
