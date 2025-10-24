@@ -168,6 +168,7 @@ const DclCast = ({
           scaleFactor={scaleFactor}
           state={state}
           entity={entity}
+          engine={engine}
           video={video}
           onResetRoomId={async () => {
             fetchDclCastInfo()
