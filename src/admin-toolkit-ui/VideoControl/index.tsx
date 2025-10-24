@@ -152,7 +152,7 @@ export function VideoControl({
               <UiEntity
                 uiTransform={{
                   padding: { right: 8 * scaleFactor },
-                  width: '33%',
+                  width: '30%',
                 }}
               >
                 <CustomButton
@@ -173,7 +173,7 @@ export function VideoControl({
               <UiEntity
                 uiTransform={{
                   padding: { left: 8 * scaleFactor },
-                  width: '33%',
+                  width: '30%',
                 }}
               >
                 <CustomButton
@@ -193,7 +193,7 @@ export function VideoControl({
               <UiEntity
                 uiTransform={{
                   padding: { right: 8 * scaleFactor },
-                  width: '33%',
+                  width: '30%',
                 }}
               >
                 <CustomButton
