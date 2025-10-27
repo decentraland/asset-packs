@@ -11,14 +11,16 @@ import { Header } from '../../Header'
 import DclCastInfo from './DclCastInfo'
 import { LoadingDots } from '../../Loading'
 import { Button } from '../../Button'
+import {
+  getDclCastStyles,
+  getDclCastColors,
+  getDclCastBackgrounds,
+} from './styles'
 
-//TODO CHANGE ICONS URL
 const ICONS = {
   VIDEO_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control.png`,
-  LINK_ICON:
-    'https://builder-items.decentraland.zone/admin_toolkit/assets/icons/open-link.png',
-  DCL_CAST_ICON:
-    'https://builder-items.decentraland.zone/admin_toolkit/assets/icons/dcl-cast.png',
+  LINK_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/open-link.png`,
+  DCL_CAST_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/dcl-cast.png`,
 }
 
 export async function handleGetDclCastInfo(state: State) {
@@ -28,15 +30,6 @@ export async function handleGetDclCastInfo(state: State) {
     return null
   } else {
     if (data) {
-      console.log('DCL Cast Info:', data)
-      //TODO REMOVE LOGS
-      data &&
-        Object.keys(data).forEach((key) => {
-          console.log(
-            `ALE - Key: ${key}, Value:`,
-            data?.[key as keyof typeof data],
-          )
-        })
       state.videoControl.dclCast = data
       return data
     }
@@ -55,6 +48,8 @@ const DclCast = ({
   video: DeepReadonlyObject<PBVideoPlayer> | undefined
 }) => {
   const scaleFactor = getScaleUIFactor(engine)
+  const styles = getDclCastStyles(scaleFactor)
+  const colors = getDclCastColors()
   const [isLoading, setIsLoading] = ReactEcs.useState(false)
   const [error, setError] = ReactEcs.useState(false)
 
@@ -81,20 +76,13 @@ const DclCast = ({
   }, [])
 
   return (
-    <UiEntity
-      uiTransform={{ flexDirection: 'column', width: '100%', height: '100%' }}
-    >
+    <UiEntity uiTransform={styles.fullContainer}>
       <Header
         iconSrc={ICONS.DCL_CAST_ICON}
         title="DCL Cast"
         scaleFactor={scaleFactor}
       />
-      <UiEntity
-        uiTransform={{
-          width: '100%',
-          margin: { bottom: 24 * scaleFactor },
-        }}
-      >
+      <UiEntity uiTransform={styles.fullWidthWithBottomMargin}>
         <UiEntity
           uiText={{
             value:
@@ -105,9 +93,7 @@ const DclCast = ({
             textAlign: 'top-left',
             textWrap: 'wrap',
           }}
-          uiTransform={{
-            margin: { bottom: 8 * scaleFactor },
-          }}
+          uiTransform={styles.marginBottomSmall}
         />
       </UiEntity>
       {isLoading && (
@@ -147,19 +133,11 @@ const DclCast = ({
             value="<b>Retry</b>"
             variant="secondary"
             fontSize={16 * scaleFactor}
-            color={Color4.White()}
+            color={colors.white}
             onMouseDown={() => {
               handleGetDclCastInfo(state)
             }}
-            uiTransform={{
-              margin: { top: 16 * scaleFactor },
-              padding: {
-                top: 8 * scaleFactor,
-                bottom: 8 * scaleFactor,
-                left: 16 * scaleFactor,
-                right: 16 * scaleFactor,
-              },
-            }}
+            uiTransform={styles.retryButton}
           />
         </UiEntity>
       )}
