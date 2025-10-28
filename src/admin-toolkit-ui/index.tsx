@@ -43,6 +43,7 @@ export let state: State = {
   activeTab: TabType.NONE,
   videoControl: {
     selectedVideoPlayer: undefined,
+    selectedStream: undefined,
     dclCast: undefined,
   },
   smartItemsControl: {
