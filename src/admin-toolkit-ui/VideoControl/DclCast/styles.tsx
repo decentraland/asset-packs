@@ -177,13 +177,15 @@ export const getDclCastStyles = (
   separatorLine: {
     margin: { top: 16 * scaleFactor, bottom: 16 * scaleFactor },
     width: '100%',
-    height: 1,
+    height: 1 * scaleFactor,
     borderWidth: 1,
     borderColor: Color4.fromHexString('#43404A'),
   },
 
   // Text info containers
   textInfoContainer: {
+    display: 'flex',
+    flexDirection: 'column',
     margin: { bottom: 4 * scaleFactor },
   },
 

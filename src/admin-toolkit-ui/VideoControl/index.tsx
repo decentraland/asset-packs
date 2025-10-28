@@ -150,7 +150,7 @@ export function VideoControl({
             >
               <UiEntity
                 uiTransform={{
-                  width: '33%',
+                  width: '30%',
                 }}
               >
                 <CustomButton
@@ -166,7 +166,7 @@ export function VideoControl({
               </UiEntity>
               <UiEntity
                 uiTransform={{
-                  width: '33%',
+                  width: '30%',
                 }}
               >
                 <CustomButton
@@ -186,7 +186,7 @@ export function VideoControl({
               </UiEntity>
               <UiEntity
                 uiTransform={{
-                  width: '33%',
+                  width: '30%',
                 }}
               >
                 <CustomButton
