@@ -7,6 +7,7 @@ import { State } from '../../types'
 import { openExternalUrl } from '~system/RestrictedActions'
 import { VideoControlVolume } from '../VolumeControl'
 import { createVideoPlayerControls, isDclCast } from '../utils'
+import { LIVEKIT_STREAM_SRC } from '../LiveStream'
 import {
   getDclCastStyles,
   getDclCastColors,
@@ -76,7 +77,7 @@ const DclCastInfo = ({
               uiBackground={backgrounds.success}
               color={colors.black}
               onMouseDown={() => {
-                controls.setSource(state.videoControl.dclCast?.streamLink || '')
+                controls.setSource(LIVEKIT_STREAM_SRC)
               }}
             />
           )}
