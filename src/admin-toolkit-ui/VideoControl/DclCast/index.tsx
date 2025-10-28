@@ -1,8 +1,9 @@
 import ReactEcs, { Label, UiEntity } from '@dcl/react-ecs'
+import { DeepReadonlyObject, Entity, IEngine, PBVideoPlayer } from '@dcl/ecs'
 import { Color4 } from '@dcl/sdk/math'
 
 import { getScaleUIFactor } from '../../../ui'
-import { DeepReadonlyObject, Entity, IEngine, PBVideoPlayer } from '@dcl/ecs'
+
 import { getDclCastInfo } from '../api'
 import { CONTENT_URL } from '../../constants'
 import { State } from '../../types'
@@ -11,15 +12,10 @@ import { Header } from '../../Header'
 import DclCastInfo from './DclCastInfo'
 import { LoadingDots } from '../../Loading'
 import { Button } from '../../Button'
-import {
-  getDclCastStyles,
-  getDclCastColors,
-  getDclCastBackgrounds,
-} from './styles'
+import { getDclCastStyles, getDclCastColors } from './styles'
 
 const ICONS = {
   VIDEO_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control.png`,
-  LINK_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/open-link.png`,
   DCL_CAST_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/dcl-cast.png`,
 }
 

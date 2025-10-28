@@ -19,7 +19,7 @@ export type State = {
   activeTab: TabType
   videoControl: {
     selectedVideoPlayer: number | undefined
-    selectedStream: 'stream' | 'dcl-cast' | undefined
+    selectedStream: 'live' | 'dcl-cast' | undefined
     dclCast: DclCastResponse | undefined
   }
   smartItemsControl: {
