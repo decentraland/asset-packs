@@ -254,7 +254,8 @@ export function ShowStreamKey({
             />
           </UiEntity>
         )}
-        {video?.src === LIVEKIT_STREAM_SRC ? (
+        {video?.src === LIVEKIT_STREAM_SRC &&
+        state.videoControl.selectedStream === 'live' ? (
           <Button
             id="video_control_share_screen_clear"
             value="<b>Deactivate</b>"
