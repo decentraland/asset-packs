@@ -2,7 +2,7 @@ import { Color4 } from '@dcl/sdk/math'
 import { DeepReadonlyObject, IEngine, PBVideoPlayer, Entity } from '@dcl/ecs'
 import ReactEcs, { UiEntity, Input, Label } from '@dcl/react-ecs'
 import { COLORS, ICONS } from '.'
-import { createVideoPlayerControls, isVideoStream } from './utils'
+import { createVideoPlayerControls, isVideoUrl } from './utils'
 import { VideoControlVolume } from './VolumeControl'
 import { Button } from '../Button'
 import { Header } from '../Header'
@@ -31,7 +31,7 @@ export function VideoControlURL({
     setVideoURL(url ?? '')
   }, [entity])
   const controls = createVideoPlayerControls(entity, engine)
-  const isActive = video && isVideoStream(video.src)
+  const isActive = video && isVideoUrl(video.src)
   return (
     <UiEntity uiTransform={{ flexDirection: 'column', width: '100%' }}>
       <UiEntity
@@ -96,7 +96,7 @@ export function VideoControlURL({
           margin: { top: 10 * scaleFactor },
         }}
       >
-        {video?.src && isVideoStream(video.src) && (
+        {video?.src && isVideoUrl(video.src) && (
           <Button
             id="video_control_share_screen_clear"
             value="<b>Deactivate</b>"
@@ -114,7 +114,7 @@ export function VideoControlURL({
         )}
         {(!videoURL || videoURL !== video?.src) && (
           <Button
-            disabled={!isVideoStream(videoURL)}
+            disabled={!isVideoUrl(videoURL)}
             id="video_control_share_screen_share"
             value={
               video?.src &&
@@ -128,7 +128,7 @@ export function VideoControlURL({
             }}
             fontSize={16 * scaleFactor}
             uiBackground={{
-              color: isVideoStream(videoURL)
+              color: isVideoUrl(videoURL)
                 ? COLORS.SUCCESS
                 : Color4.fromHexString('#274431'),
             }}
@@ -240,7 +240,6 @@ export function VideoControlURL({
           }}
         />
       </UiEntity>
-
       <VideoControlVolume
         engine={engine}
         entity={entity}

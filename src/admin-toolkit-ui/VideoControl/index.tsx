@@ -6,20 +6,20 @@ import { Button } from '../Button'
 import { CONTENT_URL } from '../constants'
 import { State } from '../types'
 import { Header } from '../Header'
-import { getVideoPlayers, useSelectedVideoPlayer } from './utils'
+import {
+  getVideoPlayers,
+  isDclCast,
+  isVideoUrl,
+  useSelectedVideoPlayer,
+} from './utils'
 import { Card } from '../Card'
 import { VideoControlURL } from './VideoUrl'
 import { LiveStream } from './LiveStream'
 import { Active } from '../Active'
-import {
-  DCL_CAST_TYPE,
-  LIVEKIT_STREAM_SRC,
-  VIDEO_URL_TYPE,
-} from '../../definitions'
+import { LIVEKIT_STREAM_SRC, VIDEO_URL_TYPE } from '../../definitions'
 import DclCast from './DclCast'
 
 // Constants
-//CHANGE ICONS
 export const ICONS = {
   VIDEO_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control.png`,
   PREVIOUS_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-previous-button.png`,
@@ -62,9 +62,9 @@ export function VideoControl({
 
   ReactEcs.useEffect(() => {
     setSelected(
-      selectedVideo && selectedVideo.src.startsWith(DCL_CAST_TYPE)
+      selectedVideo && isDclCast(selectedVideo.src)
         ? 'dcl-cast'
-        : selectedVideo && selectedVideo.src.startsWith(VIDEO_URL_TYPE)
+        : selectedVideo && isVideoUrl(selectedVideo.src)
           ? 'video-url'
           : 'live',
     )
@@ -162,30 +162,7 @@ export function VideoControl({
                   onClick={() => setSelected('video-url')}
                   scaleFactor={scaleFactor}
                   selected={selected === 'video-url'}
-                  active={
-                    selectedVideo &&
-                    selectedVideo.src.startsWith(VIDEO_URL_TYPE) &&
-                    !selectedVideo.src.startsWith(DCL_CAST_TYPE)
-                  }
-                />
-              </UiEntity>
-              <UiEntity
-                uiTransform={{
-                  width: '33%',
-                }}
-              >
-                <CustomButton
-                  engine={engine}
-                  id="video_control_live"
-                  value="<b>LIVE STREAM</b>"
-                  icon={ICONS.LIVE_SOURCE}
-                  onClick={() => setSelected('live')}
-                  active={
-                    selectedVideo &&
-                    selectedVideo.src.startsWith(LIVEKIT_STREAM_SRC)
-                  }
-                  scaleFactor={scaleFactor}
-                  selected={selected === 'live'}
+                  active={selectedVideo && isVideoUrl(selectedVideo.src)}
                 />
               </UiEntity>
               <UiEntity
@@ -202,8 +179,30 @@ export function VideoControl({
                   scaleFactor={scaleFactor}
                   selected={selected === 'dcl-cast'}
                   active={
-                    selectedVideo && selectedVideo.src.startsWith(DCL_CAST_TYPE)
+                    selectedVideo &&
+                    selectedVideo.src.startsWith(LIVEKIT_STREAM_SRC) &&
+                    state.videoControl.selectedStream === 'dcl-cast'
                   }
+                />
+              </UiEntity>
+              <UiEntity
+                uiTransform={{
+                  width: '33%',
+                }}
+              >
+                <CustomButton
+                  engine={engine}
+                  id="video_control_live"
+                  value="<b>STREAM</b>"
+                  icon={ICONS.LIVE_SOURCE}
+                  onClick={() => setSelected('live')}
+                  active={
+                    selectedVideo &&
+                    selectedVideo.src.startsWith(LIVEKIT_STREAM_SRC) &&
+                    state.videoControl.selectedStream === 'live'
+                  }
+                  scaleFactor={scaleFactor}
+                  selected={selected === 'live'}
                 />
               </UiEntity>
             </UiEntity>

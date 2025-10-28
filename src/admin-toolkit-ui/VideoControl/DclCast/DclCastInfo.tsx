@@ -65,6 +65,7 @@ const DclCastInfo = ({
               uiTransform={styles.deactivateButton}
               onMouseDown={() => {
                 controls.setSource('')
+                state.videoControl.selectedStream = undefined
               }}
             />
           ) : (
@@ -78,6 +79,7 @@ const DclCastInfo = ({
               color={colors.black}
               onMouseDown={() => {
                 controls.setSource(LIVEKIT_STREAM_SRC)
+                state.videoControl.selectedStream = 'dcl-cast'
               }}
             />
           )}

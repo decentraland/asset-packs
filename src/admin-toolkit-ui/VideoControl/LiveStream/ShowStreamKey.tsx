@@ -2,9 +2,7 @@ import { Color4 } from '@dcl/sdk/math'
 import { DeepReadonlyObject, Entity, IEngine, PBVideoPlayer } from '@dcl/ecs'
 import ReactEcs, { UiEntity, Label } from '@dcl/react-ecs'
 import { COLORS } from '..'
-import {
-  createVideoPlayerControls,
-} from '../utils'
+import { createVideoPlayerControls } from '../utils'
 import { VideoControlVolume } from '../VolumeControl'
 import { Button } from '../../Button'
 import { LIVEKIT_STREAM_SRC } from '../../../definitions'
@@ -12,7 +10,12 @@ import { ERROR_ICON } from '../../Error'
 import { CONTENT_URL } from '../../constants'
 import { getStreamKey } from '../api'
 import { LoadingDots } from '../../Loading'
-import { startTimeout, stopTimeout, startInterval, stopInterval } from '../../../timer'
+import {
+  startTimeout,
+  stopTimeout,
+  startInterval,
+  stopInterval,
+} from '../../../timer'
 import { state } from '../..'
 
 const STREAM_ICONS = {
@@ -32,7 +35,7 @@ export function ShowStreamKey({
   onReset,
   endsAt,
 }: {
-  endsAt: number,
+  endsAt: number
   scaleFactor: number
   engine: IEngine
   entity: Entity
@@ -42,23 +45,37 @@ export function ShowStreamKey({
   const controls = createVideoPlayerControls(entity, engine)
   const [showStreamkey, setShowStreamkey] = ReactEcs.useState(false)
   const [loading, setLoading] = ReactEcs.useState(false)
-  const [streamKey, setStreamKey] = ReactEcs.useState<string | undefined>(undefined)
-  const [timeRemaining, setTimeRemaining] = ReactEcs.useState(AUTO_HIDE_DURATION_SECONDS)
+  const [streamKey, setStreamKey] = ReactEcs.useState<string | undefined>(
+    undefined,
+  )
+  const [timeRemaining, setTimeRemaining] = ReactEcs.useState(
+    AUTO_HIDE_DURATION_SECONDS,
+  )
 
   // auto-hide stream key after specified duration
   ReactEcs.useEffect(() => {
     if (streamKey) {
       setTimeRemaining(AUTO_HIDE_DURATION_SECONDS)
 
-      startTimeout(state.adminToolkitUiEntity, STREAM_KEY_TIMEOUT_ACTION, AUTO_HIDE_DURATION_SECONDS, () => {
-        setStreamKey(undefined)
-        setShowStreamkey(false)
-        setTimeRemaining(0)
-      })
+      startTimeout(
+        state.adminToolkitUiEntity,
+        STREAM_KEY_TIMEOUT_ACTION,
+        AUTO_HIDE_DURATION_SECONDS,
+        () => {
+          setStreamKey(undefined)
+          setShowStreamkey(false)
+          setTimeRemaining(0)
+        },
+      )
 
-      startInterval(state.adminToolkitUiEntity, STREAM_KEY_INTERVAL_ACTION, 0.1, () => {
-        setTimeRemaining((prev) => Math.max(0, prev - 0.1))
-      })
+      startInterval(
+        state.adminToolkitUiEntity,
+        STREAM_KEY_INTERVAL_ACTION,
+        0.1,
+        () => {
+          setTimeRemaining((prev) => Math.max(0, prev - 0.1))
+        },
+      )
 
       return () => {
         stopTimeout(state.adminToolkitUiEntity, STREAM_KEY_TIMEOUT_ACTION)
@@ -143,7 +160,10 @@ export function ShowStreamKey({
             uiBackground={{
               textureMode: 'stretch',
               texture: {
-                src: showStreamkey && streamKey ? STREAM_ICONS.eyeHide : STREAM_ICONS.eyeShow,
+                src:
+                  showStreamkey && streamKey
+                    ? STREAM_ICONS.eyeHide
+                    : STREAM_ICONS.eyeShow,
               },
               color: Color4.Black(),
             }}
@@ -168,7 +188,8 @@ export function ShowStreamKey({
           width: '100%',
           height: 4 * scaleFactor,
           margin: { top: 8 * scaleFactor },
-          display: streamKey && timeRemaining > 0 && showStreamkey ? 'flex' : 'none',
+          display:
+            streamKey && timeRemaining > 0 && showStreamkey ? 'flex' : 'none',
         }}
         uiBackground={{ color: Color4.fromHexString('#FFFFFF1A') }}
       >
@@ -247,6 +268,7 @@ export function ShowStreamKey({
             }}
             onMouseDown={() => {
               controls.setSource('')
+              state.videoControl.selectedStream = undefined
             }}
           />
         ) : (
@@ -264,6 +286,7 @@ export function ShowStreamKey({
             color={Color4.Black()}
             onMouseDown={() => {
               controls.setSource(LIVEKIT_STREAM_SRC)
+              state.videoControl.selectedStream = 'live'
             }}
           />
         )}
