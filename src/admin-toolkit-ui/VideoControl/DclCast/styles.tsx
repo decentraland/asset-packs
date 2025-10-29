@@ -73,8 +73,8 @@ export const getDclCastStyles = (
     margin: { top: -4 * scaleFactor },
   },
 
-  marginLeftSmall: {
-    margin: { left: 4 * scaleFactor },
+  marginRightSmall: {
+    margin: { right: 4 * scaleFactor },
   },
 
   mainBorderedContainer: {

@@ -122,7 +122,7 @@ const DclCastInfo = ({
                 value={'<b>Open Link</b>'}
                 fontSize={18 * scaleFactor}
                 color={colors.white}
-                uiTransform={styles.marginLeftSmall}
+                uiTransform={styles.marginRightSmall}
               />
               <UiEntity
                 uiTransform={{
@@ -171,7 +171,7 @@ const DclCastInfo = ({
                 value={'<b>Open Link</b>'}
                 fontSize={18 * scaleFactor}
                 color={colors.white}
-                uiTransform={styles.marginLeftSmall}
+                uiTransform={styles.marginRightSmall}
               />
               <UiEntity
                 uiTransform={{
