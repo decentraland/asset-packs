@@ -4,16 +4,10 @@ import { UiTransformProps } from '@dcl/react-ecs'
 export const getDclCastStyles = (
   scaleFactor: number,
 ): Record<string, UiTransformProps> => ({
-  // Container base styles
   fullContainer: {
     flexDirection: 'column',
     width: '100%',
     height: '100%',
-  },
-
-  // Width containers
-  fullWidth: {
-    width: '100%',
   },
 
   fullWidthWithBottomMargin: {
@@ -21,7 +15,6 @@ export const getDclCastStyles = (
     margin: { bottom: 24 * scaleFactor },
   },
 
-  // Row containers
   rowSpaceBetween: {
     width: '100%',
     display: 'flex',
@@ -44,7 +37,6 @@ export const getDclCastStyles = (
     width: '100%',
   },
 
-  // Column containers
   columnContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -73,40 +65,18 @@ export const getDclCastStyles = (
     margin: { top: 8 * scaleFactor },
   },
 
-  // Margins
   marginBottomSmall: {
     margin: { bottom: 8 * scaleFactor },
-  },
-
-  marginBottomMedium: {
-    margin: { bottom: 16 * scaleFactor },
-  },
-
-  marginBottomLarge: {
-    margin: { bottom: 18 * scaleFactor },
   },
 
   marginTopSmall: {
     margin: { top: -4 * scaleFactor },
   },
 
-  marginTopMedium: {
-    margin: { top: 16 * scaleFactor },
-  },
-
-  marginTopLarge: {
-    margin: { top: 20 * scaleFactor },
-  },
-
   marginLeftSmall: {
     margin: { left: 4 * scaleFactor },
   },
 
-  marginRightMedium: {
-    margin: { right: 8 * scaleFactor },
-  },
-
-  // Main bordered container
   mainBorderedContainer: {
     width: '100%',
     height: '100%',
@@ -122,7 +92,6 @@ export const getDclCastStyles = (
     },
   },
 
-  // Header row container
   headerRow: {
     width: '100%',
     display: 'flex',
@@ -132,7 +101,6 @@ export const getDclCastStyles = (
     margin: { bottom: 18 * scaleFactor },
   },
 
-  // Button styles
   deactivateButton: {
     minWidth: 120 * scaleFactor,
     margin: { right: 8 * scaleFactor },
@@ -162,18 +130,15 @@ export const getDclCastStyles = (
     padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
   },
 
-  // Icon styles
   iconSmall: {
     width: 20 * scaleFactor,
     height: 20 * scaleFactor,
   },
 
-  // Loading container
   loadingContainer: {
     minHeight: 400 * scaleFactor,
   },
 
-  // Separator line
   separatorLine: {
     margin: { top: 16 * scaleFactor, bottom: 16 * scaleFactor },
     width: '100%',
@@ -182,14 +147,12 @@ export const getDclCastStyles = (
     borderColor: Color4.fromHexString('#43404A'),
   },
 
-  // Text info containers
   textInfoContainer: {
     display: 'flex',
     flexDirection: 'column',
     margin: { bottom: 4 * scaleFactor },
   },
 
-  // Specific row containers with margins
   rowWithBottomMargin: {
     display: 'flex',
     flexDirection: 'row',

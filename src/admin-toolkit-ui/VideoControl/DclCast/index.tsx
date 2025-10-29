@@ -100,15 +100,7 @@ const DclCast = ({
         />
       )}
       {error && (
-        <UiEntity
-          uiTransform={{
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
+        <UiEntity uiTransform={styles.columnCentered}>
           <UiEntity
             uiText={{
               value: '<b>Failed to fetch DCL Cast info</b>',

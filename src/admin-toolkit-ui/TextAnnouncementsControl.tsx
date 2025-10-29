@@ -9,7 +9,6 @@ import { CONTENT_URL } from './constants'
 import { State } from './types'
 import { Header } from './Header'
 import { Card } from './Card'
-import DclCast from './VideoControl/DclCast'
 
 const ICONS = {
   TEXT_ANNOUNCEMENT_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/text-announcement-control.png`,

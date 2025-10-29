@@ -84,24 +84,8 @@ const DclCastInfo = ({
             />
           )}
         </UiEntity>
-        <UiEntity
-          uiTransform={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%',
-            alignItems: 'flex-start',
-          }}
-        >
-          <UiEntity
-            uiTransform={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              width: '100%',
-              margin: { bottom: 8 * scaleFactor },
-            }}
-          >
+        <UiEntity uiTransform={styles.columnContainer}>
+          <UiEntity uiTransform={styles.rowCenterSpaceBetween}>
             <UiEntity
               uiTransform={{
                 display: 'flex',
@@ -123,11 +107,7 @@ const DclCastInfo = ({
               />
             </UiEntity>
             <UiEntity
-              uiTransform={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}
+              uiTransform={styles.rowCenter}
               onMouseDown={() => {
                 state.videoControl.dclCast?.streamLink &&
                   openExternalUrl({
@@ -155,15 +135,7 @@ const DclCastInfo = ({
             </UiEntity>
           </UiEntity>
           <UiEntity uiTransform={styles.separatorLine} />
-          <UiEntity
-            uiTransform={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              width: '100%',
-            }}
-          >
+          <UiEntity uiTransform={styles.rowCenterSpaceBetween}>
             <UiEntity uiTransform={styles.textInfoContainer}>
               <Label
                 value={'<b>Viewers</b>'}
