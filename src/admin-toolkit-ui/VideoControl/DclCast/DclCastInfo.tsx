@@ -19,7 +19,7 @@ import { CONTENT_URL } from '../../constants'
 // LINK_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/open-link.png`,
 
 const ICONS = {
-  LINK_ICON: `https://builder-items.decentraland.zone/assets/icons/open-link.png`,
+  LINK_ICON: `https://builder-items.decentraland.zone/admin_toolkit/assets/icons/open-link.png`,
 }
 
 const DclCastInfo = ({
@@ -198,7 +198,7 @@ const DclCastInfo = ({
         <UiEntity>
           <Button
             id="dcl_cast_reset_room_id"
-            value="<b>Reset Room Id</b>"
+            value="<b>Reset Room ID</b>"
             variant="text"
             fontSize={16 * scaleFactor}
             color={colors.danger}

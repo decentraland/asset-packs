@@ -14,9 +14,10 @@ import { LoadingDots } from '../../Loading'
 import { Button } from '../../Button'
 import { getDclCastStyles, getDclCastColors } from './styles'
 
+//TODO UPDATE ICON
 const ICONS = {
   VIDEO_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control.png`,
-  DCL_CAST_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/dcl-cast.png`,
+  DCL_CAST_ICON: `https://builder-items.decentraland.zone/admin_toolkit/assets/icons/video-control-dcl-cast.png`,
 }
 
 export async function handleGetDclCastInfo(state: State) {
