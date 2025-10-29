@@ -31,7 +31,9 @@ export const ICONS = {
   VOLUME_PLUS_BUTTON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-volume-plus-button.png`,
   VIDEO_SOURCE: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-video.png`,
   LIVE_SOURCE: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-live.png`,
-  DCL_CAST_SOURCE: `${CONTENT_URL}/admin_toolkit/assets/icons/dcl-cast.png`,
+  //TODO UPDATE ICON
+  // DCL_CAST_SOURCE: `${CONTENT_URL}/admin_toolkit/assets/icons/dcl-cast.png`,
+  DCL_CAST_SOURCE: `https://builder-items.decentraland.org/assets/icons/dcl-cast.png`,
   INFO: `${CONTENT_URL}/admin_toolkit/assets/icons/info.png`,
 } as const
 

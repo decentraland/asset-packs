@@ -15,8 +15,11 @@ import {
 } from './styles'
 import { CONTENT_URL } from '../../constants'
 
+//TODO UPDATE ICON
+// LINK_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/open-link.png`,
+
 const ICONS = {
-  LINK_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/open-link.png`,
+  LINK_ICON: `https://builder-items.decentraland.org/assets/icons/open-link.png`,
 }
 
 const DclCastInfo = ({
@@ -62,7 +65,7 @@ const DclCastInfo = ({
               variant="text"
               fontSize={16 * scaleFactor}
               color={colors.white}
-              uiTransform={styles.deactivateButton}
+              uiTransform={styles.activateButton}
               onMouseDown={() => {
                 controls.setSource('')
                 state.videoControl.selectedStream = undefined
@@ -115,6 +118,12 @@ const DclCastInfo = ({
                   })
               }}
             >
+              <Label
+                value={'<b>Open Link</b>'}
+                fontSize={18 * scaleFactor}
+                color={colors.white}
+                uiTransform={styles.marginLeftSmall}
+              />
               <UiEntity
                 uiTransform={{
                   ...styles.iconSmall,
@@ -125,12 +134,6 @@ const DclCastInfo = ({
                   },
                   ...backgrounds.iconStretch,
                 }}
-              />
-              <Label
-                value={'<b>Open Link</b>'}
-                fontSize={18 * scaleFactor}
-                color={colors.white}
-                uiTransform={styles.marginLeftSmall}
               />
             </UiEntity>
           </UiEntity>
@@ -164,6 +167,12 @@ const DclCastInfo = ({
                   })
               }}
             >
+              <Label
+                value={'<b>Open Link</b>'}
+                fontSize={18 * scaleFactor}
+                color={colors.white}
+                uiTransform={styles.marginLeftSmall}
+              />
               <UiEntity
                 uiTransform={{
                   ...styles.iconSmall,
@@ -174,12 +183,6 @@ const DclCastInfo = ({
                   },
                   ...backgrounds.iconStretch,
                 }}
-              />
-              <Label
-                value={'<b>Open Link</b>'}
-                fontSize={18 * scaleFactor}
-                color={colors.white}
-                uiTransform={styles.marginLeftSmall}
               />
             </UiEntity>
           </UiEntity>

@@ -101,14 +101,10 @@ export const getDclCastStyles = (
     margin: { bottom: 18 * scaleFactor },
   },
 
-  deactivateButton: {
-    minWidth: 120 * scaleFactor,
-    margin: { right: 8 * scaleFactor },
-    padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
-  },
-
   activateButton: {
     minWidth: 120 * scaleFactor,
+    height: 42 * scaleFactor,
+    padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
   },
 
   activateButtonLabel: {
@@ -128,6 +124,7 @@ export const getDclCastStyles = (
   resetButton: {
     margin: { right: 8 * scaleFactor, top: 20 * scaleFactor },
     padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
+    height: 42 * scaleFactor,
   },
 
   iconSmall: {
