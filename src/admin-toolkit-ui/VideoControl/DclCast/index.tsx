@@ -50,11 +50,12 @@ const DclCast = ({
   const [isLoading, setIsLoading] = ReactEcs.useState(false)
   const [error, setError] = ReactEcs.useState(false)
 
-  const fetchDclCastInfo = async () => {
+  const fetchDclCastInfo = async (force = false) => {
+    console.log('fetching DCL cast info', force)
     setIsLoading(true)
     setError(false)
 
-    if (state.videoControl.dclCast) {
+    if (state.videoControl.dclCast && !force) {
       setIsLoading(false)
       return
     }
@@ -138,7 +139,7 @@ const DclCast = ({
           engine={engine}
           video={video}
           onResetRoomId={async () => {
-            fetchDclCastInfo()
+            fetchDclCastInfo(true)
           }}
         />
       )}
