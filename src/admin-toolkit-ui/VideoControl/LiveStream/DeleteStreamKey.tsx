@@ -5,7 +5,7 @@ import ReactEcs, { UiEntity, Label } from '@dcl/react-ecs'
 import { Button } from '../../Button'
 import { LoadingDots } from '../../Loading'
 import { Error } from '../../Error'
-import { resetStreamKey, revokeStreamKey } from '../api'
+import { getDclCastInfo, resetStreamKey, revokeStreamKey } from '../api'
 import { getComponents } from '../../../definitions'
 import { state } from '../..'
 
@@ -98,9 +98,16 @@ export function DeleteStreamKeyConfirmation({
                 setError(error)
                 setIsLoading(false)
               } else {
-                const videoControl = VideoControlState.getMutable(state.adminToolkitUiEntity)
+                const videoControl = VideoControlState.getMutable(
+                  state.adminToolkitUiEntity,
+                )
                 videoControl.endsAt = data?.endsAt
+                const [error, dclInfo] = await getDclCastInfo()
+                if (!error && dclInfo) {
+                  state.videoControl.dclCast = dclInfo ?? undefined
+                }
                 onReset()
+                setIsLoading(false)
               }
             }}
           />
