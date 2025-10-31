@@ -4,7 +4,7 @@ import { Color4 } from '@dcl/sdk/math'
 
 import { getScaleUIFactor } from '../../../ui'
 
-import { getDclCastInfo } from '../api'
+import { getDclCastInfo, resetStreamKey } from '../api'
 import { CONTENT_URL } from '../../constants'
 import { State } from '../../types'
 
@@ -13,6 +13,7 @@ import DclCastInfo from './DclCastInfo'
 import { LoadingDots } from '../../Loading'
 import { Button } from '../../Button'
 import { getDclCastStyles, getDclCastColors } from './styles'
+import { getComponents } from '../../../definitions'
 
 //TODO UPDATE ICON
 const ICONS = {
@@ -45,6 +46,7 @@ const DclCast = ({
   video: DeepReadonlyObject<PBVideoPlayer> | undefined
 }) => {
   const scaleFactor = getScaleUIFactor(engine)
+  const { VideoControlState } = getComponents(engine)
   const styles = getDclCastStyles(scaleFactor)
   const colors = getDclCastColors()
   const [isLoading, setIsLoading] = ReactEcs.useState(false)
@@ -67,6 +69,20 @@ const DclCast = ({
     }
 
     setIsLoading(false)
+  }
+
+  const handleResetRoomId = async () => {
+    setIsLoading(true)
+    const [error, data] = await resetStreamKey()
+    if (error) {
+      setIsLoading(false)
+    } else {
+      const videoControl = VideoControlState.getMutable(
+        state.adminToolkitUiEntity,
+      )
+      videoControl.endsAt = data?.endsAt
+      fetchDclCastInfo(true)
+    }
   }
 
   ReactEcs.useEffect(() => {
@@ -138,9 +154,7 @@ const DclCast = ({
           entity={entity}
           engine={engine}
           video={video}
-          onResetRoomId={async () => {
-            fetchDclCastInfo(true)
-          }}
+          onResetRoomId={handleResetRoomId}
         />
       )}
     </UiEntity>

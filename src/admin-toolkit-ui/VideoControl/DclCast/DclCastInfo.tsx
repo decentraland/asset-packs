@@ -198,7 +198,7 @@ const DclCastInfo = ({
         <UiEntity>
           <Button
             id="dcl_cast_reset_room_id"
-            value="<b>Reset Room ID</b>"
+            value="<b>Reset Room</b>"
             variant="text"
             fontSize={16 * scaleFactor}
             color={colors.danger}
