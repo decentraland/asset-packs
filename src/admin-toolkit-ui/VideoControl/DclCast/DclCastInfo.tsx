@@ -15,11 +15,8 @@ import {
 } from './styles'
 import { CONTENT_URL } from '../../constants'
 
-//TODO UPDATE ICON
-// LINK_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/open-link.png`,
-
 const ICONS = {
-  LINK_ICON: `https://builder-items.decentraland.zone/admin_toolkit/assets/icons/open-link.png`,
+  LINK_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/open-link.png`,
 }
 
 const DclCastInfo = ({

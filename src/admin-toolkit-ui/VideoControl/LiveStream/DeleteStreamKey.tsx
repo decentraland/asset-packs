@@ -102,10 +102,10 @@ export function DeleteStreamKeyConfirmation({
                   state.adminToolkitUiEntity,
                 )
                 videoControl.endsAt = data?.endsAt
-                const [error, dclInfo] = await getDclCastInfo()
-                if (!error && dclInfo) {
-                  state.videoControl.dclCast = dclInfo ?? undefined
-                }
+                // const [error, dclInfo] = await getDclCastInfo()
+                // if (!error && dclInfo) {
+                //   state.videoControl.dclCast = dclInfo ?? undefined
+                // }
                 onReset()
                 setIsLoading(false)
               }

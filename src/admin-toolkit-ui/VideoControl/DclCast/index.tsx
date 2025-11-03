@@ -15,10 +15,9 @@ import { Button } from '../../Button'
 import { getDclCastStyles, getDclCastColors } from './styles'
 import { getComponents } from '../../../definitions'
 
-//TODO UPDATE ICON
 const ICONS = {
   VIDEO_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control.png`,
-  DCL_CAST_ICON: `https://builder-items.decentraland.zone/admin_toolkit/assets/icons/video-control-dcl-cast.png`,
+  DCL_CAST_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-dcl-cast.png`,
 }
 
 export async function handleGetDclCastInfo(state: State) {
@@ -52,15 +51,15 @@ const DclCast = ({
   const [isLoading, setIsLoading] = ReactEcs.useState(false)
   const [error, setError] = ReactEcs.useState(false)
 
-  const fetchDclCastInfo = async (force = false) => {
-    console.log('fetching DCL cast info', force)
+  const fetchDclCastInfo = async () => {
+    console.log('fetching DCL cast info...')
     setIsLoading(true)
     setError(false)
 
-    if (state.videoControl.dclCast && !force) {
-      setIsLoading(false)
-      return
-    }
+    // if (state.videoControl.dclCast && !force) {
+    //   setIsLoading(false)
+    //   return
+    // }
 
     const result = await handleGetDclCastInfo(state)
 
@@ -76,12 +75,13 @@ const DclCast = ({
     const [error, data] = await resetStreamKey()
     if (error) {
       setIsLoading(false)
+      setError(true)
     } else {
       const videoControl = VideoControlState.getMutable(
         state.adminToolkitUiEntity,
       )
       videoControl.endsAt = data?.endsAt
-      fetchDclCastInfo(true)
+      fetchDclCastInfo()
     }
   }
 
