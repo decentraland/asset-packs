@@ -1,16 +1,7 @@
 {
   "version": 1,
   "components": [
-    {
-      "name": "core::Animator",
-      "data": {
-        "0": {
-          "json": {
-            "states": []
-          }
-        }
-      }
-    },
+    
     {
       "name": "core::GltfContainer",
       "data": {
@@ -18,7 +9,7 @@
           "json": {
             "src": "{assetPath}/sitting_pose_collider.glb",
             "visibleMeshesCollisionMask": 0,
-            "invisibleMeshesCollisionMask": 1
+            "invisibleMeshesCollisionMask": 3
           }
         }
       }
@@ -60,7 +51,7 @@
         "0": {
           "json": {
             "componentIds": [
-              2709697014
+              "asset-packs::States"
             ]
           }
         }
@@ -107,7 +98,7 @@
               {
                 "name": "Sit Here",
                 "type": "batch",
-                "jsonPayload": "{\"actions\":[\"Move here\",\"Mark as taken\",\"Delay sit anim\"]}",
+                "jsonPayload": "{\"actions\":[\"Move here\",\"Mark as taken\",\"Delay sit anim\",\"Random sit anim\"]}",
                 "allowedInBasicView": true
               },
               {
@@ -119,11 +110,6 @@
                 "name": "Random sit anim",
                 "type": "random",
                 "jsonPayload": "{\"actions\":[\"Sit anim1\",\"Sit anim2\"]}"
-              },
-              {
-                "name": "Delay sit anim",
-                "type": "start_delay",
-                "jsonPayload": "{\"actions\":[\"Random sit anim\"],\"timeout\":0.4}"
               },
               {
                 "name": "Print text",
@@ -228,7 +214,6 @@
       "data": {
         "0": {
           "json": {
-            "isBasicViewEnabled": false,
             "componentName": "Sit Spot",
             "fields": [
               {

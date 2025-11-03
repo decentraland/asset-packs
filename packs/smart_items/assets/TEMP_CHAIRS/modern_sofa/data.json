@@ -1,6 +1,12 @@
 {
-  "id": "9b2532e2-70ad-4861-841c-588781026443",
   "name": "Modern Sofa",
-  "category": "custom",
-  "tags": []
+  "category": "Seats",
+  "description": "A modern sofa.",
+  "tags": [
+    "sofa",
+    "couch",
+    "seat",
+    "sitting",
+    "furniture"
+  ]
 }

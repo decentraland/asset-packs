@@ -1,6 +1,12 @@
 {
-  "id": "ef2c3a30-28aa-45b4-bb91-dfef2a182b56",
   "name": "Wooden Chair",
-  "category": "custom",
-  "tags": []
+  "category": "Seats",
+  "description": "A wooden chair.",
+  "tags": [
+    "chair",
+    "wood",
+    "seat",
+    "sitting",
+    "furniture"
+  ]
 }

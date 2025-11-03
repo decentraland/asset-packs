@@ -7,9 +7,9 @@
         "513": {
           "json": {
             "position": {
-              "x": -0.019999999552965164,
-              "y": 0.4000000059604645,
-              "z": 0.4000000059604645
+              "x": -0.02,
+              "y": 0.4,
+              "z": 0.4
             },
             "rotation": {
               "x": 0,
@@ -27,21 +27,7 @@
         }
       }
     },
-    {
-      "name": "core::Animator",
-      "data": {
-        "0": {
-          "json": {
-            "states": []
-          }
-        },
-        "513": {
-          "json": {
-            "states": []
-          }
-        }
-      }
-    },
+    
     {
       "name": "core-schema::Name",
       "data": {
@@ -63,7 +49,7 @@
         "513": {
           "json": {
             "componentIds": [
-              2709697014
+              "asset-packs::States"
             ]
           }
         }
@@ -231,7 +217,6 @@
       "data": {
         "513": {
           "json": {
-            "isBasicViewEnabled": false,
             "componentName": "Sit Spot",
             "fields": [
               {
@@ -271,13 +256,24 @@
                 "eventType": 1,
                 "eventInfo": {
                   "button": 1,
-                  "hoverText": "Sit here",
+                  "hoverText": "Sit Here",
                   "maxDistance": 10,
                   "showFeedback": true,
                   "showHighlight": true
                 }
               }
             ]
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "componentName": "Steampunk_Chair",
+            "fields": []
           }
         }
       }

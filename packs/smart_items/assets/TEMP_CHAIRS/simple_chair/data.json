@@ -1,6 +1,11 @@
 {
-  "id": "1030eb18-03cc-41db-9f49-9bdf8cb9044b",
   "name": "Simple Chair",
-  "category": "custom",
-  "tags": []
+  "category": "Seats",
+  "description": "A simple chair.",
+  "tags": [
+    "chair",
+    "seat",
+    "sitting",
+    "furniture"
+  ]
 }

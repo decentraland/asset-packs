@@ -211,7 +211,7 @@
                 "eventType": 1,
                 "eventInfo": {
                   "button": 1,
-                  "hoverText": "Sit here",
+                  "hoverText": "Sit Here",
                   "maxDistance": 10,
                   "showFeedback": true,
                   "showHighlight": true

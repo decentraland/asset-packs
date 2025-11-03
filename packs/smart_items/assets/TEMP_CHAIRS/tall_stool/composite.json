@@ -7,9 +7,9 @@
         "513": {
           "json": {
             "position": {
-              "x": -0.03451967239379883,
+              "x": -0.0345,
               "y": 0.5,
-              "z": 0.3789210319519043
+              "z": 0.3789
             },
             "rotation": {
               "x": 0,
@@ -27,21 +27,7 @@
         }
       }
     },
-    {
-      "name": "core::Animator",
-      "data": {
-        "0": {
-          "json": {
-            "states": []
-          }
-        },
-        "513": {
-          "json": {
-            "states": []
-          }
-        }
-      }
-    },
+    
     {
       "name": "core-schema::Name",
       "data": {
@@ -63,7 +49,7 @@
         "513": {
           "json": {
             "componentIds": [
-              2709697014
+              "asset-packs::States"
             ]
           }
         }
@@ -231,7 +217,6 @@
       "data": {
         "513": {
           "json": {
-            "isBasicViewEnabled": false,
             "componentName": "Sit Spot",
             "fields": [
               {
@@ -250,13 +235,45 @@
       }
     },
     {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "componentName": "Tall Stool",
+            "fields": []
+          }
+        }
+      }
+    },
+    {
+      "name": "core::PointerEvents",
+      "data": {
+        "0": {
+          "json": {
+            "pointerEvents": [
+              {
+                "eventType": 1,
+                "eventInfo": {
+                  "button": 1,
+                  "hoverText": "Sit Here",
+                  "maxDistance": 10,
+                  "showFeedback": true,
+                  "showHighlight": true
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
       "name": "core::GltfContainer",
       "data": {
         "0": {
           "json": {
             "src": "{assetPath}/Stool_D.glb",
-            "visibleMeshesCollisionMask": 1,
-            "invisibleMeshesCollisionMask": 2
+            "visibleMeshesCollisionMask": 0,
+            "invisibleMeshesCollisionMask": 3
           }
         }
       }

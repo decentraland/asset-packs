@@ -1,6 +1,12 @@
 {
-  "id": "bc198833-47c5-4c0b-8497-1dea50c9d4f4",
   "name": "Small Couch",
-  "category": "custom",
-  "tags": []
+  "category": "Seats",
+  "description": "A small couch.",
+  "tags": [
+    "couch",
+    "sofa",
+    "seat",
+    "sitting",
+    "furniture"
+  ]
 }

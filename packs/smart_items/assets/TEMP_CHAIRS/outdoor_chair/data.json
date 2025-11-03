@@ -1,6 +1,11 @@
 {
-  "id": "f073d051-afe1-4193-b3fa-3ac1a2bd9d4a",
   "name": "Outdoor Chair",
-  "category": "custom",
-  "tags": []
+  "category": "Seats",
+  "description": "An outdoor chair.",
+  "tags": [
+    "chair",
+    "seat",
+    "sitting",
+    "furniture"
+  ]
 }

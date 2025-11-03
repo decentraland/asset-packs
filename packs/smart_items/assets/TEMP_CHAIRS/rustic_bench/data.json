@@ -1,6 +1,12 @@
 {
-  "id": "11774658-ccdc-46a4-b48b-3218a84b19cd",
   "name": "Rustic Bench",
-  "category": "custom",
-  "tags": []
+  "category": "Seats",
+  "description": "A rustic wooden bench.",
+  "tags": [
+    "bench",
+    "wood",
+    "seat",
+    "sitting",
+    "furniture"
+  ]
 }

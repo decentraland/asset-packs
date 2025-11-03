@@ -7,9 +7,9 @@
         "513": {
           "json": {
             "position": {
-              "x": -0.7900009155273438,
-              "y": 0.07999999821186066,
-              "z": 0.5599994659423828
+              "x": -0.79,
+              "y": 0.08,
+              "z": 0.56
             },
             "rotation": {
               "x": 0,
@@ -28,9 +28,9 @@
         "514": {
           "json": {
             "position": {
-              "x": -0.7900009155273438,
-              "y": 0.07999999821186066,
-              "z": -0.39999961853027344
+              "x": -0.79,
+              "y": 0.08,
+              "z": -0.4
             },
             "rotation": {
               "x": 0,
@@ -48,26 +48,7 @@
         }
       }
     },
-    {
-      "name": "core::Animator",
-      "data": {
-        "0": {
-          "json": {
-            "states": []
-          }
-        },
-        "513": {
-          "json": {
-            "states": []
-          }
-        },
-        "514": {
-          "json": {
-            "states": []
-          }
-        }
-      }
-    },
+    
     {
       "name": "core-schema::Name",
       "data": {
@@ -94,14 +75,14 @@
         "513": {
           "json": {
             "componentIds": [
-              2709697014
+              "asset-packs::States"
             ]
           }
         },
         "514": {
           "json": {
             "componentIds": [
-              2709697014
+              "asset-packs::States"
             ]
           }
         }
@@ -378,7 +359,6 @@
       "data": {
         "513": {
           "json": {
-            "isBasicViewEnabled": false,
             "componentName": "Sit Spot",
             "fields": [
               {
@@ -396,7 +376,6 @@
         },
         "514": {
           "json": {
-            "isBasicViewEnabled": false,
             "componentName": "Sit Spot",
             "fields": [
               {
@@ -415,13 +394,45 @@
       }
     },
     {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "componentName": "Loveseat",
+            "fields": []
+          }
+        }
+      }
+    },
+    {
+      "name": "core::PointerEvents",
+      "data": {
+        "0": {
+          "json": {
+            "pointerEvents": [
+              {
+                "eventType": 1,
+                "eventInfo": {
+                  "button": 1,
+                  "hoverText": "Sit Here",
+                  "maxDistance": 10,
+                  "showFeedback": true,
+                  "showHighlight": true
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
       "name": "core::GltfContainer",
       "data": {
         "0": {
           "json": {
             "src": "{assetPath}/Couch_01.glb",
-            "visibleMeshesCollisionMask": 1,
-            "invisibleMeshesCollisionMask": 2
+            "visibleMeshesCollisionMask": 0,
+            "invisibleMeshesCollisionMask": 3
           }
         }
       }

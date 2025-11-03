@@ -7,9 +7,9 @@
         "513": {
           "json": {
             "position": {
-              "x": -1.0600013732910156,
+              "x": -1.06,
               "y": 0,
-              "z": -0.2599983215332031
+              "z": -0.26
             },
             "rotation": {
               "x": 0,
@@ -28,9 +28,9 @@
         "514": {
           "json": {
             "position": {
-              "x": -2.0138702392578125,
+              "x": -2.0139,
               "y": 0,
-              "z": -0.23464012145996094
+              "z": -0.2346
             },
             "rotation": {
               "x": 0,
@@ -48,26 +48,7 @@
         }
       }
     },
-    {
-      "name": "core::Animator",
-      "data": {
-        "0": {
-          "json": {
-            "states": []
-          }
-        },
-        "513": {
-          "json": {
-            "states": []
-          }
-        },
-        "514": {
-          "json": {
-            "states": []
-          }
-        }
-      }
-    },
+    
     {
       "name": "core-schema::Name",
       "data": {
@@ -94,14 +75,14 @@
         "513": {
           "json": {
             "componentIds": [
-              2709697014
+              "asset-packs::States"
             ]
           }
         },
         "514": {
           "json": {
             "componentIds": [
-              2709697014
+              "asset-packs::States"
             ]
           }
         }
@@ -378,7 +359,6 @@
       "data": {
         "513": {
           "json": {
-            "isBasicViewEnabled": false,
             "componentName": "Sit Spot",
             "fields": [
               {
@@ -396,7 +376,6 @@
         },
         "514": {
           "json": {
-            "isBasicViewEnabled": false,
             "componentName": "Sit Spot",
             "fields": [
               {
@@ -415,13 +394,45 @@
       }
     },
     {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "componentName": "Curved Couch",
+            "fields": []
+          }
+        }
+      }
+    },
+    {
+      "name": "core::PointerEvents",
+      "data": {
+        "0": {
+          "json": {
+            "pointerEvents": [
+              {
+                "eventType": 1,
+                "eventInfo": {
+                  "button": 1,
+                  "hoverText": "Sit Here",
+                  "maxDistance": 10,
+                  "showFeedback": true,
+                  "showHighlight": true
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
       "name": "core::GltfContainer",
       "data": {
         "0": {
           "json": {
             "src": "{assetPath}/CurvedCouch.glb",
-            "visibleMeshesCollisionMask": 1,
-            "invisibleMeshesCollisionMask": 2
+            "visibleMeshesCollisionMask": 0,
+            "invisibleMeshesCollisionMask": 3
           }
         }
       }

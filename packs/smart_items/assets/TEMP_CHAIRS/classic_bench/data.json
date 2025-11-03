@@ -1,6 +1,12 @@
 {
-  "id": "3491e64e-56a0-4e92-9495-058b7db300c2",
   "name": "Classic Bench",
-  "category": "custom",
-  "tags": []
+  "category": "Seats",
+  "description": "A classic bench.",
+  "tags": [
+    "bench",
+    "classic",
+    "seat",
+    "sitting",
+    "furniture"
+  ]
 }

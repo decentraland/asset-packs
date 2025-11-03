@@ -1,6 +1,11 @@
 {
-  "id": "66ed4e20-e9eb-41fe-b23d-659e86543382",
   "name": "High Stool",
-  "category": "custom",
-  "tags": []
+  "category": "Seats",
+  "description": "A high stool.",
+  "tags": [
+    "stool",
+    "seat",
+    "sitting",
+    "furniture"
+  ]
 }

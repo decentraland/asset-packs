@@ -1,6 +1,13 @@
 {
-  "id": "9b9dd7ad-db31-48ea-af83-6f038617e7ea",
   "name": "Loveseat",
-  "category": "custom",
-  "tags": []
+  "category": "Seats",
+  "description": "A cozy loveseat.",
+  "tags": [
+    "loveseat",
+    "couch",
+    "sofa",
+    "seat",
+    "sitting",
+    "furniture"
+  ]
 }

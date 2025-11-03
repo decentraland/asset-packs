@@ -7,9 +7,9 @@
         "513": {
           "json": {
             "position": {
-              "x": 0.004368782043457031,
+              "x": 0.0044,
               "y": 0,
-              "z": 0.28351402282714844
+              "z": 0.2835
             },
             "rotation": {
               "x": 0,
@@ -27,21 +27,7 @@
         }
       }
     },
-    {
-      "name": "core::Animator",
-      "data": {
-        "0": {
-          "json": {
-            "states": []
-          }
-        },
-        "513": {
-          "json": {
-            "states": []
-          }
-        }
-      }
-    },
+    
     {
       "name": "core-schema::Name",
       "data": {
@@ -63,7 +49,7 @@
         "513": {
           "json": {
             "componentIds": [
-              2709697014
+              "asset-packs::States"
             ]
           }
         }
@@ -163,7 +149,6 @@
       "data": {
         "513": {
           "json": {
-            "isBasicViewEnabled": false,
             "componentName": "Sit Spot",
             "fields": [
               {
@@ -194,6 +179,17 @@
       }
     },
     {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "componentName": "Wooden Chair",
+            "fields": []
+          }
+        }
+      }
+    },
+    {
       "name": "core::PointerEvents",
       "data": {
         "0": {
@@ -203,7 +199,7 @@
                 "eventType": 1,
                 "eventInfo": {
                   "button": 1,
-                  "hoverText": "Sit here",
+                  "hoverText": "Sit Here",
                   "maxDistance": 10,
                   "showFeedback": true,
                   "showHighlight": true

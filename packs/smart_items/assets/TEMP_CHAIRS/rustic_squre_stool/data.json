@@ -1,6 +1,12 @@
 {
-  "id": "994fd288-ca11-44a1-9b03-4c46af71547f",
   "name": "Rustic Squre Stool",
-  "category": "custom",
-  "tags": []
+  "category": "Seats",
+  "description": "A rustic square stool.",
+  "tags": [
+    "stool",
+    "square",
+    "seat",
+    "sitting",
+    "furniture"
+  ]
 }

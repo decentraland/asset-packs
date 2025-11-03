@@ -7,9 +7,9 @@
         "513": {
           "json": {
             "position": {
-              "x": 0.4673004150390625,
+              "x": 0.4673,
               "y": 0,
-              "z": 0.27573394775390625
+              "z": 0.2757
             },
             "rotation": {
               "x": 0,
@@ -28,9 +28,9 @@
         "514": {
           "json": {
             "position": {
-              "x": -0.5279998779296875,
+              "x": -0.528,
               "y": 0,
-              "z": 0.2800006866455078
+              "z": 0.28
             },
             "rotation": {
               "x": 0,
@@ -48,26 +48,7 @@
         }
       }
     },
-    {
-      "name": "core::Animator",
-      "data": {
-        "0": {
-          "json": {
-            "states": []
-          }
-        },
-        "513": {
-          "json": {
-            "states": []
-          }
-        },
-        "514": {
-          "json": {
-            "states": []
-          }
-        }
-      }
-    },
+    
     {
       "name": "core-schema::Name",
       "data": {
@@ -94,14 +75,14 @@
         "513": {
           "json": {
             "componentIds": [
-              2709697014
+              "asset-packs::States"
             ]
           }
         },
         "514": {
           "json": {
             "componentIds": [
-              2709697014
+              "asset-packs::States"
             ]
           }
         }
@@ -378,7 +359,6 @@
       "data": {
         "513": {
           "json": {
-            "isBasicViewEnabled": false,
             "componentName": "Sit Spot",
             "fields": [
               {
@@ -396,7 +376,6 @@
         },
         "514": {
           "json": {
-            "isBasicViewEnabled": false,
             "componentName": "Sit Spot",
             "fields": [
               {
@@ -415,13 +394,45 @@
       }
     },
     {
+      "name": "inspector::Config",
+      "data": {
+        "0": {
+          "json": {
+            "componentName": "Rustic Bench",
+            "fields": []
+          }
+        }
+      }
+    },
+    {
+      "name": "core::PointerEvents",
+      "data": {
+        "0": {
+          "json": {
+            "pointerEvents": [
+              {
+                "eventType": 1,
+                "eventInfo": {
+                  "button": 1,
+                  "hoverText": "Sit Here",
+                  "maxDistance": 10,
+                  "showFeedback": true,
+                  "showHighlight": true
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
       "name": "core::GltfContainer",
       "data": {
         "0": {
           "json": {
             "src": "{assetPath}/Bench_01.glb",
-            "visibleMeshesCollisionMask": 1,
-            "invisibleMeshesCollisionMask": 2
+            "visibleMeshesCollisionMask": 0,
+            "invisibleMeshesCollisionMask": 3
           }
         }
       }
