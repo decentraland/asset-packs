@@ -117,7 +117,7 @@ const DclCast = ({
           engine={engine}
         />
       )}
-      {error && (
+      {/*     {error && (
         <UiEntity uiTransform={styles.columnCentered}>
           <UiEntity
             uiText={{
@@ -146,17 +146,16 @@ const DclCast = ({
             uiTransform={styles.retryButton}
           />
         </UiEntity>
-      )}
-      {!isLoading && !error && (
-        <DclCastInfo
-          scaleFactor={scaleFactor}
-          state={state}
-          entity={entity}
-          engine={engine}
-          video={video}
-          onResetRoomId={handleResetRoomId}
-        />
-      )}
+      )} */}
+
+      <DclCastInfo
+        scaleFactor={scaleFactor}
+        state={state}
+        entity={entity}
+        engine={engine}
+        video={video}
+        onResetRoomId={handleResetRoomId}
+      />
     </UiEntity>
   )
 }
