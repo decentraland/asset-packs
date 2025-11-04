@@ -1,4 +1,4 @@
-import ReactEcs, { Label, UiEntity } from '@dcl/react-ecs'
+import ReactEcs, { UiEntity } from '@dcl/react-ecs'
 import { DeepReadonlyObject, Entity, IEngine, PBVideoPlayer } from '@dcl/ecs'
 import { Color4 } from '@dcl/sdk/math'
 
@@ -117,7 +117,7 @@ const DclCast = ({
           engine={engine}
         />
       )}
-      {/*     {error && (
+      {error && (
         <UiEntity uiTransform={styles.columnCentered}>
           <UiEntity
             uiText={{
@@ -146,16 +146,18 @@ const DclCast = ({
             uiTransform={styles.retryButton}
           />
         </UiEntity>
-      )} */}
+      )}
 
-      <DclCastInfo
-        scaleFactor={scaleFactor}
-        state={state}
-        entity={entity}
-        engine={engine}
-        video={video}
-        onResetRoomId={handleResetRoomId}
-      />
+      {!isLoading && !error && (
+        <DclCastInfo
+          scaleFactor={scaleFactor}
+          state={state}
+          entity={entity}
+          engine={engine}
+          video={video}
+          onResetRoomId={handleResetRoomId}
+        />
+      )}
     </UiEntity>
   )
 }

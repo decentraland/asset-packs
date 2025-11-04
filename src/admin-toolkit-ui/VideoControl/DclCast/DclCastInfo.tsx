@@ -13,14 +13,10 @@ import {
   getDclCastColors,
   getDclCastBackgrounds,
 } from './styles'
-//import { CONTENT_URL } from '../../constants'
-
-/* const ICONS = {
-  LINK_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/open-link.png`,
-} */
+import { CONTENT_URL } from '../../constants'
 
 const ICONS = {
-  COPY_TO_CLIPBOARD_ICON: `https://builder-items.decentraland.zone/admin_toolkit/assets/icons/copy-to-clipboard.png`,
+  COPY_TO_CLIPBOARD_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/copy-to-clipboard.png`,
 }
 
 const DclCastInfo = ({
