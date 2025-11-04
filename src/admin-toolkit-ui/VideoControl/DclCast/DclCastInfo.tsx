@@ -1,6 +1,7 @@
 import { Entity, IEngine } from '@dcl/ecs'
 import { DeepReadonlyObject, PBVideoPlayer } from '@dcl/ecs'
 import ReactEcs, { Label, UiEntity } from '@dcl/react-ecs'
+import { copyToClipboard } from '~system/RestrictedActions'
 import { Color4 } from '@dcl/sdk/math'
 import { Button } from '../../Button'
 import { State } from '../../types'
@@ -13,10 +14,14 @@ import {
   getDclCastColors,
   getDclCastBackgrounds,
 } from './styles'
-import { CONTENT_URL } from '../../constants'
+//import { CONTENT_URL } from '../../constants'
+
+/* const ICONS = {
+  LINK_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/open-link.png`,
+} */
 
 const ICONS = {
-  LINK_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/open-link.png`,
+  COPY_TO_CLIPBOARD_ICON: `https://builder-items.decentraland.zone/admin_toolkit/assets/icons/copy-to-clipboard.png`,
 }
 
 const DclCastInfo = ({
@@ -110,13 +115,13 @@ const DclCastInfo = ({
               uiTransform={styles.rowCenter}
               onMouseDown={() => {
                 state.videoControl.dclCast?.streamLink &&
-                  openExternalUrl({
-                    url: state.videoControl.dclCast?.streamLink,
+                  copyToClipboard({
+                    text: state.videoControl.dclCast.streamLink,
                   })
               }}
             >
               <Label
-                value={'<b>Open Link</b>'}
+                value={'<b>Copy Link</b>'}
                 fontSize={18 * scaleFactor}
                 color={colors.white}
                 uiTransform={styles.marginRightSmall}
@@ -127,7 +132,7 @@ const DclCastInfo = ({
                 }}
                 uiBackground={{
                   texture: {
-                    src: ICONS.LINK_ICON,
+                    src: ICONS.COPY_TO_CLIPBOARD_ICON,
                   },
                   ...backgrounds.iconStretch,
                 }}
@@ -159,13 +164,13 @@ const DclCastInfo = ({
               }}
               onMouseDown={() => {
                 state.videoControl.dclCast?.watcherLink &&
-                  openExternalUrl({
-                    url: state.videoControl.dclCast?.watcherLink,
+                  copyToClipboard({
+                    text: state.videoControl.dclCast.watcherLink,
                   })
               }}
             >
               <Label
-                value={'<b>Open Link</b>'}
+                value={'<b>Copy Link</b>'}
                 fontSize={18 * scaleFactor}
                 color={colors.white}
                 uiTransform={styles.marginRightSmall}
@@ -176,7 +181,7 @@ const DclCastInfo = ({
                 }}
                 uiBackground={{
                   texture: {
-                    src: ICONS.LINK_ICON,
+                    src: ICONS.COPY_TO_CLIPBOARD_ICON,
                   },
                   ...backgrounds.iconStretch,
                 }}
