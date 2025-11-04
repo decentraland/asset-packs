@@ -5,6 +5,11 @@
   "description": "A simple black plastic chair.",
   "tags": [
     "chair",
-    "sit", "sitting", "seat", "seating", "furniture"
-  ]
+    "sit",
+    "sitting",
+    "seat",
+    "seating",
+    "furniture"
+  ],
+  "author": "Decentraland Foundation"
 }

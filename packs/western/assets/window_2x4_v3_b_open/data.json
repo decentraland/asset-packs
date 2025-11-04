@@ -17,5 +17,6 @@
     "window",
     "windowpane"
   ],
-  "caption": "Open window on."
+  "caption": "Open window on.",
+  "author": "Decentraland Foundation"
 }
