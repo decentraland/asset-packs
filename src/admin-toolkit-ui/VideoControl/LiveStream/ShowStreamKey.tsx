@@ -91,7 +91,7 @@ export function ShowStreamKey({
   return (
     <UiEntity uiTransform={{ flexDirection: 'column' }}>
       <Label
-        value="<b>RTMP Server<b>"
+        value="<b>RTMP Server</b>"
         color={Color4.White()}
         fontSize={16 * scaleFactor}
         uiTransform={{
