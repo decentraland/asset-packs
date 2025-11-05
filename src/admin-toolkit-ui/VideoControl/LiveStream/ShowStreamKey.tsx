@@ -171,49 +171,57 @@ export function ShowStreamKey({
           />
           <UiEntity
             uiTransform={{
-              width: 25 * scaleFactor,
-              height: 25 * scaleFactor,
-              margin: { right: 10 * scaleFactor },
+              flexDirection: 'row',
+              alignItems: 'center',
             }}
-            uiBackground={{
-              textureMode: 'stretch',
-              texture: {
-                src:
-                  showStreamkey && streamKey
-                    ? STREAM_ICONS.eyeHide
-                    : STREAM_ICONS.eyeShow,
-              },
-              color: Color4.Black(),
-            }}
-            onMouseDown={async () => {
-              if (!streamKey) {
-                setLoading(true)
-                const [error, data] = await getStreamKey()
-                setLoading(false)
-                if (!error && data?.streamingKey) {
-                  setStreamKey(data.streamingKey)
-                  setShowStreamkey(true)
+          >
+            <UiEntity
+              uiTransform={{
+                width: 25 * scaleFactor,
+                height: 25 * scaleFactor,
+                margin: { right: 10 * scaleFactor },
+              }}
+              uiBackground={{
+                textureMode: 'stretch',
+                texture: {
+                  src:
+                    showStreamkey && streamKey
+                      ? STREAM_ICONS.eyeHide
+                      : STREAM_ICONS.eyeShow,
+                },
+                color: Color4.Black(),
+              }}
+              onMouseDown={async () => {
+                if (!streamKey) {
+                  setLoading(true)
+                  const [error, data] = await getStreamKey()
+                  setLoading(false)
+                  if (!error && data?.streamingKey) {
+                    setStreamKey(data.streamingKey)
+                    setShowStreamkey(true)
+                  }
+                } else {
+                  setShowStreamkey(!showStreamkey)
                 }
-              } else {
-                setShowStreamkey(!showStreamkey)
-              }
-            }}
-          />
-          <Button
-            id="video_control_copy_stream_key"
-            value="<b>Copy</b>"
-            variant="primary"
-            fontSize={16 * scaleFactor}
-            uiTransform={{
-              margin: { right: 8 * scaleFactor },
-              padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
-            }}
-            onMouseDown={async () => {
-              if (streamKey) {
-                copyToClipboard({ text: streamKey })
-              }
-            }}
-          />
+              }}
+            />
+            <Button
+              id="video_control_copy_stream_key"
+              value="<b>Copy</b>"
+              variant="primary"
+              fontSize={16 * scaleFactor}
+              uiTransform={{
+                margin: { right: 8 * scaleFactor },
+                padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
+              }}
+              onMouseDown={async () => {
+                if (streamKey) {
+                  copyToClipboard({ text: streamKey })
+                }
+              }}
+              disabled={!streamKey}
+            />
+          </UiEntity>
         </UiEntity>
       )}
       <UiEntity
