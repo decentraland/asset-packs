@@ -6,7 +6,7 @@
       "data": {
         "0": {
           "json": {
-            "src": "{assetPath}/video_player.glb",
+            "src": "{assetPath}/screen_rounded_jumbotron.glb",
             "visibleMeshesCollisionMask": 0,
             "invisibleMeshesCollisionMask": 3
           }
@@ -18,7 +18,7 @@
       "data": {
         "0": {
           "json": {
-            "value": "Video Screen"
+            "value": "Screen Rounded Jumbotron"
           }
         }
       }

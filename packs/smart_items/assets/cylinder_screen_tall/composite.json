@@ -6,7 +6,7 @@
       "data": {
         "0": {
           "json": {
-            "src": "{assetPath}/video_player.glb",
+            "src": "{assetPath}/screen_cylinder.glb",
             "visibleMeshesCollisionMask": 0,
             "invisibleMeshesCollisionMask": 3
           }
@@ -18,7 +18,7 @@
       "data": {
         "0": {
           "json": {
-            "value": "Video Screen"
+            "value": "Cylinder Screen Tall"
           }
         }
       }
@@ -66,7 +66,7 @@
                         "tex": {
                           "$case": "videoTexture",
                           "videoTexture": {
-                            "videoPlayerEntity": 594,
+                            "videoPlayerEntity": 521,
                             "wrapMode": 0,
                             "filterMode": 0
                           }
