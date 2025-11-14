@@ -55,7 +55,9 @@
                   "tex": {
                     "$case": "videoTexture",
                     "videoTexture": {
-                      "videoPlayerEntity": 0
+                      "videoPlayerEntity": "{self}",
+                      "wrapMode": 0,
+                      "filterMode": 0
                     }
                   }
                 }

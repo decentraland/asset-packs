@@ -29,8 +29,8 @@
         "0": {
           "json": {
             "componentIds": [
-        "core::GltfNodeModifiers",
-              "core::VideoPlayer"
+              1099,
+              1043
             ]
           }
         }
@@ -62,18 +62,18 @@
                   "material": {
                     "$case": "unlit",
                     "unlit": {
+                      "alphaTest": 0.5,
+                      "castShadows": true,
                       "texture": {
                         "tex": {
                           "$case": "videoTexture",
                           "videoTexture": {
-                            "videoPlayerEntity": 0,
+                            "videoPlayerEntity": "{self}",
                             "wrapMode": 0,
                             "filterMode": 0
                           }
                         }
                       },
-                      "alphaTest": 0.5,
-                      "castShadows": true,
                       "alphaTexture": {
                         "tex": {
                           "$case": "texture",
@@ -125,7 +125,8 @@
                 "name": "Config",
                 "type": "asset-packs::VideoScreen"
               }
-            ]
+            ],
+            "assetId": "14ae6f10-29b1-4de1-a809-0cee19aeece9"
           }
         }
       }
