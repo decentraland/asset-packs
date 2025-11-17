@@ -64,7 +64,6 @@ export function ShowStreamKey({
         STREAM_KEY_TIMEOUT_ACTION,
         AUTO_HIDE_DURATION_SECONDS,
         () => {
-          setStreamKey(undefined)
           setShowStreamkey(false)
           setTimeRemaining(0)
         },
@@ -138,92 +137,110 @@ export function ShowStreamKey({
           margin: { top: 16 * scaleFactor, bottom: 8 * scaleFactor },
         }}
       />
-      {loading ? (
+      <UiEntity
+        uiTransform={{
+          width: '100%',
+          margin: { bottom: 8 * scaleFactor, top: 8 * scaleFactor },
+          height: 42 * scaleFactor,
+          borderRadius: 12 * scaleFactor,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+        uiBackground={{ color: Color4.White() }}
+      >
         <UiEntity
           uiTransform={{
-            width: '100%',
-            margin: { bottom: 8 * scaleFactor, top: 8 * scaleFactor },
-            height: 42 * scaleFactor,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <LoadingDots scaleFactor={scaleFactor} engine={engine} />
-        </UiEntity>
-      ) : (
-        <UiEntity
-          uiTransform={{
-            width: '100%',
-            margin: { bottom: 8 * scaleFactor, top: 8 * scaleFactor },
-            height: 42 * scaleFactor,
-            borderRadius: 12 * scaleFactor,
             flexDirection: 'row',
-            justifyContent: 'space-between',
             alignItems: 'center',
+            justifyContent: 'flex-start',
           }}
-          uiBackground={{ color: Color4.White() }}
         >
-          <Label
-            uiTransform={{ margin: { left: 16 * scaleFactor } }}
-            fontSize={16 * scaleFactor}
-            value={`<b>${showStreamkey && streamKey ? streamKey : '*********************************'}</b>`}
-            color={Color4.fromHexString('#A09BA8')}
-          />
-          <UiEntity
-            uiTransform={{
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}
-          >
+          {loading ? (
             <UiEntity
               uiTransform={{
-                width: 25 * scaleFactor,
-                height: 25 * scaleFactor,
-                margin: { right: 10 * scaleFactor },
+                margin: { left: 16 * scaleFactor },
               }}
-              uiBackground={{
-                textureMode: 'stretch',
-                texture: {
-                  src:
-                    showStreamkey && streamKey
-                      ? STREAM_ICONS.eyeHide
-                      : STREAM_ICONS.eyeShow,
-                },
-                color: Color4.Black(),
-              }}
-              onMouseDown={async () => {
-                if (!streamKey) {
-                  setLoading(true)
-                  const [error, data] = await getStreamKey()
-                  setLoading(false)
-                  if (!error && data?.streamingKey) {
-                    setStreamKey(data.streamingKey)
-                    setShowStreamkey(true)
-                  }
-                } else {
-                  setShowStreamkey(!showStreamkey)
-                }
-              }}
-            />
-            <Button
-              id="video_control_copy_stream_key"
-              value="<b>Copy</b>"
-              variant="primary"
-              fontSize={16 * scaleFactor}
+            >
+              <LoadingDots scaleFactor={scaleFactor} engine={engine} />
+            </UiEntity>
+          ) : (
+            <Label
               uiTransform={{
-                margin: { right: 8 * scaleFactor },
-                padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
+                margin: { left: 16 * scaleFactor },
+                flexShrink: 1,
               }}
-              onMouseDown={async () => {
-                if (streamKey) {
-                  copyToClipboard({ text: streamKey })
-                }
-              }}
-              disabled={!streamKey}
+              fontSize={16 * scaleFactor}
+              value={`<b>${showStreamkey && streamKey ? streamKey : '************'}</b>`}
+              color={Color4.fromHexString('#A09BA8')}
             />
-          </UiEntity>
+          )}
         </UiEntity>
-      )}
+
+        <UiEntity
+          uiTransform={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            flexShrink: 0,
+          }}
+        >
+          <UiEntity
+            uiTransform={{
+              width: 25 * scaleFactor,
+              height: 25 * scaleFactor,
+              margin: { right: 10 * scaleFactor },
+            }}
+            uiBackground={{
+              textureMode: 'stretch',
+              texture: {
+                src:
+                  showStreamkey && streamKey
+                    ? STREAM_ICONS.eyeHide
+                    : STREAM_ICONS.eyeShow,
+              },
+              color: Color4.Black(),
+            }}
+            onMouseDown={async () => {
+              if (!streamKey) {
+                setLoading(true)
+                const [error, data] = await getStreamKey()
+                setLoading(false)
+                if (!error && data?.streamingKey) {
+                  setStreamKey(data.streamingKey)
+                  setShowStreamkey(true)
+                }
+              } else {
+                setShowStreamkey(!showStreamkey)
+              }
+            }}
+          />
+          <Button
+            id="video_control_copy_stream_key"
+            value="<b>Copy</b>"
+            variant="primary"
+            fontSize={16 * scaleFactor}
+            uiTransform={{
+              margin: { right: 8 * scaleFactor },
+              padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
+              minWidth: 60 * scaleFactor,
+            }}
+            onMouseDown={async () => {
+              if (streamKey) {
+                copyToClipboard({ text: streamKey })
+              } else {
+                setLoading(true)
+                const [error, data] = await getStreamKey()
+                setLoading(false)
+                if (!error && data?.streamingKey) {
+                  setStreamKey(data.streamingKey)
+                  copyToClipboard({ text: data.streamingKey })
+                }
+              }
+            }}
+          />
+        </UiEntity>
+      </UiEntity>
+
       <UiEntity
         uiTransform={{
           width: '100%',
