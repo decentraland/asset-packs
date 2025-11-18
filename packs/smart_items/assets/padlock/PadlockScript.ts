@@ -20,8 +20,8 @@ export class PadlockScript {
   private name: string = 'Padlock'
 
   constructor(
+    public src: string,
     public entity: Entity,
-    private assetPath: string = '',
     public combination: number = 1234,
   ) {
     this.name = Name.get(entity).value || this.name
@@ -30,7 +30,7 @@ export class PadlockScript {
     this.buttonPressSound = engine.addEntity()
     Transform.create(this.buttonPressSound, { parent: entity })
     AudioSource.create(this.buttonPressSound, {
-      audioClipUrl: `${this.assetPath}/sounds/Button_Press.mp3`,
+      audioClipUrl: `${this.src}/sounds/Button_Press.mp3`,
       playing: false,
       loop: false,
       volume: 0.5,
@@ -39,7 +39,7 @@ export class PadlockScript {
     this.resolveSound = engine.addEntity()
     Transform.create(this.resolveSound, { parent: entity })
     AudioSource.create(this.resolveSound, {
-      audioClipUrl: `${this.assetPath}/sounds/Resolve.mp3`,
+      audioClipUrl: `${this.src}/sounds/Resolve.mp3`,
       playing: false,
       loop: false,
       volume: 0.8,
@@ -72,7 +72,7 @@ export class PadlockScript {
       })
 
       GltfContainer.create(wheel, {
-        src: `${this.assetPath}/models/padlock/PadlockRullet.glb`,
+        src: `${this.src}/models/padlock/PadlockRullet.glb`,
         visibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
         invisibleMeshesCollisionMask: ColliderLayer.CL_POINTER,
       })

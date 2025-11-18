@@ -36,7 +36,7 @@
       }
     },
     {
-      "name": "inspector::Script",
+      "name": "asset-packs::Script",
       "data": {
         "512": {
           "json": {
@@ -44,7 +44,7 @@
               {
                 "path": "{assetPath}/PadlockScript.ts",
                 "priority": 0,
-                "layout": "{\"params\":{\"assetPath\":{\"type\":\"string\",\"optional\":false,\"value\":\"{assetPath}\"}, \"combination\":{\"type\":\"number\",\"optional\":false,\"value\":1234}}}"
+                "layout": "{\"params\":{\"combination\":{\"type\":\"number\",\"optional\":false,\"value\":1234}}}"
               }
             ]
           }
