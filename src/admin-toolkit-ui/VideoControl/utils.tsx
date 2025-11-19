@@ -1,9 +1,12 @@
 import { DeepReadonlyObject, Entity, IEngine, PBVideoPlayer } from '@dcl/ecs'
-import { getComponents } from '../../definitions'
+import {
+  getComponents,
+  LIVEKIT_STREAM_SRC,
+  VIDEO_URL_TYPE,
+} from '../../definitions'
 import { getExplorerComponents } from '../../components'
 import { nextTickFunctions, state } from '../index'
 import { DEFAULT_VOLUME } from '.'
-
 
 // Types
 interface VideoPlayerControls {
@@ -50,7 +53,7 @@ function checkVideoPlayerSound(entity: Entity, engine: IEngine) {
 
 export function createVideoPlayerControls(
   entity: Entity,
-  engine: IEngine
+  engine: IEngine,
 ): VideoPlayerControls {
   const videoControl = getAdminToolkitVideoControl(engine)
   const { VideoPlayer } = getExplorerComponents(engine)
@@ -89,7 +92,10 @@ export function createVideoPlayerControls(
         video.volume = 0
       } else {
         const steps = Math.round((video.volume ?? DEFAULT_VOLUME) * 10)
-        const newSteps = Math.max(0, Math.min(10, steps + (volumeOrStep as number) * 10))
+        const newSteps = Math.max(
+          0,
+          Math.min(10, steps + (volumeOrStep as number) * 10),
+        )
         video.volume = newSteps / 10
       }
     },
@@ -103,19 +109,38 @@ export function createVideoPlayerControls(
       const video = VideoPlayer.getMutable(entity)
       video.loop = loop
       video.position = undefined
-    }
+    },
   }
 }
 
 export function useSelectedVideoPlayer(
-  engine: IEngine
+  engine: IEngine,
 ): [Entity, DeepReadonlyObject<PBVideoPlayer>] | null {
   const { VideoPlayer } = getExplorerComponents(engine)
   const videoPlayers = getVideoPlayers(engine)
 
   if (videoPlayers.length === 0) return null
 
-  const entity = videoPlayers[state.videoControl.selectedVideoPlayer ?? 0].entity as Entity
+  const entity = videoPlayers[state.videoControl.selectedVideoPlayer ?? 0]
+    .entity as Entity
   const videoPlayer = VideoPlayer.getOrNull(entity)
   return [entity, videoPlayer!]
+}
+
+export function isDclCast(url: string) {
+  return (
+    url.startsWith(LIVEKIT_STREAM_SRC) &&
+    state.videoControl.selectedStream === 'dcl-cast'
+  )
+}
+
+export function isLiveStream(url: string) {
+  return (
+    url.startsWith(LIVEKIT_STREAM_SRC) &&
+    state.videoControl.selectedStream === 'live'
+  )
+}
+
+export function isVideoUrl(url: string) {
+  return url.startsWith(VIDEO_URL_TYPE)
 }
