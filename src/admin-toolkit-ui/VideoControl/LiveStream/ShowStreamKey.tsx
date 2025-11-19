@@ -1,6 +1,7 @@
 import { Color4 } from '@dcl/sdk/math'
 import { DeepReadonlyObject, Entity, IEngine, PBVideoPlayer } from '@dcl/ecs'
 import ReactEcs, { UiEntity, Label } from '@dcl/react-ecs'
+import { copyToClipboard } from '~system/RestrictedActions'
 import { COLORS } from '..'
 import { createVideoPlayerControls } from '../utils'
 import { VideoControlVolume } from '../VolumeControl'
@@ -26,6 +27,7 @@ const STREAM_ICONS = {
 const AUTO_HIDE_DURATION_SECONDS = 30
 const STREAM_KEY_TIMEOUT_ACTION = 'video_control_stream_key_timeout'
 const STREAM_KEY_INTERVAL_ACTION = 'video_control_stream_key_interval'
+const RTMP_SERVER_URL = 'rtmps://dcl.rtmp.livekit.cloud/x'
 
 export function ShowStreamKey({
   scaleFactor,
@@ -89,7 +91,7 @@ export function ShowStreamKey({
   return (
     <UiEntity uiTransform={{ flexDirection: 'column' }}>
       <Label
-        value="<b>RMTP Server<b>"
+        value="<b>RTMP Server</b>"
         color={Color4.White()}
         fontSize={16 * scaleFactor}
         uiTransform={{
@@ -102,14 +104,30 @@ export function ShowStreamKey({
           margin: { bottom: 8 * scaleFactor, top: 8 * scaleFactor },
           height: 42 * scaleFactor,
           borderRadius: 12 * scaleFactor,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
         }}
         uiBackground={{ color: Color4.White() }}
       >
         <Label
           uiTransform={{ margin: { left: 16 * scaleFactor } }}
           fontSize={16 * scaleFactor}
-          value="<b>rtmps://dcl.rtmp.livekit.cloud/x</b>"
+          value={`<b>${RTMP_SERVER_URL}</b>`}
           color={Color4.fromHexString('#A09BA8')}
+        />
+        <Button
+          id="video_control_copy_rtmp_server"
+          value="<b>Copy</b>"
+          variant="primary"
+          fontSize={16 * scaleFactor}
+          uiTransform={{
+            margin: { right: 8 * scaleFactor },
+            padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
+          }}
+          onMouseDown={async () => {
+            copyToClipboard({ text: RTMP_SERVER_URL })
+          }}
         />
       </UiEntity>
       <Label
@@ -120,37 +138,53 @@ export function ShowStreamKey({
           margin: { top: 16 * scaleFactor, bottom: 8 * scaleFactor },
         }}
       />
-      {loading ? (
+      <UiEntity
+        uiTransform={{
+          width: '100%',
+          margin: { bottom: 8 * scaleFactor, top: 8 * scaleFactor },
+          height: 42 * scaleFactor,
+          borderRadius: 12 * scaleFactor,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+        uiBackground={{ color: Color4.White() }}
+      >
         <UiEntity
           uiTransform={{
-            width: '100%',
-            margin: { bottom: 8 * scaleFactor, top: 8 * scaleFactor },
-            height: 42 * scaleFactor,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <LoadingDots scaleFactor={scaleFactor} engine={engine} />
-        </UiEntity>
-      ) : (
-        <UiEntity
-          uiTransform={{
-            width: '100%',
-            margin: { bottom: 8 * scaleFactor, top: 8 * scaleFactor },
-            height: 42 * scaleFactor,
-            borderRadius: 12 * scaleFactor,
             flexDirection: 'row',
-            justifyContent: 'space-between',
             alignItems: 'center',
+            justifyContent: 'flex-start',
           }}
-          uiBackground={{ color: Color4.White() }}
         >
-          <Label
-            uiTransform={{ margin: { left: 16 * scaleFactor } }}
-            fontSize={16 * scaleFactor}
-            value={`<b>${showStreamkey && streamKey ? streamKey : '*********************************'}</b>`}
-            color={Color4.fromHexString('#A09BA8')}
-          />
+          {loading ? (
+            <UiEntity
+              uiTransform={{
+                margin: { left: 16 * scaleFactor },
+              }}
+            >
+              <LoadingDots scaleFactor={scaleFactor} engine={engine} />
+            </UiEntity>
+          ) : (
+            <Label
+              uiTransform={{
+                margin: { left: 16 * scaleFactor },
+                flexShrink: 1,
+              }}
+              fontSize={16 * scaleFactor}
+              value={`<b>${showStreamkey && streamKey ? streamKey : '************'}</b>`}
+              color={Color4.fromHexString('#A09BA8')}
+            />
+          )}
+        </UiEntity>
+
+        <UiEntity
+          uiTransform={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            flexShrink: 0,
+          }}
+        >
           <UiEntity
             uiTransform={{
               width: 25 * scaleFactor,
@@ -181,8 +215,33 @@ export function ShowStreamKey({
               }
             }}
           />
+          <Button
+            id="video_control_copy_stream_key"
+            value="<b>Copy</b>"
+            variant="primary"
+            fontSize={16 * scaleFactor}
+            uiTransform={{
+              margin: { right: 8 * scaleFactor },
+              padding: { left: 8 * scaleFactor, right: 8 * scaleFactor },
+              minWidth: 60 * scaleFactor,
+            }}
+            onMouseDown={async () => {
+              if (streamKey) {
+                copyToClipboard({ text: streamKey })
+              } else {
+                setLoading(true)
+                const [error, data] = await getStreamKey()
+                setLoading(false)
+                if (!error && data?.streamingKey) {
+                  setStreamKey(data.streamingKey)
+                  copyToClipboard({ text: data.streamingKey })
+                }
+              }
+            }}
+          />
         </UiEntity>
-      )}
+      </UiEntity>
+
       <UiEntity
         uiTransform={{
           width: '100%',
