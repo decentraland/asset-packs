@@ -6,7 +6,7 @@
       "data": {
         "0": {
           "json": {
-            "src": "{assetPath}/video_player.glb",
+            "src": "{assetPath}/BlackSkybox.glb",
             "visibleMeshesCollisionMask": 0,
             "invisibleMeshesCollisionMask": 3
           }
@@ -18,7 +18,7 @@
       "data": {
         "0": {
           "json": {
-            "value": "Video Screen"
+            "value": "Screen Skybox"
           }
         }
       }
@@ -29,7 +29,7 @@
         "0": {
           "json": {
             "componentIds": [
-              "core::GltfNodeModifiers",
+             "core::GltfNodeModifiers",
               "core::VideoPlayer"
             ]
           }
@@ -62,6 +62,8 @@
                   "material": {
                     "$case": "unlit",
                     "unlit": {
+                      "alphaTest": 0.5,
+                      "castShadows": true,
                       "texture": {
                         "tex": {
                           "$case": "videoTexture",
@@ -72,8 +74,6 @@
                           }
                         }
                       },
-                      "alphaTest": 0.5,
-                      "castShadows": true,
                       "alphaTexture": {
                         "tex": {
                           "$case": "texture",
