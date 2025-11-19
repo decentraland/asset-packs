@@ -16,8 +16,9 @@ import { getDclCastStyles, getDclCastColors } from './styles'
 import { getComponents } from '../../../definitions'
 
 const ICONS = {
-  VIDEO_CONTROL: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control.png`,
-  DCL_CAST_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-dcl-cast.png`,
+  // DCL_CAST_ICON: `${CONTENT_URL}/admin_toolkit/assets/icons/video-control-dcl-cast.png`,
+  DCL_CAST_ICON:
+    'https://builder-items.decentraland.zone/admin_toolkit/assets/icons/video-control-dcl-cast.png',
 }
 
 export async function handleGetDclCastInfo(state: State) {
