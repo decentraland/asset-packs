@@ -14,5 +14,6 @@
     "windowframe",
     "windowpane"
   ],
-  "caption": "Open window with four panes."
+  "caption": "Open window with four panes.",
+  "author": "Decentraland Foundation"
 }

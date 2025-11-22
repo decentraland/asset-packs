@@ -1,0 +1,849 @@
+---
+description: "Standards for styled-components in Decentraland projects."
+globs: src/**/*.styled.ts,src/**/*.styled.tsx
+alwaysApply: true
+---
+
+# Styled Components
+
+## Scope
+
+These standards MUST be applied to all files that match the following patterns, always:
+
+- `src/**/*.styled.ts` - TypeScript styled component files
+- `src/**/*.styled.tsx` - TypeScript styled component files with JSX
+
+> **Note:** Files must use the `.styled.ts` or `.styled.tsx` naming convention. Other naming patterns are not supported.
+
+## Introduction
+
+This document describes the standards for styled components in our codebase. These standards ensure consistency and maintainability across our UI components.
+
+## Theme Structure
+
+The theme in `decentraland-ui2` is built on top of Material-UI's theme system. Understanding the theme structure is crucial for writing consistent styled components.
+
+### Theme Source
+
+The theme is defined in the `decentraland-ui2` package and follows Material-UI's theme structure. The exact implementation may vary, but the theme provides consistent design tokens across the application.
+
+**Reference**: The complete theme configuration can be found in the [decentraland/ui2 repository](https://github.com/decentraland/ui2/tree/master/src/theme), specifically in the [theme index file](https://github.com/decentraland/ui2/blob/master/src/theme/index.ts).
+
+**Additional Theme Files**:
+
+- [Color Schemes](https://github.com/decentraland/ui2/blob/master/src/theme/colorSchemes.ts) - Defines the color palette for light and dark themes
+- [Typography](https://github.com/decentraland/ui2/blob/master/src/theme/typography.ts) - Defines font families, sizes, and typography variants
+
+### Available Theme Properties
+
+The theme provides the following design tokens that should be used instead of hardcoded values. For the most up-to-date values, refer to the [theme configuration in the repository](https://github.com/decentraland/ui2/blob/master/src/theme/index.ts):
+
+1. **Palette**: Colors for text, background, primary, secondary, etc.
+
+   - `theme.palette.text.primary` - Main text color
+   - `theme.palette.text.secondary` - Secondary text color
+   - `theme.palette.background.default` - Default background color
+   - `theme.palette.primary.main` - Primary color
+   - `theme.palette.secondary.main` - Secondary color
+
+   **Reference**: See [colorSchemes.ts](https://github.com/decentraland/ui2/blob/master/src/theme/colorSchemes.ts) for the complete color palette definition.
+
+2. **Typography**: Predefined text styles
+
+   - `theme.typography.h1` through `theme.typography.h6` - Headings
+   - `theme.typography.body1`, `theme.typography.body2` - Body text
+   - `theme.typography.caption` - Caption text
+   - `theme.typography.button` - Button text
+
+   **Reference**: See [typography.ts](https://github.com/decentraland/ui2/blob/master/src/theme/typography.ts) for font families, sizes, and typography variants.
+
+3. **Spacing**: Consistent spacing units (base multiplier of 4px)
+
+   - `theme.spacing(1)` - Small spacing unit (4px)
+   - `theme.spacing(2)` - Medium spacing unit (8px)
+   - `theme.spacing(3)` - Large spacing unit (12px)
+   - `theme.spacing(4)` - Extra large spacing unit (16px)
+
+   **Reference**: The spacing system follows Material-UI's default spacing function with a base of 4px. For the exact implementation, see [Material-UI spacing documentation](https://mui.com/material-ui/customization/spacing/) and check the spacing configuration in the [theme index file](https://github.com/decentraland/ui2/blob/master/src/theme/index.ts).
+
+4. **Breakpoints**: Responsive design breakpoints
+
+   **Breakpoint Values:**
+
+   - `xs`: 768px (mobile)
+   - `sm`: 991px (tablet)
+   - `md`: 1024px (desktop)
+   - `lg`: 1280px (large desktop)
+   - `xl`: 1500px (extra large desktop)
+
+   **Usage Examples:**
+
+   - `theme.breakpoints.down("sm")` - Below 991px
+   - `theme.breakpoints.up("md")` - Above 1024px
+   - `theme.breakpoints.between("sm", "lg")` - Between 991px and 1280px
+   - `theme.breakpoints.only("md")` - Only between 1024px and 1280px
+
+5. **Shape**: Common shape properties
+   - `theme.shape.borderRadius` - Default border radius
+
+**Note**: The exact breakpoint values and other theme properties are defined in the [theme configuration](https://github.com/decentraland/ui2/blob/master/src/theme/index.ts). Always refer to the source for the most current values.
+
+### Theme Usage Examples
+
+```typescript
+// Using palette colors
+const Title = styled(Typography)(({ theme }) => ({
+  color: theme.palette.text.primary, // Main text color
+  backgroundColor: theme.palette.background.default,
+}));
+
+// Using typography variants
+const Heading = styled(Typography)(({ theme }) => ({
+  ...theme.typography.h3, // Predefined h3 styles
+}));
+
+// Using spacing units
+const Container = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(3), // Consistent spacing
+  margin: theme.spacing(2), // Consistent spacing
+}));
+
+// Using breakpoints
+const ResponsiveBox = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down("sm")]: {
+    // Responsive behavior (below 991px)
+    flexDirection: "column",
+  },
+}));
+
+// Using shape properties
+const RoundedCard = styled(Box)(({ theme }) => ({
+  borderRadius: theme.shape.borderRadius, // Consistent border radius
+}));
+```
+
+## Import Standards
+
+### Import Sources
+
+1. MUST use styled components from `decentraland-ui2`:
+
+   ```typescript
+   // ❌ Wrong
+   import styled from "@emotion/styled";
+   import { keyframes } from "@emotion/react";
+
+   // ✅ Correct
+   import { styled, keyframes } from "decentraland-ui2";
+   ```
+
+2. MUST import MUI components from `decentraland-ui2`:
+
+   ```typescript
+   // ❌ Wrong
+   import { Box } from "@mui/material";
+
+   // ✅ Correct
+   import { Box } from "decentraland-ui2";
+   ```
+
+3. MUST order imports alphabetically according to ESLint rules:
+
+   ```typescript
+   // ❌ Wrong
+   import { Modal, Box, styled, keyframes } from "decentraland-ui2";
+
+   // ✅ Correct
+   import { Box, keyframes, Modal, styled } from "decentraland-ui2";
+   ```
+
+4. MUST follow ESLint import order rules:
+
+   ```typescript
+   // ✅ Correct import order
+   import { Box, Button, styled, Typography } from "decentraland-ui2";
+   import { neutral } from "../../theme/colors";
+   import { Modal } from "../Modal/Modal";
+   ```
+
+## Component Definition
+
+### Styled Component Structure
+
+1. MUST define all styled components as constants:
+
+   ```typescript
+   // ❌ Wrong
+   export const Container = styled(Box)({...});
+
+   // ✅ Correct
+   const Container = styled(Box)({...});
+   ```
+
+### File Extensions
+
+1. SHOULD use `.styled.ts` for TypeScript styled component files:
+
+   ```
+   // ✅ Correct
+   Component.styled.ts
+   Component.tsx
+   ```
+
+2. MAY use `.styled.tsx` when styled components include JSX elements:
+
+   ```
+   // ✅ Acceptable for complex styled components
+   Component.styled.tsx
+   ```
+
+3. MUST group all exports at the end of the file:
+
+   ```typescript
+   // ❌ Wrong
+   export const Container = styled(Box)({...});
+   export const Title = styled(Typography)({...});
+   export const Image = styled("img")({...});
+
+   // ✅ Correct
+   const Container = styled(Box)({...});
+   const Title = styled(Typography)({...});
+   const Image = styled("img")({...});
+
+   export {
+     Container,
+     Image,
+     Title,
+   };
+   ```
+
+4. MUST order exports alphabetically:
+
+   ```typescript
+   // ❌ Wrong
+   export {
+     RewardReachedModal,
+     RewardContainer,
+     AnimatedBackground,
+     RewardImage,
+   };
+
+   // ✅ Correct
+   export {
+     AnimatedBackground,
+     RewardContainer,
+     RewardImage,
+     RewardReachedModal,
+   };
+   ```
+
+5. MUST NOT use comments in styled component files:
+
+   ```typescript
+   // ❌ Wrong
+   /**
+    * Component that displays a card with a gradient border
+    */
+   const Card = styled(Box)({...});
+
+   // Layout styles
+   const Container = styled(Box)({
+     // Position
+     position: "relative",
+     // Display
+     display: "flex",
+   });
+
+   // ✅ Correct
+   const Card = styled(Box)({...});
+
+   const Container = styled(Box)({
+     position: "relative",
+     display: "flex",
+   });
+   ```
+
+## Styling Patterns
+
+### Object Syntax Standard
+
+UI2 components MUST use the object syntax. This ensures strong TypeScript support, csstype validation, and direct theme integration. Avoid the template literal syntax.
+
+```typescript
+// ❌ Wrong
+const Button = styled("button")`
+  color: turquoise;
+`;
+
+// ✅ Correct
+const Button = styled("button")({
+  color: "turquoise",
+});
+```
+
+With theme and props:
+
+```typescript
+interface Props {
+  primary?: boolean;
+}
+const Button = styled("button")<Props>(({ theme, primary }) => ({
+  color: primary ? theme.palette.primary.main : theme.palette.text.primary,
+  borderRadius: theme.shape.borderRadius,
+}));
+```
+
+⚠️ Rule: Values must always come from the UI2 theme. Arbitrary hex codes or pixel values are not allowed.
+
+### Allowed Element Syntax
+
+When styling native HTML elements, always use the function call form `styled('tag')`. Do not use the property form `styled.tag`, which is legacy syntax and conflicts with our object-style standard.
+
+```typescript
+// ❌ Wrong
+const Container = styled.div`
+  display: flex;
+`;
+
+// ✅ Correct
+const Container = styled("div")({
+  display: "flex",
+});
+```
+
+Specific case: prefer `styled('button')` over `styled.button`
+
+```typescript
+// ❌ Wrong
+const Action = styled.button`
+  color: red;
+`;
+
+// ✅ Correct
+const Action = styled("button")(({ theme }) => ({
+  color: theme.palette.text.primary,
+}));
+```
+
+### Component Base
+
+1. MUST extend existing UI2 components when possible:
+
+   ```typescript
+   // ❌ Wrong
+   const Container = styled("div")({...});
+
+   // ✅ Correct
+   const Container = styled(Box)({...});
+   ```
+
+2. MUST use semantic HTML elements for basic elements:
+
+   ```typescript
+   // ❌ Wrong
+   const Image = styled("div")({...});
+
+   // ✅ Correct
+   const Image = styled("img")({...});
+   ```
+
+### Props and Types
+
+1. MUST type props for styled components that accept them:
+
+   ```typescript
+   // ❌ Wrong
+   const GradientBorder = styled(Box)(({ completed }) => ({...}));
+
+   // ✅ Correct
+   const GradientBorder = styled(Box)<{ completed: boolean }>(({ completed }) => ({...}));
+   ```
+
+2. MUST type custom properties that do not exist in the base component:
+
+   ```typescript
+   // ❌ Wrong
+   const Container = styled(Box)(({ theme, imageUrl }) => ({
+     backgroundImage: `url(${imageUrl})`,
+   }));
+
+   // ✅ Correct
+   const Container = styled(Box)<{ imageUrl: string }>(
+     ({ theme, imageUrl }) => ({
+       backgroundImage: `url(${imageUrl})`,
+     })
+   );
+   ```
+
+3. SHOULD use theme types when accessing theme properties:
+
+   ```typescript
+   // ❌ Wrong
+   const Title = styled(Typography)({
+     color: "#fff",
+   });
+
+   // ✅ Correct
+   const Title = styled(Typography)(({ theme }) => ({
+     color: theme.palette.text.primary,
+   }));
+   ```
+
+### Style Organization
+
+1. SHOULD group related styles together without comments:
+
+   ```typescript
+   // ❌ Wrong
+   const Step = styled(Box)(({ theme }) => ({
+     // Layout
+     display: "flex",
+     alignItems: "flex-start",
+
+     // Visual
+     background: "rgba(255, 255, 255, 0.1)",
+     borderRadius: "16px",
+
+     // Spacing
+     padding: "24px",
+   }));
+
+   // ✅ Correct
+   const Step = styled(Box)(({ theme }) => ({
+     display: "flex",
+     alignItems: "flex-start",
+     background: "rgba(255, 255, 255, 0.1)",
+     borderRadius: "16px",
+     padding: "24px",
+   }));
+   ```
+
+2. SHOULD use theme breakpoints for responsive design:
+
+   ```typescript
+   // ❌ Wrong
+   const Container = styled(Box)({
+     "@media (max-width: 768px)": {
+       flexDirection: "column",
+     },
+   });
+
+   // ✅ Correct
+   const Container = styled(Box)(({ theme }) => ({
+     [theme.breakpoints.down("sm")]: {
+       flexDirection: "column",
+     },
+   }));
+   ```
+
+### Common Patterns
+
+1. SHOULD use theme colors and values:
+
+   ```typescript
+   // ❌ Wrong
+   const Title = styled(Typography)({
+     color: "#fff",
+     fontSize: "16px",
+   });
+
+   // ✅ Correct
+   const Title = styled(Typography)(({ theme }) => ({
+     color: theme.palette.text.primary,
+     fontSize: theme.typography.body1.fontSize,
+   }));
+   ```
+
+2. SHOULD use theme spacing units:
+
+   ```typescript
+   // ❌ Wrong
+   const Container = styled(Box)({
+     padding: "24px",
+     margin: "16px",
+   });
+
+   // ✅ Correct
+   const Container = styled(Box)(({ theme }) => ({
+     padding: theme.spacing(3),
+     margin: theme.spacing(2),
+   }));
+   ```
+
+3. SHOULD use theme typography variants:
+
+   ```typescript
+   // ❌ Wrong
+   const Title = styled(Typography)({
+     fontSize: "24px",
+     fontWeight: 700,
+     lineHeight: "32px",
+   });
+
+   // ✅ Correct
+   const Title = styled(Typography)(({ theme }) => ({
+     ...theme.typography.h3,
+   }));
+   ```
+
+### Complex Styles
+
+1. MUST use object syntax with theme values for complex styles:
+
+   ```typescript
+   const GradientBorder = styled(Box)<{ completed: boolean }>(
+     ({ theme, completed }) => ({
+       background: completed
+         ? `linear-gradient(243.96deg, ${theme.palette.primary.main} -11.67%, ${theme.palette.secondary.main} 88.23%)`
+         : theme.palette.action.hover,
+     })
+   );
+   ```
+
+2. SHOULD use theme utilities for common patterns:
+
+   ```typescript
+   const Card = styled(Box)(({ theme }) => ({
+     display: "flex",
+     alignItems: "center",
+     justifyContent: "center",
+     padding: theme.spacing(2),
+     backgroundColor: theme.palette.background.paper,
+     borderRadius: theme.shape.borderRadius,
+   }));
+   ```
+
+3. MUST avoid !important declarations. Use better CSS specificity instead:
+
+   ```typescript
+   // ❌ Wrong
+   const StatLabel = styled(Typography)(({ theme }) => ({
+     "&&": {
+       color: "rgba(255, 255, 255, 0.75) !important",
+     },
+   }));
+
+   // ✅ Correct
+   const StatLabel = styled(Typography)(({ theme }) => ({
+     color: theme.palette.text.secondary,
+     opacity: 0.75,
+   }));
+   ```
+
+### No Inline Styles
+
+Inline styles (style= ... ) MUST NOT be used in UI2 components. They bypass theme typing, make styles harder to maintain, and prevent reusability. If a style value needs to be dynamic, pass it as a typed prop to the styled component.
+
+```typescript
+// ❌ Wrong
+<Card key={id} style={{ backgroundColor: color } as React.CSSProperties}>
+  <CardHeader>
+    <Title style={{ fontSize: 20 }}>{title}</Title>
+  </CardHeader>
+</Card>
+
+// ✅ Correct
+interface CardProps { color: string }
+const Card = styled(Box)<CardProps>(({ color }) => ({ backgroundColor: color }))
+const Title = styled('h2')<CardProps>(({ fontSize }) => ({ fontSize }))
+
+<Card key={id} color={color}>
+  <CardHeader>
+    <Title fontSize={20}>{title}</Title>
+  </CardHeader>
+</Card>
+```
+
+## Best Practices
+
+### Breakpoints
+
+Use theme.breakpoints helpers instead of hardcoded pixel values. Always use up, down, between, or only.
+
+```typescript
+// ❌ Wrong
+const Panel = styled("div")`
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
+// ✅ Correct
+interface PanelProps {
+  expanded: boolean;
+}
+const Panel = styled("div")<PanelProps>(({ theme, expanded }) => ({
+  width: expanded ? "400px" : "0",
+  [theme.breakpoints.down("sm")]: { width: expanded ? "100%" : "0" },
+}));
+```
+
+### Spacing Scale and theme.spacing
+
+Use theme.spacing exclusively for margins, paddings, and gaps.
+
+- Convention: theme.spacing(n) where n is an integer. If the base is 4, 1 → 4px and 2 → 8px.
+- Do not use raw px values. If a new value is needed, propose it in the theme.
+
+```typescript
+// ✅ Correct
+const Box = styled("div")(({ theme }) => ({
+  padding: theme.spacing(2),
+  gap: theme.spacing(3),
+}));
+```
+
+### Z-index, elevation, and stacking context
+
+Follow the theme scale: theme.zIndex.appBar, drawer, modal, tooltip. Avoid ad‑hoc z-index. If a new layer is needed, add it to the theme first. Manage stacking context consciously and avoid unnecessary position: relative on parents.
+
+```typescript
+// ✅ Correct
+const StickyBar = styled("div")(({ theme }) => ({
+  position: "sticky",
+  top: 0,
+  zIndex: theme.zIndex.appBar,
+}));
+```
+
+### Focus visible and interactive states
+
+All interactive controls MUST show a visible focus and declare hover, active, and disabled states.
+
+```typescript
+// ✅ Correct
+const Action = styled("button")(({ theme }) => ({
+  outline: "none",
+  "&:focus-visible": {
+    outline: `2px solid ${theme.palette.primary.main}`,
+    outlineOffset: 2,
+  },
+  "&:hover": { backgroundColor: theme.palette.action.hover },
+  "&:active": { backgroundColor: theme.palette.action.selected },
+  "&:disabled": { opacity: 0.5, pointerEvents: "none" },
+}));
+```
+
+### Performance with styled
+
+- Do not create styled components inside render paths.
+- Memoize derived props that trigger restyling.
+- Do not pass inline object props. Prefer primitive props and map them inside styled.
+
+```typescript
+// ❌ Wrong
+const MyComponent = ({ color, ...props }) => {
+  const StyledDiv = styled("div")(({ theme }) => ({ color })); // Created in render
+  return <StyledDiv style={{ backgroundColor: color }} {...props} />;
+};
+
+// ✅ Correct
+const StyledDiv = styled("div")<{ color: string }>(({ color }) => ({ color }));
+
+const MyComponent = ({ color, ...props }) => {
+  return <StyledDiv color={color} {...props} />;
+};
+```
+
+### File Organization
+
+1. MUST keep styled components in separate files:
+
+   ```
+   Component.tsx
+   Component.styled.ts
+   ```
+
+2. MUST use meaningful names that reflect the component's purpose:
+
+   ```typescript
+   // ❌ Wrong
+   const Div = styled(Box)({...});
+   const Wrapper = styled(Box)({...});
+
+   // ✅ Correct
+   const CardContainer = styled(Box)({...});
+   const RewardImage = styled("img")({...});
+   ```
+
+3. MUST use consistent naming conventions:
+   - Use PascalCase for component names
+   - Use camelCase for style properties
+   - Use kebab-case for HTML attributes
+   ```typescript
+   const RewardCardContainer = styled(Box)(({ theme }) => ({
+     backgroundColor: theme.palette.background.paper,
+     "data-testid": "reward-card",
+   }));
+   ```
+
+## Examples
+
+### Basic Styled Component
+
+```typescript
+import { Box, styled, Typography } from "decentraland-ui2";
+
+const CardContainer = styled(Box)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  padding: theme.spacing(3),
+  backgroundColor: theme.palette.background.default,
+  borderRadius: theme.shape.borderRadius,
+}));
+
+const CardTitle = styled(Typography)(({ theme }) => ({
+  ...theme.typography.h4,
+  color: theme.palette.text.primary,
+  marginBottom: theme.spacing(2),
+}));
+
+const CardContent = styled(Box)(({ theme }) => ({
+  color: theme.palette.text.secondary,
+  ...theme.typography.body1,
+}));
+
+export { CardContainer, CardContent, CardTitle };
+```
+
+### Styled Component with Props
+
+```typescript
+import { Box, styled } from "decentraland-ui2";
+
+const GradientButton = styled(Box)<{ variant: "primary" | "secondary" }>(
+  ({ theme, variant }) => ({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: theme.spacing(2),
+    borderRadius: theme.shape.borderRadius,
+    cursor: "pointer",
+    backgroundColor:
+      variant === "primary"
+        ? theme.palette.primary.main
+        : theme.palette.secondary.main,
+    color: theme.palette.common.white,
+    "&:hover": {
+      opacity: 0.8,
+    },
+  })
+);
+
+const ResponsiveContainer = styled(Box)(({ theme }) => ({
+  maxWidth: "1200px",
+  margin: "0 auto",
+  padding: theme.spacing(3),
+  [theme.breakpoints.down("sm")]: {
+    padding: theme.spacing(2),
+  },
+}));
+
+export { GradientButton, ResponsiveContainer };
+```
+
+### Complex Styled Component
+
+```typescript
+import { Box, styled } from "decentraland-ui2";
+
+const AnimatedCard = styled(Box)<{ isVisible: boolean }>(
+  ({ theme, isVisible }) => ({
+    display: "flex",
+    flexDirection: "column",
+    padding: theme.spacing(3),
+    backgroundColor: theme.palette.background.paper,
+    borderRadius: theme.shape.borderRadius,
+    boxShadow: theme.shadows[1],
+    transform: isVisible ? "translateY(0)" : "translateY(20px)",
+    opacity: isVisible ? 1 : 0,
+    transition: "all 0.3s ease-in-out",
+    "&:hover": {
+      boxShadow: theme.shadows[4],
+      transform: "translateY(-2px)",
+    },
+  })
+);
+
+const StatusBadge = styled(Box)<{ status: "success" | "warning" | "error" }>(
+  ({ theme, status }) => ({
+    display: "inline-flex",
+    alignItems: "center",
+    padding: `${theme.spacing(0.5)} ${theme.spacing(1)}`,
+    borderRadius: theme.shape.borderRadius,
+    fontSize: theme.typography.caption.fontSize,
+    fontWeight: theme.typography.caption.fontWeight,
+    backgroundColor:
+      status === "success"
+        ? theme.palette.success.main
+        : status === "warning"
+        ? theme.palette.warning.main
+        : theme.palette.error.main,
+    color: theme.palette.common.white,
+  })
+);
+
+export { AnimatedCard, StatusBadge };
+```
+
+## Validation Checklist
+
+Before creating styled components, ensure:
+
+- [ ] MUST and SHOULD sections are clearly defined
+- [ ] All imports are from `decentraland-ui2`
+- [ ] All MUI components are imported from `decentraland-ui2`
+- [ ] Styled components use `styled` from `decentraland-ui2`
+- [ ] Imports are ordered alphabetically according to ESLint rules
+- [ ] Object syntax is used for all styled components
+- [ ] Template literal syntax is avoided
+- [ ] Function call form `styled('tag')` is used for HTML elements
+- [ ] No !important declarations are used
+- [ ] CSS specificity is properly managed
+- [ ] Inline styles are avoided
+- [ ] No inline comments are used in styled component files
+- [ ] Dynamic values are passed as typed props
+- [ ] Styled components are defined as constants
+- [ ] All exports are grouped at the end of the file
+- [ ] Exports are ordered alphabetically
+- [ ] Props are properly typed for styled components
+- [ ] Theme properties are used instead of hardcoded values
+- [ ] Theme breakpoints are used for responsive design
+- [ ] Theme spacing units are used for consistent spacing
+- [ ] Theme typography variants are used for text styles
+- [ ] Z-index values come from theme.zIndex scale
+- [ ] Interactive states (hover, focus, active, disabled) are implemented
+- [ ] Focus-visible styles are included for accessibility
+- [ ] Performance best practices are followed
+- [ ] Styled components are not created in render paths
+- [ ] Primitive props are preferred over object props
+- [ ] Component names are meaningful and follow PascalCase
+- [ ] Style properties use camelCase
+- [ ] HTML attributes use kebab-case
+- [ ] Theme colors use palette instead of arbitrary hex values
+- [ ] Breakpoint helpers (up, down, between) are used instead of media queries
+- [ ] File organization follows Component.tsx / Component.styled.ts pattern
+- [ ] Specific code examples are included
+- [ ] Incorrect (❌) and correct (✅) patterns are shown
+- [ ] Rules are specific and actionable
+- [ ] Scope clearly defines file patterns
+- [ ] Description is concise and descriptive
+- [ ] Glob patterns are appropriate for frontend
+- [ ] Rules follow the established format and structure
+- [ ] Content is comprehensive and well-organized
+- [ ] Examples are relevant and demonstrate best practices
+- [ ] Theme integration is properly implemented
+- [ ] Responsive design patterns are followed
+- [ ] Component reusability is maximized
+- [ ] Performance considerations are addressed
+- [ ] Accessibility requirements are met
+- [ ] Interactive states documentation is complete
+- [ ] Object syntax standards are enforced
+- [ ] Element syntax standards are enforced
+- [ ] No inline styles prohibition is enforced
+- [ ] Rules are independent and don't share state
+- [ ] Prefer specific outcomes over generic ones
+- [ ] Context is properly defined and not repeated
+- [ ] Each section has appropriate setup and cleanup
+
+**Purpose**: The Validation Checklist serves as a quality gate for all styled components, ensuring they meet the established standards for consistency, maintainability, performance, and accessibility. It helps maintain consistency across all UI components and provides a clear framework for developers to follow.
