@@ -14,24 +14,28 @@ import { openExternalUrl } from '~system/RestrictedActions'
 import { HELP_ICON } from '../VideoUrl'
 
 export const LIVEKIT_STREAM_SRC = 'livekit-video://current-stream'
-export const STREAMING_SUPPORT_URL = 'https://docs.decentraland.org//creator/editor/live-streaming'
+export const STREAMING_SUPPORT_URL =
+  'https://docs.decentraland.org//creator/editor/live-streaming'
 
 export function LiveStream({
   engine,
   scaleFactor,
   entity,
-  video
+  video,
 }: {
   engine: IEngine
   scaleFactor: number
   entity: Entity
   video: DeepReadonlyObject<PBVideoPlayer> | undefined
 }) {
-  const [showResetStreamKey, setResetStreamKey] = ReactEcs.useState<boolean>(false)
+  const [showResetStreamKey, setResetStreamKey] =
+    ReactEcs.useState<boolean>(false)
   const [loading, setLoading] = ReactEcs.useState<boolean>(false)
   const [hasStreamKey, setHasStreamKey] = ReactEcs.useState<boolean>(false)
   const { VideoControlState } = getComponents(engine)
-  const videoControlState = VideoControlState.getOrNull(state.adminToolkitUiEntity)
+  const videoControlState = VideoControlState.getOrNull(
+    state.adminToolkitUiEntity,
+  )
   const streamKeyEndsAt = videoControlState?.endsAt
 
   ReactEcs.useEffect(() => {
@@ -53,16 +57,17 @@ export function LiveStream({
     streamKeyFn()
   }, [])
 
-
   if (showResetStreamKey) {
-    return <DeleteStreamKeyConfirmation
-      scaleFactor={scaleFactor}
-      engine={engine}
-      onCancel={() => setResetStreamKey(false)}
-      onReset={() => {
-        setResetStreamKey(false)
-      }}
-    />
+    return (
+      <DeleteStreamKeyConfirmation
+        scaleFactor={scaleFactor}
+        engine={engine}
+        onCancel={() => setResetStreamKey(false)}
+        onReset={() => {
+          setResetStreamKey(false)
+        }}
+      />
+    )
   }
 
   return (
@@ -72,7 +77,7 @@ export function LiveStream({
       >
         <Header
           iconSrc={ICONS.LIVE_SOURCE}
-          title="Live Stream"
+          title="Stream"
           scaleFactor={scaleFactor}
         />
         <UiEntity
@@ -119,11 +124,13 @@ export function LiveStream({
           onGenerate={() => setHasStreamKey(true)}
         />
       )}
-      {!hasStreamKey && <Label
-        fontSize={14 * scaleFactor}
-        color={Color4.fromHexString('#FF2D55')}
-        value="Do not share your stream key with anyone, and be careful not to display it on screen while streaming."
-      />}
+      {!hasStreamKey && (
+        <Label
+          fontSize={14 * scaleFactor}
+          color={Color4.fromHexString('#FF2D55')}
+          value="Do not share your stream key with anyone, and be careful not to display it on screen while streaming."
+        />
+      )}
     </UiEntity>
   )
 }
