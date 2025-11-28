@@ -8,6 +8,14 @@
     "power",
     "supply",
     "electricity",
-    "plasma"
-  ]
+    "plasma",
+    "accent",
+    "appliance",
+    "charger",
+    "charging",
+    "function",
+    "station"
+  ],
+  "caption": "Vertical charger with glowing blue base.",
+  "author": "Decentraland Foundation"
 }

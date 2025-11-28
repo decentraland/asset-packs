@@ -10,6 +10,16 @@
     "chair",
     "seat",
     "folding",
-    "stool"
-  ]
+    "stool",
+    "desk",
+    "dining",
+    "kitchen",
+    "leg",
+    "office",
+    "portable",
+    "rest",
+    "sitting"
+  ],
+  "caption": "Black folding stool.",
+  "author": "Decentraland Foundation"
 }

@@ -7,6 +7,19 @@
     "energy",
     "power",
     "electricity",
-    "connectors"
-  ]
+    "connectors",
+    "cable",
+    "conduit",
+    "cord",
+    "filament",
+    "guide",
+    "line",
+    "looped",
+    "path",
+    "pathway",
+    "track",
+    "wire"
+  ],
+  "caption": "Long, looped cable with yellow line.",
+  "author": "Decentraland Foundation"
 }

@@ -9,6 +9,19 @@
     "nature",
     "wood",
     "forest",
-    "log"
-  ]
+    "log",
+    "branch",
+    "cylindrical",
+    "foliage",
+    "hole",
+    "leaves",
+    "natural",
+    "organic",
+    "outdoor",
+    "roots",
+    "tree",
+    "trunk"
+  ],
+  "caption": "A glowing log with a hole.",
+  "author": "Decentraland Foundation"
 }

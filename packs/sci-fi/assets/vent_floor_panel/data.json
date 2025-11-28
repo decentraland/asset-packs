@@ -5,7 +5,14 @@
   "tags": [
     "scifi",
     "tile",
-    "ground",
-    "vent"
-  ]
+    "vent",
+    "furniture",
+    "interior",
+    "panel",
+    "room",
+    "scheme",
+    "visual"
+  ],
+  "caption": "Red and white floor panel.",
+  "author": "Decentraland Foundation"
 }

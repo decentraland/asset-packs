@@ -10,6 +10,19 @@
     "wine",
     "bottle",
     "romantic",
-    "dinner"
-  ]
+    "dinner",
+    "beverage",
+    "container",
+    "cork",
+    "drink",
+    "fermentation",
+    "glass",
+    "label",
+    "liquid",
+    "liquor",
+    "packaging",
+    "vessel"
+  ],
+  "caption": "Wine bottle with cork.",
+  "author": "Decentraland Foundation"
 }

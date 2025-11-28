@@ -6,6 +6,19 @@
     "scifi",
     "space",
     "planet",
-    "soil"
-  ]
+    "soil",
+    "ally",
+    "appearance",
+    "dirt",
+    "earthy",
+    "elevation",
+    "hill",
+    "landscape",
+    "mound",
+    "natural",
+    "reddish",
+    "shape"
+  ],
+  "caption": "Red, rounded mound with a smooth surface.",
+  "author": "Decentraland Foundation"
 }

@@ -9,6 +9,16 @@
     "decoration",
     "wood",
     "crate",
-    "box"
-  ]
+    "box",
+    "building",
+    "container",
+    "furniture",
+    "interior",
+    "room",
+    "storage",
+    "structure",
+    "vessel"
+  ],
+  "caption": "Brown wooden crate with lid.",
+  "author": "Decentraland Foundation"
 }

@@ -9,6 +9,18 @@
     "decorations",
     "gold",
     "golden",
-    "coin"
-  ]
+    "coin",
+    "artifact",
+    "collectible",
+    "currency",
+    "doubloon",
+    "emblem",
+    "relic",
+    "riches",
+    "searchable",
+    "valuable",
+    "wealth"
+  ],
+  "caption": "Golden coin with emblem.",
+  "author": "Decentraland Foundation"
 }

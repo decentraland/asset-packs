@@ -5,6 +5,16 @@
   "tags": [
     "fantasy",
     "bottle",
-    "potion"
-  ]
+    "potion",
+    "container",
+    "draught",
+    "elixir",
+    "glass",
+    "label",
+    "liquid",
+    "magical",
+    "neck"
+  ],
+  "caption": "Blue glass bottle with a white label.",
+  "author": "Decentraland Foundation"
 }

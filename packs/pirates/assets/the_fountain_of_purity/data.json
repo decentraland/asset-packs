@@ -7,10 +7,22 @@
     "paradise",
     "pirates",
     "structures",
-    "stone",
     "water",
     "tiered",
     "fountain",
-    "plaza"
-  ]
+    "plaza",
+    "aquatic",
+    "architecture",
+    "basin",
+    "fluid",
+    "lake",
+    "liquid",
+    "ocean",
+    "pool",
+    "river",
+    "sculpture",
+    "spout"
+  ],
+  "caption": "Fountain with two spouts in blue.",
+  "author": "Decentraland Foundation"
 }

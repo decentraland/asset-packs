@@ -7,6 +7,19 @@
     "electric",
     "electricity",
     "power",
-    "laser"
-  ]
+    "laser",
+    "architecture",
+    "automation",
+    "building",
+    "defense",
+    "fortress",
+    "palace",
+    "pole",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Electricity tower with four poles.",
+  "author": "Decentraland Foundation"
 }

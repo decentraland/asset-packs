@@ -4,6 +4,15 @@
   "category": "tiles",
   "tags": [
     "scifi",
-    "tile"
-  ]
+    "tile",
+    "jagged",
+    "landscape",
+    "planet",
+    "planetoid",
+    "rocky",
+    "shape",
+    "terrain"
+  ],
+  "caption": "Red, jagged edge planetoid.",
+  "author": "Decentraland Foundation"
 }

@@ -6,11 +6,26 @@
     "fantasy",
     "nature",
     "tile",
-    "stone",
-    "stones",
     "rock",
     "rocks",
     "forest",
-    "path"
-  ]
+    "path",
+    "arch",
+    "barrier",
+    "bridge",
+    "castle",
+    "column",
+    "construction",
+    "crossing",
+    "dirt",
+    "entrance",
+    "fortress",
+    "fountain",
+    "gate",
+    "gateway",
+    "gravel",
+    "keep"
+  ],
+  "caption": "Stone path from an ancient era.",
+  "author": "Decentraland Foundation"
 }

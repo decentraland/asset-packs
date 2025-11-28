@@ -7,6 +7,19 @@
     "mound",
     "forest",
     "grass",
-    "evergreen"
-  ]
+    "evergreen",
+    "field",
+    "flora",
+    "foliage",
+    "growth",
+    "landscape",
+    "lawn",
+    "lighter",
+    "meadow",
+    "nature",
+    "outdoor",
+    "plant"
+  ],
+  "caption": "Mound of grass.",
+  "author": "Decentraland Foundation"
 }

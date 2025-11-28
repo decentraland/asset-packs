@@ -7,6 +7,14 @@
     "vent",
     "arc",
     "long",
-    "air"
-  ]
+    "air",
+    "appearance",
+    "curved",
+    "elongated",
+    "function",
+    "shape",
+    "stripe"
+  ],
+  "caption": "Curved, elongated machine with yellow stripe.",
+  "author": "Decentraland Foundation"
 }

@@ -10,9 +10,20 @@
     "lamp",
     "post",
     "light",
-    "lighting",
     "street",
     "city",
-    "park"
-  ]
+    "park",
+    "desk",
+    "dining",
+    "fixture",
+    "furniture",
+    "interior",
+    "kitchen",
+    "minimalist",
+    "office",
+    "room",
+    "table"
+  ],
+  "caption": "Classic lamp post with glowing light.",
+  "author": "Decentraland Foundation"
 }

@@ -6,6 +6,19 @@
     "scifi",
     "dock",
     "port",
-    "metal"
-  ]
+    "metal",
+    "balcony",
+    "balustrade",
+    "handrail",
+    "landing",
+    "rail",
+    "railing",
+    "staircase",
+    "stairs",
+    "stairway",
+    "step",
+    "steps"
+  ],
+  "caption": "Red and white stairs with black railing.",
+  "author": "Decentraland Foundation"
 }

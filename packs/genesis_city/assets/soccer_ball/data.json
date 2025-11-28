@@ -12,6 +12,16 @@
     "football",
     "soccer",
     "sports",
-    "sport"
-  ]
+    "sport",
+    "competition",
+    "field",
+    "goal",
+    "kick",
+    "pass",
+    "stadium",
+    "team",
+    "throw"
+  ],
+  "caption": "Soccer ball.",
+  "author": "Decentraland Foundation"
 }

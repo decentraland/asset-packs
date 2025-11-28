@@ -7,6 +7,14 @@
     "wizard",
     "witch",
     "mail",
-    "box"
-  ]
+    "box",
+    "container",
+    "delivery",
+    "mailbox",
+    "package",
+    "postal",
+    "stationery"
+  ],
+  "caption": "Blue gemstone-topped mailbox.",
+  "author": "Decentraland Foundation"
 }

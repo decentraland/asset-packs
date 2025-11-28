@@ -9,10 +9,19 @@
     "decorations",
     "wood",
     "wooden",
-    "iron",
     "chest",
     "trunk",
     "gold",
-    "golden"
-  ]
+    "golden",
+    "box",
+    "container",
+    "drum",
+    "loot",
+    "riches",
+    "storage",
+    "tank",
+    "vessel"
+  ],
+  "caption": "Treasure chest with open lid.",
+  "author": "Decentraland Foundation"
 }

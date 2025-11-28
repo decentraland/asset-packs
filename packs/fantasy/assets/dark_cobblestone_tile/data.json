@@ -6,6 +6,12 @@
     "fantasy",
     "tile",
     "cobblestone",
-    "stone"
-  ]
+    "brick",
+    "building",
+    "concrete",
+    "path",
+    "pavement"
+  ],
+  "caption": "Cobblestone tile.",
+  "author": "Decentraland Foundation"
 }

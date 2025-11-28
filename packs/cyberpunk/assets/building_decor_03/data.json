@@ -2,5 +2,20 @@
   "id": "c4ebde41-e69e-43ef-b99d-853db9549697",
   "name": "Building Decor 03",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "accent",
+    "architectural",
+    "building",
+    "cardboard",
+    "covering",
+    "decor",
+    "furniture",
+    "interior",
+    "outline",
+    "paper",
+    "room",
+    "treatment"
+  ],
+  "caption": "White paper-like material with black outline.",
+  "author": "Decentraland Foundation"
 }

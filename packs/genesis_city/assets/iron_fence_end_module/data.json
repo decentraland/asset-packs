@@ -10,8 +10,18 @@
     "fence",
     "fences",
     "metal",
-    "iron",
     "park",
-    "garden"
-  ]
+    "garden",
+    "architecture",
+    "barrier",
+    "defense",
+    "enclosure",
+    "fortification",
+    "gate",
+    "module",
+    "security",
+    "structure"
+  ],
+  "caption": "Iron fence module at the end.",
+  "author": "Decentraland Foundation"
 }

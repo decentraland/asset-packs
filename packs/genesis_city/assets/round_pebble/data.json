@@ -8,8 +8,16 @@
     "town",
     "nature",
     "rock",
-    "stone",
     "rock",
-    "stones"
-  ]
+    "ball",
+    "earthy",
+    "granite",
+    "marble",
+    "mineral",
+    "natural",
+    "pebble",
+    "rounded"
+  ],
+  "caption": "Small brown rock.",
+  "author": "Decentraland Foundation"
 }

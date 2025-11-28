@@ -2,5 +2,14 @@
   "id": "86cda22c-1bc9-4c1c-8a0b-83c4b859ff54",
   "name": "Floor - Stone",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architecture",
+    "building",
+    "foundation",
+    "seam",
+    "structure",
+    "tile"
+  ],
+  "caption": "Stone floor with a central seam.",
+  "author": "Decentraland Foundation"
 }

@@ -7,6 +7,14 @@
     "tile",
     "wood",
     "wooden",
-    "parquet"
-  ]
+    "parquet",
+    "architectural",
+    "curved",
+    "furniture",
+    "interior",
+    "room",
+    "rustic"
+  ],
+  "caption": "Rustic wooden parquet tile.",
+  "author": "Decentraland Foundation"
 }

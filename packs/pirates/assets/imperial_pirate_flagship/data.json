@@ -13,6 +13,17 @@
     "sail",
     "black",
     "cannon",
-    "cannons"
-  ]
+    "cannons",
+    "flag",
+    "galleon",
+    "maritime",
+    "mast",
+    "nautical",
+    "naval",
+    "oceanic",
+    "sailing",
+    "vessel"
+  ],
+  "caption": "Old-fashioned pirate ship with multiple masts.",
+  "author": "Decentraland Foundation"
 }

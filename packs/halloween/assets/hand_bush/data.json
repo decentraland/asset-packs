@@ -2,5 +2,18 @@
   "id": "41ef014f-47ce-4932-97d2-32bfcaa80063",
   "name": "Hand Bush",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "animation",
+    "bush",
+    "dots",
+    "finger",
+    "gesture",
+    "hand",
+    "handpiece",
+    "movement",
+    "palm",
+    "sprite"
+  ],
+  "caption": "Green hand with blue dots.",
+  "author": "Decentraland Foundation"
 }

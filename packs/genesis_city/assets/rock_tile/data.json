@@ -15,6 +15,9 @@
     "yard",
     "tile",
     "city",
-    "road"
-  ]
+    "road",
+    "scheme"
+  ],
+  "caption": "White tile flooring pattern.",
+  "author": "Decentraland Foundation"
 }

@@ -6,7 +6,11 @@
     "fantasy",
     "tile",
     "marble",
-    "pattern",
-    "luxurious"
-  ]
+    "luxurious",
+    "countertop",
+    "interior",
+    "realistic"
+  ],
+  "caption": "Luxurious marble tile with realistic texture.",
+  "author": "Decentraland Foundation"
 }

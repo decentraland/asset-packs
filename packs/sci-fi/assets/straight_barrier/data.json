@@ -6,6 +6,12 @@
     "scifi",
     "guard",
     "wall",
-    "split"
-  ]
+    "split",
+    "barrier",
+    "post",
+    "rail",
+    "railing"
+  ],
+  "caption": "Yellow railing featuring four vertical bars.",
+  "author": "Decentraland Foundation"
 }

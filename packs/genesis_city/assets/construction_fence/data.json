@@ -12,6 +12,19 @@
     "wood",
     "city",
     "limit",
-    "limits"
-  ]
+    "limits",
+    "barrier",
+    "boundary",
+    "building",
+    "enclosure",
+    "gate",
+    "outdoor",
+    "perimeter",
+    "portable",
+    "site",
+    "wire",
+    "yard"
+  ],
+  "caption": "Portable construction fence for outdoor use.",
+  "author": "Decentraland Foundation"
 }

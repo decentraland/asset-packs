@@ -14,6 +14,16 @@
     "park",
     "yard",
     "backyard",
-    "soil"
-  ]
+    "soil",
+    "flora",
+    "foliage",
+    "leafy",
+    "nest",
+    "outdoor",
+    "plant",
+    "potted",
+    "searchable"
+  ],
+  "caption": "Potted plant with green leaves.",
+  "author": "Decentraland Foundation"
 }

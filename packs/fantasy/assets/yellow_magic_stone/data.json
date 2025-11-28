@@ -6,8 +6,16 @@
     "fantasy",
     "yellow",
     "crystal",
-    "gem",
-    "gemstone",
-    "stone"
-  ]
+    "artifact",
+    "enchanted",
+    "energy",
+    "glowing",
+    "mystical",
+    "powerful",
+    "radiant",
+    "relic",
+    "spell"
+  ],
+  "caption": "Yellow glowing magic stone.",
+  "author": "Decentraland Foundation"
 }

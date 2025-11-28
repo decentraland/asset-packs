@@ -9,6 +9,20 @@
     "structures",
     "pilar",
     "statue",
-    "cat"
-  ]
+    "cat",
+    "animal",
+    "art",
+    "box",
+    "collectible",
+    "container",
+    "domestic",
+    "feline",
+    "figurine",
+    "furniture",
+    "meow",
+    "pet",
+    "sculpture"
+  ],
+  "caption": "Cat statue sits atop a wooden box.",
+  "author": "Decentraland Foundation"
 }

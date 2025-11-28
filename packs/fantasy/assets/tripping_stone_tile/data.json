@@ -5,7 +5,9 @@
   "tags": [
     "fantasy",
     "tile",
-    "stone",
-    "path"
-  ]
+    "path",
+    "granite"
+  ],
+  "caption": "Dark colored tile or stone.",
+  "author": "Decentraland Foundation"
 }

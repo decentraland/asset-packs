@@ -5,6 +5,13 @@
   "tags": [
     "fantasy",
     "chest",
-    "iron"
-  ]
+    "compartment",
+    "container",
+    "interior",
+    "loot",
+    "secure",
+    "storage"
+  ],
+  "caption": "Open chest with glowing blue light inside.",
+  "author": "Decentraland Foundation"
 }

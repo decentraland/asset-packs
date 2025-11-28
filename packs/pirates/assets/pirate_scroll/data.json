@@ -10,6 +10,19 @@
     "paper",
     "scroll",
     "instructions",
-    "recipe"
-  ]
+    "recipe",
+    "aged",
+    "antiquated",
+    "artifact",
+    "chart",
+    "document",
+    "map",
+    "navigation",
+    "parchment",
+    "parchmentpaper",
+    "relic",
+    "treasuremap"
+  ],
+  "caption": "Tattered pirate map.",
+  "author": "Decentraland Foundation"
 }

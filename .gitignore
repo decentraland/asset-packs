@@ -7,3 +7,5 @@ catalog.json
 dist
 bin
 package-lock.json
+dclcontext/
+

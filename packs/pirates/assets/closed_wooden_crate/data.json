@@ -10,6 +10,14 @@
     "wood",
     "wooden",
     "crate",
-    "box"
-  ]
+    "box",
+    "container",
+    "drum",
+    "furniture",
+    "storage",
+    "tank",
+    "vessel"
+  ],
+  "caption": "Closed wooden crate.",
+  "author": "Decentraland Foundation"
 }

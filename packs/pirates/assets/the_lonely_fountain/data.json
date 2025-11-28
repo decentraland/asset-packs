@@ -7,10 +7,23 @@
     "paradise",
     "pirates",
     "structures",
-    "stone",
     "water",
     "tiered",
     "fountain",
-    "plaza"
-  ]
+    "plaza",
+    "aquatic",
+    "architectural",
+    "art",
+    "cityscape",
+    "decor",
+    "fluid",
+    "lake",
+    "liquid",
+    "monument",
+    "night",
+    "ocean",
+    "outdoor"
+  ],
+  "caption": "Fountain features glowing statue in dark setting.",
+  "author": "Decentraland Foundation"
 }

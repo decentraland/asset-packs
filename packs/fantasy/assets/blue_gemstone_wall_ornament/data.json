@@ -8,7 +8,11 @@
     "wall",
     "gold",
     "golden",
-    "gem",
-    "gemstone"
-  ]
+    "elegance",
+    "jewel",
+    "luxury",
+    "motif"
+  ],
+  "caption": "Blue gemstone on golden base.",
+  "author": "Decentraland Foundation"
 }

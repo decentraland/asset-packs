@@ -8,6 +8,19 @@
     "throne",
     "chair",
     "court",
-    "stone"
-  ]
+    "backrest",
+    "diamond",
+    "dining",
+    "furniture",
+    "kitchen",
+    "office",
+    "regal",
+    "rest",
+    "room",
+    "royal",
+    "seat",
+    "sitting"
+  ],
+  "caption": "Blue throne with diamond pattern.",
+  "author": "Decentraland Foundation"
 }

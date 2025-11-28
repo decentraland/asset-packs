@@ -13,6 +13,16 @@
     "forest",
     "park",
     "yard",
-    "backyard"
-  ]
+    "backyard",
+    "botanical",
+    "foliage",
+    "herbaceous",
+    "leaf",
+    "leafy",
+    "plant",
+    "vegetation",
+    "verdant"
+  ],
+  "caption": "Green fern leaf.",
+  "author": "Decentraland Foundation"
 }

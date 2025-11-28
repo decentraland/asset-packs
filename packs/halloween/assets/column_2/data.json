@@ -2,5 +2,13 @@
   "id": "c35e0ca8-1496-4779-b1c9-cdbe35251987",
   "name": "Column 2",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architectural",
+    "column",
+    "slender",
+    "structural",
+    "upright"
+  ],
+  "caption": "Tall, slender column with glowing top.",
+  "author": "Decentraland Foundation"
 }

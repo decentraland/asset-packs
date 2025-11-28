@@ -17,6 +17,19 @@
     "garden",
     "backyard",
     "yard",
-    "farm"
-  ]
+    "farm",
+    "architecture",
+    "building",
+    "dwelling",
+    "gate",
+    "home",
+    "house",
+    "outdoor",
+    "picket",
+    "residence",
+    "roof",
+    "structure"
+  ],
+  "caption": "Classic white picket fence with one door.",
+  "author": "Decentraland Foundation"
 }

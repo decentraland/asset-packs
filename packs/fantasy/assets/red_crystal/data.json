@@ -3,6 +3,17 @@
   "name": "Red Crystal",
   "category": "decorations",
   "tags": [
-    "fantasy"
-  ]
+    "fantasy",
+    "crystal",
+    "facet",
+    "facets",
+    "jewel",
+    "luxury",
+    "precious",
+    "ruby",
+    "shine",
+    "sparkle"
+  ],
+  "caption": "Red crystal with multiple facets.",
+  "author": "Decentraland Foundation"
 }

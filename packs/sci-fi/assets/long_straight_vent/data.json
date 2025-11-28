@@ -7,6 +7,14 @@
     "air",
     "vent",
     "straight",
-    "long"
-  ]
+    "long",
+    "architectural",
+    "duct",
+    "pipe",
+    "stripe",
+    "structural",
+    "ventilation"
+  ],
+  "caption": "Long, straight vent with yellow stripe.",
+  "author": "Decentraland Foundation"
 }

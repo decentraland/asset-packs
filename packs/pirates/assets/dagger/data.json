@@ -8,11 +8,22 @@
     "pirates",
     "decorations",
     "brass",
-    "iron",
     "leather",
     "sword",
     "weapon",
     "golden",
-    "gold"
-  ]
+    "gold",
+    "battle",
+    "blade",
+    "combat",
+    "dagger",
+    "grip",
+    "handle",
+    "hilt",
+    "knight",
+    "sharp",
+    "steel"
+  ],
+  "caption": "Blue-handled sword.",
+  "author": "Decentraland Foundation"
 }

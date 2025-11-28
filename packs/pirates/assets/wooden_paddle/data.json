@@ -11,6 +11,21 @@
     "wooden",
     "boat",
     "water",
-    "paddle"
-  ]
+    "paddle",
+    "canoe",
+    "fishing",
+    "furniture",
+    "grain",
+    "handle",
+    "kayak",
+    "marine",
+    "natural",
+    "nautical",
+    "ocean",
+    "sailing",
+    "ship",
+    "vessel"
+  ],
+  "caption": "Wooden paddle with a handle.",
+  "author": "Decentraland Foundation"
 }

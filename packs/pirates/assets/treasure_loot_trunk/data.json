@@ -16,6 +16,16 @@
     "lootbox",
     "loot",
     "skull",
-    "gemstone"
-  ]
+    "booty",
+    "container",
+    "crown",
+    "plunder",
+    "riches",
+    "storage",
+    "trove",
+    "trunk",
+    "wealth"
+  ],
+  "caption": "Glowing treasure chest with golden lock and key.",
+  "author": "Decentraland Foundation"
 }

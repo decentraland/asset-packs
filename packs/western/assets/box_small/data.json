@@ -2,5 +2,15 @@
   "id": "8a6787dc-873d-4ff7-a3cb-c28209f20a50",
   "name": "Box Small",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "box",
+    "container",
+    "furniture",
+    "interior",
+    "room",
+    "shape",
+    "space"
+  ],
+  "caption": "Brown box with design on its surface.",
+  "author": "Decentraland Foundation"
 }

@@ -6,6 +6,17 @@
     "structures",
     "archway",
     "wood",
-    "gate"
-  ]
+    "gate",
+    "entrance",
+    "gatehouse",
+    "japan",
+    "japanese",
+    "lantern",
+    "ritual",
+    "sacred",
+    "shrine",
+    "torii"
+  ],
+  "caption": "Traditional japanese torii gate with hanging lanterns.",
+  "author": "Decentraland Foundation"
 }

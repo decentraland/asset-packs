@@ -9,6 +9,21 @@
     "decorations",
     "wick",
     "wax",
-    "light"
-  ]
+    "light",
+    "ambiance",
+    "burning",
+    "candle",
+    "combustion",
+    "cozy",
+    "desk",
+    "dining",
+    "fire",
+    "flame",
+    "furniture",
+    "heat",
+    "kitchen",
+    "smoke"
+  ],
+  "caption": "Tall white candle with a glowing wick.",
+  "author": "Decentraland Foundation"
 }

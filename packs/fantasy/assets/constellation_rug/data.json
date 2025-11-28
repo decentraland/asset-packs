@@ -8,6 +8,15 @@
     "rug",
     "star",
     "wizard",
-    "rectangular"
-  ]
+    "rectangular",
+    "celestial",
+    "constellation",
+    "cosmic",
+    "galaxy",
+    "night",
+    "space",
+    "starry"
+  ],
+  "caption": "A glowing star.",
+  "author": "Decentraland Foundation"
 }

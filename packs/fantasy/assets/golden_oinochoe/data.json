@@ -7,6 +7,22 @@
     "vase",
     "liquid",
     "gold",
-    "golden"
-  ]
+    "golden",
+    "antique",
+    "artifact",
+    "chemical",
+    "container",
+    "fuel",
+    "greek",
+    "hazardous",
+    "historical",
+    "oil",
+    "oinochoe",
+    "petroleum",
+    "radioactive",
+    "roman",
+    "toxic"
+  ],
+  "caption": "Antique greek oil vase.",
+  "author": "Decentraland Foundation"
 }

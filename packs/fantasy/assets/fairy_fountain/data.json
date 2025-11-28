@@ -6,6 +6,18 @@
     "fantasy",
     "fountain",
     "water",
-    "park"
-  ]
+    "park",
+    "aquatic",
+    "architecture",
+    "basin",
+    "fluid",
+    "lake",
+    "liquid",
+    "ocean",
+    "pool",
+    "river",
+    "visual"
+  ],
+  "caption": "Blue fountain on yellow base.",
+  "author": "Decentraland Foundation"
 }

@@ -10,6 +10,22 @@
     "bottle",
     "drink",
     "beverage",
-    "alcohol"
-  ]
+    "alcohol",
+    "cap",
+    "chemical",
+    "container",
+    "drum",
+    "fuel",
+    "hazardous",
+    "liquid",
+    "oil",
+    "petroleum",
+    "radioactive",
+    "storage",
+    "tank",
+    "toxic",
+    "vessel"
+  ],
+  "caption": "Blue bottle with white cap.",
+  "author": "Decentraland Foundation"
 }

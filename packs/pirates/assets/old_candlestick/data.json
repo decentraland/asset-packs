@@ -12,6 +12,19 @@
     "gold",
     "bronze",
     "wax",
-    "light"
-  ]
+    "light",
+    "ambiance",
+    "antique",
+    "candle",
+    "candlestick",
+    "cozy",
+    "flame",
+    "furniture",
+    "holder",
+    "interior",
+    "room",
+    "warm"
+  ],
+  "caption": "Old-fashioned candle holder with one lit candle.",
+  "author": "Decentraland Foundation"
 }

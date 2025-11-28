@@ -10,8 +10,22 @@
     "fence",
     "fences",
     "metal",
-    "iron",
     "park",
-    "garden"
-  ]
+    "garden",
+    "armor",
+    "barrier",
+    "castle",
+    "defense",
+    "enclosure",
+    "fortification",
+    "fortress",
+    "palace",
+    "pointed",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Iron fence with pointed metal tops.",
+  "author": "Decentraland Foundation"
 }

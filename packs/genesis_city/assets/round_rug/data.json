@@ -10,6 +10,12 @@
     "rug",
     "carpet",
     "beach",
-    "sun"
-  ]
+    "sun",
+    "interior",
+    "room",
+    "shape",
+    "space"
+  ],
+  "caption": "Colorful rug with a circular design.",
+  "author": "Decentraland Foundation"
 }

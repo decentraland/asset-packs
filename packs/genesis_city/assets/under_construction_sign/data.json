@@ -12,6 +12,19 @@
     "yellow",
     "tool",
     "tools",
-    "hammer"
-  ]
+    "hammer",
+    "building",
+    "caution",
+    "completion",
+    "development",
+    "highway",
+    "infrastructure",
+    "progress",
+    "project",
+    "roadwork",
+    "traffic",
+    "warning"
+  ],
+  "caption": "Under-construction sign.",
+  "author": "Decentraland Foundation"
 }

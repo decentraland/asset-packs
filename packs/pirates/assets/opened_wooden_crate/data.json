@@ -11,6 +11,17 @@
     "wooden",
     "crate",
     "box",
-    "open"
-  ]
+    "open",
+    "container",
+    "contents",
+    "goods",
+    "interior",
+    "inventory",
+    "storage",
+    "supplies",
+    "vessel",
+    "visible"
+  ],
+  "caption": "Open wooden crate containing scattered items.",
+  "author": "Decentraland Foundation"
 }

@@ -6,6 +6,15 @@
     "scifi",
     "space",
     "planet",
-    "soil"
-  ]
+    "soil",
+    "ally",
+    "appearance",
+    "candy",
+    "dirt",
+    "fruit",
+    "patch",
+    "shape"
+  ],
+  "caption": "Red, rounded candy-shaped object.",
+  "author": "Decentraland Foundation"
 }

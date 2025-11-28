@@ -8,6 +8,14 @@
     "parts",
     "power",
     "energy",
-    "sun"
-  ]
+    "sun",
+    "grid",
+    "illumination",
+    "panel",
+    "photovoltaic",
+    "renewable",
+    "solar"
+  ],
+  "caption": "Solar panel with grid top stand.",
+  "author": "Decentraland Foundation"
 }

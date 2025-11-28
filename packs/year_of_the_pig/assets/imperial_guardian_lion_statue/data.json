@@ -6,8 +6,18 @@
     "structures",
     "statue",
     "lion",
-    "stone",
     "guardian",
-    "imperial"
-  ]
+    "imperial",
+    "animal",
+    "artifact",
+    "feline",
+    "lioness",
+    "majestic",
+    "monument",
+    "noble",
+    "regal",
+    "sculpture"
+  ],
+  "caption": "Lion statue.",
+  "author": "Decentraland Foundation"
 }

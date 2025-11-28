@@ -5,6 +5,17 @@
   "tags": [
     "scifi",
     "tile",
-    "planet"
-  ]
+    "planet",
+    "hue",
+    "landscape",
+    "searchable",
+    "shade",
+    "sky",
+    "terrain",
+    "tone",
+    "violet",
+    "world"
+  ],
+  "caption": "Textured surface with pink color.",
+  "author": "Decentraland Foundation"
 }

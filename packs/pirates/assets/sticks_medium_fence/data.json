@@ -11,6 +11,20 @@
     "wooden",
     "dock",
     "stick",
-    "sticks"
-  ]
+    "sticks",
+    "barrier",
+    "beam",
+    "boundary",
+    "enclosure",
+    "fencepost",
+    "gate",
+    "picket",
+    "plank",
+    "pole",
+    "post",
+    "railing",
+    "structure"
+  ],
+  "caption": "Three wooden planks forming a fence.",
+  "author": "Decentraland Foundation"
 }

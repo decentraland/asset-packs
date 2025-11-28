@@ -8,7 +8,14 @@
     "maiden",
     "statue",
     "mossy",
-    "gem",
-    "gemstone"
-  ]
+    "architecture",
+    "building",
+    "foliage",
+    "fountain",
+    "moss",
+    "nature",
+    "outdoor"
+  ],
+  "caption": "Fantasy-themed statue with glowing gemstone.",
+  "author": "Decentraland Foundation"
 }

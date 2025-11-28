@@ -2,5 +2,17 @@
   "id": "ad94b5e5-face-4011-be73-a261eece8dd3",
   "name": "Door 11",
   "category": "structures",
-  "tags": []
+  "tags": [
+    "architecture",
+    "building",
+    "doorway",
+    "entrance",
+    "function",
+    "interior",
+    "room",
+    "slat",
+    "structure"
+  ],
+  "caption": "Brown wooden door with vertical slats.",
+  "author": "Decentraland Foundation"
 }

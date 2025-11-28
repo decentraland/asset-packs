@@ -12,6 +12,18 @@
     "dock",
     "pillar",
     "stick",
-    "sticks"
-  ]
+    "sticks",
+    "barrier",
+    "beam",
+    "boundary",
+    "enclosure",
+    "fencepost",
+    "module",
+    "plank",
+    "post",
+    "structure",
+    "timber"
+  ],
+  "caption": "Wooden fence post.",
+  "author": "Decentraland Foundation"
 }

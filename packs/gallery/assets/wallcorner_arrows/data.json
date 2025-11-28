@@ -2,5 +2,13 @@
   "id": "aeaa7334-cc20-49af-b80a-cf386e869ea2",
   "name": "WallCorner - Arrows",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "direction",
+    "directional",
+    "graphic",
+    "pointing",
+    "visual"
+  ],
+  "caption": "Corner with directional arrows.",
+  "author": "Decentraland Foundation"
 }

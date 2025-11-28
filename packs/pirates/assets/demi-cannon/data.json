@@ -7,14 +7,26 @@
     "paradise",
     "pirates",
     "decorations",
-    "iron",
     "brass",
     "wood",
     "wooden",
-    "iron",
     "wheel",
     "wheels",
     "weapon",
-    "boom"
-  ]
+    "boom",
+    "auto",
+    "cannon",
+    "cart",
+    "coupe",
+    "driving",
+    "fortress",
+    "palace",
+    "sedan",
+    "speed",
+    "stronghold",
+    "transport",
+    "vehicle"
+  ],
+  "caption": "Vintage cannon on a wooden cart.",
+  "author": "Decentraland Foundation"
 }

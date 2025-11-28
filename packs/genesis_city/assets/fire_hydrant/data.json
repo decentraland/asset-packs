@@ -11,6 +11,22 @@
     "fire",
     "firefighter",
     "firefighters",
-    "city"
-  ]
+    "city",
+    "aquatic",
+    "burning",
+    "combustion",
+    "emergency",
+    "extinguisher",
+    "firefighting",
+    "flame",
+    "fluid",
+    "heat",
+    "hydrant",
+    "lake",
+    "liquid",
+    "nozzle",
+    "ocean"
+  ],
+  "caption": "Fire hydrant with two nozzles on top.",
+  "author": "Decentraland Foundation"
 }

@@ -11,7 +11,17 @@
     "pond",
     "rock",
     "rocks",
-    "stone",
-    "stones"
-  ]
+    "aquatic",
+    "fluid",
+    "lake",
+    "landscape",
+    "liquid",
+    "ocean",
+    "outdoor",
+    "pool",
+    "river",
+    "shore"
+  ],
+  "caption": "A serene pond surrounded by rocks.",
+  "author": "Decentraland Foundation"
 }

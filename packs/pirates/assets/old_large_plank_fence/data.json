@@ -10,6 +10,18 @@
     "wood",
     "wooden",
     "plank",
-    "old"
-  ]
+    "old",
+    "barrier",
+    "beam",
+    "boundary",
+    "enclosure",
+    "fencepost",
+    "gate",
+    "historic",
+    "planks",
+    "post",
+    "rustic"
+  ],
+  "caption": "Old wooden fence with weathered planks.",
+  "author": "Decentraland Foundation"
 }

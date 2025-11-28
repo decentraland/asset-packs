@@ -10,8 +10,18 @@
     "red",
     "rock",
     "rocks",
-    "stone",
-    "stones",
-    "magic"
-  ]
+    "magic",
+    "artifact",
+    "enchanted",
+    "fiery",
+    "glowing",
+    "magical",
+    "mystic",
+    "mystical",
+    "ornate",
+    "radiant",
+    "relic"
+  ],
+  "caption": "Glowing red magic stone.",
+  "author": "Decentraland Foundation"
 }

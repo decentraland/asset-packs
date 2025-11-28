@@ -2,5 +2,15 @@
   "id": "6d08999a-4a70-4c6e-a94e-69f3584ab107",
   "name": "Ceiling 4x4M",
   "category": "tiles",
-  "tags": []
+  "tags": [
+    "architecture",
+    "ceiling",
+    "height",
+    "interior",
+    "room",
+    "space",
+    "tile"
+  ],
+  "caption": "Red, glazed tile ceiling.",
+  "author": "Decentraland Foundation"
 }

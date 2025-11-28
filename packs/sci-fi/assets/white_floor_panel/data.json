@@ -5,6 +5,13 @@
   "tags": [
     "scifi",
     "tile",
-    "ground"
-  ]
+    "appearance",
+    "flat",
+    "panel",
+    "rectangular",
+    "smooth",
+    "visual"
+  ],
+  "caption": "White floor panel with smooth surface.",
+  "author": "Decentraland Foundation"
 }

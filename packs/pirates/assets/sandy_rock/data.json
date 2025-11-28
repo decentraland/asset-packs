@@ -7,12 +7,18 @@
     "paradise",
     "pirates",
     "nature",
-    "stone",
-    "stones",
     "rock",
     "rocks",
     "sand",
     "sandy",
-    "beach"
-  ]
+    "beach",
+    "earthy",
+    "geological",
+    "landscape",
+    "mineral",
+    "natural",
+    "terrain"
+  ],
+  "caption": "Brown rock with a smooth surface.",
+  "author": "Decentraland Foundation"
 }

@@ -9,6 +9,17 @@
     "nature",
     "sand",
     "dune",
-    "beach"
-  ]
+    "beach",
+    "desert",
+    "dunes",
+    "elevation",
+    "grain",
+    "hill",
+    "landscape",
+    "mound",
+    "sandy",
+    "terrain"
+  ],
+  "caption": "Dunes of shifting golden sand.",
+  "author": "Decentraland Foundation"
 }

@@ -6,6 +6,14 @@
     "fantasy",
     "forest",
     "grass",
-    "weeds"
-  ]
+    "weeds",
+    "checkmark",
+    "graphics",
+    "interface",
+    "logo",
+    "mark",
+    "visual"
+  ],
+  "caption": "Green checkmark.",
+  "author": "Decentraland Foundation"
 }

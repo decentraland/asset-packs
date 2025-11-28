@@ -2,5 +2,12 @@
   "id": "b7968b36-5d70-4cfe-bf87-875c4b2bdf9b",
   "name": "Solid Black",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "graphic",
+    "shape",
+    "uielement",
+    "visual"
+  ],
+  "caption": "Black cube with glowing white triangle.",
+  "author": "Decentraland Foundation"
 }

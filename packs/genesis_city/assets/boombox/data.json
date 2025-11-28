@@ -10,6 +10,16 @@
     "music",
     "noise",
     "radio",
-    "sound"
-  ]
+    "sound",
+    "boom",
+    "boombox",
+    "box",
+    "cassette",
+    "control",
+    "portable",
+    "speaker",
+    "stereo"
+  ],
+  "caption": "Purple boombox with glowing screen.",
+  "author": "Decentraland Foundation"
 }

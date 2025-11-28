@@ -12,6 +12,18 @@
     "tent",
     "sticks",
     "fabric",
-    "canopy"
-  ]
+    "canopy",
+    "building",
+    "desk",
+    "dining",
+    "furniture",
+    "kitchen",
+    "merchant",
+    "stripe",
+    "structure",
+    "table",
+    "tented"
+  ],
+  "caption": "Blue tent with a red stripe.",
+  "author": "Decentraland Foundation"
 }

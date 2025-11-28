@@ -6,6 +6,19 @@
     "scifi",
     "guard",
     "wall",
-    "split"
-  ]
+    "split",
+    "barrier",
+    "boundary",
+    "containment",
+    "curve",
+    "curved",
+    "obstacle",
+    "pole",
+    "protection",
+    "safety",
+    "shape",
+    "warning"
+  ],
+  "caption": "Curved yellow barrier with four metal poles.",
+  "author": "Decentraland Foundation"
 }

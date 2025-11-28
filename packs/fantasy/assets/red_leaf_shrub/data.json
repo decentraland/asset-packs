@@ -6,6 +6,20 @@
     "fantasy",
     "swamp",
     "forest",
-    "shrub"
-  ]
+    "shrub",
+    "autumn",
+    "branch",
+    "foliage",
+    "garden",
+    "greenery",
+    "landscape",
+    "leaf",
+    "leaves",
+    "nature",
+    "outdoor",
+    "plant",
+    "roots"
+  ],
+  "caption": "Red leafy shrub.",
+  "author": "Decentraland Foundation"
 }

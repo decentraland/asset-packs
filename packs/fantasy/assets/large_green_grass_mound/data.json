@@ -7,6 +7,17 @@
     "mound",
     "forest",
     "grass",
-    "evergreen"
-  ]
+    "evergreen",
+    "earth",
+    "field",
+    "foliage",
+    "landscape",
+    "lawn",
+    "meadow",
+    "nature",
+    "outdoor",
+    "setting"
+  ],
+  "caption": "Green grassy hill.",
+  "author": "Decentraland Foundation"
 }

@@ -11,10 +11,21 @@
     "wood",
     "pallet",
     "light",
-    "lighting",
     "city",
     "building",
     "buildings",
-    "site"
-  ]
+    "site",
+    "cement",
+    "concrete",
+    "crane",
+    "excavator",
+    "foundation",
+    "machinery",
+    "materials",
+    "tools",
+    "trucks",
+    "vehicles"
+  ],
+  "caption": "Construction site with heavy machinery.",
+  "author": "Decentraland Foundation"
 }

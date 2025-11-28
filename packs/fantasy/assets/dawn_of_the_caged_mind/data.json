@@ -6,7 +6,19 @@
     "fantasy",
     "book",
     "codex",
-    "knowledge",
-    "shelf"
-  ]
+    "shelf",
+    "binding",
+    "bookshelf",
+    "cover",
+    "leather",
+    "library",
+    "manuscript",
+    "page",
+    "reading",
+    "spine",
+    "tome",
+    "volume"
+  ],
+  "caption": "Brown leather-bound book with readable text.",
+  "author": "Decentraland Foundation"
 }

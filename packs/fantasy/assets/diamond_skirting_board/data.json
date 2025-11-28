@@ -6,6 +6,15 @@
     "fantasy",
     "skirting",
     "board",
-    "baseboard"
-  ]
+    "baseboard",
+    "brownwood",
+    "checkered",
+    "furniture",
+    "interior",
+    "molding",
+    "paneling",
+    "trim"
+  ],
+  "caption": "Brown skirting board with checkered pattern.",
+  "author": "Decentraland Foundation"
 }

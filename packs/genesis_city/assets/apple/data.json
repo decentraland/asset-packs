@@ -10,6 +10,15 @@
     "fruit",
     "fruits",
     "market",
-    "edible"
-  ]
+    "edible",
+    "apple",
+    "food",
+    "graphic",
+    "healthy",
+    "nutrition",
+    "snack",
+    "stem"
+  ],
+  "caption": "Red apple with green stem.",
+  "author": "Decentraland Foundation"
 }

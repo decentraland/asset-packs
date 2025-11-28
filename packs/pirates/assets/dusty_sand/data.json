@@ -6,6 +6,18 @@
     "pirate",
     "paradise",
     "pirates",
-    "ground"
-  ]
+    "blur",
+    "coarse",
+    "desert",
+    "dirt",
+    "dusty",
+    "earth",
+    "gravel",
+    "rough",
+    "sand",
+    "sandy",
+    "terrain"
+  ],
+  "caption": "Dusty desert terrain.",
+  "author": "Decentraland Foundation"
 }

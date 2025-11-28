@@ -9,8 +9,16 @@
     "nature",
     "rock",
     "rocks",
-    "stone",
-    "stones",
-    "forest"
-  ]
+    "forest",
+    "boulder",
+    "flat",
+    "granite",
+    "medium",
+    "monument",
+    "pebble",
+    "rocky",
+    "slab"
+  ],
+  "caption": "Rocky terrain.",
+  "author": "Decentraland Foundation"
 }

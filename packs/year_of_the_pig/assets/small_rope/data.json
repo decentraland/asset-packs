@@ -7,6 +7,19 @@
     "rope",
     "line",
     "cord",
-    "string"
-  ]
+    "string",
+    "anchor",
+    "fabric",
+    "fasten",
+    "fiber",
+    "hold",
+    "knot",
+    "secure",
+    "tether",
+    "textile",
+    "tie",
+    "twine"
+  ],
+  "caption": "Knot-tied rope.",
+  "author": "Decentraland Foundation"
 }

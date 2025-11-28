@@ -9,6 +9,18 @@
     "furniture",
     "table",
     "cafe",
-    "concrete"
-  ]
+    "concrete",
+    "comfort",
+    "desk",
+    "dining",
+    "kitchen",
+    "maple",
+    "oak",
+    "pine",
+    "rest",
+    "seat",
+    "seating"
+  ],
+  "caption": "Metal base table.",
+  "author": "Decentraland Foundation"
 }

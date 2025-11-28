@@ -7,6 +7,17 @@
     "potion",
     "witch",
     "wizard",
-    "magic"
-  ]
+    "magic",
+    "alchemy",
+    "brew",
+    "brewing",
+    "cauldron",
+    "frog",
+    "liquid",
+    "magical",
+    "spoon",
+    "stirring"
+  ],
+  "caption": "Green cauldron filled with glowing liquid.",
+  "author": "Decentraland Foundation"
 }

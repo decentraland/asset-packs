@@ -6,6 +6,18 @@
     "structures",
     "garden",
     "house",
-    "temple"
-  ]
+    "temple",
+    "architecture",
+    "building",
+    "interior",
+    "japanese",
+    "oriental",
+    "pagoda",
+    "roof",
+    "shrine",
+    "structure",
+    "walls"
+  ],
+  "caption": "Traditional japanese temple with glowing lanterns.",
+  "author": "Decentraland Foundation"
 }

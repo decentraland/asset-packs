@@ -6,6 +6,17 @@
     "fantasy",
     "chest",
     "gold",
-    "golden"
-  ]
+    "golden",
+    "automobile",
+    "container",
+    "fuel",
+    "storage",
+    "stripe",
+    "tank",
+    "transport",
+    "vehicle",
+    "vessel"
+  ],
+  "caption": "Yellow chest with blue stripe.",
+  "author": "Decentraland Foundation"
 }

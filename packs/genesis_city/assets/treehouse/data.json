@@ -13,6 +13,23 @@
     "forest",
     "playground",
     "backyard",
-    "yard"
-  ]
+    "yard",
+    "branch",
+    "building",
+    "castle",
+    "foliage",
+    "fortress",
+    "ladder",
+    "nature",
+    "outdoor",
+    "palace",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower",
+    "treehouse",
+    "trunk"
+  ],
+  "caption": "Rustic wooden treehouse with a ladder.",
+  "author": "Decentraland Foundation"
 }

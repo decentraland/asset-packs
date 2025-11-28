@@ -15,6 +15,20 @@
     "garden",
     "backyard",
     "yard",
-    "farm"
-  ]
+    "farm",
+    "architecture",
+    "building",
+    "castle",
+    "fortress",
+    "letter",
+    "monument",
+    "palace",
+    "pointed",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "White monument with pointed top.",
+  "author": "Decentraland Foundation"
 }

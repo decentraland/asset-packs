@@ -6,7 +6,13 @@
     "fantasy",
     "tile",
     "cobblestone",
-    "stone",
-    "corner"
-  ]
+    "corner",
+    "building",
+    "crack",
+    "path",
+    "pavement",
+    "terrain"
+  ],
+  "caption": "Gray cobblestone tile with cracks.",
+  "author": "Decentraland Foundation"
 }

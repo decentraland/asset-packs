@@ -11,6 +11,16 @@
     "wooden",
     "dock",
     "pillar",
-    "pillars"
-  ]
+    "pillars",
+    "building",
+    "fortress",
+    "module",
+    "palace",
+    "royal",
+    "slats",
+    "stronghold",
+    "structure"
+  ],
+  "caption": "Dock module with wooden slats.",
+  "author": "Decentraland Foundation"
 }

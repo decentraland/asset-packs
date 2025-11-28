@@ -12,6 +12,18 @@
     "red",
     "golden",
     "strips",
-    "feather"
-  ]
+    "feather",
+    "attire",
+    "chapeau",
+    "clothing",
+    "costume",
+    "crown",
+    "fashion",
+    "hatband",
+    "headdress",
+    "headgear",
+    "tricorn"
+  ],
+  "caption": "Black tricorn hat with red feather.",
+  "author": "Decentraland Foundation"
 }

@@ -9,6 +9,14 @@
     "nature",
     "wood",
     "forest",
-    "log"
-  ]
+    "log",
+    "appearance",
+    "function",
+    "natural",
+    "organic",
+    "shape",
+    "smooth"
+  ],
+  "caption": "Smooth wooden log.",
+  "author": "Decentraland Foundation"
 }

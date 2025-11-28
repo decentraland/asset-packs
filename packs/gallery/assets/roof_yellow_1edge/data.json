@@ -2,5 +2,17 @@
   "id": "ded817c0-d3b9-458f-beab-9ca828000606",
   "name": "Roof - Yellow 1Edge",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architecture",
+    "bright",
+    "building",
+    "hue",
+    "radiant",
+    "roof",
+    "roofed",
+    "structure",
+    "sunshine"
+  ],
+  "caption": "Yellow, single-edged roof.",
+  "author": "Decentraland Foundation"
 }

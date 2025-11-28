@@ -2,5 +2,13 @@
   "id": "bdd5671b-9c8f-43c7-8385-f0dd70257863",
   "name": "Wall - LEDGrid",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "glow",
+    "grid",
+    "illumination",
+    "led",
+    "visual"
+  ],
+  "caption": "Pink led grid.",
+  "author": "Decentraland Foundation"
 }

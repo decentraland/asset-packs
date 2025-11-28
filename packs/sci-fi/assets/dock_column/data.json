@@ -6,6 +6,15 @@
     "scifi",
     "dock",
     "port",
-    "metal"
-  ]
+    "metal",
+    "column",
+    "container",
+    "docking",
+    "plastic",
+    "slot",
+    "storage",
+    "vessel"
+  ],
+  "caption": "Docking station with 4 slots.",
+  "author": "Decentraland Foundation"
 }

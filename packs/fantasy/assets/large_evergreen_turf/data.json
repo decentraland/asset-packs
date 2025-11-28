@@ -8,6 +8,17 @@
     "forest",
     "grass",
     "evergreen",
-    "turf"
-  ]
+    "turf",
+    "artificial",
+    "field",
+    "landscape",
+    "lawn",
+    "meadow",
+    "nature",
+    "outdoor",
+    "synthetic",
+    "terrain"
+  ],
+  "caption": "Artificial turf field.",
+  "author": "Decentraland Foundation"
 }

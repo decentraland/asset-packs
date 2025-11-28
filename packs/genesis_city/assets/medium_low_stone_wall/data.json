@@ -7,13 +7,21 @@
     "city",
     "town",
     "structures",
-    "stone",
     "wall",
     "rail",
     "railing",
     "fence",
     "fences",
     "garden",
-    "park"
-  ]
+    "park",
+    "architectural",
+    "building",
+    "furniture",
+    "grain",
+    "interior",
+    "plank",
+    "structure"
+  ],
+  "caption": "Wooden plank with visible grain.",
+  "author": "Decentraland Foundation"
 }

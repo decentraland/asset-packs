@@ -7,6 +7,19 @@
     "mushroom",
     "herb",
     "forest",
-    "ingredient"
-  ]
+    "ingredient",
+    "branch",
+    "foliage",
+    "fungal",
+    "leaves",
+    "mysterious",
+    "nature",
+    "organic",
+    "outdoor",
+    "roots",
+    "tree",
+    "trunk"
+  ],
+  "caption": "Blue glowing mushroom.",
+  "author": "Decentraland Foundation"
 }

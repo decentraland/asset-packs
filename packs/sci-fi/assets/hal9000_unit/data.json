@@ -6,6 +6,20 @@
     "scifi",
     "computer",
     "parts",
-    "spaceship"
-  ]
+    "spaceship",
+    "beacon",
+    "communication",
+    "electronic",
+    "gadget",
+    "radio",
+    "receiver",
+    "signal",
+    "talkie",
+    "technology",
+    "transmitter",
+    "walkie",
+    "warning"
+  ],
+  "caption": "Walkie-talkie-style radio with glowing red light.",
+  "author": "Decentraland Foundation"
 }

@@ -6,6 +6,14 @@
     "structures",
     "archway",
     "wood",
-    "gate"
-  ]
+    "gate",
+    "banner",
+    "entrance",
+    "honor",
+    "japanese",
+    "lanterns",
+    "loyalty"
+  ],
+  "caption": "Traditional japanese archway with glowing lanterns.",
+  "author": "Decentraland Foundation"
 }

@@ -7,6 +7,16 @@
     "kit",
     "tech",
     "computer",
-    "equipment"
-  ]
+    "equipment",
+    "accents",
+    "briefcase",
+    "control",
+    "display",
+    "futuristic",
+    "panel",
+    "retro",
+    "window"
+  ],
+  "caption": "Retro-futuristic briefcase with glowing screen.",
+  "author": "Decentraland Foundation"
 }

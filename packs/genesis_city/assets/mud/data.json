@@ -6,6 +6,15 @@
     "genesis",
     "city",
     "town",
-    "ground"
-  ]
+    "appearance",
+    "dots",
+    "earthy",
+    "mud",
+    "muddy",
+    "scatter",
+    "terrain",
+    "visual"
+  ],
+  "caption": "Red, textured surface with white dots.",
+  "author": "Decentraland Foundation"
 }

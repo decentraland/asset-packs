@@ -13,6 +13,19 @@
     "sunny",
     "garden",
     "backyard",
-    "chair"
-  ]
+    "chair",
+    "desk",
+    "dining",
+    "folding",
+    "kitchen",
+    "maple",
+    "oak",
+    "office",
+    "pine",
+    "rest",
+    "seating",
+    "sitting"
+  ],
+  "caption": "Blue folding chair.",
+  "author": "Decentraland Foundation"
 }

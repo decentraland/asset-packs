@@ -6,6 +6,18 @@
     "scifi",
     "fuel",
     "energy",
-    "boom"
-  ]
+    "boom",
+    "charger",
+    "control",
+    "dispenser",
+    "futuristic",
+    "gas",
+    "machinery",
+    "panel",
+    "pump",
+    "station",
+    "tank"
+  ],
+  "caption": "Futuristic gas charger with 2 tanks.",
+  "author": "Decentraland Foundation"
 }

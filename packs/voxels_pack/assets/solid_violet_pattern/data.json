@@ -2,5 +2,13 @@
   "id": "5eccc147-a071-46ca-ac8c-999f7fec8daa",
   "name": "Solid Violet Pattern",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "appearance",
+    "hue",
+    "shape",
+    "violet",
+    "visual"
+  ],
+  "caption": "Purple cube with textured surface.",
+  "author": "Decentraland Foundation"
 }

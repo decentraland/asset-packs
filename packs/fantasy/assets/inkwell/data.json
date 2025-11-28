@@ -7,6 +7,18 @@
     "ink",
     "feather",
     "desk",
-    "scriptorium"
-  ]
+    "scriptorium",
+    "art",
+    "drawing",
+    "fountain",
+    "inkwell",
+    "office",
+    "paper",
+    "quill",
+    "stationery",
+    "supplies",
+    "writing"
+  ],
+  "caption": "Inkwell with quill pen.",
+  "author": "Decentraland Foundation"
 }

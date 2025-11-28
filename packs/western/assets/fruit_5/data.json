@@ -2,5 +2,18 @@
   "id": "bbb40eb8-79ba-4442-a95e-b5454015a4b9",
   "name": "Fruit 5",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "container",
+    "crystal",
+    "fortress",
+    "fuel",
+    "glowing",
+    "hazardous",
+    "storage",
+    "stronghold",
+    "toxic",
+    "vessel"
+  ],
+  "caption": "Glowing orange crystal-filled wooden barrel.",
+  "author": "Decentraland Foundation"
 }

@@ -7,12 +7,16 @@
     "city",
     "town",
     "structures",
-    "stone",
     "rail",
     "railing",
     "fence",
     "fences",
     "garden",
-    "park"
-  ]
+    "park",
+    "furniture",
+    "ornate",
+    "railings"
+  ],
+  "caption": "Wooden rail featuring intricate carvings.",
+  "author": "Decentraland Foundation"
 }

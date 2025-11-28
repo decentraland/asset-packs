@@ -6,6 +6,13 @@
     "scifi",
     "dock",
     "port",
-    "metal"
-  ]
+    "metal",
+    "appearance",
+    "flat",
+    "rectangular",
+    "shape",
+    "visual"
+  ],
+  "caption": "Red border platform on.",
+  "author": "Decentraland Foundation"
 }

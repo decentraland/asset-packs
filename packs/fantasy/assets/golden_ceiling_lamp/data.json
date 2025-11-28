@@ -7,6 +7,18 @@
     "ceiling",
     "light",
     "gold",
-    "golden"
-  ]
+    "golden",
+    "ambiance",
+    "bulb",
+    "cozy",
+    "fixture",
+    "glow",
+    "illumination",
+    "interior",
+    "lamp",
+    "radiant",
+    "warm"
+  ],
+  "caption": "Glowing blue ceiling lamp.",
+  "author": "Decentraland Foundation"
 }

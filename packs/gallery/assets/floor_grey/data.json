@@ -2,5 +2,14 @@
   "id": "6f079b74-7a6b-4792-84c8-a487ecd759ce",
   "name": "Floor - Grey",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "appearance",
+    "greyish",
+    "hue",
+    "shade",
+    "tone",
+    "visual"
+  ],
+  "caption": "Grey concrete floor.",
+  "author": "Decentraland Foundation"
 }

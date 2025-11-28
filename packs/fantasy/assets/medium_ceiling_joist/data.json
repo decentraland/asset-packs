@@ -8,6 +8,15 @@
     "wood",
     "wooden",
     "joist",
-    "cealing"
-  ]
+    "cealing",
+    "architecture",
+    "beam",
+    "building",
+    "ceiling",
+    "construction",
+    "structure",
+    "timber"
+  ],
+  "caption": "Wooden ceiling beam.",
+  "author": "Decentraland Foundation"
 }

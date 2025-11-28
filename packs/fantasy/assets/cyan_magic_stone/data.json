@@ -6,8 +6,13 @@
     "fantasy",
     "cyan",
     "crystal",
-    "gem",
-    "gemstone",
-    "stone"
-  ]
+    "artifact",
+    "jewel",
+    "mystical",
+    "precious",
+    "relic",
+    "valuable"
+  ],
+  "caption": "Blue, crystal-like object with jagged edges.",
+  "author": "Decentraland Foundation"
 }

@@ -8,8 +8,19 @@
     "pirates",
     "tiles",
     "cobblestones",
-    "stone",
-    "stones",
-    "path"
-  ]
+    "path",
+    "asphalt",
+    "concrete",
+    "dirt",
+    "entrance",
+    "exit",
+    "gate",
+    "gravel",
+    "highway",
+    "out",
+    "pavement",
+    "sidewalk"
+  ],
+  "caption": "Worn stone path.",
+  "author": "Decentraland Foundation"
 }

@@ -7,6 +7,15 @@
     "statue",
     "pig",
     "gold",
-    "golden"
-  ]
+    "golden",
+    "animal",
+    "art",
+    "luxury",
+    "precious",
+    "sculpture",
+    "searchable",
+    "valuable"
+  ],
+  "caption": "Golden pig statue.",
+  "author": "Decentraland Foundation"
 }

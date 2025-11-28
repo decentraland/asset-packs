@@ -7,10 +7,23 @@
     "paradise",
     "pirates",
     "decorations",
-    "iron",
     "wood",
     "wooden",
     "weapon",
-    "tool"
-  ]
+    "tool",
+    "axe",
+    "blade",
+    "castle",
+    "combat",
+    "fortress",
+    "handle",
+    "head",
+    "palace",
+    "royal",
+    "sharpened",
+    "stronghold",
+    "tower"
+  ],
+  "caption": "Axe with wooden handle and metal head.",
+  "author": "Decentraland Foundation"
 }

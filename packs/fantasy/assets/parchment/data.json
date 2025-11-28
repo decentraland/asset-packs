@@ -8,6 +8,18 @@
     "papyrus",
     "scroll",
     "rune",
-    "tie"
-  ]
+    "tie",
+    "band",
+    "clothing",
+    "fabric",
+    "glove",
+    "hand",
+    "leather",
+    "parchment",
+    "strap",
+    "textile",
+    "wrist"
+  ],
+  "caption": "Red wristband on a man's hand.",
+  "author": "Decentraland Foundation"
 }

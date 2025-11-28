@@ -13,6 +13,19 @@
     "park",
     "backyard",
     "yard",
-    "vegetation"
-  ]
+    "vegetation",
+    "bloom",
+    "blossom",
+    "botanical",
+    "colorful",
+    "foliage",
+    "herb",
+    "leaf",
+    "petal",
+    "plant",
+    "rose",
+    "stem"
+  ],
+  "caption": "Red flower with green leaves.",
+  "author": "Decentraland Foundation"
 }

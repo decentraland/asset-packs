@@ -7,7 +7,20 @@
     "pillar",
     "gold",
     "golden",
-    "gem",
-    "gemstone"
-  ]
+    "alchemist",
+    "alchemy",
+    "arcane",
+    "brew",
+    "cauldron",
+    "contraption",
+    "experiment",
+    "flame",
+    "laboratory",
+    "mystic",
+    "potion",
+    "science",
+    "tower"
+  ],
+  "caption": "Alchemist's tower with blue flame.",
+  "author": "Decentraland Foundation"
 }

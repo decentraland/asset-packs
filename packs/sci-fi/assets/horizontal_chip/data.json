@@ -6,6 +6,15 @@
     "scifi",
     "parts",
     "computer",
-    "electric"
-  ]
+    "electric",
+    "capsule",
+    "chip",
+    "container",
+    "cylindrical",
+    "pill",
+    "shape",
+    "stripe"
+  ],
+  "caption": "Blue pill-shaped capsule.",
+  "author": "Decentraland Foundation"
 }

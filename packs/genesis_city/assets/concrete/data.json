@@ -6,6 +6,16 @@
     "genesis",
     "city",
     "town",
-    "ground"
-  ]
+    "architecture",
+    "asphalt",
+    "building",
+    "concrete",
+    "construction",
+    "foundation",
+    "pavement",
+    "slab",
+    "structure"
+  ],
+  "caption": "Concrete in a snowy winter scene.",
+  "author": "Decentraland Foundation"
 }

@@ -5,6 +5,17 @@
   "tags": [
     "fantasy",
     "bottle",
-    "potion"
-  ]
+    "potion",
+    "cap",
+    "container",
+    "hue",
+    "label",
+    "liquid",
+    "medicine",
+    "storage",
+    "vessel",
+    "wellness"
+  ],
+  "caption": "Tall, slender bottle with a green cap.",
+  "author": "Decentraland Foundation"
 }

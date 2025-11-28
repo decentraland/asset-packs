@@ -9,6 +9,15 @@
     "structures",
     "wood",
     "wooden",
-    "plank"
-  ]
+    "plank",
+    "building",
+    "construction",
+    "furniture",
+    "nature",
+    "outdoor",
+    "structure",
+    "timber"
+  ],
+  "caption": "Wooden planks are often used in construction.",
+  "author": "Decentraland Foundation"
 }

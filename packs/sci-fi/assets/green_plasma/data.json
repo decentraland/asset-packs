@@ -6,6 +6,18 @@
     "scifi",
     "energy",
     "supply",
-    "power"
-  ]
+    "power",
+    "beam",
+    "emerald",
+    "fiery",
+    "glow",
+    "glowy",
+    "incandescent",
+    "luminous",
+    "plasma",
+    "radiant",
+    "radiation"
+  ],
+  "caption": "Green plasma orb with glowing orange light.",
+  "author": "Decentraland Foundation"
 }

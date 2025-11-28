@@ -5,6 +5,18 @@
   "tags": [
     "scifi",
     "tile",
-    "ground"
-  ]
+    "architectural",
+    "arrangement",
+    "building",
+    "furniture",
+    "grid",
+    "interior",
+    "layout",
+    "lines",
+    "panel",
+    "placement",
+    "plan"
+  ],
+  "caption": "Red grid marks floor panel's position.",
+  "author": "Decentraland Foundation"
 }

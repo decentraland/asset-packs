@@ -12,6 +12,15 @@
     "leather",
     "strips",
     "crate",
-    "box"
-  ]
+    "box",
+    "container",
+    "drum",
+    "fortress",
+    "rope",
+    "storage",
+    "tank",
+    "vessel"
+  ],
+  "caption": "Wooden crate with rope.",
+  "author": "Decentraland Foundation"
 }

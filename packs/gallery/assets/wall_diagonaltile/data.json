@@ -2,5 +2,15 @@
   "id": "e3640340-98f0-4ba2-a03f-d993f031ff65",
   "name": "Wall - DiagonalTile",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "architecture",
+    "brick",
+    "building",
+    "diagonal",
+    "diagonaltile",
+    "structure",
+    "tile"
+  ],
+  "caption": "Diagonal tile wall.",
+  "author": "Decentraland Foundation"
 }

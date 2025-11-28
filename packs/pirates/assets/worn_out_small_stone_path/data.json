@@ -8,8 +8,17 @@
     "pirates",
     "tiles",
     "cobblestones",
-    "stone",
-    "stones",
-    "path"
-  ]
+    "path",
+    "decay",
+    "gravel",
+    "landscape",
+    "natural",
+    "outdoor",
+    "pavement",
+    "terrain",
+    "weathered",
+    "worn"
+  ],
+  "caption": "Stone path with worn stones.",
+  "author": "Decentraland Foundation"
 }

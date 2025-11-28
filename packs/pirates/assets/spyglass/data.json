@@ -9,6 +9,19 @@
     "decorations",
     "brass",
     "glass",
-    "retractable"
-  ]
+    "retractable",
+    "instrument",
+    "lens",
+    "magnify",
+    "observation",
+    "optics",
+    "reconnaissance",
+    "spy",
+    "spyglass",
+    "surveillance",
+    "telescope",
+    "viewfinder"
+  ],
+  "caption": "Blue spyglass.",
+  "author": "Decentraland Foundation"
 }

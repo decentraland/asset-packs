@@ -7,6 +7,21 @@
     "energy",
     "power",
     "electricity",
-    "connectors"
-  ]
+    "connectors",
+    "cable",
+    "connector",
+    "cord",
+    "curved",
+    "electrical",
+    "electronics",
+    "hardware",
+    "outlet",
+    "plug",
+    "socket",
+    "switch",
+    "terminal",
+    "wire"
+  ],
+  "caption": "Curved cable with glowing yellow connector.",
+  "author": "Decentraland Foundation"
 }

@@ -11,8 +11,18 @@
     "wooden",
     "lamp",
     "lamps",
-    "iron",
     "rope",
-    "post"
-  ]
+    "post",
+    "architecture",
+    "building",
+    "fixture",
+    "industrial",
+    "jungle",
+    "lantern",
+    "outdoor",
+    "street",
+    "structure"
+  ],
+  "caption": "Glowing street lamp post with lanterns.",
+  "author": "Decentraland Foundation"
 }

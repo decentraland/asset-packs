@@ -12,6 +12,18 @@
     "yard",
     "backyard",
     "slide",
-    "dome"
-  ]
+    "dome",
+    "architecture",
+    "building",
+    "curved",
+    "futuristic",
+    "geodesic",
+    "interior",
+    "rounded",
+    "shape",
+    "space",
+    "structure"
+  ],
+  "caption": "Geodesic dome with a glowing interior.",
+  "author": "Decentraland Foundation"
 }

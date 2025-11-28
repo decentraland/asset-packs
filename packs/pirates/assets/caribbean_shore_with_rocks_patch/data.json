@@ -10,9 +10,22 @@
     "water",
     "rock",
     "rocks",
-    "stone",
-    "stones",
     "beach",
-    "ocean"
-  ]
+    "ocean",
+    "aquatic",
+    "cliff",
+    "coastal",
+    "coastline",
+    "fluid",
+    "lake",
+    "liquid",
+    "river",
+    "rocky",
+    "sea",
+    "shore",
+    "shoreline",
+    "surf"
+  ],
+  "caption": "Rocky shoreline with blue waters.",
+  "author": "Decentraland Foundation"
 }

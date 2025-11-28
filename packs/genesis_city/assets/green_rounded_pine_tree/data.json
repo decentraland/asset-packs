@@ -14,6 +14,18 @@
     "park",
     "garden",
     "backyard",
-    "yard"
-  ]
+    "yard",
+    "branch",
+    "foliage",
+    "leaves",
+    "natural",
+    "organic",
+    "outdoor",
+    "pine",
+    "roots",
+    "rounded",
+    "trunk"
+  ],
+  "caption": "Edged pine tree with brown base.",
+  "author": "Decentraland Foundation"
 }

@@ -4,9 +4,14 @@
   "category": "tiles",
   "tags": [
     "fantasy",
-    "stone",
-    "floor",
     "path",
-    "tile"
-  ]
+    "tile",
+    "architecture",
+    "building",
+    "realistic",
+    "structure",
+    "terrain"
+  ],
+  "caption": "Realistic stone floor.",
+  "author": "Decentraland Foundation"
 }

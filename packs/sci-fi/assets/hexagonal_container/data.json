@@ -6,6 +6,15 @@
     "scifi",
     "storage",
     "spaceship",
-    "lab"
-  ]
+    "lab",
+    "box",
+    "container",
+    "cylindrical",
+    "drum",
+    "hexagon",
+    "tank",
+    "vessel"
+  ],
+  "caption": "Open-top container beside closed one.",
+  "author": "Decentraland Foundation"
 }

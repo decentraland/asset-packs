@@ -7,6 +7,13 @@
     "post",
     "pig",
     "banner",
-    "flag"
-  ]
+    "flag",
+    "coat",
+    "crest",
+    "emblem",
+    "heraldry",
+    "royal"
+  ],
+  "caption": "Red banner with golden emblem on wooden post.",
+  "author": "Decentraland Foundation"
 }

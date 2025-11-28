@@ -8,6 +8,19 @@
     "temple",
     "moon",
     "runes",
-    "stone"
-  ]
+    "arch",
+    "architecture",
+    "bridge",
+    "construction",
+    "crescent",
+    "crossing",
+    "mystical",
+    "mythical",
+    "river",
+    "ruins",
+    "span",
+    "structure"
+  ],
+  "caption": "Temple with pond, glowing crescent moon, and bridge.",
+  "author": "Decentraland Foundation"
 }

@@ -10,6 +10,18 @@
     "office",
     "business",
     "trip",
-    "travel"
-  ]
+    "travel",
+    "bag",
+    "box",
+    "briefcase",
+    "container",
+    "handle",
+    "luggage",
+    "storage",
+    "suitcase",
+    "trunk",
+    "work"
+  ],
+  "caption": "Brown leather briefcase with a handle.",
+  "author": "Decentraland Foundation"
 }

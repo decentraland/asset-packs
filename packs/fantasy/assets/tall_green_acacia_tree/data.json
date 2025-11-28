@@ -6,6 +6,21 @@
     "fantasy",
     "green",
     "tree",
-    "forest"
-  ]
+    "forest",
+    "acacia",
+    "branch",
+    "desert",
+    "foliage",
+    "landscape",
+    "leafy",
+    "leaves",
+    "nature",
+    "oak",
+    "outdoor",
+    "roots",
+    "trunk",
+    "vegetation"
+  ],
+  "caption": "A glowing acacia tree.",
+  "author": "Decentraland Foundation"
 }

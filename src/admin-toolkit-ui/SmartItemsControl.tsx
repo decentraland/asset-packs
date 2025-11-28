@@ -99,7 +99,6 @@ function handleHideShowEntity(
   visibility.visible = toggleVisibility
 }
 
-
 function SmartItemSelector({
   engine,
   smartItems,
@@ -179,24 +178,28 @@ function ActionSelector({
           margin: { bottom: 16 * scaleFactor },
         }}
       />
-      {actions.length ? <Dropdown
-        acceptEmpty
-        emptyLabel="Select Action"
-        options={actions.map((action) => action.name)}
-        selectedIndex={selectedIndex}
-        onChange={onChange}
-        disabled={disabled}
-        textAlign="middle-left"
-        fontSize={14 * scaleFactor}
-        uiTransform={{
-          height: 40 * scaleFactor,
-          width: '100%',
-        }}
-        uiBackground={{
-          color: disabled ? Color4.Gray() : Color4.White(),
-        }}
-        color={Color4.Black()}
-      /> : <UiEntity />}
+      {actions.length ? (
+        <Dropdown
+          acceptEmpty
+          emptyLabel="Select Action"
+          options={actions.map((action) => action.name)}
+          selectedIndex={selectedIndex}
+          onChange={onChange}
+          disabled={disabled}
+          textAlign="middle-left"
+          fontSize={14 * scaleFactor}
+          uiTransform={{
+            height: 40 * scaleFactor,
+            width: '100%',
+          }}
+          uiBackground={{
+            color: disabled ? Color4.Gray() : Color4.White(),
+          }}
+          color={Color4.Black()}
+        />
+      ) : (
+        <UiEntity />
+      )}
     </UiEntity>
   )
 }
@@ -315,7 +318,7 @@ export function SmartItemsControl({
       >
         <Header
           iconSrc={ICONS.SMART_ITEM_CONTROL}
-          title="Smart Item Actions"
+          title="SMART ITEM ACTIONS"
           scaleFactor={scaleFactor}
         />
 

@@ -10,6 +10,15 @@
     "reaper",
     "dead",
     "beyond",
-    "door"
-  ]
+    "door",
+    "entrance",
+    "gateway",
+    "mysterious",
+    "ominous",
+    "other",
+    "portal",
+    "warning"
+  ],
+  "caption": "Skull-adorned sign in.",
+  "author": "Decentraland Foundation"
 }

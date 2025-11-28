@@ -6,7 +6,18 @@
     "scifi",
     "power",
     "spark",
-    "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "beam",
+    "disc",
+    "glow",
+    "glowing",
+    "illumination",
+    "luminous",
+    "radiance",
+    "radiant",
+    "shape",
+    "source"
+  ],
+  "caption": "Black disc with glowing center.",
+  "author": "Decentraland Foundation"
 }

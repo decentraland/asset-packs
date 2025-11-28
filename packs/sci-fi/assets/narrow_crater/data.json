@@ -6,6 +6,21 @@
     "scifi",
     "cosmic",
     "hole",
-    "planet"
-  ]
+    "planet",
+    "ally",
+    "crater",
+    "cratered",
+    "formation",
+    "geological",
+    "hollow",
+    "landscape",
+    "rocky",
+    "shape",
+    "shaped",
+    "terrain",
+    "volcanic",
+    "volcano"
+  ],
+  "caption": "Red, hollowed-out crater-like volcano cone.",
+  "author": "Decentraland Foundation"
 }

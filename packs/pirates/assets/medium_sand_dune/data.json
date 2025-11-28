@@ -9,6 +9,20 @@
     "nature",
     "sand",
     "dune",
-    "beach"
-  ]
+    "beach",
+    "desert",
+    "elevation",
+    "hill",
+    "horizon",
+    "landscape",
+    "medium",
+    "ocean",
+    "sandy",
+    "searchable",
+    "shore",
+    "slope",
+    "terrain"
+  ],
+  "caption": "Dune in the desert.",
+  "author": "Decentraland Foundation"
 }

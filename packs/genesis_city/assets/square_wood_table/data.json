@@ -9,6 +9,22 @@
     "furniture",
     "wodd",
     "table",
-    "cafe"
-  ]
+    "cafe",
+    "chair",
+    "desk",
+    "dining",
+    "four",
+    "kitchen",
+    "leg",
+    "legs",
+    "maple",
+    "oak",
+    "office",
+    "pine",
+    "rest",
+    "seat",
+    "sitting"
+  ],
+  "caption": "Brown wooden table with four legs.",
+  "author": "Decentraland Foundation"
 }

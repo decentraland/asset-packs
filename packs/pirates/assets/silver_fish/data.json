@@ -9,6 +9,22 @@
     "nature",
     "fish",
     "silver",
-    "water"
-  ]
+    "water",
+    "aquatic",
+    "creature",
+    "fin",
+    "fluid",
+    "lake",
+    "liquid",
+    "marine",
+    "metallic",
+    "ocean",
+    "reflective",
+    "river",
+    "scale",
+    "shiny",
+    "swim"
+  ],
+  "caption": "Metallic fish.",
+  "author": "Decentraland Foundation"
 }

@@ -11,6 +11,14 @@
     "wooden",
     "dock",
     "stair",
-    "steps"
-  ]
+    "steps",
+    "deck",
+    "landing",
+    "plank",
+    "staircase",
+    "stairs",
+    "step"
+  ],
+  "caption": "Wooden staircase with multiple steps.",
+  "author": "Decentraland Foundation"
 }

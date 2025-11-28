@@ -6,7 +6,16 @@
     "scifi",
     "power",
     "spark",
-    "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "beam",
+    "brightness",
+    "fixture",
+    "glow",
+    "illumination",
+    "luminous",
+    "radiance",
+    "radiant"
+  ],
+  "caption": "Yellow coin.",
+  "author": "Decentraland Foundation"
 }

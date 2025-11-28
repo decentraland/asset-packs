@@ -5,7 +5,18 @@
   "tags": [
     "scifi",
     "spaceship",
-    "base",
-    "hole"
-  ]
+    "hole",
+    "access",
+    "cover",
+    "cylindrical",
+    "entrance",
+    "infrastructure",
+    "maintenance",
+    "manhole",
+    "pipe",
+    "tunnel",
+    "utility"
+  ],
+  "caption": "Manhole cover with a metal lid.",
+  "author": "Decentraland Foundation"
 }

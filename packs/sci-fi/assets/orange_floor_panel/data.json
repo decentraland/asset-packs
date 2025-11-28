@@ -5,6 +5,13 @@
   "tags": [
     "scifi",
     "tile",
-    "ground"
-  ]
+    "furniture",
+    "interior",
+    "panel",
+    "paneling",
+    "room",
+    "shape"
+  ],
+  "caption": "Orange floor panel with smooth surface.",
+  "author": "Decentraland Foundation"
 }

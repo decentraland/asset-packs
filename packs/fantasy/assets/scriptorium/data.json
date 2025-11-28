@@ -7,6 +7,21 @@
     "desk",
     "wood",
     "wooden",
-    "golden"
-  ]
+    "golden",
+    "book",
+    "building",
+    "church",
+    "library",
+    "office",
+    "paper",
+    "parchment",
+    "pointed",
+    "roof",
+    "script",
+    "scriptorium",
+    "study",
+    "writing"
+  ],
+  "caption": "A medieval-style scriptorium.",
+  "author": "Decentraland Foundation"
 }

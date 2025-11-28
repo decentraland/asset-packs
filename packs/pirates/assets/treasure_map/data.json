@@ -12,6 +12,22 @@
     "map",
     "instructions",
     "treasure",
-    "spot"
-  ]
+    "spot",
+    "branch",
+    "cartography",
+    "chart",
+    "compass",
+    "diagram",
+    "foliage",
+    "forest",
+    "geography",
+    "island",
+    "keyhole",
+    "landmark",
+    "leaves",
+    "nature",
+    "navigation"
+  ],
+  "caption": "Treasure map features compass, keyhole, and island.",
+  "author": "Decentraland Foundation"
 }

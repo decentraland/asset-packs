@@ -6,6 +6,20 @@
     "scifi",
     "space",
     "planet",
-    "soil"
-  ]
+    "soil",
+    "appearance",
+    "clump",
+    "crease",
+    "crumple",
+    "crumpled",
+    "crushed",
+    "dirt",
+    "fabric",
+    "fold",
+    "paper",
+    "resemblance",
+    "rubble"
+  ],
+  "caption": "Crinkled red paper-like material.",
+  "author": "Decentraland Foundation"
 }

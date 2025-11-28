@@ -10,6 +10,18 @@
     "bottle",
     "drink",
     "beverage",
-    "alcohol"
-  ]
+    "alcohol",
+    "container",
+    "cork",
+    "desk",
+    "dining",
+    "furniture",
+    "kitchen",
+    "seating",
+    "stopper",
+    "table",
+    "vessel"
+  ],
+  "caption": "Blue bottle with cork stopper.",
+  "author": "Decentraland Foundation"
 }

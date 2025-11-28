@@ -5,6 +5,17 @@
   "tags": [
     "scifi",
     "tile",
-    "ground"
-  ]
+    "ceiling",
+    "furniture",
+    "futuristic",
+    "glow",
+    "hexagonal",
+    "illumination",
+    "interior",
+    "panel",
+    "room",
+    "sleek"
+  ],
+  "caption": "Blue-lit floor panel.",
+  "author": "Decentraland Foundation"
 }

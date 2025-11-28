@@ -7,6 +7,17 @@
     "energy",
     "power",
     "electricity",
-    "connectors"
-  ]
+    "connectors",
+    "cable",
+    "connector",
+    "cord",
+    "electrical",
+    "fixture",
+    "hardware",
+    "looped",
+    "utility",
+    "wire"
+  ],
+  "caption": "Long, looped cable with glowing yellow connector.",
+  "author": "Decentraland Foundation"
 }

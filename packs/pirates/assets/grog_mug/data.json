@@ -12,6 +12,21 @@
     "leather",
     "drink",
     "beverage",
-    "alcohol"
-  ]
+    "alcohol",
+    "ale",
+    "beer",
+    "ceramic",
+    "container",
+    "cup",
+    "drinking",
+    "glassware",
+    "handle",
+    "mug",
+    "pottery",
+    "tableware",
+    "utensil",
+    "vessel"
+  ],
+  "caption": "A classic ceramic mug with a handle.",
+  "author": "Decentraland Foundation"
 }

@@ -10,9 +10,18 @@
     "water",
     "rock",
     "rocks",
-    "stone",
-    "stones",
     "beach",
-    "ocean"
-  ]
+    "ocean",
+    "aquatic",
+    "calm",
+    "fluid",
+    "island",
+    "lake",
+    "landscape",
+    "liquid",
+    "river",
+    "sea"
+  ],
+  "caption": "Serene lake with an island and rocks.",
+  "author": "Decentraland Foundation"
 }

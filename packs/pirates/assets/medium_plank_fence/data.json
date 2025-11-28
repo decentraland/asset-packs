@@ -9,6 +9,18 @@
     "structures",
     "wood",
     "wooden",
-    "plank"
-  ]
+    "plank",
+    "architecture",
+    "barrier",
+    "boundary",
+    "building",
+    "defense",
+    "enclosure",
+    "fencepost",
+    "fortification",
+    "protection",
+    "structure"
+  ],
+  "caption": "Wooden fence with horizontal planks.",
+  "author": "Decentraland Foundation"
 }

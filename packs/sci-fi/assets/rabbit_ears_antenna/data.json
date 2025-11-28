@@ -8,6 +8,20 @@
     "communications",
     "comms",
     "radar",
-    "dish"
-  ]
+    "dish",
+    "broadcasting",
+    "communication",
+    "ears",
+    "frequency",
+    "headpiece",
+    "rabbit",
+    "radio",
+    "receiver",
+    "satellite",
+    "system",
+    "transmitter",
+    "tuning"
+  ],
+  "caption": "Rabbit ear antenna for radio reception.",
+  "author": "Decentraland Foundation"
 }

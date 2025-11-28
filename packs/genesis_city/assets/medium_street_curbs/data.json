@@ -11,6 +11,14 @@
     "sidewalk",
     "curb",
     "curbs",
-    "city"
-  ]
+    "city",
+    "architecture",
+    "block",
+    "brick",
+    "building",
+    "edging",
+    "structure"
+  ],
+  "caption": "Wooden block with sharp edges.",
+  "author": "Decentraland Foundation"
 }

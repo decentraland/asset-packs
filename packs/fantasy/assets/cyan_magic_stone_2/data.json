@@ -6,8 +6,18 @@
     "fantasy",
     "cyan",
     "crystal",
-    "gem",
-    "gemstone",
-    "stone"
-  ]
+    "artifact",
+    "celestial",
+    "cosmic",
+    "glow",
+    "glowing",
+    "luminous",
+    "magical",
+    "mystical",
+    "orb",
+    "radiant",
+    "space"
+  ],
+  "caption": "Glowing blue cube.",
+  "author": "Decentraland Foundation"
 }

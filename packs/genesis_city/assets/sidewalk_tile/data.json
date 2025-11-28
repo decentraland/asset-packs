@@ -11,6 +11,12 @@
     "path",
     "sidewalk",
     "city",
-    "tile"
-  ]
+    "tile",
+    "concrete",
+    "pavement",
+    "urban",
+    "walkway"
+  ],
+  "caption": "Red brick sidewalk tile.",
+  "author": "Decentraland Foundation"
 }

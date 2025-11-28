@@ -20,10 +20,18 @@ import { Button } from './Button'
 import { TextAnnouncements } from './TextAnnouncements'
 import { CONTENT_URL } from './constants'
 import { State, TabType, SelectedSmartItem } from './types'
-import { getExplorerComponents } from '../components'
-import { BTN_MODERATION_CONTROL, ModerationControl, moderationControlState, SceneAdmin } from './ModerationControl'
-import { getSceneAdmins } from './ModerationControl/api'
-import { ModalAdminList } from './ModerationControl/AdminList'
+import {
+  BTN_MODERATION_CONTROL,
+  ModerationControl,
+  moderationControlState,
+  SceneAdmin,
+} from './ModerationControl'
+import {
+  getSceneAdmins,
+  getSceneBans,
+  SceneBanUser,
+} from './ModerationControl/api'
+import { ModalUserList, UserListType } from './ModerationControl/UsersList'
 import { isPreview } from './fetch-utils'
 
 export const nextTickFunctions: (() => void)[] = []
@@ -53,6 +61,7 @@ export let state: State = {
 }
 
 let sceneAdminsCache: SceneAdmin[] = []
+let sceneBansCache: SceneBanUser[] = []
 
 // const BTN_REWARDS_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-button.png`
 // const BTN_REWARDS_CONTROL_ACTIVE = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-rewards-control-active-button.png`
@@ -84,7 +93,6 @@ function getAdminToolkitComponent(engine: IEngine) {
 export async function fetchSceneAdmins() {
   const [error, response] = await getSceneAdmins()
 
-
   if (error) {
     // user doesnt have permissions
     console.log(JSON.stringify({ error }))
@@ -97,9 +105,24 @@ export async function fetchSceneAdmins() {
       address: $.admin,
       role: 'admin' as const,
       verified: !$.name.includes('#'),
-      canBeRemoved: !!$.canBeRemoved
+      canBeRemoved: !!$.canBeRemoved,
     }))
-    .sort((a) => a.canBeRemoved ? 1 : -1)
+    .sort((a) => (a.canBeRemoved ? 1 : -1))
+}
+
+export async function fetchSceneBans() {
+  const [error, response] = await getSceneBans()
+
+  if (error) {
+    sceneBansCache = []
+    return
+  }
+
+  sceneBansCache = response?.results ?? []
+}
+
+export function clearSceneBansCache() {
+  sceneBansCache = []
 }
 
 export function getSmartItems(engine: IEngine) {
@@ -120,7 +143,7 @@ function initTextAnnouncementSync(engine: IEngine) {
   TextAnnouncements.createOrReplace(state.adminToolkitUiEntity, {
     text: '',
     author: '',
-    id: ''
+    id: '',
   })
 }
 
@@ -130,13 +153,12 @@ export async function initializeAdminData(
   engine: IEngine,
   sdkHelpers?: ISDKHelpers,
 ) {
-  console.log('initializeAdminData')
   if (!adminDataInitialized) {
-    console.log('initializeAdminData - not initialized')
     const { TextAnnouncements, VideoControlState } = getComponents(engine)
 
     // Initialize AdminToolkitUiEntity
-    state.adminToolkitUiEntity = getAdminToolkitEntity(engine) ?? engine.addEntity()
+    state.adminToolkitUiEntity =
+      getAdminToolkitEntity(engine) ?? engine.addEntity()
 
     // Initialize TextAnnouncements sync component
     initTextAnnouncementSync(engine)
@@ -164,9 +186,7 @@ export async function initializeAdminData(
     }, Number.POSITIVE_INFINITY)
 
     // Initialize scene data
-    await Promise.all([
-      fetchSceneAdmins(),
-    ])
+    await Promise.all([fetchSceneAdmins(), fetchSceneBans()])
 
     adminDataInitialized = true
 
@@ -198,7 +218,7 @@ function isAllowedAdmin(
   if (!player) return false
 
   const playerAddress = player.userId.toLowerCase()
-  const isAdmin = sceneAdminsCache.find($ => $.address === playerAddress)
+  const isAdmin = sceneAdminsCache.find(($) => $.address === playerAddress)
 
   return isAdmin || isPreview()
 }
@@ -269,9 +289,11 @@ const uiComponent = (
                 icon={BTN_MODERATION_CONTROL}
                 onlyIcon
                 uiTransform={{
-                  display: adminToolkitEntity.moderationControl.isEnabled && !isPreview()
-                    ? 'flex'
-                    : 'none',
+                  display:
+                    adminToolkitEntity.moderationControl.isEnabled &&
+                    !isPreview()
+                      ? 'flex'
+                      : 'none',
                   width: 49 * scaleFactor,
                   height: 42 * scaleFactor,
                   margin: { right: 8 * scaleFactor },
@@ -377,7 +399,9 @@ const uiComponent = (
               <Button
                 id="admin_toolkit_panel_text_announcement_control"
                 variant={
-                  state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL ? 'primary' : 'text'
+                  state.activeTab === TabType.TEXT_ANNOUNCEMENT_CONTROL
+                    ? 'primary'
+                    : 'text'
                 }
                 icon={BTN_TEXT_ANNOUNCEMENT_CONTROL}
                 iconBackground={{
@@ -427,7 +451,11 @@ const uiComponent = (
               <SmartItemsControl engine={engine} state={state} />
             ) : null}
             {state.activeTab === TabType.MODERATION_CONTROL && (
-              <ModerationControl engine={engine} player={player} />
+              <ModerationControl
+                engine={engine}
+                player={player}
+                sceneAdmins={sceneAdminsCache}
+              />
             )}
           </UiEntity>
           <UiEntity
@@ -474,10 +502,19 @@ const uiComponent = (
       <TextAnnouncements engine={engine} state={state} />
     </UiEntity>,
     moderationControlState.showModalAdminList && (
-      <ModalAdminList
+      <ModalUserList
         scaleFactor={scaleFactor}
-        sceneAdmins={sceneAdminsCache ?? []}
+        users={sceneAdminsCache ?? []}
         engine={engine}
+        type={UserListType.ADMIN}
+      />
+    ),
+    moderationControlState.showModalBanList && (
+      <ModalUserList
+        scaleFactor={scaleFactor}
+        users={sceneBansCache ?? []}
+        engine={engine}
+        type={UserListType.BAN}
       />
     ),
   ]

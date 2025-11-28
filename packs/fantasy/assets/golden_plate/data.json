@@ -6,6 +6,14 @@
     "fantasy",
     "gold",
     "fork",
-    "tableware"
-  ]
+    "tableware",
+    "diamond",
+    "golden",
+    "metallic",
+    "plate",
+    "shape",
+    "shiny"
+  ],
+  "caption": "Orange diamond-shaped game with yellow border.",
+  "author": "Decentraland Foundation"
 }

@@ -7,9 +7,18 @@
     "paradise",
     "pirates",
     "decorations",
-    "iron",
     "weapon",
     "wick",
-    "boom"
-  ]
+    "boom",
+    "explosive",
+    "fuse",
+    "grenade",
+    "military",
+    "munition",
+    "ordnance",
+    "projectile",
+    "warfare"
+  ],
+  "caption": "Iron grenade with glowing fuse.",
+  "author": "Decentraland Foundation"
 }

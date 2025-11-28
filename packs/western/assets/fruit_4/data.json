@@ -2,5 +2,18 @@
   "id": "abf88b39-d0f1-433d-9dbe-beb619639a8b",
   "name": "Fruit 4",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "bucket",
+    "chemical",
+    "container",
+    "crystalline",
+    "fuel",
+    "hazardous",
+    "storage",
+    "tank",
+    "toxic",
+    "vessel"
+  ],
+  "caption": "Green crystal bucket.",
+  "author": "Decentraland Foundation"
 }

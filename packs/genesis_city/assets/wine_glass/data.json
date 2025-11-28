@@ -10,6 +10,20 @@
     "wine",
     "glass",
     "romantic",
-    "dinner"
-  ]
+    "dinner",
+    "beverage",
+    "container",
+    "cup",
+    "desk",
+    "dining",
+    "drinking",
+    "furniture",
+    "glassware",
+    "kitchen",
+    "serving",
+    "stem",
+    "table"
+  ],
+  "caption": "Blue wine glass with stem.",
+  "author": "Decentraland Foundation"
 }

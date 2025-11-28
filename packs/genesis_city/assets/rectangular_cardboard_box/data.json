@@ -10,6 +10,17 @@
     "box",
     "cardboard",
     "mail",
-    "rectangular"
-  ]
+    "rectangular",
+    "container",
+    "drum",
+    "furniture",
+    "label",
+    "rest",
+    "seat",
+    "storage",
+    "tank",
+    "vessel"
+  ],
+  "caption": "Brown cardboard box with a white label.",
+  "author": "Decentraland Foundation"
 }

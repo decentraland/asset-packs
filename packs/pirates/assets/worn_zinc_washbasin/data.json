@@ -11,6 +11,18 @@
     "basin",
     "washing",
     "wash",
-    "water"
-  ]
+    "water",
+    "bathroom",
+    "fixture",
+    "fixtures",
+    "handle",
+    "hardware",
+    "industrial",
+    "metalwork",
+    "plumbing",
+    "sink",
+    "utilitarian"
+  ],
+  "caption": "Black metal sink with handle.",
+  "author": "Decentraland Foundation"
 }

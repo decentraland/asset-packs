@@ -6,6 +6,19 @@
     "fantasy",
     "wax",
     "unlit",
-    "light"
-  ]
+    "light",
+    "ambiance",
+    "burning",
+    "candle",
+    "candlestick",
+    "combustion",
+    "fire",
+    "flame",
+    "flameless",
+    "heat",
+    "holder",
+    "smoke"
+  ],
+  "caption": "Unlit candle with a white wick.",
+  "author": "Decentraland Foundation"
 }

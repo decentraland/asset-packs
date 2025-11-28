@@ -10,6 +10,23 @@
     "spices",
     "sack",
     "fabric",
-    "leather"
-  ]
+    "leather",
+    "aroma",
+    "bag",
+    "bagging",
+    "container",
+    "flavor",
+    "food",
+    "herb",
+    "ingredient",
+    "label",
+    "packaging",
+    "scent",
+    "spice",
+    "spicebag",
+    "storage",
+    "supply"
+  ],
+  "caption": "Spice bag with a label.",
+  "author": "Decentraland Foundation"
 }

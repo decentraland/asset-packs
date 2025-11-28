@@ -10,6 +10,18 @@
     "wheel",
     "wheels",
     "construction",
-    "empty"
-  ]
+    "empty",
+    "bucket",
+    "cargo",
+    "cart",
+    "container",
+    "garden",
+    "handle",
+    "load",
+    "transport",
+    "vehicle",
+    "wheelbarrow"
+  ],
+  "caption": "Red wheelbarrow with two wheels.",
+  "author": "Decentraland Foundation"
 }

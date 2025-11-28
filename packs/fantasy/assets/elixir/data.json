@@ -7,6 +7,19 @@
     "elixir",
     "potion",
     "magic",
-    "health"
-  ]
+    "health",
+    "apothecary",
+    "bottle",
+    "bottlecap",
+    "container",
+    "cork",
+    "glass",
+    "label",
+    "liquid",
+    "medicine",
+    "vessel",
+    "wellness"
+  ],
+  "caption": "Blue glass bottle with cork.",
+  "author": "Decentraland Foundation"
 }

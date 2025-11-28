@@ -11,6 +11,16 @@
     "wooden",
     "dock",
     "pillar",
-    "pillars"
-  ]
+    "pillars",
+    "construction",
+    "foundation",
+    "harbor",
+    "mooring",
+    "pier",
+    "piling",
+    "structure",
+    "timber"
+  ],
+  "caption": "Dock support structure.",
+  "author": "Decentraland Foundation"
 }

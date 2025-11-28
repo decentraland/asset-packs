@@ -12,6 +12,20 @@
     "water",
     "rail",
     "railing",
-    "city"
-  ]
+    "city",
+    "arch",
+    "architecture",
+    "building",
+    "construction",
+    "crossing",
+    "defense",
+    "fortress",
+    "palace",
+    "royal",
+    "span",
+    "stronghold",
+    "structure"
+  ],
+  "caption": "White railing on modern bridge.",
+  "author": "Decentraland Foundation"
 }

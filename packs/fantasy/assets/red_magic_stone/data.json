@@ -6,8 +6,15 @@
     "fantasy",
     "red",
     "crystal",
-    "gem",
-    "gemstone",
-    "stone"
-  ]
+    "artifact",
+    "fiery",
+    "focal",
+    "mysterious",
+    "mystical",
+    "prominent",
+    "relic",
+    "vibrant"
+  ],
+  "caption": "Magic stone in center.",
+  "author": "Decentraland Foundation"
 }

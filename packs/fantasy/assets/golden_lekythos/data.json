@@ -7,6 +7,18 @@
     "vase",
     "liquid",
     "gold",
-    "golden"
-  ]
+    "golden",
+    "antique",
+    "artifact",
+    "collectible",
+    "greek",
+    "lekythos",
+    "luxury",
+    "ornate",
+    "pottery",
+    "searchable",
+    "vessel"
+  ],
+  "caption": "Golden lekythos vase.",
+  "author": "Decentraland Foundation"
 }

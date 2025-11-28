@@ -2,5 +2,20 @@
   "id": "cde78771-9418-43f5-acaf-50dff4b164fa",
   "name": "Mines Car Track 3M V2",
   "category": "structures",
-  "tags": []
+  "tags": [
+    "cargo",
+    "carriage",
+    "freight",
+    "infrastructure",
+    "locomotive",
+    "plank",
+    "rail",
+    "railway",
+    "track",
+    "train",
+    "transportation",
+    "vehicle"
+  ],
+  "caption": "Wooden train tracks with multiple planks.",
+  "author": "Decentraland Foundation"
 }

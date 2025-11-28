@@ -11,6 +11,17 @@
     "foliage",
     "plant",
     "plants",
-    "water"
-  ]
+    "water",
+    "aquatic",
+    "fluid",
+    "lake",
+    "lily",
+    "liquid",
+    "ocean",
+    "outdoor",
+    "pond",
+    "river"
+  ],
+  "caption": "Green lily pad.",
+  "author": "Decentraland Foundation"
 }

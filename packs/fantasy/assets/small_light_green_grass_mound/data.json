@@ -7,6 +7,17 @@
     "mound",
     "forest",
     "grass",
-    "evergreen"
-  ]
+    "evergreen",
+    "field",
+    "foliage",
+    "landscape",
+    "lawn",
+    "meadow",
+    "nature",
+    "outdoor",
+    "terrain",
+    "vegetation"
+  ],
+  "caption": "Light green hillside.",
+  "author": "Decentraland Foundation"
 }

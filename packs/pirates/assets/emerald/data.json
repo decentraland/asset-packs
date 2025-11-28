@@ -9,6 +9,14 @@
     "decorations",
     "jewel",
     "jewels",
-    "gemstone"
-  ]
+    "faceted",
+    "luxury",
+    "mineral",
+    "precious",
+    "shiny",
+    "smooth",
+    "valuable"
+  ],
+  "caption": "Green gemstone with a smooth surface.",
+  "author": "Decentraland Foundation"
 }

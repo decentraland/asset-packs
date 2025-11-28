@@ -16,6 +16,19 @@
     "garden",
     "backyard",
     "yard",
-    "farm"
-  ]
+    "farm",
+    "archway",
+    "barrier",
+    "boundary",
+    "doorway",
+    "enclosure",
+    "fencepost",
+    "gate",
+    "picket",
+    "portal",
+    "structure",
+    "threshold"
+  ],
+  "caption": "Wooden picket fence with a door.",
+  "author": "Decentraland Foundation"
 }

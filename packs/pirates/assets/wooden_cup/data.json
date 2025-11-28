@@ -12,6 +12,16 @@
     "cup",
     "drink",
     "beverage",
-    "alcohol"
-  ]
+    "alcohol",
+    "band",
+    "container",
+    "cylindrical",
+    "furniture",
+    "household",
+    "shape",
+    "vase",
+    "vessel"
+  ],
+  "caption": "Brown ceramic vase with black band.",
+  "author": "Decentraland Foundation"
 }

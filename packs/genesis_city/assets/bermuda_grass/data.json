@@ -6,6 +6,19 @@
     "genesis",
     "city",
     "town",
-    "ground"
-  ]
+    "dot",
+    "field",
+    "foliage",
+    "grass",
+    "lawn",
+    "leafy",
+    "meadow",
+    "nature",
+    "outdoor",
+    "plant",
+    "polka",
+    "turf"
+  ],
+  "caption": "Green grass with white polka dots.",
+  "author": "Decentraland Foundation"
 }

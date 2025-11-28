@@ -6,6 +6,19 @@
     "fantasy",
     "track",
     "cart",
-    "curved"
-  ]
+    "curved",
+    "architecture",
+    "cartwheel",
+    "curve",
+    "landscape",
+    "module",
+    "navigation",
+    "path",
+    "pathfinding",
+    "rail",
+    "route",
+    "terrain"
+  ],
+  "caption": "Curved cart track module.",
+  "author": "Decentraland Foundation"
 }

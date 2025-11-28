@@ -10,6 +10,18 @@
     "bottle",
     "drink",
     "beverage",
-    "alcohol"
-  ]
+    "alcohol",
+    "art",
+    "ceramic",
+    "container",
+    "furniture",
+    "handle",
+    "interior",
+    "room",
+    "sculpture",
+    "vase",
+    "vessel"
+  ],
+  "caption": "Blue vase with a handle.",
+  "author": "Decentraland Foundation"
 }

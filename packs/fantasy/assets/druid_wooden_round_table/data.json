@@ -8,6 +8,22 @@
     "wood",
     "wooden",
     "forest",
-    "tabern"
-  ]
+    "tabern",
+    "branch",
+    "desk",
+    "dining",
+    "earthy",
+    "foliage",
+    "furniture",
+    "interior",
+    "kitchen",
+    "leaves",
+    "natural",
+    "nature",
+    "organic",
+    "outdoor",
+    "roots"
+  ],
+  "caption": "Wooden table with natural wood finish.",
+  "author": "Decentraland Foundation"
 }

@@ -14,6 +14,20 @@
     "park",
     "garden",
     "backyard",
-    "yard"
-  ]
+    "yard",
+    "autumn",
+    "branch",
+    "evergreen",
+    "foliage",
+    "leaf",
+    "leaves",
+    "outdoor",
+    "pine",
+    "pinecone",
+    "roots",
+    "sunlight",
+    "trunk"
+  ],
+  "caption": "A pine tree with yellow leaves.",
+  "author": "Decentraland Foundation"
 }

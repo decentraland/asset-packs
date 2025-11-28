@@ -6,6 +6,13 @@
     "scifi",
     "storage",
     "spaceship",
-    "lab"
-  ]
+    "lab",
+    "cap",
+    "colored",
+    "container",
+    "cylindrical",
+    "tube"
+  ],
+  "caption": "Colored tube models with distinct caps.",
+  "author": "Decentraland Foundation"
 }

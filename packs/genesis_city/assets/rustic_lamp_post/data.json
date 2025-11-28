@@ -10,9 +10,21 @@
     "lamp",
     "post",
     "light",
-    "lighting",
     "farm",
     "tabern",
-    "rustic"
-  ]
+    "rustic",
+    "branch",
+    "castle",
+    "foliage",
+    "fortress",
+    "furniture",
+    "lantern",
+    "nature",
+    "outdoor",
+    "palace",
+    "royal",
+    "stronghold"
+  ],
+  "caption": "Rustic wooden lamp post with lantern.",
+  "author": "Decentraland Foundation"
 }

@@ -5,7 +5,14 @@
   "tags": [
     "fantasy",
     "tile",
-    "stone",
-    "path"
-  ]
+    "path",
+    "earthy",
+    "granite",
+    "natural",
+    "rough",
+    "rugged",
+    "terrain"
+  ],
+  "caption": "Rough-textured stone tile.",
+  "author": "Decentraland Foundation"
 }

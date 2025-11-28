@@ -6,7 +6,15 @@
     "scifi",
     "power",
     "spark",
-    "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "battery",
+    "container",
+    "cylindrical",
+    "pill",
+    "shape",
+    "structure",
+    "vessel"
+  ],
+  "caption": "Yellow and black cylindrical object.",
+  "author": "Decentraland Foundation"
 }

@@ -7,6 +7,9 @@
     "skirting",
     "board",
     "baseboard",
-    "stone"
-  ]
+    "architectural",
+    "trim"
+  ],
+  "caption": "Gray skirting board.",
+  "author": "Decentraland Foundation"
 }

@@ -6,6 +6,18 @@
     "fantasy",
     "vase",
     "liquid",
-    "ceramic"
-  ]
+    "ceramic",
+    "amphora",
+    "antiquity",
+    "artifact",
+    "container",
+    "greek",
+    "pottery",
+    "relic",
+    "storage",
+    "tank",
+    "vessel"
+  ],
+  "caption": "Antique greek amphora.",
+  "author": "Decentraland Foundation"
 }

@@ -12,6 +12,17 @@
     "dock",
     "pillar",
     "pillars",
-    "old"
-  ]
+    "old",
+    "building",
+    "defense",
+    "fortress",
+    "module",
+    "palace",
+    "royal",
+    "stronghold",
+    "structure",
+    "weathered"
+  ],
+  "caption": "Wooden dock module.",
+  "author": "Decentraland Foundation"
 }

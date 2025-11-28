@@ -7,6 +7,19 @@
     "vent",
     "exhaust",
     "air",
-    "yellow"
-  ]
+    "yellow",
+    "appliance",
+    "blades",
+    "blower",
+    "fan",
+    "flow",
+    "industrial",
+    "machinery",
+    "motor",
+    "pipe",
+    "propeller",
+    "turbine"
+  ],
+  "caption": "Yellow exhaust fan.",
+  "author": "Decentraland Foundation"
 }

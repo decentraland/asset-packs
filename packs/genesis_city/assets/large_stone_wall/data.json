@@ -7,11 +7,25 @@
     "city",
     "town",
     "structures",
-    "stone",
     "wall",
     "fence",
     "fences",
     "garden",
-    "park"
-  ]
+    "park",
+    "architecture",
+    "barrier",
+    "building",
+    "castle",
+    "defense",
+    "fortress",
+    "monument",
+    "obstacle",
+    "palace",
+    "royal",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Long, stone wall with holes.",
+  "author": "Decentraland Foundation"
 }

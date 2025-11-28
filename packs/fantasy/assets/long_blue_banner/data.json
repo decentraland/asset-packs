@@ -6,6 +6,12 @@
     "fantasy",
     "blue",
     "banner",
-    "court"
-  ]
+    "court",
+    "artwork",
+    "graphic",
+    "typography",
+    "visual"
+  ],
+  "caption": "Purple banner with blue border.",
+  "author": "Decentraland Foundation"
 }

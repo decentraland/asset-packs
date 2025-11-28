@@ -7,6 +7,15 @@
     "chest",
     "wood",
     "wooden",
-    "iron"
-  ]
+    "artifact",
+    "box",
+    "codex",
+    "container",
+    "emblem",
+    "relic",
+    "storage",
+    "sun"
+  ],
+  "caption": "Wooden chest with glowing sun emblem.",
+  "author": "Decentraland Foundation"
 }

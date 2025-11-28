@@ -6,7 +6,19 @@
     "fantasy",
     "book",
     "codex",
-    "knowledge",
-    "shelf"
-  ]
+    "shelf",
+    "bookshelf",
+    "cover",
+    "literature",
+    "manuscript",
+    "novel",
+    "page",
+    "pages",
+    "paper",
+    "reading",
+    "spine",
+    "story"
+  ],
+  "caption": "Blue-spined book.",
+  "author": "Decentraland Foundation"
 }

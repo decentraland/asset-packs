@@ -10,6 +10,19 @@
     "wood",
     "wooden",
     "plank",
-    "old"
-  ]
+    "old",
+    "architecture",
+    "barrier",
+    "boundary",
+    "building",
+    "enclosure",
+    "fencepost",
+    "fencing",
+    "fortification",
+    "planks",
+    "structure",
+    "timber"
+  ],
+  "caption": "Wooden fence with three planks.",
+  "author": "Decentraland Foundation"
 }

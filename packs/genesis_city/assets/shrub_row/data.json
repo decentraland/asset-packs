@@ -12,6 +12,17 @@
     "park",
     "backyard",
     "bush",
-    "shrub"
-  ]
+    "shrub",
+    "flora",
+    "foliage",
+    "greenery",
+    "hedge",
+    "landscape",
+    "outdoor",
+    "plant",
+    "row",
+    "vegetation"
+  ],
+  "caption": "A row of glowing shrubs.",
+  "author": "Decentraland Foundation"
 }

@@ -6,6 +6,14 @@
     "fantasy",
     "silver",
     "knife",
-    "tableware"
-  ]
+    "tableware",
+    "armor",
+    "blade",
+    "combat",
+    "handle",
+    "sharp",
+    "weapon"
+  ],
+  "caption": "Silver knife, yellow handle.",
+  "author": "Decentraland Foundation"
 }

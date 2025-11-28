@@ -2,5 +2,14 @@
   "id": "6f59d08a-5d2f-447a-9d82-86712946cadf",
   "name": "M Blue",
   "category": "decorations",
-  "tags": []
+  "tags": [
+    "font",
+    "graphics",
+    "letter",
+    "logo",
+    "typography",
+    "visual"
+  ],
+  "caption": "Blue letter m.",
+  "author": "Decentraland Foundation"
 }

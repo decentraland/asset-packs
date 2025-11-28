@@ -7,6 +7,20 @@
     "lantern",
     "light",
     "gauze",
-    "red"
-  ]
+    "red",
+    "ambiance",
+    "burning",
+    "combustion",
+    "cozy",
+    "desk",
+    "dining",
+    "fire",
+    "flame",
+    "furniture",
+    "heat",
+    "interior",
+    "kitchen"
+  ],
+  "caption": "Red lantern with gauze wrap.",
+  "author": "Decentraland Foundation"
 }

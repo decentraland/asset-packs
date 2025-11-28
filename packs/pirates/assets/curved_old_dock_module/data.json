@@ -12,6 +12,22 @@
     "dock",
     "pillar",
     "pillars",
-    "old"
-  ]
+    "old",
+    "architecture",
+    "boat",
+    "curved",
+    "harbor",
+    "marine",
+    "module",
+    "nautical",
+    "ocean",
+    "sailing",
+    "ship",
+    "structure",
+    "vessel",
+    "water",
+    "waterfront"
+  ],
+  "caption": "Dock module with a curved wooden surface.",
+  "author": "Decentraland Foundation"
 }

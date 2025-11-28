@@ -8,8 +8,11 @@
     "pirates",
     "tiles",
     "cobblestones",
-    "stone",
-    "stones",
-    "path"
-  ]
+    "path",
+    "pavement",
+    "terrain",
+    "walkway"
+  ],
+  "caption": "Gray stones line ancient stone path.",
+  "author": "Decentraland Foundation"
 }

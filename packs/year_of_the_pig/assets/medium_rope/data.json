@@ -7,6 +7,18 @@
     "rope",
     "line",
     "cord",
-    "string"
-  ]
+    "string",
+    "anchor",
+    "cable",
+    "curve",
+    "fiber",
+    "length",
+    "medium",
+    "pulley",
+    "suspension",
+    "tether",
+    "twine"
+  ],
+  "caption": "Thin rope with a gentle curve.",
+  "author": "Decentraland Foundation"
 }

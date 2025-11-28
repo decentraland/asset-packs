@@ -6,6 +6,17 @@
     "scifi",
     "spaceship",
     "parts",
-    "computer"
-  ]
+    "computer",
+    "display",
+    "electronic",
+    "flat",
+    "machine",
+    "monitor",
+    "office",
+    "placement",
+    "technology",
+    "workstation"
+  ],
+  "caption": "Thin computer with glowing screen.",
+  "author": "Decentraland Foundation"
 }

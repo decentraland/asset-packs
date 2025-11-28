@@ -6,6 +6,17 @@
     "scifi",
     "buttons",
     "trigger",
-    "base"
-  ]
+    "control",
+    "display",
+    "input",
+    "interface",
+    "keypad",
+    "monitor",
+    "output",
+    "panel",
+    "technology",
+    "terminal"
+  ],
+  "caption": "Vertical arcade console with digital display.",
+  "author": "Decentraland Foundation"
 }

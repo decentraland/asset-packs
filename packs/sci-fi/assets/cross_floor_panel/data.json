@@ -5,6 +5,14 @@
   "tags": [
     "scifi",
     "tile",
-    "ground"
-  ]
+    "accent",
+    "cross",
+    "furniture",
+    "interior",
+    "panel",
+    "room",
+    "visual"
+  ],
+  "caption": "Orange border on wooden floor panel.",
+  "author": "Decentraland Foundation"
 }

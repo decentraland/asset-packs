@@ -7,6 +7,19 @@
     "energy",
     "power",
     "electricity",
-    "connectors"
-  ]
+    "connectors",
+    "cable",
+    "container",
+    "cord",
+    "curved",
+    "electrical",
+    "furniture",
+    "storage",
+    "transportation",
+    "utility",
+    "vehicle",
+    "wire"
+  ],
+  "caption": "Yellow cable with attached clip.",
+  "author": "Decentraland Foundation"
 }

@@ -5,10 +5,24 @@
   "tags": [
     "fantasy",
     "nature",
-    "stone",
-    "stones",
     "rock",
     "rocks",
-    "forest"
-  ]
+    "forest",
+    "block",
+    "building",
+    "castle",
+    "earth",
+    "fortress",
+    "landscape",
+    "monument",
+    "palace",
+    "royal",
+    "stoneblock",
+    "stronghold",
+    "structure",
+    "terrain",
+    "tower"
+  ],
+  "caption": "Three gray stone blocks.",
+  "author": "Decentraland Foundation"
 }

@@ -7,6 +7,15 @@
     "fence",
     "wood",
     "wooden",
-    "module"
-  ]
+    "module",
+    "architectural",
+    "furniture",
+    "garden",
+    "handle",
+    "nature",
+    "outdoor",
+    "rosewood"
+  ],
+  "caption": "Blue handle on top of rosewood fence module.",
+  "author": "Decentraland Foundation"
 }

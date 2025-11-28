@@ -11,6 +11,17 @@
     "wooden",
     "wheel",
     "ship",
-    "flagship"
-  ]
+    "flagship",
+    "accents",
+    "antique",
+    "automotive",
+    "driving",
+    "gear",
+    "rustic",
+    "steering",
+    "transportation",
+    "vehicle"
+  ],
+  "caption": "Wooden steering wheel with metal accents.",
+  "author": "Decentraland Foundation"
 }

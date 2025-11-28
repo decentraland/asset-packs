@@ -15,6 +15,16 @@
     "garden",
     "backyard",
     "yard",
-    "farm"
-  ]
+    "farm",
+    "barrier",
+    "boundary",
+    "enclosure",
+    "gate",
+    "outdoor",
+    "picket",
+    "post",
+    "structure"
+  ],
+  "caption": "White wooden fence.",
+  "author": "Decentraland Foundation"
 }

@@ -10,6 +10,21 @@
     "wood",
     "wooden",
     "boat",
-    "water"
-  ]
+    "water",
+    "boatman",
+    "craft",
+    "furniture",
+    "marine",
+    "nautical",
+    "ocean",
+    "rowing",
+    "sailing",
+    "seat",
+    "ship",
+    "transport",
+    "vessel",
+    "watercraft"
+  ],
+  "caption": "Brown wooden rowboat.",
+  "author": "Decentraland Foundation"
 }

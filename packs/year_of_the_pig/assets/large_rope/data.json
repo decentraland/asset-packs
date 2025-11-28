@@ -7,6 +7,14 @@
     "rope",
     "line",
     "cord",
-    "string"
-  ]
+    "string",
+    "curve",
+    "fabric",
+    "fiber",
+    "length",
+    "shape",
+    "twine"
+  ],
+  "caption": "Brown rope with a gentle curve.",
+  "author": "Decentraland Foundation"
 }

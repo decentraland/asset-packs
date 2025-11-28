@@ -9,8 +9,16 @@
     "nature",
     "rock",
     "rocks",
-    "stone",
-    "stones",
-    "forest"
-  ]
+    "forest",
+    "earthy",
+    "flat",
+    "formation",
+    "geological",
+    "landscape",
+    "mineral",
+    "natural",
+    "terrain"
+  ],
+  "caption": "",
+  "author": "Decentraland Foundation"
 }

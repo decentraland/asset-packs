@@ -6,6 +6,15 @@
     "fantasy",
     "chest",
     "wood",
-    "wooden"
-  ]
+    "wooden",
+    "box",
+    "container",
+    "craft",
+    "furniture",
+    "interior",
+    "room",
+    "storage"
+  ],
+  "caption": "Wooden chest with a hinged lid.",
+  "author": "Decentraland Foundation"
 }

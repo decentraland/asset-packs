@@ -12,6 +12,18 @@
     "vehicle",
     "wheel",
     "wheels",
-    "brown"
-  ]
+    "brown",
+    "cycle",
+    "cycling",
+    "driving",
+    "landscape",
+    "outdoor",
+    "pedal",
+    "speed",
+    "sport",
+    "terrain",
+    "transportation"
+  ],
+  "caption": "Brown bicycle with white wheels.",
+  "author": "Decentraland Foundation"
 }

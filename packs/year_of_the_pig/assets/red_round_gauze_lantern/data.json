@@ -7,6 +7,21 @@
     "lantern",
     "light",
     "gauze",
-    "red"
-  ]
+    "red",
+    "burning",
+    "cloth",
+    "combustion",
+    "cozy",
+    "fabric",
+    "fire",
+    "flame",
+    "glow",
+    "heat",
+    "rustic",
+    "smoke",
+    "textile",
+    "warm"
+  ],
+  "caption": "Red lantern with gauze material.",
+  "author": "Decentraland Foundation"
 }

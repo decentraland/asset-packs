@@ -8,6 +8,18 @@
     "power",
     "supply",
     "electricity",
-    "plasma"
-  ]
+    "plasma",
+    "battery",
+    "charging",
+    "container",
+    "electrical",
+    "electronics",
+    "pack",
+    "portable",
+    "storage",
+    "switch",
+    "wired"
+  ],
+  "caption": "Wired battery pack with switch on top.",
+  "author": "Decentraland Foundation"
 }

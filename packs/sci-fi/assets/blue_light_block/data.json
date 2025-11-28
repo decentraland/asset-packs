@@ -6,7 +6,20 @@
     "scifi",
     "power",
     "spark",
-    "base",
-    "spaceship"
-  ]
+    "spaceship",
+    "alert",
+    "beacon",
+    "block",
+    "glow",
+    "glowblock",
+    "glowing",
+    "illumination",
+    "indicator",
+    "luminescent",
+    "radiant",
+    "signal",
+    "warning"
+  ],
+  "caption": "Blue glowing block.",
+  "author": "Decentraland Foundation"
 }

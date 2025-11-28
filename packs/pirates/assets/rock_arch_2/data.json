@@ -7,11 +7,22 @@
     "paradise",
     "pirates",
     "nature",
-    "stone",
-    "stones",
     "rock",
     "rocks",
     "arch",
-    "beach"
-  ]
+    "beach",
+    "architecture",
+    "building",
+    "castle",
+    "fortress",
+    "monument",
+    "palace",
+    "royal",
+    "shape",
+    "stronghold",
+    "structure",
+    "tower"
+  ],
+  "caption": "Rock with an arch-shaped top.",
+  "author": "Decentraland Foundation"
 }

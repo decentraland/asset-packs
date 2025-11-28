@@ -6,6 +6,13 @@
     "scifi",
     "computer",
     "parts",
-    "spaceship"
-  ]
+    "spaceship",
+    "eye",
+    "jewel",
+    "metallic",
+    "shape",
+    "shiny"
+  ],
+  "caption": "Red gemstone with metallic border.",
+  "author": "Decentraland Foundation"
 }

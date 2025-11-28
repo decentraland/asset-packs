@@ -8,8 +8,13 @@
     "town",
     "nature",
     "rock",
-    "stone",
     "rock",
-    "stones"
-  ]
+    "pebble",
+    "pebbles",
+    "rocks",
+    "shape",
+    "smooth"
+  ],
+  "caption": "Pebble with smooth surface.",
+  "author": "Decentraland Foundation"
 }

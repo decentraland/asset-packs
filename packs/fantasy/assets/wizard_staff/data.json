@@ -11,7 +11,15 @@
     "wood",
     "wooden",
     "fabric",
-    "gem",
-    "gemstone"
-  ]
+    "artifact",
+    "ceremonial",
+    "enchanted",
+    "mystic",
+    "ribbon",
+    "ritual",
+    "spellcasting",
+    "wand"
+  ],
+  "caption": "Blue ribbon tied around wooden staff.",
+  "author": "Decentraland Foundation"
 }

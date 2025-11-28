@@ -11,6 +11,17 @@
     "debris",
     "materials",
     "material",
-    "wood"
-  ]
+    "wood",
+    "architecture",
+    "building",
+    "furniture",
+    "interior",
+    "lumber",
+    "plank",
+    "planks",
+    "structure",
+    "timber"
+  ],
+  "caption": "Wooden planks in different angles.",
+  "author": "Decentraland Foundation"
 }

@@ -10,6 +10,16 @@
     "wood",
     "wooden",
     "table",
-    "round"
-  ]
+    "antique",
+    "desk",
+    "dining",
+    "earthy",
+    "interior",
+    "kitchen",
+    "natural",
+    "organic",
+    "rustic"
+  ],
+  "caption": "Rustic wooden table.",
+  "author": "Decentraland Foundation"
 }

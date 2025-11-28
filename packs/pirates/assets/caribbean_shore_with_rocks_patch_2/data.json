@@ -10,9 +10,20 @@
     "water",
     "rock",
     "rocks",
-    "stone",
-    "stones",
     "beach",
-    "ocean"
-  ]
+    "ocean",
+    "coastal",
+    "coastline",
+    "field",
+    "grass",
+    "landscape",
+    "lawn",
+    "meadow",
+    "outdoor",
+    "patch",
+    "rocky",
+    "seashore"
+  ],
+  "caption": "Rocky shoreline with rocks and grass.",
+  "author": "Decentraland Foundation"
 }
