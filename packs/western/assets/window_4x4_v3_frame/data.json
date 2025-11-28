@@ -13,5 +13,6 @@
     "window",
     "windowpane"
   ],
-  "caption": "Four-paned window frame with top and bottom."
+  "caption": "Four-paned window frame with top and bottom.",
+  "author": "Decentraland Foundation"
 }

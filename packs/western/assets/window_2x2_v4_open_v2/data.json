@@ -13,5 +13,6 @@
     "windowframe",
     "windowpane"
   ],
-  "caption": "Open window with two panes."
+  "caption": "Open window with two panes.",
+  "author": "Decentraland Foundation"
 }

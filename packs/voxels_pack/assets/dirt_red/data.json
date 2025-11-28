@@ -9,5 +9,6 @@
     "terrain",
     "voxel"
   ],
-  "caption": "Red block, voxel-like shape, used in game terrain."
+  "caption": "Red block, voxel-like shape, used in game terrain.",
+  "author": "Decentraland Foundation"
 }
