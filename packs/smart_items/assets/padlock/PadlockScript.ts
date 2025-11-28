@@ -61,7 +61,7 @@ export class PadlockScript {
       Vector3.create(-0.195, 0.134, 0.004),
     ]
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < wheelPositions.length; i++) {
       const wheel = engine.addEntity()
       this.wheels.push(wheel)
 
