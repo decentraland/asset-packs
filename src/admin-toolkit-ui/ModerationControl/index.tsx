@@ -4,23 +4,27 @@ import ReactEcs, { UiEntity } from '@dcl/react-ecs'
 
 import { Header } from '../Header'
 import { getScaleUIFactor } from '../../ui'
-import { AddUserInput } from './AddUserInput'
+import { AddUserInput, PermissionType } from './AddUserInput'
 import { Button } from '../Button'
 import { GetPlayerDataRes } from '../../types'
 import { Card } from '../Card'
 import { CONTENT_URL } from '../constants'
-
+import { fetchSceneBans } from '..'
+import {
+  getModerationControlStyles,
+  getModerationControlColors,
+} from './styles/ModerationControlStyles'
 
 type Props = {
   engine: IEngine
   player: GetPlayerDataRes | null | undefined
+  sceneAdmins: SceneAdmin[]
 }
 
-// TODO: upload this to the content
 export const BTN_MODERATION_CONTROL = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-moderation-control-button.png`
 export const MODERATION_CONTROL_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/moderation-control-icon.png`
 const VERIFIED_USER_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/admin-panel-verified-user.png`
-
+const BAN_USER_ICON = `${CONTENT_URL}/admin_toolkit/assets/icons/ban.png`
 
 export type SceneAdmin = {
   name?: string
@@ -33,52 +37,66 @@ export type SceneAdmin = {
 type State = {
   showModalAdminList?: boolean
   adminToRemove?: SceneAdmin
+  showModalBanList?: boolean
+  unbanMessage?: string | null
 }
 export const moderationControlState: State = {
   showModalAdminList: false,
-  adminToRemove: undefined
+  showModalBanList: false,
+  adminToRemove: undefined,
+  unbanMessage: null as string | null,
 }
 
-export function ModerationControl({ engine, player }: Props) {
+export function ModerationControl({ engine, player, sceneAdmins }: Props) {
   const scaleFactor = getScaleUIFactor(engine)
+  const styles = getModerationControlStyles(scaleFactor)
+  const colors = getModerationControlColors()
 
   return (
     <Card scaleFactor={scaleFactor}>
-      <UiEntity
-        uiTransform={{
-          width: '100%',
-          height: '100%',
-          flexDirection: 'column',
-        }}
-      >
+      <UiEntity uiTransform={styles.container}>
         <Header
           iconSrc={MODERATION_CONTROL_ICON}
-          title="PERMISSIONS"
+          title="PERMISSIONS & MODERATION"
           scaleFactor={scaleFactor}
         />
-        <AddUserInput scaleFactor={scaleFactor} onSubmit={console.log} />
+        <AddUserInput
+          scaleFactor={scaleFactor}
+          type={PermissionType.ADMIN}
+          sceneAdmins={sceneAdmins}
+        />
         <Button
           variant="secondary"
           id="moderation_control_admin_list"
           value="<b>View Admin List</b>"
           fontSize={18 * scaleFactor}
-          color={Color4.White()}
-          uiTransform={{
-            width: 220 * scaleFactor,
-            height: 42 * scaleFactor,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
+          color={colors.white}
+          uiTransform={styles.viewListButton}
           icon={VERIFIED_USER_ICON}
-          iconTransform={{
-            width: 25 * scaleFactor,
-            height: 25 * scaleFactor,
-            margin: { right: 10 * scaleFactor },
-          }}
+          iconTransform={styles.viewListIcon}
           onMouseDown={() => (moderationControlState.showModalAdminList = true)}
+        />
+        <UiEntity uiTransform={styles.divider} />
+        <AddUserInput
+          scaleFactor={scaleFactor}
+          type={PermissionType.BAN}
+          sceneAdmins={sceneAdmins}
+        />
+        <Button
+          variant="secondary"
+          id="moderation_control_ban_list"
+          value="<b>View Ban List</b>"
+          fontSize={18 * scaleFactor}
+          color={colors.white}
+          uiTransform={styles.viewListButton}
+          icon={BAN_USER_ICON}
+          iconTransform={styles.viewListIcon}
+          onMouseDown={async () => {
+            await fetchSceneBans()
+            moderationControlState.showModalBanList = true
+          }}
         />
       </UiEntity>
     </Card>
   )
 }
-

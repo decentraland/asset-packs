@@ -16,5 +16,6 @@
     "window",
     "windowpane"
   ],
-  "caption": "Closed window with 16 panes."
+  "caption": "Closed window with 16 panes.",
+  "author": "Decentraland Foundation"
 }
