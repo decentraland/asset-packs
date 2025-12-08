@@ -1,7 +1,8 @@
 {
   "name": "@dcl/asset-packs",
   "version": "0.0.0",
-  "description": "",
+  "description": "DEPRECATED: This package has been moved to the Creator Hub monorepo at https://github.com/decentraland/creator-hub/tree/main/packages/asset-packs",
+  "deprecated": "This package has been moved to the Creator Hub monorepo at https://github.com/decentraland/creator-hub/tree/main/packages/asset-packs",
   "main": "dist/definitions.js",
   "typings": "dist/definitions.d.ts",
   "scripts": {
