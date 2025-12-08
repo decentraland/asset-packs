@@ -1,5 +1,14 @@
 # Asset Packs
 
+> [!WARNING]
+> **This repository has been deprecated and moved to another repository.**
+>
+> The asset-packs code and functionality is now maintained in the [creator-hub monorepo](https://github.com/decentraland/creator-hub).
+>
+> - **New location**: `creator-hub/packages/asset-packs`
+> - **Issues and contributions**: Please submit to the [creator-hub repository](https://github.com/decentraland/creator-hub/issues)
+> - **This repository**: No longer actively maintained and will not receive updates
+
 ## Overview
 
 The asset-packs repository is a fundamental component of the Decentraland ecosystem that serves as the central storage and distribution system for default items and assets. It manages and distributes:
